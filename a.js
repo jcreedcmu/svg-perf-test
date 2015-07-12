@@ -1,26 +1,43 @@
-var $svg = $("#circle-bin");
+# data in a.json generated through
+# potrace a.pbm -a 0 -b geojson
+var t = Date.now();
+$.ajax('a.json',{success: function(json) {
+  var data = JSON.parse(json);
 
-for (var i = 0; i < 10000; i++) {
-  var newc = $(document.createElementNS("http://www.w3.org/2000/svg", "circle"));
-  newc.attr({cx: Math.random() * 300, cy: Math.random() * 300, r: 10});
-  newc.prependTo($svg);
-}
 
-$("#my-circle").on('mousedown', function(e) {
-  var th = $(this);
-  var x = e.pageX;
-  var y = e.pageY;
-  var cx = parseInt(th.attr('cx'));
-  var cy = parseInt(th.attr('cy'));
-  $(document).on('mousemove.drag', function(e) {
-    var t = Date.now();
-    th.attr('cx', cx + e.pageX - x);
-    th.attr('cy', cy + e.pageY - y);
-    $svg.attr('transform', 'translate(' + (50 + e.pageX - x) + ', ' +
-     (50 + e.pageY - y) + ')');
-    console.log(Date.now() - t);
+
+  data.features.forEach(function(feature) {
+    feature.geometry.coordinates[0];
   });
-  $(document).on('mouseup.drag', function(e) {
-    $(document).off('.drag');
+
+  paper.setup(document.getElementById("c"));
+
+  //console.log(JSON.stringify(data.features[0].geometry.coordinates));
+
+  data.features.forEach(function(feature) {
+    var path = new paper.CompoundPath();
+
+
+    path.fillColor = 'black';
+
+    feature.geometry.coordinates.forEach(function(pathc) {
+
+      var scale = 2;
+      var yoff = 1150;
+
+
+
+      pathc.forEach(function(vert, ix) {
+	if (ix == 0)
+	  path.moveTo(vert[0] / scale, yoff - vert[1] / scale);
+	else
+	  path.lineTo(vert[0] / scale, yoff - vert[1] / scale);
+
+      });
+      path.closePath(false);
+    });
   });
-});
+  paper.view.draw();
+
+  console.log(Date.now() - t);
+}});

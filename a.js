@@ -36,32 +36,6 @@ var yoff = 550;
 $.ajax('a.json',{success: function(json) {
   var data = JSON.parse(json);
 
-  paper.setup(document.getElementById("c"));
-
-  //console.log(JSON.stringify(data.features[0].geometry.coordinates));
-
-  data.features.forEach(function(feature) {
-    var path = new paper.CompoundPath();
-
-
-    path.fillColor = 'black';
-
-    feature.geometry.coordinates.forEach(function(pathc) {
-
-
-      pathc.forEach(function(vert, ix) {
-	if (ix == 0)
-	  path.moveTo(vert[0] / scale, yoff - vert[1] / scale);
-	else
-	  path.lineTo(vert[0] / scale, yoff - vert[1] / scale);
-
-      });
-      path.closePath(false);
-    });
-  });
-  paper.view.draw();
-  console.log(Date.now() - t);
-
   data.features.forEach(function(feature) {
     var path = new CompoundPath();
 
@@ -74,43 +48,62 @@ $.ajax('a.json',{success: function(json) {
 
       pathc.forEach(function(vert, ix) {
 	if (ix == 0)
-	  path.moveTo(vert[0] / scale, yoff - vert[1] / scale);
+	  path.moveTo(vert[0] ,  - vert[1] );
 	else
-	  path.lineTo(vert[0] / scale, yoff - vert[1] / scale);
+	  path.lineTo(vert[0] ,  - vert[1] );
 
       });
       path.closePath(false);
     });
 
     var psvg = path.svg();
-    psvg.attr({fill: "black"});
+    psvg.attr({stroke: "#467", fill: "white"});
     psvg.appendTo($("#s"));
 
   });
 
+  camera = {x: 180, y: 600, scale: 0.2};
+  reset_camera();
   console.log(Date.now() - t);
 }});
 
-$svg = $("#s");
+$svg = $("#svg");
+$s = $("#s");
 
-var basex = 0;
-var basey = 0;
+function reset_camera() {
+  $s.attr('stroke-width', 1/camera.scale);
+  $s.attr('transform', 'translate(' + camera.x + ', ' + camera.y +
+	  ') scale(' + camera.scale + ')');
+}
+
+$svg.on('mousewheel', function(e) {
+  var x = e.pageX;
+  var y = e.pageY;
+  var zoom = 2;
+  if (e.originalEvent.wheelDelta < 0) {
+    zoom = 1/zoom;
+  }
+  camera.x = zoom * (camera.x - x) + x;
+  camera.y = zoom * (camera.y - y) + y;
+  camera.scale *= zoom;
+  reset_camera();
+});
 $svg.on('mousedown', function(e) {
   var th = $(this);
   var x = e.pageX;
   var y = e.pageY;
-  var membasex = basex;
-  var membasey = basey;
+  var membasex = camera.x;
+  var membasey = camera.y;
   $(document).on('mousemove.drag', function(e) {
     var t = Date.now();
 
-    $svg.attr('transform', 'translate(' + (membasex + e.pageX - x) + ', ' +
-     (membasey + e.pageY - y) + ')');
+    camera.x = membasex + e.pageX - x;
+    camera.y = membasey + e.pageY - y;
+    reset_camera();
+
 
   });
   $(document).on('mouseup.drag', function(e) {
-    basex += e.pageX - x;
-    basey += e.pageY - y;
     $(document).off('.drag');
   });
 });

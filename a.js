@@ -1,5 +1,5 @@
-# data in a.json generated through
-# potrace a.pbm -a 0 -b geojson
+// data in a.json generated through
+// potrace a.pbm -a 0 -b geojson
 var t = Date.now();
 $.ajax('a.json',{success: function(json) {
   var data = JSON.parse(json);

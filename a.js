@@ -50,7 +50,8 @@ $.ajax('a.json',{success: function(json) {
 	if (ix == 0)
 	  path.moveTo(vert[0] ,  - vert[1] );
 	else
-	  path.lineTo(vert[0] ,  - vert[1] );
+	  if (ix % 10 == 0)
+	    path.lineTo(vert[0] ,  - vert[1] );
 
       });
       path.closePath(false);

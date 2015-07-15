@@ -1,43 +1,11 @@
 // data in a.json generated through
 // potrace a.pbm -a 0 -b geojson
-var t = Date.now();
 
-function svg(tag) {
-  return $(document.createElementNS('http://www.w3.org/2000/svg', tag));
-}
-
-function CompoundPath() {
-  this.path = "";
-}
-
-CompoundPath.prototype.moveTo = function(x, y) {
-  this.path += "M" + x + " " + y;
-}
-
-CompoundPath.prototype.lineTo = function(x, y) {
-  this.path += "L" + x + " " + y;
-}
-
-CompoundPath.prototype.closePath = function() {
-  this.path += "z";
-}
-
-CompoundPath.prototype.svg = function() {
-  var path = svg('path');
-  path.attr({d: this.path});
-  return path;
-}
-
-
-var scale = 4;
-var yoff = 550;
 
 g_data = null;
-$.ajax('a.json',{success: function(json) {
+$.ajax('b.json',{success: function(json) {
   count = 0;
   g_data = JSON.parse(json);
-
-
 
   camera = {x: 180, y: 600, scale: 0.2};
 
@@ -47,33 +15,28 @@ $.ajax('a.json',{success: function(json) {
   h = c.height = innerHeight;
 
   render();
-  console.log(Date.now() - t);
 }});
 
 $svg = $("#svg");
 $s = $("#s");
 
 function render() {
+
   d.clearRect(0,0,w,h);
 
   d.save();
   d.translate(camera.x, camera.y);
   d.scale(camera.scale, camera.scale);
-  g_data.features.forEach(function(feature) {
+  g_data.forEach(function(feature) {
     d.beginPath();
-    feature.geometry.coordinates.forEach(function(pathc) {
-
-      pathc.forEach(function(vert, ix) {
-	count++;
-	if (ix == 0)
-	  d.moveTo(vert[0] ,  - vert[1] );
-	else
-	  d.lineTo(vert[0] ,  - vert[1] );
-
-      });
-      d.closePath();
+    feature.coords.forEach(function(vert, ix) {
+      if (ix == 0)
+	d.moveTo(vert[0] ,  - vert[1] );
+      else
+	d.lineTo(vert[0] ,  - vert[1] );
     });
-    d.fillStyle = "#eee";
+
+    d.fillStyle = "rgba(0,0,0,0.1)";
     d.fill();
     d.lineWidth = 0.5 / camera.scale;
     d.stroke();
@@ -81,6 +44,8 @@ function render() {
   d.restore();
   // $s.attr('transform', 'translate(' + camera.x + ', ' + camera.y +
   // 	  ') scale(' + camera.scale + ')');
+
+
 }
 
 $(c).on('mousewheel', function(e) {

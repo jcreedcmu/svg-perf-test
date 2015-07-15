@@ -32,52 +32,58 @@ CompoundPath.prototype.svg = function() {
 var scale = 4;
 var yoff = 550;
 
-
+g_data = null;
 $.ajax('a.json',{success: function(json) {
-  var data = JSON.parse(json);
-
-  data.features.forEach(function(feature) {
-    var path = new CompoundPath();
-
-//    path.fillColor = 'black';
-
-    feature.geometry.coordinates.forEach(function(pathc) {
+  count = 0;
+  g_data = JSON.parse(json);
 
 
-
-
-      pathc.forEach(function(vert, ix) {
-	if (ix == 0)
-	  path.moveTo(vert[0] ,  - vert[1] );
-	else
-	  if (ix % 10 == 0)
-	    path.lineTo(vert[0] ,  - vert[1] );
-
-      });
-      path.closePath(false);
-    });
-
-    var psvg = path.svg();
-    psvg.attr({stroke: "#467", fill: "white"});
-    psvg.appendTo($("#s"));
-
-  });
 
   camera = {x: 180, y: 600, scale: 0.2};
-  reset_camera();
+
+  c = $("#c")[0];
+  d = c.getContext('2d');
+  w = c.width = innerWidth;
+  h = c.height = innerHeight;
+
+  render();
   console.log(Date.now() - t);
 }});
 
 $svg = $("#svg");
 $s = $("#s");
 
-function reset_camera() {
-  $s.attr('stroke-width', 1/camera.scale);
-  $s.attr('transform', 'translate(' + camera.x + ', ' + camera.y +
-	  ') scale(' + camera.scale + ')');
+function render() {
+  d.clearRect(0,0,w,h);
+
+  d.save();
+  d.translate(camera.x, camera.y);
+  d.scale(camera.scale, camera.scale);
+  g_data.features.forEach(function(feature) {
+    d.beginPath();
+    feature.geometry.coordinates.forEach(function(pathc) {
+
+      pathc.forEach(function(vert, ix) {
+	count++;
+	if (ix == 0)
+	  d.moveTo(vert[0] ,  - vert[1] );
+	else
+	  d.lineTo(vert[0] ,  - vert[1] );
+
+      });
+      d.closePath();
+    });
+    d.fillStyle = "#eee";
+    d.fill();
+    d.lineWidth = 0.5 / camera.scale;
+    d.stroke();
+  });
+  d.restore();
+  // $s.attr('transform', 'translate(' + camera.x + ', ' + camera.y +
+  // 	  ') scale(' + camera.scale + ')');
 }
 
-$svg.on('mousewheel', function(e) {
+$(c).on('mousewheel', function(e) {
   var x = e.pageX;
   var y = e.pageY;
   var zoom = 2;
@@ -87,9 +93,9 @@ $svg.on('mousewheel', function(e) {
   camera.x = zoom * (camera.x - x) + x;
   camera.y = zoom * (camera.y - y) + y;
   camera.scale *= zoom;
-  reset_camera();
+  render();
 });
-$svg.on('mousedown', function(e) {
+$(c).on('mousedown', function(e) {
   var th = $(this);
   var x = e.pageX;
   var y = e.pageY;
@@ -100,7 +106,7 @@ $svg.on('mousedown', function(e) {
 
     camera.x = membasex + e.pageX - x;
     camera.y = membasey + e.pageY - y;
-    reset_camera();
+    render();
 
 
   });

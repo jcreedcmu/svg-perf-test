@@ -19,20 +19,32 @@ $.ajax('b.json',{success: function(json) {
   render();
 }});
 
+function inv_xform(xpix, ypix) {
+  return {x:(xpix-camera.x) / camera.scale, y:(ypix - camera.y) / -camera.scale};
+}
+
 function render() {
   var t = Date.now();
   d.clearRect(0,0,w,h);
   d.strokeStyle = "red";
-  var OFFSET = 200;
+  var OFFSET = 50;
+
   d.strokeRect(OFFSET + 0.5,OFFSET + 0.5,w-2*OFFSET,h-2*OFFSET);
   d.strokeStyle = "black";
-  var items = rt.bbox((OFFSET-camera.x) / camera.scale, ((h-OFFSET) - camera.y) / -camera.scale,
-		      ((w-OFFSET) - camera.x) / camera.scale, (OFFSET-camera.y) / -camera.scale  );
-  console.log("items ", items.length);
+
+  var ip1 = inv_xform(OFFSET, OFFSET);
+  var ip2 = inv_xform(w-OFFSET, h-OFFSET);
+  var items = rt.bbox(ip1.x, ip2.y, ip2.x, ip1.y);
+
+    // var items = rt.bbox((OFFSET-camera.x) / camera.scale, ((h-OFFSET) - camera.y) / -camera.scale,
+    // 		      ((w-OFFSET) - camera.x) / camera.scale, (OFFSET-camera.y) / -camera.scale  );
+//  console.log("items ", items.length);
 
   d.save();
   d.translate(camera.x, camera.y);
   d.scale(camera.scale, camera.scale);
+
+
   items.forEach(function(feature) {
     d.beginPath();
      feature.geometry.coordinates.forEach(function(vert, ix) {
@@ -47,13 +59,36 @@ function render() {
     d.lineWidth = 0.5 / camera.scale;
     d.stroke();
   });
+
+  d.beginPath();
+
+  var origin = {x:-camera.x/camera.scale,y:-camera.y/camera.scale};
+  items.forEach(function(feature) {
+    var cs = feature.geometry.coordinates;
+
+    cs.forEach(function(vert, ix) {
+      if (ix == 0)
+	d.moveTo(origin.x, origin.y);
+
+      d.lineTo(vert[0] ,  - vert[1] );
+
+      if (ix == cs.length-1)
+	d.lineTo(origin.x, origin.y);
+    });
+
+
+  });
+     d.fillStyle = "rgba(255,128,64,0.35)";
+     d.fill();
+
+
   d.restore();
 
 
   // $s.attr('transform', 'translate(' + camera.x + ', ' + camera.y +
   // 	  ') scale(' + camera.scale + ')');
 
-  console.log(Date.now() - t);
+//  console.log(Date.now() - t);
 }
 
 $(c).on('mousewheel', function(e) {

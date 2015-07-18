@@ -25,12 +25,14 @@ function inv_xform(xpix, ypix) {
 
 function render() {
   var t = Date.now();
-  d.clearRect(0,0,w,h);
+  d.fillStyle = "#def";
+  d.fillRect(0,0,w,h);
   d.strokeStyle = "red";
   var OFFSET = 50;
 
   d.strokeRect(OFFSET + 0.5,OFFSET + 0.5,w-2*OFFSET,h-2*OFFSET);
   d.strokeStyle = "black";
+  d.lineJoin = "round";
 
   var ip1 = inv_xform(OFFSET, OFFSET);
   var ip2 = inv_xform(w-OFFSET, h-OFFSET);
@@ -46,40 +48,48 @@ function render() {
 
 
   items.forEach(function(feature) {
-    d.beginPath();
-     feature.geometry.coordinates.forEach(function(vert, ix) {
-      if (ix == 0)
-    	d.moveTo(vert[0] ,  - vert[1] );
-      else
-    	d.lineTo(vert[0] ,  - vert[1] );
-    });
 
+    var cc = feature.geometry.coordinates;
+          d.beginPath();
+    cc.forEach(function(path) {
+
+      path.forEach(function(vert, ix) {
+
+	if (ix == 0)
+    	  d.moveTo(vert[0] ,  - vert[1] );
+	else {
+	  var p = {x: camera.x + (vert[0] * camera.scale),
+		   y: camera.y + (-vert[1] * camera.scale)};
+
+	  var draw = false;
+
+
+
+	  if (vert[2] > 10 / (camera.scale * camera.scale))
+	    draw = true;
+
+//	  if (p.x < OFFSET || p.x > w - OFFSET || p.y < OFFSET || p.y > h - OFFSET)
+	   if (p.x < 0 || p.x > w - 0 || p.y < 0 || p.y > h - 0)
+	     draw =  vert[2] > 5000;
+
+	  if (ix == cc.length - 1)
+	    draw = true;
+
+	  if (draw) {
+    	    d.lineTo(vert[0] ,  - vert[1] );
+	  }
+	}
+      });
+
+    });
+    d.lineWidth = 1.1 / camera.scale;
+      d.stroke();
+      d.fillStyle = "white";
+      d.fill();
     // d.fillStyle = "rgba(0,0,0,0.1)";
     // d.fill();
-    d.lineWidth = 0.5 / camera.scale;
-    d.stroke();
   });
 
-  d.beginPath();
-
-  var origin = {x:-camera.x/camera.scale,y:-camera.y/camera.scale};
-  items.forEach(function(feature) {
-    var cs = feature.geometry.coordinates;
-
-    cs.forEach(function(vert, ix) {
-      if (ix == 0)
-	d.moveTo(origin.x, origin.y);
-
-      d.lineTo(vert[0] ,  - vert[1] );
-
-      if (ix == cs.length-1)
-	d.lineTo(origin.x, origin.y);
-    });
-
-
-  });
-     d.fillStyle = "rgba(255,128,64,0.35)";
-     d.fill();
 
 
   d.restore();

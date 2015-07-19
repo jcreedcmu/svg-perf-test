@@ -2,6 +2,13 @@
 
 var fs = require("fs");
 var g_data = JSON.parse(fs.readFileSync("a.json"));
+
+// vertex = float * float
+// g_data.features[0].geometry.coordinates[0][0] : vertex
+// g_data.features[0].geometry.coordinates[0] : vertex list = poly
+// g_data.features[0].geometry.coordinates : vertex list list = multipoly
+// g_data.features : { geometry: {coordinates : vertex list list}} list
+
 CHUNK_SIZE = 200;
 
 var objects = {};
@@ -16,32 +23,32 @@ var out = {type: "Topology",
 
 
 
-objects["coastline"] = {type: "Polygon",
-			arcs: []};
 
-g_data.features.forEach(function(old_feature) {
-  simplify(old_feature);
-  var arcs = [];
-  objects.coastline.arcs.push(arcs);
+g_data.features.forEach(function(old_feature, ix) {
+  var name = "feature" + ix;
+  var arc_lists = [];
+  objects[name] = {type: "Polygon", // but really multipolygon?
+ 		   arcs: arc_lists};
 
-  old_feature.geometry.coordinates.forEach(function(pathc) {
-    var chunks = Math.ceil(pathc.length / CHUNK_SIZE);
+  old_feature.geometry.coordinates.forEach(function(poly, ix) {
+    var arcs = [];
+    arc_lists.push(arcs);
+    var chunks = Math.ceil(poly.length / CHUNK_SIZE);
     for (var i = 0; i < chunks; i++) {
       var arc = [];
       for (var j = 0; j < CHUNK_SIZE + 1; j++) {
-	var n = i * CHUNK_SIZE + j;
-	if (n < pathc.length) {
-	  arc.push(pathc[n]);
-	}
+ 	var n = i * CHUNK_SIZE + j;
+ 	if (n < poly.length) {
+ 	  arc.push(poly[n]);
+ 	}
       }
-      arc = arc.filter(function(x, i) {
-	return i == 0 || i == arc.length - 1 || x[2] > 0;
-      });
+      // arc = arc.filter(function(x, i) {
+      // 	return i == 0 || i == arc.length - 1 || x[2] > 0;
+      // });
       all_arcs.push(arc);
       arcs.push(all_arcs.length - 1);
     }
-  });
-
+   });
 });
 
 console.log(JSON.stringify(out, null, 2));
@@ -55,12 +62,10 @@ console.log(JSON.stringify(out, null, 2));
 // the area of error resulting from removing that point (after first
 // removing all lower-penalty points)
 
-function simplify(feature) {
-  if (feature.geometry.type !== "Polygon") throw new Error("not yet supported");
+function simplify(polygon) {
   var heap = minHeap(),
       maxArea = 0,
       triangle;
-  var polygon = feature.geometry.coordinates;
 
   polygon.forEach(function(points) {
     var triangles = [];
@@ -112,7 +117,7 @@ function simplify(feature) {
     heap.push(triangle);
   }
 
-  return feature;
+  return polygon;
 }
 
 function compare(a, b) {

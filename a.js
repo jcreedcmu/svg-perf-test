@@ -38,24 +38,27 @@ function render() {
   var ip1 = inv_xform(OFFSET, OFFSET);
   var ip2 = inv_xform(w-OFFSET, h-OFFSET);
   //var items = rt.bbox(ip1.x, ip2.y, ip2.x, ip1.y);
-  var arc_id_lists = g_data.objects.coastline.arcs;
-  var arcs = g_data.arcs;
 
-  d.save();
-  d.translate(camera.x, camera.y);
-  d.scale(camera.scale, camera.scale);
-  z = 0;
-  d.beginPath();
-  arc_id_lists.forEach(function(arc_id_list) {
-    var n;
- n = 0;
-    arc_id_list.forEach(function(arc_id) {
+  _.each(g_data.objects, function(object, k) {
+    var arc_id_lists = object.arcs;
+    var arcs = g_data.arcs;
 
-      z++;
-      if (z < 124) {
+    d.save();
+    d.translate(camera.x, camera.y);
+    d.scale(camera.scale, camera.scale);
+    z = 0;
+    d.beginPath();
+    arc_id_lists.forEach(function(arc_id_list) {
+      var n = 0;
+      arc_id_list.forEach(function(arc_id, arc_id_ix) {
 	var this_arc = arcs[arc_id];
-	this_arc.forEach(function(vert, ix) {
 
+	if (0) {
+	  // draw super simplified
+	  this_arc = [this_arc[0],this_arc[this_arc.length - 1]];
+	}
+
+	this_arc.forEach(function(vert, ix) {
 	  if (n++ == 0)
     	    d.moveTo(vert[0] ,  - vert[1] );
 	  else {
@@ -82,21 +85,19 @@ function render() {
 	    }
 	  }
 	});
-      }
+      });
+      d.closePath();
     });
 
-    // d.fillStyle = "rgba(0,0,0,0.1)";
-    // d.fill();
+    d.lineWidth = 1.1 / camera.scale;
+    d.stroke();
+    d.fillStyle = k == "feature0" ? "#fed" : "white";
+    d.fill();
+
+
+    d.restore();
+
   });
-  d.lineWidth = 1.1 / camera.scale;
-  d.stroke();
-  d.fillStyle = "white";
-  d.fill();
-
-
-  d.restore();
-
-
   // $s.attr('transform', 'translate(' + camera.x + ', ' + camera.y +
   // 	  ') scale(' + camera.scale + ')');
 

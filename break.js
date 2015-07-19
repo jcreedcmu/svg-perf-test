@@ -4,33 +4,44 @@ var fs = require("fs");
 var g_data = JSON.parse(fs.readFileSync("a.json"));
 CHUNK_SIZE = 200;
 
-var features = [];
-var out = {type: "FeatureCollection", features: features};
+var objects = {};
+var all_arcs = [];
+var out = {type: "Topology",
+	   transform: {
+	     scale: [1,1],
+	     translate: [0,0],
+	   },
+	   objects: objects,
+	   arcs: all_arcs};
+
+
+
+objects["coastline"] = {type: "Polygon",
+			arcs: []};
+
 g_data.features.forEach(function(old_feature) {
   simplify(old_feature);
-  features.push(old_feature);
-  //  console.log(old_feature);
+  var arcs = [];
+  objects.coastline.arcs.push(arcs);
 
-  if (0) {
-    old_feature.geometry.coordinates.forEach(function(pathc) {
-      var chunks = Math.ceil(pathc.length / CHUNK_SIZE);
-      for (var i = 0; i < chunks; i++) {
-	var feature = {type: "Feature", geometry: {type: "LineString", coordinates: []}};
-	features.push(feature);
-	for (var j = 0; j < CHUNK_SIZE + 1; j++) {
-	  var n = i * CHUNK_SIZE + j;
-	  if (n < pathc.length) {
-	    feature.geometry.coordinates.push(pathc[n]);
-	  }
+  old_feature.geometry.coordinates.forEach(function(pathc) {
+    var chunks = Math.ceil(pathc.length / CHUNK_SIZE);
+    for (var i = 0; i < chunks; i++) {
+      var arc = [];
+      for (var j = 0; j < CHUNK_SIZE + 1; j++) {
+	var n = i * CHUNK_SIZE + j;
+	if (n < pathc.length) {
+	  arc.push(pathc[n]);
 	}
-	feature.geometry.coordinates =
-	  feature.geometry.coordinates.filter(function(x, i) {
-	    return i == 0 || i == feature.geometry.coordinates.length - 1 ||
-	      x[2] >= 100 || true;
-	  });
       }
-    });
-  }
+      arc = arc.filter(function(x, i) {
+	return i == 0 || i == arc.length - 1 || x[2] > 0;
+      });
+      all_arcs.push(arc);
+      arcs.push(all_arcs.length - 1);
+    }
+  });
+
 });
 
 console.log(JSON.stringify(out, null, 2));

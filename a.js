@@ -6,8 +6,8 @@ g_data = null;
 $.ajax('b.json',{success: function(json) {
   count = 0;
   g_data = JSON.parse(json);
-  rt = new RTree(10);
-  rt.geoJSON(JSON.parse(json));
+//  rt = new RTree(10);
+//  rt.geoJSON(JSON.parse(json));
 
   camera = {x: 180, y: 600, scale: 0.2};
 
@@ -23,6 +23,7 @@ function inv_xform(xpix, ypix) {
   return {x:(xpix-camera.x) / camera.scale, y:(ypix - camera.y) / -camera.scale};
 }
 
+var z = 0;
 function render() {
   var t = Date.now();
   d.fillStyle = "#def";
@@ -36,60 +37,61 @@ function render() {
 
   var ip1 = inv_xform(OFFSET, OFFSET);
   var ip2 = inv_xform(w-OFFSET, h-OFFSET);
-  var items = rt.bbox(ip1.x, ip2.y, ip2.x, ip1.y);
-
-    // var items = rt.bbox((OFFSET-camera.x) / camera.scale, ((h-OFFSET) - camera.y) / -camera.scale,
-    // 		      ((w-OFFSET) - camera.x) / camera.scale, (OFFSET-camera.y) / -camera.scale  );
-//  console.log("items ", items.length);
+  //var items = rt.bbox(ip1.x, ip2.y, ip2.x, ip1.y);
+  var arc_id_lists = g_data.objects.coastline.arcs;
+  var arcs = g_data.arcs;
 
   d.save();
   d.translate(camera.x, camera.y);
   d.scale(camera.scale, camera.scale);
+  z = 0;
+  d.beginPath();
+  arc_id_lists.forEach(function(arc_id_list) {
+    var n;
+ n = 0;
+    arc_id_list.forEach(function(arc_id) {
+
+      z++;
+      if (z < 124) {
+	var this_arc = arcs[arc_id];
+	this_arc.forEach(function(vert, ix) {
+
+	  if (n++ == 0)
+    	    d.moveTo(vert[0] ,  - vert[1] );
+	  else {
+	    // var p = {x: camera.x + (vert[0] * camera.scale),
+	    // 	   y: camera.y + (-vert[1] * camera.scale)};
+
+	    // var draw = false;
 
 
-  items.forEach(function(feature) {
 
-    var cc = feature.geometry.coordinates;
-          d.beginPath();
-    cc.forEach(function(path) {
+	    // if (vert[2] > 10 / (camera.scale * camera.scale))
+	    //   draw = true;
 
-      path.forEach(function(vert, ix) {
+	    // //	  if (p.x < OFFSET || p.x > w - OFFSET || p.y < OFFSET || p.y > h - OFFSET)
+	    // if (p.x < 0 || p.x > w - 0 || p.y < 0 || p.y > h - 0)
+	    //   draw =  vert[2] > 5000;
 
-	if (ix == 0)
-    	  d.moveTo(vert[0] ,  - vert[1] );
-	else {
-	  var p = {x: camera.x + (vert[0] * camera.scale),
-		   y: camera.y + (-vert[1] * camera.scale)};
-
-	  var draw = false;
-
-
-
-	  if (vert[2] > 10 / (camera.scale * camera.scale))
 	    draw = true;
+	    if (ix == this_arc.length - 1)
+	      draw = false;
 
-//	  if (p.x < OFFSET || p.x > w - OFFSET || p.y < OFFSET || p.y > h - OFFSET)
-	   if (p.x < 0 || p.x > w - 0 || p.y < 0 || p.y > h - 0)
-	     draw =  vert[2] > 5000;
-
-	  if (ix == cc.length - 1)
-	    draw = true;
-
-	  if (draw) {
-    	    d.lineTo(vert[0] ,  - vert[1] );
+	    if (draw) {
+    	      d.lineTo(vert[0] ,  - vert[1] );
+	    }
 	  }
-	}
-      });
-
+	});
+      }
     });
-    d.lineWidth = 1.1 / camera.scale;
-      d.stroke();
-      d.fillStyle = "white";
-      d.fill();
+
     // d.fillStyle = "rgba(0,0,0,0.1)";
     // d.fill();
   });
-
+  d.lineWidth = 1.1 / camera.scale;
+  d.stroke();
+  d.fillStyle = "white";
+  d.fill();
 
 
   d.restore();

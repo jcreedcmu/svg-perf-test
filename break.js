@@ -21,9 +21,6 @@ var out = {type: "Topology",
 	   objects: objects,
 	   arcs: all_arcs};
 
-
-
-
 g_data.features.forEach(function(old_feature, ix) {
   var name = "feature" + ix;
   var arc_lists = [];
@@ -31,6 +28,7 @@ g_data.features.forEach(function(old_feature, ix) {
  		   arcs: arc_lists};
 
   old_feature.geometry.coordinates.forEach(function(poly, ix) {
+    simplify(poly);
     var arcs = [];
     arc_lists.push(arcs);
     var chunks = Math.ceil(poly.length / CHUNK_SIZE);
@@ -42,9 +40,9 @@ g_data.features.forEach(function(old_feature, ix) {
  	  arc.push(poly[n]);
  	}
       }
-      // arc = arc.filter(function(x, i) {
-      // 	return i == 0 || i == arc.length - 1 || x[2] > 0;
-      // });
+      arc = arc.filter(function(x, i) {
+      	return i == 0 || i == arc.length - 1 || x[2] > 0;
+      });
       all_arcs.push(arc);
       arcs.push(all_arcs.length - 1);
     }
@@ -67,24 +65,22 @@ function simplify(polygon) {
       maxArea = 0,
       triangle;
 
-  polygon.forEach(function(points) {
-    var triangles = [];
 
-    for (var i = 1, n = points.length - 1; i < n; ++i) {
-      triangle = points.slice(i - 1, i + 2);
-      if (triangle[1][2] = area(triangle)) {
-        triangles.push(triangle);
-        heap.push(triangle);
-      }
+  var triangles = [];
+
+  for (var i = 1, n = polygon.length - 1; i < n; ++i) {
+    triangle = polygon.slice(i - 1, i + 2);
+    if (triangle[1][2] = area(triangle)) {
+      triangles.push(triangle);
+      heap.push(triangle);
     }
+  }
 
-    for (var i = 0, n = triangles.length; i < n; ++i) {
-      triangle = triangles[i];
-      triangle.previous = triangles[i - 1];
-      triangle.next = triangles[i + 1];
-    }
-  });
-
+  for (var i = 0, n = triangles.length; i < n; ++i) {
+    triangle = triangles[i];
+    triangle.previous = triangles[i - 1];
+    triangle.next = triangles[i + 1];
+  }
 
   while (triangle = heap.pop()) {
     // If the area of the current point is less than that of the previous point

@@ -62,21 +62,18 @@ function render() {
 	  if (n++ == 0)
     	    d.moveTo(vert[0] ,  - vert[1] );
 	  else {
-	    // var p = {x: camera.x + (vert[0] * camera.scale),
-	    // 	   y: camera.y + (-vert[1] * camera.scale)};
+	    var p = {x: camera.x + (vert[0] * camera.scale),
+	    	     y: camera.y + (-vert[1] * camera.scale)};
 
-	    // var draw = false;
+	    var draw = false;
 
+	    if (vert[2] > 5 / (camera.scale * camera.scale))
+	      draw = true;
 
-
-	    // if (vert[2] > 10 / (camera.scale * camera.scale))
-	    //   draw = true;
-
-	    // //	  if (p.x < OFFSET || p.x > w - OFFSET || p.y < OFFSET || p.y > h - OFFSET)
-	    // if (p.x < 0 || p.x > w - 0 || p.y < 0 || p.y > h - 0)
+	    // if (p.x < OFFSET || p.x > w - OFFSET || p.y < OFFSET || p.y > h - OFFSET)
+	    // // if (p.x < 0 || p.x > w - 0 || p.y < 0 || p.y > h - 0)
 	    //   draw =  vert[2] > 5000;
 
-	    draw = true;
 	    if (ix == this_arc.length - 1)
 	      draw = false;
 

@@ -11,21 +11,37 @@ var g_data = JSON.parse(fs.readFileSync("a.json"));
 
 CHUNK_SIZE = 200;
 
+function accumulate_bbox(pt, bbox) {
+  bbox.minx = Math.min(pt[0], bbox.minx);
+  bbox.maxx = Math.max(pt[0], bbox.maxx);
+  bbox.miny = Math.min(pt[1], bbox.miny);
+  bbox.maxy = Math.max(pt[1], bbox.maxy);
+}
+
+function new_bbox() {
+  return {minx: Number.MAX_VALUE, miny: Number.MAX_VALUE,
+	  maxx: Number.MIN_VALUE, maxy: Number.MIN_VALUE};
+}
+
 var objects = {};
 var all_arcs = [];
+var all_arcs_bboxes = [];
 var out = {type: "Topology",
 	   transform: {
 	     scale: [1,1],
 	     translate: [0,0],
 	   },
 	   objects: objects,
-	   arcs: all_arcs};
+	   arcs: all_arcs,
+	   arc_bboxes: all_arcs_bboxes};
 
 g_data.features.forEach(function(old_feature, ix) {
   var name = "feature" + ix;
   var arc_lists = [];
+  var feature_bbox = new_bbox();
   objects[name] = {type: "Polygon", // but really multipolygon?
- 		   arcs: arc_lists};
+ 		   arcs: arc_lists,
+		   properties: {bbox: feature_bbox}};
 
   old_feature.geometry.coordinates.forEach(function(poly, ix) {
     simplify(poly);
@@ -34,19 +50,23 @@ g_data.features.forEach(function(old_feature, ix) {
     var chunks = Math.ceil(poly.length / CHUNK_SIZE);
     for (var i = 0; i < chunks; i++) {
       var arc = [];
+      var arc_bbox = new_bbox();
       for (var j = 0; j < CHUNK_SIZE + 1; j++) {
  	var n = i * CHUNK_SIZE + j;
  	if (n < poly.length) {
  	  arc.push(poly[n]);
+	  accumulate_bbox(poly[n], arc_bbox);
+	  accumulate_bbox(poly[n], feature_bbox);
  	}
       }
       arc = arc.filter(function(x, i) {
       	return i == 0 || i == arc.length - 1 || x[2] > 0;
       });
       all_arcs.push(arc);
+      all_arcs_bboxes.push(arc_bbox);
       arcs.push(all_arcs.length - 1);
     }
-   });
+  });
 });
 
 console.log(JSON.stringify(out, null, 2));

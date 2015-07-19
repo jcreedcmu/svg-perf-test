@@ -472,7 +472,15 @@
         [
           207
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 390.5,
+          "miny": 27,
+          "maxx": 3718,
+          "maxy": 3150.9
+        }
+      }
     },
     "feature1": {
       "type": "Polygon",
@@ -480,7 +488,15 @@
         [
           208
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 818.9,
+          "miny": 2911,
+          "maxx": 821,
+          "maxy": 2913
+        }
+      }
     },
     "feature2": {
       "type": "Polygon",
@@ -488,7 +504,15 @@
         [
           209
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 825,
+          "miny": 2907.1,
+          "maxx": 830.7,
+          "maxy": 2912
+        }
+      }
     },
     "feature3": {
       "type": "Polygon",
@@ -496,7 +520,15 @@
         [
           210
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 682.3,
+          "miny": 3121,
+          "maxx": 686.2,
+          "maxy": 3124.1
+        }
+      }
     },
     "feature4": {
       "type": "Polygon",
@@ -504,7 +536,15 @@
         [
           211
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 763,
+          "miny": 3113,
+          "maxx": 767,
+          "maxy": 3118
+        }
+      }
     },
     "feature5": {
       "type": "Polygon",
@@ -512,7 +552,15 @@
         [
           212
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 874.8,
+          "miny": 3091.8,
+          "maxx": 878,
+          "maxy": 3095
+        }
+      }
     },
     "feature6": {
       "type": "Polygon",
@@ -520,7 +568,15 @@
         [
           213
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2717.5,
+          "miny": 3078,
+          "maxx": 2728,
+          "maxy": 3085
+        }
+      }
     },
     "feature7": {
       "type": "Polygon",
@@ -528,7 +584,15 @@
         [
           214
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 799.7,
+          "miny": 3064.6,
+          "maxx": 803.3,
+          "maxy": 3070.5
+        }
+      }
     },
     "feature8": {
       "type": "Polygon",
@@ -536,7 +600,15 @@
         [
           215
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2721,
+          "miny": 2962.9,
+          "maxx": 2757.4,
+          "maxy": 3069
+        }
+      }
     },
     "feature9": {
       "type": "Polygon",
@@ -544,7 +616,15 @@
         [
           216
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 830.7,
+          "miny": 3058,
+          "maxx": 837,
+          "maxy": 3068
+        }
+      }
     },
     "feature10": {
       "type": "Polygon",
@@ -552,7 +632,15 @@
         [
           217
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 848,
+          "miny": 3029,
+          "maxx": 855,
+          "maxy": 3034
+        }
+      }
     },
     "feature11": {
       "type": "Polygon",
@@ -560,7 +648,15 @@
         [
           218
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 706.8,
+          "miny": 3014,
+          "maxx": 733.9,
+          "maxy": 3032
+        }
+      }
     },
     "feature12": {
       "type": "Polygon",
@@ -568,7 +664,15 @@
         [
           219
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 905,
+          "miny": 3019,
+          "maxx": 910,
+          "maxy": 3023.2
+        }
+      }
     },
     "feature13": {
       "type": "Polygon",
@@ -576,7 +680,15 @@
         [
           220
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2740,
+          "miny": 2955.5,
+          "maxx": 2743,
+          "maxy": 2961
+        }
+      }
     },
     "feature14": {
       "type": "Polygon",
@@ -587,7 +699,15 @@
         [
           222
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 3023.9,
+          "miny": 2937,
+          "maxx": 3051.3,
+          "maxy": 2961.1
+        }
+      }
     },
     "feature15": {
       "type": "Polygon",
@@ -595,7 +715,15 @@
         [
           223
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 709.7,
+          "miny": 2910.6,
+          "maxx": 714.2,
+          "maxy": 2915
+        }
+      }
     },
     "feature16": {
       "type": "Polygon",
@@ -603,7 +731,15 @@
         [
           224
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 703.9,
+          "miny": 2909,
+          "maxx": 707,
+          "maxy": 2911
+        }
+      }
     },
     "feature17": {
       "type": "Polygon",
@@ -611,7 +747,15 @@
         [
           225
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2833.8,
+          "miny": 2837,
+          "maxx": 2916.2,
+          "maxy": 2904
+        }
+      }
     },
     "feature18": {
       "type": "Polygon",
@@ -619,7 +763,15 @@
         [
           226
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 681.8,
+          "miny": 2892.5,
+          "maxx": 686.2,
+          "maxy": 2895
+        }
+      }
     },
     "feature19": {
       "type": "Polygon",
@@ -627,7 +779,15 @@
         [
           227
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 686.9,
+          "miny": 2891,
+          "maxx": 690,
+          "maxy": 2893
+        }
+      }
     },
     "feature20": {
       "type": "Polygon",
@@ -635,7 +795,15 @@
         [
           228
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2957,
+          "miny": 2866.9,
+          "maxx": 2978.5,
+          "maxy": 2893
+        }
+      }
     },
     "feature21": {
       "type": "Polygon",
@@ -643,7 +811,15 @@
         [
           229
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 674,
+          "miny": 2874,
+          "maxx": 690,
+          "maxy": 2889
+        }
+      }
     },
     "feature22": {
       "type": "Polygon",
@@ -651,7 +827,15 @@
         [
           230
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 734,
+          "miny": 2828,
+          "maxx": 752,
+          "maxy": 2846
+        }
+      }
     },
     "feature23": {
       "type": "Polygon",
@@ -659,7 +843,15 @@
         [
           231
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 755,
+          "miny": 2837,
+          "maxx": 760,
+          "maxy": 2840
+        }
+      }
     },
     "feature24": {
       "type": "Polygon",
@@ -667,7 +859,15 @@
         [
           232
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 753.8,
+          "miny": 2829,
+          "maxx": 757.2,
+          "maxy": 2832
+        }
+      }
     },
     "feature25": {
       "type": "Polygon",
@@ -675,7 +875,15 @@
         [
           233
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 751,
+          "miny": 2815.7,
+          "maxx": 763.5,
+          "maxy": 2830.7
+        }
+      }
     },
     "feature26": {
       "type": "Polygon",
@@ -683,7 +891,15 @@
         [
           234
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 751,
+          "miny": 2826.9,
+          "maxx": 753,
+          "maxy": 2829
+        }
+      }
     },
     "feature27": {
       "type": "Polygon",
@@ -691,7 +907,15 @@
         [
           235
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 807.2,
+          "miny": 2809,
+          "maxx": 812.8,
+          "maxy": 2827.1
+        }
+      }
     },
     "feature28": {
       "type": "Polygon",
@@ -699,7 +923,15 @@
         [
           236
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 831.7,
+          "miny": 2816,
+          "maxx": 837.3,
+          "maxy": 2820
+        }
+      }
     },
     "feature29": {
       "type": "Polygon",
@@ -707,7 +939,15 @@
         [
           237
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 1871,
+          "miny": 2811,
+          "maxx": 1879,
+          "maxy": 2817
+        }
+      }
     },
     "feature30": {
       "type": "Polygon",
@@ -715,7 +955,15 @@
         [
           238
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 831.8,
+          "miny": 2811.8,
+          "maxx": 835,
+          "maxy": 2815
+        }
+      }
     },
     "feature31": {
       "type": "Polygon",
@@ -723,7 +971,15 @@
         [
           239
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 822.9,
+          "miny": 2808,
+          "maxx": 828.1,
+          "maxy": 2813.1
+        }
+      }
     },
     "feature32": {
       "type": "Polygon",
@@ -731,7 +987,15 @@
         [
           240
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 1871,
+          "miny": 2804.8,
+          "maxx": 1877.1,
+          "maxy": 2810
+        }
+      }
     },
     "feature33": {
       "type": "Polygon",
@@ -739,7 +1003,15 @@
         [
           241
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 1875.7,
+          "miny": 2801,
+          "maxx": 1882.3,
+          "maxy": 2805.8
+        }
+      }
     },
     "feature34": {
       "type": "Polygon",
@@ -747,7 +1019,15 @@
         [
           242
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 1881,
+          "miny": 2784.5,
+          "maxx": 1896.2,
+          "maxy": 2800
+        }
+      }
     },
     "feature35": {
       "type": "Polygon",
@@ -755,7 +1035,15 @@
         [
           243
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 1653,
+          "miny": 2751,
+          "maxx": 1674.5,
+          "maxy": 2771
+        }
+      }
     },
     "feature36": {
       "type": "Polygon",
@@ -763,7 +1051,15 @@
         [
           244
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 814,
+          "miny": 2722,
+          "maxx": 818.1,
+          "maxy": 2726.1
+        }
+      }
     },
     "feature37": {
       "type": "Polygon",
@@ -771,7 +1067,15 @@
         [
           245
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 782.5,
+          "miny": 2697,
+          "maxx": 798.3,
+          "maxy": 2724
+        }
+      }
     },
     "feature38": {
       "type": "Polygon",
@@ -779,7 +1083,15 @@
         [
           246
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 1669,
+          "miny": 2698,
+          "maxx": 1691.2,
+          "maxy": 2712
+        }
+      }
     },
     "feature39": {
       "type": "Polygon",
@@ -787,7 +1099,15 @@
         [
           247
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 1657.9,
+          "miny": 2684.7,
+          "maxx": 1666.1,
+          "maxy": 2696.9
+        }
+      }
     },
     "feature40": {
       "type": "Polygon",
@@ -795,7 +1115,15 @@
         [
           248
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 798,
+          "miny": 2684.8,
+          "maxx": 804,
+          "maxy": 2692
+        }
+      }
     },
     "feature41": {
       "type": "Polygon",
@@ -803,7 +1131,15 @@
         [
           249
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 805,
+          "miny": 2676.6,
+          "maxx": 808,
+          "maxy": 2682
+        }
+      }
     },
     "feature42": {
       "type": "Polygon",
@@ -811,7 +1147,15 @@
         [
           250
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 810,
+          "miny": 2675.9,
+          "maxx": 812,
+          "maxy": 2680.1
+        }
+      }
     },
     "feature43": {
       "type": "Polygon",
@@ -819,7 +1163,15 @@
         [
           251
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 885,
+          "miny": 2641.8,
+          "maxx": 888.9,
+          "maxy": 2646
+        }
+      }
     },
     "feature44": {
       "type": "Polygon",
@@ -827,7 +1179,15 @@
         [
           252
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 800,
+          "miny": 2628.8,
+          "maxx": 812.1,
+          "maxy": 2644
+        }
+      }
     },
     "feature45": {
       "type": "Polygon",
@@ -835,7 +1195,15 @@
         [
           253
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 715,
+          "miny": 2576,
+          "maxx": 743,
+          "maxy": 2595
+        }
+      }
     },
     "feature46": {
       "type": "Polygon",
@@ -843,7 +1211,15 @@
         [
           254
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 820,
+          "miny": 2583.6,
+          "maxx": 827,
+          "maxy": 2595
+        }
+      }
     },
     "feature47": {
       "type": "Polygon",
@@ -851,7 +1227,15 @@
         [
           255
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2253,
+          "miny": 2483,
+          "maxx": 2327,
+          "maxy": 2542
+        }
+      }
     },
     "feature48": {
       "type": "Polygon",
@@ -859,7 +1243,15 @@
         [
           256
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 609,
+          "miny": 2519,
+          "maxx": 621,
+          "maxy": 2535
+        }
+      }
     },
     "feature49": {
       "type": "Polygon",
@@ -867,7 +1259,15 @@
         [
           257
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2242,
+          "miny": 2483.5,
+          "maxx": 2246.2,
+          "maxy": 2491.1
+        }
+      }
     },
     "feature50": {
       "type": "Polygon",
@@ -875,7 +1275,15 @@
         [
           258
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2252.1,
+          "miny": 2477.1,
+          "maxx": 2256,
+          "maxy": 2482.1
+        }
+      }
     },
     "feature51": {
       "type": "Polygon",
@@ -883,7 +1291,15 @@
         [
           259
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2252.9,
+          "miny": 2472,
+          "maxx": 2261,
+          "maxy": 2477
+        }
+      }
     },
     "feature52": {
       "type": "Polygon",
@@ -891,7 +1307,15 @@
         [
           260
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2221.5,
+          "miny": 2463.9,
+          "maxx": 2250,
+          "maxy": 2475
+        }
+      }
     },
     "feature53": {
       "type": "Polygon",
@@ -899,7 +1323,15 @@
         [
           261
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 825.1,
+          "miny": 2353.5,
+          "maxx": 827,
+          "maxy": 2358
+        }
+      }
     },
     "feature54": {
       "type": "Polygon",
@@ -907,7 +1339,15 @@
         [
           262
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 800,
+          "miny": 2336.8,
+          "maxx": 809.1,
+          "maxy": 2344
+        }
+      }
     },
     "feature55": {
       "type": "Polygon",
@@ -915,7 +1355,15 @@
         [
           263
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 798,
+          "miny": 2336.2,
+          "maxx": 802,
+          "maxy": 2338
+        }
+      }
     },
     "feature56": {
       "type": "Polygon",
@@ -923,7 +1371,15 @@
         [
           264
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 570,
+          "miny": 2092,
+          "maxx": 577,
+          "maxy": 2097.8
+        }
+      }
     },
     "feature57": {
       "type": "Polygon",
@@ -931,7 +1387,15 @@
         [
           265
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 3039.2,
+          "miny": 2031.5,
+          "maxx": 3042,
+          "maxy": 2040
+        }
+      }
     },
     "feature58": {
       "type": "Polygon",
@@ -939,7 +1403,15 @@
         [
           266
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 3037.2,
+          "miny": 2024.5,
+          "maxx": 3038.2,
+          "maxy": 2029.5
+        }
+      }
     },
     "feature59": {
       "type": "Polygon",
@@ -947,7 +1419,15 @@
         [
           267
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 3036,
+          "miny": 2020.5,
+          "maxx": 3037.2,
+          "maxy": 2024.3
+        }
+      }
     },
     "feature60": {
       "type": "Polygon",
@@ -958,7 +1438,15 @@
         [
           269
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2914.7,
+          "miny": 1929.5,
+          "maxx": 2961.7,
+          "maxy": 1962.1
+        }
+      }
     },
     "feature61": {
       "type": "Polygon",
@@ -966,7 +1454,15 @@
         [
           270
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 135.7,
+          "miny": 1897,
+          "maxx": 142.1,
+          "maxy": 1899.7
+        }
+      }
     },
     "feature62": {
       "type": "Polygon",
@@ -1000,7 +1496,15 @@
         [
           285
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 99.9,
+          "miny": 1223,
+          "maxx": 1046,
+          "maxy": 1893.8
+        }
+      }
     },
     "feature63": {
       "type": "Polygon",
@@ -1008,7 +1512,15 @@
         [
           286
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 937,
+          "miny": 1850,
+          "maxx": 939,
+          "maxy": 1853.1
+        }
+      }
     },
     "feature64": {
       "type": "Polygon",
@@ -1016,7 +1528,15 @@
         [
           287
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 999.6,
+          "miny": 1818,
+          "maxx": 1016.5,
+          "maxy": 1829
+        }
+      }
     },
     "feature65": {
       "type": "Polygon",
@@ -1024,7 +1544,15 @@
         [
           288
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 1123,
+          "miny": 1781.8,
+          "maxx": 1136,
+          "maxy": 1794
+        }
+      }
     },
     "feature66": {
       "type": "Polygon",
@@ -1032,7 +1560,15 @@
         [
           289
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 413,
+          "miny": 1693,
+          "maxx": 450.2,
+          "maxy": 1742
+        }
+      }
     },
     "feature67": {
       "type": "Polygon",
@@ -1040,7 +1576,15 @@
         [
           290
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 1019,
+          "miny": 1715.9,
+          "maxx": 1051.5,
+          "maxy": 1739
+        }
+      }
     },
     "feature68": {
       "type": "Polygon",
@@ -1049,7 +1593,15 @@
           291,
           292
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 1225,
+          "miny": 1536.8,
+          "maxx": 1428.3,
+          "maxy": 1723
+        }
+      }
     },
     "feature69": {
       "type": "Polygon",
@@ -1057,7 +1609,15 @@
         [
           293
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 1827.9,
+          "miny": 1655,
+          "maxx": 1891,
+          "maxy": 1716.9
+        }
+      }
     },
     "feature70": {
       "type": "Polygon",
@@ -1065,7 +1625,15 @@
         [
           294
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 1948.5,
+          "miny": 1686,
+          "maxx": 1979.4,
+          "maxy": 1706
+        }
+      }
     },
     "feature71": {
       "type": "Polygon",
@@ -1073,7 +1641,15 @@
         [
           295
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 478.8,
+          "miny": 1638,
+          "maxx": 492.1,
+          "maxy": 1657.8
+        }
+      }
     },
     "feature72": {
       "type": "Polygon",
@@ -1081,7 +1657,15 @@
         [
           296
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 1732.9,
+          "miny": 1580,
+          "maxx": 1741.1,
+          "maxy": 1585.8
+        }
+      }
     },
     "feature73": {
       "type": "Polygon",
@@ -1089,7 +1673,15 @@
         [
           297
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 1824.5,
+          "miny": 1564,
+          "maxx": 1832.5,
+          "maxy": 1568
+        }
+      }
     },
     "feature74": {
       "type": "Polygon",
@@ -1097,7 +1689,15 @@
         [
           298
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2910.2,
+          "miny": 1526.1,
+          "maxx": 2916.2,
+          "maxy": 1533
+        }
+      }
     },
     "feature75": {
       "type": "Polygon",
@@ -1105,7 +1705,15 @@
         [
           299
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2907,
+          "miny": 1522,
+          "maxx": 2915,
+          "maxy": 1527
+        }
+      }
     },
     "feature76": {
       "type": "Polygon",
@@ -1113,7 +1721,15 @@
         [
           300
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2936.7,
+          "miny": 1523.9,
+          "maxx": 2942,
+          "maxy": 1527.3
+        }
+      }
     },
     "feature77": {
       "type": "Polygon",
@@ -1121,7 +1737,15 @@
         [
           301
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2927.9,
+          "miny": 1507.7,
+          "maxx": 2941.7,
+          "maxy": 1519
+        }
+      }
     },
     "feature78": {
       "type": "Polygon",
@@ -1129,7 +1753,15 @@
         [
           302
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2925,
+          "miny": 1503.2,
+          "maxx": 2932.5,
+          "maxy": 1512
+        }
+      }
     },
     "feature79": {
       "type": "Polygon",
@@ -1137,7 +1769,15 @@
         [
           303
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 1931.5,
+          "miny": 1476,
+          "maxx": 1969,
+          "maxy": 1511.5
+        }
+      }
     },
     "feature80": {
       "type": "Polygon",
@@ -1145,7 +1785,15 @@
         [
           304
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2941,
+          "miny": 1421,
+          "maxx": 2964.5,
+          "maxy": 1444.9
+        }
+      }
     },
     "feature81": {
       "type": "Polygon",
@@ -1153,7 +1801,15 @@
         [
           305
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2963.1,
+          "miny": 1425.5,
+          "maxx": 2976.9,
+          "maxy": 1440.6
+        }
+      }
     },
     "feature82": {
       "type": "Polygon",
@@ -1161,7 +1817,15 @@
         [
           306
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2967,
+          "miny": 1435.9,
+          "maxx": 2969,
+          "maxy": 1439
+        }
+      }
     },
     "feature83": {
       "type": "Polygon",
@@ -1169,7 +1833,15 @@
         [
           307
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 3335.9,
+          "miny": 1435,
+          "maxx": 3342.4,
+          "maxy": 1438
+        }
+      }
     },
     "feature84": {
       "type": "Polygon",
@@ -1177,7 +1849,15 @@
         [
           308
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 3112.6,
+          "miny": 1407.2,
+          "maxx": 3138,
+          "maxy": 1433
+        }
+      }
     },
     "feature85": {
       "type": "Polygon",
@@ -1185,7 +1865,15 @@
         [
           309
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2950,
+          "miny": 1414.8,
+          "maxx": 2952.9,
+          "maxy": 1418.2
+        }
+      }
     },
     "feature86": {
       "type": "Polygon",
@@ -1193,7 +1881,15 @@
         [
           310
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2232.2,
+          "miny": 1409.9,
+          "maxx": 2237.7,
+          "maxy": 1417
+        }
+      }
     },
     "feature87": {
       "type": "Polygon",
@@ -1201,7 +1897,15 @@
         [
           311
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2948,
+          "miny": 1410.9,
+          "maxx": 2950,
+          "maxy": 1413
+        }
+      }
     },
     "feature88": {
       "type": "Polygon",
@@ -1209,7 +1913,15 @@
         [
           312
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2949.1,
+          "miny": 1406.7,
+          "maxx": 2952.2,
+          "maxy": 1413.5
+        }
+      }
     },
     "feature89": {
       "type": "Polygon",
@@ -1217,7 +1929,15 @@
         [
           313
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2951.8,
+          "miny": 1390,
+          "maxx": 2958.7,
+          "maxy": 1413.5
+        }
+      }
     },
     "feature90": {
       "type": "Polygon",
@@ -1225,7 +1945,15 @@
         [
           314
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 3088.9,
+          "miny": 1403.9,
+          "maxx": 3093,
+          "maxy": 1408
+        }
+      }
     },
     "feature91": {
       "type": "Polygon",
@@ -1233,7 +1961,15 @@
         [
           315
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 3088.9,
+          "miny": 1395.5,
+          "maxx": 3096.5,
+          "maxy": 1407
+        }
+      }
     },
     "feature92": {
       "type": "Polygon",
@@ -1241,7 +1977,15 @@
         [
           316
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 1333.5,
+          "miny": 1394,
+          "maxx": 1348.2,
+          "maxy": 1404
+        }
+      }
     },
     "feature93": {
       "type": "Polygon",
@@ -1249,7 +1993,15 @@
         [
           317
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 1352.9,
+          "miny": 1400,
+          "maxx": 1361.1,
+          "maxy": 1402
+        }
+      }
     },
     "feature94": {
       "type": "Polygon",
@@ -1257,7 +2009,15 @@
         [
           318
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2950.9,
+          "miny": 1399,
+          "maxx": 2954.1,
+          "maxy": 1401
+        }
+      }
     },
     "feature95": {
       "type": "Polygon",
@@ -1265,7 +2025,15 @@
         [
           319
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 1348.5,
+          "miny": 1392.9,
+          "maxx": 1357.9,
+          "maxy": 1398
+        }
+      }
     },
     "feature96": {
       "type": "Polygon",
@@ -1273,7 +2041,15 @@
         [
           320
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2951,
+          "miny": 1395,
+          "maxx": 2955,
+          "maxy": 1398
+        }
+      }
     },
     "feature97": {
       "type": "Polygon",
@@ -1281,7 +2057,15 @@
         [
           321
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 3093,
+          "miny": 1385.8,
+          "maxx": 3104,
+          "maxy": 1395.7
+        }
+      }
     },
     "feature98": {
       "type": "Polygon",
@@ -1289,7 +2073,15 @@
         [
           322
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2951,
+          "miny": 1385.6,
+          "maxx": 2954.2,
+          "maxy": 1391.4
+        }
+      }
     },
     "feature99": {
       "type": "Polygon",
@@ -1297,7 +2089,15 @@
         [
           323
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 1295,
+          "miny": 1354.7,
+          "maxx": 1334,
+          "maxy": 1383
+        }
+      }
     },
     "feature100": {
       "type": "Polygon",
@@ -1305,7 +2105,15 @@
         [
           324
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2192.1,
+          "miny": 1349.9,
+          "maxx": 2226.5,
+          "maxy": 1377
+        }
+      }
     },
     "feature101": {
       "type": "Polygon",
@@ -1313,7 +2121,15 @@
         [
           325
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 1334,
+          "miny": 1364.5,
+          "maxx": 1347.2,
+          "maxy": 1375
+        }
+      }
     },
     "feature102": {
       "type": "Polygon",
@@ -1321,7 +2137,15 @@
         [
           326
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 602.8,
+          "miny": 1369.8,
+          "maxx": 606.2,
+          "maxy": 1373.2
+        }
+      }
     },
     "feature103": {
       "type": "Polygon",
@@ -1329,7 +2153,15 @@
         [
           327
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2227,
+          "miny": 1346.1,
+          "maxx": 2241,
+          "maxy": 1371.9
+        }
+      }
     },
     "feature104": {
       "type": "Polygon",
@@ -1337,7 +2169,15 @@
         [
           328
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2239.9,
+          "miny": 1359.5,
+          "maxx": 2252,
+          "maxy": 1371.1
+        }
+      }
     },
     "feature105": {
       "type": "Polygon",
@@ -1346,7 +2186,15 @@
           329,
           330
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 930,
+          "miny": 1176,
+          "maxx": 1039.3,
+          "maxy": 1366
+        }
+      }
     },
     "feature106": {
       "type": "Polygon",
@@ -1354,7 +2202,15 @@
         [
           331
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2884.8,
+          "miny": 1359.9,
+          "maxx": 2889.4,
+          "maxy": 1365.2
+        }
+      }
     },
     "feature107": {
       "type": "Polygon",
@@ -1362,7 +2218,15 @@
         [
           332
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 1287.5,
+          "miny": 1354.8,
+          "maxx": 1295.1,
+          "maxy": 1363
+        }
+      }
     },
     "feature108": {
       "type": "Polygon",
@@ -1370,7 +2234,15 @@
         [
           333
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2243.1,
+          "miny": 1357,
+          "maxx": 2248.1,
+          "maxy": 1360.8
+        }
+      }
     },
     "feature109": {
       "type": "Polygon",
@@ -1378,7 +2250,15 @@
         [
           334
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 3155,
+          "miny": 1346.7,
+          "maxx": 3168,
+          "maxy": 1358
+        }
+      }
     },
     "feature110": {
       "type": "Polygon",
@@ -1386,7 +2266,15 @@
         [
           335
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 1317,
+          "miny": 1350.9,
+          "maxx": 1324.2,
+          "maxy": 1357
+        }
+      }
     },
     "feature111": {
       "type": "Polygon",
@@ -1394,7 +2282,15 @@
         [
           336
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 1309.8,
+          "miny": 1350.8,
+          "maxx": 1313.2,
+          "maxy": 1353.9
+        }
+      }
     },
     "feature112": {
       "type": "Polygon",
@@ -1402,7 +2298,15 @@
         [
           337
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2225,
+          "miny": 1352,
+          "maxx": 2227,
+          "maxy": 1354
+        }
+      }
     },
     "feature113": {
       "type": "Polygon",
@@ -1410,7 +2314,15 @@
         [
           338
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2223.8,
+          "miny": 1347.8,
+          "maxx": 2227,
+          "maxy": 1351
+        }
+      }
     },
     "feature114": {
       "type": "Polygon",
@@ -1418,7 +2330,15 @@
         [
           339
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2448,
+          "miny": 1344.9,
+          "maxx": 2450,
+          "maxy": 1348
+        }
+      }
     },
     "feature115": {
       "type": "Polygon",
@@ -1426,7 +2346,15 @@
         [
           340
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 1312,
+          "miny": 1341.5,
+          "maxx": 1314,
+          "maxy": 1347.1
+        }
+      }
     },
     "feature116": {
       "type": "Polygon",
@@ -1434,7 +2362,15 @@
         [
           341
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2387,
+          "miny": 1277,
+          "maxx": 2472,
+          "maxy": 1330.4
+        }
+      }
     },
     "feature117": {
       "type": "Polygon",
@@ -1442,7 +2378,15 @@
         [
           342
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2125,
+          "miny": 1319.5,
+          "maxx": 2127,
+          "maxy": 1324.5
+        }
+      }
     },
     "feature118": {
       "type": "Polygon",
@@ -1450,7 +2394,15 @@
         [
           343
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 777.2,
+          "miny": 1295,
+          "maxx": 812.4,
+          "maxy": 1320
+        }
+      }
     },
     "feature119": {
       "type": "Polygon",
@@ -1458,7 +2410,15 @@
         [
           344
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 769,
+          "miny": 1307.7,
+          "maxx": 773.9,
+          "maxy": 1314.1
+        }
+      }
     },
     "feature120": {
       "type": "Polygon",
@@ -1466,7 +2426,15 @@
         [
           345
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 764.9,
+          "miny": 1306,
+          "maxx": 770.2,
+          "maxy": 1313
+        }
+      }
     },
     "feature121": {
       "type": "Polygon",
@@ -1474,7 +2442,15 @@
         [
           346
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 803.5,
+          "miny": 1296.1,
+          "maxx": 818,
+          "maxy": 1311
+        }
+      }
     },
     "feature122": {
       "type": "Polygon",
@@ -1485,7 +2461,15 @@
         [
           348
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2483,
+          "miny": 1287,
+          "maxx": 2498.2,
+          "maxy": 1299
+        }
+      }
     },
     "feature123": {
       "type": "Polygon",
@@ -1525,7 +2509,15 @@
         [
           363
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 3360.9,
+          "miny": 934,
+          "maxx": 3714.9,
+          "maxy": 1297
+        }
+      }
     },
     "feature124": {
       "type": "Polygon",
@@ -1533,7 +2525,15 @@
         [
           364
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 3520.5,
+          "miny": 1038.6,
+          "maxx": 3524.1,
+          "maxy": 1041.1
+        }
+      }
     },
     "feature125": {
       "type": "Polygon",
@@ -1541,7 +2541,15 @@
         [
           365
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 3587.9,
+          "miny": 1036,
+          "maxx": 3591.1,
+          "maxy": 1038
+        }
+      }
     },
     "feature126": {
       "type": "Polygon",
@@ -1549,7 +2557,15 @@
         [
           366
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 816.5,
+          "miny": 1288.1,
+          "maxx": 819.5,
+          "maxy": 1295.9
+        }
+      }
     },
     "feature127": {
       "type": "Polygon",
@@ -1557,7 +2573,15 @@
         [
           367
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2878.5,
+          "miny": 1284.9,
+          "maxx": 2884.2,
+          "maxy": 1289
+        }
+      }
     },
     "feature128": {
       "type": "Polygon",
@@ -1565,7 +2589,15 @@
         [
           368
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 817.8,
+          "miny": 1283.7,
+          "maxx": 820.2,
+          "maxy": 1288.5
+        }
+      }
     },
     "feature129": {
       "type": "Polygon",
@@ -1573,7 +2605,15 @@
         [
           369
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2887,
+          "miny": 1282.5,
+          "maxx": 2888.2,
+          "maxy": 1286.3
+        }
+      }
     },
     "feature130": {
       "type": "Polygon",
@@ -1581,7 +2621,15 @@
         [
           370
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2886.1,
+          "miny": 1277,
+          "maxx": 2889,
+          "maxy": 1280.9
+        }
+      }
     },
     "feature131": {
       "type": "Polygon",
@@ -1589,7 +2637,15 @@
         [
           371
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2878,
+          "miny": 1278,
+          "maxx": 2880.1,
+          "maxy": 1280
+        }
+      }
     },
     "feature132": {
       "type": "Polygon",
@@ -1597,7 +2653,15 @@
         [
           372
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2885.1,
+          "miny": 1271.6,
+          "maxx": 2888.2,
+          "maxy": 1275.9
+        }
+      }
     },
     "feature133": {
       "type": "Polygon",
@@ -1605,7 +2669,15 @@
         [
           373
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2882.3,
+          "miny": 1262,
+          "maxx": 2886.3,
+          "maxy": 1272
+        }
+      }
     },
     "feature134": {
       "type": "Polygon",
@@ -1613,7 +2685,15 @@
         [
           374
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 817.1,
+          "miny": 1264.1,
+          "maxx": 822.2,
+          "maxy": 1268
+        }
+      }
     },
     "feature135": {
       "type": "Polygon",
@@ -1621,7 +2701,15 @@
         [
           375
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 763.7,
+          "miny": 1240.7,
+          "maxx": 798,
+          "maxy": 1263.9
+        }
+      }
     },
     "feature136": {
       "type": "Polygon",
@@ -1629,7 +2717,15 @@
         [
           376
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2606.1,
+          "miny": 1261,
+          "maxx": 2609,
+          "maxy": 1264
+        }
+      }
     },
     "feature137": {
       "type": "Polygon",
@@ -1637,7 +2733,15 @@
         [
           377
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 674,
+          "miny": 1250,
+          "maxx": 701.3,
+          "maxy": 1259.1
+        }
+      }
     },
     "feature138": {
       "type": "Polygon",
@@ -1645,7 +2749,15 @@
         [
           378
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2876.8,
+          "miny": 1253.8,
+          "maxx": 2879.2,
+          "maxy": 1259.2
+        }
+      }
     },
     "feature139": {
       "type": "Polygon",
@@ -1653,7 +2765,15 @@
         [
           379
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2874,
+          "miny": 1249.7,
+          "maxx": 2876.2,
+          "maxy": 1254.1
+        }
+      }
     },
     "feature140": {
       "type": "Polygon",
@@ -1661,7 +2781,15 @@
         [
           380
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 704.7,
+          "miny": 1243.9,
+          "maxx": 720.4,
+          "maxy": 1250
+        }
+      }
     },
     "feature141": {
       "type": "Polygon",
@@ -1669,7 +2797,15 @@
         [
           381
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 731,
+          "miny": 1240.5,
+          "maxx": 734,
+          "maxy": 1246
+        }
+      }
     },
     "feature142": {
       "type": "Polygon",
@@ -1677,7 +2813,15 @@
         [
           382
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 757.7,
+          "miny": 1241.3,
+          "maxx": 763.7,
+          "maxy": 1246
+        }
+      }
     },
     "feature143": {
       "type": "Polygon",
@@ -1685,7 +2829,15 @@
         [
           383
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 736,
+          "miny": 1241,
+          "maxx": 738,
+          "maxy": 1244
+        }
+      }
     },
     "feature144": {
       "type": "Polygon",
@@ -1696,7 +2848,15 @@
         [
           385
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2739.5,
+          "miny": 1231.7,
+          "maxx": 2766.4,
+          "maxy": 1242.5
+        }
+      }
     },
     "feature145": {
       "type": "Polygon",
@@ -1704,7 +2864,15 @@
         [
           386
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 3592,
+          "miny": 1213.8,
+          "maxx": 3625.2,
+          "maxy": 1243
+        }
+      }
     },
     "feature146": {
       "type": "Polygon",
@@ -1727,7 +2895,15 @@
         [
           392
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 3646.9,
+          "miny": 1165.1,
+          "maxx": 3720.2,
+          "maxy": 1243
+        }
+      }
     },
     "feature147": {
       "type": "Polygon",
@@ -1735,7 +2911,15 @@
         [
           393
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 741,
+          "miny": 1240,
+          "maxx": 743.1,
+          "maxy": 1242
+        }
+      }
     },
     "feature148": {
       "type": "Polygon",
@@ -1743,7 +2927,15 @@
         [
           394
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 760.8,
+          "miny": 1235.6,
+          "maxx": 764,
+          "maxy": 1241
+        }
+      }
     },
     "feature149": {
       "type": "Polygon",
@@ -1751,7 +2943,15 @@
         [
           395
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 765,
+          "miny": 1237,
+          "maxx": 767,
+          "maxy": 1239
+        }
+      }
     },
     "feature150": {
       "type": "Polygon",
@@ -1759,7 +2959,15 @@
         [
           396
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2871,
+          "miny": 1231.6,
+          "maxx": 2874.2,
+          "maxy": 1237.2
+        }
+      }
     },
     "feature151": {
       "type": "Polygon",
@@ -1767,7 +2975,15 @@
         [
           397
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2703.6,
+          "miny": 1231,
+          "maxx": 2708.5,
+          "maxy": 1234
+        }
+      }
     },
     "feature152": {
       "type": "Polygon",
@@ -1775,7 +2991,15 @@
         [
           398
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 3692.2,
+          "miny": 1226.1,
+          "maxx": 3695.9,
+          "maxy": 1231
+        }
+      }
     },
     "feature153": {
       "type": "Polygon",
@@ -1783,7 +3007,15 @@
         [
           399
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2991,
+          "miny": 1218,
+          "maxx": 2998,
+          "maxy": 1229
+        }
+      }
     },
     "feature154": {
       "type": "Polygon",
@@ -1791,7 +3023,15 @@
         [
           400
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2527,
+          "miny": 1214,
+          "maxx": 2529,
+          "maxy": 1217
+        }
+      }
     },
     "feature155": {
       "type": "Polygon",
@@ -1799,7 +3039,15 @@
         [
           401
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 988.3,
+          "miny": 1201,
+          "maxx": 992.9,
+          "maxy": 1206.8
+        }
+      }
     },
     "feature156": {
       "type": "Polygon",
@@ -1807,7 +3055,15 @@
         [
           402
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 1192,
+          "miny": 1198.8,
+          "maxx": 1194.6,
+          "maxy": 1207.1
+        }
+      }
     },
     "feature157": {
       "type": "Polygon",
@@ -1818,7 +3074,15 @@
         [
           404
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2982,
+          "miny": 1122.7,
+          "maxx": 3032.5,
+          "maxy": 1184
+        }
+      }
     },
     "feature158": {
       "type": "Polygon",
@@ -1826,7 +3090,15 @@
         [
           405
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2989.5,
+          "miny": 1174,
+          "maxx": 2997,
+          "maxy": 1180
+        }
+      }
     },
     "feature159": {
       "type": "Polygon",
@@ -1835,7 +3107,15 @@
           406,
           407
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 3671,
+          "miny": 1106.8,
+          "maxx": 3793.9,
+          "maxy": 1180
+        }
+      }
     },
     "feature160": {
       "type": "Polygon",
@@ -1843,7 +3123,15 @@
         [
           408
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2978.8,
+          "miny": 1169.2,
+          "maxx": 2984.9,
+          "maxy": 1179
+        }
+      }
     },
     "feature161": {
       "type": "Polygon",
@@ -1851,7 +3139,15 @@
         [
           409
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 3170,
+          "miny": 1168,
+          "maxx": 3179.2,
+          "maxy": 1178
+        }
+      }
     },
     "feature162": {
       "type": "Polygon",
@@ -1859,7 +3155,15 @@
         [
           410
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 3609,
+          "miny": 1158.7,
+          "maxx": 3619.1,
+          "maxy": 1169.6
+        }
+      }
     },
     "feature163": {
       "type": "Polygon",
@@ -1867,7 +3171,15 @@
         [
           411
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 3026.9,
+          "miny": 1165,
+          "maxx": 3031.8,
+          "maxy": 1169.1
+        }
+      }
     },
     "feature164": {
       "type": "Polygon",
@@ -1875,7 +3187,15 @@
         [
           412
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 3157.9,
+          "miny": 1162,
+          "maxx": 3165.1,
+          "maxy": 1164
+        }
+      }
     },
     "feature165": {
       "type": "Polygon",
@@ -1883,7 +3203,15 @@
         [
           413
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 3661.3,
+          "miny": 1152.5,
+          "maxx": 3667.5,
+          "maxy": 1161
+        }
+      }
     },
     "feature166": {
       "type": "Polygon",
@@ -1891,7 +3219,15 @@
         [
           414
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 3638.9,
+          "miny": 1136.7,
+          "maxx": 3662,
+          "maxy": 1151.7
+        }
+      }
     },
     "feature167": {
       "type": "Polygon",
@@ -1899,7 +3235,15 @@
         [
           415
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 3658.1,
+          "miny": 1096.7,
+          "maxx": 3726,
+          "maxy": 1143.8
+        }
+      }
     },
     "feature168": {
       "type": "Polygon",
@@ -1907,7 +3251,15 @@
         [
           416
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 3679.7,
+          "miny": 1132,
+          "maxx": 3686,
+          "maxy": 1138
+        }
+      }
     },
     "feature169": {
       "type": "Polygon",
@@ -1915,7 +3267,15 @@
         [
           417
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2995.1,
+          "miny": 1132.9,
+          "maxx": 2997,
+          "maxy": 1137
+        }
+      }
     },
     "feature170": {
       "type": "Polygon",
@@ -1923,7 +3283,15 @@
         [
           418
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 3656,
+          "miny": 1124.7,
+          "maxx": 3666.9,
+          "maxy": 1133
+        }
+      }
     },
     "feature171": {
       "type": "Polygon",
@@ -1931,7 +3299,15 @@
         [
           419
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 3588,
+          "miny": 1117.9,
+          "maxx": 3600,
+          "maxy": 1129
+        }
+      }
     },
     "feature172": {
       "type": "Polygon",
@@ -1939,7 +3315,15 @@
         [
           420
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 3598.8,
+          "miny": 1102.8,
+          "maxx": 3602,
+          "maxy": 1108
+        }
+      }
     },
     "feature173": {
       "type": "Polygon",
@@ -1947,7 +3331,15 @@
         [
           421
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 3703,
+          "miny": 1074.8,
+          "maxx": 3752,
+          "maxy": 1103
+        }
+      }
     },
     "feature174": {
       "type": "Polygon",
@@ -1955,7 +3347,15 @@
         [
           422
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 3755,
+          "miny": 1079.7,
+          "maxx": 3768,
+          "maxy": 1091
+        }
+      }
     },
     "feature175": {
       "type": "Polygon",
@@ -1963,7 +3363,15 @@
         [
           423
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 3767,
+          "miny": 1071.9,
+          "maxx": 3783.1,
+          "maxy": 1085.1
+        }
+      }
     },
     "feature176": {
       "type": "Polygon",
@@ -1971,7 +3379,15 @@
         [
           424
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 3755,
+          "miny": 1040.9,
+          "maxx": 3767.2,
+          "maxy": 1062.8
+        }
+      }
     },
     "feature177": {
       "type": "Polygon",
@@ -1979,7 +3395,15 @@
         [
           425
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 3737.5,
+          "miny": 1047.7,
+          "maxx": 3753,
+          "maxy": 1059.6
+        }
+      }
     },
     "feature178": {
       "type": "Polygon",
@@ -1987,7 +3411,15 @@
         [
           426
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 3751,
+          "miny": 1057,
+          "maxx": 3753.9,
+          "maxy": 1060
+        }
+      }
     },
     "feature179": {
       "type": "Polygon",
@@ -1995,7 +3427,15 @@
         [
           427
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 3754,
+          "miny": 1048.8,
+          "maxx": 3758.1,
+          "maxy": 1055
+        }
+      }
     },
     "feature180": {
       "type": "Polygon",
@@ -2003,7 +3443,15 @@
         [
           428
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 560,
+          "miny": 1031.7,
+          "maxx": 576,
+          "maxy": 1047.2
+        }
+      }
     },
     "feature181": {
       "type": "Polygon",
@@ -2011,7 +3459,15 @@
         [
           429
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 512.8,
+          "miny": 1037,
+          "maxx": 517,
+          "maxy": 1040
+        }
+      }
     },
     "feature182": {
       "type": "Polygon",
@@ -2019,7 +3475,15 @@
         [
           430
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 3426,
+          "miny": 1029.8,
+          "maxx": 3432,
+          "maxy": 1035
+        }
+      }
     },
     "feature183": {
       "type": "Polygon",
@@ -2027,7 +3491,15 @@
         [
           431
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 677,
+          "miny": 995,
+          "maxx": 679.1,
+          "maxy": 997
+        }
+      }
     },
     "feature184": {
       "type": "Polygon",
@@ -2035,7 +3507,15 @@
         [
           432
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 546,
+          "miny": 984,
+          "maxx": 553.8,
+          "maxy": 991.9
+        }
+      }
     },
     "feature185": {
       "type": "Polygon",
@@ -2043,7 +3523,15 @@
         [
           433
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 687.5,
+          "miny": 986,
+          "maxx": 695.2,
+          "maxy": 989
+        }
+      }
     },
     "feature186": {
       "type": "Polygon",
@@ -2051,7 +3539,15 @@
         [
           434
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 3461.3,
+          "miny": 975,
+          "maxx": 3469.4,
+          "maxy": 983
+        }
+      }
     },
     "feature187": {
       "type": "Polygon",
@@ -2059,7 +3555,15 @@
         [
           435
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 3369.4,
+          "miny": 965,
+          "maxx": 3374.9,
+          "maxy": 971
+        }
+      }
     },
     "feature188": {
       "type": "Polygon",
@@ -2067,7 +3571,15 @@
         [
           436
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 3419.8,
+          "miny": 915.8,
+          "maxx": 3455.2,
+          "maxy": 949
+        }
+      }
     },
     "feature189": {
       "type": "Polygon",
@@ -2075,7 +3587,15 @@
         [
           437
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 525.3,
+          "miny": 937,
+          "maxx": 528,
+          "maxy": 942
+        }
+      }
     },
     "feature190": {
       "type": "Polygon",
@@ -2083,7 +3603,15 @@
         [
           438
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 678,
+          "miny": 889.8,
+          "maxx": 701.5,
+          "maxy": 938
+        }
+      }
     },
     "feature191": {
       "type": "Polygon",
@@ -2091,7 +3619,15 @@
         [
           439
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 521,
+          "miny": 931.8,
+          "maxx": 524,
+          "maxy": 936
+        }
+      }
     },
     "feature192": {
       "type": "Polygon",
@@ -2099,7 +3635,15 @@
         [
           440
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2380.8,
+          "miny": 933,
+          "maxx": 2386,
+          "maxy": 936
+        }
+      }
     },
     "feature193": {
       "type": "Polygon",
@@ -2107,7 +3651,15 @@
         [
           441
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2375,
+          "miny": 928.9,
+          "maxx": 2377,
+          "maxy": 931
+        }
+      }
     },
     "feature194": {
       "type": "Polygon",
@@ -2115,7 +3667,15 @@
         [
           442
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2379,
+          "miny": 928,
+          "maxx": 2382.9,
+          "maxy": 931
+        }
+      }
     },
     "feature195": {
       "type": "Polygon",
@@ -2123,7 +3683,15 @@
         [
           443
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 517,
+          "miny": 917,
+          "maxx": 523,
+          "maxy": 926
+        }
+      }
     },
     "feature196": {
       "type": "Polygon",
@@ -2131,7 +3699,15 @@
         [
           444
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2310,
+          "miny": 904,
+          "maxx": 2329,
+          "maxy": 910
+        }
+      }
     },
     "feature197": {
       "type": "Polygon",
@@ -2139,7 +3715,15 @@
         [
           445
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 447.8,
+          "miny": 815.7,
+          "maxx": 481,
+          "maxy": 852
+        }
+      }
     },
     "feature198": {
       "type": "Polygon",
@@ -2147,7 +3731,15 @@
         [
           446
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 482,
+          "miny": 809.9,
+          "maxx": 486.5,
+          "maxy": 816
+        }
+      }
     },
     "feature199": {
       "type": "Polygon",
@@ -2155,7 +3747,15 @@
         [
           447
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 1585,
+          "miny": 732,
+          "maxx": 1612,
+          "maxy": 756
+        }
+      }
     },
     "feature200": {
       "type": "Polygon",
@@ -2163,7 +3763,15 @@
         [
           448
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 1294,
+          "miny": 474,
+          "maxx": 1374,
+          "maxy": 556
+        }
+      }
     },
     "feature201": {
       "type": "Polygon",
@@ -2171,7 +3779,15 @@
         [
           449
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 991.9,
+          "miny": 505,
+          "maxx": 1024,
+          "maxy": 531.9
+        }
+      }
     },
     "feature202": {
       "type": "Polygon",
@@ -2179,7 +3795,15 @@
         [
           450
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 898,
+          "miny": 480.9,
+          "maxx": 919,
+          "maxy": 505
+        }
+      }
     },
     "feature203": {
       "type": "Polygon",
@@ -2191,7 +3815,15 @@
         [
           453
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 1658,
+          "miny": 265.5,
+          "maxx": 1830.4,
+          "maxy": 397
+        }
+      }
     },
     "feature204": {
       "type": "Polygon",
@@ -2199,7 +3831,15 @@
         [
           454
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 1723,
+          "miny": 377,
+          "maxx": 1734.9,
+          "maxy": 390.7
+        }
+      }
     },
     "feature205": {
       "type": "Polygon",
@@ -2207,7 +3847,15 @@
         [
           455
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 1583.9,
+          "miny": 367.9,
+          "maxx": 1622,
+          "maxy": 385.7
+        }
+      }
     },
     "feature206": {
       "type": "Polygon",
@@ -2215,7 +3863,15 @@
         [
           456
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 1672,
+          "miny": 384,
+          "maxx": 1674.1,
+          "maxy": 386
+        }
+      }
     },
     "feature207": {
       "type": "Polygon",
@@ -2223,7 +3879,15 @@
         [
           457
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 1082.7,
+          "miny": 364.8,
+          "maxx": 1091.8,
+          "maxy": 382.2
+        }
+      }
     },
     "feature208": {
       "type": "Polygon",
@@ -2231,7 +3895,15 @@
         [
           458
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 1682.7,
+          "miny": 373,
+          "maxx": 1687.3,
+          "maxy": 377
+        }
+      }
     },
     "feature209": {
       "type": "Polygon",
@@ -2239,7 +3911,15 @@
         [
           459
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 1858,
+          "miny": 371,
+          "maxx": 1861.1,
+          "maxy": 373
+        }
+      }
     },
     "feature210": {
       "type": "Polygon",
@@ -2247,7 +3927,15 @@
         [
           460
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 826,
+          "miny": 300,
+          "maxx": 890,
+          "maxy": 354
+        }
+      }
     },
     "feature211": {
       "type": "Polygon",
@@ -2256,7 +3944,15 @@
           461,
           462
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 1136,
+          "miny": 105,
+          "maxx": 1710.2,
+          "maxy": 343
+        }
+      }
     },
     "feature212": {
       "type": "Polygon",
@@ -2264,7 +3960,15 @@
         [
           463
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 1136,
+          "miny": 317,
+          "maxx": 1170,
+          "maxy": 337.1
+        }
+      }
     },
     "feature213": {
       "type": "Polygon",
@@ -2272,7 +3976,15 @@
         [
           464
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 3614.9,
+          "miny": 328.9,
+          "maxx": 3622.2,
+          "maxy": 332.8
+        }
+      }
     },
     "feature214": {
       "type": "Polygon",
@@ -2280,7 +3992,15 @@
         [
           465
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 3620,
+          "miny": 326,
+          "maxx": 3624.5,
+          "maxy": 328
+        }
+      }
     },
     "feature215": {
       "type": "Polygon",
@@ -2288,7 +4008,15 @@
         [
           466
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 3620.8,
+          "miny": 319.7,
+          "maxx": 3623.2,
+          "maxy": 324.5
+        }
+      }
     },
     "feature216": {
       "type": "Polygon",
@@ -2296,7 +4024,15 @@
         [
           467
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 3619,
+          "miny": 312.8,
+          "maxx": 3622.2,
+          "maxy": 316
+        }
+      }
     },
     "feature217": {
       "type": "Polygon",
@@ -2304,7 +4040,15 @@
         [
           468
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 1685,
+          "miny": 212,
+          "maxx": 1773.1,
+          "maxy": 280
+        }
+      }
     },
     "feature218": {
       "type": "Polygon",
@@ -2312,7 +4056,15 @@
         [
           469
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 937,
+          "miny": 192,
+          "maxx": 1137,
+          "maxy": 279
+        }
+      }
     },
     "feature219": {
       "type": "Polygon",
@@ -2320,7 +4072,15 @@
         [
           470
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 1793.9,
+          "miny": 231.5,
+          "maxx": 1814.2,
+          "maxy": 244
+        }
+      }
     },
     "feature220": {
       "type": "Polygon",
@@ -2328,7 +4088,15 @@
         [
           471
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 1887.1,
+          "miny": 176,
+          "maxx": 1909,
+          "maxy": 230
+        }
+      }
     },
     "feature221": {
       "type": "Polygon",
@@ -2336,7 +4104,15 @@
         [
           472
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2450.6,
+          "miny": 219.1,
+          "maxx": 2468.4,
+          "maxy": 224
+        }
+      }
     },
     "feature222": {
       "type": "Polygon",
@@ -2344,7 +4120,15 @@
         [
           473
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2893,
+          "miny": 206,
+          "maxx": 2899.7,
+          "maxy": 212
+        }
+      }
     },
     "feature223": {
       "type": "Polygon",
@@ -2352,7 +4136,15 @@
         [
           474
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 519.6,
+          "miny": 195.7,
+          "maxx": 529,
+          "maxy": 202
+        }
+      }
     },
     "feature224": {
       "type": "Polygon",
@@ -2360,7 +4152,15 @@
         [
           475
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 414,
+          "miny": 156.8,
+          "maxx": 458,
+          "maxy": 197
+        }
+      }
     },
     "feature225": {
       "type": "Polygon",
@@ -2368,7 +4168,15 @@
         [
           476
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 494.1,
+          "miny": 190,
+          "maxx": 497,
+          "maxy": 193
+        }
+      }
     },
     "feature226": {
       "type": "Polygon",
@@ -2376,7 +4184,15 @@
         [
           477
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 473.8,
+          "miny": 184,
+          "maxx": 480.4,
+          "maxy": 189
+        }
+      }
     },
     "feature227": {
       "type": "Polygon",
@@ -2384,7 +4200,15 @@
         [
           478
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 1172.8,
+          "miny": 176,
+          "maxx": 1178.2,
+          "maxy": 181
+        }
+      }
     },
     "feature228": {
       "type": "Polygon",
@@ -2392,7 +4216,15 @@
         [
           479
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 3169,
+          "miny": 160,
+          "maxx": 3177,
+          "maxy": 168
+        }
+      }
     },
     "feature229": {
       "type": "Polygon",
@@ -2400,7 +4232,15 @@
         [
           480
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 2965,
+          "miny": 160,
+          "maxx": 2976,
+          "maxy": 164
+        }
+      }
     },
     "feature230": {
       "type": "Polygon",
@@ -2408,7 +4248,15 @@
         [
           481
         ]
-      ]
+      ],
+      "properties": {
+        "bbox": {
+          "minx": 99,
+          "miny": 67,
+          "maxx": 108,
+          "maxy": 76
+        }
+      }
     }
   },
   "arcs": [
@@ -122921,5 +124769,2899 @@
         40.5
       ]
     ]
+  ],
+  "arc_bboxes": [
+    {
+      "minx": 777,
+      "miny": 2964.1,
+      "maxx": 975,
+      "maxy": 3146.9
+    },
+    {
+      "minx": 714.1,
+      "miny": 2657.2,
+      "maxx": 851.1,
+      "maxy": 2984.2
+    },
+    {
+      "minx": 814.8,
+      "miny": 2545.3,
+      "maxx": 968.2,
+      "maxy": 2712.2
+    },
+    {
+      "minx": 419.9,
+      "miny": 2448,
+      "maxx": 907.9,
+      "maxy": 2561
+    },
+    {
+      "minx": 390.5,
+      "miny": 2311,
+      "maxx": 603.2,
+      "maxy": 2520.4
+    },
+    {
+      "minx": 586,
+      "miny": 2289.2,
+      "maxx": 858,
+      "maxy": 2379.3
+    },
+    {
+      "minx": 695.5,
+      "miny": 2200.9,
+      "maxx": 910,
+      "maxy": 2373.9
+    },
+    {
+      "minx": 747.8,
+      "miny": 1843.4,
+      "maxx": 910,
+      "maxy": 2225.6
+    },
+    {
+      "minx": 579,
+      "miny": 1943,
+      "maxx": 765,
+      "maxy": 2157
+    },
+    {
+      "minx": 487.9,
+      "miny": 1689.3,
+      "maxx": 667,
+      "maxy": 1962.1
+    },
+    {
+      "minx": 660.9,
+      "miny": 1651,
+      "maxx": 949,
+      "maxy": 1860
+    },
+    {
+      "minx": 949,
+      "miny": 1713,
+      "maxx": 1180.2,
+      "maxy": 1868.2
+    },
+    {
+      "minx": 1025,
+      "miny": 1772.3,
+      "maxx": 1305.2,
+      "maxy": 2020.3
+    },
+    {
+      "minx": 1259.7,
+      "miny": 1576,
+      "maxx": 1614.8,
+      "maxy": 1844.3
+    },
+    {
+      "minx": 1614.8,
+      "miny": 1624.9,
+      "maxx": 1809.1,
+      "maxy": 1791.2
+    },
+    {
+      "minx": 1809.1,
+      "miny": 1739,
+      "maxx": 2034,
+      "maxy": 1919.1
+    },
+    {
+      "minx": 2034,
+      "miny": 1684.1,
+      "maxx": 2184,
+      "maxy": 1910.3
+    },
+    {
+      "minx": 2052,
+      "miny": 1464.9,
+      "maxx": 2163.5,
+      "maxy": 1684.1
+    },
+    {
+      "minx": 2156,
+      "miny": 1334.5,
+      "maxx": 2345.9,
+      "maxy": 1481.4
+    },
+    {
+      "minx": 2198.9,
+      "miny": 1320,
+      "maxx": 2341.2,
+      "maxy": 1364
+    },
+    {
+      "minx": 2096,
+      "miny": 1310.8,
+      "maxx": 2198.9,
+      "maxy": 1416.5
+    },
+    {
+      "minx": 1840,
+      "miny": 1332,
+      "maxx": 2096,
+      "maxy": 1445
+    },
+    {
+      "minx": 1802.5,
+      "miny": 1281,
+      "maxx": 1917.4,
+      "maxy": 1513.4
+    },
+    {
+      "minx": 1706.9,
+      "miny": 1513.4,
+      "maxx": 1857.7,
+      "maxy": 1676
+    },
+    {
+      "minx": 1467.7,
+      "miny": 1496.1,
+      "maxx": 1713,
+      "maxy": 1646.4
+    },
+    {
+      "minx": 1358,
+      "miny": 1324.2,
+      "maxx": 1587.5,
+      "maxy": 1508
+    },
+    {
+      "minx": 1170.9,
+      "miny": 1147.6,
+      "maxx": 1431.1,
+      "maxy": 1379
+    },
+    {
+      "minx": 775.6,
+      "miny": 1043.5,
+      "maxx": 1171.6,
+      "maxy": 1214
+    },
+    {
+      "minx": 598.5,
+      "miny": 803.7,
+      "maxx": 775.6,
+      "maxy": 1044.1
+    },
+    {
+      "minx": 639,
+      "miny": 491.9,
+      "maxx": 741.5,
+      "maxy": 803.7
+    },
+    {
+      "minx": 715.8,
+      "miny": 360,
+      "maxx": 924,
+      "maxy": 546.5
+    },
+    {
+      "minx": 924,
+      "miny": 530.7,
+      "maxx": 1022.1,
+      "maxy": 813
+    },
+    {
+      "minx": 1020.7,
+      "miny": 720.6,
+      "maxx": 1387.1,
+      "maxy": 830.5
+    },
+    {
+      "minx": 1355.7,
+      "miny": 650,
+      "maxx": 1520.1,
+      "maxy": 939.9
+    },
+    {
+      "minx": 1520.1,
+      "miny": 787,
+      "maxx": 1720.7,
+      "maxy": 957.8
+    },
+    {
+      "minx": 1563,
+      "miny": 627.2,
+      "maxx": 1673,
+      "maxy": 881
+    },
+    {
+      "minx": 1392,
+      "miny": 373,
+      "maxx": 1623.2,
+      "maxy": 627.2
+    },
+    {
+      "minx": 1602,
+      "miny": 370,
+      "maxx": 1907,
+      "maxy": 477.3
+    },
+    {
+      "minx": 1829,
+      "miny": 247,
+      "maxx": 2081,
+      "maxy": 424.2
+    },
+    {
+      "minx": 2065.8,
+      "miny": 91,
+      "maxx": 2433.3,
+      "maxy": 257.4
+    },
+    {
+      "minx": 2364.5,
+      "miny": 112.9,
+      "maxx": 2488,
+      "maxy": 401
+    },
+    {
+      "minx": 2359.5,
+      "miny": 398,
+      "maxx": 2620.5,
+      "maxy": 456
+    },
+    {
+      "minx": 2620.5,
+      "miny": 324.3,
+      "maxx": 2856.1,
+      "maxy": 447
+    },
+    {
+      "minx": 2729,
+      "miny": 183,
+      "maxx": 2851.2,
+      "maxy": 324.3
+    },
+    {
+      "minx": 2851.2,
+      "miny": 145,
+      "maxx": 3065.2,
+      "maxy": 277.3
+    },
+    {
+      "minx": 3062.2,
+      "miny": 116.9,
+      "maxx": 3294.7,
+      "maxy": 210.9
+    },
+    {
+      "minx": 3294.7,
+      "miny": 40.7,
+      "maxx": 3554.1,
+      "maxy": 184
+    },
+    {
+      "minx": 3495,
+      "miny": 27,
+      "maxx": 3694,
+      "maxy": 169.8
+    },
+    {
+      "minx": 3626,
+      "miny": 144.9,
+      "maxx": 3718,
+      "maxy": 252.8
+    },
+    {
+      "minx": 3570,
+      "miny": 250.7,
+      "maxx": 3680.8,
+      "maxy": 354
+    },
+    {
+      "minx": 3371.2,
+      "miny": 352.1,
+      "maxx": 3598,
+      "maxy": 504.3
+    },
+    {
+      "minx": 3290.8,
+      "miny": 484.6,
+      "maxx": 3412.3,
+      "maxy": 618.5
+    },
+    {
+      "minx": 3199.8,
+      "miny": 586.8,
+      "maxx": 3301,
+      "maxy": 751.2
+    },
+    {
+      "minx": 2970.8,
+      "miny": 646.7,
+      "maxx": 3219,
+      "maxy": 749
+    },
+    {
+      "minx": 2810,
+      "miny": 642.5,
+      "maxx": 3001,
+      "maxy": 761.1
+    },
+    {
+      "minx": 2649.4,
+      "miny": 619.8,
+      "maxx": 2822.1,
+      "maxy": 758
+    },
+    {
+      "minx": 2430.8,
+      "miny": 475,
+      "maxx": 2649.4,
+      "maxy": 619.8
+    },
+    {
+      "minx": 2128,
+      "miny": 477,
+      "maxx": 2443.9,
+      "maxy": 714.8
+    },
+    {
+      "minx": 2167.1,
+      "miny": 687,
+      "maxx": 2559,
+      "maxy": 797.5
+    },
+    {
+      "minx": 2308.1,
+      "miny": 797.5,
+      "maxx": 2571,
+      "maxy": 1054.3
+    },
+    {
+      "minx": 2460.5,
+      "miny": 1023.4,
+      "maxx": 2626.9,
+      "maxy": 1256
+    },
+    {
+      "minx": 2298.9,
+      "miny": 1226,
+      "maxx": 2460.5,
+      "maxy": 1328.1
+    },
+    {
+      "minx": 2407.9,
+      "miny": 1245.2,
+      "maxx": 2594.3,
+      "maxy": 1350
+    },
+    {
+      "minx": 2594,
+      "miny": 1216.6,
+      "maxx": 2763,
+      "maxy": 1342.1
+    },
+    {
+      "minx": 2758.7,
+      "miny": 1081.8,
+      "maxx": 2892.2,
+      "maxy": 1355.4
+    },
+    {
+      "minx": 2863,
+      "miny": 1355.4,
+      "maxx": 2946,
+      "maxy": 1528
+    },
+    {
+      "minx": 2902,
+      "miny": 1435.5,
+      "maxx": 3001.8,
+      "maxy": 1545
+    },
+    {
+      "minx": 2951,
+      "miny": 1207.8,
+      "maxx": 3089.7,
+      "maxy": 1443.3
+    },
+    {
+      "minx": 3089.7,
+      "miny": 1429.8,
+      "maxx": 3502,
+      "maxy": 1754.7
+    },
+    {
+      "minx": 3259,
+      "miny": 1754.7,
+      "maxx": 3490.3,
+      "maxy": 1942
+    },
+    {
+      "minx": 3025,
+      "miny": 1942,
+      "maxx": 3360,
+      "maxy": 2112.2
+    },
+    {
+      "minx": 3086.3,
+      "miny": 1876,
+      "maxx": 3189,
+      "maxy": 2045
+    },
+    {
+      "minx": 2795.5,
+      "miny": 1877,
+      "maxx": 3090.2,
+      "maxy": 2145.1
+    },
+    {
+      "minx": 2341.2,
+      "miny": 2112,
+      "maxx": 2805.8,
+      "maxy": 2373.2
+    },
+    {
+      "minx": 2081.8,
+      "miny": 2191,
+      "maxx": 2341.2,
+      "maxy": 2306
+    },
+    {
+      "minx": 2069.3,
+      "miny": 2268.1,
+      "maxx": 2219,
+      "maxy": 2666.5
+    },
+    {
+      "minx": 1811.2,
+      "miny": 2607,
+      "maxx": 2069.3,
+      "maxy": 2917.1
+    },
+    {
+      "minx": 1486.7,
+      "miny": 2433.9,
+      "maxx": 1811.2,
+      "maxy": 2763.1
+    },
+    {
+      "minx": 1436,
+      "miny": 2469,
+      "maxx": 1658,
+      "maxy": 2662.3
+    },
+    {
+      "minx": 1480.8,
+      "miny": 2635.7,
+      "maxx": 1658,
+      "maxy": 2915
+    },
+    {
+      "minx": 1174.2,
+      "miny": 2906.8,
+      "maxx": 1480.8,
+      "maxy": 3067
+    },
+    {
+      "minx": 932.2,
+      "miny": 3040.8,
+      "maxx": 1179.5,
+      "maxy": 3146
+    },
+    {
+      "minx": 827,
+      "miny": 3120,
+      "maxx": 932.2,
+      "maxy": 3150.9
+    },
+    {
+      "minx": 1335,
+      "miny": 2943.7,
+      "maxx": 1344.4,
+      "maxy": 2952
+    },
+    {
+      "minx": 823,
+      "miny": 2924.8,
+      "maxx": 832.2,
+      "maxy": 2930.8
+    },
+    {
+      "minx": 1415.9,
+      "miny": 2920.1,
+      "maxx": 1423.1,
+      "maxy": 2930.6
+    },
+    {
+      "minx": 1379,
+      "miny": 2921,
+      "maxx": 1384.1,
+      "maxy": 2926.1
+    },
+    {
+      "minx": 810.9,
+      "miny": 2901,
+      "maxx": 845,
+      "maxy": 2925
+    },
+    {
+      "minx": 1426,
+      "miny": 2919.5,
+      "maxx": 1431.2,
+      "maxy": 2925
+    },
+    {
+      "minx": 809,
+      "miny": 2914.3,
+      "maxx": 816.3,
+      "maxy": 2919
+    },
+    {
+      "minx": 1466,
+      "miny": 2880.6,
+      "maxx": 1478.2,
+      "maxy": 2899
+    },
+    {
+      "minx": 1446,
+      "miny": 2882.6,
+      "maxx": 1470.3,
+      "maxy": 2897.2
+    },
+    {
+      "minx": 1485,
+      "miny": 2882.8,
+      "maxx": 1494.9,
+      "maxy": 2890
+    },
+    {
+      "minx": 1459,
+      "miny": 2879,
+      "maxx": 1463.2,
+      "maxy": 2882
+    },
+    {
+      "minx": 1466,
+      "miny": 2870,
+      "maxx": 1475,
+      "maxy": 2876.5
+    },
+    {
+      "minx": 1480.9,
+      "miny": 2870.8,
+      "maxx": 1486.8,
+      "maxy": 2876
+    },
+    {
+      "minx": 1468.8,
+      "miny": 2813.8,
+      "maxx": 1473,
+      "maxy": 2822
+    },
+    {
+      "minx": 1489,
+      "miny": 2806.7,
+      "maxx": 1507,
+      "maxy": 2818
+    },
+    {
+      "minx": 1512,
+      "miny": 2813.3,
+      "maxx": 1517,
+      "maxy": 2818
+    },
+    {
+      "minx": 1510,
+      "miny": 2796.5,
+      "maxx": 1514,
+      "maxy": 2811
+    },
+    {
+      "minx": 1486,
+      "miny": 2788,
+      "maxx": 1499,
+      "maxy": 2797
+    },
+    {
+      "minx": 1508.8,
+      "miny": 2789.5,
+      "maxx": 1511.5,
+      "maxy": 2794.2
+    },
+    {
+      "minx": 1114.3,
+      "miny": 2759,
+      "maxx": 1130.8,
+      "maxy": 2787
+    },
+    {
+      "minx": 1501,
+      "miny": 2773.8,
+      "maxx": 1504.2,
+      "maxy": 2777
+    },
+    {
+      "minx": 1087.9,
+      "miny": 2760.5,
+      "maxx": 1106.1,
+      "maxy": 2770.1
+    },
+    {
+      "minx": 1577.9,
+      "miny": 2736,
+      "maxx": 1581,
+      "maxy": 2740
+    },
+    {
+      "minx": 1572,
+      "miny": 2724.2,
+      "maxx": 1585,
+      "maxy": 2735.9
+    },
+    {
+      "minx": 822.9,
+      "miny": 2655.9,
+      "maxx": 827,
+      "maxy": 2658.8
+    },
+    {
+      "minx": 1579.1,
+      "miny": 2648.7,
+      "maxx": 1584.2,
+      "maxy": 2653
+    },
+    {
+      "minx": 1562,
+      "miny": 2635.9,
+      "maxx": 1586.3,
+      "maxy": 2649
+    },
+    {
+      "minx": 1574.8,
+      "miny": 2644,
+      "maxx": 1578.8,
+      "maxy": 2649
+    },
+    {
+      "minx": 2117.5,
+      "miny": 2198,
+      "maxx": 2126.1,
+      "maxy": 2206
+    },
+    {
+      "minx": 3138.9,
+      "miny": 1957.8,
+      "maxx": 3143,
+      "maxy": 1961
+    },
+    {
+      "minx": 2514.3,
+      "miny": 1552,
+      "maxx": 2612.5,
+      "maxy": 1797.5
+    },
+    {
+      "minx": 2447.8,
+      "miny": 1529.9,
+      "maxx": 2548.9,
+      "maxy": 1799
+    },
+    {
+      "minx": 1607,
+      "miny": 1584,
+      "maxx": 1611.2,
+      "maxy": 1587
+    },
+    {
+      "minx": 1600.2,
+      "miny": 1578.2,
+      "maxx": 1607.4,
+      "maxy": 1583
+    },
+    {
+      "minx": 1599,
+      "miny": 1577,
+      "maxx": 1602.1,
+      "maxy": 1579
+    },
+    {
+      "minx": 1591.5,
+      "miny": 1568,
+      "maxx": 1602.2,
+      "maxy": 1575
+    },
+    {
+      "minx": 1590.1,
+      "miny": 1561.7,
+      "maxx": 1595.2,
+      "maxy": 1566
+    },
+    {
+      "minx": 1584,
+      "miny": 1556,
+      "maxx": 1588.7,
+      "maxy": 1563.3
+    },
+    {
+      "minx": 1590,
+      "miny": 1558,
+      "maxx": 1593.1,
+      "maxy": 1560
+    },
+    {
+      "minx": 3348.9,
+      "miny": 1434,
+      "maxx": 3358.8,
+      "maxy": 1446
+    },
+    {
+      "minx": 2227.7,
+      "miny": 1370.5,
+      "maxx": 2249.1,
+      "maxy": 1402
+    },
+    {
+      "minx": 1806,
+      "miny": 1383.8,
+      "maxx": 1812,
+      "maxy": 1396
+    },
+    {
+      "minx": 2244,
+      "miny": 1381.8,
+      "maxx": 2246.2,
+      "maxy": 1385.2
+    },
+    {
+      "minx": 2191.8,
+      "miny": 1360.5,
+      "maxx": 2195.5,
+      "maxy": 1365
+    },
+    {
+      "minx": 2289.8,
+      "miny": 1321,
+      "maxx": 2297.2,
+      "maxy": 1326.9
+    },
+    {
+      "minx": 2353.1,
+      "miny": 1319,
+      "maxx": 2365,
+      "maxy": 1324.2
+    },
+    {
+      "minx": 2686.7,
+      "miny": 1298,
+      "maxx": 2694,
+      "maxy": 1306
+    },
+    {
+      "minx": 1940,
+      "miny": 1252,
+      "maxx": 1971,
+      "maxy": 1279
+    },
+    {
+      "minx": 2059.8,
+      "miny": 1252,
+      "maxx": 2082.7,
+      "maxy": 1276
+    },
+    {
+      "minx": 2869,
+      "miny": 1266.8,
+      "maxx": 2872.2,
+      "maxy": 1270
+    },
+    {
+      "minx": 2870.9,
+      "miny": 1265,
+      "maxx": 2873,
+      "maxy": 1267
+    },
+    {
+      "minx": 2869.2,
+      "miny": 1261.5,
+      "maxx": 2870.2,
+      "maxy": 1266.5
+    },
+    {
+      "minx": 2270,
+      "miny": 1193,
+      "maxx": 2274.9,
+      "maxy": 1199
+    },
+    {
+      "minx": 2013.8,
+      "miny": 1117,
+      "maxx": 2094.2,
+      "maxy": 1198
+    },
+    {
+      "minx": 2168,
+      "miny": 1170,
+      "maxx": 2185.1,
+      "maxy": 1193
+    },
+    {
+      "minx": 2194.9,
+      "miny": 1186,
+      "maxx": 2199.2,
+      "maxy": 1190
+    },
+    {
+      "minx": 2203,
+      "miny": 1166.5,
+      "maxx": 2228.5,
+      "maxy": 1189
+    },
+    {
+      "minx": 2254.5,
+      "miny": 1186,
+      "maxx": 2261.2,
+      "maxy": 1189
+    },
+    {
+      "minx": 1810,
+      "miny": 1112.8,
+      "maxx": 1869.9,
+      "maxy": 1185
+    },
+    {
+      "minx": 2255.6,
+      "miny": 1175,
+      "maxx": 2279.3,
+      "maxy": 1183
+    },
+    {
+      "minx": 2237.6,
+      "miny": 1169.9,
+      "maxx": 2243,
+      "maxy": 1175
+    },
+    {
+      "minx": 2194,
+      "miny": 1069.6,
+      "maxx": 2288,
+      "maxy": 1170.5
+    },
+    {
+      "minx": 2187,
+      "miny": 1133.9,
+      "maxx": 2206,
+      "maxy": 1168
+    },
+    {
+      "minx": 2168,
+      "miny": 1156.9,
+      "maxx": 2177,
+      "maxy": 1162.7
+    },
+    {
+      "minx": 1167.7,
+      "miny": 1156.9,
+      "maxx": 1172.1,
+      "maxy": 1161.5
+    },
+    {
+      "minx": 1950,
+      "miny": 1133.7,
+      "maxx": 1964,
+      "maxy": 1154
+    },
+    {
+      "minx": 2142.8,
+      "miny": 1116.8,
+      "maxx": 2179,
+      "maxy": 1147.2
+    },
+    {
+      "minx": 2128.1,
+      "miny": 1127.6,
+      "maxx": 2136.4,
+      "maxy": 1136
+    },
+    {
+      "minx": 2181.8,
+      "miny": 1130,
+      "maxx": 2186,
+      "maxy": 1135.2
+    },
+    {
+      "minx": 2142.5,
+      "miny": 1111.1,
+      "maxx": 2168,
+      "maxy": 1132
+    },
+    {
+      "minx": 2145,
+      "miny": 1116,
+      "maxx": 2151,
+      "maxy": 1121
+    },
+    {
+      "minx": 2153,
+      "miny": 1106.8,
+      "maxx": 2163,
+      "maxy": 1112
+    },
+    {
+      "minx": 2310.8,
+      "miny": 1106.8,
+      "maxx": 2315.2,
+      "maxy": 1111.2
+    },
+    {
+      "minx": 2145,
+      "miny": 1104,
+      "maxx": 2151.5,
+      "maxy": 1109.1
+    },
+    {
+      "minx": 2171.7,
+      "miny": 1095,
+      "maxx": 2183.4,
+      "maxy": 1108.5
+    },
+    {
+      "minx": 2202,
+      "miny": 1095.7,
+      "maxx": 2205.9,
+      "maxy": 1100
+    },
+    {
+      "minx": 2267.8,
+      "miny": 1087.5,
+      "maxx": 2274.2,
+      "maxy": 1092
+    },
+    {
+      "minx": 1921,
+      "miny": 852,
+      "maxx": 1952.2,
+      "maxy": 871
+    },
+    {
+      "minx": 865,
+      "miny": 690.1,
+      "maxx": 924.2,
+      "maxy": 776.8
+    },
+    {
+      "minx": 923,
+      "miny": 726.1,
+      "maxx": 926,
+      "maxy": 729
+    },
+    {
+      "minx": 2991,
+      "miny": 709.6,
+      "maxx": 2994.2,
+      "maxy": 717.7
+    },
+    {
+      "minx": 3296,
+      "miny": 599.6,
+      "maxx": 3302.5,
+      "maxy": 605
+    },
+    {
+      "minx": 1755,
+      "miny": 523,
+      "maxx": 1792.2,
+      "maxy": 580
+    },
+    {
+      "minx": 3329.5,
+      "miny": 559.8,
+      "maxx": 3334.5,
+      "maxy": 560.8
+    },
+    {
+      "minx": 3335,
+      "miny": 550.5,
+      "maxx": 3342.4,
+      "maxy": 557
+    },
+    {
+      "minx": 3351,
+      "miny": 525,
+      "maxx": 3361,
+      "maxy": 540.1
+    },
+    {
+      "minx": 3365.8,
+      "miny": 525.1,
+      "maxx": 3370.9,
+      "maxy": 532
+    },
+    {
+      "minx": 3368.9,
+      "miny": 513.9,
+      "maxx": 3373,
+      "maxy": 519
+    },
+    {
+      "minx": 2533.9,
+      "miny": 508,
+      "maxx": 2537.1,
+      "maxy": 510
+    },
+    {
+      "minx": 2491.9,
+      "miny": 437,
+      "maxx": 2495,
+      "maxy": 439
+    },
+    {
+      "minx": 2562.9,
+      "miny": 424,
+      "maxx": 2565,
+      "maxy": 426
+    },
+    {
+      "minx": 3548.1,
+      "miny": 330,
+      "maxx": 3560,
+      "maxy": 349.1
+    },
+    {
+      "minx": 3588.8,
+      "miny": 333.7,
+      "maxx": 3591.2,
+      "maxy": 337.4
+    },
+    {
+      "minx": 3573,
+      "miny": 322.8,
+      "maxx": 3584.1,
+      "maxy": 332.3
+    },
+    {
+      "minx": 3598.3,
+      "miny": 326,
+      "maxx": 3602,
+      "maxy": 330.9
+    },
+    {
+      "minx": 3548,
+      "miny": 310.5,
+      "maxx": 3551,
+      "maxy": 319.9
+    },
+    {
+      "minx": 3564.7,
+      "miny": 309.1,
+      "maxx": 3573,
+      "maxy": 317
+    },
+    {
+      "minx": 3539,
+      "miny": 298,
+      "maxx": 3542,
+      "maxy": 302
+    },
+    {
+      "minx": 3542,
+      "miny": 277.8,
+      "maxx": 3549.1,
+      "maxy": 299.5
+    },
+    {
+      "minx": 3557,
+      "miny": 281.5,
+      "maxx": 3569,
+      "maxy": 296
+    },
+    {
+      "minx": 3625,
+      "miny": 253.9,
+      "maxx": 3629.1,
+      "maxy": 259
+    },
+    {
+      "minx": 3616,
+      "miny": 235,
+      "maxx": 3632.8,
+      "maxy": 250
+    },
+    {
+      "minx": 3658,
+      "miny": 245,
+      "maxx": 3663.2,
+      "maxy": 248.1
+    },
+    {
+      "minx": 3571,
+      "miny": 191,
+      "maxx": 3620,
+      "maxy": 247
+    },
+    {
+      "minx": 3645,
+      "miny": 239,
+      "maxx": 3646.6,
+      "maxy": 247
+    },
+    {
+      "minx": 3636,
+      "miny": 237,
+      "maxx": 3639,
+      "maxy": 243.5
+    },
+    {
+      "minx": 3647.7,
+      "miny": 234,
+      "maxx": 3652.2,
+      "maxy": 238
+    },
+    {
+      "minx": 3662,
+      "miny": 227.5,
+      "maxx": 3664,
+      "maxy": 235.1
+    },
+    {
+      "minx": 3472,
+      "miny": 229.5,
+      "maxx": 3475.5,
+      "maxy": 234.3
+    },
+    {
+      "minx": 2833.7,
+      "miny": 227.6,
+      "maxx": 2836,
+      "maxy": 233
+    },
+    {
+      "minx": 3636.8,
+      "miny": 227.5,
+      "maxx": 3639.5,
+      "maxy": 232.2
+    },
+    {
+      "minx": 3624.8,
+      "miny": 225,
+      "maxx": 3631,
+      "maxy": 230
+    },
+    {
+      "minx": 3650.8,
+      "miny": 225,
+      "maxx": 3655,
+      "maxy": 228.9
+    },
+    {
+      "minx": 3614.9,
+      "miny": 224,
+      "maxx": 3619.8,
+      "maxy": 228
+    },
+    {
+      "minx": 3652.1,
+      "miny": 217,
+      "maxx": 3657,
+      "maxy": 222
+    },
+    {
+      "minx": 3627,
+      "miny": 216.9,
+      "maxx": 3633,
+      "maxy": 220
+    },
+    {
+      "minx": 3615.8,
+      "miny": 213.8,
+      "maxx": 3620.2,
+      "maxy": 219.2
+    },
+    {
+      "minx": 3662,
+      "miny": 213,
+      "maxx": 3667,
+      "maxy": 217
+    },
+    {
+      "minx": 3685,
+      "miny": 195.8,
+      "maxx": 3693.3,
+      "maxy": 208
+    },
+    {
+      "minx": 3667.9,
+      "miny": 195,
+      "maxx": 3670,
+      "maxy": 197
+    },
+    {
+      "minx": 3639,
+      "miny": 193,
+      "maxx": 3643,
+      "maxy": 196.1
+    },
+    {
+      "minx": 3585,
+      "miny": 175,
+      "maxx": 3588.1,
+      "maxy": 177
+    },
+    {
+      "minx": 3597,
+      "miny": 163.7,
+      "maxx": 3602.2,
+      "maxy": 174
+    },
+    {
+      "minx": 3614,
+      "miny": 152,
+      "maxx": 3619.9,
+      "maxy": 160
+    },
+    {
+      "minx": 3578.8,
+      "miny": 149.6,
+      "maxx": 3582.2,
+      "maxy": 154.3
+    },
+    {
+      "minx": 818.9,
+      "miny": 2911,
+      "maxx": 821,
+      "maxy": 2913
+    },
+    {
+      "minx": 825,
+      "miny": 2907.1,
+      "maxx": 830.7,
+      "maxy": 2912
+    },
+    {
+      "minx": 682.3,
+      "miny": 3121,
+      "maxx": 686.2,
+      "maxy": 3124.1
+    },
+    {
+      "minx": 763,
+      "miny": 3113,
+      "maxx": 767,
+      "maxy": 3118
+    },
+    {
+      "minx": 874.8,
+      "miny": 3091.8,
+      "maxx": 878,
+      "maxy": 3095
+    },
+    {
+      "minx": 2717.5,
+      "miny": 3078,
+      "maxx": 2728,
+      "maxy": 3085
+    },
+    {
+      "minx": 799.7,
+      "miny": 3064.6,
+      "maxx": 803.3,
+      "maxy": 3070.5
+    },
+    {
+      "minx": 2721,
+      "miny": 2962.9,
+      "maxx": 2757.4,
+      "maxy": 3069
+    },
+    {
+      "minx": 830.7,
+      "miny": 3058,
+      "maxx": 837,
+      "maxy": 3068
+    },
+    {
+      "minx": 848,
+      "miny": 3029,
+      "maxx": 855,
+      "maxy": 3034
+    },
+    {
+      "minx": 706.8,
+      "miny": 3014,
+      "maxx": 733.9,
+      "maxy": 3032
+    },
+    {
+      "minx": 905,
+      "miny": 3019,
+      "maxx": 910,
+      "maxy": 3023.2
+    },
+    {
+      "minx": 2740,
+      "miny": 2955.5,
+      "maxx": 2743,
+      "maxy": 2961
+    },
+    {
+      "minx": 3023.9,
+      "miny": 2937,
+      "maxx": 3051.3,
+      "maxy": 2961.1
+    },
+    {
+      "minx": 3031.8,
+      "miny": 2948.8,
+      "maxx": 3042.1,
+      "maxy": 2955
+    },
+    {
+      "minx": 709.7,
+      "miny": 2910.6,
+      "maxx": 714.2,
+      "maxy": 2915
+    },
+    {
+      "minx": 703.9,
+      "miny": 2909,
+      "maxx": 707,
+      "maxy": 2911
+    },
+    {
+      "minx": 2833.8,
+      "miny": 2837,
+      "maxx": 2916.2,
+      "maxy": 2904
+    },
+    {
+      "minx": 681.8,
+      "miny": 2892.5,
+      "maxx": 686.2,
+      "maxy": 2895
+    },
+    {
+      "minx": 686.9,
+      "miny": 2891,
+      "maxx": 690,
+      "maxy": 2893
+    },
+    {
+      "minx": 2957,
+      "miny": 2866.9,
+      "maxx": 2978.5,
+      "maxy": 2893
+    },
+    {
+      "minx": 674,
+      "miny": 2874,
+      "maxx": 690,
+      "maxy": 2889
+    },
+    {
+      "minx": 734,
+      "miny": 2828,
+      "maxx": 752,
+      "maxy": 2846
+    },
+    {
+      "minx": 755,
+      "miny": 2837,
+      "maxx": 760,
+      "maxy": 2840
+    },
+    {
+      "minx": 753.8,
+      "miny": 2829,
+      "maxx": 757.2,
+      "maxy": 2832
+    },
+    {
+      "minx": 751,
+      "miny": 2815.7,
+      "maxx": 763.5,
+      "maxy": 2830.7
+    },
+    {
+      "minx": 751,
+      "miny": 2826.9,
+      "maxx": 753,
+      "maxy": 2829
+    },
+    {
+      "minx": 807.2,
+      "miny": 2809,
+      "maxx": 812.8,
+      "maxy": 2827.1
+    },
+    {
+      "minx": 831.7,
+      "miny": 2816,
+      "maxx": 837.3,
+      "maxy": 2820
+    },
+    {
+      "minx": 1871,
+      "miny": 2811,
+      "maxx": 1879,
+      "maxy": 2817
+    },
+    {
+      "minx": 831.8,
+      "miny": 2811.8,
+      "maxx": 835,
+      "maxy": 2815
+    },
+    {
+      "minx": 822.9,
+      "miny": 2808,
+      "maxx": 828.1,
+      "maxy": 2813.1
+    },
+    {
+      "minx": 1871,
+      "miny": 2804.8,
+      "maxx": 1877.1,
+      "maxy": 2810
+    },
+    {
+      "minx": 1875.7,
+      "miny": 2801,
+      "maxx": 1882.3,
+      "maxy": 2805.8
+    },
+    {
+      "minx": 1881,
+      "miny": 2784.5,
+      "maxx": 1896.2,
+      "maxy": 2800
+    },
+    {
+      "minx": 1653,
+      "miny": 2751,
+      "maxx": 1674.5,
+      "maxy": 2771
+    },
+    {
+      "minx": 814,
+      "miny": 2722,
+      "maxx": 818.1,
+      "maxy": 2726.1
+    },
+    {
+      "minx": 782.5,
+      "miny": 2697,
+      "maxx": 798.3,
+      "maxy": 2724
+    },
+    {
+      "minx": 1669,
+      "miny": 2698,
+      "maxx": 1691.2,
+      "maxy": 2712
+    },
+    {
+      "minx": 1657.9,
+      "miny": 2684.7,
+      "maxx": 1666.1,
+      "maxy": 2696.9
+    },
+    {
+      "minx": 798,
+      "miny": 2684.8,
+      "maxx": 804,
+      "maxy": 2692
+    },
+    {
+      "minx": 805,
+      "miny": 2676.6,
+      "maxx": 808,
+      "maxy": 2682
+    },
+    {
+      "minx": 810,
+      "miny": 2675.9,
+      "maxx": 812,
+      "maxy": 2680.1
+    },
+    {
+      "minx": 885,
+      "miny": 2641.8,
+      "maxx": 888.9,
+      "maxy": 2646
+    },
+    {
+      "minx": 800,
+      "miny": 2628.8,
+      "maxx": 812.1,
+      "maxy": 2644
+    },
+    {
+      "minx": 715,
+      "miny": 2576,
+      "maxx": 743,
+      "maxy": 2595
+    },
+    {
+      "minx": 820,
+      "miny": 2583.6,
+      "maxx": 827,
+      "maxy": 2595
+    },
+    {
+      "minx": 2253,
+      "miny": 2483,
+      "maxx": 2327,
+      "maxy": 2542
+    },
+    {
+      "minx": 609,
+      "miny": 2519,
+      "maxx": 621,
+      "maxy": 2535
+    },
+    {
+      "minx": 2242,
+      "miny": 2483.5,
+      "maxx": 2246.2,
+      "maxy": 2491.1
+    },
+    {
+      "minx": 2252.1,
+      "miny": 2477.1,
+      "maxx": 2256,
+      "maxy": 2482.1
+    },
+    {
+      "minx": 2252.9,
+      "miny": 2472,
+      "maxx": 2261,
+      "maxy": 2477
+    },
+    {
+      "minx": 2221.5,
+      "miny": 2463.9,
+      "maxx": 2250,
+      "maxy": 2475
+    },
+    {
+      "minx": 825.1,
+      "miny": 2353.5,
+      "maxx": 827,
+      "maxy": 2358
+    },
+    {
+      "minx": 800,
+      "miny": 2336.8,
+      "maxx": 809.1,
+      "maxy": 2344
+    },
+    {
+      "minx": 798,
+      "miny": 2336.2,
+      "maxx": 802,
+      "maxy": 2338
+    },
+    {
+      "minx": 570,
+      "miny": 2092,
+      "maxx": 577,
+      "maxy": 2097.8
+    },
+    {
+      "minx": 3039.2,
+      "miny": 2031.5,
+      "maxx": 3042,
+      "maxy": 2040
+    },
+    {
+      "minx": 3037.2,
+      "miny": 2024.5,
+      "maxx": 3038.2,
+      "maxy": 2029.5
+    },
+    {
+      "minx": 3036,
+      "miny": 2020.5,
+      "maxx": 3037.2,
+      "maxy": 2024.3
+    },
+    {
+      "minx": 2914.7,
+      "miny": 1929.5,
+      "maxx": 2961.7,
+      "maxy": 1962.1
+    },
+    {
+      "minx": 2948,
+      "miny": 1931,
+      "maxx": 2951.1,
+      "maxy": 1933
+    },
+    {
+      "minx": 135.7,
+      "miny": 1897,
+      "maxx": 142.1,
+      "maxy": 1899.7
+    },
+    {
+      "minx": 105.9,
+      "miny": 1654.9,
+      "maxx": 187,
+      "maxy": 1892.9
+    },
+    {
+      "minx": 99.9,
+      "miny": 1223,
+      "maxx": 670.5,
+      "maxy": 1654.9
+    },
+    {
+      "minx": 596,
+      "miny": 1258.9,
+      "maxx": 820.1,
+      "maxy": 1392.2
+    },
+    {
+      "minx": 559,
+      "miny": 1323,
+      "maxx": 892.2,
+      "maxy": 1463.5
+    },
+    {
+      "minx": 892.2,
+      "miny": 1332.8,
+      "maxx": 1046,
+      "maxy": 1552.5
+    },
+    {
+      "minx": 668.5,
+      "miny": 1488,
+      "maxx": 1004.2,
+      "maxy": 1610
+    },
+    {
+      "minx": 409.6,
+      "miny": 1548.8,
+      "maxx": 670.8,
+      "maxy": 1680.2
+    },
+    {
+      "minx": 323.7,
+      "miny": 1587.5,
+      "maxx": 422.5,
+      "maxy": 1854.9
+    },
+    {
+      "minx": 146,
+      "miny": 1854.9,
+      "maxx": 323.7,
+      "maxy": 1893.8
+    },
+    {
+      "minx": 183.7,
+      "miny": 1872.9,
+      "maxx": 191.5,
+      "maxy": 1878
+    },
+    {
+      "minx": 214.5,
+      "miny": 1862.9,
+      "maxx": 245.2,
+      "maxy": 1872.2
+    },
+    {
+      "minx": 304.8,
+      "miny": 1855.1,
+      "maxx": 316,
+      "maxy": 1860
+    },
+    {
+      "minx": 188,
+      "miny": 1783.6,
+      "maxx": 195,
+      "maxy": 1796
+    },
+    {
+      "minx": 354,
+      "miny": 1622.5,
+      "maxx": 357.5,
+      "maxy": 1626
+    },
+    {
+      "minx": 746,
+      "miny": 1281,
+      "maxx": 785.5,
+      "maxy": 1314
+    },
+    {
+      "minx": 937,
+      "miny": 1850,
+      "maxx": 939,
+      "maxy": 1853.1
+    },
+    {
+      "minx": 999.6,
+      "miny": 1818,
+      "maxx": 1016.5,
+      "maxy": 1829
+    },
+    {
+      "minx": 1123,
+      "miny": 1781.8,
+      "maxx": 1136,
+      "maxy": 1794
+    },
+    {
+      "minx": 413,
+      "miny": 1693,
+      "maxx": 450.2,
+      "maxy": 1742
+    },
+    {
+      "minx": 1019,
+      "miny": 1715.9,
+      "maxx": 1051.5,
+      "maxy": 1739
+    },
+    {
+      "minx": 1225,
+      "miny": 1536.8,
+      "maxx": 1428.3,
+      "maxy": 1720.6
+    },
+    {
+      "minx": 1229.6,
+      "miny": 1642.6,
+      "maxx": 1286.5,
+      "maxy": 1723
+    },
+    {
+      "minx": 1827.9,
+      "miny": 1655,
+      "maxx": 1891,
+      "maxy": 1716.9
+    },
+    {
+      "minx": 1948.5,
+      "miny": 1686,
+      "maxx": 1979.4,
+      "maxy": 1706
+    },
+    {
+      "minx": 478.8,
+      "miny": 1638,
+      "maxx": 492.1,
+      "maxy": 1657.8
+    },
+    {
+      "minx": 1732.9,
+      "miny": 1580,
+      "maxx": 1741.1,
+      "maxy": 1585.8
+    },
+    {
+      "minx": 1824.5,
+      "miny": 1564,
+      "maxx": 1832.5,
+      "maxy": 1568
+    },
+    {
+      "minx": 2910.2,
+      "miny": 1526.1,
+      "maxx": 2916.2,
+      "maxy": 1533
+    },
+    {
+      "minx": 2907,
+      "miny": 1522,
+      "maxx": 2915,
+      "maxy": 1527
+    },
+    {
+      "minx": 2936.7,
+      "miny": 1523.9,
+      "maxx": 2942,
+      "maxy": 1527.3
+    },
+    {
+      "minx": 2927.9,
+      "miny": 1507.7,
+      "maxx": 2941.7,
+      "maxy": 1519
+    },
+    {
+      "minx": 2925,
+      "miny": 1503.2,
+      "maxx": 2932.5,
+      "maxy": 1512
+    },
+    {
+      "minx": 1931.5,
+      "miny": 1476,
+      "maxx": 1969,
+      "maxy": 1511.5
+    },
+    {
+      "minx": 2941,
+      "miny": 1421,
+      "maxx": 2964.5,
+      "maxy": 1444.9
+    },
+    {
+      "minx": 2963.1,
+      "miny": 1425.5,
+      "maxx": 2976.9,
+      "maxy": 1440.6
+    },
+    {
+      "minx": 2967,
+      "miny": 1435.9,
+      "maxx": 2969,
+      "maxy": 1439
+    },
+    {
+      "minx": 3335.9,
+      "miny": 1435,
+      "maxx": 3342.4,
+      "maxy": 1438
+    },
+    {
+      "minx": 3112.6,
+      "miny": 1407.2,
+      "maxx": 3138,
+      "maxy": 1433
+    },
+    {
+      "minx": 2950,
+      "miny": 1414.8,
+      "maxx": 2952.9,
+      "maxy": 1418.2
+    },
+    {
+      "minx": 2232.2,
+      "miny": 1409.9,
+      "maxx": 2237.7,
+      "maxy": 1417
+    },
+    {
+      "minx": 2948,
+      "miny": 1410.9,
+      "maxx": 2950,
+      "maxy": 1413
+    },
+    {
+      "minx": 2949.1,
+      "miny": 1406.7,
+      "maxx": 2952.2,
+      "maxy": 1413.5
+    },
+    {
+      "minx": 2951.8,
+      "miny": 1390,
+      "maxx": 2958.7,
+      "maxy": 1413.5
+    },
+    {
+      "minx": 3088.9,
+      "miny": 1403.9,
+      "maxx": 3093,
+      "maxy": 1408
+    },
+    {
+      "minx": 3088.9,
+      "miny": 1395.5,
+      "maxx": 3096.5,
+      "maxy": 1407
+    },
+    {
+      "minx": 1333.5,
+      "miny": 1394,
+      "maxx": 1348.2,
+      "maxy": 1404
+    },
+    {
+      "minx": 1352.9,
+      "miny": 1400,
+      "maxx": 1361.1,
+      "maxy": 1402
+    },
+    {
+      "minx": 2950.9,
+      "miny": 1399,
+      "maxx": 2954.1,
+      "maxy": 1401
+    },
+    {
+      "minx": 1348.5,
+      "miny": 1392.9,
+      "maxx": 1357.9,
+      "maxy": 1398
+    },
+    {
+      "minx": 2951,
+      "miny": 1395,
+      "maxx": 2955,
+      "maxy": 1398
+    },
+    {
+      "minx": 3093,
+      "miny": 1385.8,
+      "maxx": 3104,
+      "maxy": 1395.7
+    },
+    {
+      "minx": 2951,
+      "miny": 1385.6,
+      "maxx": 2954.2,
+      "maxy": 1391.4
+    },
+    {
+      "minx": 1295,
+      "miny": 1354.7,
+      "maxx": 1334,
+      "maxy": 1383
+    },
+    {
+      "minx": 2192.1,
+      "miny": 1349.9,
+      "maxx": 2226.5,
+      "maxy": 1377
+    },
+    {
+      "minx": 1334,
+      "miny": 1364.5,
+      "maxx": 1347.2,
+      "maxy": 1375
+    },
+    {
+      "minx": 602.8,
+      "miny": 1369.8,
+      "maxx": 606.2,
+      "maxy": 1373.2
+    },
+    {
+      "minx": 2227,
+      "miny": 1346.1,
+      "maxx": 2241,
+      "maxy": 1371.9
+    },
+    {
+      "minx": 2239.9,
+      "miny": 1359.5,
+      "maxx": 2252,
+      "maxy": 1371.1
+    },
+    {
+      "minx": 930,
+      "miny": 1176,
+      "maxx": 1024.8,
+      "maxy": 1364.7
+    },
+    {
+      "minx": 993.3,
+      "miny": 1256.1,
+      "maxx": 1039.3,
+      "maxy": 1366
+    },
+    {
+      "minx": 2884.8,
+      "miny": 1359.9,
+      "maxx": 2889.4,
+      "maxy": 1365.2
+    },
+    {
+      "minx": 1287.5,
+      "miny": 1354.8,
+      "maxx": 1295.1,
+      "maxy": 1363
+    },
+    {
+      "minx": 2243.1,
+      "miny": 1357,
+      "maxx": 2248.1,
+      "maxy": 1360.8
+    },
+    {
+      "minx": 3155,
+      "miny": 1346.7,
+      "maxx": 3168,
+      "maxy": 1358
+    },
+    {
+      "minx": 1317,
+      "miny": 1350.9,
+      "maxx": 1324.2,
+      "maxy": 1357
+    },
+    {
+      "minx": 1309.8,
+      "miny": 1350.8,
+      "maxx": 1313.2,
+      "maxy": 1353.9
+    },
+    {
+      "minx": 2225,
+      "miny": 1352,
+      "maxx": 2227,
+      "maxy": 1354
+    },
+    {
+      "minx": 2223.8,
+      "miny": 1347.8,
+      "maxx": 2227,
+      "maxy": 1351
+    },
+    {
+      "minx": 2448,
+      "miny": 1344.9,
+      "maxx": 2450,
+      "maxy": 1348
+    },
+    {
+      "minx": 1312,
+      "miny": 1341.5,
+      "maxx": 1314,
+      "maxy": 1347.1
+    },
+    {
+      "minx": 2387,
+      "miny": 1277,
+      "maxx": 2472,
+      "maxy": 1330.4
+    },
+    {
+      "minx": 2125,
+      "miny": 1319.5,
+      "maxx": 2127,
+      "maxy": 1324.5
+    },
+    {
+      "minx": 777.2,
+      "miny": 1295,
+      "maxx": 812.4,
+      "maxy": 1320
+    },
+    {
+      "minx": 769,
+      "miny": 1307.7,
+      "maxx": 773.9,
+      "maxy": 1314.1
+    },
+    {
+      "minx": 764.9,
+      "miny": 1306,
+      "maxx": 770.2,
+      "maxy": 1313
+    },
+    {
+      "minx": 803.5,
+      "miny": 1296.1,
+      "maxx": 818,
+      "maxy": 1311
+    },
+    {
+      "minx": 2483,
+      "miny": 1287,
+      "maxx": 2498.2,
+      "maxy": 1299
+    },
+    {
+      "minx": 2490.9,
+      "miny": 1289,
+      "maxx": 2494,
+      "maxy": 1291
+    },
+    {
+      "minx": 3406.6,
+      "miny": 1069.1,
+      "maxx": 3696,
+      "maxy": 1294
+    },
+    {
+      "minx": 3360.9,
+      "miny": 934,
+      "maxx": 3447.1,
+      "maxy": 1069.1
+    },
+    {
+      "minx": 3424.9,
+      "miny": 985.1,
+      "maxx": 3540.4,
+      "maxy": 1056.8
+    },
+    {
+      "minx": 3540.4,
+      "miny": 988.8,
+      "maxx": 3714.9,
+      "maxy": 1072.5
+    },
+    {
+      "minx": 3580.5,
+      "miny": 1044.8,
+      "maxx": 3714.3,
+      "maxy": 1183.5
+    },
+    {
+      "minx": 3621.9,
+      "miny": 1183.5,
+      "maxx": 3713.1,
+      "maxy": 1297
+    },
+    {
+      "minx": 3689.8,
+      "miny": 1233.2,
+      "maxx": 3693.1,
+      "maxy": 1236
+    },
+    {
+      "minx": 3660,
+      "miny": 1074.6,
+      "maxx": 3663.1,
+      "maxy": 1082.9
+    },
+    {
+      "minx": 3519.5,
+      "miny": 1038.3,
+      "maxx": 3530,
+      "maxy": 1046.8
+    },
+    {
+      "minx": 3520,
+      "miny": 1044,
+      "maxx": 3522.1,
+      "maxy": 1046
+    },
+    {
+      "minx": 3587,
+      "miny": 1029.5,
+      "maxx": 3598.9,
+      "maxy": 1041.2
+    },
+    {
+      "minx": 3598.7,
+      "miny": 1032,
+      "maxx": 3606,
+      "maxy": 1037
+    },
+    {
+      "minx": 3609,
+      "miny": 1011.9,
+      "maxx": 3618.9,
+      "maxy": 1023
+    },
+    {
+      "minx": 3628,
+      "miny": 1010,
+      "maxx": 3633.7,
+      "maxy": 1018.2
+    },
+    {
+      "minx": 3621.9,
+      "miny": 1008,
+      "maxx": 3625,
+      "maxy": 1013
+    },
+    {
+      "minx": 3520.5,
+      "miny": 1038.6,
+      "maxx": 3524.1,
+      "maxy": 1041.1
+    },
+    {
+      "minx": 3587.9,
+      "miny": 1036,
+      "maxx": 3591.1,
+      "maxy": 1038
+    },
+    {
+      "minx": 816.5,
+      "miny": 1288.1,
+      "maxx": 819.5,
+      "maxy": 1295.9
+    },
+    {
+      "minx": 2878.5,
+      "miny": 1284.9,
+      "maxx": 2884.2,
+      "maxy": 1289
+    },
+    {
+      "minx": 817.8,
+      "miny": 1283.7,
+      "maxx": 820.2,
+      "maxy": 1288.5
+    },
+    {
+      "minx": 2887,
+      "miny": 1282.5,
+      "maxx": 2888.2,
+      "maxy": 1286.3
+    },
+    {
+      "minx": 2886.1,
+      "miny": 1277,
+      "maxx": 2889,
+      "maxy": 1280.9
+    },
+    {
+      "minx": 2878,
+      "miny": 1278,
+      "maxx": 2880.1,
+      "maxy": 1280
+    },
+    {
+      "minx": 2885.1,
+      "miny": 1271.6,
+      "maxx": 2888.2,
+      "maxy": 1275.9
+    },
+    {
+      "minx": 2882.3,
+      "miny": 1262,
+      "maxx": 2886.3,
+      "maxy": 1272
+    },
+    {
+      "minx": 817.1,
+      "miny": 1264.1,
+      "maxx": 822.2,
+      "maxy": 1268
+    },
+    {
+      "minx": 763.7,
+      "miny": 1240.7,
+      "maxx": 798,
+      "maxy": 1263.9
+    },
+    {
+      "minx": 2606.1,
+      "miny": 1261,
+      "maxx": 2609,
+      "maxy": 1264
+    },
+    {
+      "minx": 674,
+      "miny": 1250,
+      "maxx": 701.3,
+      "maxy": 1259.1
+    },
+    {
+      "minx": 2876.8,
+      "miny": 1253.8,
+      "maxx": 2879.2,
+      "maxy": 1259.2
+    },
+    {
+      "minx": 2874,
+      "miny": 1249.7,
+      "maxx": 2876.2,
+      "maxy": 1254.1
+    },
+    {
+      "minx": 704.7,
+      "miny": 1243.9,
+      "maxx": 720.4,
+      "maxy": 1250
+    },
+    {
+      "minx": 731,
+      "miny": 1240.5,
+      "maxx": 734,
+      "maxy": 1246
+    },
+    {
+      "minx": 757.7,
+      "miny": 1241.3,
+      "maxx": 763.7,
+      "maxy": 1246
+    },
+    {
+      "minx": 736,
+      "miny": 1241,
+      "maxx": 738,
+      "maxy": 1244
+    },
+    {
+      "minx": 2739.5,
+      "miny": 1231.7,
+      "maxx": 2766.4,
+      "maxy": 1242.5
+    },
+    {
+      "minx": 2759.9,
+      "miny": 1235,
+      "maxx": 2762,
+      "maxy": 1237
+    },
+    {
+      "minx": 3592,
+      "miny": 1213.8,
+      "maxx": 3625.2,
+      "maxy": 1243
+    },
+    {
+      "minx": 3646.9,
+      "miny": 1165.1,
+      "maxx": 3720.2,
+      "maxy": 1243
+    },
+    {
+      "minx": 3716,
+      "miny": 1236.5,
+      "maxx": 3717.2,
+      "maxy": 1240.3
+    },
+    {
+      "minx": 3713.1,
+      "miny": 1232.1,
+      "maxx": 3716,
+      "maxy": 1236
+    },
+    {
+      "minx": 3705,
+      "miny": 1225,
+      "maxx": 3713.4,
+      "maxy": 1231
+    },
+    {
+      "minx": 3705,
+      "miny": 1222,
+      "maxx": 3707,
+      "maxy": 1224
+    },
+    {
+      "minx": 3704.2,
+      "miny": 1216.9,
+      "maxx": 3709.2,
+      "maxy": 1221.4
+    },
+    {
+      "minx": 741,
+      "miny": 1240,
+      "maxx": 743.1,
+      "maxy": 1242
+    },
+    {
+      "minx": 760.8,
+      "miny": 1235.6,
+      "maxx": 764,
+      "maxy": 1241
+    },
+    {
+      "minx": 765,
+      "miny": 1237,
+      "maxx": 767,
+      "maxy": 1239
+    },
+    {
+      "minx": 2871,
+      "miny": 1231.6,
+      "maxx": 2874.2,
+      "maxy": 1237.2
+    },
+    {
+      "minx": 2703.6,
+      "miny": 1231,
+      "maxx": 2708.5,
+      "maxy": 1234
+    },
+    {
+      "minx": 3692.2,
+      "miny": 1226.1,
+      "maxx": 3695.9,
+      "maxy": 1231
+    },
+    {
+      "minx": 2991,
+      "miny": 1218,
+      "maxx": 2998,
+      "maxy": 1229
+    },
+    {
+      "minx": 2527,
+      "miny": 1214,
+      "maxx": 2529,
+      "maxy": 1217
+    },
+    {
+      "minx": 988.3,
+      "miny": 1201,
+      "maxx": 992.9,
+      "maxy": 1206.8
+    },
+    {
+      "minx": 1192,
+      "miny": 1198.8,
+      "maxx": 1194.6,
+      "maxy": 1207.1
+    },
+    {
+      "minx": 2982,
+      "miny": 1122.7,
+      "maxx": 3032.5,
+      "maxy": 1184
+    },
+    {
+      "minx": 3010.2,
+      "miny": 1135.5,
+      "maxx": 3011.2,
+      "maxy": 1141.5
+    },
+    {
+      "minx": 2989.5,
+      "miny": 1174,
+      "maxx": 2997,
+      "maxy": 1180
+    },
+    {
+      "minx": 3671,
+      "miny": 1106.8,
+      "maxx": 3793.9,
+      "maxy": 1180
+    },
+    {
+      "minx": 3713.2,
+      "miny": 1177.6,
+      "maxx": 3713.2,
+      "maxy": 1177.6
+    },
+    {
+      "minx": 2978.8,
+      "miny": 1169.2,
+      "maxx": 2984.9,
+      "maxy": 1179
+    },
+    {
+      "minx": 3170,
+      "miny": 1168,
+      "maxx": 3179.2,
+      "maxy": 1178
+    },
+    {
+      "minx": 3609,
+      "miny": 1158.7,
+      "maxx": 3619.1,
+      "maxy": 1169.6
+    },
+    {
+      "minx": 3026.9,
+      "miny": 1165,
+      "maxx": 3031.8,
+      "maxy": 1169.1
+    },
+    {
+      "minx": 3157.9,
+      "miny": 1162,
+      "maxx": 3165.1,
+      "maxy": 1164
+    },
+    {
+      "minx": 3661.3,
+      "miny": 1152.5,
+      "maxx": 3667.5,
+      "maxy": 1161
+    },
+    {
+      "minx": 3638.9,
+      "miny": 1136.7,
+      "maxx": 3662,
+      "maxy": 1151.7
+    },
+    {
+      "minx": 3658.1,
+      "miny": 1096.7,
+      "maxx": 3726,
+      "maxy": 1143.8
+    },
+    {
+      "minx": 3679.7,
+      "miny": 1132,
+      "maxx": 3686,
+      "maxy": 1138
+    },
+    {
+      "minx": 2995.1,
+      "miny": 1132.9,
+      "maxx": 2997,
+      "maxy": 1137
+    },
+    {
+      "minx": 3656,
+      "miny": 1124.7,
+      "maxx": 3666.9,
+      "maxy": 1133
+    },
+    {
+      "minx": 3588,
+      "miny": 1117.9,
+      "maxx": 3600,
+      "maxy": 1129
+    },
+    {
+      "minx": 3598.8,
+      "miny": 1102.8,
+      "maxx": 3602,
+      "maxy": 1108
+    },
+    {
+      "minx": 3703,
+      "miny": 1074.8,
+      "maxx": 3752,
+      "maxy": 1103
+    },
+    {
+      "minx": 3755,
+      "miny": 1079.7,
+      "maxx": 3768,
+      "maxy": 1091
+    },
+    {
+      "minx": 3767,
+      "miny": 1071.9,
+      "maxx": 3783.1,
+      "maxy": 1085.1
+    },
+    {
+      "minx": 3755,
+      "miny": 1040.9,
+      "maxx": 3767.2,
+      "maxy": 1062.8
+    },
+    {
+      "minx": 3737.5,
+      "miny": 1047.7,
+      "maxx": 3753,
+      "maxy": 1059.6
+    },
+    {
+      "minx": 3751,
+      "miny": 1057,
+      "maxx": 3753.9,
+      "maxy": 1060
+    },
+    {
+      "minx": 3754,
+      "miny": 1048.8,
+      "maxx": 3758.1,
+      "maxy": 1055
+    },
+    {
+      "minx": 560,
+      "miny": 1031.7,
+      "maxx": 576,
+      "maxy": 1047.2
+    },
+    {
+      "minx": 512.8,
+      "miny": 1037,
+      "maxx": 517,
+      "maxy": 1040
+    },
+    {
+      "minx": 3426,
+      "miny": 1029.8,
+      "maxx": 3432,
+      "maxy": 1035
+    },
+    {
+      "minx": 677,
+      "miny": 995,
+      "maxx": 679.1,
+      "maxy": 997
+    },
+    {
+      "minx": 546,
+      "miny": 984,
+      "maxx": 553.8,
+      "maxy": 991.9
+    },
+    {
+      "minx": 687.5,
+      "miny": 986,
+      "maxx": 695.2,
+      "maxy": 989
+    },
+    {
+      "minx": 3461.3,
+      "miny": 975,
+      "maxx": 3469.4,
+      "maxy": 983
+    },
+    {
+      "minx": 3369.4,
+      "miny": 965,
+      "maxx": 3374.9,
+      "maxy": 971
+    },
+    {
+      "minx": 3419.8,
+      "miny": 915.8,
+      "maxx": 3455.2,
+      "maxy": 949
+    },
+    {
+      "minx": 525.3,
+      "miny": 937,
+      "maxx": 528,
+      "maxy": 942
+    },
+    {
+      "minx": 678,
+      "miny": 889.8,
+      "maxx": 701.5,
+      "maxy": 938
+    },
+    {
+      "minx": 521,
+      "miny": 931.8,
+      "maxx": 524,
+      "maxy": 936
+    },
+    {
+      "minx": 2380.8,
+      "miny": 933,
+      "maxx": 2386,
+      "maxy": 936
+    },
+    {
+      "minx": 2375,
+      "miny": 928.9,
+      "maxx": 2377,
+      "maxy": 931
+    },
+    {
+      "minx": 2379,
+      "miny": 928,
+      "maxx": 2382.9,
+      "maxy": 931
+    },
+    {
+      "minx": 517,
+      "miny": 917,
+      "maxx": 523,
+      "maxy": 926
+    },
+    {
+      "minx": 2310,
+      "miny": 904,
+      "maxx": 2329,
+      "maxy": 910
+    },
+    {
+      "minx": 447.8,
+      "miny": 815.7,
+      "maxx": 481,
+      "maxy": 852
+    },
+    {
+      "minx": 482,
+      "miny": 809.9,
+      "maxx": 486.5,
+      "maxy": 816
+    },
+    {
+      "minx": 1585,
+      "miny": 732,
+      "maxx": 1612,
+      "maxy": 756
+    },
+    {
+      "minx": 1294,
+      "miny": 474,
+      "maxx": 1374,
+      "maxy": 556
+    },
+    {
+      "minx": 991.9,
+      "miny": 505,
+      "maxx": 1024,
+      "maxy": 531.9
+    },
+    {
+      "minx": 898,
+      "miny": 480.9,
+      "maxx": 919,
+      "maxy": 505
+    },
+    {
+      "minx": 1658,
+      "miny": 265.5,
+      "maxx": 1830.4,
+      "maxy": 396.5
+    },
+    {
+      "minx": 1658,
+      "miny": 343,
+      "maxx": 1765.1,
+      "maxy": 397
+    },
+    {
+      "minx": 1755.9,
+      "miny": 306.7,
+      "maxx": 1768.1,
+      "maxy": 314
+    },
+    {
+      "minx": 1723,
+      "miny": 377,
+      "maxx": 1734.9,
+      "maxy": 390.7
+    },
+    {
+      "minx": 1583.9,
+      "miny": 367.9,
+      "maxx": 1622,
+      "maxy": 385.7
+    },
+    {
+      "minx": 1672,
+      "miny": 384,
+      "maxx": 1674.1,
+      "maxy": 386
+    },
+    {
+      "minx": 1082.7,
+      "miny": 364.8,
+      "maxx": 1091.8,
+      "maxy": 382.2
+    },
+    {
+      "minx": 1682.7,
+      "miny": 373,
+      "maxx": 1687.3,
+      "maxy": 377
+    },
+    {
+      "minx": 1858,
+      "miny": 371,
+      "maxx": 1861.1,
+      "maxy": 373
+    },
+    {
+      "minx": 826,
+      "miny": 300,
+      "maxx": 890,
+      "maxy": 354
+    },
+    {
+      "minx": 1136,
+      "miny": 140.9,
+      "maxx": 1618,
+      "maxy": 342
+    },
+    {
+      "minx": 1239.5,
+      "miny": 105,
+      "maxx": 1710.2,
+      "maxy": 343
+    },
+    {
+      "minx": 1136,
+      "miny": 317,
+      "maxx": 1170,
+      "maxy": 337.1
+    },
+    {
+      "minx": 3614.9,
+      "miny": 328.9,
+      "maxx": 3622.2,
+      "maxy": 332.8
+    },
+    {
+      "minx": 3620,
+      "miny": 326,
+      "maxx": 3624.5,
+      "maxy": 328
+    },
+    {
+      "minx": 3620.8,
+      "miny": 319.7,
+      "maxx": 3623.2,
+      "maxy": 324.5
+    },
+    {
+      "minx": 3619,
+      "miny": 312.8,
+      "maxx": 3622.2,
+      "maxy": 316
+    },
+    {
+      "minx": 1685,
+      "miny": 212,
+      "maxx": 1773.1,
+      "maxy": 280
+    },
+    {
+      "minx": 937,
+      "miny": 192,
+      "maxx": 1137,
+      "maxy": 279
+    },
+    {
+      "minx": 1793.9,
+      "miny": 231.5,
+      "maxx": 1814.2,
+      "maxy": 244
+    },
+    {
+      "minx": 1887.1,
+      "miny": 176,
+      "maxx": 1909,
+      "maxy": 230
+    },
+    {
+      "minx": 2450.6,
+      "miny": 219.1,
+      "maxx": 2468.4,
+      "maxy": 224
+    },
+    {
+      "minx": 2893,
+      "miny": 206,
+      "maxx": 2899.7,
+      "maxy": 212
+    },
+    {
+      "minx": 519.6,
+      "miny": 195.7,
+      "maxx": 529,
+      "maxy": 202
+    },
+    {
+      "minx": 414,
+      "miny": 156.8,
+      "maxx": 458,
+      "maxy": 197
+    },
+    {
+      "minx": 494.1,
+      "miny": 190,
+      "maxx": 497,
+      "maxy": 193
+    },
+    {
+      "minx": 473.8,
+      "miny": 184,
+      "maxx": 480.4,
+      "maxy": 189
+    },
+    {
+      "minx": 1172.8,
+      "miny": 176,
+      "maxx": 1178.2,
+      "maxy": 181
+    },
+    {
+      "minx": 3169,
+      "miny": 160,
+      "maxx": 3177,
+      "maxy": 168
+    },
+    {
+      "minx": 2965,
+      "miny": 160,
+      "maxx": 2976,
+      "maxy": 164
+    },
+    {
+      "minx": 99,
+      "miny": 67,
+      "maxx": 108,
+      "maxy": 76
+    }
   ]
 }

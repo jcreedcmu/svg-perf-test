@@ -23,13 +23,18 @@ function inv_xform(xpix, ypix) {
   return {x:(xpix-camera.x) / camera.scale, y:(ypix - camera.y) / -camera.scale};
 }
 
+function xform(xworld, yworld) {
+  return {x: camera.x + xworld * camera.scale, y : camera.y - yworld * camera.scale};
+}
+
 var z = 0;
 function render() {
   var t = Date.now();
   d.fillStyle = "#def";
   d.fillRect(0,0,w,h);
-  d.strokeStyle = "red";
-  var OFFSET = 50;
+  d.strokeStyle = "gray";
+  var OFFSET = 100;
+  OFFSET = 0;
 
   d.strokeRect(OFFSET + 0.5,OFFSET + 0.5,w-2*OFFSET,h-2*OFFSET);
   d.strokeStyle = "black";
@@ -52,8 +57,17 @@ function render() {
       var n = 0;
       arc_id_list.forEach(function(arc_id, arc_id_ix) {
 	var this_arc = arcs[arc_id];
+	var arc_bbox = g_data.arc_bboxes[arc_id];
+	d.lineWidth = 0.9 / camera.scale;
+	var tl = inv_xform(OFFSET,OFFSET);
+	var br = inv_xform(w-OFFSET,h-OFFSET);
+	rect_intersect = tl.x < arc_bbox.maxx && br.x > arc_bbox.minx && tl.y > arc_bbox.miny && br.y < arc_bbox.maxy;
 
-	if (0) {
+	//// Debugging bboxes
+	// d.strokeStyle = rect_intersect ?  "black" : "red";
+	// d.strokeRect(arc_bbox.minx, -arc_bbox.maxy, arc_bbox.maxx-arc_bbox.minx, arc_bbox.maxy - arc_bbox.miny);
+
+	if (!rect_intersect) {
 	  // draw super simplified
 	  this_arc = [this_arc[0],this_arc[this_arc.length - 1]];
 	}
@@ -77,6 +91,9 @@ function render() {
 	    if (ix == this_arc.length - 1)
 	      draw = false;
 
+	    if (ix == 0)
+	      draw = true;
+
 	    if (draw) {
     	      d.lineTo(vert[0] ,  - vert[1] );
 	    }
@@ -87,8 +104,9 @@ function render() {
     });
 
     d.lineWidth = 1.1 / camera.scale;
+    d.strokeStyle = "blue";
     d.stroke();
-    d.fillStyle = k == "feature0" ? "#fed" : "white";
+    d.fillStyle = "white"; // k == "feature0" ? "#fed" : "white";
     d.fill();
 
 

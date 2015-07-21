@@ -1,10 +1,14 @@
 var label_layer = require('./labels');
+var State = require('./state');
+var DEBUG = false;
+var OFFSET = DEBUG ? 100 : 0;
 
 // data in a.json generated through
 // potrace a.pbm -a 0 -b geojson
 
-
-g_data = null;
+state = new State();
+var g_data = null;
+var assets;
 var ld = new Loader();
 ld.add(json_file('b'));
 g_curImgName = 1167;
@@ -16,28 +20,46 @@ ld.done(function(data) {
   count = 0;
   assets = this;
   g_data = assets.src.b;
-  //  rt = new RTree(10);
-  //  rt.geoJSON(JSON.parse(json));
+  g_coast_rt = new RTree(10);
 
-  camera = {x: 96, y: 425, zoom: 0, scale: function() { return 0.1 * Math.pow(2, this.zoom); }};
+  _.each(g_data.objects, function(object, k) {
+    var bb = object.properties.bbox;
+    g_coast_rt.insert({x:bb.minx, y:bb.miny, w:bb.maxx - bb.minx, h:bb.maxy - bb.miny},
+		      object);
+  });
+//  g_coast_rt.insert
 
   c = $("#c")[0];
   d = c.getContext('2d');
   w = c.width = innerWidth;
   h = c.height = innerHeight;
 
-  render();
+  var t;
+  if (DEBUG) {
+    console.profile("rendering");
+    console.time("whatev");
+    var ITER = 1000;
+    for (var i = 0; i < ITER; i++) {
+      render();
+    }
+   // d.getImageData(0,0,1,1);
+    console.timeEnd("whatev");
+    console.profileEnd();
+  }
+  else {
+    render();
+  }
 });
 
-function inv_xform(xpix, ypix) {
-  return {x:(xpix-camera.x) / camera.scale(), y:(ypix - camera.y) / -camera.scale()};
+function inv_xform(camera, xpix, ypix) {
+  return {x:(xpix-camera.x) / camera.scale(),
+	  y:(ypix - camera.y) / -camera.scale()};
 }
 
-function xform(xworld, yworld) {
+function xform(camera, xworld, yworld) {
   return {x: camera.x + xworld * camera.scale(), y : camera.y - yworld * camera.scale()};
 }
 
-var z = 0;
 g_allStates = (localStorage.allStates != null) ? JSON.parse(localStorage.allStates) :
   {"1119":{"scale":4096,"x":-0.546875,"y":3216.171875},
    "1120":{"scale":8192,"x":-0.546875,"y":3216.171875},
@@ -81,13 +103,19 @@ g_allStates = (localStorage.allStates != null) ? JSON.parse(localStorage.allStat
    "1207":{"scale":4096,"x":-0.68359375,"y":3216.26953125}};
 g_imageState = clone(g_allStates[g_curImgName]);
 
+
+lastTime = 0;
 function render() {
+  if (Date.now() - lastTime < 20) {
+    return;
+  }
+  lastTime = Date.now();
+
+  var camera = state.camera();
   var t = Date.now();
   d.fillStyle = "#bac7f8";
   d.fillRect(0,0,w,h);
   d.strokeStyle = "gray";
-  var DEBUG = false;
-  var OFFSET = DEBUG ? 100 : 0;
 
   if (DEBUG) {
     d.strokeRect(OFFSET + 0.5,OFFSET + 0.5,w-2*OFFSET,h-2*OFFSET);
@@ -96,20 +124,17 @@ function render() {
   d.strokeStyle = "black";
   d.lineJoin = "round";
 
-  var ip1 = inv_xform(OFFSET, OFFSET);
-  var ip2 = inv_xform(w-OFFSET, h-OFFSET);
-  var world_bbox = [ip1.x, ip2.y, ip2.x, ip1.y];
-  //var items = rt.bbox(ip1.x, ip2.y, ip2.x, ip1.y);
+  var tl = inv_xform(camera, OFFSET,OFFSET);
+  var br = inv_xform(camera,w-OFFSET,h-OFFSET);
+  var world_bbox = [tl.x, br.y, br.x, tl.y];
 
   d.save();
   d.translate(camera.x, camera.y);
   d.scale(camera.scale(), -camera.scale());
-  _.each(g_data.objects, function(object, k) {
+  _.each(g_coast_rt.bbox(tl.x, br.y, br.x, tl.y), function(object, k) {
     var arc_id_lists = object.arcs;
     var arcs = g_data.arcs;
 
-
-    z = 0;
     d.beginPath();
     arc_id_lists.forEach(function(arc_id_list) {
       var n = 0;
@@ -117,8 +142,6 @@ function render() {
 	var this_arc = arcs[arc_id];
 	var arc_bbox = g_data.arc_bboxes[arc_id];
 	d.lineWidth = 0.9 / camera.scale();
-	var tl = inv_xform(OFFSET,OFFSET);
-	var br = inv_xform(w-OFFSET,h-OFFSET);
 	rect_intersect = tl.x < arc_bbox.maxx && br.x > arc_bbox.minx && tl.y > arc_bbox.miny && br.y < arc_bbox.maxy;
 
 	//// Debugging bboxes
@@ -211,18 +234,18 @@ $(c).on('mousewheel', function(e) {
     if (e.originalEvent.wheelDelta < 0) {
       zoom = -1;
     }
-    var zoom2 = Math.pow(2, zoom);
-    camera.x = zoom2 * (camera.x - x) + x;
-    camera.y = zoom2 * (camera.y - y) + y;
-    camera.zoom += zoom;
+
+    state.zoom(x, y, zoom);
     render();
   }
 });
+
 $(c).on('mousedown', function(e) {
+  var camera = state.camera();
   var th = $(this);
   var x = e.pageX;
   var y = e.pageY;
-  console.log(inv_xform(x, y));
+  console.log(inv_xform(camera,x, y));
   if (e.ctrlKey) {
     var membasex = g_imageState.x;
     var membasey = g_imageState.y;
@@ -237,16 +260,9 @@ $(c).on('mousedown', function(e) {
 
   }
   else {
-    var membasex = camera.x;
-    var membasey = camera.y;
     $(document).on('mousemove.drag', function(e) {
-      var t = Date.now();
-
-      camera.x = membasex + e.pageX - x;
-      camera.y = membasey + e.pageY - y;
+      state.cam_set(camera.x + e.pageX - x, camera.y + e.pageY - y);
       render();
-
-
     });
     $(document).on('mouseup.drag', function(e) {
       $(document).off('.drag');

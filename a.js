@@ -105,12 +105,26 @@ g_imageState = clone(g_allStates[g_curImgName]);
 
 
 lastTime = 0;
-function render() {
+interval = null;
+function maybe_render() {
   if (Date.now() - lastTime < 20) {
+    if (interval != null) {
+      clearInterval(interval);
+      interval = null;
+    }
+    interval = setInterval(render, 40);
     return;
   }
-  lastTime = Date.now();
+  render();
+}
 
+window.render = render;
+function render() {
+  lastTime = Date.now();
+  if (interval != null) {
+    clearInterval(interval);
+    interval = null;
+  }
   var camera = state.camera();
   var t = Date.now();
   d.fillStyle = "#bac7f8";
@@ -245,27 +259,34 @@ $(c).on('mousedown', function(e) {
   var th = $(this);
   var x = e.pageX;
   var y = e.pageY;
-  console.log(inv_xform(camera,x, y));
+  var worldp = inv_xform(camera,x, y);
+
+  // check for interactions with onscreen elements
+  if (label_layer.handle_mouse(camera, worldp))
+    return;
+
   if (e.ctrlKey) {
     var membasex = g_imageState.x;
     var membasey = g_imageState.y;
     $(document).on('mousemove.drag', function(e) {
       g_imageState.x = membasex + (e.pageX - x) / camera.scale();
       g_imageState.y = membasey - (e.pageY - y) / camera.scale();
-      render();
+      maybe_render();
     });
     $(document).on('mouseup.drag', function(e) {
       $(document).off('.drag');
+      render();
     });
 
   }
   else {
     $(document).on('mousemove.drag', function(e) {
       state.cam_set(camera.x + e.pageX - x, camera.y + e.pageY - y);
-      render();
+      maybe_render();
     });
     $(document).on('mouseup.drag', function(e) {
       $(document).off('.drag');
+      render();
     });
   }
 });

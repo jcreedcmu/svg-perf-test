@@ -1,19 +1,19 @@
 labels = [
-    {p: {x:247.5, y:1587.5}, txt: "Piada", type: "region"},
-    {p: {x: 752.96875, y: 1524.375}, txt: "Ezdi Mtns", type: "region"},
-    {p: {x: 454.375, y: 1590.3125}, txt: "Koennif", type: "region"},
-    {p: {x: 413.4375, y: 1475.9375}, txt: "Yul Mtns", type: "region"},
-    {p: {x: 658.4375, y: 1849.6875}, txt: "Nivdal", type: "region"},
-    {p: {x: 992.8125, y: 1280.75}, txt: "Zbegyanda", type: "region"},
-    {p: {x: 1373.4375, y: 1225.3125}, txt: "Gurvyet", type: "region"},
-    {p: {x: 1130.625, y: 1565}, txt: "Old Sea", type: "sea"},
-    {p: {x: 1137.1875, y: 1871.25}, txt: "Wild Droub Bay", type: "sea"},
+  {id: 0, p: {x:247.5, y:1587.5}, txt: "Piada", type: "region"},
+  {id: 1, p: {x: 752.96875, y: 1524.375}, txt: "Ezdi Mtns", type: "region"},
+  {id: 2, p: {x: 454.375, y: 1590.3125}, txt: "Koennif", type: "region"},
+  {id: 3, p: {x: 413.4375, y: 1475.9375}, txt: "Yul Mtns", type: "region"},
+  {id: 4, p: {x: 658.4375, y: 1849.6875}, txt: "Nivdal", type: "region"},
+  {id: 5, p: {x: 992.8125, y: 1280.75}, txt: "Zbegyanda", type: "region"},
+  {id: 6, p: {x: 1373.4375, y: 1225.3125}, txt: "Gurvyet", type: "region"},
+  {id: 7, p: {x: 1130.625, y: 1565}, txt: "Old Sea", type: "sea"},
+  {id: 8, p: {x: 1137.1875, y: 1871.25}, txt: "Wild Droub Bay", type: "sea"},
 
-    {p: {x: 3080.3125, y: 288.75}, txt: "Daloe", type: "region"},
-    {p: {x: 2841.5625, y: 278.75}, txt: "Gorik", type: "region"},
-    {p: {x: 2836.5625, y: 472.5}, txt: "Pengerra", type: "region"},
-    {p: {x: 3250.3125, y: 511.25}, txt: "Minar", type: "region"},
-]
+  {id: 9, p: {x: 3080.3125, y: 288.75}, txt: "Daloe", type: "region"},
+  {id: 10, p: {x: 2841.5625, y: 278.75}, txt: "Gorik", type: "region"},
+  {id: 11, p: {x: 2836.5625, y: 472.5}, txt: "Pengerra", type: "region"},
+  {id: 12, p: {x: 3250.3125, y: 511.25}, txt: "Minar", type: "region"},
+];
 
 rt = new RTree(10);
 labels.forEach(function(lab) {
@@ -49,4 +49,18 @@ exports.render = function(d, camera, world_bbox) {
   rt.bbox.apply(rt, world_bbox).forEach(function(lab) {
     draw_label(lab.p, lab.txt, lab.type);
   });
+}
+
+exports.handle_mouse = function(camera, worldp) {
+  console.log(worldp);
+  var s = camera.scale();
+  var bbox = [worldp.x - 30 / s, worldp.y - 30 / s,
+	      worldp.x + 30 / s, worldp.y + 30 / s];
+  var results = rt.bbox.apply(rt, bbox);
+  var rv = results.length == 1;
+  if (rv) {
+    rt.remove({x: worldp.x - 30 / s, y: worldp.y - 30 / s, w: 60/s, h:60/s}, results[0])
+    window.render();
+  }
+  return rv;
 }

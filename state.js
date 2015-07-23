@@ -1,6 +1,7 @@
 function State() {
   this.state = Immutable.fromJS({
-    camera: {x: -335.8125, y: 582.8125, zoom: 2},
+    camera: {x: -1667.75, y: 4904.75, zoom: 4},
+    locus: null,
   });
 }
 
@@ -24,8 +25,16 @@ State.prototype.zoom = function(x, y, zoom) {
     });
 }
 
-State.prototype.cam_set = function(x, y) {
+State.prototype.set_cam = function(x, y) {
   this.state = this.state.mergeDeep({camera: {x:x,y:y}});
+}
+
+State.prototype.set_locus = function(p) {
+  this.state = this.state.mergeDeep({locus: p});
+}
+
+State.prototype.get_locus = function() {
+  return this.state.get("locus").toJS();
 }
 
 module.exports = State;

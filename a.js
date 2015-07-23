@@ -11,7 +11,7 @@ var g_data = null;
 var assets;
 var ld = new Loader();
 ld.add(json_file('b'));
-g_curImgName = 1167;
+g_curImgName = 1184;
 function image_url() {
   return 'file:///home/jcreed/art/whatever/' + g_curImgName + '.png';
 }
@@ -88,6 +88,7 @@ g_allStates = (localStorage.allStates != null) ? JSON.parse(localStorage.allStat
    "1180":{"scale":2048,"x":-0.3125,"y":3216.40625},
    "1181":{"scale":64,"x":742.03125,"y":2393.984375},
    "1182":{"scale":8,"x":827.67578125,"y":2382.91015625},
+   "1184":{"scale":16,"x":1721.640625,"y":391.796875},
    "1194":{"scale":1024,"x":587.36328125,"y":3182.91015625},
    "1195":{"scale":128,"x":1166.66015625,"y":3071.11328125},
    "1196":{"scale":512,"x":3301.97265625,"y":1350.64453125},
@@ -221,7 +222,7 @@ function render() {
   d.restore();
   d.restore();
 
-  label_layer.render(d, camera, world_bbox);
+  label_layer.render(d, camera, state.state.get('locus'), world_bbox);
 
 
   // $s.attr('transform', 'translate(' + camera.x + ', ' + camera.y +
@@ -262,8 +263,11 @@ $(c).on('mousedown', function(e) {
   var worldp = inv_xform(camera,x, y);
 
   // check for interactions with onscreen elements
-  if (label_layer.handle_mouse(camera, worldp))
-    return;
+  // if (label_layer.handle_mouse(camera, worldp))
+  //   return;
+
+  // here we are dragging the map
+  var dragged = false;
 
   if (e.ctrlKey) {
     var membasex = g_imageState.x;
@@ -281,16 +285,24 @@ $(c).on('mousedown', function(e) {
   }
   else {
     $(document).on('mousemove.drag', function(e) {
-      state.cam_set(camera.x + e.pageX - x, camera.y + e.pageY - y);
+      dragged = true;
+      state.set_cam(camera.x + e.pageX - x, camera.y + e.pageY - y);
       maybe_render();
     });
     $(document).on('mouseup.drag', function(e) {
       $(document).off('.drag');
+      if (!dragged) {
+	state.set_locus(worldp);
+      }
       render();
     });
   }
 });
 $(document).on('keypress', function(e) {
+  if (e.charCode == 9 + 96) { // i
+    label_layer.add_label(state, prompt("name"));
+    render();
+  }
   if (e.charCode == 18 + 96) { // r
     report();
   }

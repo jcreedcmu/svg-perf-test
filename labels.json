@@ -158,5 +158,6 @@
   {"id":156,"p":{"x":1740.46875,"y":267.03125},"txt":"bainot","type":"city"},
   {"id":157,"p":{"x":1804.21875,"y":238.90625},"txt":"opit","type":"city"},
   {"id":158,"p":{"x":1011.09375,"y":517.03125},"txt":"byomiapit","type":"region"},
-  {"id":159,"p":{"x":909.84375,"y":496.40625},"txt":"gunoboropit","type":"region"}
+  {"id":159,"p":{"x":909.84375,"y":496.40625},"txt":"gunoboropit","type":"region"},
+  {"id":160,"p":{"x": 298.90625, "y": 1457.96875},"txt":"ayulnagam","type":"city"}
 ]

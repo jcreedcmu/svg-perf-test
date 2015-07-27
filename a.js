@@ -1,6 +1,7 @@
 var label_layer = require('./labels');
 var State = require('./state');
 var DEBUG = false;
+var DEBUG_PROF = false;
 var OFFSET = DEBUG ? 100 : 0;
 
 // data in a.json generated through
@@ -10,16 +11,27 @@ state = new State();
 var g_data = null;
 var assets;
 var ld = new Loader();
-ld.add(json_file('b'));
-g_curImgName = 1184;
+ld.add(json_file('features'));
+ld.add(json_file('arcs'));
+ld.add(json_file('labels'));
+ld.add(json_file('images'));
+
 function image_url() {
   return 'file:///home/jcreed/art/whatever/' + g_curImgName + '.png';
 }
+g_curImgName = 1201;
 ld.add(image(image_url(), 'overlay'));
+
+var g_highways = [{"x":490.15625,"y":1599.84375},
+		  {"x": 298.90625, "y": 1457.96875}];
+
 ld.done(function(data) {
   count = 0;
   assets = this;
-  g_data = assets.src.b;
+  label_layer.init(assets.src.labels);
+  g_imageStates = assets.src.images;
+  g_imageState = clone(g_imageStates[g_curImgName]);
+  g_data = assets.src.features;
   g_coast_rt = new RTree(10);
 
   _.each(g_data.objects, function(object, k) {
@@ -35,14 +47,14 @@ ld.done(function(data) {
   h = c.height = innerHeight;
 
   var t;
-  if (DEBUG) {
+  if (DEBUG && DEBUG_PROF) {
     console.profile("rendering");
     console.time("whatev");
     var ITER = 1000;
     for (var i = 0; i < ITER; i++) {
       render();
     }
-   // d.getImageData(0,0,1,1);
+    // d.getImageData(0,0,1,1);
     console.timeEnd("whatev");
     console.profileEnd();
   }
@@ -60,49 +72,8 @@ function xform(camera, xworld, yworld) {
   return {x: camera.x + xworld * camera.scale(), y : camera.y - yworld * camera.scale()};
 }
 
-g_allStates = (localStorage.allStates != null) ? JSON.parse(localStorage.allStates) :
-  {"1119":{"scale":4096,"x":-0.546875,"y":3216.171875},
-   "1120":{"scale":8192,"x":-0.546875,"y":3216.171875},
-   "1121":{"scale":2048,"x":1951.015625,"y":1262.421875},
-   "1122":{"scale":4096,"x":1986.015625,"y":1242.421875},
-   "1123":{"scale":1024,"x":2721.953125,"y":482.109375},
-   "1124":{"scale":64,"x":2829.296875,"y":372.734375},
-   "1128":{"scale":4096,"x":-0.390625,"y":3217.734375},
-   "1151":{"scale":1024,"x":2495.625,"y":855.625},
-   "1154":{"scale":2048,"x":0,"y":3215},
-   "1155":{"scale":2048,"x":0,"y":3215},
-   "1156":{"scale":2048,"x":0,"y":3215},
-   "1160":{"scale":2048,"x":2453.75,"y":798.75},
-   "1161":{"scale":2048,"x":2453.75,"y":798.75},
-   "1163":{"scale":1024,"x":2495,"y":806.25},
-   "1164":{"scale":512,"x":2495,"y":806.25},
-   "1166":{"scale":1024,"x":2495,"y":806.25},
-   "1167":{"scale":1024,"x":2495,"y":806.25},
-   "1170":{"scale":2048,"x":-0.9375,"y":3216.25},
-   "1171":{"scale":8192,"x":-0.9375,"y":3216.25},
-   "1173":{"scale":2048,"x":-0.9375,"y":3216.25},
-   "1174":{"scale":2048,"x":-0.9375,"y":3216.25},
-   "1176":{"scale":2048,"x":87.8125,"y":2663.75},
-   "1177":{"scale":2048,"x":-1.25,"y":3215.9375},
-   "1179":{"scale":1024,"x":756.25,"y":653.4375},
-   "1180":{"scale":2048,"x":-0.3125,"y":3216.40625},
-   "1181":{"scale":64,"x":742.03125,"y":2393.984375},
-   "1182":{"scale":8,"x":827.67578125,"y":2382.91015625},
-   "1184":{"scale":16,"x":1721.640625,"y":391.796875},
-   "1194":{"scale":1024,"x":587.36328125,"y":3182.91015625},
-   "1195":{"scale":128,"x":1166.66015625,"y":3071.11328125},
-   "1196":{"scale":512,"x":3301.97265625,"y":1350.64453125},
-   "1197":{"scale":1024,"x":51.34765625,"y":1963.76953125},
-   "1198":{"scale":1024,"x":380.17578125,"y":2540.09765625},
-   "1199":{"scale":1024,"x":2044.55078125,"y":3215.72265625},
-   "1200":{"scale":1024,"x":0.25390625,"y":3215.80078125},
-   "1201":{"scale":1024,"x":0.25390625,"y":3215.80078125},
-   "1202":{"scale":1024,"x":-153.33984375,"y":3237.98828125},
-   "1203":{"scale":512,"x":3377.28515625,"y":437.98828125},
-   "1204":{"scale":512,"x":376.03515625,"y":1594.08203125},
-   "1205":{"scale":128,"x":909.31640625,"y":1391.26953125},
-   "1207":{"scale":4096,"x":-0.68359375,"y":3216.26953125}};
-g_imageState = clone(g_allStates[g_curImgName]);
+
+
 
 
 lastTime = 0;
@@ -148,14 +119,14 @@ function render() {
   d.scale(camera.scale(), -camera.scale());
   _.each(g_coast_rt.bbox(tl.x, br.y, br.x, tl.y), function(object, k) {
     var arc_id_lists = object.arcs;
-    var arcs = g_data.arcs;
+    var arcs = assets.src.arcs;
 
     d.beginPath();
     arc_id_lists.forEach(function(arc_id_list) {
       var n = 0;
       arc_id_list.forEach(function(arc_id, arc_id_ix) {
-	var this_arc = arcs[arc_id];
-	var arc_bbox = g_data.arc_bboxes[arc_id];
+	var this_arc = arcs[arc_id].points;
+	var arc_bbox = arcs[arc_id].properties.bbox;
 	d.lineWidth = 0.9 / camera.scale();
 	rect_intersect = tl.x < arc_bbox.maxx && br.x > arc_bbox.minx && tl.y > arc_bbox.miny && br.y < arc_bbox.maxy;
 
@@ -215,12 +186,51 @@ function render() {
   d.save();
   d.globalAlpha = 0.5;
   var ovr = assets.img.overlay;
-  d.drawImage(ovr, 0, 0, ovr.width,
-	      ovr.height, g_imageState.x, -g_imageState.y + ovr.height  * g_imageState.scale / 1024,
-	      ovr.width * g_imageState.scale / 1024,
-	      -ovr.height * g_imageState.scale / 1024);
+  if (ovr != null) {
+    d.drawImage(ovr, 0, 0, ovr.width,
+  		ovr.height, g_imageState.x, -g_imageState.y + ovr.height  * g_imageState.scale / 1024,
+  		ovr.width * g_imageState.scale / 1024,
+  		-ovr.height * g_imageState.scale / 1024);
+  }
   d.restore();
+
   d.restore();
+
+
+  d.save();
+  d.translate(camera.x, camera.y);
+  d.scale(camera.scale(), -camera.scale());
+
+  d.lineCap = "round";
+  d.lineJoin = "round";
+  d.beginPath();
+  for (var i = 0; i < g_highways.length; i++) {
+    var a = g_highways[i];
+    if (i == 0)
+      d.moveTo(a.x, a.y);
+    else
+      d.lineTo(a.x, a.y);
+  }
+  d.lineWidth = 4.5 / camera.scale();
+  d.strokeStyle = "#d82";
+  d.strokeStyle = "#999";
+  d.stroke();
+
+
+  d.beginPath();
+  for (var i = 0; i < g_highways.length; i++) {
+    var a = g_highways[i];
+    if (i == 0)
+      d.moveTo(a.x, a.y);
+    else
+      d.lineTo(a.x, a.y);
+  }
+  d.lineWidth = 3  / camera.scale();
+  d.strokeStyle = "#ed4";
+  d.strokeStyle = "white";
+  d.stroke();
+  d.restore();
+
 
   label_layer.render(d, camera, state.state.get('locus'), world_bbox);
 
@@ -229,6 +239,9 @@ function render() {
   // 	  ') scale(' + camera.scale + ')');
 
   //  console.log(Date.now() - t);
+
+
+
 }
 
 $(c).on('mousewheel', function(e) {
@@ -292,7 +305,9 @@ $(c).on('mousedown', function(e) {
     $(document).on('mouseup.drag', function(e) {
       $(document).off('.drag');
       if (!dragged) {
-	state.set_locus(worldp);
+	console.log(worldp);
+	g_highways.push(worldp);
+	//state.set_locus(worldp);
       }
       render();
     });
@@ -318,16 +333,16 @@ $(document).on('keypress', function(e) {
 });
 
 function report() {
-  g_allStates[g_curImgName] = clone(g_imageState);
-  localStorage.allStates = JSON.stringify(g_allStates);
+  g_imageStates[g_curImgName] = clone(g_imageState);
+  localStorage.allStates = JSON.stringify(g_imageStates);
   // {pos: [g_imageState.x, g_imageState.y], scale: g_imageState.scale};
-  console.log(JSON.stringify(g_allStates));
+  console.log(JSON.stringify(g_imageStates));
 }
 
 function reload_img() {
   assets.img.overlay.src = image_url();
   assets.img.overlay.onload = function() {
-    var new_state = g_allStates[g_curImgName];
+    var new_state = g_imageStates[g_curImgName];
     if (new_state != null) {
       g_imageState = clone(new_state);
     }

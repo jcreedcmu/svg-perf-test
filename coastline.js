@@ -1,15 +1,17 @@
-exports.init = function(features, arcs) {
-  g_arcs = arcs;
-  g_coast_rt = new RTree(10);
-   _.each(features.objects, function(object, k) {
+function CoastlineLayer(features, arcs) {
+  this.arcs = arcs;
+  this.rt = new RTree(10);
+  var that = this;
+  _.each(features.objects, function(object, k) {
     var bb = object.properties.bbox;
-    g_coast_rt.insert({x:bb.minx, y:bb.miny, w:bb.maxx - bb.minx, h:bb.maxy - bb.miny},
-		      object);
+    that.rt.insert({x:bb.minx, y:bb.miny, w:bb.maxx - bb.minx, h:bb.maxy - bb.miny},
+		   object);
   });
 }
+module.exports = CoastlineLayer;
 
-
-exports.render = function(d, camera, locus, world_bbox) {
+CoastlineLayer.prototype.render = function(d, camera, locus, world_bbox) {
+  var that = this;
   d.save();
 
   d.translate(camera.x, camera.y);
@@ -18,9 +20,9 @@ exports.render = function(d, camera, locus, world_bbox) {
   d.strokeStyle = "black";
   d.lineJoin = "round";
 
-  _.each(g_coast_rt.bbox.apply(g_coast_rt, world_bbox), function(object, k) {
+  _.each(this.rt.bbox.apply(this.rt, world_bbox), function(object, k) {
     var arc_id_lists = object.arcs;
-    var arcs = g_arcs;
+    var arcs = that.arcs;
 
     d.beginPath();
     arc_id_lists.forEach(function(arc_id_list) {

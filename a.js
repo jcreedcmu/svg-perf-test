@@ -1,5 +1,5 @@
-var label_layer = require('./labels');
-var coastline_layer = require('./coastline');
+var LabelLayer = require('./labels');
+var CoastlineLayer = require('./coastline');
 var State = require('./state');
 var DEBUG = false;
 var DEBUG_PROF = false;
@@ -29,8 +29,8 @@ var g_highways = [{"x":490.15625,"y":1599.84375},
 ld.done(function(data) {
   count = 0;
   assets = this;
-  coastline_layer.init(assets.src.features, assets.src.arcs);
-  label_layer.init(assets.src.labels);
+  coastline_layer = new CoastlineLayer(assets.src.features, assets.src.arcs);
+  label_layer = new LabelLayer(assets.src.labels);
   g_imageStates = assets.src.images;
   g_imageState = clone(g_imageStates[g_curImgName]);
 

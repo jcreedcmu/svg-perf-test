@@ -1,10 +1,11 @@
-function init(labels) {
-  rt = new RTree(10);
+function LabelLayer(labels) {
+  var rt = this.rt = new RTree(10);
   labels.forEach(function(lab) {
-    add_label(lab);
+    add_label(rt, lab);
   });
-  last_label = _.max(labels, 'id').id + 1;
+  //  this.last_label = _.max(labels, 'id').id + 1;
 }
+module.exports = LabelLayer;
 
 // function debug_all() {
 //   var items = rt.bbox(0,0,10000,10000);
@@ -14,21 +15,22 @@ function init(labels) {
 // }
 // window.debug_all = debug_all;
 
-function add_label(lab) {
+function add_label(rt, lab) {
   rt.insert({x: lab.p.x, y:lab.p.y, w:0, h:0}, lab);
 }
 
-function new_label(x, y, txt, type) {
-  var id = last_label++;
-  add_label({id:id, p: {x:x, y:y}, txt: txt, type: type});
-}
+// function new_label(x, y, txt, type) {
+//   var id = last_label++;
+//   add_label({id:id, p: {x:x, y:y}, txt: txt, type: type});
+// }
 
 function titleCase(str) {
   return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 }
 
-exports.render = function(d, camera, locus, world_bbox) {
+LabelLayer.prototype.render = function(d, camera, locus, world_bbox) {
   if (camera.zoom < 1) return;
+  d.lineJoin = "round";
   function draw_label(p, txt, typ) {
     var q = {x: camera.x + camera.scale() * p.x,
 	      y: camera.y - camera.scale() * p.y};
@@ -82,7 +84,7 @@ exports.render = function(d, camera, locus, world_bbox) {
     d.fillText(txt, q.x - width/2, q.y + height/2);
   }
 
-  rt.bbox.apply(rt, world_bbox).forEach(function(lab) {
+  this.rt.bbox.apply(this.rt, world_bbox).forEach(function(lab) {
     draw_label(lab.p, lab.txt, lab.type);
   });
 
@@ -120,5 +122,3 @@ exports.add_label = function(state, name) {
   new_label(locus.x, locus.y, name, "city");
   state.set_locus(null);
 }
-
-exports.init = init;

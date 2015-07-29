@@ -1,4 +1,5 @@
 var label_layer = require('./labels');
+var coastline_layer = require('./coastline');
 var State = require('./state');
 var DEBUG = false;
 var DEBUG_PROF = false;
@@ -8,7 +9,7 @@ var OFFSET = DEBUG ? 100 : 0;
 // potrace a.pbm -a 0 -b geojson
 
 state = new State();
-var g_data = null;
+
 var assets;
 var ld = new Loader();
 ld.add(json_file('features'));
@@ -28,18 +29,10 @@ var g_highways = [{"x":490.15625,"y":1599.84375},
 ld.done(function(data) {
   count = 0;
   assets = this;
+  coastline_layer.init(assets.src.features, assets.src.arcs);
   label_layer.init(assets.src.labels);
   g_imageStates = assets.src.images;
   g_imageState = clone(g_imageStates[g_curImgName]);
-  g_data = assets.src.features;
-  g_coast_rt = new RTree(10);
-
-  _.each(g_data.objects, function(object, k) {
-    var bb = object.properties.bbox;
-    g_coast_rt.insert({x:bb.minx, y:bb.miny, w:bb.maxx - bb.minx, h:bb.maxy - bb.miny},
-		      object);
-  });
-//  g_coast_rt.insert
 
   c = $("#c")[0];
   d = c.getContext('2d');
@@ -107,81 +100,17 @@ function render() {
     d.strokeRect(OFFSET + 0.5,OFFSET + 0.5,w-2*OFFSET,h-2*OFFSET);
   }
 
-  d.strokeStyle = "black";
-  d.lineJoin = "round";
-
   var tl = inv_xform(camera, OFFSET,OFFSET);
   var br = inv_xform(camera,w-OFFSET,h-OFFSET);
   var world_bbox = [tl.x, br.y, br.x, tl.y];
 
-  d.save();
-  d.translate(camera.x, camera.y);
-  d.scale(camera.scale(), -camera.scale());
-  _.each(g_coast_rt.bbox(tl.x, br.y, br.x, tl.y), function(object, k) {
-    var arc_id_lists = object.arcs;
-    var arcs = assets.src.arcs;
 
-    d.beginPath();
-    arc_id_lists.forEach(function(arc_id_list) {
-      var n = 0;
-      arc_id_list.forEach(function(arc_id, arc_id_ix) {
-	var this_arc = arcs[arc_id].points;
-	var arc_bbox = arcs[arc_id].properties.bbox;
-	d.lineWidth = 0.9 / camera.scale();
-	rect_intersect = tl.x < arc_bbox.maxx && br.x > arc_bbox.minx && tl.y > arc_bbox.miny && br.y < arc_bbox.maxy;
+  coastline_layer.render(d, camera, state.state.get('locus'), world_bbox);
 
-	//// Debugging bboxes
-	// d.strokeStyle = rect_intersect ?  "black" : "red";
-	// d.strokeRect(arc_bbox.minx, -arc_bbox.maxy, arc_bbox.maxx-arc_bbox.minx, arc_bbox.maxy - arc_bbox.miny);
-
-	if (!rect_intersect) {
-	  // draw super simplified
-	  this_arc = [this_arc[0],this_arc[this_arc.length - 1]];
-	}
-
-	this_arc.forEach(function(vert, ix) {
-	  if (n++ == 0)
-    	    d.moveTo(vert[0] ,  vert[1] );
-	  else {
-	    var p = {x: camera.x + (vert[0] * camera.scale()),
-	    	     y: camera.y + (vert[1] * camera.scale())};
-
-	    var draw = false;
-
-	    if (vert[2] > 5 / (camera.scale() * camera.scale()))
-	      draw = true;
-
-	    // if (p.x < OFFSET || p.x > w - OFFSET || p.y < OFFSET || p.y > h - OFFSET)
-	    // // if (p.x < 0 || p.x > w - 0 || p.y < 0 || p.y > h - 0)
-	    //   draw =  vert[2] > 5000;
-
-	    if (ix == this_arc.length - 1)
-	      draw = false;
-
-	    if (ix == 0)
-	      draw = true;
-
-	    if (draw) {
-    	      d.lineTo(vert[0] ,   vert[1] );
-	    }
-	  }
-	});
-      });
-      d.closePath();
-    });
-
-    d.lineWidth = 1.1 / camera.scale();
-    d.strokeStyle = "#44a";
-    d.stroke();
-    d.fillStyle = "#e7eada"; // k == "feature0" ? "#fed" : "white";
-    d.fill();
-  });
-  d.restore();
-
+  // images
   d.save();
   d.translate(camera.x, camera.y);
   d.scale(camera.scale(), camera.scale());
-
 
   d.save();
   d.globalAlpha = 0.5;
@@ -196,7 +125,7 @@ function render() {
 
   d.restore();
 
-
+  // roads
   d.save();
   d.translate(camera.x, camera.y);
   d.scale(camera.scale(), -camera.scale());
@@ -233,14 +162,6 @@ function render() {
 
 
   label_layer.render(d, camera, state.state.get('locus'), world_bbox);
-
-
-  // $s.attr('transform', 'translate(' + camera.x + ', ' + camera.y +
-  // 	  ') scale(' + camera.scale + ')');
-
-  //  console.log(Date.now() - t);
-
-
 
 }
 

@@ -1,5 +1,7 @@
 var LabelLayer = require('./labels');
 var CoastlineLayer = require('./coastline');
+var ImageLayer = require('./images');
+
 var State = require('./state');
 var DEBUG = false;
 var DEBUG_PROF = false;
@@ -17,11 +19,8 @@ ld.add(json_file('arcs'));
 ld.add(json_file('labels'));
 ld.add(json_file('images'));
 
-function image_url() {
-  return 'file:///home/jcreed/art/whatever/' + g_curImgName + '.png';
-}
-g_curImgName = 1201;
-ld.add(image(image_url(), 'overlay'));
+var init_img = 1201;
+ld.add(image(ImageLayer.image_url(init_img), 'overlay'));
 
 var g_highways = [{"x":490.15625,"y":1599.84375},
 		  {"x": 298.90625, "y": 1457.96875}];
@@ -32,7 +31,7 @@ ld.done(function(data) {
   coastline_layer = new CoastlineLayer(assets.src.features, assets.src.arcs);
   label_layer = new LabelLayer(assets.src.labels);
   g_imageStates = assets.src.images;
-  g_imageState = clone(g_imageStates[g_curImgName]);
+  image_layer = new ImageLayer(dispatch, init_img, g_imageStates, assets.img.overlay);
 
   c = $("#c")[0];
   d = c.getContext('2d');
@@ -84,6 +83,9 @@ function maybe_render() {
 }
 
 window.render = render;
+function dispatch() {
+  render();
+}
 function render() {
   lastTime = Date.now();
   if (interval != null) {
@@ -106,24 +108,7 @@ function render() {
 
 
   coastline_layer.render(d, camera, state.state.get('locus'), world_bbox);
-
-  // images
-  d.save();
-  d.translate(camera.x, camera.y);
-  d.scale(camera.scale(), camera.scale());
-
-  d.save();
-  d.globalAlpha = 0.5;
-  var ovr = assets.img.overlay;
-  if (ovr != null) {
-    d.drawImage(ovr, 0, 0, ovr.width,
-  		ovr.height, g_imageState.x, -g_imageState.y + ovr.height  * g_imageState.scale / 1024,
-  		ovr.width * g_imageState.scale / 1024,
-  		-ovr.height * g_imageState.scale / 1024);
-  }
-  d.restore();
-
-  d.restore();
+  image_layer.render(d, camera, state.state.get('locus'), world_bbox);
 
   // roads
   d.save();
@@ -239,16 +224,11 @@ $(document).on('keypress', function(e) {
     label_layer.add_label(state, prompt("name"));
     render();
   }
-  if (e.charCode == 18 + 96) { // r
-    report();
-  }
   if (e.charCode == 44) { // <
-    g_curImgName--;
-    reload_img();
+    image_layer.prev();
   }
   if (e.charCode == 46) { // >
-    g_curImgName++;
-    reload_img();
+    image_layer.next();
   }
   //  console.log(e.charCode);
 });
@@ -258,15 +238,4 @@ function report() {
   localStorage.allStates = JSON.stringify(g_imageStates);
   // {pos: [g_imageState.x, g_imageState.y], scale: g_imageState.scale};
   console.log(JSON.stringify(g_imageStates));
-}
-
-function reload_img() {
-  assets.img.overlay.src = image_url();
-  assets.img.overlay.onload = function() {
-    var new_state = g_imageStates[g_curImgName];
-    if (new_state != null) {
-      g_imageState = clone(new_state);
-    }
-    render();
-  }
 }

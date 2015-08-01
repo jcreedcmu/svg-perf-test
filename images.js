@@ -3,7 +3,7 @@ module.exports = function(dispatch, cur_img_name, img_states, overlay) {
   this.img_states = img_states;
   this.overlay = overlay;
   this.cur_img_name = cur_img_name;
-  this.img_state = clone(g_imageStates[cur_img_name]);
+  this.img_state = clone(img_states[cur_img_name]);
 }
 
 module.exports.prototype.render = function(d, camera, locus, world_bbox) {
@@ -32,7 +32,7 @@ module.exports.prototype.reload_img = function(img_name) {
   this.cur_img_name = img_name;
   this.overlay.src = image_url(img_name);
   this.overlay.onload = function() {
-    var new_state = g_imageStates[img_name];
+    var new_state = that.img_states[img_name];
     if (new_state != null) {
       that.img_state = clone(new_state);
     }
@@ -46,4 +46,17 @@ module.exports.prototype.prev = function() {
 
 module.exports.prototype.next = function() {
   this.reload_img(++this.cur_img_name);
+}
+
+module.exports.prototype.scale = function(by) {
+  this.img_state.scale *= by;
+}
+
+module.exports.prototype.get_pos = function() {
+  return {x:this.img_state.x, y:this.img_state.y};
+}
+
+module.exports.prototype.set_pos = function(p) {
+  this.img_state.x = p.x;
+  this.img_state.y = p.y;
 }

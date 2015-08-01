@@ -1,6 +1,7 @@
 var LabelLayer = require('./labels');
 var CoastlineLayer = require('./coastline');
 var ImageLayer = require('./images');
+var RoadLayer = require('./roads');
 
 var State = require('./state');
 var DEBUG = false;
@@ -18,20 +19,18 @@ ld.add(json_file('features'));
 ld.add(json_file('arcs'));
 ld.add(json_file('labels'));
 ld.add(json_file('images'));
+ld.add(json_file('roads'));
 
-var init_img = 1201;
+var init_img = 1176;
 ld.add(image(ImageLayer.image_url(init_img), 'overlay'));
-
-var g_highways = [{"x":490.15625,"y":1599.84375},
-		  {"x": 298.90625, "y": 1457.96875}];
 
 ld.done(function(data) {
   count = 0;
   assets = this;
   coastline_layer = new CoastlineLayer(assets.src.features, assets.src.arcs);
   label_layer = new LabelLayer(assets.src.labels);
-  g_imageStates = assets.src.images;
-  image_layer = new ImageLayer(dispatch, init_img, g_imageStates, assets.img.overlay);
+  image_layer = new ImageLayer(dispatch, init_img, assets.src.images, assets.img.overlay);
+  road_layer = new RoadLayer(dispatch, assets.src.roads);
 
   c = $("#c")[0];
   d = c.getContext('2d');
@@ -63,10 +62,6 @@ function inv_xform(camera, xpix, ypix) {
 function xform(camera, xworld, yworld) {
   return {x: camera.x + xworld * camera.scale(), y : camera.y - yworld * camera.scale()};
 }
-
-
-
-
 
 lastTime = 0;
 interval = null;
@@ -106,57 +101,19 @@ function render() {
   var br = inv_xform(camera,w-OFFSET,h-OFFSET);
   var world_bbox = [tl.x, br.y, br.x, tl.y];
 
-
   coastline_layer.render(d, camera, state.state.get('locus'), world_bbox);
   image_layer.render(d, camera, state.state.get('locus'), world_bbox);
-
-  // roads
-  d.save();
-  d.translate(camera.x, camera.y);
-  d.scale(camera.scale(), -camera.scale());
-
-  d.lineCap = "round";
-  d.lineJoin = "round";
-  d.beginPath();
-  for (var i = 0; i < g_highways.length; i++) {
-    var a = g_highways[i];
-    if (i == 0)
-      d.moveTo(a.x, a.y);
-    else
-      d.lineTo(a.x, a.y);
-  }
-  d.lineWidth = 4.5 / camera.scale();
-  d.strokeStyle = "#d82";
-  d.strokeStyle = "#999";
-  d.stroke();
-
-
-  d.beginPath();
-  for (var i = 0; i < g_highways.length; i++) {
-    var a = g_highways[i];
-    if (i == 0)
-      d.moveTo(a.x, a.y);
-    else
-      d.lineTo(a.x, a.y);
-  }
-  d.lineWidth = 3  / camera.scale();
-  d.strokeStyle = "#ed4";
-  d.strokeStyle = "white";
-  d.stroke();
-  d.restore();
-
-
+  road_layer.render(d, camera, state.state.get('locus'), world_bbox);
   label_layer.render(d, camera, state.state.get('locus'), world_bbox);
-
 }
 
 $(c).on('mousewheel', function(e) {
   if (e.ctrlKey) {
     if (e.originalEvent.wheelDelta < 0) {
-      g_imageState.scale /= 2;
+      image_layer.scale(1/2);
     }
     else {
-      g_imageState.scale *= 2;
+      image_layer.scale(2);
     }
     render();
     e.preventDefault();
@@ -189,11 +146,10 @@ $(c).on('mousedown', function(e) {
   var dragged = false;
 
   if (e.ctrlKey) {
-    var membasex = g_imageState.x;
-    var membasey = g_imageState.y;
+    var membase = image_layer.get_pos();
     $(document).on('mousemove.drag', function(e) {
-      g_imageState.x = membasex + (e.pageX - x) / camera.scale();
-      g_imageState.y = membasey - (e.pageY - y) / camera.scale();
+      image_layer.set_pos({x: membase.x + (e.pageX - x) / camera.scale(),
+			   y: membase.y - (e.pageY - y) / camera.scale()});
       maybe_render();
     });
     $(document).on('mouseup.drag', function(e) {
@@ -212,7 +168,7 @@ $(c).on('mousedown', function(e) {
       $(document).off('.drag');
       if (!dragged) {
 	console.log(worldp);
-	g_highways.push(worldp);
+	road_layer.add(worldp);
 	//state.set_locus(worldp);
       }
       render();
@@ -233,9 +189,9 @@ $(document).on('keypress', function(e) {
   //  console.log(e.charCode);
 });
 
-function report() {
-  g_imageStates[g_curImgName] = clone(g_imageState);
-  localStorage.allStates = JSON.stringify(g_imageStates);
-  // {pos: [g_imageState.x, g_imageState.y], scale: g_imageState.scale};
-  console.log(JSON.stringify(g_imageStates));
-}
+// function report() {
+//   g_imageStates[g_curImgName] = clone(g_imageState);
+//   localStorage.allStates = JSON.stringify(g_imageStates);
+//   // {pos: [g_imageState.x, g_imageState.y], scale: g_imageState.scale};
+//   console.log(JSON.stringify(g_imageStates));
+// }

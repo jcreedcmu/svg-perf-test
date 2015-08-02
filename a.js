@@ -108,22 +108,60 @@ function render() {
   });
 
 
-  if (g_lastz != null) {
-    var rad = 3 / camera.scale();
-    d.save();
-    d.translate(camera.x, camera.y);
-    d.scale(camera.scale(), -camera.scale());
+  // vertex display
+  if (camera.zoom >= 4 && g_lastz != null) {
     var pts = JSON.parse(g_lastz);
-    pts.forEach(function(index) {
-      var pt = coastline_layer.arcs[index[0]].points[index[1]];
-      d.fillStyle = "white";
-      d.fillRect(pt[0]-rad,pt[1]-rad,rad * 2,rad * 2);
-      d.lineWidth = 1 / camera.scale();
-      d.strokeStyle = "black";
-      d.strokeRect(pt[0]-rad,pt[1]-rad,rad * 2,rad * 2);
-    });
-    d.restore();
+    if (pts.length == 1) {
+      var rad = 3 / camera.scale();
+      d.save();
+      d.translate(camera.x, camera.y);
+      d.scale(camera.scale(), -camera.scale());
+      pts.forEach(function(index) {
+	var pt = coastline_layer.arcs[index[0]].points[index[1]];
+	d.fillStyle = "white";
+	d.fillRect(pt[0]-rad,pt[1]-rad,rad * 2,rad * 2);
+	d.lineWidth = 1 / camera.scale();
+	d.strokeStyle = "black";
+	d.strokeRect(pt[0]-rad,pt[1]-rad,rad * 2,rad * 2);
+      });
+      d.restore();
+    }
   }
+
+  // scale
+  d.save();
+  d.fillStyle = "black";
+  d.font = "10px sans-serif";
+
+  d.translate(Math.floor(w / 2) + 0.5,0.5);
+  function label(px_dist) {
+    var raw = (1024 * px_dist / camera.scale());
+    var str = "0";
+    if (raw > 0) {
+      str =  (raw > 1000) ? raw / 1000 + "km" : raw + "m";
+    }
+    d.textAlign = "center";
+    d.fillText(str, px_dist, h - 12);
+  }
+  d.lineWidth = 1;
+  d.strokeStyle = "rgba(0,0,0,0.1)";
+  d.strokeRect(0,h-25-50,50,50);
+  d.strokeRect(0,h-25-128,128,128);
+  d.beginPath()
+  d.strokeStyle = "black";
+  d.moveTo(0, h - 30);
+  d.lineTo(0, h - 25);
+  d.lineTo(50, h - 25);
+  d.lineTo(50, h - 30);
+  d.moveTo(50, h - 25);
+  d.lineTo(128, h - 25);
+  d.lineTo(128, h - 30);
+  d.stroke();
+  label(0);
+  label(50);
+  label(128);
+
+  d.restore();
 }
 
 $(c).on('mousewheel', function(e) {
@@ -199,15 +237,17 @@ g_lastz = null;
 
 $(c).on('mousemove', function(e) {
   var camera = state.camera();
-  var x = e.pageX;
-  var y = e.pageY;
-  var worldp = inv_xform(camera,x, y);
-  var rad = 5 / camera.scale();
-  var bbox = [worldp.x - rad, worldp.y - rad, worldp.x + rad, worldp.y + rad];
-  var z = JSON.stringify(coastline_layer.targets(bbox));
-  if (z != g_lastz) {
-    g_lastz = z;
-    render();
+  if (camera.zoom >= 4) {
+    var x = e.pageX;
+    var y = e.pageY;
+    var worldp = inv_xform(camera,x, y);
+    var rad = 5 / camera.scale();
+    var bbox = [worldp.x - rad, worldp.y - rad, worldp.x + rad, worldp.y + rad];
+    var z = JSON.stringify(coastline_layer.targets(bbox));
+    if (z != g_lastz) {
+      g_lastz = z;
+      render();
+    }
   }
 });
 

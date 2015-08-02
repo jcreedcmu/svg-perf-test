@@ -10,7 +10,7 @@ module.exports.prototype.render = function(d, camera, locus, world_bbox) {
   d.save();
   d.translate(camera.x, camera.y);
   d.scale(camera.scale(), camera.scale());
-  d.globalAlpha = 0.5;
+  d.globalAlpha = 0.25;
   var ovr = this.overlay;
   if (ovr != null) {
     d.drawImage(ovr, 0, 0, ovr.width,

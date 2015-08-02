@@ -31,6 +31,7 @@ ld.done(function(data) {
   label_layer = new LabelLayer(assets.src.labels);
   image_layer = new ImageLayer(dispatch, init_img, assets.src.images, assets.img.overlay);
   road_layer = new RoadLayer(dispatch, assets.src.roads);
+  g_layers = [coastline_layer, label_layer, image_layer, road_layer];
 
   c = $("#c")[0];
   d = c.getContext('2d');
@@ -81,6 +82,7 @@ window.render = render;
 function dispatch() {
   render();
 }
+
 function render() {
   lastTime = Date.now();
   if (interval != null) {
@@ -101,10 +103,9 @@ function render() {
   var br = inv_xform(camera,w-OFFSET,h-OFFSET);
   var world_bbox = [tl.x, br.y, br.x, tl.y];
 
-  coastline_layer.render(d, camera, state.state.get('locus'), world_bbox);
-  image_layer.render(d, camera, state.state.get('locus'), world_bbox);
-  road_layer.render(d, camera, state.state.get('locus'), world_bbox);
-  label_layer.render(d, camera, state.state.get('locus'), world_bbox);
+  g_layers.forEach(function(layer) {
+    layer.render(d, camera, state.state.get('locus'), world_bbox);
+  });
 }
 
 $(c).on('mousewheel', function(e) {

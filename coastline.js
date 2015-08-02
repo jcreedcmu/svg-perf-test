@@ -1,14 +1,24 @@
 function CoastlineLayer(features, arcs) {
   this.arcs = arcs;
   this.rt = new RTree(10);
+  this.vertex_rt = new RTree(10);
   var that = this;
-  _.each(features.objects, function(object, k) {
+  _.each(features.objects, function(object) {
     var bb = object.properties.bbox;
     that.rt.insert({x:bb.minx, y:bb.miny, w:bb.maxx - bb.minx, h:bb.maxy - bb.miny},
 		   object);
   });
+  _.each(arcs, function(arc, an) {
+    _.each(arc.points, function(point, pn) {
+      that.vertex_rt.insert({x:point[0],y:point[1],w:0,h:0},[an,pn])
+    });
+  });
 }
 module.exports = CoastlineLayer;
+
+CoastlineLayer.prototype.targets = function(world_bbox) {
+  return this.vertex_rt.bbox.apply(this.vertex_rt, world_bbox);
+}
 
 CoastlineLayer.prototype.render = function(d, camera, locus, world_bbox) {
   var that = this;

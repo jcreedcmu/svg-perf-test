@@ -106,6 +106,24 @@ function render() {
   g_layers.forEach(function(layer) {
     layer.render(d, camera, state.state.get('locus'), world_bbox);
   });
+
+
+  if (g_lastz != null) {
+    var rad = 3 / camera.scale();
+    d.save();
+    d.translate(camera.x, camera.y);
+    d.scale(camera.scale(), -camera.scale());
+    var pts = JSON.parse(g_lastz);
+    pts.forEach(function(index) {
+      var pt = coastline_layer.arcs[index[0]].points[index[1]];
+      d.fillStyle = "white";
+      d.fillRect(pt[0]-rad,pt[1]-rad,rad * 2,rad * 2);
+      d.lineWidth = 1 / camera.scale();
+      d.strokeStyle = "black";
+      d.strokeRect(pt[0]-rad,pt[1]-rad,rad * 2,rad * 2);
+    });
+    d.restore();
+  }
 }
 
 $(c).on('mousewheel', function(e) {
@@ -176,6 +194,23 @@ $(c).on('mousedown', function(e) {
     });
   }
 });
+
+g_lastz = null;
+
+$(c).on('mousemove', function(e) {
+  var camera = state.camera();
+  var x = e.pageX;
+  var y = e.pageY;
+  var worldp = inv_xform(camera,x, y);
+  var rad = 5 / camera.scale();
+  var bbox = [worldp.x - rad, worldp.y - rad, worldp.x + rad, worldp.y + rad];
+  var z = JSON.stringify(coastline_layer.targets(bbox));
+  if (z != g_lastz) {
+    g_lastz = z;
+    render();
+  }
+});
+
 $(document).on('keypress', function(e) {
   if (e.charCode == 9 + 96) { // i
     label_layer.add_label(state, prompt("name"));

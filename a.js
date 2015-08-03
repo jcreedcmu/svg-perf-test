@@ -13,7 +13,7 @@ var OFFSET = DEBUG ? 100 : 0;
 // data in a.json generated through
 // potrace a.pbm -a 0 -b geojson
 
-g_mode = "Move";
+g_mode = "Pan";
 state = new State();
 
 var assets;
@@ -203,47 +203,49 @@ $(c).on('mousewheel', function(e) {
 });
 
 $(c).on('mousedown', function(e) {
-  var camera = state.camera();
-  var th = $(this);
-  var x = e.pageX;
-  var y = e.pageY;
-  var worldp = inv_xform(camera,x, y);
+  if (g_mode == "Pan") {
+    var camera = state.camera();
+    var th = $(this);
+    var x = e.pageX;
+    var y = e.pageY;
+    var worldp = inv_xform(camera,x, y);
 
-  // check for interactions with onscreen elements
-  // if (label_layer.handle_mouse(camera, worldp))
-  //   return;
+    // check for interactions with onscreen elements
+    // if (label_layer.handle_mouse(camera, worldp))
+    //   return;
 
-  // here we are dragging the map
-  var dragged = false;
+    // here we are dragging the map
+    var dragged = false;
 
-  if (e.ctrlKey) {
-    var membase = image_layer.get_pos();
-    $(document).on('mousemove.drag', function(e) {
-      image_layer.set_pos({x: membase.x + (e.pageX - x) / camera.scale(),
-			   y: membase.y - (e.pageY - y) / camera.scale()});
-      maybe_render();
-    });
-    $(document).on('mouseup.drag', function(e) {
-      $(document).off('.drag');
-      render();
-    });
+    if (e.ctrlKey) {
+      var membase = image_layer.get_pos();
+      $(document).on('mousemove.drag', function(e) {
+	image_layer.set_pos({x: membase.x + (e.pageX - x) / camera.scale(),
+			     y: membase.y - (e.pageY - y) / camera.scale()});
+	maybe_render();
+      });
+      $(document).on('mouseup.drag', function(e) {
+	$(document).off('.drag');
+	render();
+      });
 
-  }
-  else {
-    $(document).on('mousemove.drag', function(e) {
-      dragged = true;
-      state.set_cam(camera.x + e.pageX - x, camera.y + e.pageY - y);
-      maybe_render();
-    });
-    $(document).on('mouseup.drag', function(e) {
-      $(document).off('.drag');
-      if (!dragged) {
-	console.log(worldp);
-	road_layer.add(worldp);
-	//state.set_locus(worldp);
-      }
-      render();
-    });
+    }
+    else {
+      $(document).on('mousemove.drag', function(e) {
+	dragged = true;
+	state.set_cam(camera.x + e.pageX - x, camera.y + e.pageY - y);
+	maybe_render();
+      });
+      $(document).on('mouseup.drag', function(e) {
+	$(document).off('.drag');
+	if (!dragged) {
+	  console.log(worldp);
+	  road_layer.add(worldp);
+	  //state.set_locus(worldp);
+	}
+	render();
+      });
+    }
   }
 });
 
@@ -277,6 +279,15 @@ $(document).on('keydown', function(e) {
   if (k == ".") {
     image_layer.next();
   }
+  if (k == "m") {
+    g_mode = "Move";
+    render();
+  }
+  if (k == "p") {
+    g_mode = "Pan";
+    render();
+  }
+
   //  console.log(e.charCode);
 });
 

@@ -31,7 +31,7 @@ ld.done(function(data) {
   label_layer = new LabelLayer(assets.src.labels);
   image_layer = new ImageLayer(dispatch, init_img, assets.src.images, assets.img.overlay);
   road_layer = new RoadLayer(dispatch, assets.src.roads);
-  g_layers = [coastline_layer, label_layer, image_layer, road_layer];
+  g_layers = [coastline_layer, image_layer, road_layer, label_layer];
 
   c = $("#c")[0];
   d = c.getContext('2d');

@@ -4,6 +4,8 @@ var ImageLayer = require('./images');
 var RoadLayer = require('./roads');
 
 var State = require('./state');
+var key = require('./key');
+
 var DEBUG = false;
 var DEBUG_PROF = false;
 var OFFSET = DEBUG ? 100 : 0;
@@ -11,6 +13,7 @@ var OFFSET = DEBUG ? 100 : 0;
 // data in a.json generated through
 // potrace a.pbm -a 0 -b geojson
 
+g_mode = "Move";
 state = new State();
 
 var assets;
@@ -129,6 +132,17 @@ function render() {
   }
 
   // scale
+  render_scale(camera, d);
+
+  d.fillStyle = "black";
+  d.strokeStyle = "white";
+  d.font = "bold 12px sans-serif";
+  d.lineWidth = 2;
+  d.strokeText(g_mode, 20, h - 20);
+  d.fillText(g_mode, 20, h - 20);
+}
+
+function render_scale(camera, d) {
   d.save();
   d.fillStyle = "black";
   d.font = "10px sans-serif";
@@ -251,15 +265,16 @@ $(c).on('mousemove', function(e) {
   }
 });
 
-$(document).on('keypress', function(e) {
-  if (e.charCode == 9 + 96) { // i
+$(document).on('keydown', function(e) {
+  var k = key(e);
+  if (k == "i") {
     label_layer.add_label(state, prompt("name"));
     render();
   }
-  if (e.charCode == 44) { // <
+  if (k == ",") {
     image_layer.prev();
   }
-  if (e.charCode == 46) { // >
+  if (k == ".") {
     image_layer.next();
   }
   //  console.log(e.charCode);

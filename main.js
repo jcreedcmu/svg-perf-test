@@ -9,10 +9,12 @@ var key = require('./key');
 var DEBUG = false;
 var DEBUG_PROF = false;
 var OFFSET = DEBUG ? 100 : 0;
+var VERTEX_SENSITIVITY = 5;
 
 // data in a.json generated through
 // potrace a.pbm -a 0 -b geojson
 
+g_render_extra = null;
 g_mode = "Pan";
 state = new State();
 
@@ -114,7 +116,7 @@ function render() {
   // vertex display
   if (camera.zoom >= 4 && g_lastz != null) {
     var pts = JSON.parse(g_lastz);
-    if (pts.length == 1) {
+    if (pts.length != 0) {
       var rad = 3 / camera.scale();
       d.save();
       d.translate(camera.x, camera.y);
@@ -140,6 +142,10 @@ function render() {
   d.lineWidth = 2;
   d.strokeText(g_mode, 20, h - 20);
   d.fillText(g_mode, 20, h - 20);
+
+  if (g_render_extra) {
+    g_render_extra(camera, d);
+  }
 }
 
 function render_scale(camera, d) {
@@ -202,6 +208,17 @@ $(c).on('mousewheel', function(e) {
   }
 });
 
+function begin_pan(x, y, camera) {
+  $(document).on('mousemove.drag', function(e) {
+    state.set_cam(camera.x + e.pageX - x, camera.y + e.pageY - y);
+    maybe_render();
+  });
+  $(document).on('mouseup.drag', function(e) {
+    $(document).off('.drag');
+    render();
+  });
+}
+
 $(c).on('mousedown', function(e) {
   if (g_mode == "Pan") {
     var camera = state.camera();
@@ -209,13 +226,6 @@ $(c).on('mousedown', function(e) {
     var x = e.pageX;
     var y = e.pageY;
     var worldp = inv_xform(camera,x, y);
-
-    // check for interactions with onscreen elements
-    // if (label_layer.handle_mouse(camera, worldp))
-    //   return;
-
-    // here we are dragging the map
-    var dragged = false;
 
     if (e.ctrlKey) {
       var membase = image_layer.get_pos();
@@ -230,22 +240,57 @@ $(c).on('mousedown', function(e) {
       });
 
     }
-    else {
+    else
+      begin_pan(x, y, camera);
+  }
+  else if (g_mode == "Move") {
+    var camera = state.camera();
+    var x = e.pageX;
+    var y = e.pageY;
+    var worldp = inv_xform(camera,x, y);
+    var dragp = clone(worldp);
+    var rad = VERTEX_SENSITIVITY / camera.scale();
+    var bbox = [worldp.x - rad, worldp.y - rad, worldp.x + rad, worldp.y + rad];
+    var targets = coastline_layer.targets(bbox);
+
+    if (targets.length == 1) {
+      var target = targets[0];
+      var arc_points = coastline_layer.arcs[target[0]].points;
+      var membase = clone(arc_points[target[1]]);
+      var neighbors = [];
+      if (target[1] > 0) neighbors.push(arc_points[target[1] - 1]);
+      if (target[1] < arc_points.length - 1) neighbors.push(arc_points[target[1] + 1]);
+      g_render_extra = function(camera, d) {
+	d.save();
+	d.translate(camera.x, camera.y);
+	d.scale(camera.scale(), -camera.scale());
+	d.beginPath();
+	neighbors.forEach(function(nabe) {
+	  d.moveTo(nabe[0], nabe[1]);
+	  d.lineTo(dragp.x, dragp.y);
+	});
+	d.lineWidth = 1 / camera.scale();
+	d.strokeStyle = "#07f";
+	d.stroke();
+	d.restore();
+      }
       $(document).on('mousemove.drag', function(e) {
-	dragged = true;
-	state.set_cam(camera.x + e.pageX - x, camera.y + e.pageY - y);
+	var x = e.pageX;
+	var y = e.pageY;
+	var worldp = inv_xform(camera,x, y);
+	dragp.x = worldp.x;
+	dragp.y = worldp.y;
 	maybe_render();
       });
       $(document).on('mouseup.drag', function(e) {
+	g_render_extra = null;
 	$(document).off('.drag');
-	if (!dragged) {
-	  console.log(worldp);
-	  road_layer.add(worldp);
-	  //state.set_locus(worldp);
-	}
+	coastline_layer.replace_vert_in_arc(target, dragp);
 	render();
       });
     }
+    else
+      begin_pan(x, y, camera);
   }
 });
 
@@ -257,7 +302,7 @@ $(c).on('mousemove', function(e) {
     var x = e.pageX;
     var y = e.pageY;
     var worldp = inv_xform(camera,x, y);
-    var rad = 5 / camera.scale();
+    var rad = VERTEX_SENSITIVITY / camera.scale();
     var bbox = [worldp.x - rad, worldp.y - rad, worldp.x + rad, worldp.y + rad];
     var z = JSON.stringify(coastline_layer.targets(bbox));
     if (z != g_lastz) {

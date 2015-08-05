@@ -462,12 +462,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 3718,
-          "maxy": 3150.9,
-          "minx": 390.5,
-          "miny": 27
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -479,12 +473,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 821,
-          "maxy": 2913,
-          "minx": 818.9,
-          "miny": 2911
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -496,12 +484,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 855,
-          "maxy": 3034,
-          "minx": 848,
-          "miny": 3029
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -513,12 +495,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2226.5,
-          "maxy": 1377,
-          "minx": 2192.1,
-          "miny": 1349.9
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -530,12 +506,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 1347.2,
-          "maxy": 1375,
-          "minx": 1334,
-          "miny": 1364.5
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -547,12 +517,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 606.2,
-          "maxy": 1373.2,
-          "minx": 602.8,
-          "miny": 1369.8
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -564,12 +528,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2241,
-          "maxy": 1371.9,
-          "minx": 2227,
-          "miny": 1346.1
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -581,12 +539,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2252,
-          "maxy": 1371.1,
-          "minx": 2239.9,
-          "miny": 1359.5
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -599,12 +551,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 1039.3,
-          "maxy": 1366,
-          "minx": 930,
-          "miny": 1176
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -616,12 +562,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2889.4,
-          "maxy": 1365.2,
-          "minx": 2884.8,
-          "miny": 1359.9
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -633,12 +573,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 1295.1,
-          "maxy": 1363,
-          "minx": 1287.5,
-          "miny": 1354.8
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -650,12 +584,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2248.1,
-          "maxy": 1360.8,
-          "minx": 2243.1,
-          "miny": 1357
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -667,12 +595,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 3168,
-          "maxy": 1358,
-          "minx": 3155,
-          "miny": 1346.7
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -684,12 +606,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 733.9,
-          "maxy": 3032,
-          "minx": 706.8,
-          "miny": 3014
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -701,12 +617,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 1324.2,
-          "maxy": 1357,
-          "minx": 1317,
-          "miny": 1350.9
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -718,12 +628,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 1313.2,
-          "maxy": 1353.9,
-          "minx": 1309.8,
-          "miny": 1350.8
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -735,12 +639,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2227,
-          "maxy": 1354,
-          "minx": 2225,
-          "miny": 1352
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -752,12 +650,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2227,
-          "maxy": 1351,
-          "minx": 2223.8,
-          "miny": 1347.8
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -769,12 +661,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2450,
-          "maxy": 1348,
-          "minx": 2448,
-          "miny": 1344.9
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -786,12 +672,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 1314,
-          "maxy": 1347.1,
-          "minx": 1312,
-          "miny": 1341.5
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -803,12 +683,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2472,
-          "maxy": 1330.4,
-          "minx": 2387,
-          "miny": 1277
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -820,12 +694,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2127,
-          "maxy": 1324.5,
-          "minx": 2125,
-          "miny": 1319.5
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -837,12 +705,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 812.4,
-          "maxy": 1320,
-          "minx": 777.2,
-          "miny": 1295
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -854,12 +716,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 773.9,
-          "maxy": 1314.1,
-          "minx": 769,
-          "miny": 1307.7
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -871,12 +727,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 910,
-          "maxy": 3023.2,
-          "minx": 905,
-          "miny": 3019
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -888,12 +738,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 770.2,
-          "maxy": 1313,
-          "minx": 764.9,
-          "miny": 1306
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -905,12 +749,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 818,
-          "maxy": 1311,
-          "minx": 803.5,
-          "miny": 1296.1
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -925,12 +763,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2498.2,
-          "maxy": 1299,
-          "minx": 2483,
-          "miny": 1287
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -974,12 +806,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 3714.9,
-          "maxy": 1297,
-          "minx": 3360.9,
-          "miny": 934
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -991,12 +817,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 3524.1,
-          "maxy": 1041.1,
-          "minx": 3520.5,
-          "miny": 1038.6
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1008,12 +828,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 3591.1,
-          "maxy": 1038,
-          "minx": 3587.9,
-          "miny": 1036
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1025,12 +839,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 819.5,
-          "maxy": 1295.9,
-          "minx": 816.5,
-          "miny": 1288.1
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1042,12 +850,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2884.2,
-          "maxy": 1289,
-          "minx": 2878.5,
-          "miny": 1284.9
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1059,12 +861,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 820.2,
-          "maxy": 1288.5,
-          "minx": 817.8,
-          "miny": 1283.7
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1076,12 +872,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2888.2,
-          "maxy": 1286.3,
-          "minx": 2887,
-          "miny": 1282.5
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1093,12 +883,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2743,
-          "maxy": 2961,
-          "minx": 2740,
-          "miny": 2955.5
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1110,12 +894,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2889,
-          "maxy": 1280.9,
-          "minx": 2886.1,
-          "miny": 1277
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1127,12 +905,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2880.1,
-          "maxy": 1280,
-          "minx": 2878,
-          "miny": 1278
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1144,12 +916,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2888.2,
-          "maxy": 1275.9,
-          "minx": 2885.1,
-          "miny": 1271.6
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1161,12 +927,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2886.3,
-          "maxy": 1272,
-          "minx": 2882.3,
-          "miny": 1262
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1178,12 +938,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 822.2,
-          "maxy": 1268,
-          "minx": 817.1,
-          "miny": 1264.1
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1195,12 +949,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 798,
-          "maxy": 1263.9,
-          "minx": 763.7,
-          "miny": 1240.7
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1212,12 +960,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2609,
-          "maxy": 1264,
-          "minx": 2606.1,
-          "miny": 1261
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1229,12 +971,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 701.3,
-          "maxy": 1259.1,
-          "minx": 674,
-          "miny": 1250
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1246,12 +982,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2879.2,
-          "maxy": 1259.2,
-          "minx": 2876.8,
-          "miny": 1253.8
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1263,12 +993,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2876.2,
-          "maxy": 1254.1,
-          "minx": 2874,
-          "miny": 1249.7
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1283,12 +1007,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 3051.3,
-          "maxy": 2961.1,
-          "minx": 3023.9,
-          "miny": 2937
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1300,12 +1018,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 720.4,
-          "maxy": 1250,
-          "minx": 704.7,
-          "miny": 1243.9
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1317,12 +1029,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 734,
-          "maxy": 1246,
-          "minx": 731,
-          "miny": 1240.5
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1334,12 +1040,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 763.7,
-          "maxy": 1246,
-          "minx": 757.7,
-          "miny": 1241.3
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1351,12 +1051,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 738,
-          "maxy": 1244,
-          "minx": 736,
-          "miny": 1241
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1371,12 +1065,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2766.4,
-          "maxy": 1242.5,
-          "minx": 2739.5,
-          "miny": 1231.7
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1388,12 +1076,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 3625.2,
-          "maxy": 1243,
-          "minx": 3592,
-          "miny": 1213.8
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1420,12 +1102,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 3720.2,
-          "maxy": 1243,
-          "minx": 3646.9,
-          "miny": 1165.1
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1437,12 +1113,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 743.1,
-          "maxy": 1242,
-          "minx": 741,
-          "miny": 1240
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1454,12 +1124,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 764,
-          "maxy": 1241,
-          "minx": 760.8,
-          "miny": 1235.6
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1471,12 +1135,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 767,
-          "maxy": 1239,
-          "minx": 765,
-          "miny": 1237
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1488,12 +1146,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 714.2,
-          "maxy": 2915,
-          "minx": 709.7,
-          "miny": 2910.6
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1505,12 +1157,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2874.2,
-          "maxy": 1237.2,
-          "minx": 2871,
-          "miny": 1231.6
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1522,12 +1168,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2708.5,
-          "maxy": 1234,
-          "minx": 2703.6,
-          "miny": 1231
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1539,12 +1179,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 3695.9,
-          "maxy": 1231,
-          "minx": 3692.2,
-          "miny": 1226.1
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1556,12 +1190,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2998,
-          "maxy": 1229,
-          "minx": 2991,
-          "miny": 1218
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1573,12 +1201,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2529,
-          "maxy": 1217,
-          "minx": 2527,
-          "miny": 1214
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1590,12 +1212,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 992.9,
-          "maxy": 1206.8,
-          "minx": 988.3,
-          "miny": 1201
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1607,12 +1223,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 1194.6,
-          "maxy": 1207.1,
-          "minx": 1192,
-          "miny": 1198.8
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1627,12 +1237,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 3032.5,
-          "maxy": 1184,
-          "minx": 2982,
-          "miny": 1122.7
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1644,12 +1248,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2997,
-          "maxy": 1180,
-          "minx": 2989.5,
-          "miny": 1174
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1662,12 +1260,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 3793.9,
-          "maxy": 1180,
-          "minx": 3671,
-          "miny": 1106.8
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1679,12 +1271,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 707,
-          "maxy": 2911,
-          "minx": 703.9,
-          "miny": 2909
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1696,12 +1282,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2984.9,
-          "maxy": 1179,
-          "minx": 2978.8,
-          "miny": 1169.2
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1713,12 +1293,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 3179.2,
-          "maxy": 1178,
-          "minx": 3170,
-          "miny": 1168
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1730,12 +1304,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 3619.1,
-          "maxy": 1169.6,
-          "minx": 3609,
-          "miny": 1158.7
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1747,12 +1315,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 3031.8,
-          "maxy": 1169.1,
-          "minx": 3026.9,
-          "miny": 1165
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1764,12 +1326,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 3165.1,
-          "maxy": 1164,
-          "minx": 3157.9,
-          "miny": 1162
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1781,12 +1337,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 3667.5,
-          "maxy": 1161,
-          "minx": 3661.3,
-          "miny": 1152.5
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1798,12 +1348,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 3662,
-          "maxy": 1151.7,
-          "minx": 3638.9,
-          "miny": 1136.7
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1815,12 +1359,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 3726,
-          "maxy": 1143.8,
-          "minx": 3658.1,
-          "miny": 1096.7
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1832,12 +1370,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 3686,
-          "maxy": 1138,
-          "minx": 3679.7,
-          "miny": 1132
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1849,12 +1381,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2997,
-          "maxy": 1137,
-          "minx": 2995.1,
-          "miny": 1132.9
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1866,12 +1392,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2916.2,
-          "maxy": 2904,
-          "minx": 2833.8,
-          "miny": 2837
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1883,12 +1403,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 3666.9,
-          "maxy": 1133,
-          "minx": 3656,
-          "miny": 1124.7
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1900,12 +1414,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 3600,
-          "maxy": 1129,
-          "minx": 3588,
-          "miny": 1117.9
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1917,12 +1425,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 3602,
-          "maxy": 1108,
-          "minx": 3598.8,
-          "miny": 1102.8
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1934,12 +1436,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 3752,
-          "maxy": 1103,
-          "minx": 3703,
-          "miny": 1074.8
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1951,12 +1447,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 3768,
-          "maxy": 1091,
-          "minx": 3755,
-          "miny": 1079.7
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1968,12 +1458,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 3783.1,
-          "maxy": 1085.1,
-          "minx": 3767,
-          "miny": 1071.9
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -1985,12 +1469,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 3767.2,
-          "maxy": 1062.8,
-          "minx": 3755,
-          "miny": 1040.9
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2002,12 +1480,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 3753,
-          "maxy": 1059.6,
-          "minx": 3737.5,
-          "miny": 1047.7
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2019,12 +1491,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 3753.9,
-          "maxy": 1060,
-          "minx": 3751,
-          "miny": 1057
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2036,12 +1502,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 3758.1,
-          "maxy": 1055,
-          "minx": 3754,
-          "miny": 1048.8
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2053,12 +1513,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 686.2,
-          "maxy": 2895,
-          "minx": 681.8,
-          "miny": 2892.5
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2070,12 +1524,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 576,
-          "maxy": 1047.2,
-          "minx": 560,
-          "miny": 1031.7
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2087,12 +1535,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 517,
-          "maxy": 1040,
-          "minx": 512.8,
-          "miny": 1037
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2104,12 +1546,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 3432,
-          "maxy": 1035,
-          "minx": 3426,
-          "miny": 1029.8
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2121,12 +1557,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 679.1,
-          "maxy": 997,
-          "minx": 677,
-          "miny": 995
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2138,12 +1568,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 553.8,
-          "maxy": 991.9,
-          "minx": 546,
-          "miny": 984
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2155,12 +1579,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 695.2,
-          "maxy": 989,
-          "minx": 687.5,
-          "miny": 986
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2172,12 +1590,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 3469.4,
-          "maxy": 983,
-          "minx": 3461.3,
-          "miny": 975
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2189,12 +1601,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 3374.9,
-          "maxy": 971,
-          "minx": 3369.4,
-          "miny": 965
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2206,12 +1612,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 3455.2,
-          "maxy": 949,
-          "minx": 3419.8,
-          "miny": 915.8
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2223,12 +1623,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 528,
-          "maxy": 942,
-          "minx": 525.3,
-          "miny": 937
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2240,12 +1634,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 690,
-          "maxy": 2893,
-          "minx": 686.9,
-          "miny": 2891
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2257,12 +1645,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 701.5,
-          "maxy": 938,
-          "minx": 678,
-          "miny": 889.8
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2274,12 +1656,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 524,
-          "maxy": 936,
-          "minx": 521,
-          "miny": 931.8
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2291,12 +1667,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2386,
-          "maxy": 936,
-          "minx": 2380.8,
-          "miny": 933
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2308,12 +1678,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2377,
-          "maxy": 931,
-          "minx": 2375,
-          "miny": 928.9
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2325,12 +1689,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2382.9,
-          "maxy": 931,
-          "minx": 2379,
-          "miny": 928
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2342,12 +1700,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 523,
-          "maxy": 926,
-          "minx": 517,
-          "miny": 917
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2359,12 +1711,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2329,
-          "maxy": 910,
-          "minx": 2310,
-          "miny": 904
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2376,12 +1722,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 481,
-          "maxy": 852,
-          "minx": 447.8,
-          "miny": 815.7
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2393,12 +1733,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 486.5,
-          "maxy": 816,
-          "minx": 482,
-          "miny": 809.9
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2410,12 +1744,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 1612,
-          "maxy": 756,
-          "minx": 1585,
-          "miny": 732
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2427,12 +1755,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 830.7,
-          "maxy": 2912,
-          "minx": 825,
-          "miny": 2907.1
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2444,12 +1766,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2978.5,
-          "maxy": 2893,
-          "minx": 2957,
-          "miny": 2866.9
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2461,12 +1777,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 1374,
-          "maxy": 556,
-          "minx": 1294,
-          "miny": 474
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2478,12 +1788,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 1024,
-          "maxy": 531.9,
-          "minx": 991.9,
-          "miny": 505
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2495,12 +1799,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 919,
-          "maxy": 505,
-          "minx": 898,
-          "miny": 480.9
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2516,12 +1814,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 1830.4,
-          "maxy": 397,
-          "minx": 1658,
-          "miny": 265.5
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2533,12 +1825,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 1734.9,
-          "maxy": 390.7,
-          "minx": 1723,
-          "miny": 377
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2550,12 +1836,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 1622,
-          "maxy": 385.7,
-          "minx": 1583.9,
-          "miny": 367.9
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2567,12 +1847,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 1674.1,
-          "maxy": 386,
-          "minx": 1672,
-          "miny": 384
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2584,12 +1858,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 1091.8,
-          "maxy": 382.2,
-          "minx": 1082.7,
-          "miny": 364.8
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2601,12 +1869,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 1687.3,
-          "maxy": 377,
-          "minx": 1682.7,
-          "miny": 373
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2618,12 +1880,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 1861.1,
-          "maxy": 373,
-          "minx": 1858,
-          "miny": 371
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2635,12 +1891,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 690,
-          "maxy": 2889,
-          "minx": 674,
-          "miny": 2874
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2652,12 +1902,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 890,
-          "maxy": 354,
-          "minx": 826,
-          "miny": 300
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2670,12 +1914,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 1710.2,
-          "maxy": 343,
-          "minx": 1136,
-          "miny": 105
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2687,12 +1925,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 1170,
-          "maxy": 337.1,
-          "minx": 1136,
-          "miny": 317
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2704,12 +1936,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 3622.2,
-          "maxy": 332.8,
-          "minx": 3614.9,
-          "miny": 328.9
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2721,12 +1947,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 3624.5,
-          "maxy": 328,
-          "minx": 3620,
-          "miny": 326
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2738,12 +1958,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 3623.2,
-          "maxy": 324.5,
-          "minx": 3620.8,
-          "miny": 319.7
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2755,12 +1969,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 3622.2,
-          "maxy": 316,
-          "minx": 3619,
-          "miny": 312.8
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2772,12 +1980,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 1773.1,
-          "maxy": 280,
-          "minx": 1685,
-          "miny": 212
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2789,12 +1991,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 1137,
-          "maxy": 279,
-          "minx": 937,
-          "miny": 192
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2806,12 +2002,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 1814.2,
-          "maxy": 244,
-          "minx": 1793.9,
-          "miny": 231.5
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2823,12 +2013,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 752,
-          "maxy": 2846,
-          "minx": 734,
-          "miny": 2828
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2840,12 +2024,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 1909,
-          "maxy": 230,
-          "minx": 1887.1,
-          "miny": 176
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2857,12 +2035,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2468.4,
-          "maxy": 224,
-          "minx": 2450.6,
-          "miny": 219.1
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2874,12 +2046,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2899.7,
-          "maxy": 212,
-          "minx": 2893,
-          "miny": 206
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2891,12 +2057,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 529,
-          "maxy": 202,
-          "minx": 519.6,
-          "miny": 195.7
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2908,12 +2068,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 458,
-          "maxy": 197,
-          "minx": 414,
-          "miny": 156.8
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2925,12 +2079,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 497,
-          "maxy": 193,
-          "minx": 494.1,
-          "miny": 190
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2942,12 +2090,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 480.4,
-          "maxy": 189,
-          "minx": 473.8,
-          "miny": 184
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2959,12 +2101,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 1178.2,
-          "maxy": 181,
-          "minx": 1172.8,
-          "miny": 176
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2976,12 +2112,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 3177,
-          "maxy": 168,
-          "minx": 3169,
-          "miny": 160
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -2993,12 +2123,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2976,
-          "maxy": 164,
-          "minx": 2965,
-          "miny": 160
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3010,12 +2134,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 760,
-          "maxy": 2840,
-          "minx": 755,
-          "miny": 2837
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3027,12 +2145,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 108,
-          "maxy": 76,
-          "minx": 99,
-          "miny": 67
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3044,12 +2156,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 757.2,
-          "maxy": 2832,
-          "minx": 753.8,
-          "miny": 2829
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3061,12 +2167,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 763.5,
-          "maxy": 2830.7,
-          "minx": 751,
-          "miny": 2815.7
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3078,12 +2178,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 753,
-          "maxy": 2829,
-          "minx": 751,
-          "miny": 2826.9
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3095,12 +2189,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 812.8,
-          "maxy": 2827.1,
-          "minx": 807.2,
-          "miny": 2809
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3112,12 +2200,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 837.3,
-          "maxy": 2820,
-          "minx": 831.7,
-          "miny": 2816
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3129,12 +2211,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 1879,
-          "maxy": 2817,
-          "minx": 1871,
-          "miny": 2811
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3146,12 +2222,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 686.2,
-          "maxy": 3124.1,
-          "minx": 682.3,
-          "miny": 3121
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3163,12 +2233,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 835,
-          "maxy": 2815,
-          "minx": 831.8,
-          "miny": 2811.8
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3180,12 +2244,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 828.1,
-          "maxy": 2813.1,
-          "minx": 822.9,
-          "miny": 2808
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3197,12 +2255,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 1877.1,
-          "maxy": 2810,
-          "minx": 1871,
-          "miny": 2804.8
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3214,12 +2266,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 1882.3,
-          "maxy": 2805.8,
-          "minx": 1875.7,
-          "miny": 2801
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3231,12 +2277,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 1896.2,
-          "maxy": 2800,
-          "minx": 1881,
-          "miny": 2784.5
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3248,12 +2288,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 1674.5,
-          "maxy": 2771,
-          "minx": 1653,
-          "miny": 2751
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3265,12 +2299,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 818.1,
-          "maxy": 2726.1,
-          "minx": 814,
-          "miny": 2722
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3282,12 +2310,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 798.3,
-          "maxy": 2724,
-          "minx": 782.5,
-          "miny": 2697
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3299,12 +2321,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 1691.2,
-          "maxy": 2712,
-          "minx": 1669,
-          "miny": 2698
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3316,12 +2332,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 1666.1,
-          "maxy": 2696.9,
-          "minx": 1657.9,
-          "miny": 2684.7
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3333,12 +2343,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 767,
-          "maxy": 3118,
-          "minx": 763,
-          "miny": 3113
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3350,12 +2354,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 804,
-          "maxy": 2692,
-          "minx": 798,
-          "miny": 2684.8
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3367,12 +2365,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 808,
-          "maxy": 2682,
-          "minx": 805,
-          "miny": 2676.6
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3384,12 +2376,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 812,
-          "maxy": 2680.1,
-          "minx": 810,
-          "miny": 2675.9
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3401,12 +2387,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 888.9,
-          "maxy": 2646,
-          "minx": 885,
-          "miny": 2641.8
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3418,12 +2398,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 812.1,
-          "maxy": 2644,
-          "minx": 800,
-          "miny": 2628.8
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3435,12 +2409,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 743,
-          "maxy": 2595,
-          "minx": 715,
-          "miny": 2576
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3452,12 +2420,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 827,
-          "maxy": 2595,
-          "minx": 820,
-          "miny": 2583.6
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3469,12 +2431,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2327,
-          "maxy": 2542,
-          "minx": 2253,
-          "miny": 2483
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3486,12 +2442,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 621,
-          "maxy": 2535,
-          "minx": 609,
-          "miny": 2519
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3503,12 +2453,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2246.2,
-          "maxy": 2491.1,
-          "minx": 2242,
-          "miny": 2483.5
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3520,12 +2464,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 878,
-          "maxy": 3095,
-          "minx": 874.8,
-          "miny": 3091.8
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3537,12 +2475,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2256,
-          "maxy": 2482.1,
-          "minx": 2252.1,
-          "miny": 2477.1
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3554,12 +2486,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2261,
-          "maxy": 2477,
-          "minx": 2252.9,
-          "miny": 2472
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3571,12 +2497,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2250,
-          "maxy": 2475,
-          "minx": 2221.5,
-          "miny": 2463.9
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3588,12 +2508,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 827,
-          "maxy": 2358,
-          "minx": 825.1,
-          "miny": 2353.5
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3605,12 +2519,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 809.1,
-          "maxy": 2344,
-          "minx": 800,
-          "miny": 2336.8
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3622,12 +2530,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 802,
-          "maxy": 2338,
-          "minx": 798,
-          "miny": 2336.2
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3639,12 +2541,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 577,
-          "maxy": 2097.8,
-          "minx": 570,
-          "miny": 2092
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3656,12 +2552,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 3042,
-          "maxy": 2040,
-          "minx": 3039.2,
-          "miny": 2031.5
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3673,12 +2563,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 3038.2,
-          "maxy": 2029.5,
-          "minx": 3037.2,
-          "miny": 2024.5
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3690,12 +2574,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 3037.2,
-          "maxy": 2024.3,
-          "minx": 3036,
-          "miny": 2020.5
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3707,12 +2585,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2728,
-          "maxy": 3085,
-          "minx": 2717.5,
-          "miny": 3078
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3727,12 +2599,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2961.7,
-          "maxy": 1962.1,
-          "minx": 2914.7,
-          "miny": 1929.5
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3744,12 +2610,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 142.1,
-          "maxy": 1899.7,
-          "minx": 135.7,
-          "miny": 1897
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3787,12 +2647,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 1046,
-          "maxy": 1893.8,
-          "minx": 99.9,
-          "miny": 1223
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3804,12 +2658,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 939,
-          "maxy": 1853.1,
-          "minx": 937,
-          "miny": 1850
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3821,12 +2669,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 1016.5,
-          "maxy": 1829,
-          "minx": 999.6,
-          "miny": 1818
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3838,12 +2680,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 1136,
-          "maxy": 1794,
-          "minx": 1123,
-          "miny": 1781.8
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3855,12 +2691,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 450.2,
-          "maxy": 1742,
-          "minx": 413,
-          "miny": 1693
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3872,12 +2702,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 1051.5,
-          "maxy": 1739,
-          "minx": 1019,
-          "miny": 1715.9
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3890,12 +2714,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 1428.3,
-          "maxy": 1723,
-          "minx": 1225,
-          "miny": 1536.8
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3907,12 +2725,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 1891,
-          "maxy": 1716.9,
-          "minx": 1827.9,
-          "miny": 1655
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3924,12 +2736,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 803.3,
-          "maxy": 3070.5,
-          "minx": 799.7,
-          "miny": 3064.6
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3941,12 +2747,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 1979.4,
-          "maxy": 1706,
-          "minx": 1948.5,
-          "miny": 1686
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3958,12 +2758,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 492.1,
-          "maxy": 1657.8,
-          "minx": 478.8,
-          "miny": 1638
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3975,12 +2769,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 1741.1,
-          "maxy": 1585.8,
-          "minx": 1732.9,
-          "miny": 1580
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -3992,12 +2780,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 1832.5,
-          "maxy": 1568,
-          "minx": 1824.5,
-          "miny": 1564
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -4009,12 +2791,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2916.2,
-          "maxy": 1533,
-          "minx": 2910.2,
-          "miny": 1526.1
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -4026,12 +2802,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2915,
-          "maxy": 1527,
-          "minx": 2907,
-          "miny": 1522
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -4043,12 +2813,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2942,
-          "maxy": 1527.3,
-          "minx": 2936.7,
-          "miny": 1523.9
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -4060,12 +2824,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2941.7,
-          "maxy": 1519,
-          "minx": 2927.9,
-          "miny": 1507.7
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -4077,12 +2835,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2932.5,
-          "maxy": 1512,
-          "minx": 2925,
-          "miny": 1503.2
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -4094,12 +2846,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 1969,
-          "maxy": 1511.5,
-          "minx": 1931.5,
-          "miny": 1476
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -4111,12 +2857,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2757.4,
-          "maxy": 3069,
-          "minx": 2721,
-          "miny": 2962.9
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -4128,12 +2868,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2964.5,
-          "maxy": 1444.9,
-          "minx": 2941,
-          "miny": 1421
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -4145,12 +2879,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2976.9,
-          "maxy": 1440.6,
-          "minx": 2963.1,
-          "miny": 1425.5
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -4162,12 +2890,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2969,
-          "maxy": 1439,
-          "minx": 2967,
-          "miny": 1435.9
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -4179,12 +2901,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 3342.4,
-          "maxy": 1438,
-          "minx": 3335.9,
-          "miny": 1435
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -4196,12 +2912,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 3138,
-          "maxy": 1433,
-          "minx": 3112.6,
-          "miny": 1407.2
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -4213,12 +2923,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2952.9,
-          "maxy": 1418.2,
-          "minx": 2950,
-          "miny": 1414.8
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -4230,12 +2934,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2237.7,
-          "maxy": 1417,
-          "minx": 2232.2,
-          "miny": 1409.9
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -4247,12 +2945,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2950,
-          "maxy": 1413,
-          "minx": 2948,
-          "miny": 1410.9
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -4264,12 +2956,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2952.2,
-          "maxy": 1413.5,
-          "minx": 2949.1,
-          "miny": 1406.7
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -4281,12 +2967,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2958.7,
-          "maxy": 1413.5,
-          "minx": 2951.8,
-          "miny": 1390
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -4298,12 +2978,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 837,
-          "maxy": 3068,
-          "minx": 830.7,
-          "miny": 3058
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -4315,12 +2989,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 3093,
-          "maxy": 1408,
-          "minx": 3088.9,
-          "miny": 1403.9
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -4332,12 +3000,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 3096.5,
-          "maxy": 1407,
-          "minx": 3088.9,
-          "miny": 1395.5
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -4349,12 +3011,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 1348.2,
-          "maxy": 1404,
-          "minx": 1333.5,
-          "miny": 1394
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -4366,12 +3022,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 1361.1,
-          "maxy": 1402,
-          "minx": 1352.9,
-          "miny": 1400
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -4383,12 +3033,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2954.1,
-          "maxy": 1401,
-          "minx": 2950.9,
-          "miny": 1399
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -4400,12 +3044,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 1357.9,
-          "maxy": 1398,
-          "minx": 1348.5,
-          "miny": 1392.9
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -4417,12 +3055,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2955,
-          "maxy": 1398,
-          "minx": 2951,
-          "miny": 1395
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -4434,12 +3066,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 3104,
-          "maxy": 1395.7,
-          "minx": 3093,
-          "miny": 1385.8
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -4451,12 +3077,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 2954.2,
-          "maxy": 1391.4,
-          "minx": 2951,
-          "miny": 1385.6
-        },
         "natural": "coastline"
       },
       "type": "Polygon"
@@ -4468,12 +3088,6 @@
         ]
       ],
       "properties": {
-        "bbox": {
-          "maxx": 1334,
-          "maxy": 1383,
-          "minx": 1295,
-          "miny": 1354.7
-        },
         "natural": "coastline"
       },
       "type": "Polygon"

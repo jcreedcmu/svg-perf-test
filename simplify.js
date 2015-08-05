@@ -150,4 +150,16 @@ function minHeap() {
   return heap;
 }
 
+function compute_bbox(object, arcs) {
+  var bbox = object.properties.bbox = new_bbox();
+  _.each(object.arcs, function(component) {
+    _.each(component, function(arc_ix) {
+      var arc_bbox = arcs[arc_ix].properties.bbox;
+      accumulate_bbox([arc_bbox.minx, arc_bbox.miny], bbox);
+      accumulate_bbox([arc_bbox.maxx, arc_bbox.maxy], bbox);
+    });
+  });
+}
+
 module.exports.simplify_feature = simplify_feature;
+module.exports.compute_bbox = compute_bbox;

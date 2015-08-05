@@ -21,6 +21,9 @@ function new_bbox() {
 
 function simplify_feature(feature) {
   simplify(feature.points);
+  var bbox = new_bbox();
+  feature.properties.bbox = bbox;
+  feature.points.forEach(function(pt) { accumulate_bbox(pt, bbox); });
 }
 
 function simplify(polygon) {

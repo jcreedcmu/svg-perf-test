@@ -699,14 +699,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 975,
-        "maxy": 3146.9,
-        "minx": 777,
-        "miny": 2964.1
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -1424,14 +1417,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 851.1,
-        "maxy": 2984.2,
-        "minx": 714.1,
-        "miny": 2657.2
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -2105,14 +2091,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 968.2,
-        "maxy": 2712.2,
-        "minx": 814.8,
-        "miny": 2545.3
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -2802,14 +2781,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 907.9,
-        "maxy": 2561,
-        "minx": 419.9,
-        "miny": 2448
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -3503,14 +3475,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 603.2,
-        "maxy": 2520.4,
-        "minx": 390.5,
-        "miny": 2311
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -4212,14 +4177,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 858,
-        "maxy": 2379.3,
-        "minx": 586,
-        "miny": 2289.2
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -4901,14 +4859,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 910,
-        "maxy": 2373.9,
-        "minx": 695.5,
-        "miny": 2200.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -5610,14 +5561,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 910,
-        "maxy": 2225.6,
-        "minx": 747.8,
-        "miny": 1843.4
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -6303,14 +6247,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 765,
-        "maxy": 2157,
-        "minx": 579,
-        "miny": 1943
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -7008,14 +6945,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 667,
-        "maxy": 1962.1,
-        "minx": 487.9,
-        "miny": 1689.3
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -7705,14 +7635,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 949,
-        "maxy": 1860,
-        "minx": 660.9,
-        "miny": 1651
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -8434,14 +8357,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1180.2,
-        "maxy": 1868.2,
-        "minx": 949,
-        "miny": 1713
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -9135,14 +9051,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1305.2,
-        "maxy": 2020.3,
-        "minx": 1025,
-        "miny": 1772.3
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -9852,14 +9761,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1614.8,
-        "maxy": 1844.3,
-        "minx": 1259.7,
-        "miny": 1576
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -10541,14 +10443,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1809.1,
-        "maxy": 1791.2,
-        "minx": 1614.8,
-        "miny": 1624.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -11246,14 +11141,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2034,
-        "maxy": 1919.1,
-        "minx": 1809.1,
-        "miny": 1739
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -11899,14 +11787,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2184,
-        "maxy": 1910.3,
-        "minx": 2034,
-        "miny": 1684.1
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -12612,14 +12493,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2163.5,
-        "maxy": 1684.1,
-        "minx": 2052,
-        "miny": 1464.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -13301,14 +13175,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2345.9,
-        "maxy": 1481.4,
-        "minx": 2156,
-        "miny": 1334.5
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -14014,14 +13881,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2341.2,
-        "maxy": 1364,
-        "minx": 2198.9,
-        "miny": 1320
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -14699,14 +14559,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2198.9,
-        "maxy": 1416.5,
-        "minx": 2096,
-        "miny": 1310.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -15360,14 +15213,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2096,
-        "maxy": 1445,
-        "minx": 1840,
-        "miny": 1332
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -16045,14 +15891,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1917.4,
-        "maxy": 1513.4,
-        "minx": 1802.5,
-        "miny": 1281
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -16754,14 +16593,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1857.7,
-        "maxy": 1676,
-        "minx": 1706.9,
-        "miny": 1513.4
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -17391,14 +17223,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1713,
-        "maxy": 1646.4,
-        "minx": 1467.7,
-        "miny": 1496.1
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -18104,14 +17929,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1587.5,
-        "maxy": 1508,
-        "minx": 1358,
-        "miny": 1324.2
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -18801,14 +18619,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1431.1,
-        "maxy": 1379,
-        "minx": 1170.9,
-        "miny": 1147.6
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -19470,14 +19281,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1171.6,
-        "maxy": 1214,
-        "minx": 775.6,
-        "miny": 1043.5
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -20183,14 +19987,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 775.6,
-        "maxy": 1044.1,
-        "minx": 598.5,
-        "miny": 803.7
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -20872,14 +20669,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 741.5,
-        "maxy": 803.7,
-        "minx": 639,
-        "miny": 491.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -21593,14 +21383,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 924,
-        "maxy": 546.5,
-        "minx": 715.8,
-        "miny": 360
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -22310,14 +22093,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1022.1,
-        "maxy": 813,
-        "minx": 924,
-        "miny": 530.7
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -22991,14 +22767,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1387.1,
-        "maxy": 830.5,
-        "minx": 1020.7,
-        "miny": 720.6
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -23680,14 +23449,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1520.1,
-        "maxy": 939.9,
-        "minx": 1355.7,
-        "miny": 650
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -24397,14 +24159,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1720.7,
-        "maxy": 957.8,
-        "minx": 1520.1,
-        "miny": 787
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -25110,14 +24865,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1673,
-        "maxy": 881,
-        "minx": 1563,
-        "miny": 627.2
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -25803,14 +25551,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1623.2,
-        "maxy": 627.2,
-        "minx": 1392,
-        "miny": 373
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -26476,14 +26217,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1907,
-        "maxy": 477.3,
-        "minx": 1602,
-        "miny": 370
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -27165,14 +26899,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2081,
-        "maxy": 424.2,
-        "minx": 1829,
-        "miny": 247
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -27854,14 +27581,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2433.3,
-        "maxy": 257.4,
-        "minx": 2065.8,
-        "miny": 91
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -28555,14 +28275,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2488,
-        "maxy": 401,
-        "minx": 2364.5,
-        "miny": 112.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -29252,14 +28965,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2620.5,
-        "maxy": 456,
-        "minx": 2359.5,
-        "miny": 398
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -29909,14 +29615,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2856.1,
-        "maxy": 447,
-        "minx": 2620.5,
-        "miny": 324.3
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -30578,14 +30277,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2851.2,
-        "maxy": 324.3,
-        "minx": 2729,
-        "miny": 183
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -31231,14 +30923,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3065.2,
-        "maxy": 277.3,
-        "minx": 2851.2,
-        "miny": 145
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -31912,14 +31597,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3294.7,
-        "maxy": 210.9,
-        "minx": 3062.2,
-        "miny": 116.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -32633,14 +32311,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3554.1,
-        "maxy": 184,
-        "minx": 3294.7,
-        "miny": 40.7
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -33306,14 +32977,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3694,
-        "maxy": 169.8,
-        "minx": 3495,
-        "miny": 27
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -33955,14 +33619,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3718,
-        "maxy": 252.8,
-        "minx": 3626,
-        "miny": 144.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -34612,14 +34269,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3680.8,
-        "maxy": 354,
-        "minx": 3570,
-        "miny": 250.7
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -35301,14 +34951,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3598,
-        "maxy": 504.3,
-        "minx": 3371.2,
-        "miny": 352.1
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -35982,14 +35625,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3412.3,
-        "maxy": 618.5,
-        "minx": 3290.8,
-        "miny": 484.6
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -36651,14 +36287,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3301,
-        "maxy": 751.2,
-        "minx": 3199.8,
-        "miny": 586.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -37304,14 +36933,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3219,
-        "maxy": 749,
-        "minx": 2970.8,
-        "miny": 646.7
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -37969,14 +37591,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3001,
-        "maxy": 761.1,
-        "minx": 2810,
-        "miny": 642.5
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -38646,14 +38261,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2822.1,
-        "maxy": 758,
-        "minx": 2649.4,
-        "miny": 619.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -39347,14 +38955,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2649.4,
-        "maxy": 619.8,
-        "minx": 2430.8,
-        "miny": 475
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -40032,14 +39633,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2443.9,
-        "maxy": 714.8,
-        "minx": 2128,
-        "miny": 477
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -40717,14 +40311,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2559,
-        "maxy": 797.5,
-        "minx": 2167.1,
-        "miny": 687
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -41422,14 +41009,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2571,
-        "maxy": 1054.3,
-        "minx": 2308.1,
-        "miny": 797.5
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -42139,14 +41719,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2626.9,
-        "maxy": 1256,
-        "minx": 2460.5,
-        "miny": 1023.4
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -42820,14 +42393,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2460.5,
-        "maxy": 1328.1,
-        "minx": 2298.9,
-        "miny": 1226
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -43501,14 +43067,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2594.3,
-        "maxy": 1350,
-        "minx": 2407.9,
-        "miny": 1245.2
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -44198,14 +43757,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2763,
-        "maxy": 1342.1,
-        "minx": 2594,
-        "miny": 1216.6
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -44915,14 +44467,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2892.2,
-        "maxy": 1355.4,
-        "minx": 2758.7,
-        "miny": 1081.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -45580,14 +45125,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2946,
-        "maxy": 1528,
-        "minx": 2863,
-        "miny": 1355.4
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -46237,14 +45775,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3001.8,
-        "maxy": 1545,
-        "minx": 2902,
-        "miny": 1435.5
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -46950,14 +46481,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3089.7,
-        "maxy": 1443.3,
-        "minx": 2951,
-        "miny": 1207.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -47643,14 +47167,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3502,
-        "maxy": 1754.7,
-        "minx": 3089.7,
-        "miny": 1429.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -48324,14 +47841,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3490.3,
-        "maxy": 1942,
-        "minx": 3259,
-        "miny": 1754.7
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -49037,14 +48547,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3360,
-        "maxy": 2112.2,
-        "minx": 3025,
-        "miny": 1942
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -49738,14 +49241,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3189,
-        "maxy": 2045,
-        "minx": 3086.3,
-        "miny": 1876
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -50439,14 +49935,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3090.2,
-        "maxy": 2145.1,
-        "minx": 2795.5,
-        "miny": 1877
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -51148,14 +50637,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2805.8,
-        "maxy": 2373.2,
-        "minx": 2341.2,
-        "miny": 2112
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -51837,14 +51319,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2341.2,
-        "maxy": 2306,
-        "minx": 2081.8,
-        "miny": 2191
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -52530,14 +52005,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2219,
-        "maxy": 2666.5,
-        "minx": 2069.3,
-        "miny": 2268.1
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -53227,14 +52695,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2069.3,
-        "maxy": 2917.1,
-        "minx": 1811.2,
-        "miny": 2607
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -53944,14 +53405,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1811.2,
-        "maxy": 2763.1,
-        "minx": 1486.7,
-        "miny": 2433.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -54629,14 +54083,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1658,
-        "maxy": 2662.3,
-        "minx": 1436,
-        "miny": 2469
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -55318,14 +54765,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1658,
-        "maxy": 2915,
-        "minx": 1480.8,
-        "miny": 2635.7
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -55987,14 +55427,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1480.8,
-        "maxy": 3067,
-        "minx": 1174.2,
-        "miny": 2906.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -56672,14 +56105,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1179.5,
-        "maxy": 3146,
-        "minx": 932.2,
-        "miny": 3040.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -56797,14 +56223,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 932.2,
-        "maxy": 3150.9,
-        "minx": 827,
-        "miny": 3120
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -56874,14 +56293,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1344.4,
-        "maxy": 2952,
-        "minx": 1335,
-        "miny": 2943.7
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -56931,14 +56343,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 832.2,
-        "maxy": 2930.8,
-        "minx": 823,
-        "miny": 2924.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -57012,14 +56417,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1423.1,
-        "maxy": 2930.6,
-        "minx": 1415.9,
-        "miny": 2920.1
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -57069,14 +56467,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1384.1,
-        "maxy": 2926.1,
-        "minx": 1379,
-        "miny": 2921
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -57262,14 +56653,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 845,
-        "maxy": 2925,
-        "minx": 810.9,
-        "miny": 2901
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -57307,14 +56691,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1431.2,
-        "maxy": 2925,
-        "minx": 1426,
-        "miny": 2919.5
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -57368,14 +56745,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 816.3,
-        "maxy": 2919,
-        "minx": 809,
-        "miny": 2914.3
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -57437,14 +56807,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1478.2,
-        "maxy": 2899,
-        "minx": 1466,
-        "miny": 2880.6
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -57550,14 +56913,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1470.3,
-        "maxy": 2897.2,
-        "minx": 1446,
-        "miny": 2882.6
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -57627,14 +56983,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1494.9,
-        "maxy": 2890,
-        "minx": 1485,
-        "miny": 2882.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -57676,14 +57025,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1463.2,
-        "maxy": 2882,
-        "minx": 1459,
-        "miny": 2879
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -57749,14 +57091,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1475,
-        "maxy": 2876.5,
-        "minx": 1466,
-        "miny": 2870
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -57802,14 +57137,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1486.8,
-        "maxy": 2876,
-        "minx": 1480.9,
-        "miny": 2870.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -57851,14 +57179,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1473,
-        "maxy": 2822,
-        "minx": 1468.8,
-        "miny": 2813.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -57936,14 +57257,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1507,
-        "maxy": 2818,
-        "minx": 1489,
-        "miny": 2806.7
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -57985,14 +57299,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1517,
-        "maxy": 2818,
-        "minx": 1512,
-        "miny": 2813.3
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -58038,14 +57345,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1514,
-        "maxy": 2811,
-        "minx": 1510,
-        "miny": 2796.5
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -58107,14 +57407,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1499,
-        "maxy": 2797,
-        "minx": 1486,
-        "miny": 2788
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -58156,14 +57449,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1511.5,
-        "maxy": 2794.2,
-        "minx": 1508.8,
-        "miny": 2789.5
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -58261,14 +57547,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1130.8,
-        "maxy": 2787,
-        "minx": 1114.3,
-        "miny": 2759
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -58302,14 +57581,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1504.2,
-        "maxy": 2777,
-        "minx": 1501,
-        "miny": 2773.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -58391,14 +57663,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1106.1,
-        "maxy": 2770.1,
-        "minx": 1087.9,
-        "miny": 2760.5
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -58432,14 +57697,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1581,
-        "maxy": 2740,
-        "minx": 1577.9,
-        "miny": 2736
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -58497,14 +57755,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1585,
-        "maxy": 2735.9,
-        "minx": 1572,
-        "miny": 2724.2
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -58546,14 +57797,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 827,
-        "maxy": 2658.8,
-        "minx": 822.9,
-        "miny": 2655.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -58599,14 +57843,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1584.2,
-        "maxy": 2653,
-        "minx": 1579.1,
-        "miny": 2648.7
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -58696,14 +57933,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1586.3,
-        "maxy": 2649,
-        "minx": 1562,
-        "miny": 2635.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -58745,14 +57975,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1578.8,
-        "maxy": 2649,
-        "minx": 1574.8,
-        "miny": 2644
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -58798,14 +58021,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2126.1,
-        "maxy": 2206,
-        "minx": 2117.5,
-        "miny": 2198
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -58843,14 +58059,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3143,
-        "maxy": 1961,
-        "minx": 3138.9,
-        "miny": 1957.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -59512,14 +58721,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2612.5,
-        "maxy": 1797.5,
-        "minx": 2514.3,
-        "miny": 1552
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -60113,14 +59315,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2548.9,
-        "maxy": 1799,
-        "minx": 2447.8,
-        "miny": 1529.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -60158,14 +59353,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1611.2,
-        "maxy": 1587,
-        "minx": 1607,
-        "miny": 1584
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -60211,14 +59399,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1607.4,
-        "maxy": 1583,
-        "minx": 1600.2,
-        "miny": 1578.2
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -60248,14 +59429,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1602.1,
-        "maxy": 1579,
-        "minx": 1599,
-        "miny": 1577
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -60297,14 +59471,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1602.2,
-        "maxy": 1575,
-        "minx": 1591.5,
-        "miny": 1568
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -60350,14 +59517,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1595.2,
-        "maxy": 1566,
-        "minx": 1590.1,
-        "miny": 1561.7
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -60399,14 +59559,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1588.7,
-        "maxy": 1563.3,
-        "minx": 1584,
-        "miny": 1556
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -60436,14 +59589,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1593.1,
-        "maxy": 1560,
-        "minx": 1590,
-        "miny": 1558
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -60497,14 +59643,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3358.8,
-        "maxy": 1446,
-        "minx": 3348.9,
-        "miny": 1434
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -60634,14 +59773,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2249.1,
-        "maxy": 1402,
-        "minx": 2227.7,
-        "miny": 1370.5
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -60691,14 +59823,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1812,
-        "maxy": 1396,
-        "minx": 1806,
-        "miny": 1383.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -60736,14 +59861,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2246.2,
-        "maxy": 1385.2,
-        "minx": 2244,
-        "miny": 1381.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -60789,14 +59907,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2195.5,
-        "maxy": 1365,
-        "minx": 2191.8,
-        "miny": 1360.5
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -60842,14 +59953,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2297.2,
-        "maxy": 1326.9,
-        "minx": 2289.8,
-        "miny": 1321
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -60911,14 +60015,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2365,
-        "maxy": 1324.2,
-        "minx": 2353.1,
-        "miny": 1319
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -60968,14 +60065,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2694,
-        "maxy": 1306,
-        "minx": 2686.7,
-        "miny": 1298
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -61109,14 +60199,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1971,
-        "maxy": 1279,
-        "minx": 1940,
-        "miny": 1252
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -61214,14 +60297,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2082.7,
-        "maxy": 1276,
-        "minx": 2059.8,
-        "miny": 1252
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -61255,14 +60331,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2872.2,
-        "maxy": 1270,
-        "minx": 2869,
-        "miny": 1266.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -61292,14 +60361,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2873,
-        "maxy": 1267,
-        "minx": 2870.9,
-        "miny": 1265
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -61329,14 +60391,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2870.2,
-        "maxy": 1266.5,
-        "minx": 2869.2,
-        "miny": 1261.5
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -61382,14 +60437,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2274.9,
-        "maxy": 1199,
-        "minx": 2270,
-        "miny": 1193
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -61699,14 +60747,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2094.2,
-        "maxy": 1198,
-        "minx": 2013.8,
-        "miny": 1117
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -61784,14 +60825,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2185.1,
-        "maxy": 1193,
-        "minx": 2168,
-        "miny": 1170
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -61825,14 +60859,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2199.2,
-        "maxy": 1190,
-        "minx": 2194.9,
-        "miny": 1186
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -61922,14 +60949,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2228.5,
-        "maxy": 1189,
-        "minx": 2203,
-        "miny": 1166.5
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -61971,14 +60991,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2261.2,
-        "maxy": 1189,
-        "minx": 2254.5,
-        "miny": 1186
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -62260,14 +61273,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1869.9,
-        "maxy": 1185,
-        "minx": 1810,
-        "miny": 1112.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -62333,14 +61339,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2279.3,
-        "maxy": 1183,
-        "minx": 2255.6,
-        "miny": 1175
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -62378,14 +61377,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2243,
-        "maxy": 1175,
-        "minx": 2237.6,
-        "miny": 1169.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -62935,14 +61927,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2288,
-        "maxy": 1170.5,
-        "minx": 2194,
-        "miny": 1069.6
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -63040,14 +62025,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2206,
-        "maxy": 1168,
-        "minx": 2187,
-        "miny": 1133.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -63101,14 +62079,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2177,
-        "maxy": 1162.7,
-        "minx": 2168,
-        "miny": 1156.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -63150,14 +62121,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1172.1,
-        "maxy": 1161.5,
-        "minx": 1167.7,
-        "miny": 1156.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -63259,14 +62223,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1964,
-        "maxy": 1154,
-        "minx": 1950,
-        "miny": 1133.7
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -63376,14 +62333,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2179,
-        "maxy": 1147.2,
-        "minx": 2142.8,
-        "miny": 1116.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -63429,14 +62379,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2136.4,
-        "maxy": 1136,
-        "minx": 2128.1,
-        "miny": 1127.6
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -63478,14 +62421,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2186,
-        "maxy": 1135.2,
-        "minx": 2181.8,
-        "miny": 1130
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -63575,14 +62511,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2168,
-        "maxy": 1132,
-        "minx": 2142.5,
-        "miny": 1111.1
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -63628,14 +62557,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2151,
-        "maxy": 1121,
-        "minx": 2145,
-        "miny": 1116
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -63685,14 +62607,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2163,
-        "maxy": 1112,
-        "minx": 2153,
-        "miny": 1106.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -63734,14 +62649,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2315.2,
-        "maxy": 1111.2,
-        "minx": 2310.8,
-        "miny": 1106.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -63787,14 +62695,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2151.5,
-        "maxy": 1109.1,
-        "minx": 2145,
-        "miny": 1104
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -63868,14 +62769,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2183.4,
-        "maxy": 1108.5,
-        "minx": 2171.7,
-        "miny": 1095
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -63917,14 +62811,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2205.9,
-        "maxy": 1100,
-        "minx": 2202,
-        "miny": 1095.7
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -63970,14 +62857,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2274.2,
-        "maxy": 1092,
-        "minx": 2267.8,
-        "miny": 1087.5
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -64075,14 +62955,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1952.2,
-        "maxy": 871,
-        "minx": 1921,
-        "miny": 852
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -64368,14 +63241,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 924.2,
-        "maxy": 776.8,
-        "minx": 865,
-        "miny": 690.1
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -64421,14 +63287,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 926,
-        "maxy": 729,
-        "minx": 923,
-        "miny": 726.1
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -64474,14 +63333,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2994.2,
-        "maxy": 717.7,
-        "minx": 2991,
-        "miny": 709.6
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -64527,14 +63379,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3302.5,
-        "maxy": 605,
-        "minx": 3296,
-        "miny": 599.6
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -64744,14 +63589,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1792.2,
-        "maxy": 580,
-        "minx": 1755,
-        "miny": 523
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -64781,14 +63619,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3334.5,
-        "maxy": 560.8,
-        "minx": 3329.5,
-        "miny": 559.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -64822,14 +63653,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3342.4,
-        "maxy": 557,
-        "minx": 3335,
-        "miny": 550.5
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -64879,14 +63703,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3361,
-        "maxy": 540.1,
-        "minx": 3351,
-        "miny": 525
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -64932,14 +63749,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3370.9,
-        "maxy": 532,
-        "minx": 3365.8,
-        "miny": 525.1
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -64973,14 +63783,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3373,
-        "maxy": 519,
-        "minx": 3368.9,
-        "miny": 513.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -65010,14 +63813,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2537.1,
-        "maxy": 510,
-        "minx": 2533.9,
-        "miny": 508
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -65047,14 +63843,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2495,
-        "maxy": 439,
-        "minx": 2491.9,
-        "miny": 437
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -65084,14 +63873,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2565,
-        "maxy": 426,
-        "minx": 2562.9,
-        "miny": 424
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -65161,14 +63943,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3560,
-        "maxy": 349.1,
-        "minx": 3548.1,
-        "miny": 330
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -65210,14 +63985,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3591.2,
-        "maxy": 337.4,
-        "minx": 3588.8,
-        "miny": 333.7
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -65275,14 +64043,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3584.1,
-        "maxy": 332.3,
-        "minx": 3573,
-        "miny": 322.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -65320,14 +64081,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3602,
-        "maxy": 330.9,
-        "minx": 3598.3,
-        "miny": 326
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -65377,14 +64131,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3551,
-        "maxy": 319.9,
-        "minx": 3548,
-        "miny": 310.5
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -65442,14 +64189,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3573,
-        "maxy": 317,
-        "minx": 3564.7,
-        "miny": 309.1
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -65487,14 +64227,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3542,
-        "maxy": 302,
-        "minx": 3539,
-        "miny": 298
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -65564,14 +64297,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3549.1,
-        "maxy": 299.5,
-        "minx": 3542,
-        "miny": 277.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -65653,14 +64379,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3569,
-        "maxy": 296,
-        "minx": 3557,
-        "miny": 281.5
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -65694,14 +64413,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3629.1,
-        "maxy": 259,
-        "minx": 3625,
-        "miny": 253.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -65803,14 +64515,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3632.8,
-        "maxy": 250,
-        "minx": 3616,
-        "miny": 235
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -65844,14 +64549,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3663.2,
-        "maxy": 248.1,
-        "minx": 3658,
-        "miny": 245
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -66217,14 +64915,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3620,
-        "maxy": 247,
-        "minx": 3571,
-        "miny": 191
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -66254,14 +64945,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3646.6,
-        "maxy": 247,
-        "minx": 3645,
-        "miny": 239
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -66299,14 +64983,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3639,
-        "maxy": 243.5,
-        "minx": 3636,
-        "miny": 237
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -66340,14 +65017,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3652.2,
-        "maxy": 238,
-        "minx": 3647.7,
-        "miny": 234
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -66381,14 +65051,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3664,
-        "maxy": 235.1,
-        "minx": 3662,
-        "miny": 227.5
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -66426,14 +65089,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3475.5,
-        "maxy": 234.3,
-        "minx": 3472,
-        "miny": 229.5
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -66471,14 +65127,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2836,
-        "maxy": 233,
-        "minx": 2833.7,
-        "miny": 227.6
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -66520,14 +65169,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3639.5,
-        "maxy": 232.2,
-        "minx": 3636.8,
-        "miny": 227.5
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -66573,14 +65215,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3631,
-        "maxy": 230,
-        "minx": 3624.8,
-        "miny": 225
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -66618,14 +65253,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3655,
-        "maxy": 228.9,
-        "minx": 3650.8,
-        "miny": 225
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -66659,14 +65287,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3619.8,
-        "maxy": 228,
-        "minx": 3614.9,
-        "miny": 224
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -66712,14 +65333,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3657,
-        "maxy": 222,
-        "minx": 3652.1,
-        "miny": 217
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -66753,14 +65367,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3633,
-        "maxy": 220,
-        "minx": 3627,
-        "miny": 216.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -66802,14 +65409,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3620.2,
-        "maxy": 219.2,
-        "minx": 3615.8,
-        "miny": 213.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -66851,14 +65451,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3667,
-        "maxy": 217,
-        "minx": 3662,
-        "miny": 213
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -66908,14 +65501,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3693.3,
-        "maxy": 208,
-        "minx": 3685,
-        "miny": 195.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -66945,14 +65531,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3670,
-        "maxy": 197,
-        "minx": 3667.9,
-        "miny": 195
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -66994,14 +65573,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3643,
-        "maxy": 196.1,
-        "minx": 3639,
-        "miny": 193
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -67031,14 +65603,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3588.1,
-        "maxy": 177,
-        "minx": 3585,
-        "miny": 175
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -67092,14 +65657,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3602.2,
-        "maxy": 174,
-        "minx": 3597,
-        "miny": 163.7
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -67169,14 +65727,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3619.9,
-        "maxy": 160,
-        "minx": 3614,
-        "miny": 152
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -67218,14 +65769,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3582.2,
-        "maxy": 154.3,
-        "minx": 3578.8,
-        "miny": 149.6
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -67255,14 +65799,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 821,
-        "maxy": 2913,
-        "minx": 818.9,
-        "miny": 2911
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -67300,14 +65837,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 830.7,
-        "maxy": 2912,
-        "minx": 825,
-        "miny": 2907.1
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -67345,14 +65875,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 686.2,
-        "maxy": 3124.1,
-        "minx": 682.3,
-        "miny": 3121
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -67390,14 +65913,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 767,
-        "maxy": 3118,
-        "minx": 763,
-        "miny": 3113
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -67431,14 +65947,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 878,
-        "maxy": 3095,
-        "minx": 874.8,
-        "miny": 3091.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -67480,14 +65989,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2728,
-        "maxy": 3085,
-        "minx": 2717.5,
-        "miny": 3078
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -67529,14 +66031,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 803.3,
-        "maxy": 3070.5,
-        "minx": 799.7,
-        "miny": 3064.6
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -67738,14 +66233,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2757.4,
-        "maxy": 3069,
-        "minx": 2721,
-        "miny": 2962.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -67811,14 +66299,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 837,
-        "maxy": 3068,
-        "minx": 830.7,
-        "miny": 3058
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -67860,14 +66341,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 855,
-        "maxy": 3034,
-        "minx": 848,
-        "miny": 3029
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -67941,14 +66415,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 733.9,
-        "maxy": 3032,
-        "minx": 706.8,
-        "miny": 3014
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -67990,14 +66457,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 910,
-        "maxy": 3023.2,
-        "minx": 905,
-        "miny": 3019
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -68035,14 +66495,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2743,
-        "maxy": 2961,
-        "minx": 2740,
-        "miny": 2955.5
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -68204,14 +66657,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3051.3,
-        "maxy": 2961.1,
-        "minx": 3023.9,
-        "miny": 2937
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -68253,14 +66699,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3042.1,
-        "maxy": 2955,
-        "minx": 3031.8,
-        "miny": 2948.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -68298,14 +66737,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 714.2,
-        "maxy": 2915,
-        "minx": 709.7,
-        "miny": 2910.6
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -68335,14 +66767,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 707,
-        "maxy": 2911,
-        "minx": 703.9,
-        "miny": 2909
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -68676,14 +67101,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2916.2,
-        "maxy": 2904,
-        "minx": 2833.8,
-        "miny": 2837
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -68717,14 +67135,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 686.2,
-        "maxy": 2895,
-        "minx": 681.8,
-        "miny": 2892.5
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -68754,14 +67165,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 690,
-        "maxy": 2893,
-        "minx": 686.9,
-        "miny": 2891
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -68851,14 +67255,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2978.5,
-        "maxy": 2893,
-        "minx": 2957,
-        "miny": 2866.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -68928,14 +67325,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 690,
-        "maxy": 2889,
-        "minx": 674,
-        "miny": 2874
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -69033,14 +67423,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 752,
-        "maxy": 2846,
-        "minx": 734,
-        "miny": 2828
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -69078,14 +67461,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 760,
-        "maxy": 2840,
-        "minx": 755,
-        "miny": 2837
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -69119,14 +67495,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 757.2,
-        "maxy": 2832,
-        "minx": 753.8,
-        "miny": 2829
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -69196,14 +67565,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 763.5,
-        "maxy": 2830.7,
-        "minx": 751,
-        "miny": 2815.7
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -69233,14 +67595,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 753,
-        "maxy": 2829,
-        "minx": 751,
-        "miny": 2826.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -69294,14 +67649,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 812.8,
-        "maxy": 2827.1,
-        "minx": 807.2,
-        "miny": 2809
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -69331,14 +67679,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 837.3,
-        "maxy": 2820,
-        "minx": 831.7,
-        "miny": 2816
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -69400,14 +67741,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1879,
-        "maxy": 2817,
-        "minx": 1871,
-        "miny": 2811
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -69449,14 +67783,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 835,
-        "maxy": 2815,
-        "minx": 831.8,
-        "miny": 2811.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -69502,14 +67829,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 828.1,
-        "maxy": 2813.1,
-        "minx": 822.9,
-        "miny": 2808
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -69555,14 +67875,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1877.1,
-        "maxy": 2810,
-        "minx": 1871,
-        "miny": 2804.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -69600,14 +67913,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1882.3,
-        "maxy": 2805.8,
-        "minx": 1875.7,
-        "miny": 2801
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -69689,14 +67995,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1896.2,
-        "maxy": 2800,
-        "minx": 1881,
-        "miny": 2784.5
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -69774,14 +68073,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1674.5,
-        "maxy": 2771,
-        "minx": 1653,
-        "miny": 2751
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -69819,14 +68111,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 818.1,
-        "maxy": 2726.1,
-        "minx": 814,
-        "miny": 2722
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -69928,14 +68213,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 798.3,
-        "maxy": 2724,
-        "minx": 782.5,
-        "miny": 2697
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -70021,14 +68299,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1691.2,
-        "maxy": 2712,
-        "minx": 1669,
-        "miny": 2698
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -70090,14 +68361,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1666.1,
-        "maxy": 2696.9,
-        "minx": 1657.9,
-        "miny": 2684.7
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -70139,14 +68403,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 804,
-        "maxy": 2692,
-        "minx": 798,
-        "miny": 2684.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -70184,14 +68441,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 808,
-        "maxy": 2682,
-        "minx": 805,
-        "miny": 2676.6
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -70221,14 +68471,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 812,
-        "maxy": 2680.1,
-        "minx": 810,
-        "miny": 2675.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -70270,14 +68513,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 888.9,
-        "maxy": 2646,
-        "minx": 885,
-        "miny": 2641.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -70351,14 +68587,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 812.1,
-        "maxy": 2644,
-        "minx": 800,
-        "miny": 2628.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -70448,14 +68677,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 743,
-        "maxy": 2595,
-        "minx": 715,
-        "miny": 2576
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -70521,14 +68743,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 827,
-        "maxy": 2595,
-        "minx": 820,
-        "miny": 2583.6
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -70870,14 +69085,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2327,
-        "maxy": 2542,
-        "minx": 2253,
-        "miny": 2483
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -70951,14 +69159,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 621,
-        "maxy": 2535,
-        "minx": 609,
-        "miny": 2519
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -70996,14 +69197,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2246.2,
-        "maxy": 2491.1,
-        "minx": 2242,
-        "miny": 2483.5
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -71049,14 +69243,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2256,
-        "maxy": 2482.1,
-        "minx": 2252.1,
-        "miny": 2477.1
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -71094,14 +69281,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2261,
-        "maxy": 2477,
-        "minx": 2252.9,
-        "miny": 2472
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -71235,14 +69415,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2250,
-        "maxy": 2475,
-        "minx": 2221.5,
-        "miny": 2463.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -71276,14 +69449,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 827,
-        "maxy": 2358,
-        "minx": 825.1,
-        "miny": 2353.5
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -71333,14 +69499,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 809.1,
-        "maxy": 2344,
-        "minx": 800,
-        "miny": 2336.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -71374,14 +69533,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 802,
-        "maxy": 2338,
-        "minx": 798,
-        "miny": 2336.2
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -71423,14 +69575,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 577,
-        "maxy": 2097.8,
-        "minx": 570,
-        "miny": 2092
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -71464,14 +69609,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3042,
-        "maxy": 2040,
-        "minx": 3039.2,
-        "miny": 2031.5
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -71505,14 +69643,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3038.2,
-        "maxy": 2029.5,
-        "minx": 3037.2,
-        "miny": 2024.5
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -71542,14 +69673,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3037.2,
-        "maxy": 2024.3,
-        "minx": 3036,
-        "miny": 2020.5
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -71835,14 +69959,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2961.7,
-        "maxy": 1962.1,
-        "minx": 2914.7,
-        "miny": 1929.5
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -71872,14 +69989,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2951.1,
-        "maxy": 1933,
-        "minx": 2948,
-        "miny": 1931
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -71913,14 +70023,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 142.1,
-        "maxy": 1899.7,
-        "minx": 135.7,
-        "miny": 1897
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -72594,14 +70697,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 187,
-        "maxy": 1892.9,
-        "minx": 105.9,
-        "miny": 1654.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -73323,14 +71419,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 670.5,
-        "maxy": 1654.9,
-        "minx": 99.9,
-        "miny": 1223
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -74072,14 +72161,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 820.1,
-        "maxy": 1392.2,
-        "minx": 596,
-        "miny": 1258.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -74757,14 +72839,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 892.2,
-        "maxy": 1463.5,
-        "minx": 559,
-        "miny": 1323
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -75466,14 +73541,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1046,
-        "maxy": 1552.5,
-        "minx": 892.2,
-        "miny": 1332.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -76139,14 +74207,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1004.2,
-        "maxy": 1610,
-        "minx": 668.5,
-        "miny": 1488
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -76860,14 +74921,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 670.8,
-        "maxy": 1680.2,
-        "minx": 409.6,
-        "miny": 1548.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -77557,14 +75611,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 422.5,
-        "maxy": 1854.9,
-        "minx": 323.7,
-        "miny": 1587.5
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -77706,14 +75753,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 323.7,
-        "maxy": 1893.8,
-        "minx": 146,
-        "miny": 1854.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -77775,14 +75815,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 191.5,
-        "maxy": 1878,
-        "minx": 183.7,
-        "miny": 1872.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -77884,14 +75917,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 245.2,
-        "maxy": 1872.2,
-        "minx": 214.5,
-        "miny": 1862.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -77941,14 +75967,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 316,
-        "maxy": 1860,
-        "minx": 304.8,
-        "miny": 1855.1
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -78006,14 +76025,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 195,
-        "maxy": 1796,
-        "minx": 188,
-        "miny": 1783.6
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -78047,14 +76059,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 357.5,
-        "maxy": 1626,
-        "minx": 354,
-        "miny": 1622.5
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -78200,14 +76205,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 785.5,
-        "maxy": 1314,
-        "minx": 746,
-        "miny": 1281
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -78237,14 +76235,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 939,
-        "maxy": 1853.1,
-        "minx": 937,
-        "miny": 1850
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -78322,14 +76313,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1016.5,
-        "maxy": 1829,
-        "minx": 999.6,
-        "miny": 1818
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -78435,14 +76419,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1136,
-        "maxy": 1794,
-        "minx": 1123,
-        "miny": 1781.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -78576,14 +76553,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 450.2,
-        "maxy": 1742,
-        "minx": 413,
-        "miny": 1693
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -78681,14 +76651,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1051.5,
-        "maxy": 1739,
-        "minx": 1019,
-        "miny": 1715.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -79398,14 +77361,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1428.3,
-        "maxy": 1720.6,
-        "minx": 1225,
-        "miny": 1536.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -79523,14 +77479,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1286.5,
-        "maxy": 1723,
-        "minx": 1229.6,
-        "miny": 1642.6
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -79788,14 +77737,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1891,
-        "maxy": 1716.9,
-        "minx": 1827.9,
-        "miny": 1655
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -79909,14 +77851,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1979.4,
-        "maxy": 1706,
-        "minx": 1948.5,
-        "miny": 1686
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -80030,14 +77965,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 492.1,
-        "maxy": 1657.8,
-        "minx": 478.8,
-        "miny": 1638
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -80079,14 +78007,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1741.1,
-        "maxy": 1585.8,
-        "minx": 1732.9,
-        "miny": 1580
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -80116,14 +78037,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1832.5,
-        "maxy": 1568,
-        "minx": 1824.5,
-        "miny": 1564
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -80161,14 +78075,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2916.2,
-        "maxy": 1533,
-        "minx": 2910.2,
-        "miny": 1526.1
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -80218,14 +78125,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2915,
-        "maxy": 1527,
-        "minx": 2907,
-        "miny": 1522
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -80267,14 +78167,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2942,
-        "maxy": 1527.3,
-        "minx": 2936.7,
-        "miny": 1523.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -80348,14 +78241,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2941.7,
-        "maxy": 1519,
-        "minx": 2927.9,
-        "miny": 1507.7
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -80413,14 +78299,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2932.5,
-        "maxy": 1512,
-        "minx": 2925,
-        "miny": 1503.2
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -80570,14 +78449,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1969,
-        "maxy": 1511.5,
-        "minx": 1931.5,
-        "miny": 1476
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -80715,14 +78587,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2964.5,
-        "maxy": 1444.9,
-        "minx": 2941,
-        "miny": 1421
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -80848,14 +78713,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2976.9,
-        "maxy": 1440.6,
-        "minx": 2963.1,
-        "miny": 1425.5
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -80885,14 +78743,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2969,
-        "maxy": 1439,
-        "minx": 2967,
-        "miny": 1435.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -80930,14 +78781,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3342.4,
-        "maxy": 1438,
-        "minx": 3335.9,
-        "miny": 1435
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -81039,14 +78883,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3138,
-        "maxy": 1433,
-        "minx": 3112.6,
-        "miny": 1407.2
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -81088,14 +78925,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2952.9,
-        "maxy": 1418.2,
-        "minx": 2950,
-        "miny": 1414.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -81133,14 +78963,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2237.7,
-        "maxy": 1417,
-        "minx": 2232.2,
-        "miny": 1409.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -81170,14 +78993,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2950,
-        "maxy": 1413,
-        "minx": 2948,
-        "miny": 1410.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -81219,14 +79035,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2952.2,
-        "maxy": 1413.5,
-        "minx": 2949.1,
-        "miny": 1406.7
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -81328,14 +79137,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2958.7,
-        "maxy": 1413.5,
-        "minx": 2951.8,
-        "miny": 1390
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -81377,14 +79179,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3093,
-        "maxy": 1408,
-        "minx": 3088.9,
-        "miny": 1403.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -81434,14 +79229,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3096.5,
-        "maxy": 1407,
-        "minx": 3088.9,
-        "miny": 1395.5
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -81499,14 +79287,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1348.2,
-        "maxy": 1404,
-        "minx": 1333.5,
-        "miny": 1394
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -81536,14 +79317,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1361.1,
-        "maxy": 1402,
-        "minx": 1352.9,
-        "miny": 1400
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -81573,14 +79347,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2954.1,
-        "maxy": 1401,
-        "minx": 2950.9,
-        "miny": 1399
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -81626,14 +79393,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1357.9,
-        "maxy": 1398,
-        "minx": 1348.5,
-        "miny": 1392.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -81667,14 +79427,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2955,
-        "maxy": 1398,
-        "minx": 2951,
-        "miny": 1395
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -81724,14 +79477,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3104,
-        "maxy": 1395.7,
-        "minx": 3093,
-        "miny": 1385.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -81773,14 +79519,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2954.2,
-        "maxy": 1391.4,
-        "minx": 2951,
-        "miny": 1385.6
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -81938,14 +79677,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1334,
-        "maxy": 1383,
-        "minx": 1295,
-        "miny": 1354.7
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -82155,14 +79887,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2226.5,
-        "maxy": 1377,
-        "minx": 2192.1,
-        "miny": 1349.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -82236,14 +79961,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1347.2,
-        "maxy": 1375,
-        "minx": 1334,
-        "miny": 1364.5
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -82285,14 +80003,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 606.2,
-        "maxy": 1373.2,
-        "minx": 602.8,
-        "miny": 1369.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -82430,14 +80141,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2241,
-        "maxy": 1371.9,
-        "minx": 2227,
-        "miny": 1346.1
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -82519,14 +80223,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2252,
-        "maxy": 1371.1,
-        "minx": 2239.9,
-        "miny": 1359.5
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -83212,14 +80909,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1024.8,
-        "maxy": 1364.7,
-        "minx": 930,
-        "miny": 1176
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -83377,14 +81067,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1039.3,
-        "maxy": 1366,
-        "minx": 993.3,
-        "miny": 1256.1
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -83422,14 +81105,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2889.4,
-        "maxy": 1365.2,
-        "minx": 2884.8,
-        "miny": 1359.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -83487,14 +81163,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1295.1,
-        "maxy": 1363,
-        "minx": 1287.5,
-        "miny": 1354.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -83540,14 +81209,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2248.1,
-        "maxy": 1360.8,
-        "minx": 2243.1,
-        "miny": 1357
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -83609,14 +81271,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3168,
-        "maxy": 1358,
-        "minx": 3155,
-        "miny": 1346.7
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -83674,14 +81329,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1324.2,
-        "maxy": 1357,
-        "minx": 1317,
-        "miny": 1350.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -83723,14 +81371,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1313.2,
-        "maxy": 1353.9,
-        "minx": 1309.8,
-        "miny": 1350.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -83760,14 +81401,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2227,
-        "maxy": 1354,
-        "minx": 2225,
-        "miny": 1352
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -83805,14 +81439,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2227,
-        "maxy": 1351,
-        "minx": 2223.8,
-        "miny": 1347.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -83846,14 +81473,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2450,
-        "maxy": 1348,
-        "minx": 2448,
-        "miny": 1344.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -83887,14 +81507,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1314,
-        "maxy": 1347.1,
-        "minx": 1312,
-        "miny": 1341.5
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -84444,14 +82057,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2472,
-        "maxy": 1330.4,
-        "minx": 2387,
-        "miny": 1277
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -84481,14 +82087,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2127,
-        "maxy": 1324.5,
-        "minx": 2125,
-        "miny": 1319.5
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -84598,14 +82197,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 812.4,
-        "maxy": 1320,
-        "minx": 777.2,
-        "miny": 1295
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -84647,14 +82239,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 773.9,
-        "maxy": 1314.1,
-        "minx": 769,
-        "miny": 1307.7
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -84704,14 +82289,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 770.2,
-        "maxy": 1313,
-        "minx": 764.9,
-        "miny": 1306
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -84773,14 +82351,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 818,
-        "maxy": 1311,
-        "minx": 803.5,
-        "miny": 1296.1
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -84890,14 +82461,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2498.2,
-        "maxy": 1299,
-        "minx": 2483,
-        "miny": 1287
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -84931,14 +82495,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2494,
-        "maxy": 1291,
-        "minx": 2490.9,
-        "miny": 1289
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -85648,14 +83205,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3696,
-        "maxy": 1294,
-        "minx": 3406.6,
-        "miny": 1069.1
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -86345,14 +83895,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3447.1,
-        "maxy": 1069.1,
-        "minx": 3360.9,
-        "miny": 934
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -87062,14 +84605,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3540.4,
-        "maxy": 1056.8,
-        "minx": 3424.9,
-        "miny": 985.1
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -87739,14 +85275,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3714.9,
-        "maxy": 1072.5,
-        "minx": 3540.4,
-        "miny": 988.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -88436,14 +85965,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3714.3,
-        "maxy": 1183.5,
-        "minx": 3580.5,
-        "miny": 1044.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -88877,14 +86399,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3713.1,
-        "maxy": 1297,
-        "minx": 3621.9,
-        "miny": 1183.5
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -88922,14 +86437,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3693.1,
-        "maxy": 1236,
-        "minx": 3689.8,
-        "miny": 1233.2
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -88971,14 +86479,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3663.1,
-        "maxy": 1082.9,
-        "minx": 3660,
-        "miny": 1074.6
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -89044,14 +86545,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3530,
-        "maxy": 1046.8,
-        "minx": 3519.5,
-        "miny": 1038.3
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -89081,14 +86575,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3522.1,
-        "maxy": 1046,
-        "minx": 3520,
-        "miny": 1044
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -89162,14 +86649,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3598.9,
-        "maxy": 1041.2,
-        "minx": 3587,
-        "miny": 1029.5
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -89203,14 +86683,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3606,
-        "maxy": 1037,
-        "minx": 3598.7,
-        "miny": 1032
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -89280,14 +86753,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3618.9,
-        "maxy": 1023,
-        "minx": 3609,
-        "miny": 1011.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -89333,14 +86799,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3633.7,
-        "maxy": 1018.2,
-        "minx": 3628,
-        "miny": 1010
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -89386,14 +86845,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3625,
-        "maxy": 1013,
-        "minx": 3621.9,
-        "miny": 1008
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -89427,14 +86879,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3524.1,
-        "maxy": 1041.1,
-        "minx": 3520.5,
-        "miny": 1038.6
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -89464,14 +86909,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3591.1,
-        "maxy": 1038,
-        "minx": 3587.9,
-        "miny": 1036
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -89501,14 +86939,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 819.5,
-        "maxy": 1295.9,
-        "minx": 816.5,
-        "miny": 1288.1
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -89550,14 +86981,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2884.2,
-        "maxy": 1289,
-        "minx": 2878.5,
-        "miny": 1284.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -89599,14 +87023,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 820.2,
-        "maxy": 1288.5,
-        "minx": 817.8,
-        "miny": 1283.7
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -89636,14 +87053,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2888.2,
-        "maxy": 1286.3,
-        "minx": 2887,
-        "miny": 1282.5
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -89677,14 +87087,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2889,
-        "maxy": 1280.9,
-        "minx": 2886.1,
-        "miny": 1277
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -89714,14 +87117,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2880.1,
-        "maxy": 1280,
-        "minx": 2878,
-        "miny": 1278
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -89759,14 +87155,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2888.2,
-        "maxy": 1275.9,
-        "minx": 2885.1,
-        "miny": 1271.6
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -89812,14 +87201,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2886.3,
-        "maxy": 1272,
-        "minx": 2882.3,
-        "miny": 1262
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -89857,14 +87239,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 822.2,
-        "maxy": 1268,
-        "minx": 817.1,
-        "miny": 1264.1
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -90006,14 +87381,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 798,
-        "maxy": 1263.9,
-        "minx": 763.7,
-        "miny": 1240.7
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -90043,14 +87411,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2609,
-        "maxy": 1264,
-        "minx": 2606.1,
-        "miny": 1261
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -90128,14 +87489,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 701.3,
-        "maxy": 1259.1,
-        "minx": 674,
-        "miny": 1250
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -90165,14 +87519,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2879.2,
-        "maxy": 1259.2,
-        "minx": 2876.8,
-        "miny": 1253.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -90206,14 +87553,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2876.2,
-        "maxy": 1254.1,
-        "minx": 2874,
-        "miny": 1249.7
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -90291,14 +87631,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 720.4,
-        "maxy": 1250,
-        "minx": 704.7,
-        "miny": 1243.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -90336,14 +87669,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 734,
-        "maxy": 1246,
-        "minx": 731,
-        "miny": 1240.5
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -90385,14 +87711,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 763.7,
-        "maxy": 1246,
-        "minx": 757.7,
-        "miny": 1241.3
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -90422,14 +87741,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 738,
-        "maxy": 1244,
-        "minx": 736,
-        "miny": 1241
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -90559,14 +87871,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2766.4,
-        "maxy": 1242.5,
-        "minx": 2739.5,
-        "miny": 1231.7
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -90596,14 +87901,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2762,
-        "maxy": 1237,
-        "minx": 2759.9,
-        "miny": 1235
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -90769,14 +88067,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3625.2,
-        "maxy": 1243,
-        "minx": 3592,
-        "miny": 1213.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -91294,14 +88585,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3720.2,
-        "maxy": 1243,
-        "minx": 3646.9,
-        "miny": 1165.1
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -91335,14 +88619,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3717.2,
-        "maxy": 1240.3,
-        "minx": 3716,
-        "miny": 1236.5
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -91380,14 +88657,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3716,
-        "maxy": 1236,
-        "minx": 3713.1,
-        "miny": 1232.1
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -91437,14 +88707,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3713.4,
-        "maxy": 1231,
-        "minx": 3705,
-        "miny": 1225
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -91474,14 +88737,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3707,
-        "maxy": 1224,
-        "minx": 3705,
-        "miny": 1222
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -91531,14 +88787,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3709.2,
-        "maxy": 1221.4,
-        "minx": 3704.2,
-        "miny": 1216.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -91568,14 +88817,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 743.1,
-        "maxy": 1242,
-        "minx": 741,
-        "miny": 1240
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -91613,14 +88855,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 764,
-        "maxy": 1241,
-        "minx": 760.8,
-        "miny": 1235.6
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -91650,14 +88885,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 767,
-        "maxy": 1239,
-        "minx": 765,
-        "miny": 1237
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -91695,14 +88923,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2874.2,
-        "maxy": 1237.2,
-        "minx": 2871,
-        "miny": 1231.6
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -91744,14 +88965,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2708.5,
-        "maxy": 1234,
-        "minx": 2703.6,
-        "miny": 1231
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -91789,14 +89003,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3695.9,
-        "maxy": 1231,
-        "minx": 3692.2,
-        "miny": 1226.1
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -91870,14 +89077,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2998,
-        "maxy": 1229,
-        "minx": 2991,
-        "miny": 1218
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -91907,14 +89107,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2529,
-        "maxy": 1217,
-        "minx": 2527,
-        "miny": 1214
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -91964,14 +89157,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 992.9,
-        "maxy": 1206.8,
-        "minx": 988.3,
-        "miny": 1201
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -92013,14 +89199,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1194.6,
-        "maxy": 1207.1,
-        "minx": 1192,
-        "miny": 1198.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -92286,14 +89465,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3032.5,
-        "maxy": 1184,
-        "minx": 2982,
-        "miny": 1122.7
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -92323,14 +89495,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3011.2,
-        "maxy": 1141.5,
-        "minx": 3010.2,
-        "miny": 1135.5
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -92372,14 +89537,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2997,
-        "maxy": 1180,
-        "minx": 2989.5,
-        "miny": 1174
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -93093,14 +90251,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3793.9,
-        "maxy": 1180,
-        "minx": 3671,
-        "miny": 1106.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -93110,14 +90261,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3713.2,
-        "maxy": 1177.6,
-        "minx": 3713.2,
-        "miny": 1177.6
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -93187,14 +90331,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2984.9,
-        "maxy": 1179,
-        "minx": 2978.8,
-        "miny": 1169.2
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -93260,14 +90397,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3179.2,
-        "maxy": 1178,
-        "minx": 3170,
-        "miny": 1168
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -93341,14 +90471,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3619.1,
-        "maxy": 1169.6,
-        "minx": 3609,
-        "miny": 1158.7
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -93390,14 +90513,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3031.8,
-        "maxy": 1169.1,
-        "minx": 3026.9,
-        "miny": 1165
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -93427,14 +90543,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3165.1,
-        "maxy": 1164,
-        "minx": 3157.9,
-        "miny": 1162
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -93508,14 +90617,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3667.5,
-        "maxy": 1161,
-        "minx": 3661.3,
-        "miny": 1152.5
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -93633,14 +90735,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3662,
-        "maxy": 1151.7,
-        "minx": 3638.9,
-        "miny": 1136.7
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -93962,14 +91057,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3726,
-        "maxy": 1143.8,
-        "minx": 3658.1,
-        "miny": 1096.7
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -94015,14 +91103,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3686,
-        "maxy": 1138,
-        "minx": 3679.7,
-        "miny": 1132
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -94056,14 +91137,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2997,
-        "maxy": 1137,
-        "minx": 2995.1,
-        "miny": 1132.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -94129,14 +91203,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3666.9,
-        "maxy": 1133,
-        "minx": 3656,
-        "miny": 1124.7
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -94206,14 +91273,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3600,
-        "maxy": 1129,
-        "minx": 3588,
-        "miny": 1117.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -94255,14 +91315,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3602,
-        "maxy": 1108,
-        "minx": 3598.8,
-        "miny": 1102.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -94424,14 +91477,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3752,
-        "maxy": 1103,
-        "minx": 3703,
-        "miny": 1074.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -94497,14 +91543,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3768,
-        "maxy": 1091,
-        "minx": 3755,
-        "miny": 1079.7
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -94586,14 +91625,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3783.1,
-        "maxy": 1085.1,
-        "minx": 3767,
-        "miny": 1071.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -94691,14 +91723,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3767.2,
-        "maxy": 1062.8,
-        "minx": 3755,
-        "miny": 1040.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -94772,14 +91797,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3753,
-        "maxy": 1059.6,
-        "minx": 3737.5,
-        "miny": 1047.7
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -94813,14 +91831,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3753.9,
-        "maxy": 1060,
-        "minx": 3751,
-        "miny": 1057
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -94866,14 +91877,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3758.1,
-        "maxy": 1055,
-        "minx": 3754,
-        "miny": 1048.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -94955,14 +91959,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 576,
-        "maxy": 1047.2,
-        "minx": 560,
-        "miny": 1031.7
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -95004,14 +92001,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 517,
-        "maxy": 1040,
-        "minx": 512.8,
-        "miny": 1037
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -95065,14 +92055,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3432,
-        "maxy": 1035,
-        "minx": 3426,
-        "miny": 1029.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -95102,14 +92085,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 679.1,
-        "maxy": 997,
-        "minx": 677,
-        "miny": 995
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -95151,14 +92127,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 553.8,
-        "maxy": 991.9,
-        "minx": 546,
-        "miny": 984
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -95204,14 +92173,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 695.2,
-        "maxy": 989,
-        "minx": 687.5,
-        "miny": 986
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -95257,14 +92219,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3469.4,
-        "maxy": 983,
-        "minx": 3461.3,
-        "miny": 975
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -95318,14 +92273,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3374.9,
-        "maxy": 971,
-        "minx": 3369.4,
-        "miny": 965
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -95623,14 +92571,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3455.2,
-        "maxy": 949,
-        "minx": 3419.8,
-        "miny": 915.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -95660,14 +92601,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 528,
-        "maxy": 942,
-        "minx": 525.3,
-        "miny": 937
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -95837,14 +92771,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 701.5,
-        "maxy": 938,
-        "minx": 678,
-        "miny": 889.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -95878,14 +92805,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 524,
-        "maxy": 936,
-        "minx": 521,
-        "miny": 931.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -95923,14 +92843,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2386,
-        "maxy": 936,
-        "minx": 2380.8,
-        "miny": 933
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -95960,14 +92873,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2377,
-        "maxy": 931,
-        "minx": 2375,
-        "miny": 928.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -96009,14 +92915,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2382.9,
-        "maxy": 931,
-        "minx": 2379,
-        "miny": 928
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -96058,14 +92957,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 523,
-        "maxy": 926,
-        "minx": 517,
-        "miny": 917
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -96123,14 +93015,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2329,
-        "maxy": 910,
-        "minx": 2310,
-        "miny": 904
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -96312,14 +93197,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 481,
-        "maxy": 852,
-        "minx": 447.8,
-        "miny": 815.7
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -96361,14 +93239,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 486.5,
-        "maxy": 816,
-        "minx": 482,
-        "miny": 809.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -96478,14 +93349,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1612,
-        "maxy": 756,
-        "minx": 1585,
-        "miny": 732
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -96835,14 +93699,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1374,
-        "maxy": 556,
-        "minx": 1294,
-        "miny": 474
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -96968,14 +93825,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1024,
-        "maxy": 531.9,
-        "minx": 991.9,
-        "miny": 505
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -97057,14 +93907,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 919,
-        "maxy": 505,
-        "minx": 898,
-        "miny": 480.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -97774,14 +94617,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1830.4,
-        "maxy": 396.5,
-        "minx": 1658,
-        "miny": 265.5
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -97995,14 +94831,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1765.1,
-        "maxy": 397,
-        "minx": 1658,
-        "miny": 343
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -98080,14 +94909,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1768.1,
-        "maxy": 314,
-        "minx": 1755.9,
-        "miny": 306.7
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -98137,14 +94959,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1734.9,
-        "maxy": 390.7,
-        "minx": 1723,
-        "miny": 377
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -98234,14 +95049,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1622,
-        "maxy": 385.7,
-        "minx": 1583.9,
-        "miny": 367.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -98271,14 +95079,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1674.1,
-        "maxy": 386,
-        "minx": 1672,
-        "miny": 384
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -98348,14 +95149,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1091.8,
-        "maxy": 382.2,
-        "minx": 1082.7,
-        "miny": 364.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -98385,14 +95179,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1687.3,
-        "maxy": 377,
-        "minx": 1682.7,
-        "miny": 373
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -98426,14 +95213,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1861.1,
-        "maxy": 373,
-        "minx": 1858,
-        "miny": 371
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -98603,14 +95383,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 890,
-        "maxy": 354,
-        "minx": 826,
-        "miny": 300
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -99316,14 +96089,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1618,
-        "maxy": 342,
-        "minx": 1136,
-        "miny": 140.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -99921,14 +96687,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1710.2,
-        "maxy": 343,
-        "minx": 1239.5,
-        "miny": 105
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -100042,14 +96801,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1170,
-        "maxy": 337.1,
-        "minx": 1136,
-        "miny": 317
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -100099,14 +96851,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3622.2,
-        "maxy": 332.8,
-        "minx": 3614.9,
-        "miny": 328.9
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -100136,14 +96881,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3624.5,
-        "maxy": 328,
-        "minx": 3620,
-        "miny": 326
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -100185,14 +96923,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3623.2,
-        "maxy": 324.5,
-        "minx": 3620.8,
-        "miny": 319.7
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -100230,14 +96961,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3622.2,
-        "maxy": 316,
-        "minx": 3619,
-        "miny": 312.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -100479,14 +97203,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1773.1,
-        "maxy": 280,
-        "minx": 1685,
-        "miny": 212
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -100976,14 +97693,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1137,
-        "maxy": 279,
-        "minx": 937,
-        "miny": 192
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -101053,14 +97763,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1814.2,
-        "maxy": 244,
-        "minx": 1793.9,
-        "miny": 231.5
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -101178,14 +97881,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1909,
-        "maxy": 230,
-        "minx": 1887.1,
-        "miny": 176
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -101239,14 +97935,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2468.4,
-        "maxy": 224,
-        "minx": 2450.6,
-        "miny": 219.1
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -101300,14 +97989,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2899.7,
-        "maxy": 212,
-        "minx": 2893,
-        "miny": 206
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -101369,14 +98051,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 529,
-        "maxy": 202,
-        "minx": 519.6,
-        "miny": 195.7
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -101590,14 +98265,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 458,
-        "maxy": 197,
-        "minx": 414,
-        "miny": 156.8
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -101631,14 +98299,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 497,
-        "maxy": 193,
-        "minx": 494.1,
-        "miny": 190
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -101688,14 +98349,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 480.4,
-        "maxy": 189,
-        "minx": 473.8,
-        "miny": 184
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -101745,14 +98399,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 1178.2,
-        "maxy": 181,
-        "minx": 1172.8,
-        "miny": 176
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -101802,14 +98449,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 3177,
-        "maxy": 168,
-        "minx": 3169,
-        "miny": 160
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -101855,14 +98495,7 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 2976,
-        "maxy": 164,
-        "minx": 2965,
-        "miny": 160
-      }
-    }
+    "properties": {}
   },
   {
     "points": [
@@ -101892,13 +98525,6 @@
       ]
     ],
     "type": "arc",
-    "properties": {
-      "bbox": {
-        "maxx": 108,
-        "maxy": 76,
-        "minx": 99,
-        "miny": 67
-      }
-    }
+    "properties": {}
   }
 ]

@@ -1,3 +1,4 @@
+var simplify = require('./simplify');
 var SIMPLIFICATION_FACTOR = 5; // higher = more simplification
 
 function CoastlineLayer(features, arcs) {
@@ -15,6 +16,7 @@ function CoastlineLayer(features, arcs) {
       if (pn != arc.points.length - 1)
 	that.vertex_rt.insert({x:point[0],y:point[1],w:0,h:0},[an,pn])
     });
+    simplify.simplify_feature(arc);
   });
 }
 module.exports = CoastlineLayer;

@@ -1,7 +1,9 @@
 var simplify = require('./simplify');
 var SIMPLIFICATION_FACTOR = 5; // higher = more simplification
+var DEBUG_BBOX = false;
 
 function CoastlineLayer(features, arcs) {
+  this.features = features;
   this.arcs = arcs;
   this.rt = new RTree(10);
   this.vertex_rt = new RTree(10);
@@ -12,7 +14,7 @@ function CoastlineLayer(features, arcs) {
       if (pn != arc.points.length - 1)
 	that.vertex_rt.insert({x:point[0],y:point[1],w:0,h:0},[an,pn])
     });
-    simplify.simplify_feature(arc);
+    simplify.simplify_arc(arc);
   });
 
   _.each(features.objects, function(object) {
@@ -20,6 +22,17 @@ function CoastlineLayer(features, arcs) {
     var bb = object.properties.bbox;
     that.rt.insert({x:bb.minx, y:bb.miny, w:bb.maxx - bb.minx, h:bb.maxy - bb.miny},
 		   object);
+  });
+
+  var arc_to_feature = this.arc_to_feature = {};
+  _.each(features.objects, function(object, feature_id) {
+    _.each(object.arcs, function(component) {
+      _.each(component, function(arc_ix) {
+        if (!arc_to_feature[arc_ix])
+          arc_to_feature[arc_ix] = [];
+        arc_to_feature[arc_ix].push(feature_id);
+      });
+    });
   });
 }
 
@@ -46,19 +59,24 @@ CoastlineLayer.prototype.render = function(d, camera, locus, world_bbox) {
     var arc_id_lists = object.arcs;
     var arcs = that.arcs;
 
-
     d.beginPath();
     arc_id_lists.forEach(function(arc_id_list) {
       var n = 0;
-      arc_id_list.forEach(function(arc_id, arc_id_ix) {
+      arc_id_list.forEach(function(arc_id) {
 	var this_arc = arcs[arc_id].points;
 	var arc_bbox = arcs[arc_id].properties.bbox;
-	d.lineWidth = 0.9 / camera.scale();
+
+        if (DEBUG_BBOX) {
+          d.lineWidth = 1.5 / camera.scale();
+          d.strokeStyle = "#0ff";
+          d.strokeRect(arc_bbox.minx, arc_bbox.miny,
+                       arc_bbox.maxx - arc_bbox.minx,
+                       arc_bbox.maxy - arc_bbox.miny);
+        }
+
+        d.lineWidth = 0.9 / camera.scale();
 	rect_intersect = world_bbox[0] < arc_bbox.maxx && world_bbox[2] > arc_bbox.minx && world_bbox[3] > arc_bbox.miny && world_bbox[1] < arc_bbox.maxy;
 
-	//// Debugging bboxes
-	// d.strokeStyle = rect_intersect ?  "black" : "red";
-	// d.strokeRect(arc_bbox.minx, -arc_bbox.maxy, arc_bbox.maxx-arc_bbox.minx, arc_bbox.maxy - arc_bbox.miny);
 
 	if (!rect_intersect) {
 	  // draw super simplified
@@ -104,7 +122,17 @@ CoastlineLayer.prototype.render = function(d, camera, locus, world_bbox) {
     d.strokeStyle = "#44a";
     d.stroke();
     d.fillStyle = "#e7eada"; // k == "feature0" ? "#fed" : "white";
-    d.fill();
+    if (!DEBUG_BBOX)
+      d.fill();
+    else {
+      var feature_bbox = object.properties.bbox;
+      var lw = d.lineWidth = 3.0 / camera.scale();
+      d.strokeStyle = "#f0f";
+      d.strokeRect(feature_bbox.minx - lw, feature_bbox.miny - lw,
+                   feature_bbox.maxx - feature_bbox.minx + lw * 2,
+                   feature_bbox.maxy - feature_bbox.miny + lw * 2);
+    }
+
   });
 
   d.strokeStyle = "#333";
@@ -124,9 +152,20 @@ CoastlineLayer.prototype.render = function(d, camera, locus, world_bbox) {
 CoastlineLayer.prototype.replace_vert_in_arc = function(entry,  p) {
   var arc_id = entry[0];
   var vert_ix = entry[1];
-  var oldp = coastline_layer.arcs[arc_id].points[vert_ix];
-  coastline_layer.arcs[arc_id].points[vert_ix] = [p.x, p.y, 1000];
+  var arc = this.arcs[arc_id];
+  var oldp = arc.points[vert_ix];
+  arc.points[vert_ix] = [p.x, p.y, 1000];
+  simplify.simplify_arc(arc);
   var results = this.vertex_rt.remove({x:oldp[0],y:oldp[1],w:0,h:0}, entry);
-  console.log(results);
   this.vertex_rt.insert({x:p.x,y:p.y,w:0,h:0}, entry);
+  var that = this;
+  this.arc_to_feature[arc_id].forEach(function(feature_id) {
+    var object = that.features.objects[feature_id];
+    var bb = object.properties.bbox;
+    that.rt.remove({x:bb.minx, y:bb.miny, w:bb.maxx - bb.minx, h:bb.maxy - bb.miny},
+		   object);
+    simplify.compute_bbox(object, that.arcs);
+    that.rt.insert({x:bb.minx, y:bb.miny, w:bb.maxx - bb.minx, h:bb.maxy - bb.miny},
+		   object);
+  });
 }

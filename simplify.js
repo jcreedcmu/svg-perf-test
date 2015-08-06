@@ -19,11 +19,11 @@ function new_bbox() {
 // the area of error resulting from removing that point (after first
 // removing all lower-penalty points)
 
-function simplify_feature(feature) {
-  simplify(feature.points);
+function simplify_arc(arc) {
+  simplify(arc.points);
   var bbox = new_bbox();
-  feature.properties.bbox = bbox;
-  feature.points.forEach(function(pt) { accumulate_bbox(pt, bbox); });
+  arc.properties.bbox = bbox;
+  arc.points.forEach(function(pt) { accumulate_bbox(pt, bbox); });
 }
 
 function simplify(polygon) {
@@ -161,5 +161,5 @@ function compute_bbox(object, arcs) {
   });
 }
 
-module.exports.simplify_feature = simplify_feature;
+module.exports.simplify_arc = simplify_arc;
 module.exports.compute_bbox = compute_bbox;

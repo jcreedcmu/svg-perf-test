@@ -163,7 +163,7 @@ function render_scale(camera, d) {
     var raw = (1024 * px_dist / camera.scale());
     var str = "0";
     if (raw > 0) {
-      str =  (raw > 1000) ? raw / 1000 + "km" : raw + "m";
+      str =  (raw > 1000) ? Math.floor(raw / 100) / 10 + "km" : Math.floor(raw) + "m";
     }
     d.textAlign = "center";
     d.fillText(str, px_dist, h - 12);

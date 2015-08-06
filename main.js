@@ -27,21 +27,23 @@ ld.add(json_file('images'));
 ld.add(json_file('roads'));
 
 var init_img = 1176;
-ld.add(image(ImageLayer.image_url(init_img), 'overlay'));
+// ld.add(image(ImageLayer.image_url(init_img), 'overlay'));
 
 ld.done(function(data) {
   count = 0;
   assets = this;
   coastline_layer = new CoastlineLayer(assets.src.features, assets.src.arcs);
   label_layer = new LabelLayer(assets.src.labels);
-  image_layer = new ImageLayer(dispatch, init_img, assets.src.images, assets.img.overlay);
+//  image_layer = new ImageLayer(dispatch, init_img, assets.src.images, assets.img.overlay);
   road_layer = new RoadLayer(dispatch, assets.src.roads);
-  g_layers = [coastline_layer, image_layer, road_layer, label_layer];
+  g_layers = [coastline_layer, road_layer, label_layer];
 
   c = $("#c")[0];
   d = c.getContext('2d');
-  w = c.width = innerWidth;
-  h = c.height = innerHeight;
+  c.width = (w = innerWidth) * devicePixelRatio;
+  c.height = (h = innerHeight) * devicePixelRatio;
+  c.style.width = innerWidth + "px";
+  c.style.height = innerHeight + "px";
 
   var t;
   if (DEBUG && DEBUG_PROF) {
@@ -89,6 +91,8 @@ function dispatch() {
 }
 
 function render() {
+  d.save();
+  d.scale(devicePixelRatio, devicePixelRatio);
   lastTime = Date.now();
   if (interval != null) {
     clearInterval(interval);
@@ -146,6 +150,7 @@ function render() {
   if (g_render_extra) {
     g_render_extra(camera, d);
   }
+  d.restore();
 }
 
 function render_scale(camera, d) {
@@ -185,27 +190,24 @@ function render_scale(camera, d) {
 }
 
 $(c).on('mousewheel', function(e) {
-  if (e.ctrlKey) {
-    if (e.originalEvent.wheelDelta < 0) {
-      image_layer.scale(1/2);
-    }
-    else {
-      image_layer.scale(2);
-    }
-    render();
-    e.preventDefault();
-  }
-  else {
-    var x = e.pageX;
-    var y = e.pageY;
-    var zoom = 1;
-    if (e.originalEvent.wheelDelta < 0) {
-      zoom = -1;
-    }
-
-    state.zoom(x, y, zoom);
-    render();
-  }
+  // if (e.ctrlKey) {
+  //   if (e.originalEvent.wheelDelta < 0) {
+  //     image_layer.scale(1/2);
+  //   }
+  //   else {
+  //     image_layer.scale(2);
+  //   }
+  //   render();
+  //   e.preventDefault();
+  // }
+  // else {
+  var x = e.pageX;
+  var y = e.pageY;
+  var zoom = e.originalEvent.wheelDelta / 120;
+  e.preventDefault();
+  state.zoom(x, y, zoom);
+  render();
+ // }
 });
 
 function begin_pan(x, y, camera) {
@@ -227,21 +229,21 @@ $(c).on('mousedown', function(e) {
     var y = e.pageY;
     var worldp = inv_xform(camera,x, y);
 
-    if (e.ctrlKey) {
-      var membase = image_layer.get_pos();
-      $(document).on('mousemove.drag', function(e) {
-	image_layer.set_pos({x: membase.x + (e.pageX - x) / camera.scale(),
-			     y: membase.y - (e.pageY - y) / camera.scale()});
-	maybe_render();
-      });
-      $(document).on('mouseup.drag', function(e) {
-	$(document).off('.drag');
-	render();
-      });
+    // if (e.ctrlKey) {
+    //   var membase = image_layer.get_pos();
+    //   $(document).on('mousemove.drag', function(e) {
+    //     image_layer.set_pos({x: membase.x + (e.pageX - x) / camera.scale(),
+    //     		     y: membase.y - (e.pageY - y) / camera.scale()});
+    //     maybe_render();
+    //   });
+    //   $(document).on('mouseup.drag', function(e) {
+    //     $(document).off('.drag');
+    //     render();
+    //   });
 
-    }
-    else
-      begin_pan(x, y, camera);
+    // }
+    //    else
+    begin_pan(x, y, camera);
   }
   else if (g_mode == "Move") {
     var camera = state.camera();
@@ -318,12 +320,12 @@ $(document).on('keydown', function(e) {
     label_layer.add_label(state, prompt("name"));
     render();
   }
-  if (k == ",") {
-    image_layer.prev();
-  }
-  if (k == ".") {
-    image_layer.next();
-  }
+  // if (k == ",") {
+  //   image_layer.prev();
+  // }
+  // if (k == ".") {
+  //   image_layer.next();
+  // }
   if (k == "m") {
     g_mode = "Move";
     render();

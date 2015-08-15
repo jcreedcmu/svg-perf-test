@@ -7,7 +7,7 @@ function State() {
 
 State.prototype.camera = function() {
   var c = this.state.get('camera').toJS();
-  c.scale = function() { return 0.125 * Math.pow(2, this.zoom) };
+  c.scale = function() { return (1/8) * (1/1024) * Math.pow(2, this.zoom) };
   return c;
 }
 

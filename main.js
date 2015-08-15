@@ -140,6 +140,7 @@ function render() {
   // scale
   render_scale(camera, d);
 
+  // mode
   d.fillStyle = "black";
   d.strokeStyle = "white";
   d.font = "bold 12px sans-serif";
@@ -147,10 +148,27 @@ function render() {
   d.strokeText(g_mode, 20, h - 20);
   d.fillText(g_mode, 20, h - 20);
 
+
+  // debugging
+
+
+  d.fillStyle = "black";
+  d.strokeStyle = "white";
+  d.font = "bold 12px sans-serif";
+  d.lineWidth = 2;
+  var txt = g_lastz;
+  d.strokeText(txt, 20, 20);
+  d.fillText(txt, 20,  20);
+
+
+  // used for ephemeral stuff on top, like point-dragging
   if (g_render_extra) {
     g_render_extra(camera, d);
   }
+
+
   d.restore();
+
 }
 
 function render_scale(camera, d) {
@@ -160,7 +178,7 @@ function render_scale(camera, d) {
 
   d.translate(Math.floor(w / 2) + 0.5,0.5);
   function label(px_dist) {
-    var raw = (1024 * px_dist / camera.scale());
+    var raw = (px_dist / camera.scale());
     var str = "0";
     if (raw > 0) {
       str =  (raw > 1000) ? Math.floor(raw / 100) / 10 + "km" : Math.floor(raw) + "m";

@@ -21,3 +21,9 @@ Q: What sanity check do I want to impose?
 A: That if a single arc has multiple ownership of a vertex, it *only*
 occurs between the first and last points in the arc. Something similar
 for multiarc polygons.
+
+Q: How did I slurp all the json together into one blob?
+A:
+$ jq -s '[["labels", "images", "arcs", "features", "roads"] as $k \
+ | range(0; ($k | length)) as $ix | {key: $k[$ix], value: .[$ix]}] \
+ | from_entries 'labels.json images.json arcs.json features.json roads.json

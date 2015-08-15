@@ -20,11 +20,7 @@ state = new State();
 
 var assets;
 var ld = new Loader();
-ld.add(json_file('features'));
-ld.add(json_file('arcs'));
-ld.add(json_file('labels'));
-ld.add(json_file('images'));
-ld.add(json_file('roads'));
+ld.add(json_file('geo'));
 
 var init_img = 1176;
 // ld.add(image(ImageLayer.image_url(init_img), 'overlay'));
@@ -32,10 +28,11 @@ var init_img = 1176;
 ld.done(function(data) {
   count = 0;
   assets = this;
-  coastline_layer = new CoastlineLayer(assets.src.features, assets.src.arcs);
-  label_layer = new LabelLayer(assets.src.labels);
-//  image_layer = new ImageLayer(dispatch, init_img, assets.src.images, assets.img.overlay);
-  road_layer = new RoadLayer(dispatch, assets.src.roads);
+  var geo = assets.src.geo;
+  coastline_layer = new CoastlineLayer(geo.features, geo.arcs);
+  label_layer = new LabelLayer(geo.labels);
+//  image_layer = new ImageLayer(dispatch, init_img, geo.images, assets.img.overlay);
+  road_layer = new RoadLayer(dispatch, geo.roads);
   g_layers = [coastline_layer, road_layer, label_layer];
 
   c = $("#c")[0];

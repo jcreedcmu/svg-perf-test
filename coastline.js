@@ -151,13 +151,7 @@ CoastlineLayer.prototype.render = function(d, camera, locus, world_bbox) {
   var vert_size = 5 / camera.scale();
   arcs_to_draw_vertices_for.forEach(function(arc) {
     arc.forEach(function(vert, n) {
-      var divergence = 1000;
-      if (n > 0 && n < arc.length - 1) {
-	var dx = arc[n - 1][0] - arc[n + 1][0];
-	var dy = arc[n - 1][1] - arc[n + 1][1];
-	divergence = vert[2] /  (dx * dx + dy * dy);
-      }
-      d.fillStyle = divergence > 0.03 ? "#ffd" : "#f00";
+      d.fillStyle = vert[2] > 1000000 ? "#ffd" : "#f00";
       d.strokeRect(vert[0] - vert_size/2, vert[1] - vert_size / 2,  vert_size,  vert_size);
       d.fillRect(vert[0] - vert_size/2, vert[1] - vert_size / 2,  vert_size,  vert_size);
     });

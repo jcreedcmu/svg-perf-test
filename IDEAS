@@ -28,3 +28,9 @@ $ jq -s '[["labels", "images", "arcs", "features", "roads"] as $k \
  | from_entries 'labels.json images.json arcs.json features.json roads.json
 
 TODO: Merge file watching and file serving
+
+TODO: get rid of bboxes again
+
+Q: How did I turn the hash of features into array with name attributes?
+A:
+$ jq '.features.objects |=  (to_entries | .[] |= .value + {name: .key})' geo.json

@@ -72,7 +72,7 @@ CoastlineLayer.prototype.render = function(d, camera, locus, world_bbox) {
 
   var arcs_to_draw_vertices_for = [];
 
-  _.each(this.rt.bbox.apply(this.rt, world_bbox), function(object, key) {
+  _.each(this.rt.bbox.apply(this.rt, world_bbox), function(object) {
     var arc_id_lists = object.arcs;
     var arcs = that.arcs;
 
@@ -142,8 +142,8 @@ CoastlineLayer.prototype.render = function(d, camera, locus, world_bbox) {
     d.strokeStyle = "#44a";
     d.stroke();
     d.fillStyle = "#e7eada";
-    console.log(key);
-    if (key == "0")
+
+    if (object.name == "feature159")
       d.fillStyle = "#ff0";
     if (!DEBUG_BBOX)
       d.fill();

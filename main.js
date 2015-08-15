@@ -23,7 +23,7 @@ var ld = new Loader();
 ld.add(json_file('geo'));
 
 var init_img = 1176;
-// ld.add(image(ImageLayer.image_url(init_img), 'overlay'));
+ld.add(image(ImageLayer.image_url(init_img), 'overlay'));
 
 ld.done(function(data) {
   count = 0;
@@ -31,9 +31,9 @@ ld.done(function(data) {
   var geo = assets.src.geo;
   coastline_layer = new CoastlineLayer(geo.features, geo.arcs);
   label_layer = new LabelLayer(geo.labels);
-//  image_layer = new ImageLayer(dispatch, init_img, geo.images, assets.img.overlay);
+  image_layer = new ImageLayer(dispatch, init_img, geo.images, assets.img.overlay);
   road_layer = new RoadLayer(dispatch, geo.roads);
-  g_layers = [coastline_layer, road_layer, label_layer];
+  g_layers = [coastline_layer, road_layer, label_layer, image_layer];
 
   c = $("#c")[0];
   d = c.getContext('2d');
@@ -339,12 +339,12 @@ $(document).on('keydown', function(e) {
     label_layer.add_label(state, prompt("name"));
     render();
   }
-  // if (k == ",") {
-  //   image_layer.prev();
-  // }
-  // if (k == ".") {
-  //   image_layer.next();
-  // }
+  if (k == ",") {
+    image_layer.prev();
+  }
+  if (k == ".") {
+    image_layer.next();
+  }
   if (k == "m") {
     g_mode = "Move";
     render();

@@ -14,9 +14,9 @@ module.exports.prototype.render = function(d, camera, locus, world_bbox) {
   var ovr = this.overlay;
   if (ovr != null) {
     d.drawImage(ovr, 0, 0, ovr.width,
-  		ovr.height, this.img_state.x, -this.img_state.y + ovr.height  * this.img_state.scale / 1024,
-  		ovr.width * this.img_state.scale / 1024,
-  		-ovr.height * this.img_state.scale / 1024);
+  		ovr.height, this.img_state.x, -this.img_state.y + ovr.height  * this.img_state.scale,
+  		ovr.width * this.img_state.scale,
+  		-ovr.height * this.img_state.scale );
   }
 
   d.restore();

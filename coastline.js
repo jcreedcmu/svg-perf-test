@@ -16,7 +16,7 @@ CoastlineLayer.prototype.rebuild = function() {
     simplify.simplify_arc(arc);
   });
 
-  _.each(features.objects, function(object) {
+  _.each(features.objects, function(object, key) {
     simplify.compute_bbox(object, arcs);
     var bb = object.properties.bbox;
     that.rt.insert({x:bb.minx, y:bb.miny, w:bb.maxx - bb.minx, h:bb.maxy - bb.miny},
@@ -72,7 +72,7 @@ CoastlineLayer.prototype.render = function(d, camera, locus, world_bbox) {
 
   var arcs_to_draw_vertices_for = [];
 
-  _.each(this.rt.bbox.apply(this.rt, world_bbox), function(object, k) {
+  _.each(this.rt.bbox.apply(this.rt, world_bbox), function(object, key) {
     var arc_id_lists = object.arcs;
     var arcs = that.arcs;
 
@@ -141,7 +141,10 @@ CoastlineLayer.prototype.render = function(d, camera, locus, world_bbox) {
     d.lineWidth = 1.1 / camera.scale();
     d.strokeStyle = "#44a";
     d.stroke();
-    d.fillStyle = "#e7eada"; // k == "feature0" ? "#fed" : "white";
+    d.fillStyle = "#e7eada";
+    console.log(key);
+    if (key == "0")
+      d.fillStyle = "#ff0";
     if (!DEBUG_BBOX)
       d.fill();
     else {

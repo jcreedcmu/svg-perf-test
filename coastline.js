@@ -192,7 +192,30 @@ CoastlineLayer.prototype.replace_vert_in_arc = function(entry,  p) {
   this.vertex_rt.insert({x:p.x,y:p.y,w:0,h:0}, entry);
   var that = this;
   this.arc_to_feature[arc_id].forEach(function(feature_ix) {
-    console.log(feature_ix);
+    var object = that.features.objects[feature_ix];
+    var bb = object.properties.bbox;
+    that.rt.remove({x:bb.minx, y:bb.miny, w:bb.maxx - bb.minx, h:bb.maxy - bb.miny},
+		   object);
+    simplify.compute_bbox(object, that.arcs);
+    that.rt.insert({x:bb.minx, y:bb.miny, w:bb.maxx - bb.minx, h:bb.maxy - bb.miny},
+		   object);
+  });
+}
+
+CoastlineLayer.prototype.add_vert_to_arc = function(arc_id,  p) {
+  var arc = this.arcs[arc_id];
+  var len = arc.points.length;
+  var oldp = arc.points[len - 1];
+  arc.points[len - 1] = [p.x, p.y, 1000];
+  arc.points[len] = oldp;
+  simplify.simplify_arc(arc);
+  console.log(this.vertex_rt.search({x:oldp[0],y:oldp[1],w:0,h:0}));
+  var results = this.vertex_rt.remove({x:oldp[0],y:oldp[1],w:0,h:0});
+  this.vertex_rt.insert({x:p.x,y:p.y,w:0,h:0}, [arc_id, len-1]);
+  this.vertex_rt.insert({x:oldp[0],y:oldp[1],w:0,h:0}, [arc_id, len]);
+  this.vertex_rt.insert({x:oldp[0],y:oldp[1],w:0,h:0}, [arc_id, 0]);
+  var that = this;
+  this.arc_to_feature[arc_id].forEach(function(feature_ix) {
     var object = that.features.objects[feature_ix];
     var bb = object.properties.bbox;
     that.rt.remove({x:bb.minx, y:bb.miny, w:bb.maxx - bb.minx, h:bb.maxy - bb.miny},

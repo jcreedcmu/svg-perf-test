@@ -22,7 +22,7 @@ var assets;
 var ld = new Loader();
 ld.add(json_file('geo'));
 
-var init_img = 1176;
+var init_img = 1184;
 ld.add(image(ImageLayer.image_url(init_img), 'overlay'));
 
 ld.done(function(data) {
@@ -260,6 +260,14 @@ $(c).on('mousedown', function(e) {
     //    else
     begin_pan(x, y, camera);
   }
+  else if (g_mode == "Insert") {
+    var camera = state.camera();
+    var x = e.pageX;
+    var y = e.pageY;
+    var worldp = inv_xform(camera, x, y);
+    coastline_layer.add_vert_to_arc(454, worldp);
+    render();
+  }
   else if (g_mode == "Move") {
     var camera = state.camera();
     var x = e.pageX;
@@ -335,10 +343,10 @@ $(c).on('mousemove', function(e) {
 
 $(document).on('keydown', function(e) {
   var k = key(e);
-  if (k == "i") {
-    label_layer.add_label(state, prompt("name"));
-    render();
-  }
+  // if (k == "i") {
+  //   label_layer.add_label(state, prompt("name"));
+  //   render();
+  // }
   if (k == ",") {
     image_layer.prev();
   }
@@ -351,6 +359,10 @@ $(document).on('keydown', function(e) {
   }
   if (k == "p") {
     g_mode = "Pan";
+    render();
+  }
+  if (k == "i") {
+    g_mode = "Insert";
     render();
   }
   if (k == "e") {

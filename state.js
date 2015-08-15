@@ -1,6 +1,6 @@
 function State() {
   this.state = Immutable.fromJS({
-    camera: {x: -369.25, y: 2892.75, zoom: 4},
+    camera: {x: -26682, y: 6425, zoom: 7},
     locus: null,
   });
 }

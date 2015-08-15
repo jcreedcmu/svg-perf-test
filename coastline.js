@@ -24,12 +24,12 @@ CoastlineLayer.prototype.rebuild = function() {
   });
 
   var arc_to_feature = this.arc_to_feature = {};
-  _.each(features.objects, function(object, feature_id) {
+  _.each(features.objects, function(object, feature_ix) {
     _.each(object.arcs, function(component) {
       _.each(component, function(arc_ix) {
         if (!arc_to_feature[arc_ix])
           arc_to_feature[arc_ix] = [];
-        arc_to_feature[arc_ix].push(feature_id);
+        arc_to_feature[arc_ix].push(feature_ix);
       });
     });
   });
@@ -191,8 +191,9 @@ CoastlineLayer.prototype.replace_vert_in_arc = function(entry,  p) {
   var results = this.vertex_rt.remove({x:oldp[0],y:oldp[1],w:0,h:0}, entry);
   this.vertex_rt.insert({x:p.x,y:p.y,w:0,h:0}, entry);
   var that = this;
-  this.arc_to_feature[arc_id].forEach(function(feature_id) {
-    var object = that.features.objects[feature_id];
+  this.arc_to_feature[arc_id].forEach(function(feature_ix) {
+    console.log(feature_ix);
+    var object = that.features.objects[feature_ix];
     var bb = object.properties.bbox;
     that.rt.remove({x:bb.minx, y:bb.miny, w:bb.maxx - bb.minx, h:bb.maxy - bb.miny},
 		   object);

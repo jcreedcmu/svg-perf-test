@@ -362,11 +362,11 @@ $(document).on('keydown', function(e) {
 function save() {
   var geo = {};
   g_layers.forEach(function(layer, n) {
-    console.log(n);
-    console.log(layer.model);
     _.extend(geo, layer.model());
   });
-  console.log(geo);
+  $.ajax("/export", {method: "POST",  data: JSON.stringify(geo), contentType: "text/plain",  success: function() {
+    console.log("success");
+  }});
 }
 
 // function report() {

@@ -23,7 +23,7 @@ module.exports.prototype.render = function(d, camera, locus, world_bbox) {
 }
 
 function image_url(img_name) {
-  return 'file:///home/jcreed/art/whatever/' + img_name + '.png';
+  return '/img/' + img_name + '.png';
 }
 module.exports.image_url = image_url
 

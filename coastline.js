@@ -143,8 +143,16 @@ CoastlineLayer.prototype.render = function(d, camera, locus, world_bbox) {
     d.stroke();
     d.fillStyle = "#e7eada";
 
-    if (object.name == "feature159")
-      d.fillStyle = "#ff0";
+    // if (object.name == "feature20") {
+    //   d.strokeStyle = "#f0f";
+    //   var feature_bbox = object.properties.bbox;
+    //   var lw = 3.0 / camera.scale();
+    //   d.lineWidth = lw;
+    //   d.strokeRect(feature_bbox.minx - lw * 10, feature_bbox.miny - lw * 10,
+    //                feature_bbox.maxx - feature_bbox.minx + lw * 20,
+    //                feature_bbox.maxy - feature_bbox.miny + lw * 20);
+    //   d.fillStyle = "#ff0";
+    // }
     if (!DEBUG_BBOX)
       d.fill();
     else {

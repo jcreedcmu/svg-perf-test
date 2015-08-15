@@ -1,0 +1,23 @@
+=== 2015.08.15
+
+Q: What'd I do to blow up the coordinates from binary kilometers to meters?
+A:
+$ jq '.[].points[][] |= (. * 1024 | floor)' arcs.json  > arcs2.json
+$ jq '.[]["x", "y"] |= (. * 1024 | floor)' images.json > images2.json
+$ jq '.[].p["x", "y"] |= (. * 1024 | floor)' labels.json > labels2.json
+$ jq '.[]["x", "y"] |= (. * 1024 | floor)' roads.json > roads2.json
+
+Q: Do I want to keep the representation of arcs including both endpoints?
+A: Yeah, I think it'll be fewer headaches when I have three or more
+arcs joined up at a vertex. Otherwise it'll depend on the orientation
+of the arc whether it includes that vertex or not.
+
+Q: What does this mean I have to do?
+A: Track multiple vertex-ownership. If I'm dealing with the origin of
+an arc that loops back on itself, that single arc owns the vertex
+twice.
+
+Q: What sanity check do I want to impose?
+A: That if a single arc has multiple ownership of a vertex, it *only*
+occurs between the first and last points in the arc. Something similar
+for multiarc polygons.

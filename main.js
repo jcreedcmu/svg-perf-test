@@ -273,13 +273,15 @@ $(c).on('mousedown', function(e) {
     var bbox = [worldp.x - rad, worldp.y - rad, worldp.x + rad, worldp.y + rad];
     var targets = coastline_layer.targets(bbox);
 
-    if (targets.length == 1) {
-      var target = targets[0];
-      var arc_points = coastline_layer.arcs[target[0]].points;
-      var membase = clone(arc_points[target[1]]);
+    if (targets.length >= 1) {
+
       var neighbors = [];
-      if (target[1] > 0) neighbors.push(arc_points[target[1] - 1]);
-      if (target[1] < arc_points.length - 1) neighbors.push(arc_points[target[1] + 1]);
+
+      targets.forEach(function(target) {
+	var arc_points = coastline_layer.arcs[target[0]].points;
+	if (target[1] > 0) neighbors.push(arc_points[target[1] - 1]);
+	if (target[1] < arc_points.length - 1) neighbors.push(arc_points[target[1] + 1]);});
+
       g_render_extra = function(camera, d) {
 	d.save();
 	d.translate(camera.x, camera.y);
@@ -305,7 +307,9 @@ $(c).on('mousedown', function(e) {
       $(document).on('mouseup.drag', function(e) {
 	g_render_extra = null;
 	$(document).off('.drag');
-	coastline_layer.replace_vert_in_arc(target, dragp);
+	targets.forEach(function(target) {
+	  coastline_layer.replace_vert_in_arc(target, dragp);
+	});
 	render();
       });
     }

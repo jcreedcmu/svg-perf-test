@@ -11,8 +11,7 @@ function CoastlineLayer(features, arcs) {
 
   _.each(arcs, function(arc, an) {
     _.each(arc.points, function(point, pn) {
-      if (pn != arc.points.length - 1)
-	that.vertex_rt.insert({x:point[0],y:point[1],w:0,h:0},[an,pn])
+      that.vertex_rt.insert({x:point[0],y:point[1],w:0,h:0},[an,pn])
     });
     simplify.simplify_arc(arc);
   });
@@ -40,7 +39,19 @@ module.exports = CoastlineLayer;
 
 CoastlineLayer.prototype.targets = function(world_bbox) {
   var targets = this.vertex_rt.bbox.apply(this.vertex_rt, world_bbox);
-  return targets.length == 0 ? [] : [targets[0]];
+
+  if (targets.length < 2) return targets;
+
+  var orig = this.arcs[targets[0][0]].points[targets[0][1]];
+  for (var i = 1; i < targets.length; i++) {
+    var here = this.arcs[targets[i][0]].points[targets[i][1]];
+      // If we're getting a set of points not literally on the same
+      // point, pretend there's no match
+    if (orig.x != here.x) return [];
+    if (orig.y != here.y) return [];
+  }
+  // Otherwise return the whole set
+  return targets;
 }
 
 CoastlineLayer.prototype.render = function(d, camera, locus, world_bbox) {
@@ -140,6 +151,13 @@ CoastlineLayer.prototype.render = function(d, camera, locus, world_bbox) {
   var vert_size = 5 / camera.scale();
   arcs_to_draw_vertices_for.forEach(function(arc) {
     arc.forEach(function(vert, n) {
+      var divergence = 1000;
+      if (n > 0 && n < arc.length - 1) {
+	var dx = arc[n - 1][0] - arc[n + 1][0];
+	var dy = arc[n - 1][1] - arc[n + 1][1];
+	divergence = vert[2] /  (dx * dx + dy * dy);
+      }
+      d.fillStyle = divergence > 0.03 ? "#ffd" : "#f00";
       d.strokeRect(vert[0] - vert_size/2, vert[1] - vert_size / 2,  vert_size,  vert_size);
       d.fillRect(vert[0] - vert_size/2, vert[1] - vert_size / 2,  vert_size,  vert_size);
     });

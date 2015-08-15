@@ -96,7 +96,7 @@ CoastlineLayer.prototype.render = function(d, camera, locus, world_bbox) {
 
 
 	if (this_arc.length < 2) {
-	  throw "arc must have at least two points";
+	  throw "arc " + arc_id + " must have at least two points";
 	}
 	if (!rect_intersect) {
 	  // draw super simplified

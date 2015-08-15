@@ -1,3 +1,5 @@
+var stringify = require('canonical-json');
+var fs = require('fs');
 var express = require('express');
 
 var app = express();
@@ -10,8 +12,9 @@ app.post('/export', function(req, res) {
     data += chunk;
   });
   req.on('end', function() {
-    req.body = JSON.parse(data);
-    console.log(req.body);
+    var body = JSON.parse(data);
+    fs.writeFileSync("geo.json", stringify(body, null, 2), "utf8");
+    console.log("ok");
     res.end("ok");
   });
 });

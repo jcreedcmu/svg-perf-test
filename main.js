@@ -356,6 +356,11 @@ $(document).on('keydown', function(e) {
   if (k == "e") {
     save();
   }
+  if (k == "f") {
+    coastline_layer.filter();
+    render();
+  }
+
   //  console.log(e.charCode);
 });
 

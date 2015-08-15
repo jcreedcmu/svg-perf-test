@@ -2,12 +2,12 @@ var simplify = require('./simplify');
 var SIMPLIFICATION_FACTOR = 5; // higher = more simplification
 var DEBUG_BBOX = false;
 
-function CoastlineLayer(features, arcs) {
-  this.features = features;
-  this.arcs = arcs;
+CoastlineLayer.prototype.rebuild = function() {
   this.rt = new RTree(10);
   this.vertex_rt = new RTree(10);
   var that = this;
+  var arcs = this.arcs;
+  var features = this.features;
 
   _.each(arcs, function(arc, an) {
     _.each(arc.points, function(point, pn) {
@@ -33,6 +33,12 @@ function CoastlineLayer(features, arcs) {
       });
     });
   });
+}
+
+function CoastlineLayer(features, arcs) {
+  this.features = features;
+  this.arcs = arcs;
+  this.rebuild();
 }
 
 module.exports = CoastlineLayer;
@@ -89,6 +95,9 @@ CoastlineLayer.prototype.render = function(d, camera, locus, world_bbox) {
 	rect_intersect = world_bbox[0] < arc_bbox.maxx && world_bbox[2] > arc_bbox.minx && world_bbox[3] > arc_bbox.miny && world_bbox[1] < arc_bbox.maxy;
 
 
+	if (this_arc.length < 2) {
+	  throw "arc must have at least two points";
+	}
 	if (!rect_intersect) {
 	  // draw super simplified
 	  this_arc = [this_arc[0],this_arc[this_arc.length - 1]];
@@ -190,4 +199,15 @@ CoastlineLayer.prototype.model = function() {
 	      return [p[0], p[1]];
 	    })})
 	  })};
+}
+
+CoastlineLayer.prototype.filter = function() {
+  this.arcs =
+    // strip out collinearish points
+    this.arcs.map(function(arc) {
+      return _.extend({}, arc, {points: arc.points.filter(function(p, n) {
+	return n == 0 || n == arc.points.length - 1 || p[2] > 1000000;
+      })})
+    });
+  this.rebuild();
 }

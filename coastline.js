@@ -183,5 +183,11 @@ CoastlineLayer.prototype.replace_vert_in_arc = function(entry,  p) {
 }
 
 CoastlineLayer.prototype.model = function() {
-  return {features: this.features, arcs: this.arcs};
+  return {features: this.features,
+	  // strip out deviation measurements
+	  arcs: this.arcs.map(function(arc) {
+	    return _.extend({}, arc, {points: arc.points.map(function(p) {
+	      return [p[0], p[1]];
+	    })})
+	  })};
 }

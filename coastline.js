@@ -181,3 +181,7 @@ CoastlineLayer.prototype.replace_vert_in_arc = function(entry,  p) {
 		   object);
   });
 }
+
+CoastlineLayer.prototype.model = function() {
+  return {features: this.features, arcs: this.arcs};
+}

@@ -1,4 +1,5 @@
 function LabelLayer(labels) {
+  this.labels = labels;
   var rt = this.rt = new RTree(10);
   labels.forEach(function(lab) {
     add_label(rt, lab);
@@ -101,6 +102,10 @@ LabelLayer.prototype.render = function(d, camera, locus, world_bbox) {
     d.strokeRect(loc.x - 1, loc.y - 1, 2, 2);
     d.restore();
   }
+}
+
+LabelLayer.prototype.model = function() {
+  return {labels: this.labels};
 }
 
 exports.handle_mouse = function(camera, worldp) {

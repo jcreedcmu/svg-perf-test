@@ -37,6 +37,10 @@ module.exports.prototype.render = function(d, camera, locus, world_bbox) {
   d.restore();
 }
 
+module.exports.prototype.model = function() {
+  return {roads: this.roads};
+}
+
 module.exports.prototype.add = function(p) {
   this.roads.push(p);
 }

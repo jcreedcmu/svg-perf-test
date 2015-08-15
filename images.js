@@ -60,3 +60,7 @@ module.exports.prototype.set_pos = function(p) {
   this.img_state.x = p.x;
   this.img_state.y = p.y;
 }
+
+module.exports.prototype.model = function() {
+  return {images: this.img_states};
+}

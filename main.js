@@ -353,9 +353,21 @@ $(document).on('keydown', function(e) {
     g_mode = "Pan";
     render();
   }
-
+  if (k == "e") {
+    save();
+  }
   //  console.log(e.charCode);
 });
+
+function save() {
+  var geo = {};
+  g_layers.forEach(function(layer, n) {
+    console.log(n);
+    console.log(layer.model);
+    _.extend(geo, layer.model());
+  });
+  console.log(geo);
+}
 
 // function report() {
 //   g_imageStates[g_curImgName] = clone(g_imageState);

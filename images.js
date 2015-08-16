@@ -17,6 +17,19 @@ module.exports.prototype.render = function(d, camera, locus, world_bbox) {
   		ovr.height, this.img_state.x, -this.img_state.y + ovr.height  * this.img_state.scale,
   		ovr.width * this.img_state.scale,
   		-ovr.height * this.img_state.scale );
+    d.globalAlpha = 0.5;
+    d.beginPath();
+    d.moveTo(0, -this.img_state.y);
+    d.lineTo(3807232, -this.img_state.y );
+    d.moveTo(this.img_state.x, 0);
+    d.lineTo(this.img_state.x, -3226521 );
+
+    d.strokeStyle = "blue";
+    d.lineWidth = 1 / camera.scale();
+    d.stroke();
+    d.strokeRect(this.img_state.x, -this.img_state.y + ovr.height  * this.img_state.scale,
+  		ovr.width * this.img_state.scale,
+  	       -ovr.height * this.img_state.scale);
   }
 
   d.restore();

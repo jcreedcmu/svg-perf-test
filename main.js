@@ -153,7 +153,7 @@ function render() {
   d.strokeStyle = "white";
   d.font = "bold 12px sans-serif";
   d.lineWidth = 2;
-  var txt = g_lastz;
+  var txt = "Zoom: " + camera.zoom + " (1px = " + 1/camera.scale() + "m) g_lastz: " + g_lastz;
   d.strokeText(txt, 20, 20);
   d.fillText(txt, 20,  20);
 
@@ -163,9 +163,15 @@ function render() {
     g_render_extra(camera, d);
   }
 
-
   d.restore();
+}
 
+function meters_to_string(raw) {
+   var str = "0";
+    if (raw > 0) {
+      str =  (raw > 1000) ? Math.floor(raw / 100) / 10 + "km" : Math.floor(raw) + "m";
+    }
+  return str;
 }
 
 function render_scale(camera, d) {
@@ -175,11 +181,7 @@ function render_scale(camera, d) {
 
   d.translate(Math.floor(w / 2) + 0.5,0.5);
   function label(px_dist) {
-    var raw = (px_dist / camera.scale());
-    var str = "0";
-    if (raw > 0) {
-      str =  (raw > 1000) ? Math.floor(raw / 100) / 10 + "km" : Math.floor(raw) + "m";
-    }
+    var str = meters_to_string(px_dist / camera.scale());
     d.textAlign = "center";
     d.fillText(str, px_dist, h - 12);
   }

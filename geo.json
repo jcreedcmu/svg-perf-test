@@ -71408,7 +71408,8 @@
         "y": 2945440
       },
       "text": "bay of wadwad",
-      "type": "minorsea"
+      "type": "minorsea",
+      "zoom": "3"
     },
     "107": {
       "p": {
@@ -71416,7 +71417,8 @@
         "y": 2905120
       },
       "text": "duo bay",
-      "type": "minorsea"
+      "type": "minorsea",
+      "zoom": "3"
     },
     "108": {
       "p": {
@@ -71630,7 +71632,8 @@
         "y": 3111600
       },
       "text": "so liem",
-      "type": "city"
+      "type": "city",
+      "zoom": "2"
     },
     "131": {
       "p": {
@@ -71662,7 +71665,8 @@
         "y": 2971680
       },
       "text": "duogaz",
-      "type": "city"
+      "type": "city",
+      "zoom": "4"
     },
     "135": {
       "p": {
@@ -71960,6 +71964,23 @@
       "text": "Hannakupniyam Lake",
       "type": "minorsea",
       "zoom": "4"
+    },
+    "168": {
+      "p": {
+        "x": 851840,
+        "y": 2985216
+      },
+      "text": "gaz lake",
+      "type": "minorsea",
+      "zoom": "5"
+    },
+    "169": {
+      "p": {
+        "x": 1899808,
+        "y": 1727968
+      },
+      "text": "Nvoyab",
+      "type": "region"
     },
     "17": {
       "p": {
@@ -72378,7 +72399,8 @@
         "y": 258880
       },
       "text": "oskyutlams",
-      "type": "region"
+      "type": "region",
+      "zoom": "2"
     },
     "63": {
       "p": {
@@ -72386,7 +72408,8 @@
         "y": 336960
       },
       "text": "natsupit",
-      "type": "region"
+      "type": "region",
+      "zoom": "3"
     },
     "64": {
       "p": {
@@ -72421,7 +72444,7 @@
       },
       "text": "himenepit",
       "type": "region",
-      "zoom": "4"
+      "zoom": "3"
     },
     "68": {
       "p": {
@@ -72675,7 +72698,8 @@
         "y": 2658080
       },
       "text": "boundary bay",
-      "type": "minorsea"
+      "type": "minorsea",
+      "zoom": "3"
     },
     "96": {
       "p": {
@@ -72683,7 +72707,8 @@
         "y": 2764320
       },
       "text": "yan plu bay",
-      "type": "minorsea"
+      "type": "minorsea",
+      "zoom": "3"
     },
     "97": {
       "p": {
@@ -72707,7 +72732,8 @@
         "y": 2634400
       },
       "text": "gulf of jyo hua",
-      "type": "minorsea"
+      "type": "minorsea",
+      "zoom": "3"
     }
   },
   "roads": [

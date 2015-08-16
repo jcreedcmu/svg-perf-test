@@ -72787,6 +72787,60 @@
       },
       "txt": "muzgirab",
       "type": "region"
+    },
+    {
+      "id": 162,
+      "p": {
+        "x": 812736,
+        "y": 475264
+      },
+      "txt": "bay of gorbya",
+      "type": "minorsea"
+    },
+    {
+      "id": 163,
+      "p": {
+        "x": 3828416,
+        "y": 1180288
+      },
+      "txt": "Yixia Me",
+      "type": "region"
+    },
+    {
+      "id": 164,
+      "p": {
+        "x": 3077440,
+        "y": 1190656
+      },
+      "txt": "Urgaq",
+      "type": "region"
+    },
+    {
+      "id": 165,
+      "p": {
+        "x": 3201344,
+        "y": 1451904
+      },
+      "txt": "Rnmut",
+      "type": "region"
+    },
+    {
+      "id": 166,
+      "p": {
+        "x": 2491392,
+        "y": 1332224
+      },
+      "txt": "Inkepst",
+      "type": "region"
+    },
+    {
+      "id": 167,
+      "p": {
+        "x": 1880448,
+        "y": 1191552
+      },
+      "txt": "Hannakupniyam Lake",
+      "type": "minorsea"
     }
   ],
   "roads": [

@@ -71904,7 +71904,8 @@
         "y": 475264
       },
       "text": "bay of gorbya",
-      "type": "minorsea"
+      "type": "minorsea",
+      "zoom": "3"
     },
     "163": {
       "p": {
@@ -71912,7 +71913,8 @@
         "y": 1180288
       },
       "text": "Yixia Me",
-      "type": "region"
+      "type": "region",
+      "zoom": "4"
     },
     "164": {
       "p": {
@@ -71928,7 +71930,8 @@
         "y": 1451904
       },
       "text": "Rnmut",
-      "type": "region"
+      "type": "region",
+      "zoom": "5"
     },
     "166": {
       "p": {
@@ -71944,7 +71947,8 @@
         "y": 1191552
       },
       "text": "Hannakupniyam Lake",
-      "type": "minorsea"
+      "type": "minorsea",
+      "zoom": "4"
     },
     "17": {
       "p": {
@@ -72288,7 +72292,8 @@
         "y": 853760
       },
       "text": "miz",
-      "type": "region"
+      "type": "region",
+      "zoom": "3"
     },
     "56": {
       "p": {
@@ -72368,7 +72373,8 @@
         "y": 381760
       },
       "text": "xastapit",
-      "type": "region"
+      "type": "region",
+      "zoom": "5"
     },
     "65": {
       "p": {
@@ -72376,7 +72382,8 @@
         "y": 335360
       },
       "text": "skyumiapit",
-      "type": "region"
+      "type": "region",
+      "zoom": "4"
     },
     "66": {
       "p": {
@@ -72392,7 +72399,8 @@
         "y": 210560
       },
       "text": "himenepit",
-      "type": "region"
+      "type": "region",
+      "zoom": "4"
     },
     "68": {
       "p": {
@@ -72544,7 +72552,8 @@
         "y": 1704480
       },
       "text": "lake aketuva",
-      "type": "minorsea"
+      "type": "minorsea",
+      "zoom": "3"
     },
     "85": {
       "p": {
@@ -72560,7 +72569,8 @@
         "y": 1463200
       },
       "text": "bay of zramsd",
-      "type": "minorsea"
+      "type": "minorsea",
+      "zoom": "4"
     },
     "87": {
       "p": {
@@ -72568,7 +72578,8 @@
         "y": 1645600
       },
       "text": "camareni channel",
-      "type": "minorsea"
+      "type": "minorsea",
+      "zoom": "4"
     },
     "88": {
       "p": {
@@ -72576,7 +72587,8 @@
         "y": 1403040
       },
       "text": "near zbegyanda strait",
-      "type": "minorsea"
+      "type": "minorsea",
+      "zoom": "4"
     },
     "89": {
       "p": {
@@ -72584,7 +72596,8 @@
         "y": 1212320
       },
       "text": "far zbegyanda strait",
-      "type": "minorsea"
+      "type": "minorsea",
+      "zoom": "4"
     },
     "9": {
       "p": {

@@ -48,15 +48,21 @@ function titleCase(str) {
 LabelLayer.prototype.render = function(d, camera, locus, world_bbox) {
   if (camera.zoom < 1) return;
   d.lineJoin = "round";
-  function draw_label(p, txt, typ) {
+  function draw_label(lab) {
+    var p = lab.p, txt = lab.text, typ = lab.type, min_zoom = lab.zoom;
     var q = {x: camera.x + camera.scale() * p.x,
 	      y: camera.y - camera.scale() * p.y};
 
     txt = titleCase(txt);
     var stroke = true;
     var height;
+    if (min_zoom == null) {
+      if (typ == "city") min_zoom = 3;
+      if (typ == "minorsea") min_zoom = 2;
+    }
+    if (camera.zoom < min_zoom) return;
+
     if (typ == "city") {
-      if (camera.zoom < 3) return;
       d.fillStyle = "white";
       d.strokeStyle = "#333";
       d.lineWidth = 1.5;
@@ -88,7 +94,6 @@ LabelLayer.prototype.render = function(d, camera, locus, world_bbox) {
       d.font = "bold " + height + "px sans-serif";
     }
     else if (typ == "minorsea") {
-      if (camera.zoom < 3) return;
       d.fillStyle = "#44a";
       d.strokeStyle = "white";
       d.lineWidth = 2;
@@ -101,9 +106,7 @@ LabelLayer.prototype.render = function(d, camera, locus, world_bbox) {
     d.fillText(txt, q.x - width/2, q.y + height/2);
   }
 
-  this.rt.bbox.apply(this.rt, world_bbox).forEach(function(lab) {
-    draw_label(lab.p, lab.text, lab.type);
-  });
+  this.rt.bbox.apply(this.rt, world_bbox).forEach(draw_label);
 
   if (locus != null) {
     var loc = locus.toJS();

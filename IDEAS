@@ -29,8 +29,14 @@ $ jq -s '[["labels", "images", "arcs", "features", "roads"] as $k \
 
 TODO: Merge file watching and file serving
 
-TODO: get rid of bboxes again
-
 Q: How did I turn the hash of features into array with name attributes?
 A:
 $ jq '.features.objects |=  (to_entries | .[] |= .value + {name: .key})' geo.json
+
+=== 2015.08.16
+
+TODO: get rid of bboxes via "_" properties?
+
+Q: How do I do the inverse of paths in jq?
+A: getpath --- which appears undocumented, see
+https://github.com/stedolan/jq/issues/914

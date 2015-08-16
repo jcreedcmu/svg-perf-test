@@ -15,9 +15,10 @@
     </style>
   </head>
   <body>
-    <canvas id="c"></canvas>
-    <script src="bundle.js"></script>
+    <canvas id="c" tabindex="0"></canvas>
 
+    <div id="other_modal" class="modal fade" role="dialog">
+    </div>
 
     <div id="insert_label" class="modal fade" role="dialog">
       <div class="modal-dialog">
@@ -26,28 +27,29 @@
             <button type="button" class="close" data-dismiss="modal">&times;</button>
             <h4 class="modal-title">Insert Label</h4>
 	  </div>
-	  <form onsubmit="insert_label_ok">
+	  <form>
 	    <div class="modal-body">
 	      <div class="form-group">
 		<label for="text">Text</label>
-		<input type="text" class="form-control" id="text" placeholder="erla-otul">
+		<input type="text" class="form-control" name="text" placeholder="erla-otul">
 	      </div>
 	      <div class="form-group">
 		<label for="type">Type</label>
-		<input type="text" class="form-control" id="type" placeholder="region">
+		<input type="text" class="form-control" name="type" placeholder="region" value="region">
 	      </div>
 	      <div class="form-group">
 		<label for="zoom">Zoom</label>
-		<input type="text" class="form-control" id="zoom" placeholder="4">
+		<input type="text" class="form-control" name="zoom" placeholder="4">
 	      </div>
 	    </div>
 	    <div class="modal-footer">
 	      <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-              <button type="submit" class="btn btn-primary" onclick="insert_label_ok">Ok</button>
+              <button type="submit" class="btn btn-primary">Ok</button>
 	    </div>
 	  </form>
 	</div>
       </div>
 
+      <script src="bundle.js"></script>
   </body>
 </html>

@@ -1,10 +1,11 @@
 function LabelLayer(labels) {
+  var that = this;
   this.labels = labels;
   var rt = this.rt = new RTree(10);
   labels.forEach(function(lab) {
-    add_label(rt, lab);
+    that.add_label_to_rt(lab);
   });
-  //  this.last_label = _.max(labels, 'id').id + 1;
+  this.last_label = _.max(labels, 'id').id + 1;
 }
 module.exports = LabelLayer;
 
@@ -16,14 +17,16 @@ module.exports = LabelLayer;
 // }
 // window.debug_all = debug_all;
 
-function add_label(rt, lab) {
-  rt.insert({x: lab.p.x, y:lab.p.y, w:0, h:0}, lab);
+LabelLayer.prototype.add_label_to_rt = function(lab) {
+  this.rt.insert({x: lab.p.x, y:lab.p.y, w:0, h:0}, lab);
 }
 
-// function new_label(x, y, txt, type) {
-//   var id = last_label++;
-//   add_label({id:id, p: {x:x, y:y}, txt: txt, type: type});
-// }
+LabelLayer.prototype.new_label = function(bundle) {
+  var id = this.last_label++;
+  var lab = {id:id, p: {x:bundle.p.x, y:bundle.p.y}, txt: bundle.text, type: bundle.type};
+  this.add_label_to_rt(lab);
+  this.labels.push(lab);
+}
 
 function titleCase(str) {
   return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
@@ -120,10 +123,4 @@ exports.handle_mouse = function(camera, worldp) {
     window.render();
   }
   return rv;
-}
-
-exports.add_label = function(state, name) {
-  var locus = state.get_locus();
-  new_label(locus.x, locus.y, name, "city");
-  state.set_locus(null);
 }

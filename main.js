@@ -262,6 +262,34 @@ $(c).on('mousedown', function(e) {
     else
       begin_pan(x, y, camera);
   }
+  else if (g_mode == "Label") {
+    var camera = state.camera();
+    var x = e.pageX;
+    var y = e.pageY;
+    var worldp = inv_xform(camera, x, y);
+    $('#insert_label input[name="text"]')[0].value = "";
+    $('#insert_label input[name="type"]')[0].value = "region";
+    $('#insert_label input[name="zoom"]')[0].value = "";
+
+    function insert_label_ok(e) {
+      e.preventDefault();
+      var obj = _.object($("#insert_label form").serializeArray().map(function(pair) {
+	return [pair.name, pair.value];
+      }));
+      _.extend(obj, {p: worldp});
+      label_layer.new_label(obj);
+      render();
+      $("#insert_label").modal("hide");
+    }
+
+    $("#insert_label form").off("submit");
+    $("#insert_label form").on("submit", insert_label_ok);
+    $("#insert_label form button[type=submit]").off("click");
+    $("#insert_label form button[type=submit]").on("click", insert_label_ok);
+
+    $('#insert_label').modal('show');
+    setTimeout(function() { $('#insert_label input[name="text"]').focus(); }, 500);
+  }
   else if (g_mode == "Insert") {
     var camera = state.camera();
     var x = e.pageX;
@@ -344,6 +372,9 @@ $(c).on('mousemove', function(e) {
 });
 
 $(document).on('keydown', function(e) {
+  if (_.any($(".modal"), function(x) { return $(x).css("display") == "block"; }))
+    return;
+
   var k = key(e);
   // if (k == "i") {
   //   label_layer.add_label(state, prompt("name"));
@@ -361,6 +392,10 @@ $(document).on('keydown', function(e) {
   }
   if (k == "p") {
     g_mode = "Pan";
+    render();
+  }
+  if (k == "l") {
+    g_mode = "Label";
     render();
   }
   if (k == "i") {

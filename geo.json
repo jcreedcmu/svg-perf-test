@@ -71360,7 +71360,8 @@
         "y": 3056160
       },
       "text": "bissholmi sea",
-      "type": "minorsea"
+      "type": "sea",
+      "zoom": "undefined"
     },
     "101": {
       "p": {
@@ -71456,7 +71457,8 @@
         "y": 403360
       },
       "text": "rakayanak mtns",
-      "type": "region"
+      "type": "region",
+      "zoom": "2"
     },
     "112": {
       "p": {
@@ -71464,7 +71466,8 @@
         "y": 1019040
       },
       "text": "restless mtns",
-      "type": "region"
+      "type": "region",
+      "zoom": "3"
     },
     "113": {
       "p": {
@@ -71496,7 +71499,8 @@
         "y": 1753512
       },
       "text": "duvbatoi",
-      "type": "region"
+      "type": "region",
+      "zoom": "4"
     },
     "117": {
       "p": {
@@ -71504,7 +71508,8 @@
         "y": 1689192
       },
       "text": "traqa",
-      "type": "region"
+      "type": "region",
+      "zoom": "5"
     },
     "118": {
       "p": {
@@ -71528,7 +71533,8 @@
         "y": 523520
       },
       "text": "Minar",
-      "type": "region"
+      "type": "region",
+      "zoom": "3"
     },
     "120": {
       "p": {
@@ -71616,7 +71622,8 @@
         "y": 515360
       },
       "text": "essamock mtns",
-      "type": "region"
+      "type": "region",
+      "zoom": "3"
     },
     "130": {
       "p": {
@@ -71864,7 +71871,8 @@
         "y": 529440
       },
       "text": "byomiapit",
-      "type": "region"
+      "type": "region",
+      "zoom": "4"
     },
     "159": {
       "p": {
@@ -71872,7 +71880,8 @@
         "y": 508320
       },
       "text": "gunoboropit",
-      "type": "region"
+      "type": "region",
+      "zoom": "5"
     },
     "16": {
       "p": {
@@ -71880,7 +71889,8 @@
         "y": 403360
       },
       "text": "cubre",
-      "type": "region"
+      "type": "region",
+      "zoom": "4"
     },
     "160": {
       "p": {
@@ -71922,7 +71932,8 @@
         "y": 1190656
       },
       "text": "Urgaq",
-      "type": "region"
+      "type": "region",
+      "zoom": "4"
     },
     "165": {
       "p": {
@@ -71939,7 +71950,8 @@
         "y": 1332224
       },
       "text": "Inkepst",
-      "type": "region"
+      "type": "region",
+      "zoom": "4"
     },
     "167": {
       "p": {
@@ -71956,7 +71968,8 @@
         "y": 690720
       },
       "text": "ribbonnad",
-      "type": "region"
+      "type": "region",
+      "zoom": "3"
     },
     "18": {
       "p": {
@@ -71964,7 +71977,8 @@
         "y": 123040
       },
       "text": "tarodaro",
-      "type": "region"
+      "type": "region",
+      "zoom": "3"
     },
     "19": {
       "p": {
@@ -71996,7 +72010,8 @@
         "y": 731360
       },
       "text": "nonggadum",
-      "type": "region"
+      "type": "region",
+      "zoom": "3"
     },
     "22": {
       "p": {
@@ -72012,7 +72027,8 @@
         "y": 688160
       },
       "text": "unbara",
-      "type": "region"
+      "type": "region",
+      "zoom": "3"
     },
     "24": {
       "p": {
@@ -72028,7 +72044,8 @@
         "y": 590880
       },
       "text": "mount barlyfen",
-      "type": "region"
+      "type": "region",
+      "zoom": "3"
     },
     "26": {
       "p": {
@@ -72276,7 +72293,8 @@
         "y": 668480
       },
       "text": "mount noboro",
-      "type": "region"
+      "type": "region",
+      "zoom": "3"
     },
     "54": {
       "p": {
@@ -72301,7 +72319,8 @@
         "y": 538240
       },
       "text": "zayare natsupit",
-      "type": "region"
+      "type": "region",
+      "zoom": "3"
     },
     "57": {
       "p": {
@@ -72317,7 +72336,8 @@
         "y": 458560
       },
       "text": "huatosurak",
-      "type": "region"
+      "type": "region",
+      "zoom": "2"
     },
     "59": {
       "p": {
@@ -72325,7 +72345,8 @@
         "y": 329280
       },
       "text": "osoyapit",
-      "type": "region"
+      "type": "region",
+      "zoom": "3"
     },
     "6": {
       "p": {
@@ -72341,7 +72362,8 @@
         "y": 243520
       },
       "text": "baratakapit",
-      "type": "region"
+      "type": "region",
+      "zoom": "2"
     },
     "61": {
       "p": {
@@ -72536,7 +72558,8 @@
         "y": 1396000
       },
       "text": "gulf of ashigam",
-      "type": "minorsea"
+      "type": "minorsea",
+      "zoom": "3"
     },
     "83": {
       "p": {

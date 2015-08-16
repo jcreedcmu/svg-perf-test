@@ -122,13 +122,25 @@ function render() {
       d.save();
       d.translate(camera.x, camera.y);
       d.scale(camera.scale(), -camera.scale());
-      pts.forEach(function(index) {
-	var pt = coastline_layer.arcs[index[0]].points[index[1]];
-	d.fillStyle = "white";
-	d.fillRect(pt[0]-rad,pt[1]-rad,rad * 2,rad * 2);
-	d.lineWidth = 1 / camera.scale();
-	d.strokeStyle = "black";
-	d.strokeRect(pt[0]-rad,pt[1]-rad,rad * 2,rad * 2);
+      pts.forEach(function(bundle) {
+	if (bundle[0] == "coastline") {
+	  var index = bundle[1];
+	  var pt = coastline_layer.arcs[index[0]].points[index[1]];
+	  d.fillStyle = "white";
+	  d.fillRect(pt[0]-rad,pt[1]-rad,rad * 2,rad * 2);
+	  d.lineWidth = 1 / camera.scale();
+	  d.strokeStyle = "black";
+	  d.strokeRect(pt[0]-rad,pt[1]-rad,rad * 2,rad * 2);
+	}
+	else if (bundle[0] == "label") {
+	  console.log(bundle[1]);
+	  var pt = bundle[1].p;
+	  d.beginPath();
+	  d.fillStyle = "white";
+	  d.globalAlpha = 0.5;
+	  d.arc(pt.x, pt.y, 20 / camera.scale(), 0, Math.PI * 2);
+	  d.fill();
+	}
       });
       d.restore();
     }
@@ -363,7 +375,10 @@ $(c).on('mousemove', function(e) {
     var worldp = inv_xform(camera,x, y);
     var rad = VERTEX_SENSITIVITY / camera.scale();
     var bbox = [worldp.x - rad, worldp.y - rad, worldp.x + rad, worldp.y + rad];
-    var z = JSON.stringify(coastline_layer.targets(bbox));
+    var targets = [];
+    targets = targets.concat(coastline_layer.targets(bbox).map(function(x) { return ["coastline", x] }));
+    targets = targets.concat(label_layer.targets(bbox).map(function(x) { return ["label", x] }));
+    var z = JSON.stringify(targets);
     if (z != g_lastz) {
       g_lastz = z;
       render();

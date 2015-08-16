@@ -124,3 +124,20 @@ exports.handle_mouse = function(camera, worldp) {
   }
   return rv;
 }
+
+LabelLayer.prototype.targets = function(world_bbox) {
+  var targets = this.rt.bbox.apply(this.rt, world_bbox);
+
+  if (targets.length < 2) return targets;
+
+  var orig = this.arcs[targets[0][0]].points[targets[0][1]];
+  for (var i = 1; i < targets.length; i++) {
+    var here = this.arcs[targets[i][0]].points[targets[i][1]];
+    // If we're getting a set of points not literally on the same
+    // point, pretend there's no match
+    if (orig[0] != here[0]) return [];
+    if (orig[1] != here[1]) return [];
+  }
+  // Otherwise return the whole set
+  return targets;
+}

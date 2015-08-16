@@ -71384,7 +71384,7 @@
         "y": 2590240
       },
       "text": "sea of zuram",
-      "type": "minorsea"
+      "type": "sea"
     },
     "104": {
       "p": {
@@ -72415,8 +72415,8 @@
         "x": 1157760,
         "y": 1602560
       },
-      "text": "Old Sea",
-      "type": "sea"
+      "text": "muzra sea",
+      "type": "minorsea"
     },
     "70": {
       "p": {
@@ -72480,7 +72480,7 @@
         "y": 750240
       },
       "text": "sea of kin turbao",
-      "type": "minorsea"
+      "type": "sea"
     },
     "78": {
       "p": {
@@ -72488,7 +72488,7 @@
         "y": 967840
       },
       "text": "shiem sea",
-      "type": "minorsea"
+      "type": "sea"
     },
     "79": {
       "p": {
@@ -72504,7 +72504,7 @@
         "y": 1916160
       },
       "text": "Wild Droub Bay",
-      "type": "sea"
+      "type": "minorsea"
     },
     "80": {
       "p": {
@@ -72608,7 +72608,7 @@
         "y": 617120
       },
       "text": "sea of nartu",
-      "type": "minorsea"
+      "type": "sea"
     },
     "92": {
       "p": {
@@ -72632,7 +72632,7 @@
         "y": 2210720
       },
       "text": "south shiaovets sea",
-      "type": "minorsea"
+      "type": "sea"
     },
     "95": {
       "p": {
@@ -72656,7 +72656,7 @@
         "y": 2798880
       },
       "text": "north shiaovets sea",
-      "type": "minorsea"
+      "type": "sea"
     },
     "98": {
       "p": {

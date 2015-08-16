@@ -22,8 +22,8 @@ var assets;
 var ld = new Loader();
 ld.add(json_file('geo'));
 
-var init_img = 1184;
-ld.add(image(ImageLayer.image_url(init_img), 'overlay'));
+// var init_img = 1184;
+// ld.add(image(ImageLayer.image_url(1176), 'overlay'));
 
 ld.done(function(data) {
   count = 0;
@@ -31,7 +31,7 @@ ld.done(function(data) {
   var geo = assets.src.geo;
   coastline_layer = new CoastlineLayer(geo.features, geo.arcs);
   label_layer = new LabelLayer(geo.labels);
-  image_layer = new ImageLayer(dispatch, init_img, geo.images, assets.img.overlay);
+  image_layer = new ImageLayer(dispatch, 0, geo.images, assets.img.overlay);
   road_layer = new RoadLayer(dispatch, geo.roads);
   g_layers = [coastline_layer, road_layer, label_layer, image_layer];
 
@@ -207,24 +207,24 @@ function render_scale(camera, d) {
 }
 
 $(c).on('mousewheel', function(e) {
-  // if (e.ctrlKey) {
-  //   if (e.originalEvent.wheelDelta < 0) {
-  //     image_layer.scale(1/2);
-  //   }
-  //   else {
-  //     image_layer.scale(2);
-  //   }
-  //   render();
-  //   e.preventDefault();
-  // }
-  // else {
-  var x = e.pageX;
+  if (e.ctrlKey) {
+    if (e.originalEvent.wheelDelta < 0) {
+      image_layer.scale(1/2);
+    }
+    else {
+      image_layer.scale(2);
+    }
+    render();
+    e.preventDefault();
+  }
+  else {
+    var x = e.pageX;
   var y = e.pageY;
-  var zoom = e.originalEvent.wheelDelta / 120;
-  e.preventDefault();
-  state.zoom(x, y, zoom);
-  render();
- // }
+    var zoom = e.originalEvent.wheelDelta / 120;
+    e.preventDefault();
+    state.zoom(x, y, zoom);
+    render();
+  }
 });
 
 function begin_pan(x, y, camera) {
@@ -246,21 +246,21 @@ $(c).on('mousedown', function(e) {
     var y = e.pageY;
     var worldp = inv_xform(camera,x, y);
 
-    // if (e.ctrlKey) {
-    //   var membase = image_layer.get_pos();
-    //   $(document).on('mousemove.drag', function(e) {
-    //     image_layer.set_pos({x: membase.x + (e.pageX - x) / camera.scale(),
-    //     		     y: membase.y - (e.pageY - y) / camera.scale()});
-    //     maybe_render();
-    //   });
-    //   $(document).on('mouseup.drag', function(e) {
-    //     $(document).off('.drag');
-    //     render();
-    //   });
+    if (e.ctrlKey) {
+      var membase = image_layer.get_pos();
+      $(document).on('mousemove.drag', function(e) {
+        image_layer.set_pos({x: membase.x + (e.pageX - x) / camera.scale(),
+        		     y: membase.y - (e.pageY - y) / camera.scale()});
+        maybe_render();
+      });
+      $(document).on('mouseup.drag', function(e) {
+        $(document).off('.drag');
+        render();
+      });
 
-    // }
-    //    else
-    begin_pan(x, y, camera);
+    }
+    else
+      begin_pan(x, y, camera);
   }
   else if (g_mode == "Insert") {
     var camera = state.camera();

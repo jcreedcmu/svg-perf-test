@@ -1,9 +1,12 @@
-module.exports = function(dispatch, cur_img_name, img_states, overlay) {
+module.exports = function(dispatch, cur_img_ix, img_states, overlay) {
+  var img_state_arr = _.pairs(img_states).map(function(pair) {
+    return _.extend({name: pair[0]}, pair[1]);
+  });
   this.dispatch = dispatch;
-  this.img_states = img_states;
+  this.img_states = img_state_arr;
   this.overlay = overlay;
-  this.cur_img_name = cur_img_name;
-  this.img_state = clone(img_states[cur_img_name]);
+  this.cur_img_ix = cur_img_ix;
+  this.img_state = clone(img_state_arr[cur_img_ix]);
 }
 
 module.exports.prototype.render = function(d, camera, locus, world_bbox) {
@@ -40,12 +43,15 @@ function image_url(img_name) {
 }
 module.exports.image_url = image_url
 
-module.exports.prototype.reload_img = function(img_name) {
+module.exports.prototype.reload_img = function(img_ix) {
   var that = this;
-  this.cur_img_name = img_name;
-  this.overlay.src = image_url(img_name);
+  this.cur_img_ix = img_ix;
+  if (this.overlay == undefined) {
+    this.overlay = new Image();
+  }
+  this.overlay.src = image_url(this.img_states[img_ix].name);
   this.overlay.onload = function() {
-    var new_state = that.img_states[img_name];
+    var new_state = that.img_states[img_ix];
     if (new_state != null) {
       that.img_state = clone(new_state);
     }
@@ -53,12 +59,21 @@ module.exports.prototype.reload_img = function(img_name) {
   }
 }
 
+function mod(n, m) {
+  if (n > 0)
+    return n % m
+  else
+    return ((n % m) + m) % m
+}
+
 module.exports.prototype.prev = function() {
-  this.reload_img(--this.cur_img_name);
+  this.cur_img_ix = mod(this.cur_img_ix - 1, this.img_states.length);
+  this.reload_img(this.cur_img_ix);
 }
 
 module.exports.prototype.next = function() {
-  this.reload_img(++this.cur_img_name);
+  this.cur_img_ix = mod(this.cur_img_ix + 1, this.img_states.length);
+  this.reload_img(this.cur_img_ix);
 }
 
 module.exports.prototype.scale = function(by) {
@@ -75,5 +90,7 @@ module.exports.prototype.set_pos = function(p) {
 }
 
 module.exports.prototype.model = function() {
-  return {images: this.img_states};
+  return {images: _.object(this.img_states.map(function(obj) {
+    return [obj.name, _.omit(obj, "name")];
+  }))};
 }

@@ -171,9 +171,11 @@ CoastlineLayer.prototype.render = function(d, camera, locus, world_bbox) {
   var vert_size = 5 / camera.scale();
   arcs_to_draw_vertices_for.forEach(function(arc) {
     arc.forEach(function(vert, n) {
-      d.fillStyle = vert[2] > 1000000 ? "#ffd" : "#f00";
-      d.strokeRect(vert[0] - vert_size/2, vert[1] - vert_size / 2,  vert_size,  vert_size);
-      d.fillRect(vert[0] - vert_size/2, vert[1] - vert_size / 2,  vert_size,  vert_size);
+      if (d.fillStyle = vert[2] > 1000000 || camera.zoom > 10) {
+	d.fillStyle = vert[2] > 1000000 ? "#ffd" : "#f00";
+	d.strokeRect(vert[0] - vert_size/2, vert[1] - vert_size / 2,  vert_size,  vert_size);
+	d.fillRect(vert[0] - vert_size/2, vert[1] - vert_size / 2,  vert_size,  vert_size);
+      }
     });
   });
 

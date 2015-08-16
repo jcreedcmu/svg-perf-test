@@ -6,10 +6,10 @@ module.exports = function(dispatch, cur_img_ix, img_states, overlay) {
   this.img_states = img_state_arr;
   this.overlay = overlay;
   this.cur_img_ix = cur_img_ix;
-  this.img_state = clone(img_state_arr[cur_img_ix]);
 }
 
 module.exports.prototype.render = function(d, camera, locus, world_bbox) {
+  var img_state = this.img_states[this.cur_img_ix];
   d.save();
   d.translate(camera.x, camera.y);
   d.scale(camera.scale(), camera.scale());
@@ -17,22 +17,22 @@ module.exports.prototype.render = function(d, camera, locus, world_bbox) {
   var ovr = this.overlay;
   if (ovr != null) {
     d.drawImage(ovr, 0, 0, ovr.width,
-  		ovr.height, this.img_state.x, -this.img_state.y + ovr.height  * this.img_state.scale,
-  		ovr.width * this.img_state.scale,
-  		-ovr.height * this.img_state.scale );
+  		ovr.height, img_state.x, -img_state.y + ovr.height  * img_state.scale,
+  		ovr.width * img_state.scale,
+  		-ovr.height * img_state.scale );
     d.globalAlpha = 0.5;
     d.beginPath();
-    d.moveTo(0, -this.img_state.y);
-    d.lineTo(3807232, -this.img_state.y );
-    d.moveTo(this.img_state.x, 0);
-    d.lineTo(this.img_state.x, -3226521 );
+    d.moveTo(0, -img_state.y);
+    d.lineTo(3807232, -img_state.y );
+    d.moveTo(img_state.x, 0);
+    d.lineTo(img_state.x, -3226521 );
 
     d.strokeStyle = "blue";
     d.lineWidth = 1 / camera.scale();
     d.stroke();
-    d.strokeRect(this.img_state.x, -this.img_state.y + ovr.height  * this.img_state.scale,
-  		ovr.width * this.img_state.scale,
-  	       -ovr.height * this.img_state.scale);
+    d.strokeRect(img_state.x, -img_state.y + ovr.height  * img_state.scale,
+  		ovr.width * img_state.scale,
+  	       -ovr.height * img_state.scale);
   }
 
   d.restore();
@@ -51,10 +51,6 @@ module.exports.prototype.reload_img = function(img_ix) {
   }
   this.overlay.src = image_url(this.img_states[img_ix].name);
   this.overlay.onload = function() {
-    var new_state = that.img_states[img_ix];
-    if (new_state != null) {
-      that.img_state = clone(new_state);
-    }
     that.dispatch();
   }
 }
@@ -77,16 +73,19 @@ module.exports.prototype.next = function() {
 }
 
 module.exports.prototype.scale = function(by) {
-  this.img_state.scale *= by;
+  var img_state = this.img_states[this.cur_img_ix];
+  img_state.scale *= by;
 }
 
 module.exports.prototype.get_pos = function() {
-  return {x:this.img_state.x, y:this.img_state.y};
+  var img_state = this.img_states[this.cur_img_ix];
+  return {x:img_state.x, y:img_state.y};
 }
 
 module.exports.prototype.set_pos = function(p) {
-  this.img_state.x = p.x;
-  this.img_state.y = p.y;
+  var img_state = this.img_states[this.cur_img_ix];
+  img_state.x = p.x;
+  img_state.y = p.y;
 }
 
 module.exports.prototype.model = function() {

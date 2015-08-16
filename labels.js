@@ -2,10 +2,10 @@ function LabelLayer(labels) {
   var that = this;
   this.labels = labels;
   var rt = this.rt = new RTree(10);
-  labels.forEach(function(lab) {
-    that.add_label_to_rt(lab);
+  _.each(labels, function(lab, id) {
+    that.add_label_to_rt(_.extend(lab, {id:id}));
   });
-  this.last_label = _.max(labels, 'id').id + 1;
+  this.last_label = _.max(_.keys(labels).map(function(x){return parseInt(x);})) + 1;
 }
 module.exports = LabelLayer;
 
@@ -21,11 +21,24 @@ LabelLayer.prototype.add_label_to_rt = function(lab) {
   this.rt.insert({x: lab.p.x, y:lab.p.y, w:0, h:0}, lab);
 }
 
+LabelLayer.prototype.rm_label_from_rt = function(lab) {
+  this.rt.remove({x: lab.p.x, y:lab.p.y, w:0, h:0}, lab);
+}
+
 LabelLayer.prototype.new_label = function(bundle) {
   var id = this.last_label++;
-  var lab = {id:id, p: {x:bundle.p.x, y:bundle.p.y}, txt: bundle.text, type: bundle.type};
+  var lab = {id:id, p: {x:bundle.p.x, y:bundle.p.y}, text: bundle.text, type: bundle.type};
   this.add_label_to_rt(lab);
-  this.labels.push(lab);
+  this.labels[id] = lab;
+}
+
+LabelLayer.prototype.replace_label = function(new_lab) {
+  var old_lab = this.labels[new_lab.id];
+  this.rm_label_from_rt(old_lab);
+  this.add_label_to_rt(new_lab);
+  console.log(old_lab);
+  console.log(new_lab);
+  this.labels[new_lab.id] = new_lab;
 }
 
 function titleCase(str) {
@@ -89,7 +102,7 @@ LabelLayer.prototype.render = function(d, camera, locus, world_bbox) {
   }
 
   this.rt.bbox.apply(this.rt, world_bbox).forEach(function(lab) {
-    draw_label(lab.p, lab.txt, lab.type);
+    draw_label(lab.p, lab.text, lab.type);
   });
 
   if (locus != null) {
@@ -108,11 +121,12 @@ LabelLayer.prototype.render = function(d, camera, locus, world_bbox) {
 }
 
 LabelLayer.prototype.model = function() {
-  return {labels: this.labels};
+  return {labels: _.object(_.map(this.labels, function(val, key) {
+    return [key, _.omit(val, "id")];
+  }))};
 }
 
 exports.handle_mouse = function(camera, worldp) {
-  console.log(worldp);
   var s = camera.scale();
   var bbox = [worldp.x - 30 / s, worldp.y - 30 / s,
 	      worldp.x + 30 / s, worldp.y + 30 / s];
@@ -128,16 +142,51 @@ exports.handle_mouse = function(camera, worldp) {
 LabelLayer.prototype.targets = function(world_bbox) {
   var targets = this.rt.bbox.apply(this.rt, world_bbox);
 
-  if (targets.length < 2) return targets;
+  if (targets.length < 2)
+    return targets;
+  else
+    return [];
+}
 
-  var orig = this.arcs[targets[0][0]].points[targets[0][1]];
-  for (var i = 1; i < targets.length; i++) {
-    var here = this.arcs[targets[i][0]].points[targets[i][1]];
-    // If we're getting a set of points not literally on the same
-    // point, pretend there's no match
-    if (orig[0] != here[0]) return [];
-    if (orig[1] != here[1]) return [];
+LabelLayer.prototype.make_insert_label_modal = function(worldp, lab, dispatch) {
+  var that = this;
+  var process_f = null;
+  if (lab) {
+    $('#insert_label input[name="text"]')[0].value = lab.text;
+    $('#insert_label input[name="type"]')[0].value = lab.type;
+    $('#insert_label input[name="zoom"]')[0].value = lab.zoom;
+
+    process_f = function (obj) {
+      _.extend(obj, {p: lab.p, id:lab.id});
+      that.replace_label(obj);
+    }
   }
-  // Otherwise return the whole set
-  return targets;
+  else {
+    $('#insert_label input[name="text"]')[0].value = "";
+    $('#insert_label input[name="type"]')[0].value = "region";
+    $('#insert_label input[name="zoom"]')[0].value = "";
+
+    process_f = function (obj) {
+      _.extend(obj, {p: worldp});
+      that.new_label(obj);
+    }
+  }
+  var submit_f = function(e) {
+    e.preventDefault();
+    var obj = _.object($("#insert_label form").serializeArray().map(function(pair) {
+      return [pair.name, pair.value];
+    }));
+    process_f(obj);
+    dispatch();
+    $("#insert_label").modal("hide");
+  };
+  $("#insert_label form").off("submit");
+  $("#insert_label form").on("submit", submit_f);
+  $("#insert_label form button[type=submit]").off("click");
+  $("#insert_label form button[type=submit]").on("click", submit_f);
+
+
+
+  $('#insert_label').modal('show');
+  setTimeout(function() { $('#insert_label input[name="text"]').focus(); }, 500);
 }

@@ -71329,1520 +71329,1352 @@
       "y": 477684
     }
   },
-  "labels": [
-    {
-      "id": 0,
+  "labels": {
+    "0": {
       "p": {
         "x": 253440,
         "y": 1625600
       },
-      "txt": "Piada",
+      "text": "Piada",
       "type": "region"
     },
-    {
-      "id": 1,
+    "1": {
       "p": {
         "x": 771040,
         "y": 1560960
       },
-      "txt": "Ezdi Mtns",
+      "text": "Ezdi Mtns",
       "type": "region"
     },
-    {
-      "id": 2,
-      "p": {
-        "x": 465280,
-        "y": 1628480
-      },
-      "txt": "Koennif",
-      "type": "region"
-    },
-    {
-      "id": 3,
-      "p": {
-        "x": 423360,
-        "y": 1511360
-      },
-      "txt": "Yul Mtns",
-      "type": "region"
-    },
-    {
-      "id": 4,
-      "p": {
-        "x": 674240,
-        "y": 1894080
-      },
-      "txt": "Nivdal",
-      "type": "region"
-    },
-    {
-      "id": 5,
-      "p": {
-        "x": 1016640,
-        "y": 1311488
-      },
-      "txt": "Zbegyanda",
-      "type": "region"
-    },
-    {
-      "id": 6,
-      "p": {
-        "x": 1406400,
-        "y": 1254720
-      },
-      "txt": "Gurvyet",
-      "type": "region"
-    },
-    {
-      "id": 7,
-      "p": {
-        "x": 1157760,
-        "y": 1602560
-      },
-      "txt": "Old Sea",
-      "type": "sea"
-    },
-    {
-      "id": 8,
-      "p": {
-        "x": 1164480,
-        "y": 1916160
-      },
-      "txt": "Wild Droub Bay",
-      "type": "sea"
-    },
-    {
-      "id": 9,
-      "p": {
-        "x": 3154240,
-        "y": 295680
-      },
-      "txt": "Daloe",
-      "type": "region"
-    },
-    {
-      "id": 10,
+    "10": {
       "p": {
         "x": 2909760,
         "y": 285440
       },
-      "txt": "Gorik",
+      "text": "Gorik",
       "type": "region"
     },
-    {
-      "id": 11,
-      "p": {
-        "x": 2904640,
-        "y": 483840
-      },
-      "txt": "Pengerra",
-      "type": "region"
-    },
-    {
-      "id": 12,
-      "p": {
-        "x": 3328320,
-        "y": 523520
-      },
-      "txt": "Minar",
-      "type": "region"
-    },
-    {
-      "id": 13,
-      "p": {
-        "x": 3095840,
-        "y": 515360
-      },
-      "txt": "essamock mtns",
-      "type": "region"
-    },
-    {
-      "id": 14,
-      "p": {
-        "x": 3432480,
-        "y": 202400
-      },
-      "txt": "oskeny",
-      "type": "region"
-    },
-    {
-      "id": 15,
-      "p": {
-        "x": 3413280,
-        "y": 395040
-      },
-      "txt": "eskena mtns",
-      "type": "region"
-    },
-    {
-      "id": 16,
-      "p": {
-        "x": 3596320,
-        "y": 403360
-      },
-      "txt": "cubre",
-      "type": "region"
-    },
-    {
-      "id": 17,
-      "p": {
-        "x": 3180320,
-        "y": 690720
-      },
-      "txt": "ribbonnad",
-      "type": "region"
-    },
-    {
-      "id": 18,
-      "p": {
-        "x": 3695520,
-        "y": 123040
-      },
-      "txt": "tarodaro",
-      "type": "region"
-    },
-    {
-      "id": 19,
-      "p": {
-        "x": 2393760,
-        "y": 807200
-      },
-      "txt": "rujokatch",
-      "type": "region"
-    },
-    {
-      "id": 20,
-      "p": {
-        "x": 2265120,
-        "y": 1009440
-      },
-      "txt": "jatmiyan",
-      "type": "region"
-    },
-    {
-      "id": 21,
-      "p": {
-        "x": 3014880,
-        "y": 731360
-      },
-      "txt": "nonggadum",
-      "type": "region"
-    },
-    {
-      "id": 22,
-      "p": {
-        "x": 2053280,
-        "y": 1012640
-      },
-      "txt": "mount pyoro",
-      "type": "region"
-    },
-    {
-      "id": 23,
-      "p": {
-        "x": 2836000,
-        "y": 688160
-      },
-      "txt": "unbara",
-      "type": "region"
-    },
-    {
-      "id": 24,
-      "p": {
-        "x": 1824800,
-        "y": 853920
-      },
-      "txt": "iwoalye",
-      "type": "region"
-    },
-    {
-      "id": 25,
-      "p": {
-        "x": 2832160,
-        "y": 590880
-      },
-      "txt": "mount barlyfen",
-      "type": "region"
-    },
-    {
-      "id": 26,
-      "p": {
-        "x": 2563360,
-        "y": 471840
-      },
-      "txt": "mount narik",
-      "type": "region"
-    },
-    {
-      "id": 27,
-      "p": {
-        "x": 3624480,
-        "y": 1115680
-      },
-      "txt": "zoxiai",
-      "type": "region"
-    },
-    {
-      "id": 28,
-      "p": {
-        "x": 3121440,
-        "y": 1503520
-      },
-      "txt": "qunmi",
-      "type": "region"
-    },
-    {
-      "id": 29,
-      "p": {
-        "x": 3380000,
-        "y": 1709600
-      },
-      "txt": "zufkand",
-      "type": "region"
-    },
-    {
-      "id": 30,
-      "p": {
-        "x": 2912800,
-        "y": 1703200
-      },
-      "txt": "nywev",
-      "type": "region"
-    },
-    {
-      "id": 31,
-      "p": {
-        "x": 1031200,
-        "y": 2183200
-      },
-      "txt": "shiao",
-      "type": "region"
-    },
-    {
-      "id": 32,
-      "p": {
-        "x": 962400,
-        "y": 2433600
-      },
-      "txt": "shiaovets",
-      "type": "region"
-    },
-    {
-      "id": 33,
-      "p": {
-        "x": 534880,
-        "y": 2489920
-      },
-      "txt": "sikav",
-      "type": "region"
-    },
-    {
-      "id": 34,
-      "p": {
-        "x": 1009760,
-        "y": 2768960
-      },
-      "txt": "boshionai",
-      "type": "region"
-    },
-    {
-      "id": 35,
-      "p": {
-        "x": 1361760,
-        "y": 2912320
-      },
-      "txt": "bissholmi",
-      "type": "region"
-    },
-    {
-      "id": 36,
-      "p": {
-        "x": 1177440,
-        "y": 2693440
-      },
-      "txt": "kezal mtns",
-      "type": "region"
-    },
-    {
-      "id": 37,
-      "p": {
-        "x": 1564640,
-        "y": 2260800
-      },
-      "txt": "mi yon",
-      "type": "region"
-    },
-    {
-      "id": 38,
-      "p": {
-        "x": 1565280,
-        "y": 1920320
-      },
-      "txt": "naga sugira",
-      "type": "region"
-    },
-    {
-      "id": 39,
-      "p": {
-        "x": 1923040,
-        "y": 2714560
-      },
-      "txt": "stolups",
-      "type": "region"
-    },
-    {
-      "id": 40,
-      "p": {
-        "x": 2545120,
-        "y": 2294720
-      },
-      "txt": "gurakand",
-      "type": "region"
-    },
-    {
-      "id": 41,
-      "p": {
-        "x": 2290400,
-        "y": 1738560
-      },
-      "txt": "vlori",
-      "type": "region"
-    },
-    {
-      "id": 42,
-      "p": {
-        "x": 2456160,
-        "y": 1490880
-      },
-      "txt": "munishtaq vu",
-      "type": "region"
-    },
-    {
-      "id": 43,
-      "p": {
-        "x": 2880480,
-        "y": 1313600
-      },
-      "txt": "ashigam",
-      "type": "region"
-    },
-    {
-      "id": 44,
-      "p": {
-        "x": 2515680,
-        "y": 1170880
-      },
-      "txt": "negima",
-      "type": "region"
-    },
-    {
-      "id": 45,
-      "p": {
-        "x": 2256480,
-        "y": 1278400
-      },
-      "txt": "jdayalur",
-      "type": "region"
-    },
-    {
-      "id": 46,
-      "p": {
-        "x": 1722720,
-        "y": 1487040
-      },
-      "txt": "wolaraum",
-      "type": "region"
-    },
-    {
-      "id": 47,
-      "p": {
-        "x": 2454240,
-        "y": 2087360
-      },
-      "txt": "hakuramdi plateau",
-      "type": "region"
-    },
-    {
-      "id": 48,
-      "p": {
-        "x": 1954400,
-        "y": 2488000
-      },
-      "txt": "mount toba",
-      "type": "region"
-    },
-    {
-      "id": 49,
-      "p": {
-        "x": 2651360,
-        "y": 1924800
-      },
-      "txt": "mount iniq",
-      "type": "region"
-    },
-    {
-      "id": 50,
-      "p": {
-        "x": 1164640,
-        "y": 837440
-      },
-      "txt": "syeg ims",
-      "type": "region"
-    },
-    {
-      "id": 51,
-      "p": {
-        "x": 1468000,
-        "y": 754240
-      },
-      "txt": "mayarapit",
-      "type": "region"
-    },
-    {
-      "id": 52,
-      "p": {
-        "x": 807520,
-        "y": 953920
-      },
-      "txt": "nartu",
-      "type": "region"
-    },
-    {
-      "id": 53,
-      "p": {
-        "x": 876640,
-        "y": 668480
-      },
-      "txt": "mount noboro",
-      "type": "region"
-    },
-    {
-      "id": 54,
-      "p": {
-        "x": 815200,
-        "y": 589120
-      },
-      "txt": "gorgobya",
-      "type": "region"
-    },
-    {
-      "id": 55,
-      "p": {
-        "x": 474400,
-        "y": 853760
-      },
-      "txt": "miz",
-      "type": "region"
-    },
-    {
-      "id": 56,
-      "p": {
-        "x": 1360160,
-        "y": 538240
-      },
-      "txt": "zayare natsupit",
-      "type": "region"
-    },
-    {
-      "id": 57,
-      "p": {
-        "x": 1541280,
-        "y": 517120
-      },
-      "txt": "huiyepitnaya",
-      "type": "region"
-    },
-    {
-      "id": 58,
-      "p": {
-        "x": 1772960,
-        "y": 458560
-      },
-      "txt": "huatosurak",
-      "type": "region"
-    },
-    {
-      "id": 59,
-      "p": {
-        "x": 1806240,
-        "y": 329280
-      },
-      "txt": "osoyapit",
-      "type": "region"
-    },
-    {
-      "id": 60,
-      "p": {
-        "x": 1766560,
-        "y": 243520
-      },
-      "txt": "baratakapit",
-      "type": "region"
-    },
-    {
-      "id": 61,
-      "p": {
-        "x": 1600160,
-        "y": 255040
-      },
-      "txt": "tlorukpit",
-      "type": "region"
-    },
-    {
-      "id": 62,
-      "p": {
-        "x": 1045920,
-        "y": 258880
-      },
-      "txt": "oskyutlams",
-      "type": "region"
-    },
-    {
-      "id": 63,
-      "p": {
-        "x": 882080,
-        "y": 336960
-      },
-      "txt": "natsupit",
-      "type": "region"
-    },
-    {
-      "id": 64,
-      "p": {
-        "x": 1113760,
-        "y": 381760
-      },
-      "txt": "xastapit",
-      "type": "region"
-    },
-    {
-      "id": 65,
-      "p": {
-        "x": 1182240,
-        "y": 335360
-      },
-      "txt": "skyumiapit",
-      "type": "region"
-    },
-    {
-      "id": 66,
-      "p": {
-        "x": 458400,
-        "y": 188800
-      },
-      "txt": "spring islands",
-      "type": "region"
-    },
-    {
-      "id": 67,
-      "p": {
-        "x": 1947680,
-        "y": 210560
-      },
-      "txt": "himenepit",
-      "type": "region"
-    },
-    {
-      "id": 68,
-      "p": {
-        "x": 2329760,
-        "y": 268800
-      },
-      "txt": "juta",
-      "type": "region"
-    },
-    {
-      "id": 69,
-      "p": {
-        "x": 2002080,
-        "y": 414720
-      },
-      "txt": "kunzi",
-      "type": "region"
-    },
-    {
-      "id": 70,
-      "p": {
-        "x": 1844000,
-        "y": 62240
-      },
-      "txt": "great southern sea",
-      "type": "sea"
-    },
-    {
-      "id": 71,
-      "p": {
-        "x": 2524960,
-        "y": 393120
-      },
-      "txt": "bay of riggermaddat",
-      "type": "minorsea"
-    },
-    {
-      "id": 72,
-      "p": {
-        "x": 2765600,
-        "y": 375200
-      },
-      "txt": "pengerrand bay",
-      "type": "minorsea"
-    },
-    {
-      "id": 73,
-      "p": {
-        "x": 2722080,
-        "y": 204960
-      },
-      "txt": "bay of eruzberk",
-      "type": "minorsea"
-    },
-    {
-      "id": 74,
-      "p": {
-        "x": 2935840,
-        "y": 156320
-      },
-      "txt": "soffa bay",
-      "type": "minorsea"
-    },
-    {
-      "id": 75,
-      "p": {
-        "x": 3297440,
-        "y": 146080
-      },
-      "txt": "imnereskne bay",
-      "type": "minorsea"
-    },
-    {
-      "id": 76,
-      "p": {
-        "x": 3548320,
-        "y": 128160
-      },
-      "txt": "masdolille bay",
-      "type": "minorsea"
-    },
-    {
-      "id": 77,
-      "p": {
-        "x": 3732640,
-        "y": 750240
-      },
-      "txt": "sea of kin turbao",
-      "type": "minorsea"
-    },
-    {
-      "id": 78,
-      "p": {
-        "x": 3004960,
-        "y": 967840
-      },
-      "txt": "shiem sea",
-      "type": "minorsea"
-    },
-    {
-      "id": 79,
-      "p": {
-        "x": 2521120,
-        "y": 954400
-      },
-      "txt": "orgichadma bay",
-      "type": "minorsea"
-    },
-    {
-      "id": 80,
-      "p": {
-        "x": 2537120,
-        "y": 642720
-      },
-      "txt": "nebu bay",
-      "type": "minorsea"
-    },
-    {
-      "id": 81,
-      "p": {
-        "x": 3431840,
-        "y": 1325600
-      },
-      "txt": "greening sea",
-      "type": "minorsea"
-    },
-    {
-      "id": 82,
-      "p": {
-        "x": 2992160,
-        "y": 1396000
-      },
-      "txt": "gulf of ashigam",
-      "type": "minorsea"
-    },
-    {
-      "id": 83,
-      "p": {
-        "x": 2770720,
-        "y": 1189280
-      },
-      "txt": "furugimash bay",
-      "type": "minorsea"
-    },
-    {
-      "id": 84,
-      "p": {
-        "x": 2590560,
-        "y": 1704480
-      },
-      "txt": "lake aketuva",
-      "type": "minorsea"
-    },
-    {
-      "id": 85,
-      "p": {
-        "x": 1991200,
-        "y": 1652000
-      },
-      "txt": "sea of naga uramzda",
-      "type": "minorsea"
-    },
-    {
-      "id": 86,
-      "p": {
-        "x": 2178720,
-        "y": 1463200
-      },
-      "txt": "bay of zramsd",
-      "type": "minorsea"
-    },
-    {
-      "id": 87,
-      "p": {
-        "x": 1678240,
-        "y": 1645600
-      },
-      "txt": "camareni channel",
-      "type": "minorsea"
-    },
-    {
-      "id": 88,
-      "p": {
-        "x": 1042080,
-        "y": 1403040
-      },
-      "txt": "near zbegyanda strait",
-      "type": "minorsea"
-    },
-    {
-      "id": 89,
-      "p": {
-        "x": 1000480,
-        "y": 1212320
-      },
-      "txt": "far zbegyanda strait",
-      "type": "minorsea"
-    },
-    {
-      "id": 90,
-      "p": {
-        "x": 699040,
-        "y": 1175840
-      },
-      "txt": "piada sound",
-      "type": "minorsea"
-    },
-    {
-      "id": 91,
-      "p": {
-        "x": 269600,
-        "y": 617120
-      },
-      "txt": "sea of nartu",
-      "type": "minorsea"
-    },
-    {
-      "id": 92,
-      "p": {
-        "x": 1206560,
-        "y": 482720
-      },
-      "txt": "okvalsye sea",
-      "type": "minorsea"
-    },
-    {
-      "id": 93,
-      "p": {
-        "x": 1589600,
-        "y": 783456
-      },
-      "txt": "iwos gulf",
-      "type": "minorsea"
-    },
-    {
-      "id": 94,
-      "p": {
-        "x": 243360,
-        "y": 2210720
-      },
-      "txt": "south shiaovets sea",
-      "type": "minorsea"
-    },
-    {
-      "id": 95,
-      "p": {
-        "x": 898080,
-        "y": 2658080
-      },
-      "txt": "boundary bay",
-      "type": "minorsea"
-    },
-    {
-      "id": 96,
-      "p": {
-        "x": 839200,
-        "y": 2764320
-      },
-      "txt": "yan plu bay",
-      "type": "minorsea"
-    },
-    {
-      "id": 97,
-      "p": {
-        "x": 432160,
-        "y": 2798880
-      },
-      "txt": "north shiaovets sea",
-      "type": "minorsea"
-    },
-    {
-      "id": 98,
-      "p": {
-        "x": 1733280,
-        "y": 2895520
-      },
-      "txt": "bay of jyo im",
-      "type": "minorsea"
-    },
-    {
-      "id": 99,
-      "p": {
-        "x": 1668000,
-        "y": 2634400
-      },
-      "txt": "gulf of jyo hua",
-      "type": "minorsea"
-    },
-    {
-      "id": 100,
+    "100": {
       "p": {
         "x": 2067360,
         "y": 3056160
       },
-      "txt": "bissholmi sea",
+      "text": "bissholmi sea",
       "type": "minorsea"
     },
-    {
-      "id": 101,
+    "101": {
       "p": {
         "x": 2293920,
         "y": 2427680
       },
-      "txt": "counsel bay",
+      "text": "counsel bay",
       "type": "minorsea"
     },
-    {
-      "id": 102,
+    "102": {
       "p": {
         "x": 2985760,
         "y": 2096800
       },
-      "txt": "hout xiem bay",
+      "text": "hout xiem bay",
       "type": "minorsea"
     },
-    {
-      "id": 103,
+    "103": {
       "p": {
         "x": 3479200,
         "y": 2590240
       },
-      "txt": "sea of zuram",
+      "text": "sea of zuram",
       "type": "minorsea"
     },
-    {
-      "id": 104,
+    "104": {
       "p": {
         "x": 3496480,
         "y": 1958560
       },
-      "txt": "zodas bay",
+      "text": "zodas bay",
       "type": "minorsea"
     },
-    {
-      "id": 105,
+    "105": {
       "p": {
         "x": 937120,
         "y": 3109920
       },
-      "txt": "byum bay",
+      "text": "byum bay",
       "type": "minorsea"
     },
-    {
-      "id": 106,
+    "106": {
       "p": {
         "x": 741280,
         "y": 2945440
       },
-      "txt": "bay of wadwad",
+      "text": "bay of wadwad",
       "type": "minorsea"
     },
-    {
-      "id": 107,
+    "107": {
       "p": {
         "x": 818080,
         "y": 2905120
       },
-      "txt": "duo bay",
+      "text": "duo bay",
       "type": "minorsea"
     },
-    {
-      "id": 108,
+    "108": {
       "p": {
         "x": 2105440,
         "y": 1186720
       },
-      "txt": "qai lake",
+      "text": "qai lake",
       "type": "minorsea"
     },
-    {
-      "id": 109,
+    "109": {
       "p": {
         "x": 2271520,
         "y": 540960
       },
-      "txt": "urrakeny",
+      "text": "urrakeny",
       "type": "region"
     },
-    {
-      "id": 110,
+    "11": {
+      "p": {
+        "x": 2904640,
+        "y": 483840
+      },
+      "text": "Pengerra",
+      "type": "region"
+    },
+    "110": {
       "p": {
         "x": 1781280,
         "y": 672800
       },
-      "txt": "mount ugoya",
+      "text": "mount ugoya",
       "type": "region"
     },
-    {
-      "id": 111,
+    "111": {
       "p": {
         "x": 2198560,
         "y": 403360
       },
-      "txt": "rakayanak mtns",
+      "text": "rakayanak mtns",
       "type": "region"
     },
-    {
-      "id": 112,
+    "112": {
       "p": {
         "x": 1177120,
         "y": 1019040
       },
-      "txt": "restless mtns",
+      "text": "restless mtns",
       "type": "region"
     },
-    {
-      "id": 113,
+    "113": {
       "p": {
         "x": 3288480,
         "y": 1993760
       },
-      "txt": "ziem",
+      "text": "ziem",
       "type": "region"
     },
-    {
-      "id": 114,
+    "114": {
       "p": {
         "x": 3185440,
         "y": 2111520
       },
-      "txt": "rwuten island",
+      "text": "rwuten island",
       "type": "region"
     },
-    {
-      "id": 115,
+    "115": {
       "p": {
         "x": 2947360,
         "y": 2944160
       },
-      "txt": "zosu ferts",
+      "text": "zosu ferts",
       "type": "region"
     },
-    {
-      "id": 116,
+    "116": {
       "p": {
         "x": 431770,
         "y": 1753512
       },
-      "txt": "duvbatoi",
+      "text": "duvbatoi",
       "type": "region"
     },
-    {
-      "id": 117,
+    "117": {
       "p": {
         "x": 498010,
         "y": 1689192
       },
-      "txt": "traqa",
+      "text": "traqa",
       "type": "region"
     },
-    {
-      "id": 118,
+    "118": {
       "p": {
         "x": 1267560,
         "y": 2556400
       },
-      "txt": "hailun",
+      "text": "hailun",
       "type": "city"
     },
-    {
-      "id": 119,
+    "119": {
       "p": {
         "x": 1484520,
         "y": 2870000
       },
-      "txt": "ke nao",
+      "text": "ke nao",
       "type": "city"
     },
-    {
-      "id": 120,
+    "12": {
+      "p": {
+        "x": 3328320,
+        "y": 523520
+      },
+      "text": "Minar",
+      "type": "region"
+    },
+    "120": {
       "p": {
         "x": 1547240,
         "y": 2806640
       },
-      "txt": "jyo im",
+      "text": "jyo im",
       "type": "city"
     },
-    {
-      "id": 121,
+    "121": {
       "p": {
         "x": 1419240,
         "y": 2916720
       },
-      "txt": "gam se",
+      "text": "gam se",
       "type": "city"
     },
-    {
-      "id": 122,
+    "122": {
       "p": {
         "x": 1489000,
         "y": 2953840
       },
-      "txt": "oi ziem",
+      "text": "oi ziem",
       "type": "city"
     },
-    {
-      "id": 123,
+    "123": {
       "p": {
         "x": 1462760,
         "y": 3000560
       },
-      "txt": "rei ziem",
+      "text": "rei ziem",
       "type": "city"
     },
-    {
-      "id": 124,
+    "124": {
       "p": {
         "x": 1375720,
         "y": 3027440
       },
-      "txt": "nyu gam",
+      "text": "nyu gam",
       "type": "city"
     },
-    {
-      "id": 125,
+    "125": {
       "p": {
         "x": 1306600,
         "y": 3014000
       },
-      "txt": "um nam",
+      "text": "um nam",
       "type": "city"
     },
-    {
-      "id": 126,
+    "126": {
       "p": {
         "x": 1190120,
         "y": 2996720
       },
-      "txt": "zyo wan",
+      "text": "zyo wan",
       "type": "city"
     },
-    {
-      "id": 127,
+    "127": {
       "p": {
         "x": 979560,
         "y": 3031280
       },
-      "txt": "duo pe",
+      "text": "duo pe",
       "type": "city"
     },
-    {
-      "id": 128,
+    "128": {
       "p": {
         "x": 1248360,
         "y": 3078000
       },
-      "txt": "pyo fort",
+      "text": "pyo fort",
       "type": "city"
     },
-    {
-      "id": 129,
+    "129": {
       "p": {
         "x": 1173480,
         "y": 3110000
       },
-      "txt": "bi",
+      "text": "bi",
       "type": "city"
     },
-    {
-      "id": 130,
+    "13": {
+      "p": {
+        "x": 3095840,
+        "y": 515360
+      },
+      "text": "essamock mtns",
+      "type": "region"
+    },
+    "130": {
       "p": {
         "x": 1212200,
         "y": 3111600
       },
-      "txt": "so liem",
+      "text": "so liem",
       "type": "city"
     },
-    {
-      "id": 131,
+    "131": {
       "p": {
         "x": 1310760,
         "y": 3092960
       },
-      "txt": "nao pe",
+      "text": "nao pe",
       "type": "city"
     },
-    {
-      "id": 132,
+    "132": {
       "p": {
         "x": 1098920,
         "y": 3124000
       },
-      "txt": "ha lum",
+      "text": "ha lum",
       "type": "city"
     },
-    {
-      "id": 133,
+    "133": {
       "p": {
         "x": 839400,
         "y": 2989920
       },
-      "txt": "jyozgam",
+      "text": "jyozgam",
       "type": "city"
     },
-    {
-      "id": 134,
+    "134": {
       "p": {
         "x": 857640,
         "y": 2971680
       },
-      "txt": "duogaz",
+      "text": "duogaz",
       "type": "city"
     },
-    {
-      "id": 135,
+    "135": {
       "p": {
         "x": 1556440,
         "y": 2902640
       },
-      "txt": "va ziem",
+      "text": "va ziem",
       "type": "city"
     },
-    {
-      "id": 136,
+    "136": {
       "p": {
         "x": 833440,
         "y": 2408160
       },
-      "txt": "shiaovets",
+      "text": "shiaovets",
       "type": "city"
     },
-    {
-      "id": 137,
+    "137": {
       "p": {
         "x": 1001120,
         "y": 2172000
       },
-      "txt": "tsaliseu",
+      "text": "tsaliseu",
       "type": "city"
     },
-    {
-      "id": 138,
+    "138": {
       "p": {
         "x": 834080,
         "y": 1850720
       },
-      "txt": "vdali",
+      "text": "vdali",
       "type": "city"
     },
-    {
-      "id": 139,
+    "139": {
       "p": {
         "x": 642080,
         "y": 1627360
       },
-      "txt": "vdubenif",
+      "text": "vdubenif",
       "type": "city"
     },
-    {
-      "id": 140,
+    "14": {
+      "p": {
+        "x": 3432480,
+        "y": 202400
+      },
+      "text": "oskeny",
+      "type": "region"
+    },
+    "140": {
       "p": {
         "x": 501920,
         "y": 1638240
       },
-      "txt": "koennif",
+      "text": "koennif",
       "type": "city"
     },
-    {
-      "id": 141,
+    "141": {
       "p": {
         "x": 1764640,
         "y": 894560
       },
-      "txt": "iwo",
+      "text": "iwo",
       "type": "city"
     },
-    {
-      "id": 142,
+    "142": {
       "p": {
         "x": 1720800,
         "y": 838240
       },
-      "txt": "alye",
+      "text": "alye",
       "type": "city"
     },
-    {
-      "id": 143,
+    "143": {
       "p": {
         "x": 749600,
         "y": 889120
       },
-      "txt": "nartu",
+      "text": "nartu",
       "type": "city"
     },
-    {
-      "id": 144,
+    "144": {
       "p": {
         "x": 1834720,
         "y": 539040
       },
-      "txt": "tlem",
+      "text": "tlem",
       "type": "city"
     },
-    {
-      "id": 145,
+    "145": {
       "p": {
         "x": 1715680,
         "y": 476320
       },
-      "txt": "uraktlem tos",
+      "text": "uraktlem tos",
       "type": "city"
     },
-    {
-      "id": 146,
+    "146": {
       "p": {
         "x": 2845600,
         "y": 220640
       },
-      "txt": "omkor",
+      "text": "omkor",
       "type": "city"
     },
-    {
-      "id": 147,
+    "147": {
       "p": {
         "x": 2868960,
         "y": 203360
       },
-      "txt": "gorik",
+      "text": "gorik",
       "type": "city"
     },
-    {
-      "id": 148,
+    "148": {
       "p": {
         "x": 2930400,
         "y": 367680
       },
-      "txt": "utsperk",
+      "text": "utsperk",
       "type": "city"
     },
-    {
-      "id": 149,
+    "149": {
       "p": {
         "x": 2930720,
         "y": 348800
       },
-      "txt": "peni eruzberk",
+      "text": "peni eruzberk",
       "type": "city"
     },
-    {
-      "id": 150,
+    "15": {
+      "p": {
+        "x": 3413280,
+        "y": 395040
+      },
+      "text": "eskena mtns",
+      "type": "region"
+    },
+    "150": {
       "p": {
         "x": 2299040,
         "y": 1442080
       },
-      "txt": "zramsd",
+      "text": "zramsd",
       "type": "city"
     },
-    {
-      "id": 151,
+    "151": {
       "p": {
         "x": 1483360,
         "y": 1681600
       },
-      "txt": "camareni",
+      "text": "camareni",
       "type": "city"
     },
-    {
-      "id": 152,
+    "152": {
       "p": {
         "x": 1649120,
         "y": 390880
       },
-      "txt": "suyayapit",
+      "text": "suyayapit",
       "type": "city"
     },
-    {
-      "id": 153,
+    "153": {
       "p": {
         "x": 1766084,
         "y": 396290
       },
-      "txt": "agravirkjuta",
+      "text": "agravirkjuta",
       "type": "city"
     },
-    {
-      "id": 154,
+    "154": {
       "p": {
         "x": 1203680,
         "y": 183200
       },
-      "txt": "tlorman z uyn",
+      "text": "tlorman z uyn",
       "type": "city"
     },
-    {
-      "id": 155,
+    "155": {
       "p": {
         "x": 1693600,
         "y": 329760
       },
-      "txt": "tloranaya",
+      "text": "tloranaya",
       "type": "city"
     },
-    {
-      "id": 156,
+    "156": {
       "p": {
         "x": 1782240,
         "y": 273440
       },
-      "txt": "bainot",
+      "text": "bainot",
       "type": "city"
     },
-    {
-      "id": 157,
+    "157": {
       "p": {
         "x": 1847520,
         "y": 244640
       },
-      "txt": "opit",
+      "text": "opit",
       "type": "city"
     },
-    {
-      "id": 158,
+    "158": {
       "p": {
         "x": 1035360,
         "y": 529440
       },
-      "txt": "byomiapit",
+      "text": "byomiapit",
       "type": "region"
     },
-    {
-      "id": 159,
+    "159": {
       "p": {
         "x": 931680,
         "y": 508320
       },
-      "txt": "gunoboropit",
+      "text": "gunoboropit",
       "type": "region"
     },
-    {
-      "id": 160,
+    "16": {
+      "p": {
+        "x": 3596320,
+        "y": 403360
+      },
+      "text": "cubre",
+      "type": "region"
+    },
+    "160": {
       "p": {
         "x": 306080,
         "y": 1492960
       },
-      "txt": "ayulnagam",
+      "text": "ayulnagam",
       "type": "city"
     },
-    {
-      "id": 161,
+    "161": {
       "p": {
         "x": 1350800,
         "y": 1623532
       },
-      "txt": "muzgirab",
+      "text": "muzgirab",
       "type": "region"
     },
-    {
-      "id": 162,
+    "162": {
       "p": {
         "x": 812736,
         "y": 475264
       },
-      "txt": "bay of gorbya",
+      "text": "bay of gorbya",
       "type": "minorsea"
     },
-    {
-      "id": 163,
+    "163": {
       "p": {
         "x": 3828416,
         "y": 1180288
       },
-      "txt": "Yixia Me",
+      "text": "Yixia Me",
       "type": "region"
     },
-    {
-      "id": 164,
+    "164": {
       "p": {
         "x": 3077440,
         "y": 1190656
       },
-      "txt": "Urgaq",
+      "text": "Urgaq",
       "type": "region"
     },
-    {
-      "id": 165,
+    "165": {
       "p": {
         "x": 3201344,
         "y": 1451904
       },
-      "txt": "Rnmut",
+      "text": "Rnmut",
       "type": "region"
     },
-    {
-      "id": 166,
+    "166": {
       "p": {
         "x": 2491392,
         "y": 1332224
       },
-      "txt": "Inkepst",
+      "text": "Inkepst",
       "type": "region"
     },
-    {
-      "id": 167,
+    "167": {
       "p": {
         "x": 1880448,
         "y": 1191552
       },
-      "txt": "Hannakupniyam Lake",
+      "text": "Hannakupniyam Lake",
+      "type": "minorsea"
+    },
+    "17": {
+      "p": {
+        "x": 3180320,
+        "y": 690720
+      },
+      "text": "ribbonnad",
+      "type": "region"
+    },
+    "18": {
+      "p": {
+        "x": 3695520,
+        "y": 123040
+      },
+      "text": "tarodaro",
+      "type": "region"
+    },
+    "19": {
+      "p": {
+        "x": 2393760,
+        "y": 807200
+      },
+      "text": "rujokatch",
+      "type": "region"
+    },
+    "2": {
+      "p": {
+        "x": 465280,
+        "y": 1628480
+      },
+      "text": "Koennif",
+      "type": "region"
+    },
+    "20": {
+      "p": {
+        "x": 2265120,
+        "y": 1009440
+      },
+      "text": "jatmiyan",
+      "type": "region"
+    },
+    "21": {
+      "p": {
+        "x": 3014880,
+        "y": 731360
+      },
+      "text": "nonggadum",
+      "type": "region"
+    },
+    "22": {
+      "p": {
+        "x": 2053280,
+        "y": 1012640
+      },
+      "text": "mount pyoro",
+      "type": "region"
+    },
+    "23": {
+      "p": {
+        "x": 2836000,
+        "y": 688160
+      },
+      "text": "unbara",
+      "type": "region"
+    },
+    "24": {
+      "p": {
+        "x": 1824800,
+        "y": 853920
+      },
+      "text": "iwoalye",
+      "type": "region"
+    },
+    "25": {
+      "p": {
+        "x": 2832160,
+        "y": 590880
+      },
+      "text": "mount barlyfen",
+      "type": "region"
+    },
+    "26": {
+      "p": {
+        "x": 2563360,
+        "y": 471840
+      },
+      "text": "mount narik",
+      "type": "region"
+    },
+    "27": {
+      "p": {
+        "x": 3624480,
+        "y": 1115680
+      },
+      "text": "zoxiai",
+      "type": "region"
+    },
+    "28": {
+      "p": {
+        "x": 3121440,
+        "y": 1503520
+      },
+      "text": "qunmi",
+      "type": "region"
+    },
+    "29": {
+      "p": {
+        "x": 3380000,
+        "y": 1709600
+      },
+      "text": "zufkand",
+      "type": "region"
+    },
+    "3": {
+      "p": {
+        "x": 423360,
+        "y": 1511360
+      },
+      "text": "Yul Mtns",
+      "type": "region"
+    },
+    "30": {
+      "p": {
+        "x": 2912800,
+        "y": 1703200
+      },
+      "text": "nywev",
+      "type": "region"
+    },
+    "31": {
+      "p": {
+        "x": 1031200,
+        "y": 2183200
+      },
+      "text": "shiao",
+      "type": "region"
+    },
+    "32": {
+      "p": {
+        "x": 962400,
+        "y": 2433600
+      },
+      "text": "shiaovets",
+      "type": "region"
+    },
+    "33": {
+      "p": {
+        "x": 534880,
+        "y": 2489920
+      },
+      "text": "sikav",
+      "type": "region"
+    },
+    "34": {
+      "p": {
+        "x": 1009760,
+        "y": 2768960
+      },
+      "text": "boshionai",
+      "type": "region"
+    },
+    "35": {
+      "p": {
+        "x": 1361760,
+        "y": 2912320
+      },
+      "text": "bissholmi",
+      "type": "region"
+    },
+    "36": {
+      "p": {
+        "x": 1177440,
+        "y": 2693440
+      },
+      "text": "kezal mtns",
+      "type": "region"
+    },
+    "37": {
+      "p": {
+        "x": 1564640,
+        "y": 2260800
+      },
+      "text": "mi yon",
+      "type": "region"
+    },
+    "38": {
+      "p": {
+        "x": 1565280,
+        "y": 1920320
+      },
+      "text": "naga sugira",
+      "type": "region"
+    },
+    "39": {
+      "p": {
+        "x": 1923040,
+        "y": 2714560
+      },
+      "text": "stolups",
+      "type": "region"
+    },
+    "4": {
+      "p": {
+        "x": 674240,
+        "y": 1894080
+      },
+      "text": "Nivdal",
+      "type": "region"
+    },
+    "40": {
+      "p": {
+        "x": 2545120,
+        "y": 2294720
+      },
+      "text": "gurakand",
+      "type": "region"
+    },
+    "41": {
+      "p": {
+        "x": 2290400,
+        "y": 1738560
+      },
+      "text": "vlori",
+      "type": "region"
+    },
+    "42": {
+      "p": {
+        "x": 2456160,
+        "y": 1490880
+      },
+      "text": "munishtaq vu",
+      "type": "region"
+    },
+    "43": {
+      "p": {
+        "x": 2880480,
+        "y": 1313600
+      },
+      "text": "ashigam",
+      "type": "region"
+    },
+    "44": {
+      "p": {
+        "x": 2515680,
+        "y": 1170880
+      },
+      "text": "negima",
+      "type": "region"
+    },
+    "45": {
+      "p": {
+        "x": 2256480,
+        "y": 1278400
+      },
+      "text": "jdayalur",
+      "type": "region"
+    },
+    "46": {
+      "p": {
+        "x": 1722720,
+        "y": 1487040
+      },
+      "text": "wolaraum",
+      "type": "region"
+    },
+    "47": {
+      "p": {
+        "x": 2454240,
+        "y": 2087360
+      },
+      "text": "hakuramdi plateau",
+      "type": "region"
+    },
+    "48": {
+      "p": {
+        "x": 1954400,
+        "y": 2488000
+      },
+      "text": "mount toba",
+      "type": "region"
+    },
+    "49": {
+      "p": {
+        "x": 2651360,
+        "y": 1924800
+      },
+      "text": "mount iniq",
+      "type": "region"
+    },
+    "5": {
+      "p": {
+        "x": 1016640,
+        "y": 1311488
+      },
+      "text": "Zbegyanda",
+      "type": "region"
+    },
+    "50": {
+      "p": {
+        "x": 1164640,
+        "y": 837440
+      },
+      "text": "syeg ims",
+      "type": "region"
+    },
+    "51": {
+      "p": {
+        "x": 1468000,
+        "y": 754240
+      },
+      "text": "mayarapit",
+      "type": "region"
+    },
+    "52": {
+      "p": {
+        "x": 807520,
+        "y": 953920
+      },
+      "text": "nartu",
+      "type": "region"
+    },
+    "53": {
+      "p": {
+        "x": 876640,
+        "y": 668480
+      },
+      "text": "mount noboro",
+      "type": "region"
+    },
+    "54": {
+      "p": {
+        "x": 815200,
+        "y": 589120
+      },
+      "text": "gorgobya",
+      "type": "region"
+    },
+    "55": {
+      "p": {
+        "x": 474400,
+        "y": 853760
+      },
+      "text": "miz",
+      "type": "region"
+    },
+    "56": {
+      "p": {
+        "x": 1360160,
+        "y": 538240
+      },
+      "text": "zayare natsupit",
+      "type": "region"
+    },
+    "57": {
+      "p": {
+        "x": 1541280,
+        "y": 517120
+      },
+      "text": "huiyepitnaya",
+      "type": "region"
+    },
+    "58": {
+      "p": {
+        "x": 1772960,
+        "y": 458560
+      },
+      "text": "huatosurak",
+      "type": "region"
+    },
+    "59": {
+      "p": {
+        "x": 1806240,
+        "y": 329280
+      },
+      "text": "osoyapit",
+      "type": "region"
+    },
+    "6": {
+      "p": {
+        "x": 1406400,
+        "y": 1254720
+      },
+      "text": "Gurvyet",
+      "type": "region"
+    },
+    "60": {
+      "p": {
+        "x": 1766560,
+        "y": 243520
+      },
+      "text": "baratakapit",
+      "type": "region"
+    },
+    "61": {
+      "p": {
+        "x": 1600160,
+        "y": 255040
+      },
+      "text": "tlorukpit",
+      "type": "region"
+    },
+    "62": {
+      "p": {
+        "x": 1045920,
+        "y": 258880
+      },
+      "text": "oskyutlams",
+      "type": "region"
+    },
+    "63": {
+      "p": {
+        "x": 882080,
+        "y": 336960
+      },
+      "text": "natsupit",
+      "type": "region"
+    },
+    "64": {
+      "p": {
+        "x": 1113760,
+        "y": 381760
+      },
+      "text": "xastapit",
+      "type": "region"
+    },
+    "65": {
+      "p": {
+        "x": 1182240,
+        "y": 335360
+      },
+      "text": "skyumiapit",
+      "type": "region"
+    },
+    "66": {
+      "p": {
+        "x": 458400,
+        "y": 188800
+      },
+      "text": "spring islands",
+      "type": "region"
+    },
+    "67": {
+      "p": {
+        "x": 1947680,
+        "y": 210560
+      },
+      "text": "himenepit",
+      "type": "region"
+    },
+    "68": {
+      "p": {
+        "x": 2329760,
+        "y": 268800
+      },
+      "text": "juta",
+      "type": "region"
+    },
+    "69": {
+      "p": {
+        "x": 2002080,
+        "y": 414720
+      },
+      "text": "kunzi",
+      "type": "region"
+    },
+    "7": {
+      "p": {
+        "x": 1157760,
+        "y": 1602560
+      },
+      "text": "Old Sea",
+      "type": "sea"
+    },
+    "70": {
+      "p": {
+        "x": 1844000,
+        "y": 62240
+      },
+      "text": "great southern sea",
+      "type": "sea"
+    },
+    "71": {
+      "p": {
+        "x": 2524960,
+        "y": 393120
+      },
+      "text": "bay of riggermaddat",
+      "type": "minorsea"
+    },
+    "72": {
+      "p": {
+        "x": 2765600,
+        "y": 375200
+      },
+      "text": "pengerrand bay",
+      "type": "minorsea"
+    },
+    "73": {
+      "p": {
+        "x": 2722080,
+        "y": 204960
+      },
+      "text": "bay of eruzberk",
+      "type": "minorsea"
+    },
+    "74": {
+      "p": {
+        "x": 2935840,
+        "y": 156320
+      },
+      "text": "soffa bay",
+      "type": "minorsea"
+    },
+    "75": {
+      "p": {
+        "x": 3297440,
+        "y": 146080
+      },
+      "text": "imnereskne bay",
+      "type": "minorsea"
+    },
+    "76": {
+      "p": {
+        "x": 3548320,
+        "y": 128160
+      },
+      "text": "masdolille bay",
+      "type": "minorsea"
+    },
+    "77": {
+      "p": {
+        "x": 3732640,
+        "y": 750240
+      },
+      "text": "sea of kin turbao",
+      "type": "minorsea"
+    },
+    "78": {
+      "p": {
+        "x": 3004960,
+        "y": 967840
+      },
+      "text": "shiem sea",
+      "type": "minorsea"
+    },
+    "79": {
+      "p": {
+        "x": 2521120,
+        "y": 954400
+      },
+      "text": "orgichadma bay",
+      "type": "minorsea"
+    },
+    "8": {
+      "p": {
+        "x": 1164480,
+        "y": 1916160
+      },
+      "text": "Wild Droub Bay",
+      "type": "sea"
+    },
+    "80": {
+      "p": {
+        "x": 2537120,
+        "y": 642720
+      },
+      "text": "nebu bay",
+      "type": "minorsea"
+    },
+    "81": {
+      "p": {
+        "x": 3431840,
+        "y": 1325600
+      },
+      "text": "greening sea",
+      "type": "minorsea"
+    },
+    "82": {
+      "p": {
+        "x": 2992160,
+        "y": 1396000
+      },
+      "text": "gulf of ashigam",
+      "type": "minorsea"
+    },
+    "83": {
+      "p": {
+        "x": 2770720,
+        "y": 1189280
+      },
+      "text": "furugimash bay",
+      "type": "minorsea"
+    },
+    "84": {
+      "p": {
+        "x": 2590560,
+        "y": 1704480
+      },
+      "text": "lake aketuva",
+      "type": "minorsea"
+    },
+    "85": {
+      "p": {
+        "x": 1991200,
+        "y": 1652000
+      },
+      "text": "sea of naga uramzda",
+      "type": "minorsea"
+    },
+    "86": {
+      "p": {
+        "x": 2178720,
+        "y": 1463200
+      },
+      "text": "bay of zramsd",
+      "type": "minorsea"
+    },
+    "87": {
+      "p": {
+        "x": 1678240,
+        "y": 1645600
+      },
+      "text": "camareni channel",
+      "type": "minorsea"
+    },
+    "88": {
+      "p": {
+        "x": 1042080,
+        "y": 1403040
+      },
+      "text": "near zbegyanda strait",
+      "type": "minorsea"
+    },
+    "89": {
+      "p": {
+        "x": 1000480,
+        "y": 1212320
+      },
+      "text": "far zbegyanda strait",
+      "type": "minorsea"
+    },
+    "9": {
+      "p": {
+        "x": 3154240,
+        "y": 295680
+      },
+      "text": "Daloe",
+      "type": "region"
+    },
+    "90": {
+      "p": {
+        "x": 699040,
+        "y": 1175840
+      },
+      "text": "piada sound",
+      "type": "minorsea"
+    },
+    "91": {
+      "p": {
+        "x": 269600,
+        "y": 617120
+      },
+      "text": "sea of nartu",
+      "type": "minorsea"
+    },
+    "92": {
+      "p": {
+        "x": 1206560,
+        "y": 482720
+      },
+      "text": "okvalsye sea",
+      "type": "minorsea"
+    },
+    "93": {
+      "p": {
+        "x": 1589600,
+        "y": 783456
+      },
+      "text": "iwos gulf",
+      "type": "minorsea"
+    },
+    "94": {
+      "p": {
+        "x": 243360,
+        "y": 2210720
+      },
+      "text": "south shiaovets sea",
+      "type": "minorsea"
+    },
+    "95": {
+      "p": {
+        "x": 898080,
+        "y": 2658080
+      },
+      "text": "boundary bay",
+      "type": "minorsea"
+    },
+    "96": {
+      "p": {
+        "x": 839200,
+        "y": 2764320
+      },
+      "text": "yan plu bay",
+      "type": "minorsea"
+    },
+    "97": {
+      "p": {
+        "x": 432160,
+        "y": 2798880
+      },
+      "text": "north shiaovets sea",
+      "type": "minorsea"
+    },
+    "98": {
+      "p": {
+        "x": 1733280,
+        "y": 2895520
+      },
+      "text": "bay of jyo im",
+      "type": "minorsea"
+    },
+    "99": {
+      "p": {
+        "x": 1668000,
+        "y": 2634400
+      },
+      "text": "gulf of jyo hua",
       "type": "minorsea"
     }
-  ],
+  },
   "roads": [
     {
       "x": 501920,

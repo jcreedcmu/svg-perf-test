@@ -9,7 +9,7 @@ var key = require('./key');
 var DEBUG = false;
 var DEBUG_PROF = false;
 var OFFSET = DEBUG ? 100 : 0;
-var VERTEX_SENSITIVITY = 5;
+var VERTEX_SENSITIVITY = 10;
 
 // data in a.json generated through
 // potrace a.pbm -a 0 -b geojson
@@ -279,28 +279,15 @@ $(c).on('mousedown', function(e) {
     var x = e.pageX;
     var y = e.pageY;
     var worldp = inv_xform(camera, x, y);
-    $('#insert_label input[name="text"]')[0].value = "";
-    $('#insert_label input[name="type"]')[0].value = "region";
-    $('#insert_label input[name="zoom"]')[0].value = "";
-
-    function insert_label_ok(e) {
-      e.preventDefault();
-      var obj = _.object($("#insert_label form").serializeArray().map(function(pair) {
-	return [pair.name, pair.value];
-      }));
-      _.extend(obj, {p: worldp});
-      label_layer.new_label(obj);
-      render();
-      $("#insert_label").modal("hide");
+    if (g_lastz != "[]") {
+      var z = JSON.parse(g_lastz);
+      if (z.length == 1 && z[0][0] == "label") {
+	label_layer.make_insert_label_modal(worldp, z[0][1], render);
+      }
     }
-
-    $("#insert_label form").off("submit");
-    $("#insert_label form").on("submit", insert_label_ok);
-    $("#insert_label form button[type=submit]").off("click");
-    $("#insert_label form button[type=submit]").on("click", insert_label_ok);
-
-    $('#insert_label').modal('show');
-    setTimeout(function() { $('#insert_label input[name="text"]').focus(); }, 500);
+    else {
+      label_layer.make_insert_label_modal(worldp, null, render);
+    }
   }
   else if (g_mode == "Insert") {
     var camera = state.camera();

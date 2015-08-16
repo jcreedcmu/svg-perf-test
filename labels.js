@@ -28,6 +28,8 @@ LabelLayer.prototype.rm_label_from_rt = function(lab) {
 LabelLayer.prototype.new_label = function(bundle) {
   var id = this.last_label++;
   var lab = {id:id, p: {x:bundle.p.x, y:bundle.p.y}, text: bundle.text, type: bundle.type};
+  if (bundle.zoom != "" && bundle.zoom != null)
+    _.extend(lab, {zoom:bundle.zoom});
   this.add_label_to_rt(lab);
   this.labels[id] = lab;
 }

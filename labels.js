@@ -157,6 +157,7 @@ LabelLayer.prototype.make_insert_label_modal = function(worldp, lab, dispatch) {
   if (lab) {
     $('#insert_label input[name="text"]')[0].value = lab.text;
     $('#insert_label input[name="type"]')[0].value = lab.type;
+    if (lab.zoom == null) lab.zoom = "";
     $('#insert_label input[name="zoom"]')[0].value = lab.zoom;
 
     process_f = function (obj) {
@@ -179,6 +180,8 @@ LabelLayer.prototype.make_insert_label_modal = function(worldp, lab, dispatch) {
     var obj = _.object($("#insert_label form").serializeArray().map(function(pair) {
       return [pair.name, pair.value];
     }));
+    if (obj.zoom == null || obj.zoom == "")
+      delete obj.zoom;
     process_f(obj);
     dispatch();
     $("#insert_label").modal("hide");

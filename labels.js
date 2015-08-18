@@ -38,8 +38,6 @@ LabelLayer.prototype.replace_label = function(new_lab) {
   var old_lab = this.labels[new_lab.id];
   this.rm_label_from_rt(old_lab);
   this.add_label_to_rt(new_lab);
-  console.log(old_lab);
-  console.log(new_lab);
   this.labels[new_lab.id] = new_lab;
 }
 

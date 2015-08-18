@@ -133,7 +133,6 @@ function render() {
 	  d.strokeRect(pt[0]-rad,pt[1]-rad,rad * 2,rad * 2);
 	}
 	else if (bundle[0] == "label") {
-	  console.log(bundle[1]);
 	  var pt = bundle[1].p;
 	  d.beginPath();
 	  d.fillStyle = "white";
@@ -294,8 +293,13 @@ $(c).on('mousedown', function(e) {
     var x = e.pageX;
     var y = e.pageY;
     var worldp = inv_xform(camera, x, y);
-    coastline_layer.add_vert_to_arc(454, worldp);
-    render();
+
+    var rad = VERTEX_SENSITIVITY / camera.scale();
+    var bbox = [worldp.x - rad, worldp.y - rad, worldp.x + rad, worldp.y + rad];
+    var candidate_features = coastline_layer.arc_targets(bbox);
+    var hit_line = find_hit_line(worldp, candidate_features);
+
+//    render();
   }
   else if (g_mode == "Move") {
     var camera = state.camera();
@@ -431,3 +435,41 @@ function save() {
 //   // {pos: [g_imageState.x, g_imageState.y], scale: g_imageState.scale};
 //   console.log(JSON.stringify(g_imageStates));
 // }
+
+function find_hit_line(p, candidate_features) {
+  var camera = state.camera();
+  var slack = VERTEX_SENSITIVITY / camera.scale();
+  d.save();
+  d.translate(camera.x, camera.y);
+  d.scale(camera.scale(), -camera.scale());
+  d.fillStyle = "black";
+  d.fillRect(p.x, p.y, 10 / camera.scale(), 10 / camera.scale());
+  for (var i = 0; i < candidate_features.length; i++) {
+    var feat = candidate_features[i];
+    var farcs = feat.arcs;
+    for (var j = 0; j < farcs.length; j++) {
+      for (var jj = 0; jj < farcs[j].length; jj++) {
+	var arc = coastline_layer.arcs[farcs[j][jj]];
+	var bbox = arc.properties.bbox;
+	if (!bbox_test_with_slack(p, bbox, slack))
+	  continue;
+	var apts = arc.points;
+	for (var k = 0; k < apts.length - 1; k++) {
+	  d.beginPath();
+	  d.moveTo(apts[k][0], apts[k][1]);
+	  d.lineTo(apts[k+1][0], apts[k+1][1]);
+	  d.strokeStyle = "red";
+	  d.lineWidth = 5 / camera.scale();
+	  d.stroke();
+	}
+      }
+    }
+
+  }
+  d.restore();
+}
+
+function bbox_test_with_slack(p, bbox, slack) {
+  return (p.x + slack > bbox.minx && p.y + slack > bbox.miny &&
+	  p.x - slack < bbox.maxx && p.y - slack < bbox.maxy);
+}

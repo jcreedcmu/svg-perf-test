@@ -43,6 +43,10 @@ function CoastlineLayer(features, arcs) {
 
 module.exports = CoastlineLayer;
 
+CoastlineLayer.prototype.arc_targets = function(world_bbox) {
+  return this.rt.bbox.apply(this.rt, world_bbox);
+}
+
 CoastlineLayer.prototype.targets = function(world_bbox) {
   var targets = this.vertex_rt.bbox.apply(this.vertex_rt, world_bbox);
 

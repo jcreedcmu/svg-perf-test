@@ -196,6 +196,19 @@ CoastlineLayer.prototype.render = function(d, camera, locus, world_bbox) {
   d.restore();
 }
 
+CoastlineLayer.prototype.recompute_arc_feature_bbox = function(arc_id) {
+  var that = this;
+  this.arc_to_feature[arc_id].forEach(function(feature_ix) {
+    var object = that.features.objects[feature_ix];
+    var bb = object.properties.bbox;
+    that.rt.remove({x:bb.minx, y:bb.miny, w:bb.maxx - bb.minx, h:bb.maxy - bb.miny},
+		   object);
+    simplify.compute_bbox(object, that.arcs);
+    that.rt.insert({x:bb.minx, y:bb.miny, w:bb.maxx - bb.minx, h:bb.maxy - bb.miny},
+		   object);
+  });
+}
+
 // special case first and last of arc??
 CoastlineLayer.prototype.replace_vert_in_arc = function(rt_entry,  p) {
   var arc_id = rt_entry.arc;
@@ -209,16 +222,7 @@ CoastlineLayer.prototype.replace_vert_in_arc = function(rt_entry,  p) {
   simplify.simplify_arc(arc);
   var results = this.vertex_rt.remove({x:oldp[0],y:oldp[1],w:0,h:0}, rt_entry);
   this.vertex_rt.insert({x:p.x,y:p.y,w:0,h:0}, {arc: arc_id, point: new_pt});
-  var that = this;
-  this.arc_to_feature[arc_id].forEach(function(feature_ix) {
-    var object = that.features.objects[feature_ix];
-    var bb = object.properties.bbox;
-    that.rt.remove({x:bb.minx, y:bb.miny, w:bb.maxx - bb.minx, h:bb.maxy - bb.miny},
-		   object);
-    simplify.compute_bbox(object, that.arcs);
-    that.rt.insert({x:bb.minx, y:bb.miny, w:bb.maxx - bb.minx, h:bb.maxy - bb.miny},
-		   object);
-  });
+  this.recompute_arc_feature_bbox(arc_id);
 }
 
 CoastlineLayer.prototype.add_vert_to_arc = function(arc_id,  p) {
@@ -235,17 +239,21 @@ CoastlineLayer.prototype.add_vert_to_arc = function(arc_id,  p) {
   this.vertex_rt.insert({x:p.x,y:p.y,w:0,h:0}, [arc_id, len-1]);
   this.vertex_rt.insert({x:oldp[0],y:oldp[1],w:0,h:0}, [arc_id, len]);
   this.vertex_rt.insert({x:oldp[0],y:oldp[1],w:0,h:0}, [arc_id, 0]);
-  var that = this;
-  this.arc_to_feature[arc_id].forEach(function(feature_ix) {
-    var object = that.features.objects[feature_ix];
-    var bb = object.properties.bbox;
-    that.rt.remove({x:bb.minx, y:bb.miny, w:bb.maxx - bb.minx, h:bb.maxy - bb.miny},
-		   object);
-    simplify.compute_bbox(object, that.arcs);
-    that.rt.insert({x:bb.minx, y:bb.miny, w:bb.maxx - bb.minx, h:bb.maxy - bb.miny},
-		   object);
-  });
-}
+
+  this.recompute_arc_feature_bbox(arc);
+};
+
+CoastlineLayer.prototype.break_segment = function(segment, p) {
+  var arc_id = segment.arc;
+  var arc = this.arcs[arc_id];
+
+  var newp = [p.x, p.y, 1000];
+  arc.points.splice(segment.ix + 1, 0, newp);
+  simplify.simplify_arc(arc);
+
+  this.vertex_rt.insert({x:p.x,y:p.y,w:0,h:0}, {arc:arc_id, point:newp});
+  this.recompute_arc_feature_bbox(arc);
+};
 
 CoastlineLayer.prototype.model = function() {
   return {features: _.extend({},

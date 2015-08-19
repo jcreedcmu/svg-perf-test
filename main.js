@@ -296,9 +296,11 @@ $(c).on('mousedown', function(e) {
     var rad = VERTEX_SENSITIVITY / camera.scale();
     var bbox = [worldp.x - rad, worldp.y - rad, worldp.x + rad, worldp.y + rad];
     var candidate_features = coastline_layer.arc_targets(bbox);
-    var hit_line = find_hit_line(worldp, candidate_features);
-
-//    render();
+    var hit_lines = find_hit_lines(worldp, candidate_features);
+    if (hit_lines.length == 1) {
+      coastline_layer.break_segment(hit_lines[0], worldp);
+    }
+    render();
   }
   else if (g_mode == "Move") {
     var camera = state.camera();
@@ -436,14 +438,15 @@ function save() {
 //   console.log(JSON.stringify(g_imageStates));
 // }
 
-function find_hit_line(p, candidate_features) {
+function find_hit_lines(p, candidate_features) {
   var camera = state.camera();
   var slack = VERTEX_SENSITIVITY / camera.scale();
-  d.save();
-  d.translate(camera.x, camera.y);
-  d.scale(camera.scale(), -camera.scale());
-  d.fillStyle = "black";
-  d.fillRect(p.x, p.y, 10 / camera.scale(), 10 / camera.scale());
+  // d.save();
+  // d.translate(camera.x, camera.y);
+  // d.scale(camera.scale(), -camera.scale());
+  // d.fillStyle = "black";
+  // d.fillRect(p.x, p.y, 10 / camera.scale(), 10 / camera.scale());
+  var segment_targets = [];
   for (var i = 0; i < candidate_features.length; i++) {
     var feat = candidate_features[i];
     var farcs = feat.arcs;
@@ -455,7 +458,7 @@ function find_hit_line(p, candidate_features) {
 	  continue;
 	var apts = arc.points;
 	for (var k = 0; k < apts.length - 1; k++) {
-	  d.beginPath();
+	  // d.beginPath();
 	  var r = apts[k];
 	  var s = apts[k+1];
 	  // project p onto r --- s;
@@ -474,26 +477,27 @@ function find_hit_line(p, candidate_features) {
 		      y: r[1] * (1-t) + s[1] * t};
 	    var proj_distance = Math.sqrt((pp.x - p.x) * (pp.x - p.x) + (pp.y - p.y) * (pp.y - p.y));
 	    if (proj_distance > slack) {
-	      d.moveTo(p.x, p.y);
-	      d.lineTo(pp.x, pp.y);
-	      d.strokeStyle = "red";
-	      d.lineWidth = 1 / camera.scale();
-	      d.stroke();
+	      // d.moveTo(p.x, p.y);
+	      // d.lineTo(pp.x, pp.y);
+	      // d.strokeStyle = "red";
+	      // d.lineWidth = 1 / camera.scale();
+	      // d.stroke();
 	    }
 	    else {
-	      d.moveTo(r[0], r[1]);
-	      d.lineTo(s[0], s[1]);
-	      d.strokeStyle = "blue";
-	      d.lineWidth = 5 / camera.scale();
-	      d.stroke();
+	      segment_targets.push({arc:farcs[j][jj], ix: k});
+	      // d.moveTo(r[0], r[1]);
+	      // d.lineTo(s[0], s[1]);
+	      // d.strokeStyle = "blue";
+	      // d.lineWidth = 5 / camera.scale();
+	      // d.stroke();
 	    }
 	  }
 	}
       }
     }
-
   }
-  d.restore();
+  //  d.restore();
+  return segment_targets;
 }
 
 function bbox_test_with_slack(p, bbox, slack) {

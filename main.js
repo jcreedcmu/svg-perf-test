@@ -124,8 +124,7 @@ function render() {
       d.scale(camera.scale(), -camera.scale());
       pts.forEach(function(bundle) {
 	if (bundle[0] == "coastline") {
-	  var index = bundle[1];
-	  var pt = coastline_layer.arcs[index[0]].points[index[1]];
+	  var pt = bundle[1].point;
 	  d.fillStyle = "white";
 	  d.fillRect(pt[0]-rad,pt[1]-rad,rad * 2,rad * 2);
 	  d.lineWidth = 1 / camera.scale();
@@ -316,9 +315,10 @@ $(c).on('mousedown', function(e) {
       var neighbors = [];
 
       targets.forEach(function(target) {
-	var arc_points = coastline_layer.arcs[target[0]].points;
-	if (target[1] > 0) neighbors.push(arc_points[target[1] - 1]);
-	if (target[1] < arc_points.length - 1) neighbors.push(arc_points[target[1] + 1]);});
+	var ix = coastline_layer.get_index(target);
+	var arc_points = coastline_layer.arcs[target.arc].points;
+	if (ix > 0) neighbors.push(arc_points[ix - 1]);
+	if (ix < arc_points.length - 1) neighbors.push(arc_points[ix + 1]);});
 
       g_render_extra = function(camera, d) {
 	d.save();
@@ -456,11 +456,38 @@ function find_hit_line(p, candidate_features) {
 	var apts = arc.points;
 	for (var k = 0; k < apts.length - 1; k++) {
 	  d.beginPath();
-	  d.moveTo(apts[k][0], apts[k][1]);
-	  d.lineTo(apts[k+1][0], apts[k+1][1]);
-	  d.strokeStyle = "red";
-	  d.lineWidth = 5 / camera.scale();
-	  d.stroke();
+	  var r = apts[k];
+	  var s = apts[k+1];
+	  // project p onto r --- s;
+
+	  // z = r * (1-t) + s * t;
+	  // minimize (z - p)^2 = (zx - px)^2 + (zy - py)^2
+	  // 2 (rx (1-t) + sx t - px) (sx - rx) +
+	  // 2 (ry (1-t) + sy t - py) (sy - ry) +
+	  // = 0
+	  // t = (p - r) * (s - r) / (s - r)^2
+	  var t = ((p.x - r[0]) * (s[0] - r[0]) + (p.y - r[1]) * (s[1] - r[1])) /
+	      ((s[0] - r[0]) * (s[0] - r[0]) + (s[1] - r[1]) * (s[1] - r[1]));
+	  if (0 < t && t < 1) {
+	    // projected point
+	    var pp = {x: r[0] * (1-t) + s[0] * t,
+		      y: r[1] * (1-t) + s[1] * t};
+	    var proj_distance = Math.sqrt((pp.x - p.x) * (pp.x - p.x) + (pp.y - p.y) * (pp.y - p.y));
+	    if (proj_distance > slack) {
+	      d.moveTo(p.x, p.y);
+	      d.lineTo(pp.x, pp.y);
+	      d.strokeStyle = "red";
+	      d.lineWidth = 1 / camera.scale();
+	      d.stroke();
+	    }
+	    else {
+	      d.moveTo(r[0], r[1]);
+	      d.lineTo(s[0], s[1]);
+	      d.strokeStyle = "blue";
+	      d.lineWidth = 5 / camera.scale();
+	      d.stroke();
+	    }
+	  }
 	}
       }
     }

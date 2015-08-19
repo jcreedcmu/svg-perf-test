@@ -11,7 +11,7 @@ CoastlineLayer.prototype.rebuild = function() {
 
   _.each(arcs, function(arc, an) {
     _.each(arc.points, function(point, pn) {
-      that.vertex_rt.insert({x:point[0],y:point[1],w:0,h:0},[an,pn])
+      that.vertex_rt.insert({x:point[0],y:point[1],w:0,h:0}, {arc:an, point:point});
     });
     simplify.simplify_arc(arc);
   });
@@ -52,9 +52,9 @@ CoastlineLayer.prototype.targets = function(world_bbox) {
 
   if (targets.length < 2) return targets;
 
-  var orig = this.arcs[targets[0][0]].points[targets[0][1]];
+  var orig = targets[0].point;
   for (var i = 1; i < targets.length; i++) {
-    var here = this.arcs[targets[i][0]].points[targets[i][1]];
+    var here = targets[i].point;
     // If we're getting a set of points not literally on the same
     // point, pretend there's no match
     if (orig[0] != here[0]) return [];
@@ -63,6 +63,16 @@ CoastlineLayer.prototype.targets = function(world_bbox) {
   // Otherwise return the whole set
   return targets;
 }
+
+CoastlineLayer.prototype.get_index = function(target) {
+  var arc = this.arcs[target.arc].points;
+  for (var i = 0; i < arc.length; i++) {
+    if (arc[i] == target.point)
+      return i;
+  }
+  throw ("Can't find " + JSON.stringify(target.point) + " in " + JSON.stringify(arc))
+}
+
 
 CoastlineLayer.prototype.render = function(d, camera, locus, world_bbox) {
   var that = this;
@@ -187,15 +197,18 @@ CoastlineLayer.prototype.render = function(d, camera, locus, world_bbox) {
 }
 
 // special case first and last of arc??
-CoastlineLayer.prototype.replace_vert_in_arc = function(entry,  p) {
-  var arc_id = entry[0];
-  var vert_ix = entry[1];
+CoastlineLayer.prototype.replace_vert_in_arc = function(rt_entry,  p) {
+  var arc_id = rt_entry.arc;
+
+
+  var vert_ix = this.get_index(rt_entry);
   var arc = this.arcs[arc_id];
-  var oldp = arc.points[vert_ix];
-  arc.points[vert_ix] = [p.x, p.y, 1000];
+  var oldp = rt_entry.point;
+
+  var new_pt = arc.points[vert_ix] = [p.x, p.y, 1000]; // I think this 1000 can be whatever
   simplify.simplify_arc(arc);
-  var results = this.vertex_rt.remove({x:oldp[0],y:oldp[1],w:0,h:0}, entry);
-  this.vertex_rt.insert({x:p.x,y:p.y,w:0,h:0}, entry);
+  var results = this.vertex_rt.remove({x:oldp[0],y:oldp[1],w:0,h:0}, rt_entry);
+  this.vertex_rt.insert({x:p.x,y:p.y,w:0,h:0}, {arc: arc_id, point: new_pt});
   var that = this;
   this.arc_to_feature[arc_id].forEach(function(feature_ix) {
     var object = that.features.objects[feature_ix];
@@ -215,8 +228,10 @@ CoastlineLayer.prototype.add_vert_to_arc = function(arc_id,  p) {
   arc.points[len - 1] = [p.x, p.y, 1000];
   arc.points[len] = oldp;
   simplify.simplify_arc(arc);
-  console.log(this.vertex_rt.search({x:oldp[0],y:oldp[1],w:0,h:0}));
+
   var results = this.vertex_rt.remove({x:oldp[0],y:oldp[1],w:0,h:0});
+
+  // XXX these are all wrong now
   this.vertex_rt.insert({x:p.x,y:p.y,w:0,h:0}, [arc_id, len-1]);
   this.vertex_rt.insert({x:oldp[0],y:oldp[1],w:0,h:0}, [arc_id, len]);
   this.vertex_rt.insert({x:oldp[0],y:oldp[1],w:0,h:0}, [arc_id, 0]);
@@ -233,12 +248,21 @@ CoastlineLayer.prototype.add_vert_to_arc = function(arc_id,  p) {
 }
 
 CoastlineLayer.prototype.model = function() {
-  return {features: this.features,
-	  // strip out deviation measurements
+  return {features: _.extend({},
+			     this.features,
+			     {objects: this.features.objects.map(function (object) {
+			       return _.extend(
+				 {}, object,
+				 { properties: _.omit(object.properties, "bbox") });
+			     })}),
+	  // strip out deviation measurements and bboxes
 	  arcs: this.arcs.map(function(arc) {
-	    return _.extend({}, arc, {points: arc.points.map(function(p) {
-	      return [p[0], p[1]];
-	    })})
+	    return _.extend(
+	      {}, arc,
+	      { properties: _.omit(arc.properties, "bbox"),
+		points: arc.points.map(function(p) {
+		  return [p[0], p[1]];
+		})})
 	  })};
 }
 

@@ -287,27 +287,12 @@ $(c).on('mousedown', function(e) {
       label_layer.make_insert_label_modal(worldp, null, render);
     }
   }
-  else if (g_mode == "Insert") {
-    var camera = state.camera();
-    var x = e.pageX;
-    var y = e.pageY;
-    var worldp = inv_xform(camera, x, y);
-
-    var rad = VERTEX_SENSITIVITY / camera.scale();
-    var bbox = [worldp.x - rad, worldp.y - rad, worldp.x + rad, worldp.y + rad];
-    var candidate_features = coastline_layer.arc_targets(bbox);
-    var hit_lines = find_hit_lines(worldp, candidate_features);
-    if (hit_lines.length == 1) {
-      coastline_layer.break_segment(hit_lines[0], worldp);
-    }
-    render();
-  }
   else if (g_mode == "Move") {
     var camera = state.camera();
     var x = e.pageX;
     var y = e.pageY;
     var worldp = inv_xform(camera,x, y);
-    var dragp = clone(worldp);
+
     var rad = VERTEX_SENSITIVITY / camera.scale();
     var bbox = [worldp.x - rad, worldp.y - rad, worldp.x + rad, worldp.y + rad];
     var targets = coastline_layer.targets(bbox);
@@ -322,42 +307,60 @@ $(c).on('mousedown', function(e) {
 	if (ix > 0) neighbors.push(arc_points[ix - 1]);
 	if (ix < arc_points.length - 1) neighbors.push(arc_points[ix + 1]);});
 
-      g_render_extra = function(camera, d) {
-	d.save();
-	d.translate(camera.x, camera.y);
-	d.scale(camera.scale(), -camera.scale());
-	d.beginPath();
-	neighbors.forEach(function(nabe) {
-	  d.moveTo(nabe[0], nabe[1]);
-	  d.lineTo(dragp.x, dragp.y);
-	});
-	d.lineWidth = 1 / camera.scale();
-	d.strokeStyle = "#07f";
-	d.stroke();
-	d.restore();
-      }
-      $(document).on('mousemove.drag', function(e) {
-	var x = e.pageX;
-	var y = e.pageY;
-	var worldp = inv_xform(camera,x, y);
-	dragp.x = worldp.x;
-	dragp.y = worldp.y;
-	maybe_render();
-      });
-      $(document).on('mouseup.drag', function(e) {
-	g_render_extra = null;
-	$(document).off('.drag');
+      start_drag(worldp, neighbors, function(dragp) {
 	targets.forEach(function(target) {
 	  coastline_layer.replace_vert_in_arc(target, dragp);
-	});
-	render();
-      });
+	})});
     }
-    else
-      begin_pan(x, y, camera);
+    else {
+      var candidate_features = coastline_layer.arc_targets(bbox);
+      var hit_lines = find_hit_lines(worldp, candidate_features);
+      if (hit_lines.length == 1) {
+	var arc_id = hit_lines[0].arc;
+	var ix = hit_lines[0].ix;
+	var arc = coastline_layer.arcs[arc_id].points;
+	start_drag(worldp, [arc[ix], arc[ix+1]], function(dragp) {
+	  coastline_layer.break_segment(hit_lines[0], dragp);
+	});
+      }
+      else
+	begin_pan(x, y, camera);
+    }
   }
 });
 
+function start_drag(startp, neighbors, k) {
+  var camera = state.camera();
+  var dragp = clone(startp);
+  g_render_extra = function(camera, d) {
+    d.save();
+    d.translate(camera.x, camera.y);
+    d.scale(camera.scale(), -camera.scale());
+    d.beginPath();
+    neighbors.forEach(function(nabe) {
+      d.moveTo(nabe[0], nabe[1]);
+      d.lineTo(dragp.x, dragp.y);
+    });
+    d.lineWidth = 1 / camera.scale();
+    d.strokeStyle = "#07f";
+    d.stroke();
+    d.restore();
+  }
+  $(document).on('mousemove.drag', function(e) {
+    var x = e.pageX;
+    var y = e.pageY;
+    var worldp = inv_xform(camera,x, y);
+    dragp.x = worldp.x;
+    dragp.y = worldp.y;
+    maybe_render();
+  });
+  $(document).on('mouseup.drag', function(e) {
+    g_render_extra = null;
+    $(document).off('.drag');
+    k(dragp);
+    render();
+  });
+}
 g_lastz = null;
 
 $(c).on('mousemove', function(e) {
@@ -406,10 +409,10 @@ $(document).on('keydown', function(e) {
     g_mode = "Label";
     render();
   }
-  if (k == "i") {
-    g_mode = "Insert";
-    render();
-  }
+  // if (k == "i") {
+  //   g_mode = "Insert";
+  //   render();
+  // }
   if (k == "e") {
     save();
   }

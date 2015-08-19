@@ -240,7 +240,7 @@ CoastlineLayer.prototype.add_vert_to_arc = function(arc_id,  p) {
   this.vertex_rt.insert({x:oldp[0],y:oldp[1],w:0,h:0}, [arc_id, len]);
   this.vertex_rt.insert({x:oldp[0],y:oldp[1],w:0,h:0}, [arc_id, 0]);
 
-  this.recompute_arc_feature_bbox(arc);
+  this.recompute_arc_feature_bbox(arc_id);
 };
 
 CoastlineLayer.prototype.break_segment = function(segment, p) {
@@ -252,7 +252,7 @@ CoastlineLayer.prototype.break_segment = function(segment, p) {
   simplify.simplify_arc(arc);
 
   this.vertex_rt.insert({x:p.x,y:p.y,w:0,h:0}, {arc:arc_id, point:newp});
-  this.recompute_arc_feature_bbox(arc);
+  this.recompute_arc_feature_bbox(arc_id);
 };
 
 CoastlineLayer.prototype.model = function() {

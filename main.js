@@ -2,6 +2,7 @@ var LabelLayer = require('./labels');
 var CoastlineLayer = require('./coastline');
 var ImageLayer = require('./images');
 var RoadLayer = require('./roads');
+var RiverLayer = require('./rivers');
 
 var State = require('./state');
 var key = require('./key');
@@ -21,6 +22,7 @@ state = new State();
 var assets;
 var ld = new Loader();
 ld.add(json_file('geo'));
+ld.add(json_file('rivers'));
 
 // var init_img = 1184;
 // ld.add(image(ImageLayer.image_url(1176), 'overlay'));
@@ -33,7 +35,9 @@ ld.done(function(data) {
   label_layer = new LabelLayer(geo.labels);
   image_layer = new ImageLayer(dispatch, 0, geo.images, assets.img.overlay);
   road_layer = new RoadLayer(dispatch, geo.roads);
-  g_layers = [coastline_layer, road_layer, label_layer, image_layer];
+  river_layer = new RiverLayer(dispatch, assets.src.rivers);
+  g_layers = [coastline_layer, road_layer, label_layer,
+	      river_layer, image_layer];
 
   c = $("#c")[0];
   d = c.getContext('2d');

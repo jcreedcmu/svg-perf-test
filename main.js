@@ -3,6 +3,7 @@ var CoastlineLayer = require('./coastline');
 var ImageLayer = require('./images');
 var RoadLayer = require('./roads');
 var RiverLayer = require('./rivers');
+var MountainLayer = require('./mountains');
 
 var State = require('./state');
 var key = require('./key');
@@ -23,6 +24,7 @@ var assets;
 var ld = new Loader();
 ld.add(json_file('geo'));
 ld.add(json_file('rivers'));
+ld.add(json_file('mountains'));
 
 // var init_img = 1184;
 // ld.add(image(ImageLayer.image_url(1176), 'overlay'));
@@ -36,8 +38,10 @@ ld.done(function(data) {
   image_layer = new ImageLayer(dispatch, 0, geo.images, assets.img.overlay);
   road_layer = new RoadLayer(dispatch, geo.roads);
   river_layer = new RiverLayer(dispatch, assets.src.rivers);
-  g_layers = [coastline_layer, road_layer, label_layer,
-	      river_layer, image_layer];
+  mountain_layer = new MountainLayer(dispatch, assets.src.mountains);
+  g_layers = [coastline_layer, road_layer,
+	      river_layer, mountain_layer,
+	      label_layer, image_layer];
 
   c = $("#c")[0];
   d = c.getContext('2d');
@@ -167,7 +171,7 @@ function render() {
   d.strokeStyle = "white";
   d.font = "bold 12px sans-serif";
   d.lineWidth = 2;
-  var txt = "Zoom: " + camera.zoom + " (1px = " + 1/camera.scale() + "m) g_lastz: " + g_lastz;
+  var txt = "Zoom: " + camera.zoom + " (1px = " + 1/camera.scale() + "m) g_lastz: " + g_lastz + " img: " + image_layer.img_states[image_layer.cur_img_ix].name;
   d.strokeText(txt, 20, 20);
   d.fillText(txt, 20,  20);
 

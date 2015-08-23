@@ -4,7 +4,8 @@ var ImageLayer = require('./images');
 var RoadLayer = require('./roads');
 var RiverLayer = require('./rivers');
 var MountainLayer = require('./mountains');
-
+var SketchLayer = require('./sketch');
+var simplify = require('./simplify');
 var State = require('./state');
 var key = require('./key');
 
@@ -12,6 +13,7 @@ var DEBUG = false;
 var DEBUG_PROF = false;
 var OFFSET = DEBUG ? 100 : 0;
 var VERTEX_SENSITIVITY = 10;
+var FREEHAND_SIMPLIFICATION_FACTOR = 100;
 
 // data in a.json generated through
 // potrace a.pbm -a 0 -b geojson
@@ -39,8 +41,11 @@ ld.done(function(data) {
   road_layer = new RoadLayer(dispatch, geo.roads);
   river_layer = new RiverLayer(dispatch, assets.src.rivers);
   mountain_layer = new MountainLayer(dispatch, assets.src.mountains);
+  sketch_layer = new SketchLayer(dispatch, geo.sketches);
   g_layers = [coastline_layer, road_layer,
-	      river_layer, mountain_layer,
+	      river_layer,
+	      //	      mountain_layer,
+	      sketch_layer,
 	      label_layer, image_layer];
 
   c = $("#c")[0];
@@ -335,6 +340,13 @@ $(c).on('mousedown', function(e) {
 	begin_pan(x, y, camera);
     }
   }
+  else if (g_mode == "Freehand") {
+    var camera = state.camera();
+    var x = e.pageX;
+    var y = e.pageY;
+    var worldp = inv_xform(camera,x, y);
+    start_freehand([worldp.x, worldp.y], function(path) { sketch_layer.add(path); });
+  }
 });
 
 function start_drag(startp, neighbors, k) {
@@ -369,6 +381,50 @@ function start_drag(startp, neighbors, k) {
     render();
   });
 }
+
+function start_freehand(startp, k) {
+  var camera = state.camera();
+  var path = [startp];
+  var thresh = FREEHAND_SIMPLIFICATION_FACTOR
+      / (camera.scale() * camera.scale());
+  g_render_extra = function(camera, d) {
+    d.save();
+    d.translate(camera.x, camera.y);
+    d.scale(camera.scale(), -camera.scale());
+    d.beginPath();
+    var count = 0;
+    path.forEach(function(pt, n) {
+      if (n == 0)
+	d.moveTo(pt[0], pt[1]);
+      else {
+	if (n == path.length - 1 ||
+	    pt[2] > 1) {
+	  count++;
+	  d.lineTo(pt[0], pt[1]);
+	}
+      }
+    });
+    d.lineWidth = 2 / camera.scale();
+    d.strokeStyle = "#07f";
+    d.stroke();
+    d.restore();
+  }
+  $(document).on('mousemove.drag', function(e) {
+    var x = e.pageX;
+    var y = e.pageY;
+    var worldp = inv_xform(camera,x, y);
+    path.push([worldp.x, worldp.y]);
+    simplify.simplify(path);
+    maybe_render();
+  });
+  $(document).on('mouseup.drag', function(e) {
+    g_render_extra = null;
+    $(document).off('.drag');
+    k(_.filter(path, function(pt) { return pt[2] > thresh }));
+    render();
+  });
+}
+
 g_lastz = null;
 
 $(c).on('mousemove', function(e) {
@@ -405,6 +461,10 @@ $(document).on('keydown', function(e) {
   if (k == ".") {
     image_layer.next();
   }
+  if (k == "f") {
+    g_mode = "Freehand";
+    render();
+  }
   if (k == "m") {
     g_mode = "Move";
     render();
@@ -424,7 +484,7 @@ $(document).on('keydown', function(e) {
   if (k == "e") {
     save();
   }
-  if (k == "f") {
+  if (k == "F") {
     coastline_layer.filter();
     render();
   }

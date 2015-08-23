@@ -161,5 +161,6 @@ function compute_bbox(object, arcs) {
   });
 }
 
+module.exports.simplify = simplify;
 module.exports.simplify_arc = simplify_arc;
 module.exports.compute_bbox = compute_bbox;

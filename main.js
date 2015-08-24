@@ -345,9 +345,26 @@ $(c).on('mousedown', function(e) {
     var x = e.pageX;
     var y = e.pageY;
     var worldp = inv_xform(camera,x, y);
-    start_freehand([worldp.x, worldp.y], function(path) { sketch_layer.add(path); });
+    var startp = [worldp.x, worldp.y];
+
+    var spoint = get_snap();
+    if (spoint != null)
+      startp = spoint;
+
+    start_freehand(startp, function(path) { sketch_layer.add(path); });
   }
 });
+
+function get_snap() {
+  var last = JSON.parse(g_lastz);
+  // .targets is already making sure that multiple targets returned at
+  // this stage are on the same exact point
+  if (last.length >= 1 &&
+       last[0][0] == "coastline")
+    return clone(last[0][1].point);
+  else
+    return null;
+}
 
 function start_drag(startp, neighbors, k) {
   var camera = state.camera();
@@ -418,9 +435,18 @@ function start_freehand(startp, k) {
     maybe_render();
   });
   $(document).on('mouseup.drag', function(e) {
+
+    var spoint = get_snap();
+    if (spoint != null) {
+      path[path.length-1] = spoint;
+      startp = spoint;
+    }
+
     g_render_extra = null;
     $(document).off('.drag');
-    k(_.filter(path, function(pt) { return pt[2] > thresh }));
+    k(_.filter(path, function(pt, n) {
+      return pt[2] > thresh || n == 0 || n == path.length - 1;
+    }));
     render();
   });
 }

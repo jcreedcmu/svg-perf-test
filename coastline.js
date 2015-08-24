@@ -156,6 +156,8 @@ CoastlineLayer.prototype.render = function(d, camera, locus, world_bbox) {
     d.strokeStyle = "#44a";
     d.stroke();
     d.fillStyle = "#e7eada";
+    if (object.properties.natural == "lake")
+      d.fillStyle = "#bac7f8";
 
     // if (object.name == "feature20") {
     //   d.strokeStyle = "#f0f";

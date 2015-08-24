@@ -43,8 +43,8 @@ ld.done(function(data) {
   mountain_layer = new MountainLayer(dispatch, assets.src.mountains);
   sketch_layer = new SketchLayer(dispatch, geo.sketches);
   g_layers = [coastline_layer, road_layer,
-	      river_layer,
-	      //	      mountain_layer,
+	      // river_layer,
+	      // mountain_layer,
 	      sketch_layer,
 	      label_layer, image_layer];
 

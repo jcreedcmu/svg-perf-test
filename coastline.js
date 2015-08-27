@@ -16,7 +16,7 @@ CoastlineLayer.prototype.rebuild = function() {
     simplify.simplify_arc(arc);
   });
 
-  _.each(features.objects, function(object, key) {
+  _.each(features, function(object, key) {
     simplify.compute_bbox(object, arcs);
     var bb = object.properties.bbox;
     that.rt.insert({x:bb.minx, y:bb.miny, w:bb.maxx - bb.minx, h:bb.maxy - bb.miny},
@@ -24,13 +24,11 @@ CoastlineLayer.prototype.rebuild = function() {
   });
 
   var arc_to_feature = this.arc_to_feature = {};
-  _.each(features.objects, function(object, feature_ix) {
-    _.each(object.arcs, function(component) {
-      _.each(component, function(arc_ix) {
-        if (!arc_to_feature[arc_ix])
-          arc_to_feature[arc_ix] = [];
-        arc_to_feature[arc_ix].push(feature_ix);
-      });
+  _.each(features, function(object, feature_ix) {
+    _.each(object.arcs, function(arc_ix) {
+      if (!arc_to_feature[arc_ix])
+        arc_to_feature[arc_ix] = [];
+      arc_to_feature[arc_ix].push(feature_ix);
     });
   });
 }
@@ -87,70 +85,70 @@ CoastlineLayer.prototype.render = function(d, camera, locus, world_bbox) {
   var arcs_to_draw_vertices_for = [];
 
   _.each(this.rt.bbox.apply(this.rt, world_bbox), function(object) {
-    var arc_id_lists = object.arcs;
+    var arc_id_list = object.arcs;
     var arcs = that.arcs;
 
     d.beginPath();
-    arc_id_lists.forEach(function(arc_id_list) {
-      var n = 0;
-      arc_id_list.forEach(function(arc_id) {
-	var this_arc = arcs[arc_id].points;
-	var arc_bbox = arcs[arc_id].properties.bbox;
 
-        if (DEBUG_BBOX) {
-          d.lineWidth = 1.5 / camera.scale();
-          d.strokeStyle = "#0ff";
-          d.strokeRect(arc_bbox.minx, arc_bbox.miny,
-                       arc_bbox.maxx - arc_bbox.minx,
-                       arc_bbox.maxy - arc_bbox.miny);
-        }
+    var n = 0;
+    arc_id_list.forEach(function(arc_id) {
+      var this_arc = arcs[arc_id].points;
+      var arc_bbox = arcs[arc_id].properties.bbox;
 
-        d.lineWidth = 0.9 / camera.scale();
-	rect_intersect = world_bbox[0] < arc_bbox.maxx && world_bbox[2] > arc_bbox.minx && world_bbox[3] > arc_bbox.miny && world_bbox[1] < arc_bbox.maxy;
+      if (DEBUG_BBOX) {
+        d.lineWidth = 1.5 / camera.scale();
+        d.strokeStyle = "#0ff";
+        d.strokeRect(arc_bbox.minx, arc_bbox.miny,
+                     arc_bbox.maxx - arc_bbox.minx,
+                     arc_bbox.maxy - arc_bbox.miny);
+      }
+
+      d.lineWidth = 0.9 / camera.scale();
+      rect_intersect = world_bbox[0] < arc_bbox.maxx && world_bbox[2] > arc_bbox.minx && world_bbox[3] > arc_bbox.miny && world_bbox[1] < arc_bbox.maxy;
 
 
-	if (this_arc.length < 2) {
-	  throw "arc " + arc_id + " must have at least two points";
-	}
-	if (!rect_intersect) {
-	  // draw super simplified
-	  this_arc = [this_arc[0],this_arc[this_arc.length - 1]];
-	}
-	else if (camera.zoom >= 6) {
-	  arcs_to_draw_vertices_for.push(this_arc);
-	}
+      if (this_arc.length < 2) {
+	throw "arc " + arc_id + " must have at least two points";
+      }
+      if (!rect_intersect) {
+	// draw super simplified
+	this_arc = [this_arc[0],this_arc[this_arc.length - 1]];
+      }
+      else if (camera.zoom >= 6) {
+	arcs_to_draw_vertices_for.push(this_arc);
+      }
 
-	this_arc.forEach(function(vert, ix) {
-	  if (n++ == 0)
-    	    d.moveTo(vert[0] ,  vert[1] );
-	  else {
-	    var p = {x: camera.x + (vert[0] * camera.scale()),
-	    	     y: camera.y + (vert[1] * camera.scale())};
+      this_arc.forEach(function(vert, ix) {
+	if (n++ == 0)
+    	  d.moveTo(vert[0] ,  vert[1] );
+	else {
+	  var p = {x: camera.x + (vert[0] * camera.scale()),
+	    	   y: camera.y + (vert[1] * camera.scale())};
 
-	    var draw = false;
+	  var draw = false;
 
-	    // draw somewhat simplified
-	    if (camera.zoom >= 6 || (vert[2] > SIMPLIFICATION_FACTOR / (camera.scale() * camera.scale())))
-	      draw = true;
+	  // draw somewhat simplified
+	  if (camera.zoom >= 6 || (vert[2] > SIMPLIFICATION_FACTOR / (camera.scale() * camera.scale())))
+	    draw = true;
 
-	    // if (p.x < OFFSET || p.x > w - OFFSET || p.y < OFFSET || p.y > h - OFFSET)
-	    // // if (p.x < 0 || p.x > w - 0 || p.y < 0 || p.y > h - 0)
-	    //   draw =  vert[2] > 5000;
+	  // if (p.x < OFFSET || p.x > w - OFFSET || p.y < OFFSET || p.y > h - OFFSET)
+	  // // if (p.x < 0 || p.x > w - 0 || p.y < 0 || p.y > h - 0)
+	  //   draw =  vert[2] > 5000;
 
-	    if (ix == this_arc.length - 1)
-	      draw = false;
+	  if (ix == this_arc.length - 1)
+	    draw = false;
 
-	    if (ix == 0)
-	      draw = true;
+	  if (ix == 0)
+	    draw = true;
 
-	    if (draw) {
-    	      d.lineTo(vert[0], vert[1]);
-	    }
+	  if (draw) {
+    	    d.lineTo(vert[0], vert[1]);
 	  }
-	});
+	}
       });
-      d.closePath();
     });
+    d.closePath();
+
 
     d.lineWidth = 1.1 / camera.scale();
     d.strokeStyle = "#44a";
@@ -202,7 +200,7 @@ CoastlineLayer.prototype.render = function(d, camera, locus, world_bbox) {
 CoastlineLayer.prototype.recompute_arc_feature_bbox = function(arc_id) {
   var that = this;
   this.arc_to_feature[arc_id].forEach(function(feature_ix) {
-    var object = that.features.objects[feature_ix];
+    var object = that.features[feature_ix];
     var bb = object.properties.bbox;
     that.rt.remove({x:bb.minx, y:bb.miny, w:bb.maxx - bb.minx, h:bb.maxy - bb.miny},
 		   object);
@@ -259,22 +257,21 @@ CoastlineLayer.prototype.break_segment = function(segment, p) {
 };
 
 CoastlineLayer.prototype.model = function() {
-  return {features: _.extend({},
-			     this.features,
-			     {objects: this.features.objects.map(function (object) {
-			       return _.extend(
-				 {}, object,
-				 { properties: _.omit(object.properties, "bbox") });
-			     })}),
-	  // strip out deviation measurements and bboxes
-	  arcs: this.arcs.map(function(arc) {
-	    return _.extend(
-	      {}, arc,
-	      { properties: _.omit(arc.properties, "bbox"),
-		points: arc.points.map(function(p) {
-		  return [p[0], p[1]];
-		})})
-	  })};
+  return {
+    features: this.features.map(function (object) {
+      return _.extend(
+      {}, object,
+	{ properties: _.omit(object.properties, "bbox") });
+    }),
+    // strip out deviation measurements and bboxes
+    arcs: this.arcs.map(function(arc) {
+      return _.extend(
+	{}, arc,
+	{ properties: _.omit(arc.properties, "bbox"),
+	  points: arc.points.map(function(p) {
+	    return [p[0], p[1]];
+	  })})
+    })};
 }
 
 CoastlineLayer.prototype.filter = function() {

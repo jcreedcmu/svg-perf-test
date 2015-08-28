@@ -282,12 +282,17 @@ CoastlineLayer.prototype.model = function() {
 }
 
 CoastlineLayer.prototype.filter = function() {
-  this.arcs =
-    // strip out collinearish points
-    this.arcs.map(function(arc) {
-      return _.extend({}, arc, {points: arc.points.filter(function(p, n) {
+  console.log("hi");
+  var that = this;
+  _.each(this.features, function(obj) {
+    if (obj.properties.natural == "mountain") {
+      // strip out collinearish points
+      var arc = that.arcs[obj.arcs[0]];
+      console.log(arc);
+      arc.points =  arc.points.filter(function(p, n) {
 	return n == 0 || n == arc.points.length - 1 || p[2] > 1000000;
-      })})
-    });
+      });
+    }
+  });
   this.rebuild();
 }

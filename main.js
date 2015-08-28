@@ -510,12 +510,12 @@ $(document).on('keydown', function(e) {
   if (k == "e") {
     save();
   }
-  if (k == "F") {
+  if (k == "S-f") {
     coastline_layer.filter();
     render();
   }
 
-  //  console.log(e.charCode);
+//  console.log(e.charCode, k);
 });
 
 function save() {

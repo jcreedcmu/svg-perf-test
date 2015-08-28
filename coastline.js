@@ -33,9 +33,14 @@ CoastlineLayer.prototype.rebuild = function() {
   });
 }
 
-function CoastlineLayer(features, arcs) {
-  this.features = features;
-  this.arcs = arcs;
+function collect(objects, type) {
+  return _.object(objects.filter(function(x) { return x.type == type; })
+		  .map(function(x) { return [x.name, x] }));
+}
+
+function CoastlineLayer(objects) {
+  this.features = collect(objects, "Polygon");
+  this.arcs = collect(objects, "arc");
   this.rebuild();
 }
 
@@ -257,21 +262,19 @@ CoastlineLayer.prototype.break_segment = function(segment, p) {
 };
 
 CoastlineLayer.prototype.model = function() {
-  return {
-    features: this.features.map(function (object) {
-      return _.extend(
-      {}, object,
-	{ properties: _.omit(object.properties, "bbox") });
-    }),
-    // strip out deviation measurements and bboxes
-    arcs: this.arcs.map(function(arc) {
-      return _.extend(
-	{}, arc,
-	{ properties: _.omit(arc.properties, "bbox"),
-	  points: arc.points.map(function(p) {
-	    return [p[0], p[1]];
-	  })})
-    })};
+  var features = _.map(this.features, function (object) {
+    return _.extend({}, object,
+		    { properties: _.omit(object.properties, "bbox") });
+  });
+  var arcs = _.map(this.arcs, function(arc) {
+    return _.extend(
+      {}, arc,
+      { properties: _.omit(arc.properties, "bbox"),
+	points: arc.points.map(function(p) {
+	  return [p[0], p[1]];
+	})})
+  });
+  return { objects: features.concat(arcs) };
 }
 
 CoastlineLayer.prototype.filter = function() {

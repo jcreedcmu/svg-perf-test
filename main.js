@@ -36,7 +36,7 @@ ld.done(function(data) {
   count = 0;
   assets = this;
   var geo = assets.src.geo;
-  coastline_layer = new CoastlineLayer(geo.features, geo.arcs);
+  coastline_layer = new CoastlineLayer(geo.objects);
   label_layer = new LabelLayer(geo.labels);
   image_layer = new ImageLayer(dispatch, 0, geo.images, assets.img.overlay);
   road_layer = new RoadLayer(dispatch, geo.roads);

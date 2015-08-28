@@ -154,13 +154,17 @@ CoastlineLayer.prototype.render = function(d, camera, locus, world_bbox) {
     });
     d.closePath();
 
+    if (object.properties.natural != "mountain") {
+      d.lineWidth = 1.1 / camera.scale();
+      d.strokeStyle = "#44a";
+      d.stroke();
+    }
 
-    d.lineWidth = 1.1 / camera.scale();
-    d.strokeStyle = "#44a";
-    d.stroke();
     d.fillStyle = "#e7eada";
     if (object.properties.natural == "lake")
       d.fillStyle = "#bac7f8";
+    if (object.properties.natural == "mountain")
+      d.fillStyle = "#a98";
 
     // if (object.name == "feature20") {
     //   d.strokeStyle = "#f0f";

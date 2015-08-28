@@ -3,7 +3,6 @@ var CoastlineLayer = require('./coastline');
 var ImageLayer = require('./images');
 var RoadLayer = require('./roads');
 var RiverLayer = require('./rivers');
-var MountainLayer = require('./mountains');
 var SketchLayer = require('./sketch');
 var simplify = require('./simplify');
 var State = require('./state');
@@ -27,7 +26,6 @@ var assets;
 var ld = new Loader();
 ld.add(json_file('geo'));
 ld.add(json_file('rivers'));
-ld.add(json_file('mountains'));
 
 // var init_img = 1184;
 // ld.add(image(ImageLayer.image_url(1176), 'overlay'));
@@ -41,11 +39,9 @@ ld.done(function(data) {
   image_layer = new ImageLayer(dispatch, 0, geo.images, assets.img.overlay);
   road_layer = new RoadLayer(dispatch, geo.roads);
   river_layer = new RiverLayer(dispatch, assets.src.rivers);
-  mountain_layer = new MountainLayer(dispatch, assets.src.mountains);
   sketch_layer = new SketchLayer(dispatch, geo.sketches);
   g_layers = [coastline_layer, road_layer,
 	       river_layer,
-	       mountain_layer,
 	      sketch_layer,
 	      label_layer, image_layer];
 

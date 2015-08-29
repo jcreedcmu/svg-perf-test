@@ -293,7 +293,6 @@ CoastlineLayer.prototype.draw_selected_arc = function(d, arc_id) {
 }
 
 CoastlineLayer.prototype.filter = function() {
-  console.log("hi");
   var that = this;
   _.each(this.features, function(obj) {
     if (obj.properties.natural == "mountain") {
@@ -308,10 +307,36 @@ CoastlineLayer.prototype.filter = function() {
   this.rebuild();
 }
 
+CoastlineLayer.prototype.add_arc = function(name, arc) {
+
+}
+
 CoastlineLayer.prototype.breakup = function() {
+  var that = this;
   _.each(this.arcs, function(v, k) {
     if (v.points.length > 200) {
-      console.log(k);
+      var num_chunks = Math.ceil(v.points.length / 200);
+      var cut_positions = [0];
+      for (var i = 0; i < num_chunks - 1; i++) {
+	cut_positions.push(Math.floor((i + 1) * (v.points.length / num_chunks)));
+      }
+      cut_positions.push(v.points.length - 1);
+      var replacement_arcs = [];
+      for (var j = 0; j < cut_positions.length - 1; j++) {
+	var arc = {name: k + "-" + j, type: "arc", properties: {}, points: []};
+	for (var jj = cut_positions[j]; jj <= cut_positions[j+1]; jj++) {
+	  arc.points.push(clone(v.points[jj]));
+	}
+	that.arcs[arc.name] = arc;
+	replacement_arcs.push(arc.name);
+      }
+      var feature_name = that.arc_to_feature[k];
+      var feature_arcs = that.features[feature_name].arcs;
+      var ix = _.indexOf(feature_arcs, k);
+      if (ix == -1)
+	throw ("couldn't find " + k + " in " + JSON.stringify(feature_arcs));
+      feature_arcs.splice.apply(feature_arcs, [ix, 1].concat(replacement_arcs));
+//      delete that.arcs[k];
     }
   });
   this.rebuild();

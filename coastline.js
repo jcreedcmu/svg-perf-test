@@ -154,39 +154,7 @@ CoastlineLayer.prototype.render = function(d, camera, locus, world_bbox) {
     });
     d.closePath();
 
-    if (object.properties.natural != "mountain") {
-      d.lineWidth = 1.1 / scale;
-      d.strokeStyle = "#44a";
-      d.stroke();
-    }
-
-    d.fillStyle = "#e7eada";
-    if (object.properties.natural == "lake")
-      d.fillStyle = "#bac7f8";
-    if (object.properties.natural == "mountain")
-      d.fillStyle = "#a98";
-
-    // if (object.name == "feature20") {
-    //   d.strokeStyle = "#f0f";
-    //   var feature_bbox = object.properties.bbox;
-    //   var lw = 3.0 / scale;
-    //   d.lineWidth = lw;
-    //   d.strokeRect(feature_bbox.minx - lw * 10, feature_bbox.miny - lw * 10,
-    //                feature_bbox.maxx - feature_bbox.minx + lw * 20,
-    //                feature_bbox.maxy - feature_bbox.miny + lw * 20);
-    //   d.fillStyle = "#ff0";
-    // }
-    if (!DEBUG_BBOX)
-      d.fill();
-    else {
-      var feature_bbox = object.properties.bbox;
-      var lw = d.lineWidth = 3.0 / scale;
-      d.strokeStyle = "#f0f";
-      d.strokeRect(feature_bbox.minx - lw, feature_bbox.miny - lw,
-                   feature_bbox.maxx - feature_bbox.minx + lw * 2,
-                   feature_bbox.maxy - feature_bbox.miny + lw * 2);
-    }
-
+    realize_path(object.properties, scale);
   });
 
   if (g_mode != "Pan") {
@@ -204,6 +172,45 @@ CoastlineLayer.prototype.render = function(d, camera, locus, world_bbox) {
     });
   }
   d.restore();
+}
+
+function realize_path(props, scale) {
+  d.lineWidth = 1.1 / scale;
+
+  if (props.natural == "coastline") {
+    d.strokeStyle = "#44a";
+    d.stroke();
+    d.fillStyle = "#e7eada";
+    d.fill();
+  }
+
+  if (props.natural == "lake") {
+    d.strokeStyle = "#44a";
+    d.stroke();
+    d.fillStyle = "#bac7f8";
+  }
+
+  if (props.natural == "mountain") {
+    d.fillStyle = "#a98";
+    d.fill();
+  }
+
+  if (props.road == "highway") {
+    d.lineWidth = 2 / scale;
+    d.strokeStyle = "#f70";
+    d.stroke();
+  }
+
+  if (!DEBUG_BBOX)
+    d.fill();
+  else {
+    var feature_bbox = props.bbox;
+    var lw = d.lineWidth = 3.0 / scale;
+    d.strokeStyle = "#f0f";
+    d.strokeRect(feature_bbox.minx - lw, feature_bbox.miny - lw,
+                 feature_bbox.maxx - feature_bbox.minx + lw * 2,
+                 feature_bbox.maxy - feature_bbox.miny + lw * 2);
+  }
 }
 
 CoastlineLayer.prototype.recompute_arc_feature_bbox = function(arc_id) {
@@ -278,7 +285,7 @@ CoastlineLayer.prototype.model = function() {
 	  return [p[0], p[1]];
 	})})
   });
-  return { objects: features.concat(arcs) };
+  return { objects: [].concat(features, arcs) };
 }
 
 CoastlineLayer.prototype.draw_selected_arc = function(d, arc_id) {
@@ -306,7 +313,7 @@ CoastlineLayer.prototype.filter = function() {
   this.rebuild();
 }
 
-CoastlineLayer.prototype.add_arc = function(name, arc) {
+CoastlineLayer.prototype.add_road = function(name, points, properties) {
 
 }
 

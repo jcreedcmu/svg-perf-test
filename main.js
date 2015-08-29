@@ -1,7 +1,6 @@
 var LabelLayer = require('./labels');
 var CoastlineLayer = require('./coastline');
 var ImageLayer = require('./images');
-var RoadLayer = require('./roads');
 var RiverLayer = require('./rivers');
 var SketchLayer = require('./sketch');
 var simplify = require('./simplify');
@@ -38,11 +37,11 @@ ld.done(function(data) {
   coastline_layer = new CoastlineLayer(geo.objects);
   label_layer = new LabelLayer(geo.labels);
   image_layer = new ImageLayer(dispatch, 0, geo.images, assets.img.overlay);
-  road_layer = new RoadLayer(dispatch, geo.roads);
+
   river_layer = new RiverLayer(dispatch, assets.src.rivers);
   sketch_layer = new SketchLayer(dispatch, geo.sketches);
-  g_layers = [coastline_layer, road_layer,
-//	       river_layer,
+  g_layers = [coastline_layer,
+	       river_layer,
 	      sketch_layer,
 	      label_layer, image_layer];
 

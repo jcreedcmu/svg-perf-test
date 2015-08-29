@@ -38,7 +38,7 @@ function collect(objects, type) {
 		  .map(function(x) { return [x.name, x] }));
 }
 
-function CoastlineLayer(objects) {
+function CoastlineLayer(objects, counter) {
   this.features = collect(objects, "Polygon");
   this.arcs = collect(objects, "arc");
   this.rebuild();
@@ -94,9 +94,12 @@ CoastlineLayer.prototype.render = function(d, camera, locus, world_bbox) {
     var arc_id_list = object.arcs;
     var arcs = that.arcs;
 
+    d.lineWidth = 0.9 / scale;
     d.beginPath();
 
-    var n = 0;
+    var first_point = arcs[arc_id_list[0]].points[0];
+    d.moveTo(first_point[0], first_point[1]);
+
     arc_id_list.forEach(function(arc_id) {
       var this_arc = arcs[arc_id].points;
       var arc_bbox = arcs[arc_id].properties.bbox;
@@ -108,9 +111,7 @@ CoastlineLayer.prototype.render = function(d, camera, locus, world_bbox) {
                      arc_bbox.maxy - arc_bbox.miny);
       }
 
-      d.lineWidth = 0.9 / scale;
       rect_intersect = world_bbox[0] < arc_bbox.maxx && world_bbox[2] > arc_bbox.minx && world_bbox[3] > arc_bbox.miny && world_bbox[1] < arc_bbox.maxy;
-
 
       if (this_arc.length < 2) {
 	throw "arc " + arc_id + " must have at least two points";
@@ -124,9 +125,8 @@ CoastlineLayer.prototype.render = function(d, camera, locus, world_bbox) {
       }
 
       this_arc.forEach(function(vert, ix) {
-	if (n++ == 0)
-    	  d.moveTo(vert[0] ,  vert[1] );
-	else {
+	if (ix == 0) return;
+
 	  var p = {x: camera.x + (vert[0] * scale),
 	    	   y: camera.y + (vert[1] * scale)};
 
@@ -136,23 +136,12 @@ CoastlineLayer.prototype.render = function(d, camera, locus, world_bbox) {
 	  if (camera.zoom >= 6 || (vert[2] > SIMPLIFICATION_FACTOR / (scale * scale)))
 	    draw = true;
 
-	  // if (p.x < OFFSET || p.x > w - OFFSET || p.y < OFFSET || p.y > h - OFFSET)
-	  // // if (p.x < 0 || p.x > w - 0 || p.y < 0 || p.y > h - 0)
-	  //   draw =  vert[2] > 5000;
-
-	  if (ix == this_arc.length - 1)
-	    draw = false;
-
-	  if (ix == 0)
-	    draw = true;
-
 	  if (draw) {
     	    d.lineTo(vert[0], vert[1]);
 	  }
-	}
+
       });
     });
-    d.closePath();
 
     realize_path(object.properties, scale);
   });
@@ -181,7 +170,8 @@ function realize_path(props, scale) {
     d.strokeStyle = "#44a";
     d.stroke();
     d.fillStyle = "#e7eada";
-    d.fill();
+    if (!DEBUG_BBOX)
+      d.fill();
   }
 
   if (props.natural == "lake") {
@@ -192,7 +182,8 @@ function realize_path(props, scale) {
 
   if (props.natural == "mountain") {
     d.fillStyle = "#a98";
-    d.fill();
+    if (!DEBUG_BBOX)
+      d.fill();
   }
 
   if (props.road == "highway") {
@@ -201,9 +192,7 @@ function realize_path(props, scale) {
     d.stroke();
   }
 
-  if (!DEBUG_BBOX)
-    d.fill();
-  else {
+  if (DEBUG_BBOX) {
     var feature_bbox = props.bbox;
     var lw = d.lineWidth = 3.0 / scale;
     d.strokeStyle = "#f0f";
@@ -285,7 +274,7 @@ CoastlineLayer.prototype.model = function() {
 	  return [p[0], p[1]];
 	})})
   });
-  return { objects: [].concat(features, arcs) };
+  return { counter: this.counter, objects: [].concat(features, arcs) };
 }
 
 CoastlineLayer.prototype.draw_selected_arc = function(d, arc_id) {
@@ -313,7 +302,30 @@ CoastlineLayer.prototype.filter = function() {
   this.rebuild();
 }
 
-CoastlineLayer.prototype.add_road = function(name, points, properties) {
+CoastlineLayer.prototype.add_arc_feature = function(type, points, properties) {
+  var that = this;
+  var feature_name = "f" + this.counter;
+  var arc_name = "a" + this.counter;
+  this.counter++;
+  var arc = this.arcs[arc_name] = {name: arc_name, points: points, type: "arc", properties: {}};
+  var feature = this.features[feature_name] =
+      {name: feature_name, arcs: [arc_name], type: type, properties: properties};
+  simplify.simplify_arc(arc);
+  simplify.compute_bbox(feature, this.arcs);
+
+  _.each(arc.points, function(point, pn) {
+    that.vertex_rt.insert({x:point[0],y:point[1],w:0,h:0}, {arc:arc_name, point:point});
+  });
+
+
+  var bb = feature.properties.bbox;
+  that.rt.insert({x:bb.minx, y:bb.miny, w:bb.maxx - bb.minx, h:bb.maxy - bb.miny},
+		 feature);
+
+  var arc_to_feature = this.arc_to_feature;
+  if (!arc_to_feature[arc_name])
+    arc_to_feature[arc_name] = [];
+  arc_to_feature[arc_name].push(feature_name);
 
 }
 
@@ -347,4 +359,36 @@ CoastlineLayer.prototype.breakup = function() {
     }
   });
   this.rebuild();
+}
+
+CoastlineLayer.prototype.make_insert_feature_modal = function(pts, lab, dispatch) {
+  var that = this;
+  var process_f = null;
+
+  $('#insert_feature input[name="text"]')[0].value = "";
+  $('#insert_feature input[name="road"]')[0].value = "highway";
+  $('#insert_feature input[name="zoom"]')[0].value = "";
+
+  process_f = function (obj) {
+    that.add_arc_feature("Polygon", pts, obj);
+  }
+
+  var submit_f = function(e) {
+    e.preventDefault();
+    var obj = _.object($("#insert_feature form").serializeArray().map(function(pair) {
+      return [pair.name, pair.value];
+    }));
+    if (obj.zoom == null || obj.zoom == "")
+      delete obj.zoom;
+    process_f(obj);
+    dispatch();
+    $("#insert_feature").modal("hide");
+  };
+  $("#insert_feature form").off("submit");
+  $("#insert_feature form").on("submit", submit_f);
+  $("#insert_feature form button[type=submit]").off("click");
+  $("#insert_feature form button[type=submit]").on("click", submit_f);
+
+  $('#insert_feature').modal('show');
+  setTimeout(function() { $('#insert_feature input[name="text"]').focus(); }, 500);
 }

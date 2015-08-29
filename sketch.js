@@ -32,6 +32,10 @@ module.exports.prototype.render = function(d, camera, locus, world_bbox) {
   d.restore();
 }
 
+module.exports.prototype.pop = function() {
+  return this.sketches.pop();
+}
+
 module.exports.prototype.add = function(path) {
   this.sketches.push(path);
 }

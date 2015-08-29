@@ -34,7 +34,7 @@ ld.done(function(data) {
   count = 0;
   assets = this;
   var geo = assets.src.geo;
-  coastline_layer = new CoastlineLayer(geo.objects);
+  coastline_layer = new CoastlineLayer(geo.objects, geo.counter);
   label_layer = new LabelLayer(geo.labels);
   image_layer = new ImageLayer(dispatch, 0, geo.images, assets.img.overlay);
 
@@ -524,6 +524,9 @@ $(document).on('keydown', function(e) {
   // }
   if (k == "e") {
     save();
+  }
+  if (k == "q") {
+    coastline_layer.make_insert_feature_modal(sketch_layer.pop(), null, dispatch);
   }
   if (k == "S-b") {
     coastline_layer.breakup();

@@ -41,7 +41,7 @@ ld.done(function(data) {
   river_layer = new RiverLayer(dispatch, assets.src.rivers);
   sketch_layer = new SketchLayer(dispatch, geo.sketches);
   g_layers = [coastline_layer,
-	       river_layer,
+//	       river_layer,
 	      sketch_layer,
 	      label_layer, image_layer];
 

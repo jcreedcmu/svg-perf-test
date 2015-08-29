@@ -90,11 +90,13 @@ CoastlineLayer.prototype.render = function(d, camera, locus, world_bbox) {
   d.lineJoin = "round";
 
   var arcs_to_draw_vertices_for = [];
+  var salients = [];
 
   var features = this.rt.bbox.apply(this.rt, world_bbox);
   features = _.sortBy(features, function(x) {
     var z = 0;
     if (x.properties.natural == "lake") z = 1;
+    if (x.properties.natural == "mountain") z = 1;
     if (x.properties.road == "highway") z = 2;
     return z;
   });
@@ -107,6 +109,9 @@ CoastlineLayer.prototype.render = function(d, camera, locus, world_bbox) {
 
     var first_point = arcs[arc_id_list[0]].points[0];
     d.moveTo(first_point[0], first_point[1]);
+
+    var curpoint = first_point;
+    var n = 0;
 
     arc_id_list.forEach(function(arc_id) {
       var this_arc = arcs[arc_id].points;
@@ -147,12 +152,17 @@ CoastlineLayer.prototype.render = function(d, camera, locus, world_bbox) {
 	  draw = true;
 	if (draw) {
     	  d.lineTo(vert[0], vert[1]);
+	  if (object.properties.road && n % 10 == 5) {
+	    salients.push({props: object.properties,
+			   pt: [(vert[0] + curpoint[0]) / 2, (vert[1] + curpoint[1]) / 2]});
+	  }
+	  curpoint = vert;
+	  n++;
 	}
 
       });
     });
-
-    realize_path(object.properties, scale);
+    realize_path(object.properties, scale, salients);
   });
 
   if (g_mode != "Pan") {
@@ -170,9 +180,43 @@ CoastlineLayer.prototype.render = function(d, camera, locus, world_bbox) {
     });
   }
   d.restore();
+
+  // doing this because it involves text, which won't want the negative y-transform
+  salients.forEach(function(salient) {
+    realize_salient(salient.props, camera, salient.pt);
+  });
 }
 
-function realize_path(props, scale) {
+
+function realize_salient(props, camera, pt) {
+  if (camera.zoom < 2) return;
+  // implied:
+  //  d.translate(camera.x, camera.y);
+  //  d.scale(scale, -scale);
+
+  var q = {x: pt[0] * camera.scale() + camera.x,
+	   y: pt[1] * -camera.scale() + camera.y };
+
+  d.fillStyle = props.text.match(/^P/) ? "#299" : "#e73311";
+  var txt = props.text;
+  var height = 10;
+  d.font = "bold " + height + "px sans-serif";
+  var width = d.measureText(txt).width;
+
+  var box_height = 12;
+  var box_width = width + 10;
+  d.fillRect(q.x - box_width / 2, q.y - box_height / 2, box_width, box_height);
+
+  d.fillStyle = "white";
+  d.fillText(txt, q.x - width/2, q.y + height/2 - 1);
+
+
+  // d.strokeStyle = "#777";
+  // d.lineWidth = 1.1;
+  // d.strokeRect(q.x - box_size / 2, q.y - box_size / 2, box_size, box_size);
+}
+
+function realize_path(props, scale, salients) {
   d.lineWidth = 1.1 / scale;
 
   if (props.natural == "coastline") {
@@ -198,7 +242,7 @@ function realize_path(props, scale) {
   }
 
   if (props.road == "highway") {
-    d.lineWidth = 2 / scale;
+    d.lineWidth = 1.5 / scale;
     d.strokeStyle = "#f70";
     d.stroke();
   }

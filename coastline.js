@@ -334,7 +334,8 @@ CoastlineLayer.prototype.breakup = function() {
       if (ix == -1)
 	throw ("couldn't find " + k + " in " + JSON.stringify(feature_arcs));
       feature_arcs.splice.apply(feature_arcs, [ix, 1].concat(replacement_arcs));
-//      delete that.arcs[k];
+      console.log(k);
+      delete that.arcs[k];
     }
   });
   this.rebuild();

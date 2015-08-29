@@ -1,5 +1,5 @@
 var simplify = require('./simplify');
-var SIMPLIFICATION_FACTOR = 5; // higher = more simplification
+var SIMPLIFICATION_FACTOR = 10; // higher = more simplification
 var DEBUG_BBOX = false;
 
 CoastlineLayer.prototype.rebuild = function() {
@@ -78,11 +78,12 @@ CoastlineLayer.prototype.get_index = function(target) {
 
 
 CoastlineLayer.prototype.render = function(d, camera, locus, world_bbox) {
+  var scale = camera.scale();
   var that = this;
   d.save();
 
   d.translate(camera.x, camera.y);
-  d.scale(camera.scale(), -camera.scale());
+  d.scale(scale, -scale);
 
   d.strokeStyle = "black";
   d.lineJoin = "round";
@@ -100,14 +101,14 @@ CoastlineLayer.prototype.render = function(d, camera, locus, world_bbox) {
       var this_arc = arcs[arc_id].points;
       var arc_bbox = arcs[arc_id].properties.bbox;
       if (DEBUG_BBOX) {
-        d.lineWidth = 1.5 / camera.scale();
+        d.lineWidth = 1.5 / scale;
         d.strokeStyle = "#0ff";
         d.strokeRect(arc_bbox.minx, arc_bbox.miny,
                      arc_bbox.maxx - arc_bbox.minx,
                      arc_bbox.maxy - arc_bbox.miny);
       }
 
-      d.lineWidth = 0.9 / camera.scale();
+      d.lineWidth = 0.9 / scale;
       rect_intersect = world_bbox[0] < arc_bbox.maxx && world_bbox[2] > arc_bbox.minx && world_bbox[3] > arc_bbox.miny && world_bbox[1] < arc_bbox.maxy;
 
 
@@ -126,13 +127,13 @@ CoastlineLayer.prototype.render = function(d, camera, locus, world_bbox) {
 	if (n++ == 0)
     	  d.moveTo(vert[0] ,  vert[1] );
 	else {
-	  var p = {x: camera.x + (vert[0] * camera.scale()),
-	    	   y: camera.y + (vert[1] * camera.scale())};
+	  var p = {x: camera.x + (vert[0] * scale),
+	    	   y: camera.y + (vert[1] * scale)};
 
 	  var draw = false;
 
 	  // draw somewhat simplified
-	  if (camera.zoom >= 6 || (vert[2] > SIMPLIFICATION_FACTOR / (camera.scale() * camera.scale())))
+	  if (camera.zoom >= 6 || (vert[2] > SIMPLIFICATION_FACTOR / (scale * scale)))
 	    draw = true;
 
 	  // if (p.x < OFFSET || p.x > w - OFFSET || p.y < OFFSET || p.y > h - OFFSET)
@@ -154,7 +155,7 @@ CoastlineLayer.prototype.render = function(d, camera, locus, world_bbox) {
     d.closePath();
 
     if (object.properties.natural != "mountain") {
-      d.lineWidth = 1.1 / camera.scale();
+      d.lineWidth = 1.1 / scale;
       d.strokeStyle = "#44a";
       d.stroke();
     }
@@ -168,7 +169,7 @@ CoastlineLayer.prototype.render = function(d, camera, locus, world_bbox) {
     // if (object.name == "feature20") {
     //   d.strokeStyle = "#f0f";
     //   var feature_bbox = object.properties.bbox;
-    //   var lw = 3.0 / camera.scale();
+    //   var lw = 3.0 / scale;
     //   d.lineWidth = lw;
     //   d.strokeRect(feature_bbox.minx - lw * 10, feature_bbox.miny - lw * 10,
     //                feature_bbox.maxx - feature_bbox.minx + lw * 20,
@@ -179,7 +180,7 @@ CoastlineLayer.prototype.render = function(d, camera, locus, world_bbox) {
       d.fill();
     else {
       var feature_bbox = object.properties.bbox;
-      var lw = d.lineWidth = 3.0 / camera.scale();
+      var lw = d.lineWidth = 3.0 / scale;
       d.strokeStyle = "#f0f";
       d.strokeRect(feature_bbox.minx - lw, feature_bbox.miny - lw,
                    feature_bbox.maxx - feature_bbox.minx + lw * 2,
@@ -191,7 +192,7 @@ CoastlineLayer.prototype.render = function(d, camera, locus, world_bbox) {
   if (g_mode != "Pan") {
     d.strokeStyle = "#333";
     d.fillStyle = "#ffd";
-    var vert_size = 5 / camera.scale();
+    var vert_size = 5 / scale;
     arcs_to_draw_vertices_for.forEach(function(arc) {
       arc.forEach(function(vert, n) {
 	if (d.fillStyle = vert[2] > 1000000 || camera.zoom > 10) {

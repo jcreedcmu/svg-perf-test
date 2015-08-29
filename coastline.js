@@ -91,7 +91,14 @@ CoastlineLayer.prototype.render = function(d, camera, locus, world_bbox) {
 
   var arcs_to_draw_vertices_for = [];
 
-  _.each(this.rt.bbox.apply(this.rt, world_bbox), function(object) {
+  var features = this.rt.bbox.apply(this.rt, world_bbox);
+  features = _.sortBy(features, function(x) {
+    var z = 0;
+    if (x.properties.natural == "lake") z = 1;
+    if (x.properties.road == "highway") z = 2;
+    return z;
+  });
+  _.each(features, function(object) {
     var arc_id_list = object.arcs;
     var arcs = that.arcs;
 
@@ -128,18 +135,19 @@ CoastlineLayer.prototype.render = function(d, camera, locus, world_bbox) {
       this_arc.forEach(function(vert, ix) {
 	if (ix == 0) return;
 
-	  var p = {x: camera.x + (vert[0] * scale),
-	    	   y: camera.y + (vert[1] * scale)};
+	var p = {x: camera.x + (vert[0] * scale),
+	    	 y: camera.y + (vert[1] * scale)};
 
-	  var draw = false;
+	var draw = false;
 
-	  // draw somewhat simplified
-	  if (camera.zoom >= 6 || (vert[2] > SIMPLIFICATION_FACTOR / (scale * scale)))
-	    draw = true;
-
-	  if (draw) {
-    	    d.lineTo(vert[0], vert[1]);
-	  }
+	// draw somewhat simplified
+	if (camera.zoom >= 6 || (vert[2] > SIMPLIFICATION_FACTOR / (scale * scale)))
+	  draw = true;
+	if (ix == this_arc.length - 1)
+	  draw = true;
+	if (draw) {
+    	  d.lineTo(vert[0], vert[1]);
+	}
 
       });
     });
@@ -179,6 +187,8 @@ function realize_path(props, scale) {
     d.strokeStyle = "#44a";
     d.stroke();
     d.fillStyle = "#bac7f8";
+    if (!DEBUG_BBOX)
+      d.fill();
   }
 
   if (props.natural == "mountain") {

@@ -39,6 +39,7 @@ function collect(objects, type) {
 }
 
 function CoastlineLayer(objects, counter) {
+  this.counter = counter;
   this.features = collect(objects, "Polygon");
   this.arcs = collect(objects, "arc");
   this.rebuild();

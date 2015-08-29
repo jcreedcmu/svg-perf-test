@@ -99,7 +99,6 @@ CoastlineLayer.prototype.render = function(d, camera, locus, world_bbox) {
     arc_id_list.forEach(function(arc_id) {
       var this_arc = arcs[arc_id].points;
       var arc_bbox = arcs[arc_id].properties.bbox;
-
       if (DEBUG_BBOX) {
         d.lineWidth = 1.5 / camera.scale();
         d.strokeStyle = "#0ff";
@@ -298,7 +297,6 @@ CoastlineLayer.prototype.filter = function() {
     if (obj.properties.natural == "mountain") {
       // strip out collinearish points
       var arc = that.arcs[obj.arcs[0]];
-      console.log(arc);
       arc.points =  arc.points.filter(function(p, n) {
 	return n == 0 || n == arc.points.length - 1 || p[2] > 1000000;
       });

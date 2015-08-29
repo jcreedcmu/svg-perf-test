@@ -18,6 +18,7 @@ var FREEHAND_SIMPLIFICATION_FACTOR = 100;
 // data in a.json generated through
 // potrace a.pbm -a 0 -b geojson
 
+g_selection = null;
 g_render_extra = null;
 g_mode = "Pan";
 state = new State();
@@ -183,6 +184,18 @@ function render() {
     g_render_extra(camera, d);
   }
 
+  if (g_selection) {
+    d.save();
+    d.translate(camera.x, camera.y);
+    d.scale(camera.scale(), -camera.scale());
+    if (g_selection.arc) {
+      d.lineWidth = 2 / camera.scale();
+      d.strokeStyle = "#0ff";
+      coastline_layer.draw_selected_arc(d, g_selection.arc);
+    }
+    d.restore();
+  }
+
   d.restore();
 }
 
@@ -259,13 +272,15 @@ function begin_pan(x, y, camera) {
 }
 
 $(c).on('mousedown', function(e) {
-  if (g_mode == "Pan") {
-    var camera = state.camera();
-    var th = $(this);
-    var x = e.pageX;
-    var y = e.pageY;
-    var worldp = inv_xform(camera,x, y);
+  var camera = state.camera();
+  var x = e.pageX;
+  var y = e.pageY;
+  var worldp = inv_xform(camera, x, y);
+  var slack = VERTEX_SENSITIVITY / camera.scale();
+  var bbox = [worldp.x - slack, worldp.y - slack, worldp.x + slack, worldp.y + slack];
 
+  var th = $(this);
+  if (g_mode == "Pan") {
     if (e.ctrlKey) {
       var membase = image_layer.get_pos();
       $(document).on('mousemove.drag', function(e) {
@@ -282,11 +297,20 @@ $(c).on('mousedown', function(e) {
     else
       begin_pan(x, y, camera);
   }
+  else if (g_mode == "Select") {
+    var candidate_features = coastline_layer.arc_targets(bbox);
+    var hit_lines = geom.find_hit_lines(
+      worldp, candidate_features, coastline_layer.arcs, slack
+    );
+    if (hit_lines.length == 1) {
+      g_selection = hit_lines[0];
+    }
+    else {
+      g_selection = null;
+    }
+    render();
+  }
   else if (g_mode == "Label") {
-    var camera = state.camera();
-    var x = e.pageX;
-    var y = e.pageY;
-    var worldp = inv_xform(camera, x, y);
     if (g_lastz != "[]") {
       var z = JSON.parse(g_lastz);
       if (z.length == 1 && z[0][0] == "label") {
@@ -298,13 +322,6 @@ $(c).on('mousedown', function(e) {
     }
   }
   else if (g_mode == "Move") {
-    var camera = state.camera();
-    var x = e.pageX;
-    var y = e.pageY;
-    var worldp = inv_xform(camera,x, y);
-
-    var rad = VERTEX_SENSITIVITY / camera.scale();
-    var bbox = [worldp.x - rad, worldp.y - rad, worldp.x + rad, worldp.y + rad];
     var targets = coastline_layer.targets(bbox);
 
     if (targets.length >= 1) {
@@ -324,7 +341,6 @@ $(c).on('mousedown', function(e) {
     }
     else {
       var candidate_features = coastline_layer.arc_targets(bbox);
-      var slack = VERTEX_SENSITIVITY / camera.scale();
       var hit_lines = geom.find_hit_lines(
 	worldp, candidate_features, coastline_layer.arcs, slack
       );
@@ -341,10 +357,6 @@ $(c).on('mousedown', function(e) {
     }
   }
   else if (g_mode == "Freehand") {
-    var camera = state.camera();
-    var x = e.pageX;
-    var y = e.pageY;
-    var worldp = inv_xform(camera,x, y);
     var startp = [worldp.x, worldp.y];
 
     var spoint = get_snap();
@@ -499,6 +511,10 @@ $(document).on('keydown', function(e) {
     g_mode = "Pan";
     render();
   }
+  if (k == "s") {
+    g_mode = "Select";
+    render();
+  }
   if (k == "l") {
     g_mode = "Label";
     render();
@@ -509,6 +525,10 @@ $(document).on('keydown', function(e) {
   // }
   if (k == "e") {
     save();
+  }
+  if (k == "S-b") {
+    coastline_layer.breakup();
+    render();
   }
   if (k == "S-f") {
     coastline_layer.filter();

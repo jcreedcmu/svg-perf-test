@@ -281,6 +281,17 @@ CoastlineLayer.prototype.model = function() {
   return { objects: features.concat(arcs) };
 }
 
+CoastlineLayer.prototype.draw_selected_arc = function(d, arc_id) {
+  d.beginPath();
+  this.arcs[arc_id].points.forEach(function(pt, n) {
+    if (n == 0)
+      d.moveTo(pt[0], pt[1])
+    else
+      d.lineTo(pt[0], pt[1])
+  });
+  d.stroke();
+}
+
 CoastlineLayer.prototype.filter = function() {
   console.log("hi");
   var that = this;
@@ -292,6 +303,15 @@ CoastlineLayer.prototype.filter = function() {
       arc.points =  arc.points.filter(function(p, n) {
 	return n == 0 || n == arc.points.length - 1 || p[2] > 1000000;
       });
+    }
+  });
+  this.rebuild();
+}
+
+CoastlineLayer.prototype.breakup = function() {
+  _.each(this.arcs, function(v, k) {
+    if (v.points.length > 200) {
+      console.log(k);
     }
   });
   this.rebuild();

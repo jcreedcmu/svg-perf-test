@@ -25,7 +25,7 @@ module.exports.prototype.render = function(d, camera, locus, world_bbox) {
       });
     });
     d.fillStyle = "#bac7f8";
-    d.globalAlpha = 0.5;
+    d.globalAlpha = 0.2;
     d.fillStyle = "blue";
     d.fill();
   });

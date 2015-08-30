@@ -197,7 +197,15 @@ function realize_salient(props, camera, pt) {
   var q = {x: pt[0] * camera.scale() + camera.x,
 	   y: pt[1] * -camera.scale() + camera.y };
 
-  d.fillStyle = props.text.match(/^P/) ? "#299" : "#e73311";
+  var stroke = null;
+  d.fillStyle = "#55a554";
+  if (props.text.match(/^P/)) d.fillStyle = "#29a";
+  if (props.text.match(/^Z/)) d.fillStyle = "#e73311";
+  if (props.text.match(/^U/)) {
+    d.fillStyle = "#fffff7";
+    stroke = "black";
+  }
+
   var txt = props.text;
   var height = 10;
   d.font = "bold " + height + "px sans-serif";
@@ -208,12 +216,14 @@ function realize_salient(props, camera, pt) {
   d.fillRect(q.x - box_width / 2, q.y - box_height / 2, box_width, box_height);
 
   d.fillStyle = "white";
+  if (stroke != null) d.fillStyle = stroke;
   d.fillText(txt, q.x - width/2, q.y + height/2 - 1);
 
-
-  // d.strokeStyle = "#777";
-  // d.lineWidth = 1.1;
-  // d.strokeRect(q.x - box_size / 2, q.y - box_size / 2, box_size, box_size);
+  if (stroke != null) {
+    d.strokeStyle = stroke;
+    d.lineWidth = 0.9;
+    d.strokeRect(q.x - box_width / 2, q.y - box_height / 2, box_width, box_height);
+  }
 }
 
 function realize_path(props, scale, salients) {

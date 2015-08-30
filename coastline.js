@@ -1,6 +1,7 @@
 var simplify = require('./simplify');
 var SIMPLIFICATION_FACTOR = 10; // higher = more simplification
 var DEBUG_BBOX = false;
+var colors = require('./colors');
 
 CoastlineLayer.prototype.rebuild = function() {
   this.rt = new RTree(10);
@@ -118,7 +119,7 @@ CoastlineLayer.prototype.render = function(d, camera, locus, world_bbox) {
       var arc_bbox = arcs[arc_id].properties.bbox;
       if (DEBUG_BBOX) {
         d.lineWidth = 1.5 / scale;
-        d.strokeStyle = "#0ff";
+        d.strokeStyle = colors.debug;
         d.strokeRect(arc_bbox.minx, arc_bbox.miny,
                      arc_bbox.maxx - arc_bbox.minx,
                      arc_bbox.maxy - arc_bbox.miny);
@@ -165,6 +166,7 @@ CoastlineLayer.prototype.render = function(d, camera, locus, world_bbox) {
     realize_path(object.properties, scale, salients);
   });
 
+  // draw vertices
   if (g_mode != "Pan") {
     d.strokeStyle = "#333";
     d.fillStyle = "#ffd";
@@ -230,15 +232,15 @@ function realize_path(props, scale, salients) {
   d.lineWidth = 1.1 / scale;
 
   if (props.natural == "coastline") {
-    d.strokeStyle = "#44a";
+    d.strokeStyle = colors.water_border;
     d.stroke();
-    d.fillStyle = "#e7eada";
+    d.fillStyle = colors.land;
     if (!DEBUG_BBOX)
       d.fill();
   }
 
   if (props.natural == "lake") {
-    d.strokeStyle = "#44a";
+    d.strokeStyle = colors.water_border;
     d.stroke();
     d.fillStyle = "#bac7f8";
     if (!DEBUG_BBOX)

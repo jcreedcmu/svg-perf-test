@@ -40,3 +40,13 @@ TODO: get rid of bboxes via "_" properties?
 Q: How do I do the inverse of paths in jq?
 A: getpath --- which appears undocumented, see
 https://github.com/stedolan/jq/issues/914
+
+=== 2015.08.30
+
+Q: What are some things to do?
+A:
+Move rivers to coastline layer
+Move labels to coastline layer
+Make snap work when moving vertices
+Separate fused vertices/edges
+Select contiguous sections by identifying endpoints

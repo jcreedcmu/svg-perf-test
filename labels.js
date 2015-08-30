@@ -45,82 +45,62 @@ function titleCase(str) {
   return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 }
 
-LabelLayer.prototype.render = function(d, camera, locus, world_bbox) {
-  if (camera.zoom < 1) return;
-  d.lineJoin = "round";
-  function draw_label(lab) {
-    var p = lab.p, txt = lab.text, typ = lab.type, min_zoom = lab.zoom;
-    var q = {x: camera.x + camera.scale() * p.x,
-	      y: camera.y - camera.scale() * p.y};
+module.exports.draw_label = function(d, camera, lab) {
+  var p = lab.pt, txt = lab.properties.text, typ = lab.properties.label, min_zoom = lab.properties.zoom;
+  var q = {x: camera.x + camera.scale() * p[0],
+	   y: camera.y - camera.scale() * p[1]};
 
-    txt = titleCase(txt);
-    var stroke = true;
-    var height;
-    if (min_zoom == null) {
-      if (typ == "city") min_zoom = 3;
-      if (typ == "minorsea") min_zoom = 2;
-    }
-    if (camera.zoom < min_zoom) return;
-
-    if (typ == "city") {
-      d.fillStyle = "white";
-      d.strokeStyle = "#333";
-      d.lineWidth = 1.5;
-      d.beginPath();
-
-      d.arc(q.x, q.y, 3.2, 0, Math.PI * 2);
-      d.stroke();
-      d.fill();
-
-      q.y -= 12;
-
-      d.fillStyle = "#333";
-      d.strokeStyle = "white";
-      d.lineWidth = 2;
-      height = 10;
-      d.font = "bold " + height + "px sans-serif";
-    }
-    else if (typ == "region") {
-      d.fillStyle = "#333";
-      d.strokeStyle = "white";
-      d.lineWidth = 2;
-      height = 10;
-      d.font = "italic " + height + "px sans-serif";
-    }
-    else if (typ == "sea") {
-      d.fillStyle = "#444";
-      stroke = false;
-      height = 10;
-      d.font = "bold " + height + "px sans-serif";
-    }
-    else if (typ == "minorsea") {
-      d.fillStyle = "#44a";
-      d.strokeStyle = "white";
-      d.lineWidth = 2;
-      height = 10;
-      d.font = "bold " + height + "px sans-serif";
-    }
-    var width = d.measureText(txt).width;
-    if (stroke)
-      d.strokeText(txt, q.x - width/2, q.y + height/2);
-    d.fillText(txt, q.x - width/2, q.y + height/2);
+  txt = titleCase(txt);
+  var stroke = true;
+  var height;
+  if (min_zoom == null) {
+    if (typ == "city") min_zoom = 3;
+    if (typ == "minorsea") min_zoom = 2;
   }
+  if (camera.zoom < min_zoom) return;
 
-  this.rt.bbox.apply(this.rt, world_bbox).forEach(draw_label);
+  if (typ == "city") {
+    d.fillStyle = "white";
+    d.strokeStyle = "#333";
+    d.lineWidth = 1.5;
+    d.beginPath();
 
-  if (locus != null) {
-    var loc = locus.toJS();
-    d.save();
-    d.translate(camera.x, camera.y);
-    d.scale(camera.scale(), -camera.scale());
-    d.strokeStyle = "black";
-    d.lineWidth = 1 / camera.scale();
+    d.arc(q.x, q.y, 3.2, 0, Math.PI * 2);
+    d.stroke();
+    d.fill();
 
-    d.strokeRect(loc.x - 20, loc.y - 20, 40, 40);
-    d.strokeRect(loc.x - 5, loc.y - 5, 10, 10);
-    d.strokeRect(loc.x - 1, loc.y - 1, 2, 2);
-    d.restore();
+    q.y -= 12;
+
+    d.fillStyle = "#333";
+    d.strokeStyle = "white";
+    d.lineWidth = 2;
+    height = 10;
+    d.font = "bold " + height + "px sans-serif";
   }
+  else if (typ == "region") {
+    d.fillStyle = "#333";
+    d.strokeStyle = "white";
+    d.lineWidth = 2;
+    height = 10;
+    d.font = "italic " + height + "px sans-serif";
+  }
+  else if (typ == "sea") {
+    d.fillStyle = "#444";
+    stroke = false;
+    height = 10;
+    d.font = "bold " + height + "px sans-serif";
+  }
+  else if (typ == "minorsea") {
+    d.fillStyle = "#44a";
+    d.strokeStyle = "white";
+    d.lineWidth = 2;
+    height = 10;
+    d.font = "bold " + height + "px sans-serif";
+  }
+  var width = d.measureText(txt).width;
+  if (stroke)
+    d.strokeText(txt, q.x - width/2, q.y + height/2);
+  d.fillText(txt, q.x - width/2, q.y + height/2);
 }
 
 LabelLayer.prototype.model = function() {

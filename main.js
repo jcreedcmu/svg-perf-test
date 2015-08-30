@@ -1,4 +1,3 @@
-var LabelLayer = require('./labels');
 var CoastlineLayer = require('./coastline');
 var ImageLayer = require('./images');
 var RiverLayer = require('./rivers');
@@ -35,7 +34,6 @@ ld.done(function(data) {
   assets = this;
   var geo = assets.src.geo;
   coastline_layer = new CoastlineLayer(geo.objects, geo.counter);
-  label_layer = new LabelLayer(geo.labels);
   image_layer = new ImageLayer(dispatch, 0, geo.images, assets.img.overlay);
 
   river_layer = new RiverLayer(dispatch, assets.src.rivers);
@@ -43,7 +41,7 @@ ld.done(function(data) {
   g_layers = [coastline_layer,
 	      river_layer,
 	      sketch_layer,
-	      label_layer, image_layer];
+	      image_layer];
 
   c = $("#c")[0];
   d = c.getContext('2d');
@@ -313,11 +311,11 @@ $(c).on('mousedown', function(e) {
     if (g_lastz != "[]") {
       var z = JSON.parse(g_lastz);
       if (z.length == 1 && z[0][0] == "label") {
-	label_layer.make_insert_label_modal(worldp, z[0][1], render);
+//	label_layer.make_insert_label_modal(worldp, z[0][1], render);
       }
     }
     else {
-      label_layer.make_insert_label_modal(worldp, null, render);
+//      label_layer.make_insert_label_modal(worldp, null, render);
     }
   }
   else if (g_mode == "Move") {
@@ -474,7 +472,7 @@ $(c).on('mousemove', function(e) {
     var bbox = [worldp.x - rad, worldp.y - rad, worldp.x + rad, worldp.y + rad];
     var targets = [];
     targets = targets.concat(coastline_layer.targets(bbox).map(function(x) { return ["coastline", x] }));
-    targets = targets.concat(label_layer.targets(bbox).map(function(x) { return ["label", x] }));
+//    targets = targets.concat(label_layer.targets(bbox).map(function(x) { return ["label", x] }));
     var z = JSON.stringify(targets);
     if (z != g_lastz) {
       g_lastz = z;

@@ -2,19 +2,26 @@ var simplify = require('./simplify');
 var SIMPLIFICATION_FACTOR = 10; // higher = more simplification
 var DEBUG_BBOX = false;
 var colors = require('./colors');
+var labels = require('./labels');
 
 CoastlineLayer.prototype.rebuild = function() {
   this.rt = new RTree(10);
   this.vertex_rt = new RTree(10);
+  this.label_rt = new RTree(10);
   var that = this;
   var arcs = this.arcs;
   var features = this.features;
+  var labels = this.labels;
 
   _.each(arcs, function(arc, an) {
     _.each(arc.points, function(point, pn) {
       that.vertex_rt.insert({x:point[0],y:point[1],w:0,h:0}, {arc:an, point:point});
     });
     simplify.simplify_arc(arc);
+  });
+
+  _.each(this.labels, function(p) {
+    that.label_rt.insert({x:p.pt[0],y:p.pt[1],w:0,h:0}, {label: p.name});
   });
 
   _.each(features, function(object, key) {
@@ -43,6 +50,7 @@ function CoastlineLayer(objects, counter) {
   this.counter = counter;
   this.features = collect(objects, "Polygon");
   this.arcs = collect(objects, "arc");
+  this.labels = collect(objects, "point");
   this.rebuild();
 }
 
@@ -186,6 +194,13 @@ CoastlineLayer.prototype.render = function(d, camera, locus, world_bbox) {
   // doing this because it involves text, which won't want the negative y-transform
   salients.forEach(function(salient) {
     realize_salient(salient.props, camera, salient.pt);
+  });
+
+  // render labels
+  if (camera.zoom < 1) return;
+  d.lineJoin = "round";
+  this.label_rt.bbox.apply(this.label_rt, world_bbox).forEach(function(x) {
+    labels.draw_label(d, camera, that.labels[x.label]);
   });
 }
 
@@ -341,7 +356,7 @@ CoastlineLayer.prototype.model = function() {
 	  return [p[0], p[1]];
 	})})
   });
-  return { counter: this.counter, objects: [].concat(features, arcs) };
+  return { counter: this.counter, objects: [].concat(features, arcs, this.points) };
 }
 
 CoastlineLayer.prototype.draw_selected_arc = function(d, arc_id) {

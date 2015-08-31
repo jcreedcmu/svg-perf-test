@@ -407,7 +407,10 @@ CoastlineLayer.prototype.model = function() {
 	  return [p[0], p[1]];
 	})})
   });
-  return { counter: this.counter, objects: [].concat(features, arcs, this.labels) };
+  return { counter: this.counter, objects: [].concat(
+    features,
+    arcs,
+    _.map(this.labels, function(x) { return x })) };
 }
 
 CoastlineLayer.prototype.draw_selected_arc = function(d, arc_id) {

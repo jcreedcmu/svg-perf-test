@@ -150,6 +150,7 @@ CoastlineLayer.prototype.render = function(d, camera, locus, world_bbox) {
     var z = 0;
     if (x.properties.natural == "lake") z = 1;
     if (x.properties.natural == "mountain") z = 1;
+    if (x.properties.city == "area") z = 1;
     if (x.properties.road == "highway") z = 2;
     return z;
   });
@@ -310,6 +311,11 @@ function realize_path(props, scale, salients) {
     d.fillStyle = "#a98";
     if (!DEBUG_BBOX)
       d.fill();
+  }
+
+  if (props.city == "area") {
+    d.fillStyle = "#bbb";
+    d.fill();
   }
 
   if (props.road == "highway") {
@@ -507,7 +513,8 @@ CoastlineLayer.prototype.make_insert_feature_modal = function(pts, lab, dispatch
   var process_f = null;
 
   $('#insert_feature input[name="text"]')[0].value = "";
-  $('#insert_feature input[name="road"]')[0].value = "highway";
+  $('#insert_feature input[name="key"]')[0].value = "road";
+  $('#insert_feature input[name="value"]')[0].value = "highway";
   $('#insert_feature input[name="zoom"]')[0].value = "";
 
   process_f = function (obj) {
@@ -521,6 +528,11 @@ CoastlineLayer.prototype.make_insert_feature_modal = function(pts, lab, dispatch
     }));
     if (obj.zoom == null || obj.zoom == "")
       delete obj.zoom;
+    var k = obj.key;
+    var v = obj.value;
+    delete obj.key;
+    delete obj.value;
+    obj[k] = v;
     process_f(obj);
     dispatch();
     $("#insert_feature").modal("hide");

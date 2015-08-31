@@ -60,7 +60,7 @@ CoastlineLayer.prototype.arc_targets = function(world_bbox) {
   return this.rt.bbox.apply(this.rt, world_bbox);
 }
 
-CoastlineLayer.prototype.targets = function(world_bbox) {
+CoastlineLayer.prototype.arc_vertex_targets = function(world_bbox) {
   var targets = this.vertex_rt.bbox.apply(this.vertex_rt, world_bbox);
 
   if (targets.length < 2) return targets;
@@ -77,7 +77,46 @@ CoastlineLayer.prototype.targets = function(world_bbox) {
   return targets;
 }
 
+CoastlineLayer.prototype.label_targets = function(world_bbox) {
+  var targets = this.label_rt.bbox.apply(this.label_rt, world_bbox);
+  if (targets.length < 2)
+    return targets;
+  else
+    return [];
+}
+
+
+// invariant: targets.length >= 1
+CoastlineLayer.prototype.targets_nabes = function(targets) {
+  var that = this;
+
+  // XXX what happens if targets is of mixed type ugh
+  if (targets[0][0] == "coastline") {
+      var neighbors = [];
+
+    targets.forEach(function(target) {
+      var ctarget = target[1];
+      var ix = that.get_index(ctarget);
+      var arc_points = that.arcs[ctarget.arc].points;
+      if (ix > 0) neighbors.push(arc_points[ix - 1]);
+      if (ix < arc_points.length - 1) neighbors.push(arc_points[ix + 1]);
+    });
+    return neighbors;
+  }
+  else {
+    return [];
+  }
+}
+
+CoastlineLayer.prototype.targets = function(world_bbox) {
+  return [].concat(
+    this.arc_vertex_targets(world_bbox).map(function(x) { return ["coastline", x] }),
+    this.label_targets(world_bbox).map(function(x) { return ["label", x] })
+  );
+}
+
 CoastlineLayer.prototype.get_index = function(target) {
+  console.log(target);
   var arc = this.arcs[target.arc].points;
   for (var i = 0; i < arc.length; i++) {
     if (arc[i] == target.point)
@@ -298,19 +337,31 @@ CoastlineLayer.prototype.recompute_arc_feature_bbox = function(arc_id) {
 }
 
 // special case first and last of arc??
-CoastlineLayer.prototype.replace_vert_in_arc = function(rt_entry,  p) {
-  var arc_id = rt_entry.arc;
+CoastlineLayer.prototype.replace_vert = function(targets,  p) {
+  var that = this;
+  targets.forEach(function(target) {
+    if (target[0] == "coastline") {
+      var rt_entry = target[1];
+      console.log(rt_entry);
+      var arc_id = rt_entry.arc;
 
+      var vert_ix = that.get_index(rt_entry);
+      var arc = that.arcs[arc_id];
+      var oldp = rt_entry.point;
 
-  var vert_ix = this.get_index(rt_entry);
-  var arc = this.arcs[arc_id];
-  var oldp = rt_entry.point;
-
-  var new_pt = arc.points[vert_ix] = [p.x, p.y, 1000]; // I think this 1000 can be whatever
-  simplify.simplify_arc(arc);
-  var results = this.vertex_rt.remove({x:oldp[0],y:oldp[1],w:0,h:0}, rt_entry);
-  this.vertex_rt.insert({x:p.x,y:p.y,w:0,h:0}, {arc: arc_id, point: new_pt});
-  this.recompute_arc_feature_bbox(arc_id);
+      var new_pt = arc.points[vert_ix] = [p.x, p.y, 1000]; // I think this 1000 can be whatever
+      simplify.simplify_arc(arc);
+      var results = that.vertex_rt.remove({x:oldp[0],y:oldp[1],w:0,h:0}, rt_entry);
+      that.vertex_rt.insert({x:p.x,y:p.y,w:0,h:0}, {arc: arc_id, point: new_pt});
+      that.recompute_arc_feature_bbox(arc_id);
+    }
+    else if (target[0] == "label") {
+      var lab = that.labels[target[1].label];
+      that.label_rt.remove({x:lab.pt[0],y:lab.pt[1],w:0,h:0}, target[1]);
+      lab.pt = [p.x, p.y];
+      that.label_rt.insert({x:lab.pt[0],y:lab.pt[1],w:0,h:0}, target[1]);
+    }
+  });
 }
 
 CoastlineLayer.prototype.add_vert_to_arc = function(arc_id,  p) {
@@ -356,7 +407,7 @@ CoastlineLayer.prototype.model = function() {
 	  return [p[0], p[1]];
 	})})
   });
-  return { counter: this.counter, objects: [].concat(features, arcs, this.points) };
+  return { counter: this.counter, objects: [].concat(features, arcs, this.labels) };
 }
 
 CoastlineLayer.prototype.draw_selected_arc = function(d, arc_id) {

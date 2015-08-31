@@ -405,6 +405,10 @@ function start_drag(startp, neighbors, k) {
   $(document).on('mouseup.drag', function(e) {
     g_render_extra = null;
     $(document).off('.drag');
+    var snaps = JSON.parse(g_lastz);
+    if (snaps.length >= 1) {
+      dragp = coastline_layer.target_point(snaps[0]);
+    }
     k(dragp);
     render();
   });

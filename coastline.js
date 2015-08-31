@@ -85,6 +85,12 @@ CoastlineLayer.prototype.label_targets = function(world_bbox) {
     return [];
 }
 
+CoastlineLayer.prototype.target_point = function(target) {
+  var pt = target[0] == "coastline" ?
+      target[1].point :
+      this.labels[target[1].label].pt;
+  return {x: pt[0], y: pt[1]};
+}
 
 // invariant: targets.length >= 1
 CoastlineLayer.prototype.targets_nabes = function(targets) {
@@ -116,7 +122,6 @@ CoastlineLayer.prototype.targets = function(world_bbox) {
 }
 
 CoastlineLayer.prototype.get_index = function(target) {
-  console.log(target);
   var arc = this.arcs[target.arc].points;
   for (var i = 0; i < arc.length; i++) {
     if (arc[i] == target.point)
@@ -342,7 +347,7 @@ CoastlineLayer.prototype.replace_vert = function(targets,  p) {
   targets.forEach(function(target) {
     if (target[0] == "coastline") {
       var rt_entry = target[1];
-      console.log(rt_entry);
+
       var arc_id = rt_entry.arc;
 
       var vert_ix = that.get_index(rt_entry);
@@ -490,7 +495,7 @@ CoastlineLayer.prototype.breakup = function() {
       if (ix == -1)
 	throw ("couldn't find " + k + " in " + JSON.stringify(feature_arcs));
       feature_arcs.splice.apply(feature_arcs, [ix, 1].concat(replacement_arcs));
-      console.log(k);
+
       delete that.arcs[k];
     }
   });

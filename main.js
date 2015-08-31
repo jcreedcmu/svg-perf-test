@@ -140,7 +140,6 @@ function render() {
 	  d.strokeRect(pt[0]-rad,pt[1]-rad,rad * 2,rad * 2);
 	}
 	else if (bundle[0] == "label") {
-	  console.log(bundle);
 	  var pt = coastline_layer.labels[bundle[1].label].pt;
 	  d.beginPath();
 	  d.fillStyle = "white";

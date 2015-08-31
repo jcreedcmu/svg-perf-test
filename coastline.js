@@ -308,13 +308,13 @@ function realize_path(props, scale, salients) {
   }
 
   if (props.natural == "mountain") {
-    d.fillStyle = "#a98";
+    d.fillStyle = "#b5ab9b";
     if (!DEBUG_BBOX)
       d.fill();
   }
 
   if (props.city == "area") {
-    d.fillStyle = "#bbb";
+    d.fillStyle = "#dbdbab";
     d.fill();
   }
 

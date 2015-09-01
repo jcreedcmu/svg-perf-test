@@ -12,11 +12,13 @@ var DEBUG_PROF = false;
 var OFFSET = DEBUG ? 100 : 0;
 var VERTEX_SENSITIVITY = 10;
 var FREEHAND_SIMPLIFICATION_FACTOR = 100;
+var PANNING_MARGIN = 200;
 
 // data in a.json generated through
 // potrace a.pbm -a 0 -b geojson
 
 g_selection = null;
+g_panning = false;
 g_render_extra = null;
 g_mode = "Pan";
 state = new State();
@@ -95,7 +97,33 @@ function dispatch() {
   render();
 }
 
+function render_origin() {
+  var or = state.get_origin();
+  $("#c").css({top: or.y + "px",
+	       left: or.x + "px",
+	       position: "fixed",
+	      });
+}
+
+function reset_canvas_size() {
+  var c = $("#c")[0];
+  var margin = g_panning ? PANNING_MARGIN : 0;
+  // not 100% sure this is right on retina
+  state.set_origin(-margin, -margin);
+  c.width = (w = innerWidth + 2 * margin) * devicePixelRatio;
+  c.height = (h = innerHeight + 2 * margin) * devicePixelRatio;
+  c.style.width = (innerWidth + 2 * margin) + "px";
+  c.style.height = (innerHeight + 2 * margin) + "px";
+}
+
+function get_world_bbox(camera) {
+  var tl = inv_xform(camera, OFFSET,OFFSET);
+  var br = inv_xform(camera,w-OFFSET,h-OFFSET);
+  return [tl.x, br.y, br.x, tl.y];
+}
+
 function render() {
+  var t = Date.now();
   d.save();
   d.scale(devicePixelRatio, devicePixelRatio);
   lastTime = Date.now();
@@ -113,9 +141,7 @@ function render() {
     d.strokeRect(OFFSET + 0.5,OFFSET + 0.5,w-2*OFFSET,h-2*OFFSET);
   }
 
-  var tl = inv_xform(camera, OFFSET,OFFSET);
-  var br = inv_xform(camera,w-OFFSET,h-OFFSET);
-  var world_bbox = [tl.x, br.y, br.x, tl.y];
+  var world_bbox = get_world_bbox(camera);
 
   g_layers.forEach(function(layer) {
     layer.render(d, camera, state.state.get('locus'), world_bbox);
@@ -152,48 +178,51 @@ function render() {
     }
   }
 
-  // scale
-  render_scale(camera, d);
+  if (!g_panning) {
+    // scale
+    render_scale(camera, d);
 
-  // mode
-  d.fillStyle = "black";
-  d.strokeStyle = "white";
-  d.font = "bold 12px sans-serif";
-  d.lineWidth = 2;
-  d.strokeText(g_mode, 20, h - 20);
-  d.fillText(g_mode, 20, h - 20);
-
-
-  // debugging
+    // mode
+    d.fillStyle = "black";
+    d.strokeStyle = "white";
+    d.font = "bold 12px sans-serif";
+    d.lineWidth = 2;
+    d.strokeText(g_mode, 20, h - 20);
+    d.fillText(g_mode, 20, h - 20);
 
 
-  d.fillStyle = "black";
-  d.strokeStyle = "white";
-  d.font = "bold 12px sans-serif";
-  d.lineWidth = 2;
-  var txt = "Zoom: " + camera.zoom + " (1px = " + 1/camera.scale() + "m) g_lastz: " + g_lastz + " img: " + image_layer.img_states[image_layer.cur_img_ix].name;
-  d.strokeText(txt, 20, 20);
-  d.fillText(txt, 20,  20);
+    // debugging
 
 
-  // used for ephemeral stuff on top, like point-dragging
-  if (g_render_extra) {
-    g_render_extra(camera, d);
-  }
+    d.fillStyle = "black";
+    d.strokeStyle = "white";
+    d.font = "bold 12px sans-serif";
+    d.lineWidth = 2;
+    var txt = "Zoom: " + camera.zoom + " (1px = " + 1/camera.scale() + "m) g_lastz: " + g_lastz + " img: " + image_layer.img_states[image_layer.cur_img_ix].name;
+    d.strokeText(txt, 20, 20);
+    d.fillText(txt, 20,  20);
 
-  if (g_selection) {
-    d.save();
-    d.translate(camera.x, camera.y);
-    d.scale(camera.scale(), -camera.scale());
-    if (g_selection.arc) {
-      d.lineWidth = 2 / camera.scale();
-      d.strokeStyle = "#0ff";
-      coastline_layer.draw_selected_arc(d, g_selection.arc);
+
+    // used for ephemeral stuff on top, like point-dragging
+    if (g_render_extra) {
+      g_render_extra(camera, d);
     }
-    d.restore();
+
+    if (g_selection) {
+      d.save();
+      d.translate(camera.x, camera.y);
+      d.scale(camera.scale(), -camera.scale());
+      if (g_selection.arc) {
+	d.lineWidth = 2 / camera.scale();
+	d.strokeStyle = "#0ff";
+	coastline_layer.draw_selected_arc(d, g_selection.arc);
+      }
+      d.restore();
+    }
   }
 
   d.restore();
+  console.log(Date.now() - t);
 }
 
 function meters_to_string(raw) {
@@ -257,13 +286,47 @@ $(c).on('mousewheel', function(e) {
   }
 });
 
+
 function begin_pan(x, y, camera) {
+  g_panning = true;
+//  state.set_cam(camera.x + PANNING_MARGIN, camera.y + PANNING_MARGIN);
+  reset_canvas_size();
+  render_origin();
+  render();
+  var last = {x:x, y:y};
   $(document).on('mousemove.drag', function(e) {
-    state.set_cam(camera.x + e.pageX - x, camera.y + e.pageY - y);
-    maybe_render();
+    var org = state.get_origin();
+    state.inc_origin(e.pageX - last.x,
+		     e.pageY - last.y);
+
+    state.inc_cam(e.pageX - last.x,
+		  e.pageY - last.y);
+
+    last.x = e.pageX;
+    last.y = e.pageY;
+
+    var stale = false;
+    if (org.x > 0) { state.inc_origin(-PANNING_MARGIN, 0); stale = true; }
+    if (org.y > 0) { state.inc_origin(0, -PANNING_MARGIN); stale = true; }
+    if (org.x < -2*PANNING_MARGIN) { state.inc_origin(PANNING_MARGIN, 0); stale = true; }
+    if (org.y < -2*PANNING_MARGIN) { state.inc_origin(0, PANNING_MARGIN); stale = true; }
+
+    // if (g_origin.y > 0) { g_origin.y -= PANNING_MARGIN; stale = true;
+    // 			  state.inc_cam(0, PANNING_MARGIN); }
+
+    if (stale) {
+      render();
+    }
+    render_origin();
+
+    //maybe_render();
   });
   $(document).on('mouseup.drag', function(e) {
     $(document).off('.drag');
+    state.set_cam(camera.x + e.pageX - x, camera.y + e.pageY - y);
+    g_panning = false;
+    reset_canvas_size();
+    render_origin();
     render();
   });
 }
@@ -469,6 +532,8 @@ function start_freehand(startp, k) {
 g_lastz = null;
 
 $(c).on('mousemove', function(e) {
+  if (g_panning)
+    return;
   var camera = state.camera();
   if (camera.zoom >= 1) {
     var x = e.pageX;

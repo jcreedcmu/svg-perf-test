@@ -47,10 +47,8 @@ ld.done(function(data) {
 
   c = $("#c")[0];
   d = c.getContext('2d');
-  c.width = (w = innerWidth) * devicePixelRatio;
-  c.height = (h = innerHeight) * devicePixelRatio;
-  c.style.width = innerWidth + "px";
-  c.style.height = innerHeight + "px";
+  reset_canvas_size();
+  render_origin();
 
   var t;
   if (DEBUG && DEBUG_PROF) {

@@ -6,6 +6,7 @@ var simplify = require('./simplify');
 var State = require('./state');
 var key = require('./key');
 var geom = require('./geom');
+var modal = require('./modal');
 
 var DEBUG = false;
 var DEBUG_PROF = false;
@@ -17,6 +18,7 @@ var PANNING_MARGIN = 200;
 // data in a.json generated through
 // potrace a.pbm -a 0 -b geojson
 
+g_mouse = {x:0, y:0};
 g_selection = null;
 g_panning = false;
 g_render_extra = null;
@@ -121,7 +123,7 @@ function get_world_bbox(camera) {
 }
 
 function render() {
-  var t = Date.now();
+//  var t = Date.now();
   d.save();
   d.scale(devicePixelRatio, devicePixelRatio);
   lastTime = Date.now();
@@ -164,7 +166,7 @@ function render() {
 	  d.strokeRect(pt[0]-rad,pt[1]-rad,rad * 2,rad * 2);
 	}
 	else if (bundle[0] == "label") {
-	  var pt = coastline_layer.labels[bundle[1].label].pt;
+	  var pt = coastline_layer.labels[bundle[1]].pt;
 	  d.beginPath();
 	  d.fillStyle = "white";
 	  d.globalAlpha = 0.5;
@@ -220,13 +222,13 @@ function render() {
   }
 
   d.restore();
-  console.log(Date.now() - t);
+//  console.log(Date.now() - t);
 }
 
 function meters_to_string(raw) {
    var str = "0";
     if (raw > 0) {
-      str =  (raw > 1000) ? Math.floor(raw / 100) / 10 + "km" : Math.floor(raw) + "m";
+      str =  (raw > 1000) ? Math.floor(raw / 10) / 100 + "km" : Math.floor(raw) + "m";
     }
   return str;
 }
@@ -284,8 +286,16 @@ $(c).on('mousewheel', function(e) {
   }
 });
 
+function start_pan(x, y, camera) {
+  var stop_at = start_pan_and_stop(x, y, camera);
+  $(document).on('mouseup.drag', function(e) {
+    stop_at(e.pageX, e.pageY);
+  });
+}
 
-function begin_pan(x, y, camera) {
+// returns stopping function
+function start_pan_and_stop(x, y, camera) {
+  $("#c").css({cursor: 'move'});
   g_panning = true;
 //  state.set_cam(camera.x + PANNING_MARGIN, camera.y + PANNING_MARGIN);
   reset_canvas_size();
@@ -319,14 +329,16 @@ function begin_pan(x, y, camera) {
 
     //maybe_render();
   });
-  $(document).on('mouseup.drag', function(e) {
+
+  return function(offx, offy) {
+    $("#c").css({cursor: ''});
     $(document).off('.drag');
-    state.set_cam(camera.x + e.pageX - x, camera.y + e.pageY - y);
+    state.set_cam(camera.x + offx - x, camera.y + offy - y);
     g_panning = false;
     reset_canvas_size();
     render_origin();
     render();
-  });
+  };
 }
 
 $(c).on('mousedown', function(e) {
@@ -353,7 +365,10 @@ $(c).on('mousedown', function(e) {
 
     }
     else
-      begin_pan(x, y, camera);
+      start_pan(x, y, camera);
+  }
+  else if (g_mode == "Measure") {
+    start_measure(worldp);
   }
   else if (g_mode == "Select") {
     var candidate_features = coastline_layer.arc_targets(bbox);
@@ -371,12 +386,19 @@ $(c).on('mousedown', function(e) {
   else if (g_mode == "Label") {
     if (g_lastz != "[]") {
       var z = JSON.parse(g_lastz);
+      console.log(g_lastz);
       if (z.length == 1 && z[0][0] == "label") {
-//	label_layer.make_insert_label_modal(worldp, z[0][1], render);
+	modal.make_insert_label_modal(worldp, coastline_layer.labels[z[0][1]], function(obj) {
+	  coastline_layer.replace_point_feature(obj);
+	  render();
+	});
       }
     }
     else {
-//      label_layer.make_insert_label_modal(worldp, null, render);
+      modal.make_insert_label_modal(worldp, null, function(obj) {
+	coastline_layer.new_point_feature(obj);
+	render();
+      });
     }
   }
   else if (g_mode == "Move") {
@@ -403,7 +425,7 @@ $(c).on('mousedown', function(e) {
 	});
       }
       else
-	begin_pan(x, y, camera);
+	start_pan(x, y, camera);
     }
   }
   else if (g_mode == "Freehand") {
@@ -426,6 +448,61 @@ function get_snap() {
     return clone(last[0][1].point);
   else
     return null;
+}
+
+function vdist(p1, p2) {
+  function sqr(x) { return x * x };
+  return Math.sqrt(sqr(p1.x - p2.x) + sqr(p1.y - p2.y));
+}
+
+function start_measure(startp) {
+  var camera = state.camera();
+  var dragp = clone(startp);
+  var scale = camera.scale();
+  g_render_extra = function(camera, d) {
+    d.save();
+    d.translate(camera.x, camera.y);
+    d.scale(scale, -scale);
+    d.beginPath();
+
+    d.moveTo(startp.x, startp.y);
+    d.lineTo(dragp.x, dragp.y);
+
+    d.lineWidth = 1 / scale;
+    d.strokeStyle = "#07f";
+    d.stroke();
+    d.restore();
+
+    d.font = "14px sans-serif";
+    d.fillStyle = "#07f";
+    var dist = meters_to_string(vdist(dragp, startp));
+    var width = d.measureText(dist).width;
+    d.save();
+    d.translate((startp.x + dragp.x)/2 * scale + camera.x,
+		(startp.y + dragp.y)/2 * -scale + camera.y);
+    d.rotate(-Math.atan2(dragp.y - startp.y, dragp.x - startp.x));
+
+    d.strokeStyle = "#fff";
+    d.lineWidth = 2;
+    d.strokeText(dist, -width/2, -3);
+    d.fillText(dist, -width/2, -3);
+
+    d.restore();
+  }
+  $(document).on('mousemove.drag', function(e) {
+    var x = e.pageX;
+    var y = e.pageY;
+    var worldp = inv_xform(camera,x, y);
+    dragp.x = worldp.x;
+    dragp.y = worldp.y;
+    maybe_render();
+  });
+  $(document).on('mouseup.drag', function(e) {
+    g_render_extra = null;
+    $(document).off('.drag');
+    render();
+  });
+
 }
 
 function start_drag(startp, neighbors, k) {
@@ -530,6 +607,8 @@ function start_freehand(startp, k) {
 g_lastz = null;
 
 $(c).on('mousemove', function(e) {
+  g_mouse = {x:e.pageX, y:e.pageY};
+
   if (g_panning)
     return;
   var camera = state.camera();
@@ -549,7 +628,7 @@ $(c).on('mousemove', function(e) {
   }
 });
 
-$(document).on('keydown', function(e) {
+function main_key_handler(e) {
   if (_.any($(".modal"), function(x) { return $(x).css("display") == "block"; }))
     return;
 
@@ -572,6 +651,20 @@ $(document).on('keydown', function(e) {
     g_mode = "Move";
     render();
   }
+  if (k == "<space>") {
+//    var old_mode = g_mode;
+//    g_mode = "Pan";
+    $(document).off('keydown');
+    var stop_at = start_pan_and_stop(g_mouse.x, g_mouse.y, state.camera());
+    $(document).on('keyup.holdspace', function(e) {
+      if (key(e) == "<space>") {
+	stop_at(g_mouse.x, g_mouse.y);
+	$(document).off('.holdspace');
+	$(document).on('keydown', main_key_handler);
+      }
+    });
+
+  }
   if (k == "p") {
     g_mode = "Pan";
     render();
@@ -584,11 +677,16 @@ $(document).on('keydown', function(e) {
     g_mode = "Label";
     render();
   }
+  if (k == "e") {
+    g_mode = "Measure";
+    render();
+  }
+
   // if (k == "i") {
   //   g_mode = "Insert";
   //   render();
   // }
-  if (k == "e") {
+  if (k == "v") {
     save();
   }
   if (k == "q") {
@@ -604,7 +702,9 @@ $(document).on('keydown', function(e) {
   }
 
 //  console.log(e.charCode, k);
-});
+}
+
+$(document).on('keydown', main_key_handler);
 
 function save() {
   var geo = {};

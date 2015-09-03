@@ -46,7 +46,11 @@ https://github.com/stedolan/jq/issues/914
 Q: What are some things to do?
 A:
 Move rivers to coastline layer
-Move labels to coastline layer
-Make snap work when moving vertices
+# Move labels to coastline layer
+# Make snap work when moving vertices
 Separate fused vertices/edges
 Select contiguous sections by identifying endpoints
+# measure distance
+# cache whole screen rendering when panning
+separate canvas for temporary effects
+# spacebar pan

@@ -21,7 +21,7 @@ CoastlineLayer.prototype.rebuild = function() {
   });
 
   _.each(this.labels, function(p) {
-    that.label_rt.insert({x:p.pt[0],y:p.pt[1],w:0,h:0}, {label: p.name});
+    that.label_rt.insert({x:p.pt[0],y:p.pt[1],w:0,h:0}, p.name);
   });
 
   _.each(features, function(object, key) {
@@ -88,7 +88,7 @@ CoastlineLayer.prototype.label_targets = function(world_bbox) {
 CoastlineLayer.prototype.target_point = function(target) {
   var pt = target[0] == "coastline" ?
       target[1].point :
-      this.labels[target[1].label].pt;
+      this.labels[target[1]].pt;
   return {x: pt[0], y: pt[1]};
 }
 
@@ -245,7 +245,7 @@ CoastlineLayer.prototype.render = function(d, camera, locus, world_bbox) {
   if (camera.zoom < 1) return;
   d.lineJoin = "round";
   this.label_rt.bbox.apply(this.label_rt, world_bbox).forEach(function(x) {
-    labels.draw_label(d, camera, that.labels[x.label]);
+    labels.draw_label(d, camera, that.labels[x]);
   });
 }
 
@@ -260,9 +260,15 @@ function realize_salient(props, camera, pt) {
 	   y: pt[1] * -camera.scale() + camera.y };
 
   var stroke = null;
+
+  var shape = "rect";
   d.fillStyle = "#55a554";
   if (props.text.match(/^P/)) d.fillStyle = "#29a";
   if (props.text.match(/^Z/)) d.fillStyle = "#e73311";
+  if (props.text.match(/R$/)) {
+    d.fillStyle = "#338";
+    shape = "trapezoid";
+  }
   if (props.text.match(/^U/)) {
     d.fillStyle = "#fffff7";
     stroke = "black";
@@ -275,8 +281,18 @@ function realize_salient(props, camera, pt) {
 
   var box_height = 12;
   var box_width = width + 10;
-  d.fillRect(q.x - box_width / 2, q.y - box_height / 2, box_width, box_height);
-
+  if (shape == "rect") {
+    d.fillRect(q.x - box_width / 2, q.y - box_height / 2, box_width, box_height);
+  }
+  else if (shape == "trapezoid") {
+    d.beginPath();
+    d.moveTo(q.x - box_width / 2, q.y - box_height / 2);
+    d.lineTo(q.x + box_width / 2, q.y - box_height / 2);
+    d.lineTo(q.x + box_width / 2 - box_height / 4, q.y + box_height / 2);
+    d.lineTo(q.x - box_width / 2 + box_height / 4, q.y + box_height / 2);
+    d.closePath();
+    d.fill();
+  }
   d.fillStyle = "white";
   if (stroke != null) d.fillStyle = stroke;
   d.fillText(txt, q.x - width/2, q.y + height/2 - 1);
@@ -367,7 +383,7 @@ CoastlineLayer.prototype.replace_vert = function(targets,  p) {
       that.recompute_arc_feature_bbox(arc_id);
     }
     else if (target[0] == "label") {
-      var lab = that.labels[target[1].label];
+      var lab = that.labels[target[1]];
       that.label_rt.remove({x:lab.pt[0],y:lab.pt[1],w:0,h:0}, target[1]);
       lab.pt = [p.x, p.y];
       that.label_rt.insert({x:lab.pt[0],y:lab.pt[1],w:0,h:0}, target[1]);
@@ -447,6 +463,24 @@ CoastlineLayer.prototype.filter = function() {
     }
   });
   this.rebuild();
+}
+
+CoastlineLayer.prototype.add_point_feature = function(lab) {
+  this.labels[lab.name] = lab;
+  console.log("adding pt " + JSON.stringify(lab), lab.name, {x:lab.pt[0],y:lab.pt[1],w:0,h:0});
+  this.label_rt.insert({x:lab.pt[0],y:lab.pt[1],w:0,h:0}, lab.name);
+}
+
+CoastlineLayer.prototype.new_point_feature = function(lab) {
+  var point_name = "p" + this.counter;
+  this.counter++;
+  lab.name = point_name;
+  this.add_point_feature(lab);
+}
+
+CoastlineLayer.prototype.replace_point_feature = function(lab) {
+  console.log(lab);
+  this.labels[lab.name] = lab;
 }
 
 CoastlineLayer.prototype.add_arc_feature = function(type, points, properties) {

@@ -1,7 +1,11 @@
 function State() {
   this.origin = {x:0, y:0};
+  var camera = {x: -432.125, y: 3321.875, zoom: 4};
+  if (localStorage.camera != null) {
+    camera = JSON.parse(localStorage.camera);
+  }
   this.state = Immutable.fromJS({
-    camera: {x: -432.125, y: 3321.875, zoom: 4},
+    camera: camera,
     locus: null,
   });
 }
@@ -26,10 +30,16 @@ State.prototype.zoom = function(x, y, zoom) {
     .updateIn(['camera', 'zoom'], function(z) {
       return z + zoom;
     });
+  this.store_cam();
+}
+
+State.prototype.store_cam = function() {
+  localStorage.camera = JSON.stringify(this.state.get("camera").toJS());
 }
 
 State.prototype.set_cam = function(x, y) {
   this.state = this.state.mergeDeep({camera: {x:x,y:y}});
+  this.store_cam();
 }
 
 State.prototype.inc_cam = function(dx, dy) {
@@ -37,6 +47,7 @@ State.prototype.inc_cam = function(dx, dy) {
   x = this.state.get('camera').get('x');
   y = this.state.get('camera').get('y');
   this.state = this.state.mergeDeep({camera: {x:x+dx,y:y+dy}});
+  this.store_cam();
 }
 
 State.prototype.set_locus = function(p) {

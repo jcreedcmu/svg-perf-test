@@ -131,7 +131,7 @@ LabelLayer.prototype.targets = function(world_bbox) {
     return [];
 }
 
-LabelLayer.prototype.make_insert_label_modal = function(worldp, lab, dispatch) {
+LabelLayer.prototype.make_insert_label_modal = function(worldp, lab, k) {
   var that = this;
   var process_f = null;
   if (lab) {
@@ -142,7 +142,7 @@ LabelLayer.prototype.make_insert_label_modal = function(worldp, lab, dispatch) {
 
     process_f = function (obj) {
       _.extend(obj, {p: lab.p, id:lab.id});
-      that.replace_label(obj);
+      k(obj);
     }
   }
   else {
@@ -152,7 +152,7 @@ LabelLayer.prototype.make_insert_label_modal = function(worldp, lab, dispatch) {
 
     process_f = function (obj) {
       _.extend(obj, {p: worldp});
-      that.new_label(obj);
+      k(obj);
     }
   }
   var submit_f = function(e) {
@@ -163,7 +163,7 @@ LabelLayer.prototype.make_insert_label_modal = function(worldp, lab, dispatch) {
     if (obj.zoom == null || obj.zoom == "")
       delete obj.zoom;
     process_f(obj);
-    dispatch();
+
     $("#insert_label").modal("hide");
   };
   $("#insert_label form").off("submit");

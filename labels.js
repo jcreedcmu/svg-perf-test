@@ -84,6 +84,13 @@ module.exports.draw_label = function(d, camera, lab) {
     height = 10;
     d.font = "italic " + height + "px sans-serif";
   }
+  else if (typ == "park") {
+    d.fillStyle = "#070";
+    d.strokeStyle = "white";
+    d.lineWidth = 2;
+    height = 10;
+    d.font = height + "px sans-serif";
+  }
   else if (typ == "sea") {
     d.fillStyle = "#444";
     stroke = false;

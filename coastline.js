@@ -152,8 +152,16 @@ CoastlineLayer.prototype.render = function(d, camera, locus, world_bbox) {
     if (x.properties.natural == "mountain") z = 1;
     if (x.properties.city == "area") z = 1;
     if (x.properties.road == "highway") z = 2;
+    if (x.properties.road == "street") z = 3;
     return z;
   });
+
+  var extra = _.filter(_.map(features, function(x) {
+    if (x.properties.road == "street") return _.extend(clone(x), {properties: _.extend(clone(x.properties), {road: "street2"})});
+  }));
+
+  features = features.concat(extra);
+
   _.each(features, function(object) {
     var arc_id_list = object.arcs;
     var arcs = that.arcs;
@@ -206,7 +214,7 @@ CoastlineLayer.prototype.render = function(d, camera, locus, world_bbox) {
 	  draw = true;
 	if (draw) {
     	  d.lineTo(vert[0], vert[1]);
-	  if (object.properties.road && n % 10 == 5) {
+	  if (object.properties.road == "highway" && n % 10 == 5) {
 	    salients.push({props: object.properties,
 			   pt: [(vert[0] + curpoint[0]) / 2, (vert[1] + curpoint[1]) / 2]});
 	  }
@@ -220,6 +228,7 @@ CoastlineLayer.prototype.render = function(d, camera, locus, world_bbox) {
   });
 
   // draw vertices
+  d.lineWidth = 1.5 / scale;
   if (g_mode != "Pan") {
     d.strokeStyle = "#333";
     d.fillStyle = "#ffd";
@@ -337,6 +346,20 @@ function realize_path(props, scale, salients) {
   if (props.road == "highway") {
     d.lineWidth = 1.5 / scale;
     d.strokeStyle = "#f70";
+    d.stroke();
+  }
+
+  if (props.road == "street") {
+    d.lineWidth = 5 / scale;
+    d.lineCap = "round";
+    d.strokeStyle = "#777";
+    d.stroke();
+  }
+
+  if (props.road == "street2") {
+    d.lineWidth = 4 / scale;
+    d.lineCap = "round";
+    d.strokeStyle = "#fff";
     d.stroke();
   }
 

@@ -1,5 +1,5 @@
 {
-  "counter": 1050,
+  "counter": 1051,
   "images": {
     "1119": {
       "scale": 4096,
@@ -124910,6 +124910,19 @@
       "pt": [
         1765761.5,
         396214
+      ],
+      "type": "point"
+    },
+    {
+      "name": "p1050",
+      "properties": {
+        "label": "city",
+        "text": "kpesa",
+        "zoom": "4"
+      },
+      "pt": [
+        1772205.5,
+        717756.625
       ],
       "type": "point"
     }

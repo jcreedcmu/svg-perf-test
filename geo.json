@@ -1,5 +1,5 @@
 {
-  "counter": 1051,
+  "counter": 1053,
   "images": {
     "1119": {
       "scale": 4096,
@@ -124923,6 +124923,32 @@
       "pt": [
         1772205.5,
         717756.625
+      ],
+      "type": "point"
+    },
+    {
+      "name": "p1051",
+      "properties": {
+        "label": "river",
+        "text": "alye river",
+        "zoom": "4"
+      },
+      "pt": [
+        1753389.5,
+        819516.625
+      ],
+      "type": "point"
+    },
+    {
+      "name": "p1052",
+      "properties": {
+        "label": "river",
+        "text": "lyalagut river",
+        "zoom": "4"
+      },
+      "pt": [
+        1798957.5,
+        755772.625
       ],
       "type": "point"
     }

@@ -1,5 +1,5 @@
 {
-  "counter": 1054,
+  "counter": 1055,
   "images": {
     "1119": {
       "scale": 4096,
@@ -124962,6 +124962,19 @@
       "pt": [
         2716333.5,
         620220.625
+      ],
+      "type": "point"
+    },
+    {
+      "name": "p1054",
+      "properties": {
+        "label": "region",
+        "text": "Tpasa",
+        "zoom": "6"
+      },
+      "pt": [
+        3053421.5,
+        1198844.625
       ],
       "type": "point"
     }

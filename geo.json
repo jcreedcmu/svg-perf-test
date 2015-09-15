@@ -1,5 +1,5 @@
 {
-  "counter": 1053,
+  "counter": 1054,
   "images": {
     "1119": {
       "scale": 4096,
@@ -124949,6 +124949,19 @@
       "pt": [
         1798957.5,
         755772.625
+      ],
+      "type": "point"
+    },
+    {
+      "name": "p1053",
+      "properties": {
+        "label": "city",
+        "text": "besufeld",
+        "zoom": "4"
+      },
+      "pt": [
+        2716333.5,
+        620220.625
       ],
       "type": "point"
     }

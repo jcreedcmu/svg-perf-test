@@ -1,5 +1,5 @@
 {
-  "counter": 1055,
+  "counter": 1056,
   "images": {
     "1119": {
       "scale": 4096,
@@ -124975,6 +124975,19 @@
       "pt": [
         3053421.5,
         1198844.625
+      ],
+      "type": "point"
+    },
+    {
+      "name": "p1055",
+      "properties": {
+        "label": "region",
+        "text": "Beq",
+        "zoom": "6"
+      },
+      "pt": [
+        3101773.5,
+        1194876.625
       ],
       "type": "point"
     }

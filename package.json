@@ -21,6 +21,7 @@
     "watchify": "^3.3.1"
   },
   "dependencies": {
-    "canonical-json": "0.0.4"
+    "canonical-json": "0.0.4",
+    "express": "^4.13.3"
   }
 }

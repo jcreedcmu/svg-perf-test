@@ -54,3 +54,18 @@ Select contiguous sections by identifying endpoints
 # cache whole screen rendering when panning
 separate canvas for temporary effects
 # spacebar pan
+
+=== 2016.12.18
+
+Q: How do I find out current camera position?
+A: state.state.get('camera').toJS()
+or state.camera();
+
+Q: Given a world position, how do I find the screen position it corresponds to?
+A: Let world position be p. Then
+x: camera.x + camera.scale() * p.x
+y: camera.y - camera.scale() * p.y
+(this is xform in main.js, inverse is inv_xform)
+
+Q: How do I set camera position?
+A:

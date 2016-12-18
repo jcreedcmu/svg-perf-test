@@ -26,6 +26,7 @@ g_mode = "Pan";
 state = new State();
 
 var assets;
+
 var ld = new Loader();
 ld.add(json_file('geo'));
 ld.add(json_file('rivers'));
@@ -36,6 +37,7 @@ ld.add(json_file('rivers'));
 ld.done(function(data) {
   count = 0;
   assets = this;
+  window.assets = assets;
   var geo = assets.src.geo;
   coastline_layer = new CoastlineLayer(geo.objects, geo.counter);
   image_layer = new ImageLayer(dispatch, 0, geo.images, assets.img.overlay);
@@ -73,7 +75,8 @@ function inv_xform(camera, xpix, ypix) {
   return {x:(xpix-camera.x) / camera.scale(),
 	  y:(ypix - camera.y) / -camera.scale()};
 }
-
+window.inv_xform = inv_xform;
+window.xform = xform;
 function xform(camera, xworld, yworld) {
   return {x: camera.x + xworld * camera.scale(), y : camera.y - yworld * camera.scale()};
 }

@@ -725,3 +725,16 @@ function save() {
 //   // {pos: [g_imageState.x, g_imageState.y], scale: g_imageState.scale};
 //   console.log(JSON.stringify(g_imageStates));
 // }
+
+function has_label(x, label) {
+  return x.properties.text && x.properties.text.match(new RegExp(label, "i"))
+}
+function zoom_to(label) {
+  var selection = _.select(assets.src.geo.objects, x => has_label(x, label) && x.pt);
+  var pt = selection[0].pt;
+  if (pt == null) throw `couldn\'t find ${label}`;
+  var pixel_offset = xform(state.camera(), pt[0], pt[1]);
+  state.inc_cam(w/2-pixel_offset.x, h/2-pixel_offset.y);
+  render();
+}
+window.zoom_to = zoom_to;

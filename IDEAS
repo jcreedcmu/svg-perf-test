@@ -68,4 +68,4 @@ y: camera.y - camera.scale() * p.y
 (this is xform in main.js, inverse is inv_xform)
 
 Q: How do I set camera position?
-A:
+A: Check out zoom_to

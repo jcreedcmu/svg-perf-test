@@ -4725,7 +4725,7 @@
       "name": "f1000",
       "properties": {
         "road": "highway",
-        "text": "P2"
+        "text": "p2"
       },
       "type": "Polygon"
     },
@@ -4736,7 +4736,7 @@
       "name": "f1001",
       "properties": {
         "road": "highway",
-        "text": "P3"
+        "text": "p3"
       },
       "type": "Polygon"
     },
@@ -4747,7 +4747,7 @@
       "name": "f1002",
       "properties": {
         "road": "highway",
-        "text": "P4"
+        "text": "p4"
       },
       "type": "Polygon"
     },
@@ -4758,7 +4758,7 @@
       "name": "f1003",
       "properties": {
         "road": "highway",
-        "text": "P4"
+        "text": "p4"
       },
       "type": "Polygon"
     },
@@ -4769,7 +4769,7 @@
       "name": "f1004",
       "properties": {
         "road": "highway",
-        "text": "P5"
+        "text": "p5"
       },
       "type": "Polygon"
     },
@@ -4780,7 +4780,7 @@
       "name": "f1005",
       "properties": {
         "road": "highway",
-        "text": "P5"
+        "text": "p5"
       },
       "type": "Polygon"
     },
@@ -4791,7 +4791,7 @@
       "name": "f1006",
       "properties": {
         "road": "highway",
-        "text": "Z10"
+        "text": "z10"
       },
       "type": "Polygon"
     },
@@ -4956,7 +4956,7 @@
       "name": "f1021",
       "properties": {
         "road": "highway",
-        "text": "U1"
+        "text": "u1"
       },
       "type": "Polygon"
     },
@@ -4967,7 +4967,7 @@
       "name": "f1022",
       "properties": {
         "road": "highway",
-        "text": "U1"
+        "text": "u1"
       },
       "type": "Polygon"
     },
@@ -4978,7 +4978,7 @@
       "name": "f1023",
       "properties": {
         "road": "highway",
-        "text": "U9"
+        "text": "u9"
       },
       "type": "Polygon"
     },
@@ -5101,7 +5101,7 @@
       "name": "f1036",
       "properties": {
         "road": "highway",
-        "text": "GR"
+        "text": "gr"
       },
       "type": "Polygon"
     },
@@ -5112,7 +5112,7 @@
       "name": "f1037",
       "properties": {
         "road": "highway",
-        "text": "GR"
+        "text": "gr"
       },
       "type": "Polygon"
     },
@@ -5123,7 +5123,7 @@
       "name": "f1038",
       "properties": {
         "road": "highway",
-        "text": "WR"
+        "text": "wr"
       },
       "type": "Polygon"
     },
@@ -121732,7 +121732,7 @@
       "name": "label0",
       "properties": {
         "label": "region",
-        "text": "Piada",
+        "text": "piada",
         "zoom": 2
       },
       "pt": [
@@ -121745,7 +121745,7 @@
       "name": "label1",
       "properties": {
         "label": "region",
-        "text": "Ezdi Mtns",
+        "text": "ezdi mtns",
         "zoom": 2
       },
       "pt": [
@@ -121758,7 +121758,7 @@
       "name": "label10",
       "properties": {
         "label": "region",
-        "text": "Gorik",
+        "text": "gorik",
         "zoom": 2
       },
       "pt": [
@@ -121901,7 +121901,7 @@
       "name": "label11",
       "properties": {
         "label": "region",
-        "text": "Pengerra",
+        "text": "pengerra",
         "zoom": 2
       },
       "pt": [
@@ -122044,7 +122044,7 @@
       "name": "label12",
       "properties": {
         "label": "region",
-        "text": "Minar",
+        "text": "minar",
         "zoom": "3"
       },
       "pt": [
@@ -122655,7 +122655,7 @@
       "name": "label163",
       "properties": {
         "label": "region",
-        "text": "Yixia Me",
+        "text": "yixia me",
         "zoom": "4"
       },
       "pt": [
@@ -122668,7 +122668,7 @@
       "name": "label164",
       "properties": {
         "label": "region",
-        "text": "Urgaq",
+        "text": "urgaq",
         "zoom": "4"
       },
       "pt": [
@@ -122681,7 +122681,7 @@
       "name": "label165",
       "properties": {
         "label": "region",
-        "text": "Rnmut",
+        "text": "rnmut",
         "zoom": "5"
       },
       "pt": [
@@ -122694,7 +122694,7 @@
       "name": "label166",
       "properties": {
         "label": "region",
-        "text": "Inkepst",
+        "text": "inkepst",
         "zoom": "4"
       },
       "pt": [
@@ -122707,7 +122707,7 @@
       "name": "label167",
       "properties": {
         "label": "minorsea",
-        "text": "Hannakupniyam Lake",
+        "text": "hannakupniyam lake",
         "zoom": "4"
       },
       "pt": [
@@ -122733,7 +122733,7 @@
       "name": "label169",
       "properties": {
         "label": "region",
-        "text": "Nvoyab",
+        "text": "nvoyab",
         "zoom": "3"
       },
       "pt": [
@@ -122980,7 +122980,7 @@
       "name": "label186",
       "properties": {
         "label": "city",
-        "text": "Backennis",
+        "text": "backennis",
         "zoom": "4"
       },
       "pt": [
@@ -123136,7 +123136,7 @@
       "name": "label197",
       "properties": {
         "label": "region",
-        "text": "Zosu Gi",
+        "text": "zosu gi",
         "zoom": "3"
       },
       "pt": [
@@ -123149,7 +123149,7 @@
       "name": "label198",
       "properties": {
         "label": "region",
-        "text": "Zosu Himnab",
+        "text": "zosu himnab",
         "zoom": "3"
       },
       "pt": [
@@ -123162,7 +123162,7 @@
       "name": "label199",
       "properties": {
         "label": "region",
-        "text": "Zosu Rigam Fo",
+        "text": "zosu rigam fo",
         "zoom": "4"
       },
       "pt": [
@@ -123175,7 +123175,7 @@
       "name": "label2",
       "properties": {
         "label": "region",
-        "text": "Koennif",
+        "text": "koennif",
         "zoom": 2
       },
       "pt": [
@@ -123201,7 +123201,7 @@
       "name": "label200",
       "properties": {
         "label": "region",
-        "text": "Zosu Ilkso",
+        "text": "zosu ilkso",
         "zoom": "4"
       },
       "pt": [
@@ -123214,7 +123214,7 @@
       "name": "label201",
       "properties": {
         "label": "region",
-        "text": "Zosu Tap",
+        "text": "zosu tap",
         "zoom": "5"
       },
       "pt": [
@@ -123227,7 +123227,7 @@
       "name": "label202",
       "properties": {
         "label": "city",
-        "text": "Gova",
+        "text": "gova",
         "zoom": 2
       },
       "pt": [
@@ -123240,7 +123240,7 @@
       "name": "label203",
       "properties": {
         "label": "region",
-        "text": "Dreb Island",
+        "text": "dreb island",
         "zoom": "3"
       },
       "pt": [
@@ -123253,7 +123253,7 @@
       "name": "label204",
       "properties": {
         "label": "region",
-        "text": "Ndado",
+        "text": "ndado",
         "zoom": "4"
       },
       "pt": [
@@ -123266,7 +123266,7 @@
       "name": "label205",
       "properties": {
         "label": "region",
-        "text": "Ngis",
+        "text": "ngis",
         "zoom": "3"
       },
       "pt": [
@@ -123279,7 +123279,7 @@
       "name": "label206",
       "properties": {
         "label": "region",
-        "text": "Sartyoruganda",
+        "text": "sartyoruganda",
         "zoom": "5"
       },
       "pt": [
@@ -123292,7 +123292,7 @@
       "name": "label207",
       "properties": {
         "label": "region",
-        "text": "Ybli",
+        "text": "ybli",
         "zoom": "5"
       },
       "pt": [
@@ -123305,7 +123305,7 @@
       "name": "label208",
       "properties": {
         "label": "minorsea",
-        "text": "Miatesork Bay",
+        "text": "miatesork bay",
         "zoom": "4"
       },
       "pt": [
@@ -123318,7 +123318,7 @@
       "name": "label209",
       "properties": {
         "label": "minorsea",
-        "text": "Yul Bay",
+        "text": "yul bay",
         "zoom": "3"
       },
       "pt": [
@@ -123357,7 +123357,7 @@
       "name": "label211",
       "properties": {
         "label": "city",
-        "text": "Mnikolage",
+        "text": "mnikolage",
         "zoom": "4"
       },
       "pt": [
@@ -123617,7 +123617,7 @@
       "name": "label23",
       "properties": {
         "label": "region",
-        "text": "Moriza",
+        "text": "moriza",
         "zoom": "3"
       },
       "pt": [
@@ -123851,7 +123851,7 @@
       "name": "label3",
       "properties": {
         "label": "region",
-        "text": "Yul Mtns",
+        "text": "yul mtns",
         "zoom": 2
       },
       "pt": [
@@ -123994,7 +123994,7 @@
       "name": "label4",
       "properties": {
         "label": "region",
-        "text": "Nivdal",
+        "text": "nivdal",
         "zoom": 2
       },
       "pt": [
@@ -124137,7 +124137,7 @@
       "name": "label5",
       "properties": {
         "label": "region",
-        "text": "Zbegyanda",
+        "text": "zbegyanda",
         "zoom": 2
       },
       "pt": [
@@ -124280,7 +124280,7 @@
       "name": "label6",
       "properties": {
         "label": "region",
-        "text": "Gurvyet",
+        "text": "gurvyet",
         "zoom": 2
       },
       "pt": [
@@ -124566,7 +124566,7 @@
       "name": "label8",
       "properties": {
         "label": "minorsea",
-        "text": "Wild Droub Bay",
+        "text": "wild droub bay",
         "zoom": 2
       },
       "pt": [
@@ -124709,7 +124709,7 @@
       "name": "label9",
       "properties": {
         "label": "region",
-        "text": "Daloe",
+        "text": "daloe",
         "zoom": 2
       },
       "pt": [
@@ -124852,7 +124852,7 @@
       "name": "p1034",
       "properties": {
         "label": "city",
-        "text": "Hawan",
+        "text": "hawan",
         "zoom": "4"
       },
       "pt": [
@@ -124865,7 +124865,7 @@
       "name": "p1035",
       "properties": {
         "label": "city",
-        "text": "Gut",
+        "text": "gut",
         "zoom": "4"
       },
       "pt": [
@@ -124878,7 +124878,7 @@
       "name": "p1041",
       "properties": {
         "label": "region",
-        "text": "U sarapyinst",
+        "text": "u sarapyinst",
         "zoom": "5"
       },
       "pt": [
@@ -124891,7 +124891,7 @@
       "name": "p1042",
       "properties": {
         "label": "region",
-        "text": "U Keleochyap",
+        "text": "u keleochyap",
         "zoom": "6"
       },
       "pt": [
@@ -124969,7 +124969,7 @@
       "name": "p1054",
       "properties": {
         "label": "region",
-        "text": "Tpasa",
+        "text": "tpasa",
         "zoom": "6"
       },
       "pt": [
@@ -124982,7 +124982,7 @@
       "name": "p1055",
       "properties": {
         "label": "region",
-        "text": "Beq",
+        "text": "beq",
         "zoom": "6"
       },
       "pt": [

@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "outDir": "./built",
+    "allowJs": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "target": "es6",
+    "module": "commonjs",
+	 "typeRoots": ["./typings"]
+  },
+  "files": [
+    "go.ts"
+  ],
+  "exclude": [
+	 "built",
+    "node_modules"
+  ]
+}

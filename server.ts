@@ -1,6 +1,6 @@
-var stringify = require('canonical-json');
-var fs = require('fs');
-var express = require('express');
+import stringify = require('canonical-json');
+import { writeFileSync } from 'fs';
+import * as express from 'express';
 
 var app = express();
 app.use('/', express.static(__dirname));
@@ -13,12 +13,11 @@ app.post('/export', function(req, res) {
   });
   req.on('end', function() {
     var body = JSON.parse(data);
-    fs.writeFileSync("geo.json", stringify(body, null, 2), "utf8");
+    writeFileSync("geo.json", stringify(body, null, 2), "utf8");
     console.log("ok");
     res.end("ok");
   });
 });
-
 app.listen(3000, '127.0.0.1', function() {
   console.log("listening on port 3000");
 });

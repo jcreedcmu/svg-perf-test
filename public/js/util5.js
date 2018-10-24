@@ -143,10 +143,11 @@ Loader.prototype.add = function (task) {
   this.count--;
 }
 
-function json_file(which) {
+function json_file(which, url) {
+  if (url == undefined) { url = which + ".json"; }
   return {
     exec: function(ld) {
-      $.get(which + ".json", function(x ) {
+      $.get(url, function(x ) {
 	ld.src[which] = x;
 	ld.succ();
       }, "json");

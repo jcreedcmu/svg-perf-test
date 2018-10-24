@@ -28,8 +28,8 @@ state = new State();
 var assets;
 
 var ld = new Loader();
-ld.add(json_file('geo'));
-ld.add(json_file('rivers'));
+ld.add(json_file('geo', '/data/geo.json'));
+ld.add(json_file('rivers', '/data/rivers.json'));
 
 // var init_img = 1184;
 // ld.add(image(ImageLayer.image_url(1176), 'overlay'));

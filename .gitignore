@@ -1,5 +1,5 @@
 bower_components
 node_modules
-bundle.js
 .#*
 built
+public/js/bundle.js

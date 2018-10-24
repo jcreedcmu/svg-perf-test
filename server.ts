@@ -3,7 +3,7 @@ import { writeFileSync } from 'fs';
 import * as express from 'express';
 
 var app = express();
-app.use('/', express.static(__dirname));
+app.use('/data', express.static(__dirname + "/data/"));
 app.use('/img', express.static("/home/jcreed/art/whatever/num1/"));
 app.post('/export', function(req, res) {
   var data = '';
@@ -13,11 +13,12 @@ app.post('/export', function(req, res) {
   });
   req.on('end', function() {
     var body = JSON.parse(data);
-    writeFileSync("geo.json", stringify(body, null, 2), "utf8");
+    writeFileSync("data/geo.json", stringify(body, null, 2), "utf8");
     console.log("ok");
     res.end("ok");
   });
 });
+app.use('/', express.static(__dirname + "/public"));
 app.listen(3000, '127.0.0.1', function() {
   console.log("listening on port 3000");
 });

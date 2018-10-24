@@ -4,7 +4,7 @@ import * as express from 'express';
 
 var app = express();
 app.use('/', express.static(__dirname));
-app.use('/img', express.static("/home/jcreed/art/whatever/"));
+app.use('/img', express.static("/home/jcreed/art/whatever/num1/"));
 app.post('/export', function(req, res) {
   var data = '';
   req.setEncoding('utf8');

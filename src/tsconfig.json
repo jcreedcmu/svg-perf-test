@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "outDir": "./built",
+    "allowJs": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "target": "es6",
+    "module": "commonjs"
+  },
+  "files": [
+    "main.ts"
+  ],
+  "exclude": [
+	 "built",
+    "node_modules"
+  ]
+}

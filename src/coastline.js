@@ -1,3 +1,5 @@
+require('./globals');
+
 var simplify = require('./simplify');
 var SIMPLIFICATION_FACTOR = 10; // higher = more simplification
 var DEBUG_BBOX = false;

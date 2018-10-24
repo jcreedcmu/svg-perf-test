@@ -1,4 +1,4 @@
-function State() {
+ function State() {
   this.origin = {x:0, y:0};
   var camera = {x: -432.125, y: 3321.875, zoom: 4};
   if (localStorage.camera != null) {

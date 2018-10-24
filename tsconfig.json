@@ -9,7 +9,7 @@
 	 "typeRoots": ["./typings"]
   },
   "files": [
-    "go.ts"
+    "server.ts"
   ],
   "exclude": [
 	 "built",

@@ -2,16 +2,18 @@
   "compilerOptions": {
     "outDir": "./built",
     "allowJs": true,
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "strictNullChecks": true,
     "target": "es6",
-    "module": "commonjs"
+    "module": "commonjs",
+	 "lib": ["es2017", "dom", "es2017.object"]
   },
   "files": [
-    "main.ts"
+    "globals.js", "main.ts", "coastline.ts"
   ],
   "exclude": [
 	 "built",
-    "node_modules"
+    "node_modules",
+	 "node_modules/@types/node/index.d.ts"
   ]
 }

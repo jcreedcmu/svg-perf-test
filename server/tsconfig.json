@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "./built",
+    "outDir": "../built",
     "allowJs": true,
     "noImplicitAny": true,
     "strictNullChecks": true,

@@ -2,18 +2,18 @@ import { Point, Ctx, Mode, Camera, Rect, Path, ArPoint, SmPoint, Bundle } from '
 import { Loader, Data } from './loader';
 import { clone } from './util';
 
-require('./globals');
+window['g_mode'] = "Pan";
 declare var g_mode: Mode;
 
-const CoastlineLayer = require('./coastline');
-const ImageLayer = require('./images');
-const RiverLayer = require('./rivers');
-const SketchLayer = require('./sketch');
-const simplify = require('./simplify');
-const State = require('./state');
-const key = require('./key');
-const geom = require('./geom');
-const modal = require('./modal');
+import CoastlineLayer = require('./coastline');
+import ImageLayer = require('./images');
+import RiverLayer = require('./rivers');
+import SketchLayer = require('./sketch');
+import simplify = require('./simplify');
+import State = require('./state');
+import key = require('./key');
+import geom = require('./geom');
+import modal = require('./modal');
 
 const DEBUG = false;
 const DEBUG_PROF = false;
@@ -53,7 +53,6 @@ ld.done(function(_data) {
   data = _data;
   let count = 0;
   const geo = data.json.geo;
-  console.log(geo);
   coastline_layer = new CoastlineLayer(geo.objects, geo.counter);
   image_layer = new ImageLayer(dispatch, 0, geo.images, data.img.overlay);
 
@@ -106,7 +105,7 @@ function xform(camera: Camera, xworld: number, yworld: number): Point {
 }
 
 let lastTime = 0;
-let interval: NodeJS.Timeout | null = null;
+let interval: number | null = null;
 function maybe_render() {
   if (Date.now() - lastTime < 20) {
     if (interval != null) {

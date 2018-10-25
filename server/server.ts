@@ -10,7 +10,7 @@ if (config.devServer == undefined) {
 }
 const devConfig: WebpackDevServer.Configuration = {
   before: (app) => {
-    app.use('/data', express.static(__dirname + "/data/"));
+    app.use('/data', express.static(__dirname + "/../data/"));
     app.use('/img', express.static("/home/jcreed/art/whatever/num1/"));
     app.post('/export', function(req, res) {
       var data = '';
@@ -20,14 +20,14 @@ const devConfig: WebpackDevServer.Configuration = {
       });
       req.on('end', function() {
         var body = JSON.parse(data);
-        writeFileSync("data/geo.json", stringify(body, null, 2), "utf8");
+        writeFileSync(__dirname + "/../data/geo.json", stringify(body, null, 2), "utf8");
         console.log("ok");
         res.end("ok");
       });
     });
     //  app.use('/', express.static(__dirname + "/public"));
   },
-  contentBase: 'public',
+  contentBase: '../public',
   //  hot: true,
   filename: 'bundle.js',
   publicPath: '/',

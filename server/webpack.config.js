@@ -3,7 +3,7 @@ const webpack = require('webpack');
 
 module.exports = {
   mode: 'development',
-  context: path.join(__dirname, 'src'),
+  context: path.join(__dirname, '../src'),
   entry: [
     './main',
   ],
@@ -20,7 +20,7 @@ module.exports = {
     extensions: [ '.tsx', '.ts', '.js' ]
   },
   output: {
-    path: path.join(__dirname, 'public'),
+    path: path.join(__dirname, '../public'),
     filename: 'js/bundle.js',
     publicPath: '/',
   },

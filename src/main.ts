@@ -5,7 +5,7 @@ import { clone } from './util';
 window['g_mode'] = "Pan";
 declare var g_mode: Mode;
 
-import CoastlineLayer = require('./coastline');
+import { CoastlineLayer } from './coastline';
 import ImageLayer = require('./images');
 import RiverLayer = require('./rivers');
 import SketchLayer = require('./sketch');

@@ -20,3 +20,5 @@ export type Bundle =
 
 
 export type SmPoint = [number, number, number?];
+
+export type ArRectangle = [number, number, number, number];

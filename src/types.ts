@@ -22,3 +22,24 @@ export type Bundle =
 export type SmPoint = [number, number, number?];
 
 export type ArRectangle = [number, number, number, number];
+
+export type Feature = any;
+export type Segment = any;
+
+export type Arc = {
+  name: string,
+  type: "arc",
+  points: SmPoint[],
+  properties: { [k: string]: any },
+};
+
+export type Label = {
+  name: string
+  type: "point",
+  pt: ArPoint,
+  properties: { [k: string]: any },
+};
+
+export type ArcVertexTarget = { arc: string, point: ArPoint };
+export type LabelTarget = string;
+export type Target = ["coastline", ArcVertexTarget] | ["label", LabelTarget];

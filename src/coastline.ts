@@ -1,4 +1,5 @@
 import { Mode, Point, SmPoint, ArPoint, ArRectangle, Dict, Ctx, Camera } from './types';
+import { Label, Arc, Target, Segment, LabelTarget, ArcVertexTarget, Feature } from './types';
 
 declare var g_mode: Mode;
 
@@ -11,26 +12,6 @@ var DEBUG_BBOX = false;
 import colors = require('./colors');
 import labels = require('./labels');
 
-type Feature = any;
-type Segment = any;
-
-type Arc = {
-  name: string,
-  type: "arc",
-  points: SmPoint[],
-  properties: { [k: string]: any },
-};
-
-type Label = {
-  name: string
-  type: "point",
-  pt: ArPoint,
-  properties: { [k: string]: any },
-};
-
-type ArcVertexTarget = { arc: string, point: ArPoint };
-type LabelTarget = string;
-type Target = ["coastline", ArcVertexTarget] | ["label", LabelTarget];
 
 function collect(objects: any, t: string) {
   const rv = _.object(objects.filter(function(x: any) { return x.type == t; })

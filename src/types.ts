@@ -26,6 +26,16 @@ export type ArRectangle = [number, number, number, number];
 export type Feature = any;
 export type Segment = any;
 
+export type ArcVertexTarget = { arc: string, point: ArPoint };
+export type LabelTarget = string;
+export type Target = ["coastline", ArcVertexTarget] | ["label", LabelTarget];
+
+export type Image = {
+  scale: number,
+  x: number,
+  y: number
+};
+
 export type Arc = {
   name: string,
   type: "arc",
@@ -40,6 +50,20 @@ export type Label = {
   properties: { [k: string]: any },
 };
 
-export type ArcVertexTarget = { arc: string, point: ArPoint };
-export type LabelTarget = string;
-export type Target = ["coastline", ArcVertexTarget] | ["label", LabelTarget];
+export type Poly = {
+  type: 'Polygon',
+  arcs: string[], // arc names, really
+  name: string,
+  properties: { [k: string]: any }
+};
+
+export type Images = { [k: string]: Image };
+export type Obj = Label | Arc | Poly;
+export type Sketches = any;
+
+export type Geo = {
+  counter: number,
+  images: Images,
+  objects: Obj[],
+  sketches: Sketches,
+};

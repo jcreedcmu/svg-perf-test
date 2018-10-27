@@ -6,10 +6,11 @@
     "strictNullChecks": true,
     "target": "es6",
     "module": "commonjs",
-	 "typeRoots": ["../extra-typings"]
+	 "lib": ["es2017", "es2017.object"],
+	 "typeRoots": ["../extra-typings", "./node_modules/@types"]
   },
   "files": [
-    "server.ts"
+    "cleaner.ts"
   ],
   "exclude": [
 	 "built",

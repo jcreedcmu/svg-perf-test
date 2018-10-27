@@ -27,7 +27,7 @@ const devConfig: WebpackDevServer.Configuration = {
     });
     //  app.use('/', express.static(__dirname + "/public"));
   },
-  contentBase: '../public',
+  contentBase: __dirname + '/../public',
   //  hot: true,
   filename: 'bundle.js',
   publicPath: '/',

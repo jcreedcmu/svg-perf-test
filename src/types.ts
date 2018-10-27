@@ -1,3 +1,5 @@
+import * as t from 'io-ts';
+
 export type Dict<T> = { [k: string]: T };
 export type Point = { x: number, y: number };
 export type Color = { r: number, g: number, b: number };
@@ -18,9 +20,6 @@ export type Bundle =
   ['coastline', { point: ArPoint }]
   | ['label', string];
 
-
-export type SmPoint = [number, number, number?];
-
 export type ArRectangle = [number, number, number, number];
 
 export type Feature = any;
@@ -36,12 +35,18 @@ export type Image = {
   y: number
 };
 
-export type Arc = {
-  name: string,
-  type: "arc",
-  points: SmPoint[],
-  properties: { [k: string]: any },
-};
+const _SmPoint = t.tuple([t.number, t.number, t.number]);
+
+const _Arc = t.exact(t.type({
+  name: t.string,
+  type: t.literal('arc'),
+  points: t.array(_SmPoint),
+  properties: t.dictionary(t.string, t.any),
+}));
+
+export interface SmPoint extends t.TypeOf<typeof _SmPoint> { };
+export interface Arc extends t.TypeOf<typeof _Arc> { };
+
 
 export type Label = {
   name: string

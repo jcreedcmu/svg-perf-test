@@ -580,9 +580,13 @@ function start_drag(startp: Point, neighbors: ArPoint[], k: (dragp: Point) => vo
   });
 }
 
+function cvtPoint(p: ArPoint): SmPoint {
+  return [p[0], p[1], 10000];
+}
+
 function start_freehand(startp: ArPoint, k: (dragp: SmPoint[]) => void) {
   const camera = state.camera();
-  const path: SmPoint[] = [startp];
+  const path: SmPoint[] = [cvtPoint(startp)];
   const thresh = FREEHAND_SIMPLIFICATION_FACTOR
     / (camera.scale() * camera.scale());
   g_render_extra = function(camera, d) {
@@ -611,7 +615,7 @@ function start_freehand(startp: ArPoint, k: (dragp: SmPoint[]) => void) {
     const x = e.pageX;
     const y = e.pageY;
     const worldp = inv_xform(camera, x, y);
-    path.push([worldp.x, worldp.y]);
+    path.push(cvtPoint([worldp.x, worldp.y]));
     simplify.simplify(path);
     maybe_render();
   });

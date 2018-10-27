@@ -262,7 +262,7 @@ export class CoastlineLayer {
   get_index(target: ArcVertexTarget) {
     var arc = this.arcs[target.arc].points;
     for (var i = 0; i < arc.length; i++) {
-      if (arc[i] == target.point)
+      if (arc[i][0] == target.point[0] && arc[i][1] == target.point[1])
         return i;
     }
     throw ("Can't find " + JSON.stringify(target.point) + " in " + JSON.stringify(arc))

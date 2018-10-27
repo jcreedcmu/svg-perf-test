@@ -9,7 +9,7 @@
 	 "lib": ["es2017", "dom", "es2017.object"]
   },
   "files": [
-    "globals.js", "main.ts", "coastline.ts"
+    "main.ts", "coastline.ts", "types.ts"
   ],
   "exclude": [
 	 "built",

@@ -1,4 +1,8 @@
-import { Point, Ctx, Mode, Camera, Rect, Path, ArPoint, SmPoint, Bundle } from './types';
+import { PathReporter } from 'io-ts/lib/PathReporter';
+import {
+  Point, Ctx, Mode, Camera, Rect, Path, ArPoint, SmPoint, Bundle,
+  _Geo
+} from './types';
 import { Loader, Data } from './loader';
 import { clone } from './util';
 
@@ -52,7 +56,10 @@ ld.json_file('rivers', '/data/rivers.json');
 ld.done(function(_data) {
   data = _data;
   let count = 0;
-  const geo = data.json.geo;
+
+  const res = _Geo.decode(data.json.geo);
+  const geo = res.getOrElseL((err) => { throw PathReporter.report(res); });
+
   coastline_layer = new CoastlineLayer(geo.objects, geo.counter);
   image_layer = new ImageLayer(dispatch, 0, geo.images, data.img.overlay);
 

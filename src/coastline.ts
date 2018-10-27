@@ -389,7 +389,6 @@ export class CoastlineLayer {
 
     // doing this because it involves text, which won't want the negative y-transform
     salients.forEach(function(salient: any) {
-      console.log(salient);
       realize_salient(d, salient.props, camera, salient.pt);
     });
 

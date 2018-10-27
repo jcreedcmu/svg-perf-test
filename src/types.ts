@@ -15,7 +15,6 @@ export interface Camera {
 
 export type Rect = [number, number, number, number];
 export type Path = any;
-export type ArPoint = [number, number];
 export type Bundle =
   ['coastline', { point: ArPoint }]
   | ['label', string];
@@ -29,46 +28,53 @@ export type ArcVertexTarget = { arc: string, point: ArPoint };
 export type LabelTarget = string;
 export type Target = ["coastline", ArcVertexTarget] | ["label", LabelTarget];
 
-export type Image = {
-  scale: number,
-  x: number,
-  y: number
-};
 
+const _ArPoint = t.tuple([t.number, t.number]);
 const _SmPoint = t.tuple([t.number, t.number, t.number]);
-
 const _Arc = t.exact(t.type({
   name: t.string,
   type: t.literal('arc'),
   points: t.array(_SmPoint),
   properties: t.dictionary(t.string, t.any),
 }));
+const _Arc2 = t.exact(t.type({
+  name: t.string,
+  type: t.literal('arc'),
+  points: t.array(_ArPoint),
+  properties: t.dictionary(t.string, t.any),
+}));
+const _Label = t.exact(t.type({
+  name: t.string,
+  type: t.literal('point'),
+  pt: _ArPoint,
+  properties: t.dictionary(t.string, t.any),
+}));
+const _Poly = t.exact(t.type({
+  name: t.string,
+  type: t.literal('Polygon'),
+  arcs: t.array(t.string),
+  properties: t.dictionary(t.string, t.any),
+}));
+const _Image = t.exact(t.type({
+  scale: t.number,
+  x: t.number,
+  y: t.number
+}));
+const _Images = t.dictionary(t.string, _Image);
+const _Obj = t.union([_Label, _Arc2, _Poly]);
+const _Sketches = t.any;
+export const _Geo = t.exact(t.type({
+  counter: t.number,
+  images: _Images,
+  objects: t.array(_Obj),
+  sketches: _Sketches,
+}));
 
 export interface SmPoint extends t.TypeOf<typeof _SmPoint> { };
 export interface Arc extends t.TypeOf<typeof _Arc> { };
-
-
-export type Label = {
-  name: string
-  type: "point",
-  pt: ArPoint,
-  properties: { [k: string]: any },
-};
-
-export type Poly = {
-  type: 'Polygon',
-  arcs: string[], // arc names, really
-  name: string,
-  properties: { [k: string]: any }
-};
-
-export type Images = { [k: string]: Image };
-export type Obj = Label | Arc | Poly;
-export type Sketches = any;
-
-export type Geo = {
-  counter: number,
-  images: Images,
-  objects: Obj[],
-  sketches: Sketches,
-};
+export interface Label extends t.TypeOf<typeof _Label> { };
+export interface ArPoint extends t.TypeOf<typeof _ArPoint> { };
+export interface Image extends t.TypeOf<typeof _Image> { };
+export interface Images extends t.TypeOf<typeof _Images> { };
+export interface Poly extends t.TypeOf<typeof _Poly> { };
+export interface Geo extends t.TypeOf<typeof _Geo> { };

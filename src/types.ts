@@ -65,5 +65,4 @@ export type Geo = {
   counter: number,
   images: Images,
   objects: Obj[],
-  sketches: Sketches,
 };

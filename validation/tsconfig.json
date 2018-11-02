@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+	 "noEmit": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "target": "es6",
+    "module": "commonjs",
+	 "lib": ["es2017", "dom", "es2017.object"]
+  },
+  "files": [
+    "test.ts"
+  ]
+}

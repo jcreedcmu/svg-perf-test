@@ -43,18 +43,25 @@ export type Arc = {
   properties: { [k: string]: any },
 };
 
+export type LabelProps = { label: string, text: string, zoom?: number | string };
+
 export type Label = {
   name: string
   type: "point",
   pt: ArPoint,
-  properties: { [k: string]: any },
+  properties: LabelProps,
 };
+
+export type PolyProps =
+  | { natural?: "lake" | "coastline" | "mountain" }
+  | { road?: "highway" | "street", text: string, zoom?: string }
+  | { city: "area", text: string, zoom?: string } // shouldn't zoom be number?
 
 export type Poly = {
   type: 'Polygon',
   arcs: string[], // arc names, really
   name: string,
-  properties: { [k: string]: any }
+  properties: PolyProps,
 };
 
 export type Images = { [k: string]: Image };

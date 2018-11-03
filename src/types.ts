@@ -36,6 +36,13 @@ export type Image = {
   y: number
 };
 
+export type Bbox = {
+  minx: number,
+  miny: number,
+  maxx: number,
+  maxy: number,
+};
+
 export type Arc = {
   name: string,
   type: "arc",

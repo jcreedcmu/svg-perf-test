@@ -1,6 +1,7 @@
 import { Point, Ctx, Mode, Camera, Rect, Path, ArPoint, SmPoint, Bundle } from './types';
 import { Loader, Data } from './loader';
 import { clone } from './util';
+import { simplify } from './simplify';
 
 window['g_mode'] = "Pan";
 declare var g_mode: Mode;
@@ -9,7 +10,6 @@ import { CoastlineLayer } from './coastline';
 import ImageLayer = require('./images');
 import RiverLayer = require('./rivers');
 import SketchLayer = require('./sketch');
-import simplify = require('./simplify');
 import State = require('./state');
 import key = require('./key');
 import geom = require('./geom');
@@ -612,7 +612,7 @@ function start_freehand(startp: ArPoint, k: (dragp: SmPoint[]) => void) {
     const y = e.pageY;
     const worldp = inv_xform(camera, x, y);
     path.push([worldp.x, worldp.y]);
-    simplify.simplify(path);
+    simplify(path);
     maybe_render();
   });
   $(document).on('mouseup.drag', function(e) {

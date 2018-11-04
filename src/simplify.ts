@@ -1,4 +1,6 @@
-function accumulate_bbox(pt, bbox) {
+import _ = require('underscore');
+
+function accumulate_bbox(pt: any, bbox: any) {
   bbox.minx = Math.min(pt[0], bbox.minx);
   bbox.maxx = Math.max(pt[0], bbox.maxx);
   bbox.miny = Math.min(pt[1], bbox.miny);
@@ -6,8 +8,10 @@ function accumulate_bbox(pt, bbox) {
 }
 
 function new_bbox() {
-  return {minx: Number.MAX_VALUE, miny: Number.MAX_VALUE,
-	  maxx: Number.MIN_VALUE, maxy: Number.MIN_VALUE};
+  return {
+    minx: Number.MAX_VALUE, miny: Number.MAX_VALUE,
+    maxx: Number.MIN_VALUE, maxy: Number.MIN_VALUE
+  };
 }
 
 // adapted from http://bost.ocks.org/mike/simplify/simplify.js
@@ -19,17 +23,17 @@ function new_bbox() {
 // the area of error resulting from removing that point (after first
 // removing all lower-penalty points)
 
-function simplify_arc(arc) {
+export function simplify_arc(arc: any) {
   simplify(arc.points);
   var bbox = new_bbox();
   arc.properties.bbox = bbox;
-  arc.points.forEach(function(pt) { accumulate_bbox(pt, bbox); });
+  arc.points.forEach(function(pt: any) { accumulate_bbox(pt, bbox); });
 }
 
-function simplify(polygon) {
-  var heap = minHeap(),
-      maxArea = 0,
-      triangle;
+export function simplify(polygon: any) {
+  var heap: any = minHeap(),
+    maxArea = 0,
+    triangle;
 
   var triangles = [];
 
@@ -72,7 +76,7 @@ function simplify(polygon) {
     }
   }
 
-  function update(triangle) {
+  function update(triangle: any) {
     heap.remove(triangle);
     triangle[1][2] = area(triangle);
     heap.push(triangle);
@@ -81,17 +85,17 @@ function simplify(polygon) {
   return polygon;
 }
 
-function compare(a, b) {
+function compare(a: any, b: any) {
   return a[1][2] - b[1][2];
 }
 
-function area(t) {
+function area(t: any) {
   return Math.abs((t[0][0] - t[2][0]) * (t[1][1] - t[0][1]) - (t[0][0] - t[1][0]) * (t[2][1] - t[0][1]));
 }
 
 function minHeap() {
-  var heap = {},
-      array = [];
+  var heap: any = {},
+    array: any = [];
 
   heap.push = function() {
     for (var i = 0, n = arguments.length; i < n; ++i) {
@@ -103,7 +107,7 @@ function minHeap() {
 
   heap.pop = function() {
     var removed = array[0],
-        object = array.pop();
+      object = array.pop();
     if (array.length) {
       array[object.index = 0] = object;
       down(0);
@@ -111,9 +115,9 @@ function minHeap() {
     return removed;
   };
 
-  heap.remove = function(removed) {
+  heap.remove = function(removed: any) {
     var i = removed.index,
-        object = array.pop();
+      object = array.pop();
     if (i !== array.length) {
       array[object.index = i] = object;
       (compare(object, removed) < 0 ? up : down)(i);
@@ -121,24 +125,24 @@ function minHeap() {
     return i;
   };
 
-  function up(i) {
+  function up(i: any) {
     var object = array[i];
     while (i > 0) {
       var up = ((i + 1) >> 1) - 1,
-          parent = array[up];
+        parent = array[up];
       if (compare(object, parent) >= 0) break;
       array[parent.index = i] = parent;
       array[object.index = i = up] = object;
     }
   }
 
-  function down(i) {
+  function down(i: any) {
     var object = array[i];
     while (true) {
       var right = (i + 1) << 1,
-          left = right - 1,
-          down = i,
-          child = array[down];
+        left = right - 1,
+        down = i,
+        child = array[down];
       if (left < array.length && compare(array[left], child) < 0) child = array[down = left];
       if (right < array.length && compare(array[right], child) < 0) child = array[down = right];
       if (down === i) break;
@@ -150,15 +154,11 @@ function minHeap() {
   return heap;
 }
 
-function compute_bbox(object, arcs) {
+export function compute_bbox(object: any, arcs: any) {
   var bbox = object.properties.bbox = new_bbox();
-  _.each(object.arcs,  function(arc_ix) {
-      var arc_bbox = arcs[arc_ix].properties.bbox;
-      accumulate_bbox([arc_bbox.minx, arc_bbox.miny], bbox);
-      accumulate_bbox([arc_bbox.maxx, arc_bbox.maxy], bbox);
+  _.each(object.arcs, function(arc_ix: any) {
+    var arc_bbox = arcs[arc_ix].properties.bbox;
+    accumulate_bbox([arc_bbox.minx, arc_bbox.miny], bbox);
+    accumulate_bbox([arc_bbox.maxx, arc_bbox.maxy], bbox);
   });
 }
-
-module.exports.simplify = simplify;
-module.exports.simplify_arc = simplify_arc;
-module.exports.compute_bbox = compute_bbox;

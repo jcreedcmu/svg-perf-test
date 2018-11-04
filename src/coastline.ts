@@ -1,12 +1,12 @@
 import { Mode, Point, SmPoint, ArPoint, ArRectangle, Dict, Ctx, Camera } from './types';
 import { Label, Arc, Target, Segment, LabelTarget, ArcVertexTarget, Feature } from './types';
+import * as simplify from './simplify';
 
 declare var g_mode: Mode;
 
 import { clone } from './util';
 import _ = require('underscore');
 
-import simplify = require('./simplify');
 var SIMPLIFICATION_FACTOR = 10; // higher = more simplification
 var DEBUG_BBOX = false;
 import colors = require('./colors');

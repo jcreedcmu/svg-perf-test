@@ -123,11 +123,8 @@ function minHeap() {
   }
 
   return {
-    push: (...args: any[]) => {
-      for (var i = 0, n = args.length; i < n; ++i) {
-        var object = args[i];
-        up(object.index = array.push(object) - 1);
-      }
+    push: (arg: any) => {
+      up(arg.index = array.push(arg) - 1);
       return array.length;
     },
     pop: () => {

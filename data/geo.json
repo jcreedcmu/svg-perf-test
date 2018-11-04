@@ -5160,7 +5160,8 @@
       "name": "f1000",
       "properties": {
         "road": "highway",
-        "text": "p2"
+        "text": "p2",
+        "t": "road"
       },
       "type": "Polygon"
     },
@@ -5171,7 +5172,8 @@
       "name": "f1001",
       "properties": {
         "road": "highway",
-        "text": "p3"
+        "text": "p3",
+        "t": "road"
       },
       "type": "Polygon"
     },
@@ -5182,7 +5184,8 @@
       "name": "f1002",
       "properties": {
         "road": "highway",
-        "text": "p4"
+        "text": "p4",
+        "t": "road"
       },
       "type": "Polygon"
     },
@@ -5193,7 +5196,8 @@
       "name": "f1003",
       "properties": {
         "road": "highway",
-        "text": "p4"
+        "text": "p4",
+        "t": "road"
       },
       "type": "Polygon"
     },
@@ -5204,7 +5208,8 @@
       "name": "f1004",
       "properties": {
         "road": "highway",
-        "text": "p5"
+        "text": "p5",
+        "t": "road"
       },
       "type": "Polygon"
     },
@@ -5215,7 +5220,8 @@
       "name": "f1005",
       "properties": {
         "road": "highway",
-        "text": "p5"
+        "text": "p5",
+        "t": "road"
       },
       "type": "Polygon"
     },
@@ -5226,7 +5232,8 @@
       "name": "f1006",
       "properties": {
         "road": "highway",
-        "text": "z10"
+        "text": "z10",
+        "t": "road"
       },
       "type": "Polygon"
     },
@@ -5237,7 +5244,8 @@
       "name": "f1007",
       "properties": {
         "road": "highway",
-        "text": "201"
+        "text": "201",
+        "t": "road"
       },
       "type": "Polygon"
     },
@@ -5248,7 +5256,8 @@
       "name": "f1008",
       "properties": {
         "road": "highway",
-        "text": "201"
+        "text": "201",
+        "t": "road"
       },
       "type": "Polygon"
     },
@@ -5259,7 +5268,8 @@
       "name": "f1009",
       "properties": {
         "road": "highway",
-        "text": "205"
+        "text": "205",
+        "t": "road"
       },
       "type": "Polygon"
     },
@@ -5270,7 +5280,8 @@
       "name": "f1010",
       "properties": {
         "road": "highway",
-        "text": "106"
+        "text": "106",
+        "t": "road"
       },
       "type": "Polygon"
     },
@@ -5281,7 +5292,8 @@
       "name": "f1011",
       "properties": {
         "road": "highway",
-        "text": "17"
+        "text": "17",
+        "t": "road"
       },
       "type": "Polygon"
     },
@@ -5292,7 +5304,8 @@
       "name": "f1012",
       "properties": {
         "road": "highway",
-        "text": "23"
+        "text": "23",
+        "t": "road"
       },
       "type": "Polygon"
     },
@@ -5303,7 +5316,8 @@
       "name": "f1013",
       "properties": {
         "road": "highway",
-        "text": "800"
+        "text": "800",
+        "t": "road"
       },
       "type": "Polygon"
     },
@@ -5314,7 +5328,8 @@
       "name": "f1014",
       "properties": {
         "road": "highway",
-        "text": "201"
+        "text": "201",
+        "t": "road"
       },
       "type": "Polygon"
     },
@@ -5325,7 +5340,8 @@
       "name": "f1015",
       "properties": {
         "road": "highway",
-        "text": "72"
+        "text": "72",
+        "t": "road"
       },
       "type": "Polygon"
     },
@@ -5336,7 +5352,8 @@
       "name": "f1016",
       "properties": {
         "road": "highway",
-        "text": "60"
+        "text": "60",
+        "t": "road"
       },
       "type": "Polygon"
     },
@@ -5347,7 +5364,8 @@
       "name": "f1017",
       "properties": {
         "road": "highway",
-        "text": "201"
+        "text": "201",
+        "t": "road"
       },
       "type": "Polygon"
     },
@@ -5358,7 +5376,8 @@
       "name": "f1018",
       "properties": {
         "road": "highway",
-        "text": "300"
+        "text": "300",
+        "t": "road"
       },
       "type": "Polygon"
     },
@@ -5369,7 +5388,8 @@
       "name": "f1019",
       "properties": {
         "road": "highway",
-        "text": "29"
+        "text": "29",
+        "t": "road"
       },
       "type": "Polygon"
     },
@@ -5380,7 +5400,8 @@
       "name": "f1020",
       "properties": {
         "road": "highway",
-        "text": "29"
+        "text": "29",
+        "t": "road"
       },
       "type": "Polygon"
     },
@@ -5391,7 +5412,8 @@
       "name": "f1021",
       "properties": {
         "road": "highway",
-        "text": "u1"
+        "text": "u1",
+        "t": "road"
       },
       "type": "Polygon"
     },
@@ -5402,7 +5424,8 @@
       "name": "f1022",
       "properties": {
         "road": "highway",
-        "text": "u1"
+        "text": "u1",
+        "t": "road"
       },
       "type": "Polygon"
     },
@@ -5413,7 +5436,8 @@
       "name": "f1023",
       "properties": {
         "road": "highway",
-        "text": "u9"
+        "text": "u9",
+        "t": "road"
       },
       "type": "Polygon"
     },
@@ -5424,7 +5448,8 @@
       "name": "f1024",
       "properties": {
         "road": "highway",
-        "text": "2"
+        "text": "2",
+        "t": "road"
       },
       "type": "Polygon"
     },
@@ -5435,7 +5460,8 @@
       "name": "f1025",
       "properties": {
         "road": "highway",
-        "text": "2"
+        "text": "2",
+        "t": "road"
       },
       "type": "Polygon"
     },
@@ -5446,7 +5472,8 @@
       "name": "f1026",
       "properties": {
         "road": "highway",
-        "text": "201"
+        "text": "201",
+        "t": "road"
       },
       "type": "Polygon"
     },
@@ -5457,7 +5484,8 @@
       "name": "f1027",
       "properties": {
         "road": "highway",
-        "text": "3"
+        "text": "3",
+        "t": "road"
       },
       "type": "Polygon"
     },
@@ -5468,7 +5496,8 @@
       "name": "f1028",
       "properties": {
         "road": "highway",
-        "text": "9"
+        "text": "9",
+        "t": "road"
       },
       "type": "Polygon"
     },
@@ -5479,7 +5508,8 @@
       "name": "f1029",
       "properties": {
         "road": "highway",
-        "text": "5"
+        "text": "5",
+        "t": "road"
       },
       "type": "Polygon"
     },
@@ -5490,7 +5520,8 @@
       "name": "f1030",
       "properties": {
         "road": "highway",
-        "text": "55"
+        "text": "55",
+        "t": "road"
       },
       "type": "Polygon"
     },
@@ -5501,7 +5532,8 @@
       "name": "f1031",
       "properties": {
         "road": "highway",
-        "text": "57"
+        "text": "57",
+        "t": "road"
       },
       "type": "Polygon"
     },
@@ -5513,7 +5545,8 @@
       "properties": {
         "city": "area",
         "text": "asdf",
-        "zoom": "4"
+        "zoom": "4",
+        "t": "city"
       },
       "type": "Polygon"
     },
@@ -5525,7 +5558,8 @@
       "properties": {
         "city": "area",
         "text": "ai mura",
-        "zoom": "4"
+        "zoom": "4",
+        "t": "city"
       },
       "type": "Polygon"
     },
@@ -5536,7 +5570,8 @@
       "name": "f1036",
       "properties": {
         "road": "highway",
-        "text": "gr"
+        "text": "gr",
+        "t": "road"
       },
       "type": "Polygon"
     },
@@ -5547,7 +5582,8 @@
       "name": "f1037",
       "properties": {
         "road": "highway",
-        "text": "gr"
+        "text": "gr",
+        "t": "road"
       },
       "type": "Polygon"
     },
@@ -5558,7 +5594,8 @@
       "name": "f1038",
       "properties": {
         "road": "highway",
-        "text": "wr"
+        "text": "wr",
+        "t": "road"
       },
       "type": "Polygon"
     },
@@ -5569,7 +5606,8 @@
       "name": "f1039",
       "properties": {
         "city": "area",
-        "text": "gut"
+        "text": "gut",
+        "t": "city"
       },
       "type": "Polygon"
     },
@@ -5593,7 +5631,8 @@
       "properties": {
         "road": "street",
         "text": "madje way",
-        "zoom": "11"
+        "zoom": "11",
+        "t": "road"
       },
       "type": "Polygon"
     },
@@ -5604,7 +5643,8 @@
       "name": "f1045",
       "properties": {
         "road": "street",
-        "text": "4th ring"
+        "text": "4th ring",
+        "t": "road"
       },
       "type": "Polygon"
     },
@@ -5615,7 +5655,8 @@
       "name": "f1046",
       "properties": {
         "road": "street",
-        "text": "1st ring"
+        "text": "1st ring",
+        "t": "road"
       },
       "type": "Polygon"
     },
@@ -5626,7 +5667,8 @@
       "name": "f1047",
       "properties": {
         "road": "street",
-        "text": "2nd ring"
+        "text": "2nd ring",
+        "t": "road"
       },
       "type": "Polygon"
     },
@@ -5637,7 +5679,8 @@
       "name": "f1048",
       "properties": {
         "road": "street",
-        "text": "3rd ring"
+        "text": "3rd ring",
+        "t": "road"
       },
       "type": "Polygon"
     },
@@ -5648,7 +5691,8 @@
       "name": "f1049",
       "properties": {
         "road": "street",
-        "text": "un way"
+        "text": "un way",
+        "t": "road"
       },
       "type": "Polygon"
     },

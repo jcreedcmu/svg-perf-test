@@ -79,7 +79,7 @@ function realize_salient(d: Ctx, props: any, camera: Camera, pt: ArPoint) {
 function realize_path(d: Ctx, props: PolyProps, scale: number) {
   d.lineWidth = 1.1 / scale;
 
-  if ("t" in props && props.t == "natural") {
+  if (props.t == "natural") {
     if (props.natural == "coastline") {
       d.strokeStyle = colors.water_border;
       d.stroke();
@@ -103,14 +103,14 @@ function realize_path(d: Ctx, props: PolyProps, scale: number) {
     }
   }
 
-  if ("city" in props) {
+  if (props.t == "city") {
     if (props.city == "area") {
       d.fillStyle = "#dbdbab";
       d.fill();
     }
   }
 
-  if ("road" in props) {
+  if (props.t == "road") {
     if (props.road == "highway") {
       d.lineWidth = 1.5 / scale;
       d.strokeStyle = "#f70";

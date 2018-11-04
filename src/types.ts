@@ -60,9 +60,12 @@ export type Label = {
 };
 
 export type PolyProps =
-  | { t: "natural", natural: "lake" | "coastline" | "mountain" }
-  | { road: "highway" | "street" | "street2", text: string, zoom?: string }
-  | { city: "area", text: string, zoom?: string } // shouldn't zoom be number?
+  | {
+    t: "natural", natural: "lake" | "coastline" | "mountain",
+    text?: string // not sure if this is used anywhere
+  }
+  | { t: "road", road: "highway" | "street" | "street2", text: string, zoom?: string }
+  | { t: "city", city: "area", text: string, zoom?: string } // shouldn't zoom be number?
 
 export type Poly = {
   type: 'Polygon',

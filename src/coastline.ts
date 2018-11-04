@@ -1,6 +1,6 @@
 import { Mode, Point, SmPoint, ArPoint, ArRectangle, Dict, Ctx, Camera } from './types';
 import { Label, Arc, Target, Segment, LabelTarget, ArcVertexTarget, Feature } from './types';
-import { PolyProps, Bbox } from './types';
+import { Poly, PolyProps, Bbox } from './types';
 import * as simplify from './simplify';
 
 declare var g_mode: Mode;
@@ -104,10 +104,8 @@ function realize_path(d: Ctx, props: PolyProps, scale: number) {
   }
 
   if (props.t == "city") {
-    if (props.city == "area") {
-      d.fillStyle = "#dbdbab";
-      d.fill();
-    }
+    d.fillStyle = "#dbdbab";
+    d.fill();
   }
 
   if (props.t == "road") {
@@ -291,14 +289,15 @@ export class CoastlineLayer {
     var arcs_to_draw_vertices_for: any[] = []; // XXX revisit this guess
     var salients: any = []; // XXX revisit this guess
 
-    var features = this.rt.bbox.apply(this.rt, world_bbox);
-    features = _.sortBy(features, function(x: any) {
+    var features: Poly[] = this.rt.bbox.apply(this.rt, world_bbox);
+    features = _.sortBy(features, x => {
       var z = 0;
-      if (x.properties.natural == "lake") z = 1;
-      if (x.properties.natural == "mountain") z = 1;
-      if (x.properties.city == "area") z = 1;
-      if (x.properties.road == "highway") z = 2;
-      if (x.properties.road == "street") z = 3;
+      const p: PolyProps = x.properties;
+      if (p.t == "natural" && p.natural == "lake") z = 1;
+      if (p.t == "natural" && p.natural == "mountain") z = 1;
+      if (p.t == "city") z = 1;
+      if (p.t == "road" && p.road == "highway") z = 2;
+      if (p.t == "road" && p.road == "street") z = 3;
       return z;
     });
 

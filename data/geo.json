@@ -5543,7 +5543,6 @@
       ],
       "name": "f1032",
       "properties": {
-        "city": "area",
         "text": "asdf",
         "zoom": "4",
         "t": "city"
@@ -5556,7 +5555,6 @@
       ],
       "name": "f1033",
       "properties": {
-        "city": "area",
         "text": "ai mura",
         "zoom": "4",
         "t": "city"
@@ -5605,7 +5603,6 @@
       ],
       "name": "f1039",
       "properties": {
-        "city": "area",
         "text": "gut",
         "t": "city"
       },

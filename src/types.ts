@@ -69,7 +69,7 @@ export type PolyProps =
     text?: string // not sure if this is used anywhere
   }
   | { t: "road", road: "highway" | "street" | "street2", text: string, zoom?: string }
-  | { t: "city", city: "area", text: string, zoom?: string } // shouldn't zoom be number?
+  | { t: "city", text: string, zoom?: string } // shouldn't zoom be number?
 
 export type Poly = {
   type: 'Polygon',

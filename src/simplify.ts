@@ -31,7 +31,7 @@ export function simplify_arc(arc: any) {
 }
 
 export function simplify(polygon: any) {
-  var heap: any = minHeap(),
+  var heap = minHeap(),
     maxArea = 0,
     triangle;
 
@@ -94,36 +94,7 @@ function area(t: any) {
 }
 
 function minHeap() {
-  var heap: any = {},
-    array: any = [];
-
-  heap.push = function() {
-    for (var i = 0, n = arguments.length; i < n; ++i) {
-      var object = arguments[i];
-      up(object.index = array.push(object) - 1);
-    }
-    return array.length;
-  };
-
-  heap.pop = function() {
-    var removed = array[0],
-      object = array.pop();
-    if (array.length) {
-      array[object.index = 0] = object;
-      down(0);
-    }
-    return removed;
-  };
-
-  heap.remove = function(removed: any) {
-    var i = removed.index,
-      object = array.pop();
-    if (i !== array.length) {
-      array[object.index = i] = object;
-      (compare(object, removed) < 0 ? up : down)(i);
-    }
-    return i;
-  };
+  const array: any[] = [];
 
   function up(i: any) {
     var object = array[i];
@@ -151,7 +122,33 @@ function minHeap() {
     }
   }
 
-  return heap;
+  return {
+    push: (...args: any[]) => {
+      for (var i = 0, n = args.length; i < n; ++i) {
+        var object = args[i];
+        up(object.index = array.push(object) - 1);
+      }
+      return array.length;
+    },
+    pop: () => {
+      var removed = array[0],
+        object = array.pop();
+      if (array.length) {
+        array[object.index = 0] = object;
+        down(0);
+      }
+      return removed;
+    },
+    remove: (removed: any) => {
+      var i = removed.index,
+        object = array.pop();
+      if (i !== array.length) {
+        array[object.index = i] = object;
+        (compare(object, removed) < 0 ? up : down)(i);
+      }
+      return i;
+    }
+  };
 }
 
 export function compute_bbox(object: any, arcs: any) {

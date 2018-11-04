@@ -18,3 +18,15 @@ export function vmap<V, W>(xs: { [k: string]: W }, f: (x: W) => V): { [k: string
   Object.keys(xs).forEach(k => rv[k] = f(xs[k]));
   return rv;
 }
+
+export function scale_of_zoom(zoom: number): number {
+  return (1 / 8) * (1 / 1024) * Math.pow(2, zoom);
+};
+
+const SIMPLIFICATION_FACTOR = 10; // higher = more simplification
+
+// true if the z-coordinate (which means the point is more resistant
+// to simplification the bigger it is) should be displayed at scale
+export function above_simp_thresh(z: number, scale: number): boolean {
+  return z > SIMPLIFICATION_FACTOR / (scale * scale);
+}

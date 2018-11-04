@@ -4,3 +4,4 @@ node_modules
 built
 public/js/bundle.js
 validation/test.ts
+export/output.pdf

@@ -14,6 +14,7 @@ State.prototype.camera = function() {
   var c = this.state.get('camera').toJS();
   c.x -= this.origin.x;
   c.y -= this.origin.y;
+  // XXX replace this with call to util.scale_of_zoom when I typeify this file
   c.scale = function() { return (1/8) * (1/1024) * Math.pow(2, this.zoom) };
   return c;
 }

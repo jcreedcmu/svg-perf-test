@@ -5,10 +5,9 @@ import * as simplify from './simplify';
 
 declare var g_mode: Mode;
 
-import { clone } from './util';
+import { clone, above_simp_thresh } from './util';
 import _ = require('underscore');
 
-var SIMPLIFICATION_FACTOR = 10; // higher = more simplification
 var DEBUG_BBOX = false;
 import colors = require('./colors');
 import labels = require('./labels');
@@ -274,7 +273,6 @@ export class CoastlineLayer {
     throw ("Can't find " + JSON.stringify(target.point) + " in " + JSON.stringify(arc))
   }
 
-
   render(d: Ctx, camera: Camera, undefined: any, world_bbox: ArRectangle) {
     var scale = camera.scale();
     var that = this;
@@ -355,7 +353,7 @@ export class CoastlineLayer {
           var draw = false;
 
           // draw somewhat simplified
-          if (camera.zoom >= 6 || ((vert[2] || 0) > SIMPLIFICATION_FACTOR / (scale * scale)))
+          if (camera.zoom >= 6 || above_simp_thresh(vert[2] || 0, scale))
             draw = true;
           if (ix == this_arc.length - 1)
             draw = true;
@@ -396,7 +394,6 @@ export class CoastlineLayer {
 
     // doing this because it involves text, which won't want the negative y-transform
     salients.forEach(function(salient: any) {
-      console.log(salient);
       realize_salient(d, salient.props, camera, salient.pt);
     });
 

@@ -1,4 +1,5 @@
 import _ = require('underscore');
+import { Arc } from './types';
 
 function accumulate_bbox(pt: any, bbox: any) {
   bbox.minx = Math.min(pt[0], bbox.minx);
@@ -23,7 +24,7 @@ function new_bbox() {
 // the area of error resulting from removing that point (after first
 // removing all lower-penalty points)
 
-export function simplify_arc(arc: any) {
+export function simplify_arc(arc: Arc) {
   simplify(arc.points);
   var bbox = new_bbox();
   arc.properties.bbox = bbox;

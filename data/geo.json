@@ -308,7 +308,8 @@
       ],
       "name": "feature0-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -318,7 +319,8 @@
       ],
       "name": "feature0-1",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -328,7 +330,8 @@
       ],
       "name": "feature0-2",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -338,7 +341,8 @@
       ],
       "name": "feature0-3",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -348,7 +352,8 @@
       ],
       "name": "feature0-4",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -358,7 +363,8 @@
       ],
       "name": "feature0-5",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -368,7 +374,8 @@
       ],
       "name": "feature0-6",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -378,7 +385,8 @@
       ],
       "name": "feature0-7",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -388,7 +396,8 @@
       ],
       "name": "feature0-8",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -398,7 +407,8 @@
       ],
       "name": "feature0-9",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -408,7 +418,8 @@
       ],
       "name": "feature0-10",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -418,7 +429,8 @@
       ],
       "name": "feature0-11",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -428,7 +440,8 @@
       ],
       "name": "feature0-12",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -438,7 +451,8 @@
       ],
       "name": "feature0-13",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -448,7 +462,8 @@
       ],
       "name": "feature0-14",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -458,7 +473,8 @@
       ],
       "name": "feature0-15",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -468,7 +484,8 @@
       ],
       "name": "feature0-16",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -478,7 +495,8 @@
       ],
       "name": "feature0-17",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -488,7 +506,8 @@
       ],
       "name": "feature0-18",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -498,7 +517,8 @@
       ],
       "name": "feature0-19",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -508,7 +528,8 @@
       ],
       "name": "feature0-20",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -518,7 +539,8 @@
       ],
       "name": "feature0-21",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -528,7 +550,8 @@
       ],
       "name": "feature0-22",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -538,7 +561,8 @@
       ],
       "name": "feature0-23",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -548,7 +572,8 @@
       ],
       "name": "feature0-24",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -558,7 +583,8 @@
       ],
       "name": "feature0-25",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -568,7 +594,8 @@
       ],
       "name": "feature0-26",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -578,7 +605,8 @@
       ],
       "name": "feature0-27",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -588,7 +616,8 @@
       ],
       "name": "feature0-28",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -598,7 +627,8 @@
       ],
       "name": "feature0-29",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -608,7 +638,8 @@
       ],
       "name": "feature0-30",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -619,7 +650,8 @@
       ],
       "name": "feature0-31",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -629,7 +661,8 @@
       ],
       "name": "feature0-32",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -639,7 +672,8 @@
       ],
       "name": "feature0-33",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -649,7 +683,8 @@
       ],
       "name": "feature0-34",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -659,7 +694,8 @@
       ],
       "name": "feature0-35",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -669,7 +705,8 @@
       ],
       "name": "feature0-36",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -679,7 +716,8 @@
       ],
       "name": "feature0-37",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -689,7 +727,8 @@
       ],
       "name": "feature0-38",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -699,7 +738,8 @@
       ],
       "name": "feature0-39",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -709,7 +749,8 @@
       ],
       "name": "feature0-40",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -719,7 +760,8 @@
       ],
       "name": "feature0-41",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -729,7 +771,8 @@
       ],
       "name": "feature0-42",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -739,7 +782,8 @@
       ],
       "name": "feature0-43",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -749,7 +793,8 @@
       ],
       "name": "feature0-44",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -759,7 +804,8 @@
       ],
       "name": "feature0-45",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -769,7 +815,8 @@
       ],
       "name": "feature0-46",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -779,7 +826,8 @@
       ],
       "name": "feature0-47",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -789,7 +837,8 @@
       ],
       "name": "feature0-48",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -799,7 +848,8 @@
       ],
       "name": "feature0-49",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -809,7 +859,8 @@
       ],
       "name": "feature0-50",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -819,7 +870,8 @@
       ],
       "name": "feature0-51",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -829,7 +881,8 @@
       ],
       "name": "feature0-52",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -839,7 +892,8 @@
       ],
       "name": "feature0-53",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -849,7 +903,8 @@
       ],
       "name": "feature0-54",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -859,7 +914,8 @@
       ],
       "name": "feature0-55",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -869,7 +925,8 @@
       ],
       "name": "feature0-56",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -879,7 +936,8 @@
       ],
       "name": "feature0-57",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -889,7 +947,8 @@
       ],
       "name": "feature0-58",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -899,7 +958,8 @@
       ],
       "name": "feature0-59",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -909,7 +969,8 @@
       ],
       "name": "feature0-60",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -919,7 +980,8 @@
       ],
       "name": "feature0-61",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -929,7 +991,8 @@
       ],
       "name": "feature0-62",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -939,7 +1002,8 @@
       ],
       "name": "feature0-63",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -949,7 +1013,8 @@
       ],
       "name": "feature0-64",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -959,7 +1024,8 @@
       ],
       "name": "feature0-65",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -969,7 +1035,8 @@
       ],
       "name": "feature0-66",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -979,7 +1046,8 @@
       ],
       "name": "feature0-67",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -989,7 +1057,8 @@
       ],
       "name": "feature0-68",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -999,7 +1068,8 @@
       ],
       "name": "feature0-69",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1009,7 +1079,8 @@
       ],
       "name": "feature0-70",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1019,7 +1090,8 @@
       ],
       "name": "feature0-71",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1029,7 +1101,8 @@
       ],
       "name": "feature0-72",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1039,7 +1112,8 @@
       ],
       "name": "feature0-73",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1049,7 +1123,8 @@
       ],
       "name": "feature0-74",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1059,7 +1134,8 @@
       ],
       "name": "feature0-75",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1069,7 +1145,8 @@
       ],
       "name": "feature0-76",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1079,7 +1156,8 @@
       ],
       "name": "feature0-77",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1089,7 +1167,8 @@
       ],
       "name": "feature0-78",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1099,7 +1178,8 @@
       ],
       "name": "feature0-79",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1109,7 +1189,8 @@
       ],
       "name": "feature0-80",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1119,7 +1200,8 @@
       ],
       "name": "feature0-81",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1129,7 +1211,8 @@
       ],
       "name": "feature0-82",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1139,7 +1222,8 @@
       ],
       "name": "feature0-83",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1149,7 +1233,8 @@
       ],
       "name": "feature0-84",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1159,7 +1244,8 @@
       ],
       "name": "feature0-85",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1169,7 +1255,8 @@
       ],
       "name": "feature0-86",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1179,7 +1266,8 @@
       ],
       "name": "feature0-87",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1189,7 +1277,8 @@
       ],
       "name": "feature0-88",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1199,7 +1288,8 @@
       ],
       "name": "feature0-89",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1209,7 +1299,8 @@
       ],
       "name": "feature0-90",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1219,7 +1310,8 @@
       ],
       "name": "feature0-91",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1229,7 +1321,8 @@
       ],
       "name": "feature0-92",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1239,7 +1332,8 @@
       ],
       "name": "feature0-93",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1249,7 +1343,8 @@
       ],
       "name": "feature0-94",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1259,7 +1354,8 @@
       ],
       "name": "feature0-95",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1269,7 +1365,8 @@
       ],
       "name": "feature0-96",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1279,7 +1376,8 @@
       ],
       "name": "feature0-97",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1289,7 +1387,8 @@
       ],
       "name": "feature0-98",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1299,7 +1398,8 @@
       ],
       "name": "feature0-99",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1309,7 +1409,8 @@
       ],
       "name": "feature0-100",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1319,7 +1420,8 @@
       ],
       "name": "feature0-101",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1329,7 +1431,8 @@
       ],
       "name": "feature0-102",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1339,7 +1442,8 @@
       ],
       "name": "feature0-103",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1349,7 +1453,8 @@
       ],
       "name": "feature0-104",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1359,7 +1464,8 @@
       ],
       "name": "feature0-105",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1369,7 +1475,8 @@
       ],
       "name": "feature0-106",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1379,7 +1486,8 @@
       ],
       "name": "feature0-107",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1389,7 +1497,8 @@
       ],
       "name": "feature0-108",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1399,7 +1508,8 @@
       ],
       "name": "feature0-109",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1409,7 +1519,8 @@
       ],
       "name": "feature0-110",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1419,7 +1530,8 @@
       ],
       "name": "feature0-111",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1429,7 +1541,8 @@
       ],
       "name": "feature0-112",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1439,7 +1552,8 @@
       ],
       "name": "feature0-113",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1449,7 +1563,8 @@
       ],
       "name": "feature0-114",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1459,7 +1574,8 @@
       ],
       "name": "feature0-115",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1469,7 +1585,8 @@
       ],
       "name": "feature0-116",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1479,7 +1596,8 @@
       ],
       "name": "feature0-117",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1489,7 +1607,8 @@
       ],
       "name": "feature0-118",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1499,7 +1618,8 @@
       ],
       "name": "feature0-119",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1509,7 +1629,8 @@
       ],
       "name": "feature0-120",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1519,7 +1640,8 @@
       ],
       "name": "feature0-121",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1529,7 +1651,8 @@
       ],
       "name": "feature0-122",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1539,7 +1662,8 @@
       ],
       "name": "feature0-123",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1549,7 +1673,8 @@
       ],
       "name": "feature0-124",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1559,7 +1684,8 @@
       ],
       "name": "feature1-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1569,7 +1695,8 @@
       ],
       "name": "feature10-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1579,7 +1706,8 @@
       ],
       "name": "feature100-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1589,7 +1717,8 @@
       ],
       "name": "feature101-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1599,7 +1728,8 @@
       ],
       "name": "feature102-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1609,7 +1739,8 @@
       ],
       "name": "feature103-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1619,7 +1750,8 @@
       ],
       "name": "feature104-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1631,7 +1763,8 @@
       ],
       "name": "feature105-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1641,7 +1774,8 @@
       ],
       "name": "feature106-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1651,7 +1785,8 @@
       ],
       "name": "feature107-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1661,7 +1796,8 @@
       ],
       "name": "feature108-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1671,7 +1807,8 @@
       ],
       "name": "feature109-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1681,7 +1818,8 @@
       ],
       "name": "feature11-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1691,7 +1829,8 @@
       ],
       "name": "feature110-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1701,7 +1840,8 @@
       ],
       "name": "feature111-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1711,7 +1851,8 @@
       ],
       "name": "feature112-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1721,7 +1862,8 @@
       ],
       "name": "feature113-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1731,7 +1873,8 @@
       ],
       "name": "feature114-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1741,7 +1884,8 @@
       ],
       "name": "feature115-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1751,7 +1895,8 @@
       ],
       "name": "feature116-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1761,7 +1906,8 @@
       ],
       "name": "feature117-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1771,7 +1917,8 @@
       ],
       "name": "feature118-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1781,7 +1928,8 @@
       ],
       "name": "feature119-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1791,7 +1939,8 @@
       ],
       "name": "feature12-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1801,7 +1950,8 @@
       ],
       "name": "feature120-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1811,7 +1961,8 @@
       ],
       "name": "feature121-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1821,7 +1972,8 @@
       ],
       "name": "feature122-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1831,7 +1983,8 @@
       ],
       "name": "feature122-1",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1846,7 +1999,8 @@
       ],
       "name": "feature123-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1856,7 +2010,8 @@
       ],
       "name": "feature123-1",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1866,7 +2021,8 @@
       ],
       "name": "feature123-2",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1876,7 +2032,8 @@
       ],
       "name": "feature123-3",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1886,7 +2043,8 @@
       ],
       "name": "feature123-4",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1896,7 +2054,8 @@
       ],
       "name": "feature123-5",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1906,7 +2065,8 @@
       ],
       "name": "feature123-6",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1916,7 +2076,8 @@
       ],
       "name": "feature123-7",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1926,7 +2087,8 @@
       ],
       "name": "feature123-8",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1936,7 +2098,8 @@
       ],
       "name": "feature123-9",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1946,7 +2109,8 @@
       ],
       "name": "feature124-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1956,7 +2120,8 @@
       ],
       "name": "feature125-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1966,7 +2131,8 @@
       ],
       "name": "feature126-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1976,7 +2142,8 @@
       ],
       "name": "feature127-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1986,7 +2153,8 @@
       ],
       "name": "feature128-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -1996,7 +2164,8 @@
       ],
       "name": "feature129-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2006,7 +2175,8 @@
       ],
       "name": "feature13-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2016,7 +2186,8 @@
       ],
       "name": "feature130-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2026,7 +2197,8 @@
       ],
       "name": "feature131-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2036,7 +2208,8 @@
       ],
       "name": "feature132-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2046,7 +2219,8 @@
       ],
       "name": "feature133-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2056,7 +2230,8 @@
       ],
       "name": "feature134-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2066,7 +2241,8 @@
       ],
       "name": "feature135-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2076,7 +2252,8 @@
       ],
       "name": "feature136-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2086,7 +2263,8 @@
       ],
       "name": "feature137-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2096,7 +2274,8 @@
       ],
       "name": "feature138-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2106,7 +2285,8 @@
       ],
       "name": "feature139-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2116,7 +2296,8 @@
       ],
       "name": "feature14-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2126,7 +2307,8 @@
       ],
       "name": "feature14-1",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2136,7 +2318,8 @@
       ],
       "name": "feature140-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2146,7 +2329,8 @@
       ],
       "name": "feature141-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2156,7 +2340,8 @@
       ],
       "name": "feature142-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2166,7 +2351,8 @@
       ],
       "name": "feature143-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2176,7 +2362,8 @@
       ],
       "name": "feature144-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2186,7 +2373,8 @@
       ],
       "name": "feature144-1",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2196,7 +2384,8 @@
       ],
       "name": "feature145-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2206,7 +2395,8 @@
       ],
       "name": "feature146-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2216,7 +2406,8 @@
       ],
       "name": "feature146-1",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2226,7 +2417,8 @@
       ],
       "name": "feature146-2",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2236,7 +2428,8 @@
       ],
       "name": "feature146-3",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2246,7 +2439,8 @@
       ],
       "name": "feature146-4",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2256,7 +2450,8 @@
       ],
       "name": "feature146-5",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2266,7 +2461,8 @@
       ],
       "name": "feature147-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2276,7 +2472,8 @@
       ],
       "name": "feature148-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2286,7 +2483,8 @@
       ],
       "name": "feature149-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2296,7 +2494,8 @@
       ],
       "name": "feature15-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2306,7 +2505,8 @@
       ],
       "name": "feature150-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2316,7 +2516,8 @@
       ],
       "name": "feature151-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2326,7 +2527,8 @@
       ],
       "name": "feature152-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2336,7 +2538,8 @@
       ],
       "name": "feature153-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2346,7 +2549,8 @@
       ],
       "name": "feature154-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2356,7 +2560,8 @@
       ],
       "name": "feature155-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2366,7 +2571,8 @@
       ],
       "name": "feature156-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2376,7 +2582,8 @@
       ],
       "name": "feature157-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2386,7 +2593,8 @@
       ],
       "name": "feature157-1",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2396,7 +2604,8 @@
       ],
       "name": "feature158-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2406,7 +2615,8 @@
       ],
       "name": "feature159-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2416,7 +2626,8 @@
       ],
       "name": "feature16-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2426,7 +2637,8 @@
       ],
       "name": "feature160-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2436,7 +2648,8 @@
       ],
       "name": "feature161-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2446,7 +2659,8 @@
       ],
       "name": "feature162-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2456,7 +2670,8 @@
       ],
       "name": "feature163-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2466,7 +2681,8 @@
       ],
       "name": "feature164-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2476,7 +2692,8 @@
       ],
       "name": "feature165-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2486,7 +2703,8 @@
       ],
       "name": "feature166-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2496,7 +2714,8 @@
       ],
       "name": "feature167-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2506,7 +2725,8 @@
       ],
       "name": "feature168-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2516,7 +2736,8 @@
       ],
       "name": "feature169-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2526,7 +2747,8 @@
       ],
       "name": "feature17-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2536,7 +2758,8 @@
       ],
       "name": "feature170-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2546,7 +2769,8 @@
       ],
       "name": "feature171-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2556,7 +2780,8 @@
       ],
       "name": "feature172-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2566,7 +2791,8 @@
       ],
       "name": "feature173-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2576,7 +2802,8 @@
       ],
       "name": "feature174-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2586,7 +2813,8 @@
       ],
       "name": "feature175-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2596,7 +2824,8 @@
       ],
       "name": "feature176-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2606,7 +2835,8 @@
       ],
       "name": "feature177-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2616,7 +2846,8 @@
       ],
       "name": "feature178-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2626,7 +2857,8 @@
       ],
       "name": "feature179-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2636,7 +2868,8 @@
       ],
       "name": "feature18-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2646,7 +2879,8 @@
       ],
       "name": "feature180-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2656,7 +2890,8 @@
       ],
       "name": "feature181-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2666,7 +2901,8 @@
       ],
       "name": "feature182-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2676,7 +2912,8 @@
       ],
       "name": "feature183-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2686,7 +2923,8 @@
       ],
       "name": "feature184-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2696,7 +2934,8 @@
       ],
       "name": "feature185-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2706,7 +2945,8 @@
       ],
       "name": "feature186-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2716,7 +2956,8 @@
       ],
       "name": "feature187-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2726,7 +2967,8 @@
       ],
       "name": "feature188-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2736,7 +2978,8 @@
       ],
       "name": "feature189-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2746,7 +2989,8 @@
       ],
       "name": "feature19-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2756,7 +3000,8 @@
       ],
       "name": "feature190-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2766,7 +3011,8 @@
       ],
       "name": "feature191-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2776,7 +3022,8 @@
       ],
       "name": "feature192-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2786,7 +3033,8 @@
       ],
       "name": "feature193-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2796,7 +3044,8 @@
       ],
       "name": "feature194-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2806,7 +3055,8 @@
       ],
       "name": "feature195-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2816,7 +3066,8 @@
       ],
       "name": "feature196-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2826,7 +3077,8 @@
       ],
       "name": "feature197-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2836,7 +3088,8 @@
       ],
       "name": "feature198-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2846,7 +3099,8 @@
       ],
       "name": "feature199-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2856,7 +3110,8 @@
       ],
       "name": "feature2-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2866,7 +3121,8 @@
       ],
       "name": "feature20-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2876,7 +3132,8 @@
       ],
       "name": "feature200-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2886,7 +3143,8 @@
       ],
       "name": "feature201-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2896,7 +3154,8 @@
       ],
       "name": "feature202-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2907,7 +3166,8 @@
       ],
       "name": "feature203-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2917,7 +3177,8 @@
       ],
       "name": "feature203-1",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2927,7 +3188,8 @@
       ],
       "name": "feature204-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2937,7 +3199,8 @@
       ],
       "name": "feature205-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2947,7 +3210,8 @@
       ],
       "name": "feature206-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2957,7 +3221,8 @@
       ],
       "name": "feature207-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2967,7 +3232,8 @@
       ],
       "name": "feature208-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2977,7 +3243,8 @@
       ],
       "name": "feature209-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2987,7 +3254,8 @@
       ],
       "name": "feature21-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -2997,7 +3265,8 @@
       ],
       "name": "feature210-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3008,7 +3277,8 @@
       ],
       "name": "feature211-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3018,7 +3288,8 @@
       ],
       "name": "feature212-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3028,7 +3299,8 @@
       ],
       "name": "feature213-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3038,7 +3310,8 @@
       ],
       "name": "feature214-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3048,7 +3321,8 @@
       ],
       "name": "feature215-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3058,7 +3332,8 @@
       ],
       "name": "feature216-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3068,7 +3343,8 @@
       ],
       "name": "feature217-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3078,7 +3354,8 @@
       ],
       "name": "feature218-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3088,7 +3365,8 @@
       ],
       "name": "feature219-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3098,7 +3376,8 @@
       ],
       "name": "feature22-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3108,7 +3387,8 @@
       ],
       "name": "feature220-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3118,7 +3398,8 @@
       ],
       "name": "feature221-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3128,7 +3409,8 @@
       ],
       "name": "feature222-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3138,7 +3420,8 @@
       ],
       "name": "feature223-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3148,7 +3431,8 @@
       ],
       "name": "feature224-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3158,7 +3442,8 @@
       ],
       "name": "feature225-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3168,7 +3453,8 @@
       ],
       "name": "feature226-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3178,7 +3464,8 @@
       ],
       "name": "feature227-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3188,7 +3475,8 @@
       ],
       "name": "feature228-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3198,7 +3486,8 @@
       ],
       "name": "feature229-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3208,7 +3497,8 @@
       ],
       "name": "feature23-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3218,7 +3508,8 @@
       ],
       "name": "feature230-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3228,7 +3519,8 @@
       ],
       "name": "feature24-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3238,7 +3530,8 @@
       ],
       "name": "feature25-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3248,7 +3541,8 @@
       ],
       "name": "feature26-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3258,7 +3552,8 @@
       ],
       "name": "feature27-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3268,7 +3563,8 @@
       ],
       "name": "feature28-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3278,7 +3574,8 @@
       ],
       "name": "feature29-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3288,7 +3585,8 @@
       ],
       "name": "feature3-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3298,7 +3596,8 @@
       ],
       "name": "feature30-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3308,7 +3607,8 @@
       ],
       "name": "feature31-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3318,7 +3618,8 @@
       ],
       "name": "feature32-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3328,7 +3629,8 @@
       ],
       "name": "feature33-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3338,7 +3640,8 @@
       ],
       "name": "feature34-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3348,7 +3651,8 @@
       ],
       "name": "feature35-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3358,7 +3662,8 @@
       ],
       "name": "feature36-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3368,7 +3673,8 @@
       ],
       "name": "feature37-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3378,7 +3684,8 @@
       ],
       "name": "feature38-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3388,7 +3695,8 @@
       ],
       "name": "feature39-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3398,7 +3706,8 @@
       ],
       "name": "feature4-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3408,7 +3717,8 @@
       ],
       "name": "feature40-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3418,7 +3728,8 @@
       ],
       "name": "feature41-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3428,7 +3739,8 @@
       ],
       "name": "feature42-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3438,7 +3750,8 @@
       ],
       "name": "feature43-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3448,7 +3761,8 @@
       ],
       "name": "feature44-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3458,7 +3772,8 @@
       ],
       "name": "feature45-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3468,7 +3783,8 @@
       ],
       "name": "feature46-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3478,7 +3794,8 @@
       ],
       "name": "feature47-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3488,7 +3805,8 @@
       ],
       "name": "feature48-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3498,7 +3816,8 @@
       ],
       "name": "feature49-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3508,7 +3827,8 @@
       ],
       "name": "feature5-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3518,7 +3838,8 @@
       ],
       "name": "feature50-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3528,7 +3849,8 @@
       ],
       "name": "feature51-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3538,7 +3860,8 @@
       ],
       "name": "feature52-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3548,7 +3871,8 @@
       ],
       "name": "feature53-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3558,7 +3882,8 @@
       ],
       "name": "feature54-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3568,7 +3893,8 @@
       ],
       "name": "feature55-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3578,7 +3904,8 @@
       ],
       "name": "feature56-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3588,7 +3915,8 @@
       ],
       "name": "feature57-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3598,7 +3926,8 @@
       ],
       "name": "feature58-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3608,7 +3937,8 @@
       ],
       "name": "feature59-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3618,7 +3948,8 @@
       ],
       "name": "feature6-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3628,7 +3959,8 @@
       ],
       "name": "feature60-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3638,7 +3970,8 @@
       ],
       "name": "feature60-1",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3648,7 +3981,8 @@
       ],
       "name": "feature61-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3666,7 +4000,8 @@
       ],
       "name": "feature62-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3676,7 +4011,8 @@
       ],
       "name": "feature62-1",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3686,7 +4022,8 @@
       ],
       "name": "feature62-2",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3696,7 +4033,8 @@
       ],
       "name": "feature62-3",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3706,7 +4044,8 @@
       ],
       "name": "feature62-4",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3716,7 +4055,8 @@
       ],
       "name": "feature62-5",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3726,7 +4066,8 @@
       ],
       "name": "feature62-6",
       "properties": {
-        "natural": "lake"
+        "natural": "lake",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3736,7 +4077,8 @@
       ],
       "name": "feature63-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3746,7 +4088,8 @@
       ],
       "name": "feature64-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3756,7 +4099,8 @@
       ],
       "name": "feature65-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3766,7 +4110,8 @@
       ],
       "name": "feature66-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3776,7 +4121,8 @@
       ],
       "name": "feature67-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3787,7 +4133,8 @@
       ],
       "name": "feature68-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3797,7 +4144,8 @@
       ],
       "name": "feature69-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3807,7 +4155,8 @@
       ],
       "name": "feature7-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3817,7 +4166,8 @@
       ],
       "name": "feature70-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3827,7 +4177,8 @@
       ],
       "name": "feature71-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3837,7 +4188,8 @@
       ],
       "name": "feature72-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3847,7 +4199,8 @@
       ],
       "name": "feature73-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3857,7 +4210,8 @@
       ],
       "name": "feature74-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3867,7 +4221,8 @@
       ],
       "name": "feature75-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3877,7 +4232,8 @@
       ],
       "name": "feature76-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3887,7 +4243,8 @@
       ],
       "name": "feature77-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3897,7 +4254,8 @@
       ],
       "name": "feature78-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3907,7 +4265,8 @@
       ],
       "name": "feature79-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3917,7 +4276,8 @@
       ],
       "name": "feature8-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3927,7 +4287,8 @@
       ],
       "name": "feature80-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3937,7 +4298,8 @@
       ],
       "name": "feature81-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3947,7 +4309,8 @@
       ],
       "name": "feature82-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3957,7 +4320,8 @@
       ],
       "name": "feature83-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3967,7 +4331,8 @@
       ],
       "name": "feature84-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3977,7 +4342,8 @@
       ],
       "name": "feature85-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3987,7 +4353,8 @@
       ],
       "name": "feature86-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -3997,7 +4364,8 @@
       ],
       "name": "feature87-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4007,7 +4375,8 @@
       ],
       "name": "feature88-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4017,7 +4386,8 @@
       ],
       "name": "feature89-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4027,7 +4397,8 @@
       ],
       "name": "feature9-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4037,7 +4408,8 @@
       ],
       "name": "feature90-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4047,7 +4419,8 @@
       ],
       "name": "feature91-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4057,7 +4430,8 @@
       ],
       "name": "feature92-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4067,7 +4441,8 @@
       ],
       "name": "feature93-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4077,7 +4452,8 @@
       ],
       "name": "feature94-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4087,7 +4463,8 @@
       ],
       "name": "feature95-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4097,7 +4474,8 @@
       ],
       "name": "feature96-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4107,7 +4485,8 @@
       ],
       "name": "feature97-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4117,7 +4496,8 @@
       ],
       "name": "feature98-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4127,7 +4507,8 @@
       ],
       "name": "feature99-0",
       "properties": {
-        "natural": "coastline"
+        "natural": "coastline",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4147,7 +4528,8 @@
       ],
       "name": "mtn0",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4157,7 +4539,8 @@
       ],
       "name": "mtn1",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4186,7 +4569,8 @@
       ],
       "name": "mtn2",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4196,7 +4580,8 @@
       ],
       "name": "mtn3",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4206,7 +4591,8 @@
       ],
       "name": "mtn4",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4216,7 +4602,8 @@
       ],
       "name": "mtn5",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4226,7 +4613,8 @@
       ],
       "name": "mtn6",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4236,7 +4624,8 @@
       ],
       "name": "mtn7",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4246,7 +4635,8 @@
       ],
       "name": "mtn8",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4256,7 +4646,8 @@
       ],
       "name": "mtn9",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4266,7 +4657,8 @@
       ],
       "name": "mtn10",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4276,7 +4668,8 @@
       ],
       "name": "mtn11",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4286,7 +4679,8 @@
       ],
       "name": "mtn12",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4296,7 +4690,8 @@
       ],
       "name": "mtn13",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4306,7 +4701,8 @@
       ],
       "name": "mtn14",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4316,7 +4712,8 @@
       ],
       "name": "mtn15",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4326,7 +4723,8 @@
       ],
       "name": "mtn16",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4336,7 +4734,8 @@
       ],
       "name": "mtn17",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4346,7 +4745,8 @@
       ],
       "name": "mtn18",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4356,7 +4756,8 @@
       ],
       "name": "mtn19",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4366,7 +4767,8 @@
       ],
       "name": "mtn20",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4376,7 +4778,8 @@
       ],
       "name": "mtn21",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4386,7 +4789,8 @@
       ],
       "name": "mtn22",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4396,7 +4800,8 @@
       ],
       "name": "mtn23",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4406,7 +4811,8 @@
       ],
       "name": "mtn24",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4416,7 +4822,8 @@
       ],
       "name": "mtn25",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4426,7 +4833,8 @@
       ],
       "name": "mtn26",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4436,7 +4844,8 @@
       ],
       "name": "mtn27",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4456,7 +4865,8 @@
       ],
       "name": "mtn28",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4466,7 +4876,8 @@
       ],
       "name": "mtn29",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4476,7 +4887,8 @@
       ],
       "name": "mtn30",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4487,7 +4899,8 @@
       ],
       "name": "mtn31",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4497,7 +4910,8 @@
       ],
       "name": "mtn32",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4507,7 +4921,8 @@
       ],
       "name": "mtn33",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4517,7 +4932,8 @@
       ],
       "name": "mtn34",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4527,7 +4943,8 @@
       ],
       "name": "mtn35",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4537,7 +4954,8 @@
       ],
       "name": "mtn36",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4547,7 +4965,8 @@
       ],
       "name": "mtn37",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4557,7 +4976,8 @@
       ],
       "name": "mtn38",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4567,7 +4987,8 @@
       ],
       "name": "mtn39",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4577,7 +4998,8 @@
       ],
       "name": "mtn40",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4587,7 +5009,8 @@
       ],
       "name": "mtn41",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4597,7 +5020,8 @@
       ],
       "name": "mtn42",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4612,7 +5036,8 @@
       ],
       "name": "mtn43",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4622,7 +5047,8 @@
       ],
       "name": "mtn44",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4632,7 +5058,8 @@
       ],
       "name": "mtn45",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4642,7 +5069,8 @@
       ],
       "name": "mtn46",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4653,7 +5081,8 @@
       ],
       "name": "mtn47",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4663,7 +5092,8 @@
       ],
       "name": "mtn48",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4673,7 +5103,8 @@
       ],
       "name": "mtn49",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4683,7 +5114,8 @@
       ],
       "name": "mtn50",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4694,7 +5126,8 @@
       ],
       "name": "mtn51",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4704,7 +5137,8 @@
       ],
       "name": "mtn52",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -4714,7 +5148,8 @@
       ],
       "name": "mtn53",
       "properties": {
-        "natural": "mountain"
+        "natural": "mountain",
+        "t": "natural"
       },
       "type": "Polygon"
     },
@@ -5145,7 +5580,8 @@
       "name": "f1040",
       "properties": {
         "natural": "coastline",
-        "text": "shiaovets-island"
+        "text": "shiaovets-island",
+        "t": "natural"
       },
       "type": "Polygon"
     },

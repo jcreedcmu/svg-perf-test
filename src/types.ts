@@ -61,7 +61,7 @@ export type Label = {
 
 export type PolyProps =
   | { natural: "lake" | "coastline" | "mountain" }
-  | { road: "highway" | "street", text: string, zoom?: string }
+  | { road: "highway" | "street" | "street2", text: string, zoom?: string }
   | { city: "area", text: string, zoom?: string } // shouldn't zoom be number?
 
 export type Poly = {

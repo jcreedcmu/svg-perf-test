@@ -1,5 +1,6 @@
 import { Mode, Point, SmPoint, ArPoint, ArRectangle, Dict, Ctx, Camera } from './types';
 import { Label, Arc, Target, Segment, LabelTarget, ArcVertexTarget, Feature } from './types';
+import { PolyProps, Bbox } from './types';
 import * as simplify from './simplify';
 
 declare var g_mode: Mode;
@@ -75,63 +76,70 @@ function realize_salient(d: Ctx, props: any, camera: Camera, pt: ArPoint) {
   }
 }
 
-function realize_path(d: Ctx, props: any, scale: number) {
+function realize_path(d: Ctx, props: PolyProps, scale: number) {
   d.lineWidth = 1.1 / scale;
 
-  if (props.natural == "coastline") {
-    d.strokeStyle = colors.water_border;
-    d.stroke();
-    d.fillStyle = colors.land;
-    if (!DEBUG_BBOX)
+  if ("natural" in props) {
+    if (props.natural == "coastline") {
+      d.strokeStyle = colors.water_border;
+      d.stroke();
+      d.fillStyle = colors.land;
+      if (!DEBUG_BBOX)
+        d.fill();
+    }
+
+    if (props.natural == "lake") {
+      d.strokeStyle = colors.water_border;
+      d.stroke();
+      d.fillStyle = "#bac7f8";
+      if (!DEBUG_BBOX)
+        d.fill();
+    }
+
+    if (props.natural == "mountain") {
+      d.fillStyle = "#b5ab9b";
+      if (!DEBUG_BBOX)
+        d.fill();
+    }
+  }
+
+  if ("city" in props) {
+    if (props.city == "area") {
+      d.fillStyle = "#dbdbab";
       d.fill();
+    }
   }
 
-  if (props.natural == "lake") {
-    d.strokeStyle = colors.water_border;
-    d.stroke();
-    d.fillStyle = "#bac7f8";
-    if (!DEBUG_BBOX)
-      d.fill();
-  }
+  if ("road" in props) {
+    if (props.road == "highway") {
+      d.lineWidth = 1.5 / scale;
+      d.strokeStyle = "#f70";
+      d.stroke();
+    }
 
-  if (props.natural == "mountain") {
-    d.fillStyle = "#b5ab9b";
-    if (!DEBUG_BBOX)
-      d.fill();
-  }
+    if (props.road == "street") {
+      d.lineWidth = 5 / scale;
+      d.lineCap = "round";
+      d.strokeStyle = "#777";
+      d.stroke();
+    }
 
-  if (props.city == "area") {
-    d.fillStyle = "#dbdbab";
-    d.fill();
+    if (props.road == "street2") {
+      d.lineWidth = 4 / scale;
+      d.lineCap = "round";
+      d.strokeStyle = "#fff";
+      d.stroke();
+    }
   }
-
-  if (props.road == "highway") {
-    d.lineWidth = 1.5 / scale;
-    d.strokeStyle = "#f70";
-    d.stroke();
-  }
-
-  if (props.road == "street") {
-    d.lineWidth = 5 / scale;
-    d.lineCap = "round";
-    d.strokeStyle = "#777";
-    d.stroke();
-  }
-
-  if (props.road == "street2") {
-    d.lineWidth = 4 / scale;
-    d.lineCap = "round";
-    d.strokeStyle = "#fff";
-    d.stroke();
-  }
-
   if (DEBUG_BBOX) {
-    var feature_bbox = props.bbox;
-    var lw = d.lineWidth = 3.0 / scale;
-    d.strokeStyle = "#f0f";
-    d.strokeRect(feature_bbox.minx - lw, feature_bbox.miny - lw,
-      feature_bbox.maxx - feature_bbox.minx + lw * 2,
-      feature_bbox.maxy - feature_bbox.miny + lw * 2);
+    if ("bbox" in props) {
+      var feature_bbox = (<{ bbox: Bbox }>props).bbox;
+      var lw = d.lineWidth = 3.0 / scale;
+      d.strokeStyle = "#f0f";
+      d.strokeRect(feature_bbox.minx - lw, feature_bbox.miny - lw,
+        feature_bbox.maxx - feature_bbox.minx + lw * 2,
+        feature_bbox.maxy - feature_bbox.miny + lw * 2);
+    }
   }
 }
 

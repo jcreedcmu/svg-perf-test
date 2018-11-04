@@ -50,7 +50,11 @@ export type Arc = {
   properties: { [k: string]: any },
 };
 
-export type LabelProps = { label: string, text: string, zoom?: number | string };
+export type LabelProps = {
+  label: "park" | "city" | "region" | "sea" | "minorsea" | "river",
+  text: string,
+  zoom?: number | string
+};
 
 export type Label = {
   name: string

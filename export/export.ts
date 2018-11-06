@@ -1,4 +1,4 @@
-import { Geo, Arc, Point } from '../src/types';
+import { Geo, Arc, Point, Poly } from '../src/types';
 import { simplify_arc } from '../src/simplify';
 import { readFileSync, createWriteStream } from 'fs';
 import { scale_of_zoom, above_simp_thresh } from '../src/util';
@@ -38,42 +38,49 @@ function xform(pt: Point): Point {
   }
 }
 
-data.objects.forEach(o => {
+function draw(o: Poly, t: 'coastline' | 'mountain') {
 
-  if (o.type == 'Polygon' && o.properties.t == 'natural' && o.properties.natural == 'coastline') {
+  let first = true;
+  let exist = false;
 
-    let first = true;
-    let exist = false;
-
-    function plot(pt: Point) {
-      if (first) {
-        if (DEBUG)
-          console.log(`moveTo(${pt.x}, ${pt.y})`);
-        doc.moveTo(pt.x, pt.y);
-        first = false;
-      }
-      else {
-        if (DEBUG)
-          console.log(`lineTo(${pt.x}, ${pt.y})`);
-        doc.lineTo(pt.x, pt.y);
-      }
+  function plot(pt: Point) {
+    if (first) {
+      if (DEBUG)
+        console.log(`moveTo(${pt.x}, ${pt.y})`);
+      doc.moveTo(pt.x, pt.y);
+      first = false;
     }
-
-    for (let k of o.arcs) {
-      const arcPts = arcs[k].points
-        .filter(pt => above_simp_thresh((pt[2] || 0), scale))
-        .map(pt => ({ x: pt[0], y: pt[1] }))
-        .map(xform);
-      if (arcPts.length > 1) {
-        arcPts.slice(0, arcPts.length - 1).forEach(plot);
-        exist = true;
-      }
-    }
-    if (exist) {
-      doc.closePath();
-      doc.stroke([128, 128, 128]);
+    else {
+      if (DEBUG)
+        console.log(`lineTo(${pt.x}, ${pt.y})`);
+      doc.lineTo(pt.x, pt.y);
     }
   }
+
+  for (let k of o.arcs) {
+    const arcPts = arcs[k].points
+      .filter(pt => above_simp_thresh((pt[2] || 0), scale))
+      .map(pt => ({ x: pt[0], y: pt[1] }))
+      .map(xform);
+    if (arcPts.length > 1) {
+      arcPts.slice(0, arcPts.length - 1).forEach(plot);
+      exist = true;
+    }
+  }
+  if (exist) {
+    doc.closePath();
+    if (t == 'coastline')
+      doc.stroke([0, 0, 0]);
+    else if (t == 'mountain')
+      doc.fill([230, 230, 200]);
+  }
+}
+data.objects.forEach(o => {
+
+  if (o.type == 'Polygon' && o.properties.t == 'natural'
+    && (o.properties.natural == 'coastline' ||
+      o.properties.natural == 'mountain'))
+    draw(o, o.properties.natural);
 });
 
 // const pt1: Point = xform({ x: 0, y: 0 });

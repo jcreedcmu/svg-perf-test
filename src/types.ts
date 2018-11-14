@@ -45,7 +45,6 @@ export type Bbox = {
 
 export type Arc = {
   name: string,
-  type: "arc",
   points: SmPoint[],
   properties: { [k: string]: any },
 };
@@ -58,7 +57,6 @@ export type LabelProps = {
 
 export type Label = {
   name: string
-  type: "point",
   pt: ArPoint,
   properties: LabelProps,
 };
@@ -72,9 +70,8 @@ export type PolyProps =
   | { t: "city", text: string, zoom?: number }
 
 export type Poly = {
-  type: 'Polygon',
-  arcs: string[], // arc names, really
   name: string,
+  arcs: string[], // arc names, really
   properties: PolyProps,
 };
 

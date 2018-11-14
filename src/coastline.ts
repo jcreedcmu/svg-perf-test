@@ -549,9 +549,9 @@ export class CoastlineLayer {
     var feature_name = "f" + this.counter;
     var arc_name = "a" + this.counter;
     this.counter++;
-    var arc = this.arcs[arc_name] = { name: arc_name, points: points, type: "arc", properties: {} };
+    var arc = this.arcs[arc_name] = { name: arc_name, points: points, properties: {} };
     var feature = this.features[feature_name] =
-      { name: feature_name, arcs: [arc_name], type: t, properties: properties };
+      { name: feature_name, arcs: [arc_name], properties: properties };
     simplify.simplify_arc(arc);
     simplify.compute_bbox(feature, this.arcs);
 
@@ -582,7 +582,7 @@ export class CoastlineLayer {
         cut_positions.push(v.points.length - 1);
         var replacement_arcs: any[] = [];
         for (var j = 0; j < cut_positions.length - 1; j++) {
-          const arc: Arc = { name: k + "-" + j, type: "arc", properties: {}, points: [] };
+          const arc: Arc = { name: k + "-" + j, properties: {}, points: [] };
           for (var jj = cut_positions[j]; jj <= cut_positions[j + 1]; jj++) {
             arc.points.push(clone(v.points[jj]));
           }

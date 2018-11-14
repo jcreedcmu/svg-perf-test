@@ -122204,7 +122204,9 @@
       ],
       "properties": {},
       "type": "arc"
-    },
+    }
+  ],
+  "labels": [
     {
       "name": "label0",
       "properties": {

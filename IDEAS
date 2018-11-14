@@ -69,3 +69,10 @@ y: camera.y - camera.scale() * p.y
 
 Q: How do I set camera position?
 A: Check out zoom_to
+
+=== 2018.11.14
+
+Q: How'd I convert zoom strings to numbers?
+A:
+$ jq 'walk(if type == "object" and .zoom and (.zoom | type) == "string" then (.zoom |= tonumber) else . end) ' \
+  data/geo.json  | sponge data/geo.json

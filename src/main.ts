@@ -53,7 +53,7 @@ ld.done(function(_data) {
   data = _data;
   let count = 0;
   const geo = data.json.geo;
-  coastline_layer = new CoastlineLayer(geo.objects, geo.counter);
+  coastline_layer = new CoastlineLayer(geo.objects, geo.labels, geo.counter);
   image_layer = new ImageLayer(dispatch, 0, geo.images, data.img.overlay);
 
   river_layer = new RiverLayer(dispatch, data.json.rivers);

@@ -5544,7 +5544,7 @@
       "name": "f1032",
       "properties": {
         "text": "asdf",
-        "zoom": "4",
+        "zoom": 4,
         "t": "city"
       },
       "type": "Polygon"
@@ -5556,7 +5556,7 @@
       "name": "f1033",
       "properties": {
         "text": "ai mura",
-        "zoom": "4",
+        "zoom": 4,
         "t": "city"
       },
       "type": "Polygon"
@@ -5628,7 +5628,7 @@
       "properties": {
         "road": "street",
         "text": "madje way",
-        "zoom": "11",
+        "zoom": 11,
         "t": "road"
       },
       "type": "Polygon"
@@ -122327,7 +122327,7 @@
       "properties": {
         "label": "minorsea",
         "text": "bay of wadwad",
-        "zoom": "3"
+        "zoom": 3
       },
       "pt": [
         741280,
@@ -122340,7 +122340,7 @@
       "properties": {
         "label": "minorsea",
         "text": "duo bay",
-        "zoom": "3"
+        "zoom": 3
       },
       "pt": [
         818080,
@@ -122405,7 +122405,7 @@
       "properties": {
         "label": "region",
         "text": "rakayanak mtns",
-        "zoom": "2"
+        "zoom": 2
       },
       "pt": [
         2198560,
@@ -122418,7 +122418,7 @@
       "properties": {
         "label": "region",
         "text": "restless mtns",
-        "zoom": "2"
+        "zoom": 2
       },
       "pt": [
         1177120,
@@ -122457,7 +122457,7 @@
       "properties": {
         "label": "region",
         "text": "zosu ferts",
-        "zoom": "2"
+        "zoom": 2
       },
       "pt": [
         2947360,
@@ -122470,7 +122470,7 @@
       "properties": {
         "label": "region",
         "text": "duvbatoi",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         431770,
@@ -122483,7 +122483,7 @@
       "properties": {
         "label": "region",
         "text": "traqa",
-        "zoom": "5"
+        "zoom": 5
       },
       "pt": [
         498010,
@@ -122522,7 +122522,7 @@
       "properties": {
         "label": "region",
         "text": "minar",
-        "zoom": "3"
+        "zoom": 3
       },
       "pt": [
         3328320,
@@ -122665,7 +122665,7 @@
       "properties": {
         "label": "region",
         "text": "essamock mtns",
-        "zoom": "3"
+        "zoom": 3
       },
       "pt": [
         3095840,
@@ -122678,7 +122678,7 @@
       "properties": {
         "label": "city",
         "text": "so liem",
-        "zoom": "2"
+        "zoom": 2
       },
       "pt": [
         1212200,
@@ -122730,7 +122730,7 @@
       "properties": {
         "label": "city",
         "text": "duogaz",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         857640,
@@ -122782,7 +122782,7 @@
       "properties": {
         "label": "city",
         "text": "vdali",
-        "zoom": "3"
+        "zoom": 3
       },
       "pt": [
         834080,
@@ -122899,7 +122899,7 @@
       "properties": {
         "label": "city",
         "text": "omkor",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         2845600,
@@ -122912,7 +122912,7 @@
       "properties": {
         "label": "city",
         "text": "creya",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         2868960,
@@ -122977,7 +122977,7 @@
       "properties": {
         "label": "city",
         "text": "camareni",
-        "zoom": "3"
+        "zoom": 3
       },
       "pt": [
         1483360,
@@ -123068,7 +123068,7 @@
       "properties": {
         "label": "region",
         "text": "byomiapit",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         1035360,
@@ -123081,7 +123081,7 @@
       "properties": {
         "label": "region",
         "text": "gunoboropit",
-        "zoom": "5"
+        "zoom": 5
       },
       "pt": [
         931680,
@@ -123120,7 +123120,7 @@
       "properties": {
         "label": "minorsea",
         "text": "bay of gorbya",
-        "zoom": "3"
+        "zoom": 3
       },
       "pt": [
         812736,
@@ -123133,7 +123133,7 @@
       "properties": {
         "label": "region",
         "text": "yixia me",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         3828416,
@@ -123146,7 +123146,7 @@
       "properties": {
         "label": "region",
         "text": "urgaq",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         3077440,
@@ -123159,7 +123159,7 @@
       "properties": {
         "label": "region",
         "text": "rnmut",
-        "zoom": "5"
+        "zoom": 5
       },
       "pt": [
         3201344,
@@ -123172,7 +123172,7 @@
       "properties": {
         "label": "region",
         "text": "inkepst",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         2491392,
@@ -123185,7 +123185,7 @@
       "properties": {
         "label": "minorsea",
         "text": "hannakupniyam lake",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         1880448,
@@ -123198,7 +123198,7 @@
       "properties": {
         "label": "minorsea",
         "text": "gaz lake",
-        "zoom": "5"
+        "zoom": 5
       },
       "pt": [
         851840,
@@ -123211,7 +123211,7 @@
       "properties": {
         "label": "region",
         "text": "nvoyab",
-        "zoom": "3"
+        "zoom": 3
       },
       "pt": [
         1899808,
@@ -123224,7 +123224,7 @@
       "properties": {
         "label": "region",
         "text": "ribbonnad",
-        "zoom": "3"
+        "zoom": 3
       },
       "pt": [
         3180320,
@@ -123250,7 +123250,7 @@
       "properties": {
         "label": "city",
         "text": "birnallong",
-        "zoom": "3"
+        "zoom": 3
       },
       "pt": [
         3292352,
@@ -123263,7 +123263,7 @@
       "properties": {
         "label": "city",
         "text": "stollarong",
-        "zoom": "3"
+        "zoom": 3
       },
       "pt": [
         3305664,
@@ -123276,7 +123276,7 @@
       "properties": {
         "label": "city",
         "text": "perio demar",
-        "zoom": "3"
+        "zoom": 3
       },
       "pt": [
         3381600,
@@ -123289,7 +123289,7 @@
       "properties": {
         "label": "city",
         "text": "meegens",
-        "zoom": "3"
+        "zoom": 3
       },
       "pt": [
         3457144,
@@ -123302,7 +123302,7 @@
       "properties": {
         "label": "city",
         "text": "ai rist",
-        "zoom": "3"
+        "zoom": 3
       },
       "pt": [
         3654776,
@@ -123315,7 +123315,7 @@
       "properties": {
         "label": "city",
         "text": "ai mura",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         3659288,
@@ -123328,7 +123328,7 @@
       "properties": {
         "label": "city",
         "text": "cubre",
-        "zoom": "3"
+        "zoom": 3
       },
       "pt": [
         3632248,
@@ -123341,7 +123341,7 @@
       "properties": {
         "label": "city",
         "text": "kin masdolille",
-        "zoom": "3"
+        "zoom": 3
       },
       "pt": [
         3630272,
@@ -123354,7 +123354,7 @@
       "properties": {
         "label": "city",
         "text": "tarodaro",
-        "zoom": "3"
+        "zoom": 3
       },
       "pt": [
         3776416,
@@ -123367,7 +123367,7 @@
       "properties": {
         "label": "region",
         "text": "tarodaro",
-        "zoom": "3"
+        "zoom": 3
       },
       "pt": [
         3695520,
@@ -123380,7 +123380,7 @@
       "properties": {
         "label": "city",
         "text": "un",
-        "zoom": "3"
+        "zoom": 3
       },
       "pt": [
         3624224,
@@ -123393,7 +123393,7 @@
       "properties": {
         "label": "city",
         "text": "pimne",
-        "zoom": "3"
+        "zoom": 3
       },
       "pt": [
         3498304,
@@ -123406,7 +123406,7 @@
       "properties": {
         "label": "city",
         "text": "sker",
-        "zoom": "3"
+        "zoom": 3
       },
       "pt": [
         3463616,
@@ -123419,7 +123419,7 @@
       "properties": {
         "label": "city",
         "text": "imnereskne",
-        "zoom": "3"
+        "zoom": 3
       },
       "pt": [
         3260416,
@@ -123432,7 +123432,7 @@
       "properties": {
         "label": "city",
         "text": "hildoff",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         3393984,
@@ -123445,7 +123445,7 @@
       "properties": {
         "label": "city",
         "text": "onbaigh",
-        "zoom": "3"
+        "zoom": 3
       },
       "pt": [
         2977472,
@@ -123458,7 +123458,7 @@
       "properties": {
         "label": "city",
         "text": "backennis",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         3011520,
@@ -123471,7 +123471,7 @@
       "properties": {
         "label": "city",
         "text": "whippenull",
-        "zoom": "3"
+        "zoom": 3
       },
       "pt": [
         3042240,
@@ -123484,7 +123484,7 @@
       "properties": {
         "label": "city",
         "text": "tsutattu",
-        "zoom": "3"
+        "zoom": 3
       },
       "pt": [
         2873824,
@@ -123497,7 +123497,7 @@
       "properties": {
         "label": "city",
         "text": "old bear",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         2956768,
@@ -123523,7 +123523,7 @@
       "properties": {
         "label": "city",
         "text": "borrant",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         3038176,
@@ -123536,7 +123536,7 @@
       "properties": {
         "label": "city",
         "text": "whit",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         3024608,
@@ -123549,7 +123549,7 @@
       "properties": {
         "label": "city",
         "text": "genloitsperk",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         2912736,
@@ -123562,7 +123562,7 @@
       "properties": {
         "label": "city",
         "text": "east vinch",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         2967840,
@@ -123575,7 +123575,7 @@
       "properties": {
         "label": "city",
         "text": "eskena pass",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         3164448,
@@ -123588,7 +123588,7 @@
       "properties": {
         "label": "city",
         "text": "ai binnad",
-        "zoom": "3"
+        "zoom": 3
       },
       "pt": [
         2866080,
@@ -123601,7 +123601,7 @@
       "properties": {
         "label": "city",
         "text": "unbara",
-        "zoom": "3"
+        "zoom": 3
       },
       "pt": [
         2868768,
@@ -123614,7 +123614,7 @@
       "properties": {
         "label": "region",
         "text": "zosu gi",
-        "zoom": "3"
+        "zoom": 3
       },
       "pt": [
         2801110,
@@ -123627,7 +123627,7 @@
       "properties": {
         "label": "region",
         "text": "zosu himnab",
-        "zoom": "3"
+        "zoom": 3
       },
       "pt": [
         3035606,
@@ -123640,7 +123640,7 @@
       "properties": {
         "label": "region",
         "text": "zosu rigam fo",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         3109462,
@@ -123679,7 +123679,7 @@
       "properties": {
         "label": "region",
         "text": "zosu ilkso",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         2789078,
@@ -123692,7 +123692,7 @@
       "properties": {
         "label": "region",
         "text": "zosu tap",
-        "zoom": "5"
+        "zoom": 5
       },
       "pt": [
         2807830,
@@ -123718,7 +123718,7 @@
       "properties": {
         "label": "region",
         "text": "dreb island",
-        "zoom": "3"
+        "zoom": 3
       },
       "pt": [
         2340982,
@@ -123731,7 +123731,7 @@
       "properties": {
         "label": "region",
         "text": "ndado",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         2007760,
@@ -123744,7 +123744,7 @@
       "properties": {
         "label": "region",
         "text": "ngis",
-        "zoom": "3"
+        "zoom": 3
       },
       "pt": [
         1997520,
@@ -123757,7 +123757,7 @@
       "properties": {
         "label": "region",
         "text": "sartyoruganda",
-        "zoom": "5"
+        "zoom": 5
       },
       "pt": [
         2262736,
@@ -123770,7 +123770,7 @@
       "properties": {
         "label": "region",
         "text": "ybli",
-        "zoom": "5"
+        "zoom": 5
       },
       "pt": [
         2552320,
@@ -123783,7 +123783,7 @@
       "properties": {
         "label": "minorsea",
         "text": "miatesork bay",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         736104,
@@ -123796,7 +123796,7 @@
       "properties": {
         "label": "minorsea",
         "text": "yul bay",
-        "zoom": "3"
+        "zoom": 3
       },
       "pt": [
         662248,
@@ -123809,7 +123809,7 @@
       "properties": {
         "label": "region",
         "text": "nonggadum",
-        "zoom": "3"
+        "zoom": 3
       },
       "pt": [
         3014880,
@@ -123822,7 +123822,7 @@
       "properties": {
         "label": "minorsea",
         "text": "lake urte",
-        "zoom": "3"
+        "zoom": 3
       },
       "pt": [
         920704,
@@ -123835,7 +123835,7 @@
       "properties": {
         "label": "city",
         "text": "mnikolage",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         3208592,
@@ -123848,7 +123848,7 @@
       "properties": {
         "label": "city",
         "text": "ditte",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         3270096,
@@ -123861,7 +123861,7 @@
       "properties": {
         "label": "city",
         "text": "ribbonnad",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         3154800,
@@ -123874,7 +123874,7 @@
       "properties": {
         "label": "city",
         "text": "zetfield",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         3073104,
@@ -123887,7 +123887,7 @@
       "properties": {
         "label": "city",
         "text": "alyith",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         2885088,
@@ -123900,7 +123900,7 @@
       "properties": {
         "label": "city",
         "text": "barlyfen",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         2857408,
@@ -123913,7 +123913,7 @@
       "properties": {
         "label": "city",
         "text": "riggerymat",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         2564704,
@@ -123926,7 +123926,7 @@
       "properties": {
         "label": "city",
         "text": "trindgy",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         3097216,
@@ -123939,7 +123939,7 @@
       "properties": {
         "label": "city",
         "text": "brindger",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         3012736,
@@ -123965,7 +123965,7 @@
       "properties": {
         "label": "city",
         "text": "krimmie",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         3229568,
@@ -123978,7 +123978,7 @@
       "properties": {
         "label": "city",
         "text": "schenfelt",
-        "zoom": "3"
+        "zoom": 3
       },
       "pt": [
         3108608,
@@ -123991,7 +123991,7 @@
       "properties": {
         "label": "city",
         "text": "boggerelled",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         3321600,
@@ -124004,7 +124004,7 @@
       "properties": {
         "label": "city",
         "text": "zrupin",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         3511040,
@@ -124017,7 +124017,7 @@
       "properties": {
         "label": "city",
         "text": "norbim",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         3487488,
@@ -124030,7 +124030,7 @@
       "properties": {
         "label": "city",
         "text": "groumont",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         3461888,
@@ -124043,7 +124043,7 @@
       "properties": {
         "label": "city",
         "text": "essamock",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         3158272,
@@ -124056,7 +124056,7 @@
       "properties": {
         "label": "city",
         "text": "ringmalya",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         3204608,
@@ -124069,7 +124069,7 @@
       "properties": {
         "label": "city",
         "text": "essle",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         3005952,
@@ -124082,7 +124082,7 @@
       "properties": {
         "label": "city",
         "text": "coelle",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         2848768,
@@ -124095,7 +124095,7 @@
       "properties": {
         "label": "region",
         "text": "moriza",
-        "zoom": "3"
+        "zoom": 3
       },
       "pt": [
         2836000,
@@ -124108,7 +124108,7 @@
       "properties": {
         "label": "city",
         "text": "nonggadum",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         2956032,
@@ -124121,7 +124121,7 @@
       "properties": {
         "label": "city",
         "text": "briglied",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         2648448,
@@ -124134,7 +124134,7 @@
       "properties": {
         "label": "city",
         "text": "noumont",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         3022080,
@@ -124147,7 +124147,7 @@
       "properties": {
         "label": "city",
         "text": "migrou",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         3473408,
@@ -124160,7 +124160,7 @@
       "properties": {
         "label": "city",
         "text": "issheta",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         2872576,
@@ -124173,7 +124173,7 @@
       "properties": {
         "label": "city",
         "text": "durmand",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         2907392,
@@ -124186,7 +124186,7 @@
       "properties": {
         "label": "city",
         "text": "etsumiga",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         2886016,
@@ -124199,7 +124199,7 @@
       "properties": {
         "label": "city",
         "text": "gorik",
-        "zoom": "3"
+        "zoom": 3
       },
       "pt": [
         2835696,
@@ -124212,7 +124212,7 @@
       "properties": {
         "label": "city",
         "text": "piltrenck",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         2824160,
@@ -124225,7 +124225,7 @@
       "properties": {
         "label": "city",
         "text": "soffa bay",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         2947808,
@@ -124251,7 +124251,7 @@
       "properties": {
         "label": "city",
         "text": "oudyens",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         3121376,
@@ -124264,7 +124264,7 @@
       "properties": {
         "label": "region",
         "text": "mount barlyfen",
-        "zoom": "3"
+        "zoom": 3
       },
       "pt": [
         2841664,
@@ -124667,7 +124667,7 @@
       "properties": {
         "label": "region",
         "text": "mount noboro",
-        "zoom": "3"
+        "zoom": 3
       },
       "pt": [
         876640,
@@ -124693,7 +124693,7 @@
       "properties": {
         "label": "region",
         "text": "miz",
-        "zoom": "3"
+        "zoom": 3
       },
       "pt": [
         474400,
@@ -124706,7 +124706,7 @@
       "properties": {
         "label": "region",
         "text": "zayare natsupit",
-        "zoom": "3"
+        "zoom": 3
       },
       "pt": [
         1360160,
@@ -124732,7 +124732,7 @@
       "properties": {
         "label": "region",
         "text": "huatosurak",
-        "zoom": "2"
+        "zoom": 2
       },
       "pt": [
         1772960,
@@ -124745,7 +124745,7 @@
       "properties": {
         "label": "region",
         "text": "osoyapit",
-        "zoom": "3"
+        "zoom": 3
       },
       "pt": [
         1806240,
@@ -124771,7 +124771,7 @@
       "properties": {
         "label": "region",
         "text": "baratakapit",
-        "zoom": "2"
+        "zoom": 2
       },
       "pt": [
         1766560,
@@ -124797,7 +124797,7 @@
       "properties": {
         "label": "region",
         "text": "oskyutlams",
-        "zoom": "2"
+        "zoom": 2
       },
       "pt": [
         1045920,
@@ -124810,7 +124810,7 @@
       "properties": {
         "label": "region",
         "text": "natsupit",
-        "zoom": "3"
+        "zoom": 3
       },
       "pt": [
         882080,
@@ -124823,7 +124823,7 @@
       "properties": {
         "label": "region",
         "text": "xastapit",
-        "zoom": "5"
+        "zoom": 5
       },
       "pt": [
         1113760,
@@ -124836,7 +124836,7 @@
       "properties": {
         "label": "region",
         "text": "skyumiapit",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         1182240,
@@ -124862,7 +124862,7 @@
       "properties": {
         "label": "region",
         "text": "himenepit",
-        "zoom": "3"
+        "zoom": 3
       },
       "pt": [
         1947680,
@@ -125083,7 +125083,7 @@
       "properties": {
         "label": "minorsea",
         "text": "gulf of ashigam",
-        "zoom": "3"
+        "zoom": 3
       },
       "pt": [
         2992160,
@@ -125109,7 +125109,7 @@
       "properties": {
         "label": "minorsea",
         "text": "lake aketuva",
-        "zoom": "2"
+        "zoom": 2
       },
       "pt": [
         2590560,
@@ -125135,7 +125135,7 @@
       "properties": {
         "label": "minorsea",
         "text": "bay of zramsd",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         2178720,
@@ -125148,7 +125148,7 @@
       "properties": {
         "label": "minorsea",
         "text": "camareni channel",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         1678240,
@@ -125161,7 +125161,7 @@
       "properties": {
         "label": "minorsea",
         "text": "near zbegyanda strait",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         1042080,
@@ -125174,7 +125174,7 @@
       "properties": {
         "label": "minorsea",
         "text": "far zbegyanda strait",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         1000480,
@@ -125265,7 +125265,7 @@
       "properties": {
         "label": "minorsea",
         "text": "boundary bay",
-        "zoom": "3"
+        "zoom": 3
       },
       "pt": [
         898080,
@@ -125278,7 +125278,7 @@
       "properties": {
         "label": "minorsea",
         "text": "yan plu bay",
-        "zoom": "3"
+        "zoom": 3
       },
       "pt": [
         839200,
@@ -125317,7 +125317,7 @@
       "properties": {
         "label": "minorsea",
         "text": "gulf of jyo hua",
-        "zoom": "3"
+        "zoom": 3
       },
       "pt": [
         1668000,
@@ -125330,7 +125330,7 @@
       "properties": {
         "label": "city",
         "text": "hawan",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         1561256,
@@ -125343,7 +125343,7 @@
       "properties": {
         "label": "city",
         "text": "gut",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         1610712,
@@ -125356,7 +125356,7 @@
       "properties": {
         "label": "region",
         "text": "u sarapyinst",
-        "zoom": "5"
+        "zoom": 5
       },
       "pt": [
         3250746.5,
@@ -125369,7 +125369,7 @@
       "properties": {
         "label": "region",
         "text": "u keleochyap",
-        "zoom": "6"
+        "zoom": 6
       },
       "pt": [
         3237482.5,
@@ -125382,7 +125382,7 @@
       "properties": {
         "label": "region",
         "text": "madje park",
-        "zoom": "11"
+        "zoom": 11
       },
       "pt": [
         1765761.5,
@@ -125395,7 +125395,7 @@
       "properties": {
         "label": "city",
         "text": "kpesa",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         1772205.5,
@@ -125408,7 +125408,7 @@
       "properties": {
         "label": "river",
         "text": "alye river",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         1753389.5,
@@ -125421,7 +125421,7 @@
       "properties": {
         "label": "river",
         "text": "lyalagut river",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         1798957.5,
@@ -125434,7 +125434,7 @@
       "properties": {
         "label": "city",
         "text": "besufeld",
-        "zoom": "4"
+        "zoom": 4
       },
       "pt": [
         2716333.5,
@@ -125447,7 +125447,7 @@
       "properties": {
         "label": "region",
         "text": "tpasa",
-        "zoom": "6"
+        "zoom": 6
       },
       "pt": [
         3053421.5,
@@ -125460,7 +125460,7 @@
       "properties": {
         "label": "region",
         "text": "beq",
-        "zoom": "6"
+        "zoom": 6
       },
       "pt": [
         3101773.5,

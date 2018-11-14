@@ -53,7 +53,7 @@ export type Arc = {
 export type LabelProps = {
   label: "park" | "city" | "region" | "sea" | "minorsea" | "river",
   text: string,
-  zoom?: number | string
+  zoom?: number,
 };
 
 export type Label = {
@@ -68,8 +68,8 @@ export type PolyProps =
     t: "natural", natural: "lake" | "coastline" | "mountain",
     text?: string // not sure if this is used anywhere
   }
-  | { t: "road", road: "highway" | "street" | "street2", text: string, zoom?: string }
-  | { t: "city", text: string, zoom?: string } // shouldn't zoom be number?
+  | { t: "road", road: "highway" | "street" | "street2", text: string, zoom?: number }
+  | { t: "city", text: string, zoom?: number }
 
 export type Poly = {
   type: 'Polygon',

@@ -79,12 +79,12 @@ export type Poly = {
 };
 
 export type Images = { [k: string]: Image };
-export type Obj = Arc | Poly;
 export type Sketches = any;
 
 export type Geo = {
   counter: number,
   images: Images,
-  objects: Obj[],
+  arcs: Arc[],
+  polys: Poly[],
   labels: Label[],
 };

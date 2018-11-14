@@ -53,7 +53,7 @@ ld.done(function(_data) {
   data = _data;
   let count = 0;
   const geo = data.json.geo;
-  coastline_layer = new CoastlineLayer(geo.objects, geo.labels, geo.counter);
+  coastline_layer = new CoastlineLayer(geo.arcs, geo.polys, geo.labels, geo.counter);
   image_layer = new ImageLayer(dispatch, 0, geo.images, data.img.overlay);
 
   river_layer = new RiverLayer(dispatch, data.json.rivers);
@@ -755,7 +755,7 @@ function has_label(x: any, label: string) {
   return x.properties.text && x.properties.text.match(new RegExp(label, "i"))
 }
 function zoom_to(label: string) {
-  const selection = data.json.geo.objects.filter((x: any) => has_label(x, label) && x.pt);
+  const selection = data.json.geo.labels.filter((x: any) => has_label(x, label) && x.pt);
   const pt = selection[0].pt;
   if (pt == null) throw `couldn\'t find ${label}`;
   const pixel_offset = xform(state.camera(), pt[0], pt[1]);

@@ -1,6 +1,6 @@
 import { Mode, Point, SmPoint, ArPoint, ArRectangle, Dict, Ctx, Camera } from './types';
 import { Label, Arc, Target, Segment, LabelTarget, ArcVertexTarget, Feature } from './types';
-import { Obj, Poly, PolyProps, Bbox } from './types';
+import { Poly, PolyProps, Bbox } from './types';
 import * as simplify from './simplify';
 
 declare var g_mode: Mode;
@@ -11,13 +11,6 @@ import _ = require('underscore');
 var DEBUG_BBOX = false;
 import colors = require('./colors');
 import labels = require('./labels');
-
-
-function collect(objects: any, t: string) {
-  const rv = _.object(objects.filter(function(x: any) { return x.type == t; })
-    .map((x: any) => { return [x.name, x] }));
-  return rv;
-}
 
 function dictOfNamedArray<T extends { name: string }>(ar: T[]): Dict<T> {
   const rv: Dict<T> = {};
@@ -162,10 +155,10 @@ export class CoastlineLayer {
   label_rt: RTreeStatic;
   arc_to_feature: { [k: string]: any } = {};
 
-  constructor(objects: Obj[], labels: Label[], counter: number) {
+  constructor(arcs: Arc[], polys: Poly[], labels: Label[], counter: number) {
     this.counter = counter;
-    this.features = collect(objects, "Polygon") as Dict<Feature>;
-    this.arcs = collect(objects, "arc") as Dict<Arc>;
+    this.features = dictOfNamedArray(polys); // converting from poly to 'feature', here, which I think needs bbox
+    this.arcs = dictOfNamedArray(arcs);
     this.labels = dictOfNamedArray(labels);
     this.rebuild();
   }

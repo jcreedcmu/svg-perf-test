@@ -2,6 +2,7 @@ import { Point, Ctx, Mode, Camera, Rect, Path, ArPoint, SmPoint, Bundle, Layer, 
 import { Loader, Data } from './loader';
 import { clone } from './util';
 import { simplify } from './simplify';
+import { colors } from './colors';
 
 window['g_mode'] = "Pan";
 declare var g_mode: Mode;
@@ -432,9 +433,11 @@ $('#c').on('mousedown', function(e) {
     const targets = coastline_layer.targets(bbox);
 
     if (targets.length >= 1) {
+      // yikes, what happens if I got two or more?? looks like I drag
+      // them all together. Don't want to do that.
       const neighbors = coastline_layer.targets_nabes(targets);
 
-      start_drag(worldp, neighbors, (dragp: Point) => {
+      start_drag(worldp, neighbors, dragp => {
         coastline_layer.replace_vert(targets, dragp);
       });
     }
@@ -496,12 +499,12 @@ function start_measure(startp: Point) {
     d.lineTo(dragp.x, dragp.y);
 
     d.lineWidth = 1 / scale;
-    d.strokeStyle = "#07f";
+    d.strokeStyle = colors.motion_guide;
     d.stroke();
     d.restore();
 
     d.font = "14px sans-serif";
-    d.fillStyle = "#07f";
+    d.fillStyle = colors.motion_guide;
     const dist = meters_to_string(vdist(dragp, startp));
     const width = d.measureText(dist).width;
     d.save();
@@ -532,6 +535,8 @@ function start_measure(startp: Point) {
 
 }
 
+// The continuation k is what to do when the drag ends. The argument
+// dragp to k is the point we released the drag on.
 function start_drag(startp: Point, neighbors: SmPoint[], k: (dragp: Point) => void) {
   const camera = state.camera();
   let dragp = clone(startp);
@@ -542,6 +547,7 @@ function start_drag(startp: Point, neighbors: SmPoint[], k: (dragp: Point) => vo
     d.scale(scale, -scale);
     d.beginPath();
     if (neighbors.length == 0) {
+      // if no neighbors, we're moving a label; draw a little crosshairs.
       d.moveTo(dragp.x, dragp.y - 10 / scale);
       d.lineTo(dragp.x, dragp.y + 10 / scale);
       d.moveTo(dragp.x - 10 / scale, dragp.y);
@@ -549,13 +555,15 @@ function start_drag(startp: Point, neighbors: SmPoint[], k: (dragp: Point) => vo
       d.arc(dragp.x, dragp.y, 10 / scale, 0, 2 * Math.PI);
     }
     else {
-      neighbors.forEach(function(nabe) {
+      // ...else, we're moving an arc point. Draw some guides to show
+      // how the moved point connects to its neighbors.
+      neighbors.forEach(nabe => {
         d.moveTo(nabe[0], nabe[1]);
         d.lineTo(dragp.x, dragp.y);
       });
     }
     d.lineWidth = 1 / scale;
-    d.strokeStyle = "#07f";
+    d.strokeStyle = colors.motion_guide;
     d.stroke();
     d.restore();
   }
@@ -602,7 +610,7 @@ function start_freehand(startp: ArPoint, k: (dragp: SmPoint[]) => void) {
       }
     });
     d.lineWidth = 2 / camera.scale();
-    d.strokeStyle = "#07f";
+    d.strokeStyle = colors.motion_guide;
     d.stroke();
     d.restore();
   }

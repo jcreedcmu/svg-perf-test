@@ -2,6 +2,7 @@ import { Mode, Point, SmPoint, ArPoint, ArRectangle, Dict, Ctx, Camera } from '.
 import { Label, Arc, Target, Segment, LabelTarget, ArcVertexTarget, Feature } from './types';
 import { Poly, PolyProps, Bbox, Layer } from './types';
 import { adapt } from './util';
+import { colors } from './colors';
 import * as simplify from './simplify';
 import * as rbush from 'rbush';
 import BBox = rbush.BBox;
@@ -41,12 +42,6 @@ import { clone, above_simp_thresh } from './util';
 import _ = require('underscore');
 
 var DEBUG_BBOX = false;
-
-const colors: Dict<string> = {
-  debug: "#0ff",
-  water_border: "#44a",
-  land: "#ededdf",
-};
 
 import labels = require('./labels');
 
@@ -482,7 +477,7 @@ export class CoastlineLayer implements Layer {
         var lab = this.labels[target[1]];
         removePt(this.label_rt, { x: lab.pt[0], y: lab.pt[1] });
         lab.pt = [p.x, p.y];
-        removePt(this.label_rt, { x: lab.pt[0], y: lab.pt[1] });
+        insertPt(this.label_rt, { x: lab.pt[0], y: lab.pt[1] }, target[1]);
       }
     });
   }

@@ -23,6 +23,7 @@ export type Bundle =
 
 export type SmPoint = [number, number, number?];
 
+// minx, miny, maxx, maxy
 export type ArRectangle = [number, number, number, number];
 
 export type Feature = any;

@@ -2,6 +2,21 @@ import { Mode, Point, SmPoint, ArPoint, ArRectangle, Dict, Ctx, Camera } from '.
 import { Label, Arc, Target, Segment, LabelTarget, ArcVertexTarget, Feature } from './types';
 import { Poly, PolyProps, Bbox, Layer } from './types';
 import * as simplify from './simplify';
+import * as rbush from 'rbush';
+import BBox = rbush.BBox;
+import RBush = rbush.RBush;
+
+type Bush<T> = RBush<BBox & { payload: T }>;
+
+function tsearch<T>(rt: Bush<T>, bbox: ArRectangle): T[] {
+  console.log(bbox);
+  return rt.search({
+    minX: bbox[0],
+    minY: bbox[1],
+    maxX: bbox[2],
+    maxY: bbox[3]
+  }).map(x => x.payload);
+}
 
 declare var g_mode: Mode;
 
@@ -151,12 +166,14 @@ function set_value(e: HTMLElement, v: string): void {
   (e as HTMLInputElement).value = v;
 }
 
+type Payload = BBox & { payload: Poly };
+
 export class CoastlineLayer implements Layer {
   counter: number;
   features: Dict<Feature>;
   arcs: Dict<Arc>;
   labels: Dict<Label>;
-  rt: RTreeStatic;
+  rt: rbush.RBush<Payload>;
   vertex_rt: RTreeStatic;
   label_rt: RTreeStatic;
   arc_to_feature: { [k: string]: any } = {};
@@ -170,7 +187,7 @@ export class CoastlineLayer implements Layer {
   }
 
   rebuild() {
-    this.rt = RTree(10);
+    this.rt = rbush(10);
     this.vertex_rt = RTree(10);
     this.label_rt = RTree(10);
     const { features, arc_to_feature, arcs, labels } = this;
@@ -189,8 +206,7 @@ export class CoastlineLayer implements Layer {
     _.each(features, (object: any, key) => {
       simplify.compute_bbox(object, arcs);
       var bb = object.properties.bbox;
-      this.rt.insert({ x: bb.minx, y: bb.miny, w: bb.maxx - bb.minx, h: bb.maxy - bb.miny },
-        object);
+      this.rt.insert({ minX: bb.minx, minY: bb.miny, maxX: bb.maxx, maxY: bb.maxy, payload: object });
     });
 
     _.each(features, (object: any, feature_ix) => {
@@ -202,8 +218,8 @@ export class CoastlineLayer implements Layer {
     });
   }
 
-  arc_targets(world_bbox: ArRectangle) {
-    return this.rt.bbox.apply(this.rt, world_bbox);
+  arc_targets(world_bbox: ArRectangle): Poly[] {
+    return tsearch(this.rt, world_bbox);
   }
 
   arc_vertex_targets(world_bbox: ArRectangle): ArcVertexTarget[] {
@@ -294,7 +310,7 @@ export class CoastlineLayer implements Layer {
     var arcs_to_draw_vertices_for: any[] = []; // XXX revisit this guess
     var salients: any = []; // XXX revisit this guess
 
-    var features: Poly[] = this.rt.bbox.apply(this.rt, world_bbox);
+    var features: Poly[] = tsearch(this.rt, world_bbox);
     features = _.sortBy(features, x => {
       var z = 0;
       const p: PolyProps = x.properties;
@@ -420,11 +436,12 @@ export class CoastlineLayer implements Layer {
     this.arc_to_feature[arc_id].forEach((feature_ix: string) => {
       var object = this.features[feature_ix];
       var bb = object.properties.bbox;
-      this.rt.remove({ x: bb.minx, y: bb.miny, w: bb.maxx - bb.minx, h: bb.maxy - bb.miny },
-        object);
+      this.rt.remove(
+        { minX: bb.minx, minY: bb.miny, maxX: bb.maxx, maxY: bb.maxy, payload: object },
+        (a, b) => a.payload == b.payload
+      );
       simplify.compute_bbox(object, this.arcs);
-      this.rt.insert({ x: bb.minx, y: bb.miny, w: bb.maxx - bb.minx, h: bb.maxy - bb.miny },
-        object);
+      this.rt.insert({ minX: bb.minx, minY: bb.miny, maxX: bb.maxx, maxY: bb.maxy, payload: object });
     });
   }
 
@@ -550,7 +567,7 @@ export class CoastlineLayer implements Layer {
     this.labels[lab.name] = lab;
   }
 
-  add_arc_feature(t: string, points: SmPoint[], properties: { [k: string]: any }) {
+  add_arc_feature(t: string, points: SmPoint[], properties: PolyProps) {
     var that = this;
     var feature_name = "f" + this.counter;
     var arc_name = "a" + this.counter;
@@ -566,9 +583,12 @@ export class CoastlineLayer implements Layer {
     });
 
 
-    var bb = feature.properties.bbox;
-    that.rt.insert({ x: bb.minx, y: bb.miny, w: bb.maxx - bb.minx, h: bb.maxy - bb.miny },
-      feature);
+    // ugh... the calls to simplify.compute_bbox statefully creates this
+    var bb = (feature.properties as any).bbox;
+    that.rt.insert({
+      minX: bb.minx, minY: bb.miny, maxX: bb.maxx, maxY: bb.maxy,
+      payload: feature
+    });
 
     var arc_to_feature = this.arc_to_feature;
     if (!arc_to_feature[arc_name])
@@ -616,7 +636,7 @@ export class CoastlineLayer implements Layer {
     set_value($('#insert_feature input[name="value"]')[0], "highway");
     set_value($('#insert_feature input[name="zoom"]')[0], "");
 
-    const process_f: (obj: { [k: string]: any }) => void = obj => {
+    const process_f: (obj: PolyProps) => void = obj => {
       this.add_arc_feature("Polygon", pts, obj);
     };
 

@@ -11,7 +11,7 @@ import { RiverLayer } from './rivers';
 import { ImageLayer } from './images';
 import { SketchLayer } from './sketch';
 import { State } from './state';
-import key = require('./key');
+import { key } from './key';
 import geom = require('./geom');
 import modal = require('./modal');
 
@@ -660,8 +660,7 @@ function main_key_handler(e: JQuery.Event<Document, null>) {
     if (modals.filter(() => $(this).css("display") == "block").length)
       return;
   }
-
-  const k = key(e);
+  const k = key(e.originalEvent as KeyboardEvent);
   // if (k == "i") {
   //   label_layer.add_label(state, prompt("name"));
   //   render();
@@ -686,7 +685,7 @@ function main_key_handler(e: JQuery.Event<Document, null>) {
     $(document).off('keydown');
     const stop_at = start_pan_and_stop(g_mouse.x, g_mouse.y, state.camera());
     $(document).on('keyup.holdspace', function(e) {
-      if (key(e) == "<space>") {
+      if (key(e.originalEvent as KeyboardEvent) == "<space>") {
         stop_at(g_mouse.x, g_mouse.y);
         $(document).off('.holdspace');
         $(document).on('keydown', main_key_handler);

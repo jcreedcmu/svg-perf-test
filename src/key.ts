@@ -1,4 +1,4 @@
-var table = {
+const table: { [k: number]: string } = {
   188: ",",
   190: ".",
   192: "`",
@@ -15,7 +15,7 @@ var table = {
   13: "<return>",
 };
 
-var shift_table = {
+const shift_table: { [k: string]: string } = {
   ",": "<",
   ".": ">",
   "`": "~",
@@ -39,10 +39,10 @@ var shift_table = {
   "0": ")",
 };
 
-module.exports = function(e) {
+export function key(e: KeyboardEvent) {
   var base = "[" + e.keyCode + "]";
   if ((e.keyCode > 64 && e.keyCode <= 64 + 26)
-      || (e.keyCode >= 48 && e.keyCode <= 48 + 9)) {
+    || (e.keyCode >= 48 && e.keyCode <= 48 + 9)) {
     base = String.fromCharCode(e.keyCode).toLowerCase();
   }
   if (table[e.keyCode]) {

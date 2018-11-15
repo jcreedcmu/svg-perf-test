@@ -9,7 +9,13 @@ import { clone, above_simp_thresh } from './util';
 import _ = require('underscore');
 
 var DEBUG_BBOX = false;
-import colors = require('./colors');
+
+const colors: Dict<string> = {
+  debug: "#0ff",
+  water_border: "#44a",
+  land: "#ededdf",
+};
+
 import labels = require('./labels');
 
 function dictOfNamedArray<T extends { name: string }>(ar: T[]): Dict<T> {

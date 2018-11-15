@@ -9,7 +9,7 @@ declare var g_mode: Mode;
 import { CoastlineLayer } from './coastline';
 import { RiverLayer } from './rivers';
 import { ImageLayer } from './images';
-import SketchLayer = require('./sketch');
+import { SketchLayer } from './sketch';
 import State = require('./state');
 import key = require('./key');
 import geom = require('./geom');
@@ -57,7 +57,7 @@ ld.done(function(_data) {
   console.log(data);
   image_layer = new ImageLayer(dispatch, 0, geo.images);
   river_layer = new RiverLayer(data.json.rivers);
-  sketch_layer = new SketchLayer(dispatch, geo.sketches);
+  sketch_layer = new SketchLayer(geo.sketches);
   g_layers = [coastline_layer,
     river_layer,
     sketch_layer,

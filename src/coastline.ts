@@ -190,7 +190,7 @@ export class CoastlineLayer implements Layer {
   labels: Dict<Label>;
   rt: Bush<Poly>;
   vertex_rt: Bush<ArcVertexTarget>;
-  label_rt: RTreeStatic;
+  label_rt: Bush<LabelTarget>;
   arc_to_feature: { [k: string]: any } = {};
 
   constructor(arcs: Arc[], polys: Poly[], labels: Label[], counter: number) {
@@ -204,7 +204,7 @@ export class CoastlineLayer implements Layer {
   rebuild() {
     this.rt = rbush(10);
     this.vertex_rt = rbush(10);
-    this.label_rt = RTree(10);
+    this.label_rt = rbush(10);
     const { features, arc_to_feature, arcs, labels } = this;
 
     Object.entries(arcs).forEach(([an, arc]) => {
@@ -215,7 +215,7 @@ export class CoastlineLayer implements Layer {
     });
 
     Object.entries(labels).forEach(([k, p]) => {
-      this.label_rt.insert({ x: p.pt[0], y: p.pt[1], w: 0, h: 0 }, p.name);
+      insertPt(this.label_rt, { x: p.pt[0], y: p.pt[1] }, p.name);
     });
 
     _.each(features, (object: any, key) => {
@@ -255,7 +255,7 @@ export class CoastlineLayer implements Layer {
   }
 
   label_targets(world_bbox: ArRectangle): LabelTarget[] {
-    var targets = this.label_rt.bbox.apply(this.label_rt, world_bbox);
+    var targets = tsearch(this.label_rt, world_bbox);
     if (targets.length < 2)
       return targets;
     else
@@ -438,7 +438,7 @@ export class CoastlineLayer implements Layer {
     // render labels
     if (camera.zoom < 1) return;
     d.lineJoin = "round";
-    this.label_rt.bbox.apply(this.label_rt, world_bbox).forEach(function(x: any) {
+    tsearch(this.label_rt, world_bbox).forEach(x => {
       labels.draw_label(d, camera, that.labels[x]);
     });
   }
@@ -480,9 +480,9 @@ export class CoastlineLayer implements Layer {
       }
       else if (target[0] == "label") {
         var lab = this.labels[target[1]];
-        this.label_rt.remove({ x: lab.pt[0], y: lab.pt[1], w: 0, h: 0 }, target[1]);
+        removePt(this.label_rt, { x: lab.pt[0], y: lab.pt[1] });
         lab.pt = [p.x, p.y];
-        this.label_rt.insert({ x: lab.pt[0], y: lab.pt[1], w: 0, h: 0 }, target[1]);
+        removePt(this.label_rt, { x: lab.pt[0], y: lab.pt[1] });
       }
     });
   }
@@ -566,7 +566,7 @@ export class CoastlineLayer implements Layer {
   add_point_feature(lab: Label) {
     this.labels[lab.name] = lab;
     console.log("adding pt " + JSON.stringify(lab), lab.name, { x: lab.pt[0], y: lab.pt[1], w: 0, h: 0 });
-    this.label_rt.insert({ x: lab.pt[0], y: lab.pt[1], w: 0, h: 0 }, lab.name);
+    insertPt(this.label_rt, { x: lab.pt[0], y: lab.pt[1] }, lab.name);
   }
 
   new_point_feature(lab: Label) {

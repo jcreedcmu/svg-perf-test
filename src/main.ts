@@ -12,7 +12,7 @@ import { ImageLayer } from './images';
 import { SketchLayer } from './sketch';
 import { State } from './state';
 import { key } from './key';
-import geom = require('./geom');
+import * as geom from './geom';
 import modal = require('./modal');
 
 const DEBUG = false;
@@ -40,7 +40,7 @@ let g_lastz: string = "[]";
 let coastline_layer: CoastlineLayer;
 let image_layer: ImageLayer;
 let river_layer: RiverLayer;
-let sketch_layer: any;
+let sketch_layer: SketchLayer;
 let g_render_extra: null | ((camera: Camera, d: Ctx) => void);
 let g_mouse: Point = { x: 0, y: 0 };
 let data: Data;
@@ -54,7 +54,6 @@ ld.done(function(_data) {
   let count = 0;
   const geo = data.json.geo;
   coastline_layer = new CoastlineLayer(geo.arcs, geo.polys, geo.labels, geo.counter);
-  console.log(data);
   image_layer = new ImageLayer(dispatch, 0, geo.images);
   river_layer = new RiverLayer(data.json.rivers);
   sketch_layer = new SketchLayer(geo.sketches);
@@ -718,7 +717,10 @@ function main_key_handler(e: JQuery.Event<Document, null>) {
     save();
   }
   if (k == "q") {
-    coastline_layer.make_insert_feature_modal(sketch_layer.pop(), dispatch);
+    const sk = sketch_layer.pop();
+    if (sk != null) {
+      coastline_layer.make_insert_feature_modal(sk, dispatch);
+    }
   }
   if (k == "S-b") {
     coastline_layer.breakup();

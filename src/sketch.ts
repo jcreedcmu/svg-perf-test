@@ -1,6 +1,6 @@
-import { Layer, Ctx, Camera, ArRectangle, ArPoint } from './types';
+import { Layer, Ctx, Camera, ArRectangle, SmPoint } from './types';
 
-type Path = ArPoint[];
+type Path = SmPoint[];
 type Sketches = Path[];
 
 export class SketchLayer {

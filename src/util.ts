@@ -1,3 +1,5 @@
+import { SmPoint, ArPoint } from './types';
+
 export function clone<T>(x: T): T {
   return JSON.parse(JSON.stringify(x));
 }
@@ -29,4 +31,8 @@ const SIMPLIFICATION_FACTOR = 10; // higher = more simplification
 // to simplification the bigger it is) should be displayed at scale
 export function above_simp_thresh(z: number, scale: number): boolean {
   return z > SIMPLIFICATION_FACTOR / (scale * scale);
+}
+
+export function adapt(x: SmPoint): ArPoint {
+  return [x[0], x[1]];
 }

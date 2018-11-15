@@ -1,6 +1,7 @@
 import { Mode, Point, SmPoint, ArPoint, ArRectangle, Dict, Ctx, Camera } from './types';
 import { Label, Arc, Target, Segment, LabelTarget, ArcVertexTarget, Feature } from './types';
 import { Poly, PolyProps, Bbox, Layer } from './types';
+import { adapt } from './util';
 import * as simplify from './simplify';
 import * as rbush from 'rbush';
 import BBox = rbush.BBox;
@@ -9,13 +10,29 @@ import RBush = rbush.RBush;
 type Bush<T> = RBush<BBox & { payload: T }>;
 
 function tsearch<T>(rt: Bush<T>, bbox: ArRectangle): T[] {
-  console.log(bbox);
   return rt.search({
     minX: bbox[0],
     minY: bbox[1],
     maxX: bbox[2],
     maxY: bbox[3]
   }).map(x => x.payload);
+}
+
+function insertPt<T>(rt: Bush<T>, pt: Point, payload: T): void {
+  rt.insert({
+    minX: pt.x, maxX: pt.x,
+    minY: pt.y, maxY: pt.y,
+    payload
+  });
+}
+
+function removePt<T>(rt: Bush<T>, pt: Point): void {
+  rt.search({
+    minX: pt.x, maxX: pt.x,
+    minY: pt.y, maxY: pt.y,
+  }).forEach(res => {
+    rt.remove(res);
+  });
 }
 
 declare var g_mode: Mode;
@@ -166,15 +183,13 @@ function set_value(e: HTMLElement, v: string): void {
   (e as HTMLInputElement).value = v;
 }
 
-type Payload = BBox & { payload: Poly };
-
 export class CoastlineLayer implements Layer {
   counter: number;
   features: Dict<Feature>;
   arcs: Dict<Arc>;
   labels: Dict<Label>;
-  rt: rbush.RBush<Payload>;
-  vertex_rt: RTreeStatic;
+  rt: Bush<Poly>;
+  vertex_rt: Bush<ArcVertexTarget>;
   label_rt: RTreeStatic;
   arc_to_feature: { [k: string]: any } = {};
 
@@ -188,13 +203,13 @@ export class CoastlineLayer implements Layer {
 
   rebuild() {
     this.rt = rbush(10);
-    this.vertex_rt = RTree(10);
+    this.vertex_rt = rbush(10);
     this.label_rt = RTree(10);
     const { features, arc_to_feature, arcs, labels } = this;
 
     Object.entries(arcs).forEach(([an, arc]) => {
       arc.points.forEach((point, pn) => {
-        this.vertex_rt.insert({ x: point[0], y: point[1], w: 0, h: 0 }, { arc: an, point: point });
+        insertPt(this.vertex_rt, { x: point[0], y: point[1] }, { arc: an, point: point });
       });
       simplify.simplify_arc(arc);
     });
@@ -223,7 +238,7 @@ export class CoastlineLayer implements Layer {
   }
 
   arc_vertex_targets(world_bbox: ArRectangle): ArcVertexTarget[] {
-    var targets = this.vertex_rt.bbox.apply(this.vertex_rt, world_bbox);
+    var targets = tsearch(this.vertex_rt, world_bbox);
 
     if (targets.length < 2) return targets;
 
@@ -428,9 +443,6 @@ export class CoastlineLayer implements Layer {
     });
   }
 
-
-
-
   recompute_arc_feature_bbox(arc_id: string) {
 
     this.arc_to_feature[arc_id].forEach((feature_ix: string) => {
@@ -447,28 +459,30 @@ export class CoastlineLayer implements Layer {
 
   // special case first and last of arc??
   replace_vert(targets: Target[], p: Point) {
-    var that = this;
-    targets.forEach(function(target) {
+    targets.forEach(target => {
       if (target[0] == "coastline") {
         var rt_entry = target[1];
 
         var arc_id = rt_entry.arc;
 
-        var vert_ix = that.get_index(rt_entry);
-        var arc = that.arcs[arc_id];
+        var vert_ix = this.get_index(rt_entry);
+        var arc = this.arcs[arc_id];
         var oldp = rt_entry.point;
 
         var new_pt = arc.points[vert_ix] = [p.x, p.y, 1000]; // I think this 1000 can be whatever
         simplify.simplify_arc(arc);
-        var results = that.vertex_rt.remove({ x: oldp[0], y: oldp[1], w: 0, h: 0 }, rt_entry);
-        that.vertex_rt.insert({ x: p.x, y: p.y, w: 0, h: 0 }, { arc: arc_id, point: new_pt });
-        that.recompute_arc_feature_bbox(arc_id);
+        var results = removePt(this.vertex_rt, { x: oldp[0], y: oldp[1] });
+
+        // I can't call adapt here because get_index above relies on the
+        // by-reference equality of this inserted point?
+        insertPt(this.vertex_rt, p, { arc: arc_id, point: (new_pt as any) as ArPoint });
+        this.recompute_arc_feature_bbox(arc_id);
       }
       else if (target[0] == "label") {
-        var lab = that.labels[target[1]];
-        that.label_rt.remove({ x: lab.pt[0], y: lab.pt[1], w: 0, h: 0 }, target[1]);
+        var lab = this.labels[target[1]];
+        this.label_rt.remove({ x: lab.pt[0], y: lab.pt[1], w: 0, h: 0 }, target[1]);
         lab.pt = [p.x, p.y];
-        that.label_rt.insert({ x: lab.pt[0], y: lab.pt[1], w: 0, h: 0 }, target[1]);
+        this.label_rt.insert({ x: lab.pt[0], y: lab.pt[1], w: 0, h: 0 }, target[1]);
       }
     });
   }
@@ -481,12 +495,12 @@ export class CoastlineLayer implements Layer {
     arc.points[len] = oldp;
     simplify.simplify_arc(arc);
 
-    var results = this.vertex_rt.remove({ x: oldp[0], y: oldp[1], w: 0, h: 0 });
+    const results = removePt(this.vertex_rt, { x: oldp[0], y: oldp[1] });
 
     // XXX these are all wrong now
-    this.vertex_rt.insert({ x: p.x, y: p.y, w: 0, h: 0 }, [arc_id, len - 1]);
-    this.vertex_rt.insert({ x: oldp[0], y: oldp[1], w: 0, h: 0 }, [arc_id, len]);
-    this.vertex_rt.insert({ x: oldp[0], y: oldp[1], w: 0, h: 0 }, [arc_id, 0]);
+    insertPt(this.vertex_rt, p, [arc_id, len - 1] as any);
+    insertPt(this.vertex_rt, { x: oldp[0], y: oldp[1] }, [arc_id, len] as any);
+    insertPt(this.vertex_rt, { x: oldp[0], y: oldp[1] }, [arc_id, 0] as any);
 
     this.recompute_arc_feature_bbox(arc_id);
   };
@@ -499,7 +513,7 @@ export class CoastlineLayer implements Layer {
     arc.points.splice(segment.ix + 1, 0, newp);
     simplify.simplify_arc(arc);
 
-    this.vertex_rt.insert({ x: p.x, y: p.y, w: 0, h: 0 }, { arc: arc_id, point: newp });
+    insertPt(this.vertex_rt, p, { arc: arc_id, point: newp });
     this.recompute_arc_feature_bbox(arc_id);
   };
 
@@ -568,7 +582,7 @@ export class CoastlineLayer implements Layer {
   }
 
   add_arc_feature(t: string, points: SmPoint[], properties: PolyProps) {
-    var that = this;
+
     var feature_name = "f" + this.counter;
     var arc_name = "a" + this.counter;
     this.counter++;
@@ -578,14 +592,13 @@ export class CoastlineLayer implements Layer {
     simplify.simplify_arc(arc);
     simplify.compute_bbox(feature, this.arcs);
 
-    _.each(arc.points, function(point, pn) {
-      that.vertex_rt.insert({ x: point[0], y: point[1], w: 0, h: 0 }, { arc: arc_name, point: point });
+    _.each(arc.points, (point, pn) => {
+      insertPt(this.vertex_rt, { x: point[0], y: point[1] }, { arc: arc_name, point: point });
     });
-
 
     // ugh... the calls to simplify.compute_bbox statefully creates this
     var bb = (feature.properties as any).bbox;
-    that.rt.insert({
+    this.rt.insert({
       minX: bb.minx, minY: bb.miny, maxX: bb.maxx, maxY: bb.maxy,
       payload: feature
     });
@@ -594,7 +607,6 @@ export class CoastlineLayer implements Layer {
     if (!arc_to_feature[arc_name])
       arc_to_feature[arc_name] = [];
     arc_to_feature[arc_name].push(feature_name);
-
   }
 
   breakup() {

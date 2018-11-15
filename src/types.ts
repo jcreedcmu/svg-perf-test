@@ -4,10 +4,12 @@ export type Color = { r: number, g: number, b: number };
 export type Ctx = CanvasRenderingContext2D;
 
 export type Mode = "Pan" | "Freehand" | "Move" | "Select" | "Label" | "Measure";
-export interface Camera {
+export interface RawCamera {
   x: number;
   y: number;
   zoom: number;
+}
+export interface Camera extends RawCamera {
   scale(): number;
 };
 

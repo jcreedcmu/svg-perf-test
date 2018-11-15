@@ -10,7 +10,7 @@ import { CoastlineLayer } from './coastline';
 import { RiverLayer } from './rivers';
 import { ImageLayer } from './images';
 import { SketchLayer } from './sketch';
-import State = require('./state');
+import { State } from './state';
 import key = require('./key');
 import geom = require('./geom');
 import modal = require('./modal');
@@ -170,7 +170,7 @@ function render() {
   const world_bbox = get_world_bbox(camera);
 
   g_layers.forEach(function(layer) {
-    layer.render(d, camera, state.state.get('locus'), world_bbox);
+    layer.render(d, camera, state.state.locus, world_bbox);
   });
 
 

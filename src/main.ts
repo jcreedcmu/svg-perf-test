@@ -1,4 +1,4 @@
-import { Point, Ctx, Mode, Camera, Rect, Path, ArPoint, SmPoint, Bundle, Layer } from './types';
+import { Point, Ctx, Mode, Camera, Rect, Path, ArPoint, SmPoint, Bundle, Layer, ArRectangle } from './types';
 import { Loader, Data } from './loader';
 import { clone } from './util';
 import { simplify } from './simplify';
@@ -22,7 +22,7 @@ const VERTEX_SENSITIVITY = 10;
 const FREEHAND_SIMPLIFICATION_FACTOR = 100;
 const PANNING_MARGIN = 200;
 
-let g_selection: { arc?: Point } | null = null;
+let g_selection: { arc?: string } | null = null;
 let g_panning: boolean = false;
 
 let state = new State();
@@ -37,7 +37,7 @@ let w: number;
 let h: number;
 let g_layers: Layer[];
 let g_lastz: string = "[]";
-let coastline_layer: any;
+let coastline_layer: CoastlineLayer;
 let image_layer: any;
 let river_layer: any;
 let sketch_layer: any;
@@ -373,7 +373,7 @@ $('#c').on('mousedown', function(e) {
   const y = e.pageY;
   const worldp = inv_xform(camera, x, y);
   const slack = VERTEX_SENSITIVITY / camera.scale();
-  const bbox = [worldp.x - slack, worldp.y - slack, worldp.x + slack, worldp.y + slack];
+  const bbox: ArRectangle = [worldp.x - slack, worldp.y - slack, worldp.x + slack, worldp.y + slack];
 
   const th = $(this);
   if (g_mode == "Pan") {
@@ -533,7 +533,7 @@ function start_measure(startp: Point) {
 
 }
 
-function start_drag(startp: Point, neighbors: ArPoint[], k: (dragp: Point) => void) {
+function start_drag(startp: Point, neighbors: SmPoint[], k: (dragp: Point) => void) {
   const camera = state.camera();
   let dragp = clone(startp);
   const scale = camera.scale();
@@ -643,7 +643,7 @@ $('#c').on('mousemove', function(e) {
     const y = e.pageY;
     const worldp = inv_xform(camera, x, y);
     const rad = VERTEX_SENSITIVITY / camera.scale();
-    const bbox = [worldp.x - rad, worldp.y - rad, worldp.x + rad, worldp.y + rad];
+    const bbox: ArRectangle = [worldp.x - rad, worldp.y - rad, worldp.x + rad, worldp.y + rad];
     const targets = coastline_layer.targets(bbox);
     const z = JSON.stringify(targets);
     if (z != g_lastz) {
@@ -716,7 +716,7 @@ function main_key_handler(e: JQuery.Event<Document, null>) {
     save();
   }
   if (k == "q") {
-    coastline_layer.make_insert_feature_modal(sketch_layer.pop(), null, dispatch);
+    coastline_layer.make_insert_feature_modal(sketch_layer.pop(), dispatch);
   }
   if (k == "S-b") {
     coastline_layer.breakup();

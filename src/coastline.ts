@@ -610,7 +610,7 @@ export class CoastlineLayer implements Layer {
 
 
 
-  make_insert_feature_modal(pts: SmPoint[], lab: Label, dispatch: () => void) {
+  make_insert_feature_modal(pts: SmPoint[], dispatch: () => void) {
     set_value($('#insert_feature input[name="text"]')[0], "");
     set_value($('#insert_feature input[name="key"]')[0], "road");
     set_value($('#insert_feature input[name="value"]')[0], "highway");

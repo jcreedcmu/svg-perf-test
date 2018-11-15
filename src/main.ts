@@ -1,4 +1,4 @@
-import { Point, Ctx, Mode, Camera, Rect, Path, ArPoint, SmPoint, Bundle } from './types';
+import { Point, Ctx, Mode, Camera, Rect, Path, ArPoint, SmPoint, Bundle, Layer } from './types';
 import { Loader, Data } from './loader';
 import { clone } from './util';
 import { simplify } from './simplify';
@@ -7,8 +7,8 @@ window['g_mode'] = "Pan";
 declare var g_mode: Mode;
 
 import { CoastlineLayer } from './coastline';
+import { RiverLayer } from './rivers';
 import ImageLayer = require('./images');
-import RiverLayer = require('./rivers');
 import SketchLayer = require('./sketch');
 import State = require('./state');
 import key = require('./key');
@@ -35,7 +35,7 @@ let c: HTMLCanvasElement;
 let d: Ctx;
 let w: number;
 let h: number;
-let g_layers: any[];
+let g_layers: Layer[];
 let g_lastz: string = "[]";
 let coastline_layer: any;
 let image_layer: any;
@@ -56,7 +56,7 @@ ld.done(function(_data) {
   coastline_layer = new CoastlineLayer(geo.arcs, geo.polys, geo.labels, geo.counter);
   image_layer = new ImageLayer(dispatch, 0, geo.images, data.img.overlay);
 
-  river_layer = new RiverLayer(dispatch, data.json.rivers);
+  river_layer = new RiverLayer(data.json.rivers);
   sketch_layer = new SketchLayer(dispatch, geo.sketches);
   g_layers = [coastline_layer,
     river_layer,

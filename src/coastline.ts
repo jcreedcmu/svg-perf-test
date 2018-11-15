@@ -1,6 +1,6 @@
 import { Mode, Point, SmPoint, ArPoint, ArRectangle, Dict, Ctx, Camera } from './types';
 import { Label, Arc, Target, Segment, LabelTarget, ArcVertexTarget, Feature } from './types';
-import { Poly, PolyProps, Bbox } from './types';
+import { Poly, PolyProps, Bbox, Layer } from './types';
 import * as simplify from './simplify';
 
 declare var g_mode: Mode;
@@ -151,7 +151,7 @@ function set_value(e: HTMLElement, v: string): void {
   (e as HTMLInputElement).value = v;
 }
 
-export class CoastlineLayer {
+export class CoastlineLayer implements Layer {
   counter: number;
   features: Dict<Feature>;
   arcs: Dict<Arc>;

@@ -85,3 +85,8 @@ export type Geo = {
   polys: Poly[],
   labels: Label[],
 };
+
+export interface Layer {
+  render(d: Ctx, camera: Camera, locus: any, world_bbox: ArRectangle): void;
+  model(): any;
+}

@@ -8,7 +8,7 @@ declare var g_mode: Mode;
 
 import { CoastlineLayer } from './coastline';
 import { RiverLayer } from './rivers';
-import ImageLayer = require('./images');
+import { ImageLayer } from './images';
 import SketchLayer = require('./sketch');
 import State = require('./state');
 import key = require('./key');
@@ -38,8 +38,8 @@ let h: number;
 let g_layers: Layer[];
 let g_lastz: string = "[]";
 let coastline_layer: CoastlineLayer;
-let image_layer: any;
-let river_layer: any;
+let image_layer: ImageLayer;
+let river_layer: RiverLayer;
 let sketch_layer: any;
 let g_render_extra: null | ((camera: Camera, d: Ctx) => void);
 let g_mouse: Point = { x: 0, y: 0 };
@@ -54,8 +54,8 @@ ld.done(function(_data) {
   let count = 0;
   const geo = data.json.geo;
   coastline_layer = new CoastlineLayer(geo.arcs, geo.polys, geo.labels, geo.counter);
-  image_layer = new ImageLayer(dispatch, 0, geo.images, data.img.overlay);
-
+  console.log(data);
+  image_layer = new ImageLayer(dispatch, 0, geo.images);
   river_layer = new RiverLayer(data.json.rivers);
   sketch_layer = new SketchLayer(dispatch, geo.sketches);
   g_layers = [coastline_layer,
@@ -224,7 +224,7 @@ function render() {
     d.strokeStyle = "white";
     d.font = "bold 12px sans-serif";
     d.lineWidth = 2;
-    const txt = "Zoom: " + camera.zoom + " (1px = " + 1 / camera.scale() + "m) g_lastz: " + g_lastz + " img: " + image_layer.img_states[image_layer.cur_img_ix].name;
+    const txt = "Zoom: " + camera.zoom + " (1px = " + 1 / camera.scale() + "m) g_lastz: " + g_lastz + " img: " + image_layer.named_imgs[image_layer.cur_img_ix].name;
     d.strokeText(txt, 20, 20);
     d.fillText(txt, 20, 20);
 
@@ -654,9 +654,12 @@ $('#c').on('mousemove', function(e) {
 });
 
 function main_key_handler(e: JQuery.Event<Document, null>) {
-  const modals = $(".modal");
-  if (modals.filter(() => $(this).css("display") == "block").length)
-    return;
+  // Disable key event handling if modal is up
+  if (0) {
+    const modals = $(".modal");
+    if (modals.filter(() => $(this).css("display") == "block").length)
+      return;
+  }
 
   const k = key(e);
   // if (k == "i") {

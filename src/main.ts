@@ -4,8 +4,7 @@ import { clone } from './util';
 import { simplify } from './simplify';
 import { colors } from './colors';
 
-window['g_mode'] = "Pan";
-declare var g_mode: Mode;
+let g_mode: Mode = "Pan";
 
 import { CoastlineLayer } from './coastline';
 import { RiverLayer } from './rivers';
@@ -170,7 +169,7 @@ function render() {
   const world_bbox = get_world_bbox(camera);
 
   g_layers.forEach(function(layer) {
-    layer.render(d, camera, state.state.locus, world_bbox);
+    layer.render(d, camera, g_mode, world_bbox);
   });
 
 

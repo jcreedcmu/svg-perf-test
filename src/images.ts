@@ -1,4 +1,4 @@
-import { Layer, Ctx, Camera, ArRectangle, Point, Image, Images } from './types';
+import { Mode, Layer, Ctx, Camera, ArRectangle, Point, Image, Images } from './types';
 import _ = require('underscore');
 
 export function image_url(img_name: string): string {
@@ -29,7 +29,7 @@ export class ImageLayer implements Layer {
     this.cur_img_ix = cur_img_ix;
   }
 
-  render(d: Ctx, camera: Camera, locus: any, world_bbox: ArRectangle): void {
+  render(d: Ctx, camera: Camera, mode: Mode, world_bbox: ArRectangle): void {
     const nimg = this.named_imgs[this.cur_img_ix];
     d.save();
     d.translate(camera.x, camera.y);

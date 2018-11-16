@@ -1,4 +1,4 @@
-import { Layer, Ctx, Camera, ArRectangle, SmPoint } from './types';
+import { Mode, Layer, Ctx, Camera, ArRectangle, SmPoint } from './types';
 
 type Path = SmPoint[];
 type Sketches = Path[];
@@ -10,7 +10,7 @@ export class SketchLayer {
     this.sketches = sketches || [];
   }
 
-  render(d: Ctx, camera: Camera, locus: any, world_bbox: ArRectangle): void {
+  render(d: Ctx, camera: Camera, mode: Mode, world_bbox: ArRectangle): void {
     var ms = this.sketches;
 
     d.save();

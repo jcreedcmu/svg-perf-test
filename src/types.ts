@@ -52,8 +52,11 @@ export type Arc = {
   properties: { [k: string]: any },
 };
 
+export type LabType =
+  "park" | "city" | "region" | "sea" | "minorsea" | "river";
+
 export type LabelProps = {
-  label: "park" | "city" | "region" | "sea" | "minorsea" | "river",
+  label: LabType,
   text: string,
   zoom?: number,
 };
@@ -90,6 +93,6 @@ export type Geo = {
 };
 
 export interface Layer {
-  render(d: Ctx, camera: Camera, locus: any, world_bbox: ArRectangle): void;
+  render(d: Ctx, camera: Camera, mode: Mode, world_bbox: ArRectangle): void;
   model(): any;
 }

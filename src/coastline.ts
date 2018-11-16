@@ -37,14 +37,10 @@ function removePt<T>(rt: Bush<T>, pt: Point): void {
   });
 }
 
-declare var g_mode: Mode;
-
 import { clone, above_simp_thresh } from './util';
 import _ = require('underscore');
 
 var DEBUG_BBOX = false;
-
-
 
 function dictOfNamedArray<T extends { name: string }>(ar: T[]): Dict<T> {
   const rv: Dict<T> = {};
@@ -307,7 +303,7 @@ export class CoastlineLayer implements Layer {
     throw ("Can't find " + JSON.stringify(target.point) + " in " + JSON.stringify(arc))
   }
 
-  render(d: Ctx, camera: Camera, undefined: any, world_bbox: ArRectangle) {
+  render(d: Ctx, camera: Camera, mode: Mode, world_bbox: ArRectangle) {
     var scale = camera.scale();
     var that = this;
     d.save();
@@ -410,7 +406,7 @@ export class CoastlineLayer implements Layer {
 
     // draw vertices
     d.lineWidth = 1.5 / scale;
-    if (g_mode != "Pan") {
+    if (mode != "Pan") {
       d.strokeStyle = "#333";
       d.fillStyle = "#ffd";
       var vert_size = 5 / scale;

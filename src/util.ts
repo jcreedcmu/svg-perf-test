@@ -40,3 +40,9 @@ export function above_simp_thresh(z: number, scale: number): boolean {
 export function adapt(x: SmPoint): ArPoint {
   return [x[0], x[1]];
 }
+
+// meant to be used in a default case
+// to enforce exhaustive pattern matching
+export function nope<T>(x: never): T {
+  throw "nope";
+}

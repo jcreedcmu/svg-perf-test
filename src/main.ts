@@ -1,6 +1,6 @@
 import { Point, Ctx, Mode, Camera, Rect, Path, ArPoint, SmPoint, Bundle, Layer, ArRectangle, Label } from './types';
 import { Loader, Data } from './loader';
-import { clone, cscale } from './util';
+import { clone, cscale, nope } from './util';
 import { simplify } from './simplify';
 import { colors } from './colors';
 
@@ -473,6 +473,9 @@ $('#c').on('mousedown', function(e) {
 
       start_freehand(startp, path => sketch_layer.add(path));
       break;
+
+    default:
+      nope(g_mode);
   }
 });
 

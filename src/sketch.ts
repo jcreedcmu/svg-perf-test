@@ -1,4 +1,5 @@
-import { Mode, Layer, Ctx, Camera, ArRectangle, SmPoint } from './types';
+import { Mode, Layer, Ctx, RawCamera, ArRectangle, SmPoint } from './types';
+import { cscale } from './util';
 
 type Path = SmPoint[];
 type Sketches = Path[];
@@ -10,12 +11,12 @@ export class SketchLayer {
     this.sketches = sketches || [];
   }
 
-  render(d: Ctx, camera: Camera, mode: Mode, world_bbox: ArRectangle): void {
+  render(d: Ctx, camera: RawCamera, mode: Mode, world_bbox: ArRectangle): void {
     var ms = this.sketches;
 
     d.save();
     d.translate(camera.x, camera.y);
-    d.scale(camera.scale(), -camera.scale());
+    d.scale(cscale(camera), -cscale(camera));
     d.lineCap = "round";
     d.lineJoin = "round";
     ms.forEach(feature => {
@@ -27,7 +28,7 @@ export class SketchLayer {
           d.lineTo(pt[0], pt[1]);
       });
 
-      d.lineWidth = 1.1 / camera.scale();
+      d.lineWidth = 1.1 / cscale(camera);
       d.strokeStyle = "black";
       d.stroke();
       d.fillStyle = "black";

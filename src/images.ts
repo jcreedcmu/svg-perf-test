@@ -1,4 +1,5 @@
-import { Mode, Layer, Ctx, Camera, ArRectangle, Point, Image, Images } from './types';
+import { Mode, Layer, Ctx, RawCamera, ArRectangle, Point, Image, Images } from './types';
+import { cscale } from './util';
 import _ = require('underscore');
 
 export function image_url(img_name: string): string {
@@ -29,11 +30,11 @@ export class ImageLayer implements Layer {
     this.cur_img_ix = cur_img_ix;
   }
 
-  render(d: Ctx, camera: Camera, mode: Mode, world_bbox: ArRectangle): void {
+  render(d: Ctx, camera: RawCamera, mode: Mode, world_bbox: ArRectangle): void {
     const nimg = this.named_imgs[this.cur_img_ix];
     d.save();
     d.translate(camera.x, camera.y);
-    d.scale(camera.scale(), camera.scale());
+    d.scale(cscale(camera), cscale(camera));
     d.globalAlpha = 0.25;
     const ovr = this.overlay;
     if (ovr != null) {
@@ -50,7 +51,7 @@ export class ImageLayer implements Layer {
       d.lineTo(nimg.x, -3226521);
 
       d.strokeStyle = "blue";
-      d.lineWidth = 1 / camera.scale();
+      d.lineWidth = 1 / cscale(camera);
       d.stroke();
       d.strokeRect(nimg.x, -nimg.y + ovr.height * nimg.scale,
         ovr.width * nimg.scale,

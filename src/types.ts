@@ -9,9 +9,6 @@ export interface RawCamera {
   y: number;
   zoom: number;
 }
-export interface Camera extends RawCamera {
-  scale(): number;
-};
 
 export type Rect = [number, number, number, number];
 export type Path = SmPoint[];
@@ -93,6 +90,6 @@ export type Geo = {
 };
 
 export interface Layer {
-  render(d: Ctx, camera: Camera, mode: Mode, world_bbox: ArRectangle): void;
+  render(d: Ctx, camera: RawCamera, mode: Mode, world_bbox: ArRectangle): void;
   model(): any;
 }

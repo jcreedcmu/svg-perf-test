@@ -1,6 +1,6 @@
-import { Point, Ctx, Mode, Camera, Rect, Path, ArPoint, SmPoint, Bundle, Layer, ArRectangle, Label } from './types';
+import { Point, Ctx, Mode, RawCamera, Rect, Path, ArPoint, SmPoint, Bundle, Layer, ArRectangle, Label } from './types';
 import { Loader, Data } from './loader';
-import { clone } from './util';
+import { clone, cscale } from './util';
 import { simplify } from './simplify';
 import { colors } from './colors';
 
@@ -41,7 +41,7 @@ let coastline_layer: CoastlineLayer;
 let image_layer: ImageLayer;
 let river_layer: RiverLayer;
 let sketch_layer: SketchLayer;
-let g_render_extra: null | ((camera: Camera, d: Ctx) => void);
+let g_render_extra: null | ((camera: RawCamera, d: Ctx) => void);
 let g_mouse: Point = { x: 0, y: 0 };
 let data: Data;
 
@@ -90,17 +90,17 @@ ld.done(function(_data) {
   }
 });
 
-function inv_xform(camera: Camera, xpix: number, ypix: number): Point {
+function inv_xform(camera: RawCamera, xpix: number, ypix: number): Point {
   return {
-    x: (xpix - camera.x) / camera.scale(),
-    y: (ypix - camera.y) / -camera.scale()
+    x: (xpix - camera.x) / cscale(camera),
+    y: (ypix - camera.y) / -cscale(camera)
   };
 }
 window['inv_xform'] = inv_xform;
 window['xform'] = xform;
 
-function xform(camera: Camera, xworld: number, yworld: number): Point {
-  return { x: camera.x + xworld * camera.scale(), y: camera.y - yworld * camera.scale() };
+function xform(camera: RawCamera, xworld: number, yworld: number): Point {
+  return { x: camera.x + xworld * cscale(camera), y: camera.y - yworld * cscale(camera) };
 }
 
 let lastTime = 0;
@@ -141,7 +141,7 @@ function reset_canvas_size() {
   c.style.height = (innerHeight + 2 * margin) + "px";
 }
 
-function get_world_bbox(camera: Camera): Rect {
+function get_world_bbox(camera: RawCamera): Rect {
   const tl = inv_xform(camera, OFFSET, OFFSET);
   const br = inv_xform(camera, w - OFFSET, h - OFFSET);
   return [tl.x, br.y, br.x, tl.y];
@@ -177,16 +177,16 @@ function render() {
   if (camera.zoom >= 1 && g_lastz != "[]") {
     const pts = JSON.parse(g_lastz);
     if (pts.length != 0) {
-      const rad = 3 / camera.scale();
+      const rad = 3 / cscale(camera);
       d.save();
       d.translate(camera.x, camera.y);
-      d.scale(camera.scale(), -camera.scale());
+      d.scale(cscale(camera), -cscale(camera));
       pts.forEach((bundle: Bundle) => {
         if (bundle[0] == "coastline") {
           const pt = bundle[1].point;
           d.fillStyle = "white";
           d.fillRect(pt[0] - rad, pt[1] - rad, rad * 2, rad * 2);
-          d.lineWidth = 1 / camera.scale();
+          d.lineWidth = 1 / cscale(camera);
           d.strokeStyle = "#000";
           d.strokeRect(pt[0] - rad, pt[1] - rad, rad * 2, rad * 2);
         }
@@ -195,7 +195,7 @@ function render() {
           d.beginPath();
           d.fillStyle = "white";
           d.globalAlpha = 0.5;
-          d.arc(pt[0], pt[1], 20 / camera.scale(), 0, Math.PI * 2);
+          d.arc(pt[0], pt[1], 20 / cscale(camera), 0, Math.PI * 2);
           d.fill();
         }
       });
@@ -223,7 +223,7 @@ function render() {
     d.strokeStyle = "white";
     d.font = "bold 12px sans-serif";
     d.lineWidth = 2;
-    const txt = "Zoom: " + camera.zoom + " (1px = " + 1 / camera.scale() + "m) g_lastz: " + g_lastz + " img: " + image_layer.named_imgs[image_layer.cur_img_ix].name;
+    const txt = "Zoom: " + camera.zoom + " (1px = " + 1 / cscale(camera) + "m) g_lastz: " + g_lastz + " img: " + image_layer.named_imgs[image_layer.cur_img_ix].name;
     d.strokeText(txt, 20, 20);
     d.fillText(txt, 20, 20);
 
@@ -236,9 +236,9 @@ function render() {
     if (g_selection) {
       d.save();
       d.translate(camera.x, camera.y);
-      d.scale(camera.scale(), -camera.scale());
+      d.scale(cscale(camera), -cscale(camera));
       if (g_selection.arc) {
-        d.lineWidth = 2 / camera.scale();
+        d.lineWidth = 2 / cscale(camera);
         d.strokeStyle = "#0ff";
         coastline_layer.draw_selected_arc(d, g_selection.arc);
       }
@@ -258,14 +258,14 @@ function meters_to_string(raw: number): string {
   return str;
 }
 
-function render_scale(camera: Camera, d: Ctx) {
+function render_scale(camera: RawCamera, d: Ctx) {
   d.save();
   d.fillStyle = "black";
   d.font = "10px sans-serif";
 
   d.translate(Math.floor(w / 2) + 0.5, 0.5);
   function label(px_dist: number) {
-    const str = meters_to_string(px_dist / camera.scale());
+    const str = meters_to_string(px_dist / cscale(camera));
     d.textAlign = "center";
     d.fillText(str, px_dist, h - 12);
   }
@@ -311,7 +311,7 @@ function onMouseWheel(e: WheelEvent): void {
   }
 };
 
-function start_pan(x: number, y: number, camera: Camera) {
+function start_pan(x: number, y: number, camera: RawCamera) {
   const stop_at = start_pan_and_stop(x, y, camera);
   $(document).on('mouseup.drag', function(e) {
     stop_at(e.pageX, e.pageY);
@@ -319,7 +319,7 @@ function start_pan(x: number, y: number, camera: Camera) {
 }
 
 // returns stopping function
-function start_pan_and_stop(x: number, y: number, camera: Camera) {
+function start_pan_and_stop(x: number, y: number, camera: RawCamera) {
   $("#c").css({ cursor: 'move' });
   g_panning = true;
   //  state.set_cam(camera.x + PANNING_MARGIN, camera.y + PANNING_MARGIN);
@@ -371,7 +371,7 @@ $('#c').on('mousedown', function(e) {
   const x = e.pageX;
   const y = e.pageY;
   const worldp = inv_xform(camera, x, y);
-  const slack = VERTEX_SENSITIVITY / camera.scale();
+  const slack = VERTEX_SENSITIVITY / cscale(camera);
   const bbox: ArRectangle = [worldp.x - slack, worldp.y - slack, worldp.x + slack, worldp.y + slack];
 
   const th = $(this);
@@ -382,8 +382,8 @@ $('#c').on('mousedown', function(e) {
         const membase = image_layer.get_pos();
         $(document).on('mousemove.drag', function(e) {
           image_layer.set_pos({
-            x: membase.x + (e.pageX - x) / camera.scale(),
-            y: membase.y - (e.pageY - y) / camera.scale()
+            x: membase.x + (e.pageX - x) / cscale(camera),
+            y: membase.y - (e.pageY - y) / cscale(camera)
           });
           maybe_render();
         });
@@ -495,7 +495,7 @@ function vdist(p1: Point, p2: Point) {
 function start_measure(startp: Point) {
   const camera = state.camera();
   const dragp = clone(startp);
-  const scale = camera.scale();
+  const scale = cscale(camera);
   g_render_extra = function(camera, d) {
     d.save();
     d.translate(camera.x, camera.y);
@@ -547,7 +547,7 @@ function start_measure(startp: Point) {
 function start_drag(startp: Point, neighbors: SmPoint[], k: (dragp: Point) => void) {
   const camera = state.camera();
   let dragp = clone(startp);
-  const scale = camera.scale();
+  const scale = cscale(camera);
   g_render_extra = function(camera, d) {
     d.save();
     d.translate(camera.x, camera.y);
@@ -598,11 +598,11 @@ function start_freehand(startp: ArPoint, k: (dragp: Path) => void) {
   const camera = state.camera();
   const path: SmPoint[] = [startp];
   const thresh = FREEHAND_SIMPLIFICATION_FACTOR
-    / (camera.scale() * camera.scale());
+    / (cscale(camera) * cscale(camera));
   g_render_extra = function(camera, d) {
     d.save();
     d.translate(camera.x, camera.y);
-    d.scale(camera.scale(), -camera.scale());
+    d.scale(cscale(camera), -cscale(camera));
     d.beginPath();
     let count = 0;
     path.forEach((pt: SmPoint, n: number) => {
@@ -616,7 +616,7 @@ function start_freehand(startp: ArPoint, k: (dragp: Path) => void) {
         }
       }
     });
-    d.lineWidth = 2 / camera.scale();
+    d.lineWidth = 2 / cscale(camera);
     d.strokeStyle = colors.motion_guide;
     d.stroke();
     d.restore();
@@ -656,7 +656,7 @@ $('#c').on('mousemove', function(e) {
     const x = e.pageX;
     const y = e.pageY;
     const worldp = inv_xform(camera, x, y);
-    const rad = VERTEX_SENSITIVITY / camera.scale();
+    const rad = VERTEX_SENSITIVITY / cscale(camera);
     const bbox: ArRectangle = [worldp.x - rad, worldp.y - rad, worldp.x + rad, worldp.y + rad];
     const targets = coastline_layer.targets(bbox);
     const z = JSON.stringify(targets);

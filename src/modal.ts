@@ -6,7 +6,9 @@ function setVal(q: string, v: string): void {
 }
 
 function sanitize(s: string): LabType {
-  return s as LabType;
+  if (s == "park" || s == "city" || s == "region" || s == "sea" || s == "minorsea" || s == "river")
+    return s;
+  return "region";
 }
 
 export function make_insert_label_modal(worldp: Point, lab: Label | null, k: (x: Label) => void) {

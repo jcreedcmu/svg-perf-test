@@ -1,4 +1,5 @@
-import { Layer, Ctx, Camera, Point, Label } from './types';
+import { Layer, Ctx, RawCamera, Point, Label } from './types';
+import { cscale } from './util';
 
 function titleCase(str: string): string {
   return str.replace(/\w\S*/g, txt =>
@@ -6,14 +7,14 @@ function titleCase(str: string): string {
   );
 }
 
-export function draw_label(d: Ctx, camera: Camera, lab: Label) {
+export function draw_label(d: Ctx, camera: RawCamera, lab: Label) {
   const p = lab.pt;
   const txt = titleCase(lab.properties.text);
   const typ = lab.properties.label;
   let min_zoom = lab.properties.zoom;
   const q: Point = {
-    x: camera.x + camera.scale() * p[0],
-    y: camera.y - camera.scale() * p[1]
+    x: camera.x + cscale(camera) * p[0],
+    y: camera.y - cscale(camera) * p[1]
   };
 
   let stroke = true;

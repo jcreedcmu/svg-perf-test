@@ -1,7 +1,7 @@
-import { Mode, Point, SmPoint, ArPoint, ArRectangle, Dict, Ctx, Camera } from './types';
+import { Mode, Point, SmPoint, ArPoint, ArRectangle, Dict, Ctx, RawCamera } from './types';
 import { Label, Arc, Target, Segment, LabelTarget, ArcVertexTarget, Feature } from './types';
 import { Poly, PolyProps, Bbox, Layer } from './types';
-import { adapt } from './util';
+import { adapt, cscale } from './util';
 import { colors } from './colors';
 import * as simplify from './simplify';
 import * as rbush from 'rbush';
@@ -50,15 +50,15 @@ function dictOfNamedArray<T extends { name: string }>(ar: T[]): Dict<T> {
   return rv;
 }
 
-function realize_salient(d: Ctx, props: any, camera: Camera, pt: ArPoint) {
+function realize_salient(d: Ctx, props: any, camera: RawCamera, pt: ArPoint) {
   if (camera.zoom < 2) return;
   // implied:
   //  d.translate(camera.x, camera.y);
   //  d.scale(scale, -scale);
 
   var q = {
-    x: pt[0] * camera.scale() + camera.x,
-    y: pt[1] * -camera.scale() + camera.y
+    x: pt[0] * cscale(camera) + camera.x,
+    y: pt[1] * -cscale(camera) + camera.y
   };
 
   var stroke = null;
@@ -303,8 +303,8 @@ export class CoastlineLayer implements Layer {
     throw ("Can't find " + JSON.stringify(target.point) + " in " + JSON.stringify(arc))
   }
 
-  render(d: Ctx, camera: Camera, mode: Mode, world_bbox: ArRectangle) {
-    var scale = camera.scale();
+  render(d: Ctx, camera: RawCamera, mode: Mode, world_bbox: ArRectangle) {
+    var scale = cscale(camera);
     var that = this;
     d.save();
 

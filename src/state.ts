@@ -1,10 +1,6 @@
 import { Point, RawCamera } from './types';
 import { clone, scale_of_zoom } from './util';
 
-export function cscale(c: RawCamera): number {
-  return scale_of_zoom(c.zoom);
-}
-
 type Locus = any;
 export class State {
   origin: Point;

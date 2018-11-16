@@ -181,7 +181,7 @@ function render() {
       d.save();
       d.translate(camera.x, camera.y);
       d.scale(camera.scale(), -camera.scale());
-      pts.forEach(function(bundle: Bundle) {
+      pts.forEach((bundle: Bundle) => {
         if (bundle[0] == "coastline") {
           const pt = bundle[1].point;
           d.fillStyle = "white";
@@ -375,96 +375,104 @@ $('#c').on('mousedown', function(e) {
   const bbox: ArRectangle = [worldp.x - slack, worldp.y - slack, worldp.x + slack, worldp.y + slack];
 
   const th = $(this);
-  if (g_mode == "Pan") {
-    if (e.ctrlKey) {
-      const membase = image_layer.get_pos();
-      $(document).on('mousemove.drag', function(e) {
-        image_layer.set_pos({
-          x: membase.x + (e.pageX - x) / camera.scale(),
-          y: membase.y - (e.pageY - y) / camera.scale()
-        });
-        maybe_render();
-      });
-      $(document).on('mouseup.drag', function(e) {
-        $(document).off('.drag');
-        render();
-      });
 
-    }
-    else
-      start_pan(x, y, camera);
-  }
-  else if (g_mode == "Measure") {
-    start_measure(worldp);
-  }
-  else if (g_mode == "Select") {
-    const candidate_features = coastline_layer.arc_targets(bbox);
-    const hit_lines = geom.find_hit_lines(
-      worldp, candidate_features, coastline_layer.arcs, slack
-    );
-    if (hit_lines.length == 1) {
-      g_selection = hit_lines[0];
-    }
-    else {
-      g_selection = null;
-    }
-    render();
-  }
-  else if (g_mode == "Label") {
-    if (g_lastz != "[]") {
-      const z = JSON.parse(g_lastz);
-      console.log(g_lastz);
-      if (z.length == 1 && z[0][0] == "label") {
-        modal.make_insert_label_modal(worldp, coastline_layer.labels[z[0][1]], (obj: any) => {
-          coastline_layer.replace_point_feature(obj);
+  switch (g_mode) {
+    case "Pan":
+      if (e.ctrlKey) {
+        const membase = image_layer.get_pos();
+        $(document).on('mousemove.drag', function(e) {
+          image_layer.set_pos({
+            x: membase.x + (e.pageX - x) / camera.scale(),
+            y: membase.y - (e.pageY - y) / camera.scale()
+          });
+          maybe_render();
+        });
+        $(document).on('mouseup.drag', function(e) {
+          $(document).off('.drag');
           render();
         });
+
       }
-    }
-    else {
-      modal.make_insert_label_modal(worldp, null, (obj: any) => {
-        coastline_layer.new_point_feature(obj);
-        render();
-      });
-    }
-  }
-  else if (g_mode == "Move") {
-    const targets = coastline_layer.targets(bbox);
+      else
+        start_pan(x, y, camera);
+      break;
 
-    if (targets.length >= 1) {
-      // yikes, what happens if I got two or more?? looks like I drag
-      // them all together. Don't want to do that.
-      const neighbors = coastline_layer.targets_nabes(targets);
+    case "Measure":
+      start_measure(worldp);
+      break;
 
-      start_drag(worldp, neighbors, dragp => {
-        coastline_layer.replace_vert(targets, dragp);
-      });
-    }
-    else {
+    case "Select":
       const candidate_features = coastline_layer.arc_targets(bbox);
       const hit_lines = geom.find_hit_lines(
         worldp, candidate_features, coastline_layer.arcs, slack
       );
       if (hit_lines.length == 1) {
-        const arc_id = hit_lines[0].arc;
-        const ix = hit_lines[0].ix;
-        const arc = coastline_layer.arcs[arc_id].points;
-        start_drag(worldp, [arc[ix], arc[ix + 1]], (dragp: Point) => {
-          coastline_layer.break_segment(hit_lines[0], dragp);
+        g_selection = hit_lines[0];
+      }
+      else {
+        g_selection = null;
+      }
+      render();
+      break;
+
+    case "Label":
+      if (g_lastz != "[]") {
+        const z = JSON.parse(g_lastz);
+        console.log(g_lastz);
+        if (z.length == 1 && z[0][0] == "label") {
+          modal.make_insert_label_modal(worldp, coastline_layer.labels[z[0][1]], obj => {
+            coastline_layer.replace_point_feature(obj);
+            render();
+          });
+        }
+      }
+      else {
+        modal.make_insert_label_modal(worldp, null, (obj: any) => {
+          coastline_layer.new_point_feature(obj);
+          render();
         });
       }
-      else
-        start_pan(x, y, camera);
-    }
-  }
-  else if (g_mode == "Freehand") {
-    let startp: ArPoint = [worldp.x, worldp.y];
+      break;
 
-    const spoint = get_snap();
-    if (spoint != null)
-      startp = spoint;
+    case "Move":
+      const targets = coastline_layer.targets(bbox);
 
-    start_freehand(startp, function(path: Path) { sketch_layer.add(path); });
+      if (targets.length >= 1) {
+        // yikes, what happens if I got two or more?? looks like I drag
+        // them all together. Don't want to do that.
+        const neighbors = coastline_layer.targets_nabes(targets);
+
+        start_drag(worldp, neighbors, dragp => {
+          coastline_layer.replace_vert(targets, dragp);
+        });
+      }
+      else {
+        const candidate_features = coastline_layer.arc_targets(bbox);
+        const hit_lines = geom.find_hit_lines(
+          worldp, candidate_features, coastline_layer.arcs, slack
+        );
+        if (hit_lines.length == 1) {
+          const arc_id = hit_lines[0].arc;
+          const ix = hit_lines[0].ix;
+          const arc = coastline_layer.arcs[arc_id].points;
+          start_drag(worldp, [arc[ix], arc[ix + 1]], (dragp: Point) => {
+            coastline_layer.break_segment(hit_lines[0], dragp);
+          });
+        }
+        else
+          start_pan(x, y, camera);
+      }
+      break;
+
+    case "Freehand":
+      let startp: ArPoint = [worldp.x, worldp.y];
+
+      const spoint = get_snap();
+      if (spoint != null)
+        startp = spoint;
+
+      start_freehand(startp, function(path: Path) { sketch_layer.add(path); });
+      break;
   }
 });
 

@@ -5,6 +5,7 @@ import { adapt } from './util';
 import { colors } from './colors';
 import * as simplify from './simplify';
 import * as rbush from 'rbush';
+import { draw_label } from './labels';
 import BBox = rbush.BBox;
 import RBush = rbush.RBush;
 
@@ -43,7 +44,7 @@ import _ = require('underscore');
 
 var DEBUG_BBOX = false;
 
-import labels = require('./labels');
+
 
 function dictOfNamedArray<T extends { name: string }>(ar: T[]): Dict<T> {
   const rv: Dict<T> = {};
@@ -434,7 +435,7 @@ export class CoastlineLayer implements Layer {
     if (camera.zoom < 1) return;
     d.lineJoin = "round";
     tsearch(this.label_rt, world_bbox).forEach(x => {
-      labels.draw_label(d, camera, that.labels[x]);
+      draw_label(d, camera, that.labels[x]);
     });
   }
 

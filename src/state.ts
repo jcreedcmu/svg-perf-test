@@ -1,5 +1,9 @@
 import { Point, RawCamera } from './types';
-import { clone } from './util';
+import { clone, scale_of_zoom } from './util';
+
+export function cscale(c: RawCamera): number {
+  return scale_of_zoom(c.zoom);
+}
 
 type Locus = any;
 export class State {
@@ -25,8 +29,8 @@ export class State {
     const c = clone(this.state.camera);
     c.x -= this.origin.x;
     c.y -= this.origin.y;
-    // XXX replace this with call to util.scale_of_zoom when I typeify this file
-    return { ...c, scale: () => { return (1 / 8) * (1 / 1024) * Math.pow(2, c.zoom) } };
+
+    return { ...c, scale: () => scale_of_zoom(c.zoom) };
   }
 
   zoom(x: number, y: number, zoom: number) {

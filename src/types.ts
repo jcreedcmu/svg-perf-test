@@ -14,7 +14,7 @@ export interface Camera extends RawCamera {
 };
 
 export type Rect = [number, number, number, number];
-export type Path = any;
+export type Path = SmPoint[];
 export type ArPoint = [number, number];
 export type Bundle =
   ['coastline', { point: ArPoint }]

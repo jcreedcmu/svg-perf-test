@@ -1,4 +1,4 @@
-import { Point, Ctx, Mode, Camera, Rect, Path, ArPoint, SmPoint, Bundle, Layer, ArRectangle } from './types';
+import { Point, Ctx, Mode, Camera, Rect, Path, ArPoint, SmPoint, Bundle, Layer, ArRectangle, Label } from './types';
 import { Loader, Data } from './loader';
 import { clone } from './util';
 import { simplify } from './simplify';
@@ -427,7 +427,7 @@ $('#c').on('mousedown', function(e) {
         }
       }
       else {
-        modal.make_insert_label_modal(worldp, null, (obj: any) => {
+        modal.make_insert_label_modal(worldp, null, obj => {
           coastline_layer.new_point_feature(obj);
           render();
         });
@@ -471,7 +471,7 @@ $('#c').on('mousedown', function(e) {
       if (spoint != null)
         startp = spoint;
 
-      start_freehand(startp, function(path: Path) { sketch_layer.add(path); });
+      start_freehand(startp, path => sketch_layer.add(path));
       break;
   }
 });
@@ -594,7 +594,7 @@ function start_drag(startp: Point, neighbors: SmPoint[], k: (dragp: Point) => vo
   });
 }
 
-function start_freehand(startp: ArPoint, k: (dragp: SmPoint[]) => void) {
+function start_freehand(startp: ArPoint, k: (dragp: Path) => void) {
   const camera = state.camera();
   const path: SmPoint[] = [startp];
   const thresh = FREEHAND_SIMPLIFICATION_FACTOR
@@ -770,9 +770,11 @@ function save() {
 //   console.log(JSON.stringify(g_imageStates));
 // }
 
-function has_label(x: any, label: string) {
+function has_label(x: Label, label: string) {
   return x.properties.text && x.properties.text.match(new RegExp(label, "i"))
 }
+
+// this doesn't work right now
 function zoom_to(label: string) {
   const selection = data.json.geo.labels.filter((x: any) => has_label(x, label) && x.pt);
   const pt = selection[0].pt;

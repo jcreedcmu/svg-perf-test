@@ -1,17 +1,17 @@
-import { Point, RawCamera } from './types';
+import { Point, Camera } from './types';
 import { clone, scale_of_zoom } from './util';
 
 type Locus = any;
 export class State {
   origin: Point;
   state: {
-    camera: RawCamera,
+    camera: Camera,
     locus: Locus,
   };
 
   constructor() {
     this.origin = { x: 0, y: 0 };
-    let camera: RawCamera = { x: -432.125, y: 3321.875, zoom: 4 };
+    let camera: Camera = { x: -432.125, y: 3321.875, zoom: 4 };
     if (localStorage.camera != null) {
       camera = JSON.parse(localStorage.camera);
     }

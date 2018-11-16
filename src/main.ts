@@ -1,4 +1,4 @@
-import { Point, Ctx, Mode, RawCamera, Rect, Path, ArPoint, SmPoint, Bundle, Layer, ArRectangle, Label } from './types';
+import { Point, Ctx, Mode, Camera, Rect, Path, ArPoint, SmPoint, Bundle, Layer, ArRectangle, Label } from './types';
 import { Loader, Data } from './loader';
 import { clone, cscale } from './util';
 import { simplify } from './simplify';
@@ -41,7 +41,7 @@ let coastline_layer: CoastlineLayer;
 let image_layer: ImageLayer;
 let river_layer: RiverLayer;
 let sketch_layer: SketchLayer;
-let g_render_extra: null | ((camera: RawCamera, d: Ctx) => void);
+let g_render_extra: null | ((camera: Camera, d: Ctx) => void);
 let g_mouse: Point = { x: 0, y: 0 };
 let data: Data;
 
@@ -90,7 +90,7 @@ ld.done(function(_data) {
   }
 });
 
-function inv_xform(camera: RawCamera, xpix: number, ypix: number): Point {
+function inv_xform(camera: Camera, xpix: number, ypix: number): Point {
   return {
     x: (xpix - camera.x) / cscale(camera),
     y: (ypix - camera.y) / -cscale(camera)
@@ -99,7 +99,7 @@ function inv_xform(camera: RawCamera, xpix: number, ypix: number): Point {
 window['inv_xform'] = inv_xform;
 window['xform'] = xform;
 
-function xform(camera: RawCamera, xworld: number, yworld: number): Point {
+function xform(camera: Camera, xworld: number, yworld: number): Point {
   return { x: camera.x + xworld * cscale(camera), y: camera.y - yworld * cscale(camera) };
 }
 
@@ -141,7 +141,7 @@ function reset_canvas_size() {
   c.style.height = (innerHeight + 2 * margin) + "px";
 }
 
-function get_world_bbox(camera: RawCamera): Rect {
+function get_world_bbox(camera: Camera): Rect {
   const tl = inv_xform(camera, OFFSET, OFFSET);
   const br = inv_xform(camera, w - OFFSET, h - OFFSET);
   return [tl.x, br.y, br.x, tl.y];
@@ -258,7 +258,7 @@ function meters_to_string(raw: number): string {
   return str;
 }
 
-function render_scale(camera: RawCamera, d: Ctx) {
+function render_scale(camera: Camera, d: Ctx) {
   d.save();
   d.fillStyle = "black";
   d.font = "10px sans-serif";
@@ -311,7 +311,7 @@ function onMouseWheel(e: WheelEvent): void {
   }
 };
 
-function start_pan(x: number, y: number, camera: RawCamera) {
+function start_pan(x: number, y: number, camera: Camera) {
   const stop_at = start_pan_and_stop(x, y, camera);
   $(document).on('mouseup.drag', function(e) {
     stop_at(e.pageX, e.pageY);
@@ -319,7 +319,7 @@ function start_pan(x: number, y: number, camera: RawCamera) {
 }
 
 // returns stopping function
-function start_pan_and_stop(x: number, y: number, camera: RawCamera) {
+function start_pan_and_stop(x: number, y: number, camera: Camera) {
   $("#c").css({ cursor: 'move' });
   g_panning = true;
   //  state.set_cam(camera.x + PANNING_MARGIN, camera.y + PANNING_MARGIN);

@@ -1,4 +1,4 @@
-import { Mode, Point, SmPoint, ArPoint, ArRectangle, Dict, Ctx, RawCamera } from './types';
+import { Mode, Point, SmPoint, ArPoint, ArRectangle, Dict, Ctx, Camera } from './types';
 import { Label, Arc, Target, Segment, LabelTarget, ArcVertexTarget, Feature } from './types';
 import { Poly, PolyProps, Bbox, Layer } from './types';
 import { adapt, cscale } from './util';
@@ -50,7 +50,7 @@ function dictOfNamedArray<T extends { name: string }>(ar: T[]): Dict<T> {
   return rv;
 }
 
-function realize_salient(d: Ctx, props: any, camera: RawCamera, pt: ArPoint) {
+function realize_salient(d: Ctx, props: any, camera: Camera, pt: ArPoint) {
   if (camera.zoom < 2) return;
   // implied:
   //  d.translate(camera.x, camera.y);
@@ -303,7 +303,7 @@ export class CoastlineLayer implements Layer {
     throw ("Can't find " + JSON.stringify(target.point) + " in " + JSON.stringify(arc))
   }
 
-  render(d: Ctx, camera: RawCamera, mode: Mode, world_bbox: ArRectangle) {
+  render(d: Ctx, camera: Camera, mode: Mode, world_bbox: ArRectangle) {
     var scale = cscale(camera);
     var that = this;
     d.save();

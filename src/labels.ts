@@ -1,4 +1,4 @@
-import { Layer, Ctx, RawCamera, Point, Label } from './types';
+import { Layer, Ctx, Camera, Point, Label } from './types';
 import { cscale } from './util';
 
 function titleCase(str: string): string {
@@ -7,7 +7,7 @@ function titleCase(str: string): string {
   );
 }
 
-export function draw_label(d: Ctx, camera: RawCamera, lab: Label) {
+export function draw_label(d: Ctx, camera: Camera, lab: Label) {
   const p = lab.pt;
   const txt = titleCase(lab.properties.text);
   const typ = lab.properties.label;

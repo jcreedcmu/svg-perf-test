@@ -4,7 +4,7 @@ export type Color = { r: number, g: number, b: number };
 export type Ctx = CanvasRenderingContext2D;
 
 export type Mode = "Pan" | "Freehand" | "Move" | "Select" | "Label" | "Measure";
-export interface RawCamera {
+export interface Camera {
   x: number;
   y: number;
   zoom: number;
@@ -90,6 +90,6 @@ export type Geo = {
 };
 
 export interface Layer {
-  render(d: Ctx, camera: RawCamera, mode: Mode, world_bbox: ArRectangle): void;
+  render(d: Ctx, camera: Camera, mode: Mode, world_bbox: ArRectangle): void;
   model(): any;
 }

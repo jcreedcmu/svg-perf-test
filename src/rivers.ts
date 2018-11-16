@@ -1,4 +1,4 @@
-import { Mode, Layer, Ctx, RawCamera, ArRectangle, ArPoint } from './types';
+import { Mode, Layer, Ctx, Camera, ArRectangle, ArPoint } from './types';
 import { cscale } from './util';
 
 type River = { geometry: { coordinates: ArPoint[][] } };
@@ -11,7 +11,7 @@ export class RiverLayer implements Layer {
     this.rivers = rivers;
   }
 
-  render(d: Ctx, camera: RawCamera, mode: Mode, world_bbox: ArRectangle): void {
+  render(d: Ctx, camera: Camera, mode: Mode, world_bbox: ArRectangle): void {
     d.save();
     d.translate(camera.x, camera.y);
     d.scale(cscale(camera), -cscale(camera));

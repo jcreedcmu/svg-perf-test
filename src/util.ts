@@ -1,4 +1,4 @@
-import { SmPoint, ArPoint, RawCamera } from './types';
+import { SmPoint, ArPoint, Camera } from './types';
 
 export function clone<T>(x: T): T {
   return JSON.parse(JSON.stringify(x));
@@ -25,7 +25,7 @@ export function scale_of_zoom(zoom: number): number {
   return (1 / 8) * (1 / 1024) * Math.pow(2, zoom);
 };
 
-export function cscale(c: RawCamera): number {
+export function cscale(c: Camera): number {
   return scale_of_zoom(c.zoom);
 }
 

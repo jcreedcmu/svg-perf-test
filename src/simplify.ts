@@ -31,8 +31,7 @@ export function simplify_arc(arc: Arc) {
   arc.points.forEach(pt => { accumulate_bbox(pt.point, bbox); });
 }
 
-type Thpoint = { point: [number, number, number] };
-type Tri = [Thpoint, Thpoint, Thpoint] & { previous?: Tri, next?: Tri };
+type Tri = [SmPoint, SmPoint, SmPoint] & { previous?: Tri, next?: Tri };
 
 export function simplify(polygon: SmPoint[]) {
   var heap = minHeap();
@@ -43,7 +42,7 @@ export function simplify(polygon: SmPoint[]) {
 
   for (var i = 1, n = polygon.length - 1; i < n; ++i) {
     triangle = <Tri>polygon.slice(i - 1, i + 2);
-    if (triangle[1].point[2] = area(triangle)) {
+    if (triangle[1].z = area(triangle)) {
       triangles.push(triangle);
       heap.push(triangle);
     }
@@ -60,15 +59,15 @@ export function simplify(polygon: SmPoint[]) {
     // to be eliminated, use the latter's area instead. This ensures that the
     // current point cannot be eliminated without eliminating previously-
     // eliminated points.
-    if (triangle[1].point[2] < maxArea) triangle[1].point[2] = maxArea;
-    else maxArea = triangle[1].point[2];
+    if (triangle[1].z < maxArea) triangle[1].z = maxArea;
+    else maxArea = triangle[1].z;
 
     if (triangle.previous) {
       triangle.previous.next = triangle.next;
       triangle.previous[2] = triangle[2];
       update(triangle.previous);
     } else {
-      triangle[0].point[2] = triangle[1].point[2];
+      triangle[0].z = triangle[1].z;
     }
 
     if (triangle.next) {
@@ -76,13 +75,13 @@ export function simplify(polygon: SmPoint[]) {
       triangle.next[0] = triangle[0];
       update(triangle.next);
     } else {
-      triangle[2].point[2] = triangle[1].point[2];
+      triangle[2].z = triangle[1].z;
     }
   }
 
   function update(triangle: Tri) {
     heap.remove(triangle);
-    triangle[1].point[2] = area(triangle);
+    triangle[1].z = area(triangle);
     heap.push(triangle);
   }
 
@@ -90,7 +89,7 @@ export function simplify(polygon: SmPoint[]) {
 }
 
 function compare(a: Tri, b: Tri) {
-  return a[1].point[2] - b[1].point[2];
+  return a[1].z - b[1].z;
 }
 
 function area(t: Tri) {

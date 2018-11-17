@@ -372,7 +372,7 @@ export class CoastlineLayer implements Layer {
           arcs_to_draw_vertices_for.push(this_arc);
         }
 
-        this_arc.forEach(function({ point: vert }, ix) {
+        this_arc.forEach(function({ point: vert, z }, ix) {
           if (ix == 0) return;
 
           var p = {
@@ -383,7 +383,7 @@ export class CoastlineLayer implements Layer {
           var draw = false;
 
           // draw somewhat simplified
-          if (camera.zoom >= 6 || above_simp_thresh(vert[2] || 0, scale))
+          if (camera.zoom >= 6 || above_simp_thresh(z, scale))
             draw = true;
           if (ix == this_arc.length - 1)
             draw = true;
@@ -411,9 +411,9 @@ export class CoastlineLayer implements Layer {
       d.fillStyle = "#ffd";
       var vert_size = 5 / scale;
       arcs_to_draw_vertices_for.forEach(function(arc) {
-        arc.forEach(function({ point: vert }: SmPoint, n: number) {
-          if ((vert[2] || 0) > 1000000 || camera.zoom > 10) {
-            d.fillStyle = (vert[2] || 0) > 1000000 ? "#ffd" : "#f00";
+        arc.forEach(function({ point: vert, z }: SmPoint, n: number) {
+          if (z > 1000000 || camera.zoom > 10) {
+            d.fillStyle = z > 1000000 ? "#ffd" : "#f00";
             d.strokeRect(vert[0] - vert_size / 2, vert[1] - vert_size / 2, vert_size, vert_size);
             d.fillRect(vert[0] - vert_size / 2, vert[1] - vert_size / 2, vert_size, vert_size);
           }
@@ -462,7 +462,7 @@ export class CoastlineLayer implements Layer {
         var oldp = rt_entry.point;
 
         // I think this 1000 can be whatever
-        var new_pt = arc.points[vert_ix] = { point: [p.x, p.y, 1000] };
+        var new_pt = arc.points[vert_ix] = { point: [p.x, p.y], z: 1000 };
 
         simplify.simplify_arc(arc);
         var results = removePt(this.vertex_rt, { x: oldp[0], y: oldp[1] });
@@ -487,7 +487,7 @@ export class CoastlineLayer implements Layer {
     var oldp = arc.points[len - 1];
     const op = oldp.point;
     const opp = { x: op[0], y: op[1] };
-    arc.points[len - 1] = { point: [p.x, p.y, 1000] };
+    arc.points[len - 1] = { point: [p.x, p.y], z: 1000 };
     arc.points[len] = oldp;
     simplify.simplify_arc(arc);
 
@@ -505,7 +505,7 @@ export class CoastlineLayer implements Layer {
     var arc_id = segment.arc;
     var arc = this.arcs[arc_id];
 
-    var newp: SmPoint = { point: [p.x, p.y, 1000] };
+    var newp: SmPoint = { point: [p.x, p.y], z: 1000 };
     arc.points.splice(segment.ix + 1, 0, newp);
     simplify.simplify_arc(arc);
 
@@ -551,8 +551,8 @@ export class CoastlineLayer implements Layer {
       if (obj.properties.natural == "mountain") {
         // strip out collinearish points
         var arc = that.arcs[obj.arcs[0]];
-        arc.points = arc.points.filter(({ point: p }, n) => {
-          return n == 0 || n == arc.points.length - 1 || (p[2] || 0) > 1000000;
+        arc.points = arc.points.filter(({ point: p, z }, n) => {
+          return n == 0 || n == arc.points.length - 1 || z > 1000000;
         });
       }
     });

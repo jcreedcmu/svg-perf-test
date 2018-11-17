@@ -667,7 +667,7 @@ class App {
 
   start_freehand(startp: ArPoint, k: (dragp: Path) => void): void {
     const camera = this.state.camera();
-    const path: SmPoint[] = [{ point: startp }];
+    const path: SmPoint[] = [{ point: startp, z: 1000 }];
     const thresh = FREEHAND_SIMPLIFICATION_FACTOR
       / (cscale(camera) * cscale(camera));
     this.render_extra = (camera, d) => {
@@ -676,12 +676,12 @@ class App {
       d.scale(cscale(camera), -cscale(camera));
       d.beginPath();
       let count = 0;
-      path.forEach(({ point: pt }: SmPoint, n: number) => {
+      path.forEach(({ point: pt, z }: SmPoint, n: number) => {
         if (n == 0)
           d.moveTo(pt[0], pt[1]);
         else {
           if (n == path.length - 1 ||
-            (pt[2] || 0) > 1) {
+            z > 1) {
             count++;
             d.lineTo(pt[0], pt[1]);
           }
@@ -696,21 +696,21 @@ class App {
       const x = e.pageX;
       const y = e.pageY;
       const worldp = inv_xform(camera, x, y);
-      path.push({ point: [worldp.x, worldp.y] });
+      path.push({ point: [worldp.x, worldp.y], z: 1000 });
       simplify(path);
       this.th.maybe();
     });
     $(document).on('mouseup.drag', e => {
       const spoint = get_snap(this.lastz);
       if (spoint != null) {
-        path[path.length - 1] = { point: spoint };
+        path[path.length - 1] = { point: spoint, z: 1000 };
         startp = spoint;
       }
 
       this.render_extra = null;
       $(document).off('.drag');
-      k(path.filter(({ point: pt }: SmPoint, n: number) => {
-        return (pt[2] || 0) > thresh || n == 0 || n == path.length - 1;
+      k(path.filter(({ point: pt, z }: SmPoint, n: number) => {
+        return z > thresh || n == 0 || n == path.length - 1;
       }));
       this.render();
     });

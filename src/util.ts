@@ -93,7 +93,7 @@ export function unrawOfArc(name: string, arc: RawArc): Arc {
     name,
     bbox: { minx: 1e9, miny: 1e9, maxx: -1e9, maxy: -1e9 },
     points: points.map(p => {
-      const z: SmPoint = { point: [p[0], p[1], 1e9] };
+      const z: SmPoint = { point: p, z: 1e9 };
       return z;
     })
   };

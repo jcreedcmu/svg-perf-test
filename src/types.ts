@@ -89,7 +89,7 @@ export type Geo = {
   counter: number,
   images: Images,
   arcs: Dict<RawArc>,
-  polys: Poly[],
+  polys: Dict<Poly>,
   labels: Label[],
 };
 

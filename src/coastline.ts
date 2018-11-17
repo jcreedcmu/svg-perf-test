@@ -185,9 +185,9 @@ export class CoastlineLayer implements Layer {
   label_rt: Bush<LabelTarget>;
   arc_to_feature: { [k: string]: any } = {};
 
-  constructor(arcs: Dict<RawArc>, polys: Poly[], labels: Label[], counter: number) {
+  constructor(arcs: Dict<RawArc>, polys: Dict<Poly>, labels: Label[], counter: number) {
     this.counter = counter;
-    this.features = dictOfNamedArray(polys); // converting from poly to 'feature', here, which I think needs bbox
+    this.features = polys; // converting from poly to 'feature', here, which I think needs bbox
     this.arcs = vkmap(arcs, unrawOfArc);
     this.labels = dictOfNamedArray(labels);
     this.rebuild();
@@ -515,14 +515,15 @@ export class CoastlineLayer implements Layer {
 
   model(): {
     counter: number,
-    polys: Poly[],
+    polys: Dict<Poly>,
     arcs: Dict<RawArc>,
     labels: Label[],
   } {
-    const polys: Poly[] = _.map(this.features, object =>
-      _.extend({}, object,
-        { properties: _.omit(object.properties, "bbox") })
+    const polys: Dict<Poly> = {};
+    _.each(this.features, (object: Poly) =>
+      polys[object.name] = ({ ...object, properties: _.omit(object.properties, "bbox") })
     );
+
     const arcs: Dict<RawArc> = vmap(this.arcs, rawOfArc);
 
     const labels: Label[] = _.map(this.labels, function(x: any) { return x });

@@ -117863,8 +117863,503 @@
       ]
     }
   ],
-  "polys": [
-    {
+  "polys": {
+    "f1000": {
+      "arcs": [
+        "a1000"
+      ],
+      "name": "f1000",
+      "properties": {
+        "road": "highway",
+        "t": "road",
+        "text": "p2"
+      }
+    },
+    "f1001": {
+      "arcs": [
+        "a1001"
+      ],
+      "name": "f1001",
+      "properties": {
+        "road": "highway",
+        "t": "road",
+        "text": "p3"
+      }
+    },
+    "f1002": {
+      "arcs": [
+        "a1002"
+      ],
+      "name": "f1002",
+      "properties": {
+        "road": "highway",
+        "t": "road",
+        "text": "p4"
+      }
+    },
+    "f1003": {
+      "arcs": [
+        "a1003"
+      ],
+      "name": "f1003",
+      "properties": {
+        "road": "highway",
+        "t": "road",
+        "text": "p4"
+      }
+    },
+    "f1004": {
+      "arcs": [
+        "a1004"
+      ],
+      "name": "f1004",
+      "properties": {
+        "road": "highway",
+        "t": "road",
+        "text": "p5"
+      }
+    },
+    "f1005": {
+      "arcs": [
+        "a1005"
+      ],
+      "name": "f1005",
+      "properties": {
+        "road": "highway",
+        "t": "road",
+        "text": "p5"
+      }
+    },
+    "f1006": {
+      "arcs": [
+        "a1006"
+      ],
+      "name": "f1006",
+      "properties": {
+        "road": "highway",
+        "t": "road",
+        "text": "z10"
+      }
+    },
+    "f1007": {
+      "arcs": [
+        "a1007"
+      ],
+      "name": "f1007",
+      "properties": {
+        "road": "highway",
+        "t": "road",
+        "text": "201"
+      }
+    },
+    "f1008": {
+      "arcs": [
+        "a1008"
+      ],
+      "name": "f1008",
+      "properties": {
+        "road": "highway",
+        "t": "road",
+        "text": "201"
+      }
+    },
+    "f1009": {
+      "arcs": [
+        "a1009"
+      ],
+      "name": "f1009",
+      "properties": {
+        "road": "highway",
+        "t": "road",
+        "text": "205"
+      }
+    },
+    "f1010": {
+      "arcs": [
+        "a1010"
+      ],
+      "name": "f1010",
+      "properties": {
+        "road": "highway",
+        "t": "road",
+        "text": "106"
+      }
+    },
+    "f1011": {
+      "arcs": [
+        "a1011"
+      ],
+      "name": "f1011",
+      "properties": {
+        "road": "highway",
+        "t": "road",
+        "text": "17"
+      }
+    },
+    "f1012": {
+      "arcs": [
+        "a1012"
+      ],
+      "name": "f1012",
+      "properties": {
+        "road": "highway",
+        "t": "road",
+        "text": "23"
+      }
+    },
+    "f1013": {
+      "arcs": [
+        "a1013"
+      ],
+      "name": "f1013",
+      "properties": {
+        "road": "highway",
+        "t": "road",
+        "text": "800"
+      }
+    },
+    "f1014": {
+      "arcs": [
+        "a1014"
+      ],
+      "name": "f1014",
+      "properties": {
+        "road": "highway",
+        "t": "road",
+        "text": "201"
+      }
+    },
+    "f1015": {
+      "arcs": [
+        "a1015"
+      ],
+      "name": "f1015",
+      "properties": {
+        "road": "highway",
+        "t": "road",
+        "text": "72"
+      }
+    },
+    "f1016": {
+      "arcs": [
+        "a1016"
+      ],
+      "name": "f1016",
+      "properties": {
+        "road": "highway",
+        "t": "road",
+        "text": "60"
+      }
+    },
+    "f1017": {
+      "arcs": [
+        "a1017"
+      ],
+      "name": "f1017",
+      "properties": {
+        "road": "highway",
+        "t": "road",
+        "text": "201"
+      }
+    },
+    "f1018": {
+      "arcs": [
+        "a1018"
+      ],
+      "name": "f1018",
+      "properties": {
+        "road": "highway",
+        "t": "road",
+        "text": "300"
+      }
+    },
+    "f1019": {
+      "arcs": [
+        "a1019"
+      ],
+      "name": "f1019",
+      "properties": {
+        "road": "highway",
+        "t": "road",
+        "text": "29"
+      }
+    },
+    "f1020": {
+      "arcs": [
+        "a1020"
+      ],
+      "name": "f1020",
+      "properties": {
+        "road": "highway",
+        "t": "road",
+        "text": "29"
+      }
+    },
+    "f1021": {
+      "arcs": [
+        "a1021"
+      ],
+      "name": "f1021",
+      "properties": {
+        "road": "highway",
+        "t": "road",
+        "text": "u1"
+      }
+    },
+    "f1022": {
+      "arcs": [
+        "a1022"
+      ],
+      "name": "f1022",
+      "properties": {
+        "road": "highway",
+        "t": "road",
+        "text": "u1"
+      }
+    },
+    "f1023": {
+      "arcs": [
+        "a1023"
+      ],
+      "name": "f1023",
+      "properties": {
+        "road": "highway",
+        "t": "road",
+        "text": "u9"
+      }
+    },
+    "f1024": {
+      "arcs": [
+        "a1024"
+      ],
+      "name": "f1024",
+      "properties": {
+        "road": "highway",
+        "t": "road",
+        "text": "2"
+      }
+    },
+    "f1025": {
+      "arcs": [
+        "a1025"
+      ],
+      "name": "f1025",
+      "properties": {
+        "road": "highway",
+        "t": "road",
+        "text": "2"
+      }
+    },
+    "f1026": {
+      "arcs": [
+        "a1026"
+      ],
+      "name": "f1026",
+      "properties": {
+        "road": "highway",
+        "t": "road",
+        "text": "201"
+      }
+    },
+    "f1027": {
+      "arcs": [
+        "a1027"
+      ],
+      "name": "f1027",
+      "properties": {
+        "road": "highway",
+        "t": "road",
+        "text": "3"
+      }
+    },
+    "f1028": {
+      "arcs": [
+        "a1028"
+      ],
+      "name": "f1028",
+      "properties": {
+        "road": "highway",
+        "t": "road",
+        "text": "9"
+      }
+    },
+    "f1029": {
+      "arcs": [
+        "a1029"
+      ],
+      "name": "f1029",
+      "properties": {
+        "road": "highway",
+        "t": "road",
+        "text": "5"
+      }
+    },
+    "f1030": {
+      "arcs": [
+        "a1030"
+      ],
+      "name": "f1030",
+      "properties": {
+        "road": "highway",
+        "t": "road",
+        "text": "55"
+      }
+    },
+    "f1031": {
+      "arcs": [
+        "a1031"
+      ],
+      "name": "f1031",
+      "properties": {
+        "road": "highway",
+        "t": "road",
+        "text": "57"
+      }
+    },
+    "f1032": {
+      "arcs": [
+        "a1032"
+      ],
+      "name": "f1032",
+      "properties": {
+        "t": "city",
+        "text": "asdf",
+        "zoom": 4
+      }
+    },
+    "f1033": {
+      "arcs": [
+        "a1033"
+      ],
+      "name": "f1033",
+      "properties": {
+        "t": "city",
+        "text": "ai mura",
+        "zoom": 4
+      }
+    },
+    "f1036": {
+      "arcs": [
+        "a1036"
+      ],
+      "name": "f1036",
+      "properties": {
+        "road": "highway",
+        "t": "road",
+        "text": "gr"
+      }
+    },
+    "f1037": {
+      "arcs": [
+        "a1037"
+      ],
+      "name": "f1037",
+      "properties": {
+        "road": "highway",
+        "t": "road",
+        "text": "gr"
+      }
+    },
+    "f1038": {
+      "arcs": [
+        "a1038"
+      ],
+      "name": "f1038",
+      "properties": {
+        "road": "highway",
+        "t": "road",
+        "text": "wr"
+      }
+    },
+    "f1039": {
+      "arcs": [
+        "a1039"
+      ],
+      "name": "f1039",
+      "properties": {
+        "t": "city",
+        "text": "gut"
+      }
+    },
+    "f1040": {
+      "arcs": [
+        "a1040"
+      ],
+      "name": "f1040",
+      "properties": {
+        "natural": "coastline",
+        "t": "natural",
+        "text": "shiaovets-island"
+      }
+    },
+    "f1044": {
+      "arcs": [
+        "a1044"
+      ],
+      "name": "f1044",
+      "properties": {
+        "road": "street",
+        "t": "road",
+        "text": "madje way",
+        "zoom": 11
+      }
+    },
+    "f1045": {
+      "arcs": [
+        "a1045"
+      ],
+      "name": "f1045",
+      "properties": {
+        "road": "street",
+        "t": "road",
+        "text": "4th ring"
+      }
+    },
+    "f1046": {
+      "arcs": [
+        "a1046"
+      ],
+      "name": "f1046",
+      "properties": {
+        "road": "street",
+        "t": "road",
+        "text": "1st ring"
+      }
+    },
+    "f1047": {
+      "arcs": [
+        "a1047"
+      ],
+      "name": "f1047",
+      "properties": {
+        "road": "street",
+        "t": "road",
+        "text": "2nd ring"
+      }
+    },
+    "f1048": {
+      "arcs": [
+        "a1048"
+      ],
+      "name": "f1048",
+      "properties": {
+        "road": "street",
+        "t": "road",
+        "text": "3rd ring"
+      }
+    },
+    "f1049": {
+      "arcs": [
+        "a1049"
+      ],
+      "name": "f1049",
+      "properties": {
+        "road": "street",
+        "t": "road",
+        "text": "un way"
+      }
+    },
+    "feature0-0": {
       "arcs": [
         "arc0",
         "arc1",
@@ -117958,7 +118453,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-1": {
       "arcs": [
         "arc83"
       ],
@@ -117968,87 +118463,7 @@
         "t": "natural"
       }
     },
-    {
-      "arcs": [
-        "arc84"
-      ],
-      "name": "feature0-2",
-      "properties": {
-        "natural": "lake",
-        "t": "natural"
-      }
-    },
-    {
-      "arcs": [
-        "arc85"
-      ],
-      "name": "feature0-3",
-      "properties": {
-        "natural": "lake",
-        "t": "natural"
-      }
-    },
-    {
-      "arcs": [
-        "arc86"
-      ],
-      "name": "feature0-4",
-      "properties": {
-        "natural": "lake",
-        "t": "natural"
-      }
-    },
-    {
-      "arcs": [
-        "arc87"
-      ],
-      "name": "feature0-5",
-      "properties": {
-        "natural": "lake",
-        "t": "natural"
-      }
-    },
-    {
-      "arcs": [
-        "arc88"
-      ],
-      "name": "feature0-6",
-      "properties": {
-        "natural": "lake",
-        "t": "natural"
-      }
-    },
-    {
-      "arcs": [
-        "arc89"
-      ],
-      "name": "feature0-7",
-      "properties": {
-        "natural": "lake",
-        "t": "natural"
-      }
-    },
-    {
-      "arcs": [
-        "arc90"
-      ],
-      "name": "feature0-8",
-      "properties": {
-        "natural": "lake",
-        "t": "natural"
-      }
-    },
-    {
-      "arcs": [
-        "arc91"
-      ],
-      "name": "feature0-9",
-      "properties": {
-        "natural": "lake",
-        "t": "natural"
-      }
-    },
-    {
+    "feature0-10": {
       "arcs": [
         "arc92"
       ],
@@ -118058,7 +118473,107 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-100": {
+      "arcs": [
+        "arc183"
+      ],
+      "name": "feature0-100",
+      "properties": {
+        "natural": "lake",
+        "t": "natural"
+      }
+    },
+    "feature0-101": {
+      "arcs": [
+        "arc184"
+      ],
+      "name": "feature0-101",
+      "properties": {
+        "natural": "lake",
+        "t": "natural"
+      }
+    },
+    "feature0-102": {
+      "arcs": [
+        "arc185"
+      ],
+      "name": "feature0-102",
+      "properties": {
+        "natural": "lake",
+        "t": "natural"
+      }
+    },
+    "feature0-103": {
+      "arcs": [
+        "arc186"
+      ],
+      "name": "feature0-103",
+      "properties": {
+        "natural": "lake",
+        "t": "natural"
+      }
+    },
+    "feature0-104": {
+      "arcs": [
+        "arc187"
+      ],
+      "name": "feature0-104",
+      "properties": {
+        "natural": "lake",
+        "t": "natural"
+      }
+    },
+    "feature0-105": {
+      "arcs": [
+        "arc188"
+      ],
+      "name": "feature0-105",
+      "properties": {
+        "natural": "lake",
+        "t": "natural"
+      }
+    },
+    "feature0-106": {
+      "arcs": [
+        "arc189"
+      ],
+      "name": "feature0-106",
+      "properties": {
+        "natural": "lake",
+        "t": "natural"
+      }
+    },
+    "feature0-107": {
+      "arcs": [
+        "arc190"
+      ],
+      "name": "feature0-107",
+      "properties": {
+        "natural": "lake",
+        "t": "natural"
+      }
+    },
+    "feature0-108": {
+      "arcs": [
+        "arc191"
+      ],
+      "name": "feature0-108",
+      "properties": {
+        "natural": "lake",
+        "t": "natural"
+      }
+    },
+    "feature0-109": {
+      "arcs": [
+        "arc192"
+      ],
+      "name": "feature0-109",
+      "properties": {
+        "natural": "lake",
+        "t": "natural"
+      }
+    },
+    "feature0-11": {
       "arcs": [
         "arc93"
       ],
@@ -118068,7 +118583,107 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-110": {
+      "arcs": [
+        "arc193"
+      ],
+      "name": "feature0-110",
+      "properties": {
+        "natural": "lake",
+        "t": "natural"
+      }
+    },
+    "feature0-111": {
+      "arcs": [
+        "arc194"
+      ],
+      "name": "feature0-111",
+      "properties": {
+        "natural": "lake",
+        "t": "natural"
+      }
+    },
+    "feature0-112": {
+      "arcs": [
+        "arc195"
+      ],
+      "name": "feature0-112",
+      "properties": {
+        "natural": "lake",
+        "t": "natural"
+      }
+    },
+    "feature0-113": {
+      "arcs": [
+        "arc196"
+      ],
+      "name": "feature0-113",
+      "properties": {
+        "natural": "lake",
+        "t": "natural"
+      }
+    },
+    "feature0-114": {
+      "arcs": [
+        "arc197"
+      ],
+      "name": "feature0-114",
+      "properties": {
+        "natural": "lake",
+        "t": "natural"
+      }
+    },
+    "feature0-115": {
+      "arcs": [
+        "arc198"
+      ],
+      "name": "feature0-115",
+      "properties": {
+        "natural": "lake",
+        "t": "natural"
+      }
+    },
+    "feature0-116": {
+      "arcs": [
+        "arc199"
+      ],
+      "name": "feature0-116",
+      "properties": {
+        "natural": "lake",
+        "t": "natural"
+      }
+    },
+    "feature0-117": {
+      "arcs": [
+        "arc200"
+      ],
+      "name": "feature0-117",
+      "properties": {
+        "natural": "lake",
+        "t": "natural"
+      }
+    },
+    "feature0-118": {
+      "arcs": [
+        "arc201"
+      ],
+      "name": "feature0-118",
+      "properties": {
+        "natural": "lake",
+        "t": "natural"
+      }
+    },
+    "feature0-119": {
+      "arcs": [
+        "arc202"
+      ],
+      "name": "feature0-119",
+      "properties": {
+        "natural": "lake",
+        "t": "natural"
+      }
+    },
+    "feature0-12": {
       "arcs": [
         "arc94"
       ],
@@ -118078,7 +118693,57 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-120": {
+      "arcs": [
+        "arc203"
+      ],
+      "name": "feature0-120",
+      "properties": {
+        "natural": "lake",
+        "t": "natural"
+      }
+    },
+    "feature0-121": {
+      "arcs": [
+        "arc204"
+      ],
+      "name": "feature0-121",
+      "properties": {
+        "natural": "lake",
+        "t": "natural"
+      }
+    },
+    "feature0-122": {
+      "arcs": [
+        "arc205"
+      ],
+      "name": "feature0-122",
+      "properties": {
+        "natural": "lake",
+        "t": "natural"
+      }
+    },
+    "feature0-123": {
+      "arcs": [
+        "arc206"
+      ],
+      "name": "feature0-123",
+      "properties": {
+        "natural": "lake",
+        "t": "natural"
+      }
+    },
+    "feature0-124": {
+      "arcs": [
+        "arc207"
+      ],
+      "name": "feature0-124",
+      "properties": {
+        "natural": "lake",
+        "t": "natural"
+      }
+    },
+    "feature0-13": {
       "arcs": [
         "arc95"
       ],
@@ -118088,7 +118753,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-14": {
       "arcs": [
         "arc96"
       ],
@@ -118098,7 +118763,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-15": {
       "arcs": [
         "arc97"
       ],
@@ -118108,7 +118773,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-16": {
       "arcs": [
         "arc98"
       ],
@@ -118118,7 +118783,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-17": {
       "arcs": [
         "arc99"
       ],
@@ -118128,7 +118793,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-18": {
       "arcs": [
         "arc100"
       ],
@@ -118138,7 +118803,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-19": {
       "arcs": [
         "arc101"
       ],
@@ -118148,7 +118813,17 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-2": {
+      "arcs": [
+        "arc84"
+      ],
+      "name": "feature0-2",
+      "properties": {
+        "natural": "lake",
+        "t": "natural"
+      }
+    },
+    "feature0-20": {
       "arcs": [
         "arc102"
       ],
@@ -118158,7 +118833,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-21": {
       "arcs": [
         "arc103"
       ],
@@ -118168,7 +118843,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-22": {
       "arcs": [
         "arc104"
       ],
@@ -118178,7 +118853,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-23": {
       "arcs": [
         "arc105"
       ],
@@ -118188,7 +118863,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-24": {
       "arcs": [
         "arc106"
       ],
@@ -118198,7 +118873,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-25": {
       "arcs": [
         "arc107"
       ],
@@ -118208,7 +118883,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-26": {
       "arcs": [
         "arc108"
       ],
@@ -118218,7 +118893,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-27": {
       "arcs": [
         "arc109"
       ],
@@ -118228,7 +118903,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-28": {
       "arcs": [
         "arc110"
       ],
@@ -118238,7 +118913,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-29": {
       "arcs": [
         "arc111"
       ],
@@ -118248,7 +118923,17 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-3": {
+      "arcs": [
+        "arc85"
+      ],
+      "name": "feature0-3",
+      "properties": {
+        "natural": "lake",
+        "t": "natural"
+      }
+    },
+    "feature0-30": {
       "arcs": [
         "arc112"
       ],
@@ -118258,7 +118943,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-31": {
       "arcs": [
         "arc113",
         "arc114"
@@ -118269,7 +118954,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-32": {
       "arcs": [
         "arc115"
       ],
@@ -118279,7 +118964,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-33": {
       "arcs": [
         "arc116"
       ],
@@ -118289,7 +118974,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-34": {
       "arcs": [
         "arc117"
       ],
@@ -118299,7 +118984,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-35": {
       "arcs": [
         "arc118"
       ],
@@ -118309,7 +118994,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-36": {
       "arcs": [
         "arc119"
       ],
@@ -118319,7 +119004,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-37": {
       "arcs": [
         "arc120"
       ],
@@ -118329,7 +119014,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-38": {
       "arcs": [
         "arc121"
       ],
@@ -118339,7 +119024,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-39": {
       "arcs": [
         "arc122"
       ],
@@ -118349,7 +119034,17 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-4": {
+      "arcs": [
+        "arc86"
+      ],
+      "name": "feature0-4",
+      "properties": {
+        "natural": "lake",
+        "t": "natural"
+      }
+    },
+    "feature0-40": {
       "arcs": [
         "arc123"
       ],
@@ -118359,7 +119054,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-41": {
       "arcs": [
         "arc124"
       ],
@@ -118369,7 +119064,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-42": {
       "arcs": [
         "arc125"
       ],
@@ -118379,7 +119074,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-43": {
       "arcs": [
         "arc126"
       ],
@@ -118389,7 +119084,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-44": {
       "arcs": [
         "arc127"
       ],
@@ -118399,7 +119094,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-45": {
       "arcs": [
         "arc128"
       ],
@@ -118409,7 +119104,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-46": {
       "arcs": [
         "arc129"
       ],
@@ -118419,7 +119114,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-47": {
       "arcs": [
         "arc130"
       ],
@@ -118429,7 +119124,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-48": {
       "arcs": [
         "arc131"
       ],
@@ -118439,7 +119134,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-49": {
       "arcs": [
         "arc132"
       ],
@@ -118449,7 +119144,17 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-5": {
+      "arcs": [
+        "arc87"
+      ],
+      "name": "feature0-5",
+      "properties": {
+        "natural": "lake",
+        "t": "natural"
+      }
+    },
+    "feature0-50": {
       "arcs": [
         "arc133"
       ],
@@ -118459,7 +119164,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-51": {
       "arcs": [
         "arc134"
       ],
@@ -118469,7 +119174,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-52": {
       "arcs": [
         "arc135"
       ],
@@ -118479,7 +119184,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-53": {
       "arcs": [
         "arc136"
       ],
@@ -118489,7 +119194,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-54": {
       "arcs": [
         "arc137"
       ],
@@ -118499,7 +119204,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-55": {
       "arcs": [
         "arc138"
       ],
@@ -118509,7 +119214,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-56": {
       "arcs": [
         "arc139"
       ],
@@ -118519,7 +119224,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-57": {
       "arcs": [
         "arc140"
       ],
@@ -118529,7 +119234,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-58": {
       "arcs": [
         "arc141"
       ],
@@ -118539,7 +119244,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-59": {
       "arcs": [
         "arc142"
       ],
@@ -118549,7 +119254,17 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-6": {
+      "arcs": [
+        "arc88"
+      ],
+      "name": "feature0-6",
+      "properties": {
+        "natural": "lake",
+        "t": "natural"
+      }
+    },
+    "feature0-60": {
       "arcs": [
         "arc143"
       ],
@@ -118559,7 +119274,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-61": {
       "arcs": [
         "arc144"
       ],
@@ -118569,7 +119284,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-62": {
       "arcs": [
         "arc145"
       ],
@@ -118579,7 +119294,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-63": {
       "arcs": [
         "arc146"
       ],
@@ -118589,7 +119304,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-64": {
       "arcs": [
         "arc147"
       ],
@@ -118599,7 +119314,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-65": {
       "arcs": [
         "arc148"
       ],
@@ -118609,7 +119324,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-66": {
       "arcs": [
         "arc149"
       ],
@@ -118619,7 +119334,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-67": {
       "arcs": [
         "arc150"
       ],
@@ -118629,7 +119344,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-68": {
       "arcs": [
         "arc151"
       ],
@@ -118639,7 +119354,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-69": {
       "arcs": [
         "arc152"
       ],
@@ -118649,7 +119364,17 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-7": {
+      "arcs": [
+        "arc89"
+      ],
+      "name": "feature0-7",
+      "properties": {
+        "natural": "lake",
+        "t": "natural"
+      }
+    },
+    "feature0-70": {
       "arcs": [
         "arc153"
       ],
@@ -118659,7 +119384,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-71": {
       "arcs": [
         "arc154"
       ],
@@ -118669,7 +119394,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-72": {
       "arcs": [
         "arc155"
       ],
@@ -118679,7 +119404,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-73": {
       "arcs": [
         "arc156"
       ],
@@ -118689,7 +119414,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-74": {
       "arcs": [
         "arc157"
       ],
@@ -118699,7 +119424,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-75": {
       "arcs": [
         "arc158"
       ],
@@ -118709,7 +119434,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-76": {
       "arcs": [
         "arc159"
       ],
@@ -118719,7 +119444,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-77": {
       "arcs": [
         "arc160"
       ],
@@ -118729,7 +119454,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-78": {
       "arcs": [
         "arc161"
       ],
@@ -118739,7 +119464,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-79": {
       "arcs": [
         "arc162"
       ],
@@ -118749,7 +119474,17 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-8": {
+      "arcs": [
+        "arc90"
+      ],
+      "name": "feature0-8",
+      "properties": {
+        "natural": "lake",
+        "t": "natural"
+      }
+    },
+    "feature0-80": {
       "arcs": [
         "arc163"
       ],
@@ -118759,7 +119494,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-81": {
       "arcs": [
         "arc164"
       ],
@@ -118769,7 +119504,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-82": {
       "arcs": [
         "arc165"
       ],
@@ -118779,7 +119514,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-83": {
       "arcs": [
         "arc166"
       ],
@@ -118789,7 +119524,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-84": {
       "arcs": [
         "arc167"
       ],
@@ -118799,7 +119534,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-85": {
       "arcs": [
         "arc168"
       ],
@@ -118809,7 +119544,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-86": {
       "arcs": [
         "arc169"
       ],
@@ -118819,7 +119554,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-87": {
       "arcs": [
         "arc170"
       ],
@@ -118829,7 +119564,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-88": {
       "arcs": [
         "arc171"
       ],
@@ -118839,7 +119574,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-89": {
       "arcs": [
         "arc172"
       ],
@@ -118849,7 +119584,17 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-9": {
+      "arcs": [
+        "arc91"
+      ],
+      "name": "feature0-9",
+      "properties": {
+        "natural": "lake",
+        "t": "natural"
+      }
+    },
+    "feature0-90": {
       "arcs": [
         "arc173"
       ],
@@ -118859,7 +119604,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-91": {
       "arcs": [
         "arc174"
       ],
@@ -118869,7 +119614,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-92": {
       "arcs": [
         "arc175"
       ],
@@ -118879,7 +119624,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-93": {
       "arcs": [
         "arc176"
       ],
@@ -118889,7 +119634,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-94": {
       "arcs": [
         "arc177"
       ],
@@ -118899,7 +119644,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-95": {
       "arcs": [
         "arc178"
       ],
@@ -118909,7 +119654,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-96": {
       "arcs": [
         "arc179"
       ],
@@ -118919,7 +119664,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-97": {
       "arcs": [
         "arc180"
       ],
@@ -118929,7 +119674,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-98": {
       "arcs": [
         "arc181"
       ],
@@ -118939,7 +119684,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature0-99": {
       "arcs": [
         "arc182"
       ],
@@ -118949,257 +119694,7 @@
         "t": "natural"
       }
     },
-    {
-      "arcs": [
-        "arc183"
-      ],
-      "name": "feature0-100",
-      "properties": {
-        "natural": "lake",
-        "t": "natural"
-      }
-    },
-    {
-      "arcs": [
-        "arc184"
-      ],
-      "name": "feature0-101",
-      "properties": {
-        "natural": "lake",
-        "t": "natural"
-      }
-    },
-    {
-      "arcs": [
-        "arc185"
-      ],
-      "name": "feature0-102",
-      "properties": {
-        "natural": "lake",
-        "t": "natural"
-      }
-    },
-    {
-      "arcs": [
-        "arc186"
-      ],
-      "name": "feature0-103",
-      "properties": {
-        "natural": "lake",
-        "t": "natural"
-      }
-    },
-    {
-      "arcs": [
-        "arc187"
-      ],
-      "name": "feature0-104",
-      "properties": {
-        "natural": "lake",
-        "t": "natural"
-      }
-    },
-    {
-      "arcs": [
-        "arc188"
-      ],
-      "name": "feature0-105",
-      "properties": {
-        "natural": "lake",
-        "t": "natural"
-      }
-    },
-    {
-      "arcs": [
-        "arc189"
-      ],
-      "name": "feature0-106",
-      "properties": {
-        "natural": "lake",
-        "t": "natural"
-      }
-    },
-    {
-      "arcs": [
-        "arc190"
-      ],
-      "name": "feature0-107",
-      "properties": {
-        "natural": "lake",
-        "t": "natural"
-      }
-    },
-    {
-      "arcs": [
-        "arc191"
-      ],
-      "name": "feature0-108",
-      "properties": {
-        "natural": "lake",
-        "t": "natural"
-      }
-    },
-    {
-      "arcs": [
-        "arc192"
-      ],
-      "name": "feature0-109",
-      "properties": {
-        "natural": "lake",
-        "t": "natural"
-      }
-    },
-    {
-      "arcs": [
-        "arc193"
-      ],
-      "name": "feature0-110",
-      "properties": {
-        "natural": "lake",
-        "t": "natural"
-      }
-    },
-    {
-      "arcs": [
-        "arc194"
-      ],
-      "name": "feature0-111",
-      "properties": {
-        "natural": "lake",
-        "t": "natural"
-      }
-    },
-    {
-      "arcs": [
-        "arc195"
-      ],
-      "name": "feature0-112",
-      "properties": {
-        "natural": "lake",
-        "t": "natural"
-      }
-    },
-    {
-      "arcs": [
-        "arc196"
-      ],
-      "name": "feature0-113",
-      "properties": {
-        "natural": "lake",
-        "t": "natural"
-      }
-    },
-    {
-      "arcs": [
-        "arc197"
-      ],
-      "name": "feature0-114",
-      "properties": {
-        "natural": "lake",
-        "t": "natural"
-      }
-    },
-    {
-      "arcs": [
-        "arc198"
-      ],
-      "name": "feature0-115",
-      "properties": {
-        "natural": "lake",
-        "t": "natural"
-      }
-    },
-    {
-      "arcs": [
-        "arc199"
-      ],
-      "name": "feature0-116",
-      "properties": {
-        "natural": "lake",
-        "t": "natural"
-      }
-    },
-    {
-      "arcs": [
-        "arc200"
-      ],
-      "name": "feature0-117",
-      "properties": {
-        "natural": "lake",
-        "t": "natural"
-      }
-    },
-    {
-      "arcs": [
-        "arc201"
-      ],
-      "name": "feature0-118",
-      "properties": {
-        "natural": "lake",
-        "t": "natural"
-      }
-    },
-    {
-      "arcs": [
-        "arc202"
-      ],
-      "name": "feature0-119",
-      "properties": {
-        "natural": "lake",
-        "t": "natural"
-      }
-    },
-    {
-      "arcs": [
-        "arc203"
-      ],
-      "name": "feature0-120",
-      "properties": {
-        "natural": "lake",
-        "t": "natural"
-      }
-    },
-    {
-      "arcs": [
-        "arc204"
-      ],
-      "name": "feature0-121",
-      "properties": {
-        "natural": "lake",
-        "t": "natural"
-      }
-    },
-    {
-      "arcs": [
-        "arc205"
-      ],
-      "name": "feature0-122",
-      "properties": {
-        "natural": "lake",
-        "t": "natural"
-      }
-    },
-    {
-      "arcs": [
-        "arc206"
-      ],
-      "name": "feature0-123",
-      "properties": {
-        "natural": "lake",
-        "t": "natural"
-      }
-    },
-    {
-      "arcs": [
-        "arc207"
-      ],
-      "name": "feature0-124",
-      "properties": {
-        "natural": "lake",
-        "t": "natural"
-      }
-    },
-    {
+    "feature1-0": {
       "arcs": [
         "arc208"
       ],
@@ -119209,7 +119704,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature10-0": {
       "arcs": [
         "arc217"
       ],
@@ -119219,7 +119714,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature100-0": {
       "arcs": [
         "arc324"
       ],
@@ -119229,7 +119724,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature101-0": {
       "arcs": [
         "arc325"
       ],
@@ -119239,7 +119734,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature102-0": {
       "arcs": [
         "arc326"
       ],
@@ -119249,7 +119744,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature103-0": {
       "arcs": [
         "arc327"
       ],
@@ -119259,7 +119754,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature104-0": {
       "arcs": [
         "arc328"
       ],
@@ -119269,7 +119764,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature105-0": {
       "arcs": [
         "arc329-0",
         "arc329-1",
@@ -119281,7 +119776,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature106-0": {
       "arcs": [
         "arc331"
       ],
@@ -119291,7 +119786,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature107-0": {
       "arcs": [
         "arc332"
       ],
@@ -119301,7 +119796,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature108-0": {
       "arcs": [
         "arc333"
       ],
@@ -119311,7 +119806,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature109-0": {
       "arcs": [
         "arc334"
       ],
@@ -119321,7 +119816,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature11-0": {
       "arcs": [
         "arc218"
       ],
@@ -119331,7 +119826,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature110-0": {
       "arcs": [
         "arc335"
       ],
@@ -119341,7 +119836,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature111-0": {
       "arcs": [
         "arc336"
       ],
@@ -119351,7 +119846,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature112-0": {
       "arcs": [
         "arc337"
       ],
@@ -119361,7 +119856,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature113-0": {
       "arcs": [
         "arc338"
       ],
@@ -119371,7 +119866,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature114-0": {
       "arcs": [
         "arc339"
       ],
@@ -119381,7 +119876,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature115-0": {
       "arcs": [
         "arc340"
       ],
@@ -119391,7 +119886,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature116-0": {
       "arcs": [
         "arc341"
       ],
@@ -119401,7 +119896,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature117-0": {
       "arcs": [
         "arc342"
       ],
@@ -119411,7 +119906,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature118-0": {
       "arcs": [
         "arc343"
       ],
@@ -119421,7 +119916,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature119-0": {
       "arcs": [
         "arc344"
       ],
@@ -119431,7 +119926,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature12-0": {
       "arcs": [
         "arc219"
       ],
@@ -119441,7 +119936,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature120-0": {
       "arcs": [
         "arc345"
       ],
@@ -119451,7 +119946,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature121-0": {
       "arcs": [
         "arc346"
       ],
@@ -119461,7 +119956,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature122-0": {
       "arcs": [
         "arc347"
       ],
@@ -119471,7 +119966,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature122-1": {
       "arcs": [
         "arc348"
       ],
@@ -119481,7 +119976,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature123-0": {
       "arcs": [
         "arc349",
         "arc350",
@@ -119496,7 +119991,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature123-1": {
       "arcs": [
         "arc355"
       ],
@@ -119506,7 +120001,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature123-2": {
       "arcs": [
         "arc356"
       ],
@@ -119516,7 +120011,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature123-3": {
       "arcs": [
         "arc357"
       ],
@@ -119526,7 +120021,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature123-4": {
       "arcs": [
         "arc358"
       ],
@@ -119536,7 +120031,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature123-5": {
       "arcs": [
         "arc359"
       ],
@@ -119546,7 +120041,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature123-6": {
       "arcs": [
         "arc360"
       ],
@@ -119556,7 +120051,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature123-7": {
       "arcs": [
         "arc361"
       ],
@@ -119566,7 +120061,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature123-8": {
       "arcs": [
         "arc362"
       ],
@@ -119576,7 +120071,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature123-9": {
       "arcs": [
         "arc363"
       ],
@@ -119586,7 +120081,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature124-0": {
       "arcs": [
         "arc364"
       ],
@@ -119596,7 +120091,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature125-0": {
       "arcs": [
         "arc365"
       ],
@@ -119606,7 +120101,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature126-0": {
       "arcs": [
         "arc366"
       ],
@@ -119616,7 +120111,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature127-0": {
       "arcs": [
         "arc367"
       ],
@@ -119626,7 +120121,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature128-0": {
       "arcs": [
         "arc368"
       ],
@@ -119636,7 +120131,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature129-0": {
       "arcs": [
         "arc369"
       ],
@@ -119646,7 +120141,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature13-0": {
       "arcs": [
         "arc220"
       ],
@@ -119656,7 +120151,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature130-0": {
       "arcs": [
         "arc370"
       ],
@@ -119666,7 +120161,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature131-0": {
       "arcs": [
         "arc371"
       ],
@@ -119676,7 +120171,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature132-0": {
       "arcs": [
         "arc372"
       ],
@@ -119686,7 +120181,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature133-0": {
       "arcs": [
         "arc373"
       ],
@@ -119696,7 +120191,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature134-0": {
       "arcs": [
         "arc374"
       ],
@@ -119706,7 +120201,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature135-0": {
       "arcs": [
         "arc375"
       ],
@@ -119716,7 +120211,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature136-0": {
       "arcs": [
         "arc376"
       ],
@@ -119726,7 +120221,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature137-0": {
       "arcs": [
         "arc377"
       ],
@@ -119736,7 +120231,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature138-0": {
       "arcs": [
         "arc378"
       ],
@@ -119746,7 +120241,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature139-0": {
       "arcs": [
         "arc379"
       ],
@@ -119756,7 +120251,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature14-0": {
       "arcs": [
         "arc221"
       ],
@@ -119766,7 +120261,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature14-1": {
       "arcs": [
         "arc222"
       ],
@@ -119776,7 +120271,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature140-0": {
       "arcs": [
         "arc380"
       ],
@@ -119786,7 +120281,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature141-0": {
       "arcs": [
         "arc381"
       ],
@@ -119796,7 +120291,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature142-0": {
       "arcs": [
         "arc382"
       ],
@@ -119806,7 +120301,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature143-0": {
       "arcs": [
         "arc383"
       ],
@@ -119816,7 +120311,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature144-0": {
       "arcs": [
         "arc384"
       ],
@@ -119826,7 +120321,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature144-1": {
       "arcs": [
         "arc385"
       ],
@@ -119836,7 +120331,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature145-0": {
       "arcs": [
         "arc386"
       ],
@@ -119846,7 +120341,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature146-0": {
       "arcs": [
         "arc387"
       ],
@@ -119856,7 +120351,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature146-1": {
       "arcs": [
         "arc388"
       ],
@@ -119866,7 +120361,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature146-2": {
       "arcs": [
         "arc389"
       ],
@@ -119876,7 +120371,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature146-3": {
       "arcs": [
         "arc390"
       ],
@@ -119886,7 +120381,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature146-4": {
       "arcs": [
         "arc391"
       ],
@@ -119896,7 +120391,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature146-5": {
       "arcs": [
         "arc392"
       ],
@@ -119906,7 +120401,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature147-0": {
       "arcs": [
         "arc393"
       ],
@@ -119916,7 +120411,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature148-0": {
       "arcs": [
         "arc394"
       ],
@@ -119926,7 +120421,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature149-0": {
       "arcs": [
         "arc395"
       ],
@@ -119936,7 +120431,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature15-0": {
       "arcs": [
         "arc223"
       ],
@@ -119946,7 +120441,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature150-0": {
       "arcs": [
         "arc396"
       ],
@@ -119956,7 +120451,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature151-0": {
       "arcs": [
         "arc397"
       ],
@@ -119966,7 +120461,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature152-0": {
       "arcs": [
         "arc398"
       ],
@@ -119976,7 +120471,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature153-0": {
       "arcs": [
         "arc399"
       ],
@@ -119986,7 +120481,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature154-0": {
       "arcs": [
         "arc400"
       ],
@@ -119996,7 +120491,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature155-0": {
       "arcs": [
         "arc401"
       ],
@@ -120006,7 +120501,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature156-0": {
       "arcs": [
         "arc402"
       ],
@@ -120016,7 +120511,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature157-0": {
       "arcs": [
         "arc403"
       ],
@@ -120026,7 +120521,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature157-1": {
       "arcs": [
         "arc404"
       ],
@@ -120036,7 +120531,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature158-0": {
       "arcs": [
         "arc405"
       ],
@@ -120046,7 +120541,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature159-0": {
       "arcs": [
         "arc406"
       ],
@@ -120056,7 +120551,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature16-0": {
       "arcs": [
         "arc224"
       ],
@@ -120066,7 +120561,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature160-0": {
       "arcs": [
         "arc408"
       ],
@@ -120076,7 +120571,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature161-0": {
       "arcs": [
         "arc409"
       ],
@@ -120086,7 +120581,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature162-0": {
       "arcs": [
         "arc410"
       ],
@@ -120096,7 +120591,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature163-0": {
       "arcs": [
         "arc411"
       ],
@@ -120106,7 +120601,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature164-0": {
       "arcs": [
         "arc412"
       ],
@@ -120116,7 +120611,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature165-0": {
       "arcs": [
         "arc413"
       ],
@@ -120126,7 +120621,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature166-0": {
       "arcs": [
         "arc414"
       ],
@@ -120136,7 +120631,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature167-0": {
       "arcs": [
         "arc415"
       ],
@@ -120146,7 +120641,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature168-0": {
       "arcs": [
         "arc416"
       ],
@@ -120156,7 +120651,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature169-0": {
       "arcs": [
         "arc417"
       ],
@@ -120166,7 +120661,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature17-0": {
       "arcs": [
         "arc225"
       ],
@@ -120176,7 +120671,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature170-0": {
       "arcs": [
         "arc418"
       ],
@@ -120186,7 +120681,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature171-0": {
       "arcs": [
         "arc419"
       ],
@@ -120196,7 +120691,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature172-0": {
       "arcs": [
         "arc420"
       ],
@@ -120206,7 +120701,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature173-0": {
       "arcs": [
         "arc421"
       ],
@@ -120216,7 +120711,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature174-0": {
       "arcs": [
         "arc422"
       ],
@@ -120226,7 +120721,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature175-0": {
       "arcs": [
         "arc423"
       ],
@@ -120236,7 +120731,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature176-0": {
       "arcs": [
         "arc424"
       ],
@@ -120246,7 +120741,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature177-0": {
       "arcs": [
         "arc425"
       ],
@@ -120256,7 +120751,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature178-0": {
       "arcs": [
         "arc426"
       ],
@@ -120266,7 +120761,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature179-0": {
       "arcs": [
         "arc427"
       ],
@@ -120276,7 +120771,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature18-0": {
       "arcs": [
         "arc226"
       ],
@@ -120286,7 +120781,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature180-0": {
       "arcs": [
         "arc428"
       ],
@@ -120296,7 +120791,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature181-0": {
       "arcs": [
         "arc429"
       ],
@@ -120306,7 +120801,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature182-0": {
       "arcs": [
         "arc430"
       ],
@@ -120316,7 +120811,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature183-0": {
       "arcs": [
         "arc431"
       ],
@@ -120326,7 +120821,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature184-0": {
       "arcs": [
         "arc432"
       ],
@@ -120336,7 +120831,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature185-0": {
       "arcs": [
         "arc433"
       ],
@@ -120346,7 +120841,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature186-0": {
       "arcs": [
         "arc434"
       ],
@@ -120356,7 +120851,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature187-0": {
       "arcs": [
         "arc435"
       ],
@@ -120366,7 +120861,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature188-0": {
       "arcs": [
         "arc436"
       ],
@@ -120376,7 +120871,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature189-0": {
       "arcs": [
         "arc437"
       ],
@@ -120386,7 +120881,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature19-0": {
       "arcs": [
         "arc227"
       ],
@@ -120396,7 +120891,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature190-0": {
       "arcs": [
         "arc438"
       ],
@@ -120406,7 +120901,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature191-0": {
       "arcs": [
         "arc439"
       ],
@@ -120416,7 +120911,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature192-0": {
       "arcs": [
         "arc440"
       ],
@@ -120426,7 +120921,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature193-0": {
       "arcs": [
         "arc441"
       ],
@@ -120436,7 +120931,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature194-0": {
       "arcs": [
         "arc442"
       ],
@@ -120446,7 +120941,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature195-0": {
       "arcs": [
         "arc443"
       ],
@@ -120456,7 +120951,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature196-0": {
       "arcs": [
         "arc444"
       ],
@@ -120466,7 +120961,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature197-0": {
       "arcs": [
         "arc445"
       ],
@@ -120476,7 +120971,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature198-0": {
       "arcs": [
         "arc446"
       ],
@@ -120486,7 +120981,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature199-0": {
       "arcs": [
         "arc447"
       ],
@@ -120496,7 +120991,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature2-0": {
       "arcs": [
         "arc209"
       ],
@@ -120506,7 +121001,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature20-0": {
       "arcs": [
         "arc228"
       ],
@@ -120516,7 +121011,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature200-0": {
       "arcs": [
         "arc448"
       ],
@@ -120526,7 +121021,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature201-0": {
       "arcs": [
         "arc449"
       ],
@@ -120536,7 +121031,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature202-0": {
       "arcs": [
         "arc450"
       ],
@@ -120546,7 +121041,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature203-0": {
       "arcs": [
         "arc451",
         "arc452"
@@ -120557,7 +121052,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature203-1": {
       "arcs": [
         "arc453"
       ],
@@ -120567,7 +121062,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature204-0": {
       "arcs": [
         "arc454"
       ],
@@ -120577,7 +121072,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature205-0": {
       "arcs": [
         "arc455"
       ],
@@ -120587,7 +121082,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature206-0": {
       "arcs": [
         "arc456"
       ],
@@ -120597,7 +121092,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature207-0": {
       "arcs": [
         "arc457"
       ],
@@ -120607,7 +121102,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature208-0": {
       "arcs": [
         "arc458"
       ],
@@ -120617,7 +121112,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature209-0": {
       "arcs": [
         "arc459"
       ],
@@ -120627,7 +121122,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature21-0": {
       "arcs": [
         "arc229"
       ],
@@ -120637,7 +121132,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature210-0": {
       "arcs": [
         "arc460"
       ],
@@ -120647,7 +121142,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature211-0": {
       "arcs": [
         "arc461",
         "arc462"
@@ -120658,7 +121153,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature212-0": {
       "arcs": [
         "arc463"
       ],
@@ -120668,7 +121163,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature213-0": {
       "arcs": [
         "arc464"
       ],
@@ -120678,7 +121173,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature214-0": {
       "arcs": [
         "arc465"
       ],
@@ -120688,7 +121183,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature215-0": {
       "arcs": [
         "arc466"
       ],
@@ -120698,7 +121193,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature216-0": {
       "arcs": [
         "arc467"
       ],
@@ -120708,7 +121203,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature217-0": {
       "arcs": [
         "arc468"
       ],
@@ -120718,7 +121213,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature218-0": {
       "arcs": [
         "arc469"
       ],
@@ -120728,7 +121223,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature219-0": {
       "arcs": [
         "arc470"
       ],
@@ -120738,7 +121233,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature22-0": {
       "arcs": [
         "arc230"
       ],
@@ -120748,7 +121243,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature220-0": {
       "arcs": [
         "arc471"
       ],
@@ -120758,7 +121253,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature221-0": {
       "arcs": [
         "arc472"
       ],
@@ -120768,7 +121263,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature222-0": {
       "arcs": [
         "arc473"
       ],
@@ -120778,7 +121273,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature223-0": {
       "arcs": [
         "arc474"
       ],
@@ -120788,7 +121283,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature224-0": {
       "arcs": [
         "arc475"
       ],
@@ -120798,7 +121293,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature225-0": {
       "arcs": [
         "arc476"
       ],
@@ -120808,7 +121303,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature226-0": {
       "arcs": [
         "arc477"
       ],
@@ -120818,7 +121313,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature227-0": {
       "arcs": [
         "arc478"
       ],
@@ -120828,7 +121323,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature228-0": {
       "arcs": [
         "arc479"
       ],
@@ -120838,7 +121333,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature229-0": {
       "arcs": [
         "arc480"
       ],
@@ -120848,7 +121343,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature23-0": {
       "arcs": [
         "arc231"
       ],
@@ -120858,7 +121353,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature230-0": {
       "arcs": [
         "arc481"
       ],
@@ -120868,7 +121363,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature24-0": {
       "arcs": [
         "arc232"
       ],
@@ -120878,7 +121373,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature25-0": {
       "arcs": [
         "arc233"
       ],
@@ -120888,7 +121383,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature26-0": {
       "arcs": [
         "arc234"
       ],
@@ -120898,7 +121393,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature27-0": {
       "arcs": [
         "arc235"
       ],
@@ -120908,7 +121403,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature28-0": {
       "arcs": [
         "arc236"
       ],
@@ -120918,7 +121413,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature29-0": {
       "arcs": [
         "arc237"
       ],
@@ -120928,7 +121423,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature3-0": {
       "arcs": [
         "arc210"
       ],
@@ -120938,7 +121433,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature30-0": {
       "arcs": [
         "arc238"
       ],
@@ -120948,7 +121443,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature31-0": {
       "arcs": [
         "arc239"
       ],
@@ -120958,7 +121453,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature32-0": {
       "arcs": [
         "arc240"
       ],
@@ -120968,7 +121463,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature33-0": {
       "arcs": [
         "arc241"
       ],
@@ -120978,7 +121473,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature34-0": {
       "arcs": [
         "arc242"
       ],
@@ -120988,7 +121483,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature35-0": {
       "arcs": [
         "arc243"
       ],
@@ -120998,7 +121493,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature36-0": {
       "arcs": [
         "arc244"
       ],
@@ -121008,7 +121503,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature37-0": {
       "arcs": [
         "arc245"
       ],
@@ -121018,7 +121513,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature38-0": {
       "arcs": [
         "arc246"
       ],
@@ -121028,7 +121523,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature39-0": {
       "arcs": [
         "arc247"
       ],
@@ -121038,7 +121533,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature4-0": {
       "arcs": [
         "arc211"
       ],
@@ -121048,7 +121543,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature40-0": {
       "arcs": [
         "arc248"
       ],
@@ -121058,7 +121553,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature41-0": {
       "arcs": [
         "arc249"
       ],
@@ -121068,7 +121563,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature42-0": {
       "arcs": [
         "arc250"
       ],
@@ -121078,7 +121573,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature43-0": {
       "arcs": [
         "arc251"
       ],
@@ -121088,7 +121583,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature44-0": {
       "arcs": [
         "arc252"
       ],
@@ -121098,7 +121593,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature45-0": {
       "arcs": [
         "arc253"
       ],
@@ -121108,7 +121603,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature46-0": {
       "arcs": [
         "arc254"
       ],
@@ -121118,7 +121613,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature47-0": {
       "arcs": [
         "arc255"
       ],
@@ -121128,7 +121623,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature48-0": {
       "arcs": [
         "arc256"
       ],
@@ -121138,7 +121633,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature49-0": {
       "arcs": [
         "arc257"
       ],
@@ -121148,7 +121643,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature5-0": {
       "arcs": [
         "arc212"
       ],
@@ -121158,7 +121653,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature50-0": {
       "arcs": [
         "arc258"
       ],
@@ -121168,7 +121663,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature51-0": {
       "arcs": [
         "arc259"
       ],
@@ -121178,7 +121673,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature52-0": {
       "arcs": [
         "arc260"
       ],
@@ -121188,7 +121683,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature53-0": {
       "arcs": [
         "arc261"
       ],
@@ -121198,7 +121693,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature54-0": {
       "arcs": [
         "arc262"
       ],
@@ -121208,7 +121703,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature55-0": {
       "arcs": [
         "arc263"
       ],
@@ -121218,7 +121713,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature56-0": {
       "arcs": [
         "arc264"
       ],
@@ -121228,7 +121723,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature57-0": {
       "arcs": [
         "arc265"
       ],
@@ -121238,7 +121733,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature58-0": {
       "arcs": [
         "arc266"
       ],
@@ -121248,7 +121743,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature59-0": {
       "arcs": [
         "arc267"
       ],
@@ -121258,7 +121753,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature6-0": {
       "arcs": [
         "arc213"
       ],
@@ -121268,7 +121763,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature60-0": {
       "arcs": [
         "arc268"
       ],
@@ -121278,7 +121773,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature60-1": {
       "arcs": [
         "arc269"
       ],
@@ -121288,7 +121783,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature61-0": {
       "arcs": [
         "arc270"
       ],
@@ -121298,7 +121793,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature62-0": {
       "arcs": [
         "arc271",
         "arc272",
@@ -121316,7 +121811,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature62-1": {
       "arcs": [
         "arc280"
       ],
@@ -121326,7 +121821,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature62-2": {
       "arcs": [
         "arc281"
       ],
@@ -121336,7 +121831,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature62-3": {
       "arcs": [
         "arc282"
       ],
@@ -121346,7 +121841,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature62-4": {
       "arcs": [
         "arc283"
       ],
@@ -121356,7 +121851,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature62-5": {
       "arcs": [
         "arc284"
       ],
@@ -121366,7 +121861,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature62-6": {
       "arcs": [
         "arc285"
       ],
@@ -121376,7 +121871,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature63-0": {
       "arcs": [
         "arc286"
       ],
@@ -121386,7 +121881,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature64-0": {
       "arcs": [
         "arc287"
       ],
@@ -121396,7 +121891,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature65-0": {
       "arcs": [
         "arc288"
       ],
@@ -121406,7 +121901,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature66-0": {
       "arcs": [
         "arc289"
       ],
@@ -121416,7 +121911,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature67-0": {
       "arcs": [
         "arc290"
       ],
@@ -121426,7 +121921,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature68-0": {
       "arcs": [
         "arc291",
         "arc292"
@@ -121437,7 +121932,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature69-0": {
       "arcs": [
         "arc293"
       ],
@@ -121447,7 +121942,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature7-0": {
       "arcs": [
         "arc214"
       ],
@@ -121457,7 +121952,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature70-0": {
       "arcs": [
         "arc294"
       ],
@@ -121467,7 +121962,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature71-0": {
       "arcs": [
         "arc295"
       ],
@@ -121477,7 +121972,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature72-0": {
       "arcs": [
         "arc296"
       ],
@@ -121487,7 +121982,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature73-0": {
       "arcs": [
         "arc297"
       ],
@@ -121497,7 +121992,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature74-0": {
       "arcs": [
         "arc298"
       ],
@@ -121507,7 +122002,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature75-0": {
       "arcs": [
         "arc299"
       ],
@@ -121517,7 +122012,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature76-0": {
       "arcs": [
         "arc300"
       ],
@@ -121527,7 +122022,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature77-0": {
       "arcs": [
         "arc301"
       ],
@@ -121537,7 +122032,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature78-0": {
       "arcs": [
         "arc302"
       ],
@@ -121547,7 +122042,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature79-0": {
       "arcs": [
         "arc303"
       ],
@@ -121557,7 +122052,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature8-0": {
       "arcs": [
         "arc215"
       ],
@@ -121567,7 +122062,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature80-0": {
       "arcs": [
         "arc304"
       ],
@@ -121577,7 +122072,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature81-0": {
       "arcs": [
         "arc305"
       ],
@@ -121587,7 +122082,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature82-0": {
       "arcs": [
         "arc306"
       ],
@@ -121597,7 +122092,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature83-0": {
       "arcs": [
         "arc307"
       ],
@@ -121607,7 +122102,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature84-0": {
       "arcs": [
         "arc308"
       ],
@@ -121617,7 +122112,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature85-0": {
       "arcs": [
         "arc309"
       ],
@@ -121627,7 +122122,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature86-0": {
       "arcs": [
         "arc310"
       ],
@@ -121637,7 +122132,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature87-0": {
       "arcs": [
         "arc311"
       ],
@@ -121647,7 +122142,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature88-0": {
       "arcs": [
         "arc312"
       ],
@@ -121657,7 +122152,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature89-0": {
       "arcs": [
         "arc313"
       ],
@@ -121667,7 +122162,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature9-0": {
       "arcs": [
         "arc216"
       ],
@@ -121677,7 +122172,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature90-0": {
       "arcs": [
         "arc314"
       ],
@@ -121687,7 +122182,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature91-0": {
       "arcs": [
         "arc315"
       ],
@@ -121697,7 +122192,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature92-0": {
       "arcs": [
         "arc316"
       ],
@@ -121707,7 +122202,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature93-0": {
       "arcs": [
         "arc317"
       ],
@@ -121717,7 +122212,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature94-0": {
       "arcs": [
         "arc318"
       ],
@@ -121727,7 +122222,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature95-0": {
       "arcs": [
         "arc319"
       ],
@@ -121737,7 +122232,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature96-0": {
       "arcs": [
         "arc320"
       ],
@@ -121747,7 +122242,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature97-0": {
       "arcs": [
         "arc321"
       ],
@@ -121757,7 +122252,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature98-0": {
       "arcs": [
         "arc322"
       ],
@@ -121767,7 +122262,7 @@
         "t": "natural"
       }
     },
-    {
+    "feature99-0": {
       "arcs": [
         "arc323"
       ],
@@ -121777,7 +122272,7 @@
         "t": "natural"
       }
     },
-    {
+    "mtn0": {
       "arcs": [
         "mtnarc0-0",
         "mtnarc0-1",
@@ -121797,7 +122292,7 @@
         "t": "natural"
       }
     },
-    {
+    "mtn1": {
       "arcs": [
         "mtnarc1"
       ],
@@ -121807,7 +122302,107 @@
         "t": "natural"
       }
     },
-    {
+    "mtn10": {
+      "arcs": [
+        "mtnarc10"
+      ],
+      "name": "mtn10",
+      "properties": {
+        "natural": "mountain",
+        "t": "natural"
+      }
+    },
+    "mtn11": {
+      "arcs": [
+        "mtnarc11"
+      ],
+      "name": "mtn11",
+      "properties": {
+        "natural": "mountain",
+        "t": "natural"
+      }
+    },
+    "mtn12": {
+      "arcs": [
+        "mtnarc12"
+      ],
+      "name": "mtn12",
+      "properties": {
+        "natural": "mountain",
+        "t": "natural"
+      }
+    },
+    "mtn13": {
+      "arcs": [
+        "mtnarc13"
+      ],
+      "name": "mtn13",
+      "properties": {
+        "natural": "mountain",
+        "t": "natural"
+      }
+    },
+    "mtn14": {
+      "arcs": [
+        "mtnarc14"
+      ],
+      "name": "mtn14",
+      "properties": {
+        "natural": "mountain",
+        "t": "natural"
+      }
+    },
+    "mtn15": {
+      "arcs": [
+        "mtnarc15"
+      ],
+      "name": "mtn15",
+      "properties": {
+        "natural": "mountain",
+        "t": "natural"
+      }
+    },
+    "mtn16": {
+      "arcs": [
+        "mtnarc16"
+      ],
+      "name": "mtn16",
+      "properties": {
+        "natural": "mountain",
+        "t": "natural"
+      }
+    },
+    "mtn17": {
+      "arcs": [
+        "mtnarc17"
+      ],
+      "name": "mtn17",
+      "properties": {
+        "natural": "mountain",
+        "t": "natural"
+      }
+    },
+    "mtn18": {
+      "arcs": [
+        "mtnarc18"
+      ],
+      "name": "mtn18",
+      "properties": {
+        "natural": "mountain",
+        "t": "natural"
+      }
+    },
+    "mtn19": {
+      "arcs": [
+        "mtnarc19"
+      ],
+      "name": "mtn19",
+      "properties": {
+        "natural": "mountain",
+        "t": "natural"
+      }
+    },
+    "mtn2": {
       "arcs": [
         "mtnarc2-0",
         "mtnarc2-1",
@@ -121836,177 +122431,7 @@
         "t": "natural"
       }
     },
-    {
-      "arcs": [
-        "mtnarc3"
-      ],
-      "name": "mtn3",
-      "properties": {
-        "natural": "mountain",
-        "t": "natural"
-      }
-    },
-    {
-      "arcs": [
-        "mtnarc4"
-      ],
-      "name": "mtn4",
-      "properties": {
-        "natural": "mountain",
-        "t": "natural"
-      }
-    },
-    {
-      "arcs": [
-        "mtnarc5"
-      ],
-      "name": "mtn5",
-      "properties": {
-        "natural": "mountain",
-        "t": "natural"
-      }
-    },
-    {
-      "arcs": [
-        "mtnarc6"
-      ],
-      "name": "mtn6",
-      "properties": {
-        "natural": "mountain",
-        "t": "natural"
-      }
-    },
-    {
-      "arcs": [
-        "mtnarc7"
-      ],
-      "name": "mtn7",
-      "properties": {
-        "natural": "mountain",
-        "t": "natural"
-      }
-    },
-    {
-      "arcs": [
-        "mtnarc8"
-      ],
-      "name": "mtn8",
-      "properties": {
-        "natural": "mountain",
-        "t": "natural"
-      }
-    },
-    {
-      "arcs": [
-        "mtnarc9"
-      ],
-      "name": "mtn9",
-      "properties": {
-        "natural": "mountain",
-        "t": "natural"
-      }
-    },
-    {
-      "arcs": [
-        "mtnarc10"
-      ],
-      "name": "mtn10",
-      "properties": {
-        "natural": "mountain",
-        "t": "natural"
-      }
-    },
-    {
-      "arcs": [
-        "mtnarc11"
-      ],
-      "name": "mtn11",
-      "properties": {
-        "natural": "mountain",
-        "t": "natural"
-      }
-    },
-    {
-      "arcs": [
-        "mtnarc12"
-      ],
-      "name": "mtn12",
-      "properties": {
-        "natural": "mountain",
-        "t": "natural"
-      }
-    },
-    {
-      "arcs": [
-        "mtnarc13"
-      ],
-      "name": "mtn13",
-      "properties": {
-        "natural": "mountain",
-        "t": "natural"
-      }
-    },
-    {
-      "arcs": [
-        "mtnarc14"
-      ],
-      "name": "mtn14",
-      "properties": {
-        "natural": "mountain",
-        "t": "natural"
-      }
-    },
-    {
-      "arcs": [
-        "mtnarc15"
-      ],
-      "name": "mtn15",
-      "properties": {
-        "natural": "mountain",
-        "t": "natural"
-      }
-    },
-    {
-      "arcs": [
-        "mtnarc16"
-      ],
-      "name": "mtn16",
-      "properties": {
-        "natural": "mountain",
-        "t": "natural"
-      }
-    },
-    {
-      "arcs": [
-        "mtnarc17"
-      ],
-      "name": "mtn17",
-      "properties": {
-        "natural": "mountain",
-        "t": "natural"
-      }
-    },
-    {
-      "arcs": [
-        "mtnarc18"
-      ],
-      "name": "mtn18",
-      "properties": {
-        "natural": "mountain",
-        "t": "natural"
-      }
-    },
-    {
-      "arcs": [
-        "mtnarc19"
-      ],
-      "name": "mtn19",
-      "properties": {
-        "natural": "mountain",
-        "t": "natural"
-      }
-    },
-    {
+    "mtn20": {
       "arcs": [
         "mtnarc20"
       ],
@@ -122016,7 +122441,7 @@
         "t": "natural"
       }
     },
-    {
+    "mtn21": {
       "arcs": [
         "mtnarc21"
       ],
@@ -122026,7 +122451,7 @@
         "t": "natural"
       }
     },
-    {
+    "mtn22": {
       "arcs": [
         "mtnarc22"
       ],
@@ -122036,7 +122461,7 @@
         "t": "natural"
       }
     },
-    {
+    "mtn23": {
       "arcs": [
         "mtnarc23"
       ],
@@ -122046,7 +122471,7 @@
         "t": "natural"
       }
     },
-    {
+    "mtn24": {
       "arcs": [
         "mtnarc24"
       ],
@@ -122056,7 +122481,7 @@
         "t": "natural"
       }
     },
-    {
+    "mtn25": {
       "arcs": [
         "mtnarc25"
       ],
@@ -122066,7 +122491,7 @@
         "t": "natural"
       }
     },
-    {
+    "mtn26": {
       "arcs": [
         "mtnarc26"
       ],
@@ -122076,7 +122501,7 @@
         "t": "natural"
       }
     },
-    {
+    "mtn27": {
       "arcs": [
         "mtnarc27"
       ],
@@ -122086,7 +122511,7 @@
         "t": "natural"
       }
     },
-    {
+    "mtn28": {
       "arcs": [
         "mtnarc28-0",
         "mtnarc28-1",
@@ -122106,7 +122531,7 @@
         "t": "natural"
       }
     },
-    {
+    "mtn29": {
       "arcs": [
         "mtnarc29"
       ],
@@ -122116,7 +122541,17 @@
         "t": "natural"
       }
     },
-    {
+    "mtn3": {
+      "arcs": [
+        "mtnarc3"
+      ],
+      "name": "mtn3",
+      "properties": {
+        "natural": "mountain",
+        "t": "natural"
+      }
+    },
+    "mtn30": {
       "arcs": [
         "mtnarc30"
       ],
@@ -122126,7 +122561,7 @@
         "t": "natural"
       }
     },
-    {
+    "mtn31": {
       "arcs": [
         "mtnarc31-0",
         "mtnarc31-1"
@@ -122137,7 +122572,7 @@
         "t": "natural"
       }
     },
-    {
+    "mtn32": {
       "arcs": [
         "mtnarc32"
       ],
@@ -122147,7 +122582,7 @@
         "t": "natural"
       }
     },
-    {
+    "mtn33": {
       "arcs": [
         "mtnarc33"
       ],
@@ -122157,7 +122592,7 @@
         "t": "natural"
       }
     },
-    {
+    "mtn34": {
       "arcs": [
         "mtnarc34"
       ],
@@ -122167,7 +122602,7 @@
         "t": "natural"
       }
     },
-    {
+    "mtn35": {
       "arcs": [
         "mtnarc35"
       ],
@@ -122177,7 +122612,7 @@
         "t": "natural"
       }
     },
-    {
+    "mtn36": {
       "arcs": [
         "mtnarc36"
       ],
@@ -122187,7 +122622,7 @@
         "t": "natural"
       }
     },
-    {
+    "mtn37": {
       "arcs": [
         "mtnarc37"
       ],
@@ -122197,7 +122632,7 @@
         "t": "natural"
       }
     },
-    {
+    "mtn38": {
       "arcs": [
         "mtnarc38"
       ],
@@ -122207,7 +122642,7 @@
         "t": "natural"
       }
     },
-    {
+    "mtn39": {
       "arcs": [
         "mtnarc39"
       ],
@@ -122217,7 +122652,17 @@
         "t": "natural"
       }
     },
-    {
+    "mtn4": {
+      "arcs": [
+        "mtnarc4"
+      ],
+      "name": "mtn4",
+      "properties": {
+        "natural": "mountain",
+        "t": "natural"
+      }
+    },
+    "mtn40": {
       "arcs": [
         "mtnarc40"
       ],
@@ -122227,7 +122672,7 @@
         "t": "natural"
       }
     },
-    {
+    "mtn41": {
       "arcs": [
         "mtnarc41"
       ],
@@ -122237,7 +122682,7 @@
         "t": "natural"
       }
     },
-    {
+    "mtn42": {
       "arcs": [
         "mtnarc42"
       ],
@@ -122247,7 +122692,7 @@
         "t": "natural"
       }
     },
-    {
+    "mtn43": {
       "arcs": [
         "mtnarc43-0",
         "mtnarc43-1",
@@ -122262,7 +122707,7 @@
         "t": "natural"
       }
     },
-    {
+    "mtn44": {
       "arcs": [
         "mtnarc44"
       ],
@@ -122272,7 +122717,7 @@
         "t": "natural"
       }
     },
-    {
+    "mtn45": {
       "arcs": [
         "mtnarc45"
       ],
@@ -122282,7 +122727,7 @@
         "t": "natural"
       }
     },
-    {
+    "mtn46": {
       "arcs": [
         "mtnarc46"
       ],
@@ -122292,7 +122737,7 @@
         "t": "natural"
       }
     },
-    {
+    "mtn47": {
       "arcs": [
         "mtnarc47-0",
         "mtnarc47-1"
@@ -122303,7 +122748,7 @@
         "t": "natural"
       }
     },
-    {
+    "mtn48": {
       "arcs": [
         "mtnarc48"
       ],
@@ -122313,7 +122758,7 @@
         "t": "natural"
       }
     },
-    {
+    "mtn49": {
       "arcs": [
         "mtnarc49"
       ],
@@ -122323,7 +122768,17 @@
         "t": "natural"
       }
     },
-    {
+    "mtn5": {
+      "arcs": [
+        "mtnarc5"
+      ],
+      "name": "mtn5",
+      "properties": {
+        "natural": "mountain",
+        "t": "natural"
+      }
+    },
+    "mtn50": {
       "arcs": [
         "mtnarc50"
       ],
@@ -122333,7 +122788,7 @@
         "t": "natural"
       }
     },
-    {
+    "mtn51": {
       "arcs": [
         "mtnarc51-0",
         "mtnarc51-1"
@@ -122344,7 +122799,7 @@
         "t": "natural"
       }
     },
-    {
+    "mtn52": {
       "arcs": [
         "mtnarc52"
       ],
@@ -122354,7 +122809,7 @@
         "t": "natural"
       }
     },
-    {
+    "mtn53": {
       "arcs": [
         "mtnarc53"
       ],
@@ -122364,500 +122819,45 @@
         "t": "natural"
       }
     },
-    {
+    "mtn6": {
       "arcs": [
-        "a1000"
+        "mtnarc6"
       ],
-      "name": "f1000",
+      "name": "mtn6",
       "properties": {
-        "road": "highway",
-        "t": "road",
-        "text": "p2"
+        "natural": "mountain",
+        "t": "natural"
       }
     },
-    {
+    "mtn7": {
       "arcs": [
-        "a1001"
+        "mtnarc7"
       ],
-      "name": "f1001",
+      "name": "mtn7",
       "properties": {
-        "road": "highway",
-        "t": "road",
-        "text": "p3"
+        "natural": "mountain",
+        "t": "natural"
       }
     },
-    {
+    "mtn8": {
       "arcs": [
-        "a1002"
+        "mtnarc8"
       ],
-      "name": "f1002",
+      "name": "mtn8",
       "properties": {
-        "road": "highway",
-        "t": "road",
-        "text": "p4"
+        "natural": "mountain",
+        "t": "natural"
       }
     },
-    {
+    "mtn9": {
       "arcs": [
-        "a1003"
+        "mtnarc9"
       ],
-      "name": "f1003",
+      "name": "mtn9",
       "properties": {
-        "road": "highway",
-        "t": "road",
-        "text": "p4"
-      }
-    },
-    {
-      "arcs": [
-        "a1004"
-      ],
-      "name": "f1004",
-      "properties": {
-        "road": "highway",
-        "t": "road",
-        "text": "p5"
-      }
-    },
-    {
-      "arcs": [
-        "a1005"
-      ],
-      "name": "f1005",
-      "properties": {
-        "road": "highway",
-        "t": "road",
-        "text": "p5"
-      }
-    },
-    {
-      "arcs": [
-        "a1006"
-      ],
-      "name": "f1006",
-      "properties": {
-        "road": "highway",
-        "t": "road",
-        "text": "z10"
-      }
-    },
-    {
-      "arcs": [
-        "a1007"
-      ],
-      "name": "f1007",
-      "properties": {
-        "road": "highway",
-        "t": "road",
-        "text": "201"
-      }
-    },
-    {
-      "arcs": [
-        "a1008"
-      ],
-      "name": "f1008",
-      "properties": {
-        "road": "highway",
-        "t": "road",
-        "text": "201"
-      }
-    },
-    {
-      "arcs": [
-        "a1009"
-      ],
-      "name": "f1009",
-      "properties": {
-        "road": "highway",
-        "t": "road",
-        "text": "205"
-      }
-    },
-    {
-      "arcs": [
-        "a1010"
-      ],
-      "name": "f1010",
-      "properties": {
-        "road": "highway",
-        "t": "road",
-        "text": "106"
-      }
-    },
-    {
-      "arcs": [
-        "a1011"
-      ],
-      "name": "f1011",
-      "properties": {
-        "road": "highway",
-        "t": "road",
-        "text": "17"
-      }
-    },
-    {
-      "arcs": [
-        "a1012"
-      ],
-      "name": "f1012",
-      "properties": {
-        "road": "highway",
-        "t": "road",
-        "text": "23"
-      }
-    },
-    {
-      "arcs": [
-        "a1013"
-      ],
-      "name": "f1013",
-      "properties": {
-        "road": "highway",
-        "t": "road",
-        "text": "800"
-      }
-    },
-    {
-      "arcs": [
-        "a1014"
-      ],
-      "name": "f1014",
-      "properties": {
-        "road": "highway",
-        "t": "road",
-        "text": "201"
-      }
-    },
-    {
-      "arcs": [
-        "a1015"
-      ],
-      "name": "f1015",
-      "properties": {
-        "road": "highway",
-        "t": "road",
-        "text": "72"
-      }
-    },
-    {
-      "arcs": [
-        "a1016"
-      ],
-      "name": "f1016",
-      "properties": {
-        "road": "highway",
-        "t": "road",
-        "text": "60"
-      }
-    },
-    {
-      "arcs": [
-        "a1017"
-      ],
-      "name": "f1017",
-      "properties": {
-        "road": "highway",
-        "t": "road",
-        "text": "201"
-      }
-    },
-    {
-      "arcs": [
-        "a1018"
-      ],
-      "name": "f1018",
-      "properties": {
-        "road": "highway",
-        "t": "road",
-        "text": "300"
-      }
-    },
-    {
-      "arcs": [
-        "a1019"
-      ],
-      "name": "f1019",
-      "properties": {
-        "road": "highway",
-        "t": "road",
-        "text": "29"
-      }
-    },
-    {
-      "arcs": [
-        "a1020"
-      ],
-      "name": "f1020",
-      "properties": {
-        "road": "highway",
-        "t": "road",
-        "text": "29"
-      }
-    },
-    {
-      "arcs": [
-        "a1021"
-      ],
-      "name": "f1021",
-      "properties": {
-        "road": "highway",
-        "t": "road",
-        "text": "u1"
-      }
-    },
-    {
-      "arcs": [
-        "a1022"
-      ],
-      "name": "f1022",
-      "properties": {
-        "road": "highway",
-        "t": "road",
-        "text": "u1"
-      }
-    },
-    {
-      "arcs": [
-        "a1023"
-      ],
-      "name": "f1023",
-      "properties": {
-        "road": "highway",
-        "t": "road",
-        "text": "u9"
-      }
-    },
-    {
-      "arcs": [
-        "a1024"
-      ],
-      "name": "f1024",
-      "properties": {
-        "road": "highway",
-        "t": "road",
-        "text": "2"
-      }
-    },
-    {
-      "arcs": [
-        "a1025"
-      ],
-      "name": "f1025",
-      "properties": {
-        "road": "highway",
-        "t": "road",
-        "text": "2"
-      }
-    },
-    {
-      "arcs": [
-        "a1026"
-      ],
-      "name": "f1026",
-      "properties": {
-        "road": "highway",
-        "t": "road",
-        "text": "201"
-      }
-    },
-    {
-      "arcs": [
-        "a1027"
-      ],
-      "name": "f1027",
-      "properties": {
-        "road": "highway",
-        "t": "road",
-        "text": "3"
-      }
-    },
-    {
-      "arcs": [
-        "a1028"
-      ],
-      "name": "f1028",
-      "properties": {
-        "road": "highway",
-        "t": "road",
-        "text": "9"
-      }
-    },
-    {
-      "arcs": [
-        "a1029"
-      ],
-      "name": "f1029",
-      "properties": {
-        "road": "highway",
-        "t": "road",
-        "text": "5"
-      }
-    },
-    {
-      "arcs": [
-        "a1030"
-      ],
-      "name": "f1030",
-      "properties": {
-        "road": "highway",
-        "t": "road",
-        "text": "55"
-      }
-    },
-    {
-      "arcs": [
-        "a1031"
-      ],
-      "name": "f1031",
-      "properties": {
-        "road": "highway",
-        "t": "road",
-        "text": "57"
-      }
-    },
-    {
-      "arcs": [
-        "a1032"
-      ],
-      "name": "f1032",
-      "properties": {
-        "t": "city",
-        "text": "asdf",
-        "zoom": 4
-      }
-    },
-    {
-      "arcs": [
-        "a1033"
-      ],
-      "name": "f1033",
-      "properties": {
-        "t": "city",
-        "text": "ai mura",
-        "zoom": 4
-      }
-    },
-    {
-      "arcs": [
-        "a1036"
-      ],
-      "name": "f1036",
-      "properties": {
-        "road": "highway",
-        "t": "road",
-        "text": "gr"
-      }
-    },
-    {
-      "arcs": [
-        "a1037"
-      ],
-      "name": "f1037",
-      "properties": {
-        "road": "highway",
-        "t": "road",
-        "text": "gr"
-      }
-    },
-    {
-      "arcs": [
-        "a1038"
-      ],
-      "name": "f1038",
-      "properties": {
-        "road": "highway",
-        "t": "road",
-        "text": "wr"
-      }
-    },
-    {
-      "arcs": [
-        "a1039"
-      ],
-      "name": "f1039",
-      "properties": {
-        "t": "city",
-        "text": "gut"
-      }
-    },
-    {
-      "arcs": [
-        "a1040"
-      ],
-      "name": "f1040",
-      "properties": {
-        "natural": "coastline",
-        "t": "natural",
-        "text": "shiaovets-island"
-      }
-    },
-    {
-      "arcs": [
-        "a1044"
-      ],
-      "name": "f1044",
-      "properties": {
-        "road": "street",
-        "t": "road",
-        "text": "madje way",
-        "zoom": 11
-      }
-    },
-    {
-      "arcs": [
-        "a1045"
-      ],
-      "name": "f1045",
-      "properties": {
-        "road": "street",
-        "t": "road",
-        "text": "4th ring"
-      }
-    },
-    {
-      "arcs": [
-        "a1046"
-      ],
-      "name": "f1046",
-      "properties": {
-        "road": "street",
-        "t": "road",
-        "text": "1st ring"
-      }
-    },
-    {
-      "arcs": [
-        "a1047"
-      ],
-      "name": "f1047",
-      "properties": {
-        "road": "street",
-        "t": "road",
-        "text": "2nd ring"
-      }
-    },
-    {
-      "arcs": [
-        "a1048"
-      ],
-      "name": "f1048",
-      "properties": {
-        "road": "street",
-        "t": "road",
-        "text": "3rd ring"
-      }
-    },
-    {
-      "arcs": [
-        "a1049"
-      ],
-      "name": "f1049",
-      "properties": {
-        "road": "street",
-        "t": "road",
-        "text": "un way"
+        "natural": "mountain",
+        "t": "natural"
       }
     }
-  ]
+  }
 }

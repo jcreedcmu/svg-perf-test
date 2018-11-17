@@ -1,5 +1,5 @@
 import _ = require('underscore');
-import { Arc } from './types';
+import { Arc, Dict, Poly } from './types';
 
 function accumulate_bbox(pt: any, bbox: any) {
   bbox.minx = Math.min(pt[0], bbox.minx);
@@ -27,7 +27,7 @@ function new_bbox() {
 export function simplify_arc(arc: Arc) {
   simplify(arc.points);
   var bbox = new_bbox();
-  arc.properties.bbox = bbox;
+  arc.bbox = bbox;
   arc.points.forEach(function(pt: any) { accumulate_bbox(pt, bbox); });
 }
 
@@ -149,10 +149,10 @@ function minHeap() {
   };
 }
 
-export function compute_bbox(object: any, arcs: any) {
-  var bbox = object.properties.bbox = new_bbox();
-  _.each(object.arcs, function(arc_ix: any) {
-    var arc_bbox = arcs[arc_ix].properties.bbox;
+export function compute_bbox(object: Poly, arcs: Dict<Arc>) {
+  var bbox = (object.properties as any).bbox = new_bbox();
+  _.each(object.arcs, arc_ix => {
+    let arc_bbox = arcs[arc_ix].bbox;
     accumulate_bbox([arc_bbox.minx, arc_bbox.miny], bbox);
     accumulate_bbox([arc_bbox.maxx, arc_bbox.maxy], bbox);
   });

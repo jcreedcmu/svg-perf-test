@@ -46,7 +46,7 @@ export type Bbox = {
 export type Arc = {
   name: string,
   points: SmPoint[],
-  properties: { [k: string]: any },
+  bbox: Bbox,
 };
 
 export type LabType =

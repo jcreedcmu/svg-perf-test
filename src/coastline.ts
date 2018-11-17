@@ -350,7 +350,7 @@ export class CoastlineLayer implements Layer {
 
       arc_id_list.forEach(function(arc_id: string) { // XXX we shouldn't have to ascribe this type
         var this_arc = arcs[arc_id].points;
-        var arc_bbox = arcs[arc_id].properties.bbox;
+        var arc_bbox = arcs[arc_id].bbox;
         if (DEBUG_BBOX) {
           d.lineWidth = 1.5 / scale;
           d.strokeStyle = colors.debug;
@@ -523,7 +523,6 @@ export class CoastlineLayer implements Layer {
       return _.extend(
         {}, arc,
         {
-          properties: _.omit(arc.properties, "bbox"),
           points: arc.points.map(p => [p[0], p[1]])
         })
     });
@@ -579,12 +578,18 @@ export class CoastlineLayer implements Layer {
     this.labels[lab.name] = lab;
   }
 
+  newArc(name: string, points: SmPoint[]): Arc {
+    // maybe compute bbox here?
+    const bbox: Bbox = { minx: 1e9, miny: 1e9, maxx: -1e9, maxy: -1e9 };
+    return { name, points, bbox };
+  }
+
   add_arc_feature(t: string, points: SmPoint[], properties: PolyProps) {
 
     var feature_name = "f" + this.counter;
     var arc_name = "a" + this.counter;
     this.counter++;
-    var arc = this.arcs[arc_name] = { name: arc_name, points: points, properties: {} };
+    const arc: Arc = this.arcs[arc_name] = this.newArc(arc_name, points);
     var feature = this.features[feature_name] =
       { name: feature_name, arcs: [arc_name], properties: properties };
     simplify.simplify_arc(arc);
@@ -618,7 +623,7 @@ export class CoastlineLayer implements Layer {
         cut_positions.push(v.points.length - 1);
         var replacement_arcs: any[] = [];
         for (var j = 0; j < cut_positions.length - 1; j++) {
-          const arc: Arc = { name: k + "-" + j, properties: {}, points: [] };
+          const arc: Arc = this.newArc(k + "-" + j, []);
           for (var jj = cut_positions[j]; jj <= cut_positions[j + 1]; jj++) {
             arc.points.push(clone(v.points[jj]));
           }

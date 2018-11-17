@@ -42,7 +42,13 @@ class App {
   d: Ctx;
   w: number;
   h: number;
-
+  layers: Layer[];
+  lastz: string = "[]";
+  coastline_layer: CoastlineLayer;
+  image_layer: ImageLayer;
+  river_layer: RiverLayer;
+  sketch_layer: SketchLayer;
+  render_extra: null | ((camera: Camera, d: Ctx) => void);
   mode: Mode = "Pan";
   panning: boolean = false;
   data: Data; // Probably want to eventually get rid of this
@@ -52,14 +58,16 @@ class App {
     this.data = _data;
     let count = 0;
     const geo = _data.json.geo;
-    coastline_layer = new CoastlineLayer(geo.arcs, geo.polys, geo.labels, geo.counter);
-    image_layer = new ImageLayer(() => this.render(), 0, geo.images);
-    river_layer = new RiverLayer(_data.json.rivers);
-    sketch_layer = new SketchLayer(geo.sketches);
-    g_layers = [coastline_layer,
-      river_layer,
-      sketch_layer,
-      image_layer];
+    this.coastline_layer = new CoastlineLayer(geo.arcs, geo.polys, geo.labels, geo.counter);
+    this.image_layer = new ImageLayer(() => this.render(), 0, geo.images);
+    this.river_layer = new RiverLayer(_data.json.rivers);
+    this.sketch_layer = new SketchLayer(geo.sketches);
+    this.layers = [
+      this.coastline_layer,
+      this.river_layer,
+      this.sketch_layer,
+      this.image_layer
+    ];
 
     const c = document.getElementById("c") as HTMLCanvasElement;
     this.c = c;
@@ -117,14 +125,14 @@ class App {
 
     const world_bbox = this.get_world_bbox(camera);
 
-    g_layers.forEach(function(layer) {
+    this.layers.forEach(layer => {
       layer.render(d, camera, mode, world_bbox);
     });
 
 
     // vertex hover display
-    if (camera.zoom >= 1 && g_lastz != "[]") {
-      const pts = JSON.parse(g_lastz);
+    if (camera.zoom >= 1 && this.lastz != "[]") {
+      const pts = JSON.parse(this.lastz);
       if (pts.length != 0) {
         const rad = 3 / cscale(camera);
         d.save();
@@ -140,7 +148,7 @@ class App {
             d.strokeRect(pt[0] - rad, pt[1] - rad, rad * 2, rad * 2);
           }
           else if (bundle[0] == "label") {
-            const pt = coastline_layer.labels[bundle[1]].pt;
+            const pt = this.coastline_layer.labels[bundle[1]].pt;
             d.beginPath();
             d.fillStyle = "white";
             d.globalAlpha = 0.5;
@@ -172,14 +180,15 @@ class App {
       d.strokeStyle = "white";
       d.font = "bold 12px sans-serif";
       d.lineWidth = 2;
-      const txt = "Zoom: " + camera.zoom + " (1px = " + 1 / cscale(camera) + "m) g_lastz: " + g_lastz + " img: " + image_layer.named_imgs[image_layer.cur_img_ix].name;
+      const im = this.image_layer;
+      const txt = "Zoom: " + camera.zoom + " (1px = " + 1 / cscale(camera) + "m) lastz: " + this.lastz + " img: " + im.named_imgs[im.cur_img_ix].name;
       d.strokeText(txt, 20, 20);
       d.fillText(txt, 20, 20);
 
 
       // used for ephemeral stuff on top, like point-dragging
-      if (g_render_extra) {
-        g_render_extra(camera, d);
+      if (this.render_extra) {
+        this.render_extra(camera, d);
       }
 
       if (g_selection) {
@@ -189,7 +198,7 @@ class App {
         if (g_selection.arc) {
           d.lineWidth = 2 / cscale(camera);
           d.strokeStyle = "#0ff";
-          coastline_layer.draw_selected_arc(d, g_selection.arc);
+          this.coastline_layer.draw_selected_arc(d, g_selection.arc);
         }
         d.restore();
       }
@@ -202,10 +211,10 @@ class App {
   handleMouseWheel(e: WheelEvent): void {
     if (e.ctrlKey) {
       if (e.wheelDelta < 0) {
-        image_layer.scale(1 / 2);
+        this.image_layer.scale(1 / 2);
       }
       else {
-        image_layer.scale(2);
+        this.image_layer.scale(2);
       }
       this.render();
       e.preventDefault();
@@ -232,16 +241,17 @@ class App {
       const worldp = inv_xform(camera, x, y);
       const rad = VERTEX_SENSITIVITY / cscale(camera);
       const bbox: ArRectangle = [worldp.x - rad, worldp.y - rad, worldp.x + rad, worldp.y + rad];
-      const targets = coastline_layer.targets(bbox);
+      const targets = this.coastline_layer.targets(bbox);
       const z = JSON.stringify(targets);
-      if (z != g_lastz) {
-        g_lastz = z;
+      if (z != this.lastz) {
+        this.lastz = z;
         this.render();
       }
     }
   }
 
   handleMouseDown(e: JQuery.Event<HTMLElement, null>) {
+    const { image_layer, coastline_layer, sketch_layer } = this;
     const camera = state.camera();
     const x = e.pageX;
     const y = e.pageY;
@@ -290,9 +300,9 @@ class App {
         break;
 
       case "Label":
-        if (g_lastz != "[]") {
-          const z = JSON.parse(g_lastz);
-          console.log(g_lastz);
+        if (this.lastz != "[]") {
+          const z = JSON.parse(this.lastz);
+          console.log(this.lastz);
           if (z.length == 1 && z[0][0] == "label") {
             modal.make_insert_label_modal(worldp, coastline_layer.labels[z[0][1]], obj => {
               coastline_layer.replace_point_feature(obj);
@@ -341,7 +351,7 @@ class App {
       case "Freehand":
         let startp: ArPoint = [worldp.x, worldp.y];
 
-        const spoint = get_snap(g_lastz);
+        const spoint = get_snap(this.lastz);
         if (spoint != null)
           startp = spoint;
 
@@ -354,6 +364,7 @@ class App {
   }
 
   handleKey(e: JQuery.Event<Document, null>) {
+    const { image_layer, coastline_layer, sketch_layer } = this;
     // Disable key event handling if modal is up
     const modals = $(".modal");
     if (modals.filter(function(ix, e) { return $(e).css("display") == "block" }).length)
@@ -506,7 +517,7 @@ class App {
     const camera = state.camera();
     let dragp = clone(startp);
     const scale = cscale(camera);
-    g_render_extra = (camera, d) => {
+    this.render_extra = (camera, d) => {
       d.save();
       d.translate(camera.x, camera.y);
       d.scale(scale, -scale);
@@ -541,11 +552,11 @@ class App {
       maybe_render();
     });
     $(document).on('mouseup.drag', e => {
-      g_render_extra = null;
+      this.render_extra = null;
       $(document).off('.drag');
-      const snaps = JSON.parse(g_lastz);
+      const snaps = JSON.parse(this.lastz);
       if (snaps.length >= 1) {
-        dragp = coastline_layer.target_point(snaps[0]);
+        dragp = this.coastline_layer.target_point(snaps[0]);
       }
       k(dragp);
       this.render();
@@ -554,8 +565,8 @@ class App {
 
   save(): void {
     const geo: Geo = {
-      ...coastline_layer.model(),
-      ...image_layer.model(),
+      ...this.coastline_layer.model(),
+      ...this.image_layer.model(),
     };
 
     $.ajax("/export", {
@@ -569,7 +580,7 @@ class App {
     const camera = state.camera();
     const dragp = clone(startp);
     const scale = cscale(camera);
-    g_render_extra = (camera, d) => {
+    this.render_extra = (camera, d) => {
       d.save();
       d.translate(camera.x, camera.y);
       d.scale(scale, -scale);
@@ -608,7 +619,7 @@ class App {
       maybe_render();
     });
     $(document).on('mouseup.drag', e => {
-      g_render_extra = null;
+      this.render_extra = null;
       $(document).off('.drag');
       this.render();
     });
@@ -619,7 +630,7 @@ class App {
     const path: SmPoint[] = [startp];
     const thresh = FREEHAND_SIMPLIFICATION_FACTOR
       / (cscale(camera) * cscale(camera));
-    g_render_extra = (camera, d) => {
+    this.render_extra = (camera, d) => {
       d.save();
       d.translate(camera.x, camera.y);
       d.scale(cscale(camera), -cscale(camera));
@@ -650,13 +661,13 @@ class App {
       maybe_render();
     });
     $(document).on('mouseup.drag', e => {
-      const spoint = get_snap(g_lastz);
+      const spoint = get_snap(this.lastz);
       if (spoint != null) {
         path[path.length - 1] = spoint;
         startp = spoint;
       }
 
-      g_render_extra = null;
+      this.render_extra = null;
       $(document).off('.drag');
       k(path.filter((pt: SmPoint, n: number) => {
         return (pt[2] || 0) > thresh || n == 0 || n == path.length - 1;
@@ -714,16 +725,6 @@ class App {
     d.restore();
   }
 }
-
-// some regrettable globals
-let g_layers: Layer[];
-let g_lastz: string = "[]";
-let coastline_layer: CoastlineLayer;
-let image_layer: ImageLayer;
-let river_layer: RiverLayer;
-let sketch_layer: SketchLayer;
-let g_render_extra: null | ((camera: Camera, d: Ctx) => void);
-
 
 const ld = new Loader();
 ld.json_file('geo', '/data/geo.json');

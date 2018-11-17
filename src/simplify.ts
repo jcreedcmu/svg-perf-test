@@ -18,11 +18,11 @@ function new_bbox() {
 // adapted from http://bost.ocks.org/mike/simplify/simplify.js
 
 // What simplify really does is take a polygon geojson feature and
-// adds z-coordinates (i.e. [2]-coordinates) to every point that
-// measure a penalty for removing that point. A penalty of 0 means it
-// is collinear with neighboring points, higher penalities indicate
-// the area of error resulting from removing that point (after first
-// removing all lower-penalty points)
+// adds z-coordinates to every point that measure a penalty for
+// removing that point. A penalty of 0 means it is collinear with
+// neighboring points, higher penalities indicate the area of error
+// resulting from removing that point (after first removing all
+// lower-penalty points)
 
 export function simplify_arc(arc: Arc) {
   simplify(arc.points);

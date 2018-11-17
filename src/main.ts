@@ -40,14 +40,16 @@ type Stopper = (offx: number, offy: number) => void;
 class App {
   mode: Mode = "Pan";
   panning: boolean = false;
+  data: Data; // Probably want to eventually get rid of this
+  mouse: Point = { x: 0, y: 0 };
 
   init(_data: Data): void {
-    data = _data;
+    this.data = _data;
     let count = 0;
-    const geo = data.json.geo;
+    const geo = _data.json.geo;
     coastline_layer = new CoastlineLayer(geo.arcs, geo.polys, geo.labels, geo.counter);
     image_layer = new ImageLayer(() => this.render(), 0, geo.images);
-    river_layer = new RiverLayer(data.json.rivers);
+    river_layer = new RiverLayer(_data.json.rivers);
     sketch_layer = new SketchLayer(geo.sketches);
     g_layers = [coastline_layer,
       river_layer,
@@ -214,7 +216,7 @@ class App {
   }
 
   handleMouseMove(e: JQuery.Event<HTMLElement, null>) {
-    g_mouse = { x: e.pageX, y: e.pageY };
+    this.mouse = { x: e.pageX, y: e.pageY };
 
     if (this.panning)
       return;
@@ -375,10 +377,10 @@ class App {
       //    const old_mode = g_mode;
       //    g_mode = "Pan";
       $(document).off('keydown');
-      const stop_at = this.start_pan_and_stop(g_mouse.x, g_mouse.y, state.camera());
+      const stop_at = this.start_pan_and_stop(this.mouse.x, this.mouse.y, state.camera());
       $(document).on('keyup.holdspace', e => {
         if (key(e.originalEvent as KeyboardEvent) == "<space>") {
-          stop_at(g_mouse.x, g_mouse.y);
+          stop_at(this.mouse.x, this.mouse.y);
           $(document).off('.holdspace');
           $(document).on('keydown', e => this.handleKey(e));
         }
@@ -717,9 +719,6 @@ let image_layer: ImageLayer;
 let river_layer: RiverLayer;
 let sketch_layer: SketchLayer;
 let g_render_extra: null | ((camera: Camera, d: Ctx) => void);
-let g_mouse: Point = { x: 0, y: 0 };
-let data: Data;
-
 
 
 const ld = new Loader();
@@ -761,7 +760,7 @@ function has_label(x: Label, label: string) {
 
 // this doesn't work right now
 function zoom_to(label: string) {
-  const selection = data.json.geo.labels.filter((x: any) => has_label(x, label) && x.pt);
+  const selection = app.data.json.geo.labels.filter((x: any) => has_label(x, label) && x.pt);
   const pt = selection[0].pt;
   if (pt == null) throw `couldn\'t find ${label}`;
   const pixel_offset = xform(state.camera(), pt[0], pt[1]);

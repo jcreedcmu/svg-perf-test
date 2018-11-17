@@ -1,7 +1,7 @@
 import { Point, Ctx, Mode, Camera, Rect, Path, ArPoint } from './types';
 import { Geo, SmPoint, Bundle, Layer, ArRectangle, Label } from './types';
 import { Loader, Data } from './loader';
-import { clone, cscale, nope, xform, inv_xform, meters_to_string } from './util';
+import { clone, cscale, nope, xform, inv_xform, meters_to_string, vdist } from './util';
 import { simplify } from './simplify';
 import { colors } from './colors';
 
@@ -56,7 +56,7 @@ class App {
 
     c = document.getElementById("c") as HTMLCanvasElement;
 
-    $('#c').on('mousedown', e => this.handleMouse(e));
+    $('#c').on('mousedown', e => this.handleMouseDown(e));
     $('#c').on('mousemove', e => this.handleMouseMove(e));
     $(document).on('keydown', e => this.handleKey(e));
     c.onwheel = e => this.handleMouseWheel(e);
@@ -234,7 +234,7 @@ class App {
     }
   }
 
-  handleMouse(e: JQuery.Event<HTMLElement, null>) {
+  handleMouseDown(e: JQuery.Event<HTMLElement, null>) {
     const camera = state.camera();
     const x = e.pageX;
     const y = e.pageY;
@@ -334,7 +334,7 @@ class App {
       case "Freehand":
         let startp: ArPoint = [worldp.x, worldp.y];
 
-        const spoint = get_snap();
+        const spoint = get_snap(g_lastz);
         if (spoint != null)
           startp = spoint;
 
@@ -642,8 +642,7 @@ class App {
       maybe_render();
     });
     $(document).on('mouseup.drag', e => {
-
-      const spoint = get_snap();
+      const spoint = get_snap(g_lastz);
       if (spoint != null) {
         path[path.length - 1] = spoint;
         startp = spoint;
@@ -745,8 +744,8 @@ function maybe_render() {
   app.render();
 }
 
-function get_snap() {
-  const last = JSON.parse(g_lastz);
+function get_snap(lastz: string): ArPoint | null {
+  const last = JSON.parse(lastz);
   // .targets is already making sure that multiple targets returned at
   // this stage are on the same exact point
   if (last.length >= 1 &&
@@ -755,18 +754,6 @@ function get_snap() {
   else
     return null;
 }
-
-function vdist(p1: Point, p2: Point) {
-  function sqr(x: number) { return x * x };
-  return Math.sqrt(sqr(p1.x - p2.x) + sqr(p1.y - p2.y));
-}
-
-// function report() {
-//   g_imageStates[g_curImgName] = clone(g_imageState);
-//   localStorage.allStates = JSON.stringify(g_imageStates);
-//   // {pos: [g_imageState.x, g_imageState.y], scale: g_imageState.scale};
-//   console.log(JSON.stringify(g_imageStates));
-// }
 
 function has_label(x: Label, label: string) {
   return x.properties.text && x.properties.text.match(new RegExp(label, "i"))

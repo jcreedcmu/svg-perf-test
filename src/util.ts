@@ -65,3 +65,8 @@ export function meters_to_string(raw: number): string {
   }
   return str;
 }
+
+export function vdist(p1: Point, p2: Point) {
+  function sqr(x: number) { return x * x };
+  return Math.sqrt(sqr(p1.x - p2.x) + sqr(p1.y - p2.y));
+}

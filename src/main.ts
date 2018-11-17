@@ -672,11 +672,10 @@ $('#c').on('mousemove', function(e) {
 
 function main_key_handler(e: JQuery.Event<Document, null>) {
   // Disable key event handling if modal is up
-  if (0) {
-    const modals = $(".modal");
-    if (modals.filter(() => $(this).css("display") == "block").length)
-      return;
-  }
+  const modals = $(".modal");
+  if (modals.filter(function(ix, e) { return $(e).css("display") == "block" }).length)
+    return;
+
   const k = key(e.originalEvent as KeyboardEvent);
   // if (k == "i") {
   //   label_layer.add_label(state, prompt("name"));

@@ -1,4 +1,4 @@
-import { SmPoint, ArPoint, Camera } from './types';
+import { Point, SmPoint, ArPoint, Camera } from './types';
 
 export function clone<T>(x: T): T {
   return JSON.parse(JSON.stringify(x));
@@ -45,4 +45,11 @@ export function adapt(x: SmPoint): ArPoint {
 // to enforce exhaustive pattern matching
 export function nope<T>(x: never): T {
   throw "nope";
+}
+
+export function inv_xform(camera: Camera, xpix: number, ypix: number): Point {
+  return {
+    x: (xpix - camera.x) / cscale(camera),
+    y: (ypix - camera.y) / -cscale(camera)
+  };
 }

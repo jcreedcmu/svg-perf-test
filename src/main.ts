@@ -1,7 +1,7 @@
 import { Point, Ctx, Mode, Camera, Rect, Path, ArPoint } from './types';
 import { Geo, SmPoint, Bundle, Layer, ArRectangle, Label } from './types';
 import { Loader, Data } from './loader';
-import { clone, cscale, nope } from './util';
+import { clone, cscale, nope, inv_xform } from './util';
 import { simplify } from './simplify';
 import { colors } from './colors';
 
@@ -41,6 +41,52 @@ type Stopper = (offx: number, offy: number) => void;
 class App {
   mode: Mode = "Pan";
   panning: boolean = false;
+
+  init(_data: Data): void {
+    data = _data;
+    let count = 0;
+    const geo = data.json.geo;
+    coastline_layer = new CoastlineLayer(geo.arcs, geo.polys, geo.labels, geo.counter);
+    image_layer = new ImageLayer(dispatch, 0, geo.images);
+    river_layer = new RiverLayer(data.json.rivers);
+    sketch_layer = new SketchLayer(geo.sketches);
+    g_layers = [coastline_layer,
+      river_layer,
+      sketch_layer,
+      image_layer];
+
+    c = document.getElementById("c") as HTMLCanvasElement;
+
+    $('#c').on('mousedown', e => this.handleMouse(e));
+    $('#c').on('mousemove', e => this.handleMouseMove(e));
+    $(document).on('keydown', e => this.handleKey(e));
+    c.onwheel = e => this.handleMouseWheel(e);
+
+    window.c = c; // debugging
+
+    const _d = c.getContext('2d');
+    if (_d != null)
+      d = _d;
+    window.d = d;
+
+    this.reset_canvas_size();
+    render_origin();
+
+    if (DEBUG && DEBUG_PROF) {
+      console.profile("rendering");
+      console.time("whatev");
+      const ITER = 1000;
+      for (let i = 0; i < ITER; i++) {
+        this.render();
+      }
+      // d.getImageData(0,0,1,1);
+      console.timeEnd("whatev");
+      console.profileEnd();
+    }
+    else {
+      this.render();
+    }
+  }
 
   render(): void {
     const g_mode = this.mode;
@@ -147,6 +193,27 @@ class App {
     //  console.log(Date.now() - t);
   }
 
+  handleMouseWheel(e: WheelEvent): void {
+    if (e.ctrlKey) {
+      if (e.wheelDelta < 0) {
+        image_layer.scale(1 / 2);
+      }
+      else {
+        image_layer.scale(2);
+      }
+      this.render();
+      e.preventDefault();
+    }
+    else {
+      const x = e.pageX;
+      const y = e.pageY;
+      const zoom = e.wheelDelta / 120;
+      e.preventDefault();
+      state.zoom(x, y, zoom);
+      this.render();
+    }
+  }
+
   handleMouseMove(e: JQuery.Event<HTMLElement, null>) {
     g_mouse = { x: e.pageX, y: e.pageY };
 
@@ -163,7 +230,7 @@ class App {
       const z = JSON.stringify(targets);
       if (z != g_lastz) {
         g_lastz = z;
-        app.render();
+        this.render();
       }
     }
   }
@@ -341,7 +408,7 @@ class App {
     //   this.render();
     // }
     if (k == "v") {
-      save();
+      this.save();
     }
     if (k == "q") {
       const sk = sketch_layer.pop();
@@ -477,6 +544,19 @@ class App {
       this.render();
     });
   }
+
+  save(): void {
+    const geo: Geo = {
+      ...coastline_layer.model(),
+      ...image_layer.model(),
+    };
+
+    $.ajax("/export", {
+      method: "POST", data: JSON.stringify(geo), contentType: "text/plain", success: function() {
+        console.log("success");
+      }
+    });
+  }
 }
 
 // some regrettable globals
@@ -494,58 +574,13 @@ let g_render_extra: null | ((camera: Camera, d: Ctx) => void);
 let g_mouse: Point = { x: 0, y: 0 };
 let data: Data;
 
-function go(_data: Data): void {
-  data = _data;
-  let count = 0;
-  const geo = data.json.geo;
-  coastline_layer = new CoastlineLayer(geo.arcs, geo.polys, geo.labels, geo.counter);
-  image_layer = new ImageLayer(dispatch, 0, geo.images);
-  river_layer = new RiverLayer(data.json.rivers);
-  sketch_layer = new SketchLayer(geo.sketches);
-  g_layers = [coastline_layer,
-    river_layer,
-    sketch_layer,
-    image_layer];
 
-  c = document.getElementById("c") as HTMLCanvasElement;
-  c.onwheel = onMouseWheel;
-  window.c = c;
-
-  const _d = c.getContext('2d');
-  if (_d != null)
-    d = _d;
-  window.d = d;
-
-  app.reset_canvas_size();
-  render_origin();
-
-  if (DEBUG && DEBUG_PROF) {
-    console.profile("rendering");
-    console.time("whatev");
-    const ITER = 1000;
-    for (let i = 0; i < ITER; i++) {
-      app.render();
-    }
-    // d.getImageData(0,0,1,1);
-    console.timeEnd("whatev");
-    console.profileEnd();
-  }
-  else {
-    app.render();
-  }
-}
 
 const ld = new Loader();
 ld.json_file('geo', '/data/geo.json');
 ld.json_file('rivers', '/data/rivers.json');
-ld.done(go);
+ld.done(data => app.init(data));
 
-function inv_xform(camera: Camera, xpix: number, ypix: number): Point {
-  return {
-    x: (xpix - camera.x) / cscale(camera),
-    y: (ypix - camera.y) / -cscale(camera)
-  };
-}
 window['inv_xform'] = inv_xform;
 window['xform'] = xform;
 
@@ -630,31 +665,6 @@ function render_scale(camera: Camera, d: Ctx) {
 
   d.restore();
 }
-
-function onMouseWheel(e: WheelEvent): void {
-  if (e.ctrlKey) {
-    if (e.wheelDelta < 0) {
-      image_layer.scale(1 / 2);
-    }
-    else {
-      image_layer.scale(2);
-    }
-    app.render();
-    e.preventDefault();
-  }
-  else {
-    const x = e.pageX;
-    const y = e.pageY;
-    const zoom = e.wheelDelta / 120;
-    e.preventDefault();
-    state.zoom(x, y, zoom);
-    app.render();
-  }
-};
-
-
-
-$('#c').on('mousedown', e => app.handleMouse(e));
 
 function get_snap() {
   const last = JSON.parse(g_lastz);
@@ -774,21 +784,6 @@ function start_freehand(startp: ArPoint, k: (dragp: Path) => void) {
   });
 }
 
-$('#c').on('mousemove', e => app.handleMouseMove(e));
-$(document).on('keydown', e => app.handleKey(e));
-
-function save(): void {
-  const geo: Geo = {
-    ...coastline_layer.model(),
-    ...image_layer.model(),
-  };
-
-  $.ajax("/export", {
-    method: "POST", data: JSON.stringify(geo), contentType: "text/plain", success: function() {
-      console.log("success");
-    }
-  });
-}
 
 // function report() {
 //   g_imageStates[g_curImgName] = clone(g_imageState);

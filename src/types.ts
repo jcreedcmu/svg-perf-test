@@ -89,7 +89,7 @@ export type Sketches = any;
 export type Geo = {
   counter: number,
   images: Images,
-  arcs: RawArc[],
+  arcs: Dict<RawArc>,
   polys: Poly[],
   labels: Label[],
 };

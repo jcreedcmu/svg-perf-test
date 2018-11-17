@@ -1,5 +1,5 @@
 import { Mode, Point, Zpoint, ArPoint, ArRectangle, Dict, Ctx, Camera } from './types';
-import { Label, Arc, RawArc, Target, Segment, LabelTarget, ArcVertexTarget, Feature } from './types';
+import { Label, Arc, RawArc, Target, Segment, LabelTarget, ArcVertexTarget } from './types';
 import { Poly, RawPoly, PolyProps, Bbox, Layer } from './types';
 import { adapt, cscale, rawOfArc, unrawOfArc, rawOfPoly, unrawOfPoly, vmap, vkmap, trivBbox } from './util';
 import { clone, above_simp_thresh } from './util';
@@ -177,13 +177,13 @@ function set_value(e: HTMLElement, v: string): void {
 
 export class CoastlineLayer implements Layer {
   counter: number;
-  features: Dict<Feature>;
+  features: Dict<Poly>;
   arcs: Dict<Arc>;
   labels: Dict<Label>;
   rt: Bush<Poly>;
   vertex_rt: Bush<ArcVertexTarget>;
   label_rt: Bush<LabelTarget>;
-  arc_to_feature: { [k: string]: any } = {};
+  arc_to_feature: Dict<string[]> = {};
 
   constructor(arcs: Dict<RawArc>, polys: Dict<RawPoly>, labels: Label[], counter: number) {
     this.counter = counter;
@@ -269,7 +269,7 @@ export class CoastlineLayer implements Layer {
     if (targets[0][0] == "coastline") {
       const neighbors: Zpoint[] = [];
 
-      targets.forEach(function(target) {
+      targets.forEach(target => {
         if (target[0] == "coastline") {
           var ctarget = target[1];
           var ix = that.get_index(ctarget);
@@ -305,7 +305,6 @@ export class CoastlineLayer implements Layer {
 
   render(d: Ctx, camera: Camera, mode: Mode, world_bbox: ArRectangle) {
     var scale = cscale(camera);
-    var that = this;
     d.save();
 
     d.translate(camera.x, camera.y);
@@ -329,15 +328,17 @@ export class CoastlineLayer implements Layer {
       return z;
     });
 
-    var extra = _.filter(_.map(features, function(x: any) {
-      if (x.properties.road == "street") return _.extend(clone(x), { properties: _.extend(clone(x.properties), { road: "street2" }) });
+    // Not sure what this is for
+    var extra = _.filter(_.map(features, x => {
+      if (x.properties.t == "road" && x.properties.road == "street")
+        return _.extend(clone(x), { properties: _.extend(clone(x.properties), { road: "street2" }) });
     }), x => x);
 
     features = features.concat(extra);
 
-    _.each(features, function(object: any) {
+    _.each(features, object => {
       var arc_id_list = object.arcs;
-      var arcs = that.arcs;
+      var arcs = this.arcs;
 
       d.lineWidth = 0.9 / scale;
       d.beginPath();
@@ -348,7 +349,7 @@ export class CoastlineLayer implements Layer {
       var curpoint = first_point;
       var n = 0;
 
-      arc_id_list.forEach(function(arc_id: string) { // XXX we shouldn't have to ascribe this type
+      arc_id_list.forEach(arc_id => { // XXX we shouldn't have to ascribe this type
         var this_arc = arcs[arc_id].points;
         var arc_bbox = arcs[arc_id].bbox;
         if (DEBUG_BBOX) {
@@ -372,7 +373,7 @@ export class CoastlineLayer implements Layer {
           arcs_to_draw_vertices_for.push(this_arc);
         }
 
-        this_arc.forEach(function({ point: vert, z }, ix) {
+        this_arc.forEach(({ point: vert, z }, ix) => {
           if (ix == 0) return;
 
           var p = {
@@ -389,7 +390,7 @@ export class CoastlineLayer implements Layer {
             draw = true;
           if (draw) {
             d.lineTo(vert[0], vert[1]);
-            if (object.properties.road == "highway" && n % 10 == 5) {
+            if (object.properties.t == "road" && object.properties.road == "highway" && n % 10 == 5) {
               salients.push({
                 props: object.properties,
                 pt: [(vert[0] + curpoint[0]) / 2, (vert[1] + curpoint[1]) / 2]
@@ -410,8 +411,8 @@ export class CoastlineLayer implements Layer {
       d.strokeStyle = "#333";
       d.fillStyle = "#ffd";
       var vert_size = 5 / scale;
-      arcs_to_draw_vertices_for.forEach(function(arc) {
-        arc.forEach(function({ point: vert, z }: Zpoint, n: number) {
+      arcs_to_draw_vertices_for.forEach(arc => {
+        arc.forEach(({ point: vert, z }: Zpoint, n: number) => {
           if (z > 1000000 || camera.zoom > 10) {
             d.fillStyle = z > 1000000 ? "#ffd" : "#f00";
             d.strokeRect(vert[0] - vert_size / 2, vert[1] - vert_size / 2, vert_size, vert_size);
@@ -423,7 +424,7 @@ export class CoastlineLayer implements Layer {
     d.restore();
 
     // doing this because it involves text, which won't want the negative y-transform
-    salients.forEach(function(salient: any) {
+    salients.forEach((salient: any) => {
       realize_salient(d, salient.props, camera, salient.pt);
     });
 
@@ -431,7 +432,7 @@ export class CoastlineLayer implements Layer {
     if (camera.zoom < 1) return;
     d.lineJoin = "round";
     tsearch(this.label_rt, world_bbox).forEach(x => {
-      draw_label(d, camera, that.labels[x]);
+      draw_label(d, camera, this.labels[x]);
     });
   }
 
@@ -631,7 +632,10 @@ export class CoastlineLayer implements Layer {
           this.arcs[arc.name] = arc;
           replacement_arcs.push(arc.name);
         }
-        var feature_name = this.arc_to_feature[k];
+        // Not really sure this still works. this.arc_to_feature[k] is
+        // a list of feature names, so I'm arbitrarily picking out the first one
+        // by saying [0].
+        var feature_name = this.arc_to_feature[k][0];
         var feature_arcs = this.features[feature_name].arcs;
         var ix = _.indexOf(feature_arcs, k);
         if (ix == -1)
@@ -643,8 +647,6 @@ export class CoastlineLayer implements Layer {
     });
     this.rebuild();
   }
-
-
 
   make_insert_feature_modal(pts: Zpoint[], dispatch: () => void) {
     set_value($('#insert_feature input[name="text"]')[0], "");

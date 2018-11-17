@@ -87,15 +87,12 @@ export type Poly = {
   bbox: Bbox,
 };
 
-export type Feature = Poly;
 
-
-export type Images = { [k: string]: Image };
-export type Sketches = any;
+export type Images = Dict<Image>;
 
 export type Geo = {
   counter: number,
-  images: Images,
+  images: Dict<Image>,
   arcs: Dict<RawArc>,
   polys: Dict<RawPoly>,
   labels: Label[],

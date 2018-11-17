@@ -2,12 +2,15 @@ import { Mode, Point, SmPoint, ArPoint, ArRectangle, Dict, Ctx, Camera } from '.
 import { Label, Arc, RawArc, Target, Segment, LabelTarget, ArcVertexTarget, Feature } from './types';
 import { Poly, PolyProps, Bbox, Layer } from './types';
 import { adapt, cscale, rawOfArc, unrawOfArc, vmap, vkmap } from './util';
+import { clone, above_simp_thresh } from './util';
 import { colors } from './colors';
 import * as simplify from './simplify';
 import * as rbush from 'rbush';
 import { draw_label } from './labels';
 import BBox = rbush.BBox;
 import RBush = rbush.RBush;
+
+import _ = require('underscore');
 
 type Bush<T> = RBush<BBox & { payload: T }>;
 
@@ -36,9 +39,6 @@ function removePt<T>(rt: Bush<T>, pt: Point): void {
     rt.remove(res);
   });
 }
-
-import { clone, above_simp_thresh } from './util';
-import _ = require('underscore');
 
 var DEBUG_BBOX = false;
 

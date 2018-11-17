@@ -12,7 +12,6 @@ import { colors } from './colors';
 import * as t from './types';
 const undefined = t.nonce;
 
-let g_mode: Mode = "Pan";
 
 import { CoastlineLayer } from './coastline';
 import { RiverLayer } from './rivers';
@@ -38,6 +37,308 @@ let state = new State();
 // Just for debugging
 declare var window: any;
 
+class App {
+  mode: Mode = "Pan";
+
+  render(): void {
+    const g_mode = this.mode;
+
+    //  const t = Date.now();
+    d.save();
+    d.scale(devicePixelRatio, devicePixelRatio);
+    lastTime = Date.now();
+    if (interval != null) {
+      clearInterval(interval);
+      interval = null;
+    }
+    const camera = state.camera();
+    const t = Date.now();
+    d.fillStyle = "#bac7f8";
+    d.fillRect(0, 0, w, h);
+    d.strokeStyle = "gray";
+
+    if (DEBUG) {
+      d.strokeRect(OFFSET + 0.5, OFFSET + 0.5, w - 2 * OFFSET, h - 2 * OFFSET);
+    }
+
+    const world_bbox = get_world_bbox(camera);
+
+    g_layers.forEach(function(layer) {
+      layer.render(d, camera, g_mode, world_bbox);
+    });
+
+
+    // vertex hover display
+    if (camera.zoom >= 1 && g_lastz != "[]") {
+      const pts = JSON.parse(g_lastz);
+      if (pts.length != 0) {
+        const rad = 3 / cscale(camera);
+        d.save();
+        d.translate(camera.x, camera.y);
+        d.scale(cscale(camera), -cscale(camera));
+        pts.forEach((bundle: Bundle) => {
+          if (bundle[0] == "coastline") {
+            const pt = bundle[1].point;
+            d.fillStyle = "white";
+            d.fillRect(pt[0] - rad, pt[1] - rad, rad * 2, rad * 2);
+            d.lineWidth = 1 / cscale(camera);
+            d.strokeStyle = "#000";
+            d.strokeRect(pt[0] - rad, pt[1] - rad, rad * 2, rad * 2);
+          }
+          else if (bundle[0] == "label") {
+            const pt = coastline_layer.labels[bundle[1]].pt;
+            d.beginPath();
+            d.fillStyle = "white";
+            d.globalAlpha = 0.5;
+            d.arc(pt[0], pt[1], 20 / cscale(camera), 0, Math.PI * 2);
+            d.fill();
+          }
+        });
+        d.restore();
+      }
+    }
+
+    if (!g_panning) {
+      // scale
+      render_scale(camera, d);
+
+      // mode
+      d.fillStyle = "black";
+      d.strokeStyle = "white";
+      d.font = "bold 12px sans-serif";
+      d.lineWidth = 2;
+      d.strokeText(g_mode, 20, h - 20);
+      d.fillText(g_mode, 20, h - 20);
+
+
+      // debugging
+
+
+      d.fillStyle = "black";
+      d.strokeStyle = "white";
+      d.font = "bold 12px sans-serif";
+      d.lineWidth = 2;
+      const txt = "Zoom: " + camera.zoom + " (1px = " + 1 / cscale(camera) + "m) g_lastz: " + g_lastz + " img: " + image_layer.named_imgs[image_layer.cur_img_ix].name;
+      d.strokeText(txt, 20, 20);
+      d.fillText(txt, 20, 20);
+
+
+      // used for ephemeral stuff on top, like point-dragging
+      if (g_render_extra) {
+        g_render_extra(camera, d);
+      }
+
+      if (g_selection) {
+        d.save();
+        d.translate(camera.x, camera.y);
+        d.scale(cscale(camera), -cscale(camera));
+        if (g_selection.arc) {
+          d.lineWidth = 2 / cscale(camera);
+          d.strokeStyle = "#0ff";
+          coastline_layer.draw_selected_arc(d, g_selection.arc);
+        }
+        d.restore();
+      }
+    }
+
+    d.restore();
+    //  console.log(Date.now() - t);
+  }
+
+  handleMouse(e: JQuery.Event<HTMLElement, null>) {
+    const camera = state.camera();
+    const x = e.pageX;
+    const y = e.pageY;
+    const worldp = inv_xform(camera, x, y);
+    const slack = VERTEX_SENSITIVITY / cscale(camera);
+    const bbox: ArRectangle = [worldp.x - slack, worldp.y - slack, worldp.x + slack, worldp.y + slack];
+
+    const th = $(this);
+
+    switch (this.mode) {
+      case "Pan":
+        if (e.ctrlKey) {
+          const membase = image_layer.get_pos();
+          $(document).on('mousemove.drag', e => {
+            image_layer.set_pos({
+              x: membase.x + (e.pageX - x) / cscale(camera),
+              y: membase.y - (e.pageY - y) / cscale(camera)
+            });
+            maybe_render();
+          });
+          $(document).on('mouseup.drag', e => {
+            $(document).off('.drag');
+            this.render();
+          });
+        }
+        else
+          start_pan(x, y, camera);
+        break;
+
+      case "Measure":
+        start_measure(worldp);
+        break;
+
+      case "Select":
+        const candidate_features = coastline_layer.arc_targets(bbox);
+        const hit_lines = geom.find_hit_lines(
+          worldp, candidate_features, coastline_layer.arcs, slack
+        );
+        if (hit_lines.length == 1) {
+          g_selection = hit_lines[0];
+        }
+        else {
+          g_selection = null;
+        }
+        this.render();
+        break;
+
+      case "Label":
+        if (g_lastz != "[]") {
+          const z = JSON.parse(g_lastz);
+          console.log(g_lastz);
+          if (z.length == 1 && z[0][0] == "label") {
+            modal.make_insert_label_modal(worldp, coastline_layer.labels[z[0][1]], obj => {
+              coastline_layer.replace_point_feature(obj);
+              this.render();
+            });
+          }
+        }
+        else {
+          modal.make_insert_label_modal(worldp, null, obj => {
+            coastline_layer.new_point_feature(obj);
+            this.render();
+          });
+        }
+        break;
+
+      case "Move":
+        const targets = coastline_layer.targets(bbox);
+
+        if (targets.length >= 1) {
+          // yikes, what happens if I got two or more?? looks like I drag
+          // them all together. Don't want to do that.
+          const neighbors = coastline_layer.targets_nabes(targets);
+
+          start_drag(worldp, neighbors, dragp => {
+            coastline_layer.replace_vert(targets, dragp);
+          });
+        }
+        else {
+          const candidate_features = coastline_layer.arc_targets(bbox);
+          const hit_lines = geom.find_hit_lines(
+            worldp, candidate_features, coastline_layer.arcs, slack
+          );
+          if (hit_lines.length == 1) {
+            const arc_id = hit_lines[0].arc;
+            const ix = hit_lines[0].ix;
+            const arc = coastline_layer.arcs[arc_id].points;
+            start_drag(worldp, [arc[ix], arc[ix + 1]], (dragp: Point) => {
+              coastline_layer.break_segment(hit_lines[0], dragp);
+            });
+          }
+          else
+            start_pan(x, y, camera);
+        }
+        break;
+
+      case "Freehand":
+        let startp: ArPoint = [worldp.x, worldp.y];
+
+        const spoint = get_snap();
+        if (spoint != null)
+          startp = spoint;
+
+        start_freehand(startp, path => sketch_layer.add(path));
+        break;
+
+      default:
+        nope(this.mode);
+    }
+  }
+
+  handleKey(e: JQuery.Event<Document, null>) {
+    // Disable key event handling if modal is up
+    const modals = $(".modal");
+    if (modals.filter(function(ix, e) { return $(e).css("display") == "block" }).length)
+      return;
+
+    const k = key(e.originalEvent as KeyboardEvent);
+    // if (k == "i") {
+    //   label_layer.add_label(state, prompt("name"));
+    //   render();
+    // }
+    if (k == ",") {
+      image_layer.prev();
+    }
+    if (k == ".") {
+      image_layer.next();
+    }
+    if (k == "f") {
+      this.mode = "Freehand";
+      this.render();
+    }
+    if (k == "m") {
+      this.mode = "Move";
+      this.render();
+    }
+    if (k == "<space>") {
+      //    const old_mode = g_mode;
+      //    g_mode = "Pan";
+      $(document).off('keydown');
+      const stop_at = start_pan_and_stop(g_mouse.x, g_mouse.y, state.camera());
+      $(document).on('keyup.holdspace', e => {
+        if (key(e.originalEvent as KeyboardEvent) == "<space>") {
+          stop_at(g_mouse.x, g_mouse.y);
+          $(document).off('.holdspace');
+          $(document).on('keydown', e => this.handleKey(e));
+        }
+      });
+
+    }
+    if (k == "p") {
+      this.mode = "Pan";
+      this.render();
+    }
+    if (k == "s") {
+      this.mode = "Select";
+      this.render();
+    }
+    if (k == "l") {
+      this.mode = "Label";
+      this.render();
+    }
+    if (k == "e") {
+      this.mode = "Measure";
+      this.render();
+    }
+
+    // if (k == "i") {
+    //   this.mode = "Insert";
+    //   this.render();
+    // }
+    if (k == "v") {
+      save();
+    }
+    if (k == "q") {
+      const sk = sketch_layer.pop();
+      if (sk != null) {
+        coastline_layer.make_insert_feature_modal(sk, dispatch);
+      }
+    }
+    if (k == "S-b") {
+      coastline_layer.breakup();
+      this.render();
+    }
+    if (k == "S-f") {
+      coastline_layer.filter();
+      this.render();
+    }
+
+    //  console.log(e.charCode, k);
+  }
+}
+
 // some regrettable globals
 let c: HTMLCanvasElement;
 let d: Ctx;
@@ -53,11 +354,7 @@ let g_render_extra: null | ((camera: Camera, d: Ctx) => void);
 let g_mouse: Point = { x: 0, y: 0 };
 let data: Data;
 
-const ld = new Loader();
-ld.json_file('geo', '/data/geo.json');
-ld.json_file('rivers', '/data/rivers.json');
-
-ld.done(function(_data) {
+function go(_data: Data): void {
   data = _data;
   let count = 0;
   const geo = data.json.geo;
@@ -87,16 +384,21 @@ ld.done(function(_data) {
     console.time("whatev");
     const ITER = 1000;
     for (let i = 0; i < ITER; i++) {
-      render();
+      app.render();
     }
     // d.getImageData(0,0,1,1);
     console.timeEnd("whatev");
     console.profileEnd();
   }
   else {
-    render();
+    app.render();
   }
-});
+}
+
+const ld = new Loader();
+ld.json_file('geo', '/data/geo.json');
+ld.json_file('rivers', '/data/rivers.json');
+ld.done(go);
 
 function inv_xform(camera: Camera, xpix: number, ypix: number): Point {
   return {
@@ -111,6 +413,9 @@ function xform(camera: Camera, xworld: number, yworld: number): Point {
   return { x: camera.x + xworld * cscale(camera), y: camera.y - yworld * cscale(camera) };
 }
 
+const app = new App();
+window['app'] = app;
+
 let lastTime = 0;
 let interval: number | null = null;
 function maybe_render() {
@@ -119,15 +424,14 @@ function maybe_render() {
       clearInterval(interval);
       interval = null;
     }
-    interval = setInterval(render, 40);
+    interval = setInterval(() => app.render(), 40);
     return;
   }
-  render();
+  app.render();
 }
 
-window['render'] = render;
 function dispatch() {
-  render();
+  app.render();
 }
 
 function render_origin() {
@@ -155,108 +459,7 @@ function get_world_bbox(camera: Camera): Rect {
   return [tl.x, br.y, br.x, tl.y];
 }
 
-function render() {
-  //  const t = Date.now();
-  d.save();
-  d.scale(devicePixelRatio, devicePixelRatio);
-  lastTime = Date.now();
-  if (interval != null) {
-    clearInterval(interval);
-    interval = null;
-  }
-  const camera = state.camera();
-  const t = Date.now();
-  d.fillStyle = "#bac7f8";
-  d.fillRect(0, 0, w, h);
-  d.strokeStyle = "gray";
 
-  if (DEBUG) {
-    d.strokeRect(OFFSET + 0.5, OFFSET + 0.5, w - 2 * OFFSET, h - 2 * OFFSET);
-  }
-
-  const world_bbox = get_world_bbox(camera);
-
-  g_layers.forEach(function(layer) {
-    layer.render(d, camera, g_mode, world_bbox);
-  });
-
-
-  // vertex hover display
-  if (camera.zoom >= 1 && g_lastz != "[]") {
-    const pts = JSON.parse(g_lastz);
-    if (pts.length != 0) {
-      const rad = 3 / cscale(camera);
-      d.save();
-      d.translate(camera.x, camera.y);
-      d.scale(cscale(camera), -cscale(camera));
-      pts.forEach((bundle: Bundle) => {
-        if (bundle[0] == "coastline") {
-          const pt = bundle[1].point;
-          d.fillStyle = "white";
-          d.fillRect(pt[0] - rad, pt[1] - rad, rad * 2, rad * 2);
-          d.lineWidth = 1 / cscale(camera);
-          d.strokeStyle = "#000";
-          d.strokeRect(pt[0] - rad, pt[1] - rad, rad * 2, rad * 2);
-        }
-        else if (bundle[0] == "label") {
-          const pt = coastline_layer.labels[bundle[1]].pt;
-          d.beginPath();
-          d.fillStyle = "white";
-          d.globalAlpha = 0.5;
-          d.arc(pt[0], pt[1], 20 / cscale(camera), 0, Math.PI * 2);
-          d.fill();
-        }
-      });
-      d.restore();
-    }
-  }
-
-  if (!g_panning) {
-    // scale
-    render_scale(camera, d);
-
-    // mode
-    d.fillStyle = "black";
-    d.strokeStyle = "white";
-    d.font = "bold 12px sans-serif";
-    d.lineWidth = 2;
-    d.strokeText(g_mode, 20, h - 20);
-    d.fillText(g_mode, 20, h - 20);
-
-
-    // debugging
-
-
-    d.fillStyle = "black";
-    d.strokeStyle = "white";
-    d.font = "bold 12px sans-serif";
-    d.lineWidth = 2;
-    const txt = "Zoom: " + camera.zoom + " (1px = " + 1 / cscale(camera) + "m) g_lastz: " + g_lastz + " img: " + image_layer.named_imgs[image_layer.cur_img_ix].name;
-    d.strokeText(txt, 20, 20);
-    d.fillText(txt, 20, 20);
-
-
-    // used for ephemeral stuff on top, like point-dragging
-    if (g_render_extra) {
-      g_render_extra(camera, d);
-    }
-
-    if (g_selection) {
-      d.save();
-      d.translate(camera.x, camera.y);
-      d.scale(cscale(camera), -cscale(camera));
-      if (g_selection.arc) {
-        d.lineWidth = 2 / cscale(camera);
-        d.strokeStyle = "#0ff";
-        coastline_layer.draw_selected_arc(d, g_selection.arc);
-      }
-      d.restore();
-    }
-  }
-
-  d.restore();
-  //  console.log(Date.now() - t);
-}
 
 function meters_to_string(raw: number): string {
   let str = "0";
@@ -306,7 +509,7 @@ function onMouseWheel(e: WheelEvent): void {
     else {
       image_layer.scale(2);
     }
-    render();
+    app.render();
     e.preventDefault();
   }
   else {
@@ -315,7 +518,7 @@ function onMouseWheel(e: WheelEvent): void {
     const zoom = e.wheelDelta / 120;
     e.preventDefault();
     state.zoom(x, y, zoom);
-    render();
+    app.render();
   }
 };
 
@@ -333,7 +536,7 @@ function start_pan_and_stop(x: number, y: number, camera: Camera) {
   //  state.set_cam(camera.x + PANNING_MARGIN, camera.y + PANNING_MARGIN);
   reset_canvas_size();
   render_origin();
-  render();
+  app.render();
   const last = { x: x, y: y };
   $(document).on('mousemove.drag', function(e) {
     const org = state.get_origin();
@@ -356,7 +559,7 @@ function start_pan_and_stop(x: number, y: number, camera: Camera) {
     // 			  state.inc_cam(0, PANNING_MARGIN); }
 
     if (stale) {
-      render();
+      app.render();
     }
     render_origin();
 
@@ -370,122 +573,11 @@ function start_pan_and_stop(x: number, y: number, camera: Camera) {
     g_panning = false;
     reset_canvas_size();
     render_origin();
-    render();
+    app.render();
   };
 }
 
-$('#c').on('mousedown', function(e) {
-  const camera = state.camera();
-  const x = e.pageX;
-  const y = e.pageY;
-  const worldp = inv_xform(camera, x, y);
-  const slack = VERTEX_SENSITIVITY / cscale(camera);
-  const bbox: ArRectangle = [worldp.x - slack, worldp.y - slack, worldp.x + slack, worldp.y + slack];
-
-  const th = $(this);
-
-  switch (g_mode) {
-    case "Pan":
-      if (e.ctrlKey) {
-        const membase = image_layer.get_pos();
-        $(document).on('mousemove.drag', function(e) {
-          image_layer.set_pos({
-            x: membase.x + (e.pageX - x) / cscale(camera),
-            y: membase.y - (e.pageY - y) / cscale(camera)
-          });
-          maybe_render();
-        });
-        $(document).on('mouseup.drag', function(e) {
-          $(document).off('.drag');
-          render();
-        });
-
-      }
-      else
-        start_pan(x, y, camera);
-      break;
-
-    case "Measure":
-      start_measure(worldp);
-      break;
-
-    case "Select":
-      const candidate_features = coastline_layer.arc_targets(bbox);
-      const hit_lines = geom.find_hit_lines(
-        worldp, candidate_features, coastline_layer.arcs, slack
-      );
-      if (hit_lines.length == 1) {
-        g_selection = hit_lines[0];
-      }
-      else {
-        g_selection = null;
-      }
-      render();
-      break;
-
-    case "Label":
-      if (g_lastz != "[]") {
-        const z = JSON.parse(g_lastz);
-        console.log(g_lastz);
-        if (z.length == 1 && z[0][0] == "label") {
-          modal.make_insert_label_modal(worldp, coastline_layer.labels[z[0][1]], obj => {
-            coastline_layer.replace_point_feature(obj);
-            render();
-          });
-        }
-      }
-      else {
-        modal.make_insert_label_modal(worldp, null, obj => {
-          coastline_layer.new_point_feature(obj);
-          render();
-        });
-      }
-      break;
-
-    case "Move":
-      const targets = coastline_layer.targets(bbox);
-
-      if (targets.length >= 1) {
-        // yikes, what happens if I got two or more?? looks like I drag
-        // them all together. Don't want to do that.
-        const neighbors = coastline_layer.targets_nabes(targets);
-
-        start_drag(worldp, neighbors, dragp => {
-          coastline_layer.replace_vert(targets, dragp);
-        });
-      }
-      else {
-        const candidate_features = coastline_layer.arc_targets(bbox);
-        const hit_lines = geom.find_hit_lines(
-          worldp, candidate_features, coastline_layer.arcs, slack
-        );
-        if (hit_lines.length == 1) {
-          const arc_id = hit_lines[0].arc;
-          const ix = hit_lines[0].ix;
-          const arc = coastline_layer.arcs[arc_id].points;
-          start_drag(worldp, [arc[ix], arc[ix + 1]], (dragp: Point) => {
-            coastline_layer.break_segment(hit_lines[0], dragp);
-          });
-        }
-        else
-          start_pan(x, y, camera);
-      }
-      break;
-
-    case "Freehand":
-      let startp: ArPoint = [worldp.x, worldp.y];
-
-      const spoint = get_snap();
-      if (spoint != null)
-        startp = spoint;
-
-      start_freehand(startp, path => sketch_layer.add(path));
-      break;
-
-    default:
-      nope(g_mode);
-  }
-});
+$('#c').on('mousedown', e => app.handleMouse(e));
 
 function get_snap() {
   const last = JSON.parse(g_lastz);
@@ -548,7 +640,7 @@ function start_measure(startp: Point) {
   $(document).on('mouseup.drag', function(e) {
     g_render_extra = null;
     $(document).off('.drag');
-    render();
+    app.render();
   });
 
 }
@@ -601,7 +693,7 @@ function start_drag(startp: Point, neighbors: SmPoint[], k: (dragp: Point) => vo
       dragp = coastline_layer.target_point(snaps[0]);
     }
     k(dragp);
-    render();
+    app.render();
   });
 }
 
@@ -653,7 +745,7 @@ function start_freehand(startp: ArPoint, k: (dragp: Path) => void) {
     k(path.filter((pt: SmPoint, n: number) => {
       return (pt[2] || 0) > thresh || n == 0 || n == path.length - 1;
     }));
-    render();
+    app.render();
   });
 }
 
@@ -673,93 +765,14 @@ $('#c').on('mousemove', function(e) {
     const z = JSON.stringify(targets);
     if (z != g_lastz) {
       g_lastz = z;
-      render();
+      app.render();
     }
   }
 });
 
-function main_key_handler(e: JQuery.Event<Document, null>) {
-  // Disable key event handling if modal is up
-  const modals = $(".modal");
-  if (modals.filter(function(ix, e) { return $(e).css("display") == "block" }).length)
-    return;
 
-  const k = key(e.originalEvent as KeyboardEvent);
-  // if (k == "i") {
-  //   label_layer.add_label(state, prompt("name"));
-  //   render();
-  // }
-  if (k == ",") {
-    image_layer.prev();
-  }
-  if (k == ".") {
-    image_layer.next();
-  }
-  if (k == "f") {
-    g_mode = "Freehand";
-    render();
-  }
-  if (k == "m") {
-    g_mode = "Move";
-    render();
-  }
-  if (k == "<space>") {
-    //    const old_mode = g_mode;
-    //    g_mode = "Pan";
-    $(document).off('keydown');
-    const stop_at = start_pan_and_stop(g_mouse.x, g_mouse.y, state.camera());
-    $(document).on('keyup.holdspace', function(e) {
-      if (key(e.originalEvent as KeyboardEvent) == "<space>") {
-        stop_at(g_mouse.x, g_mouse.y);
-        $(document).off('.holdspace');
-        $(document).on('keydown', main_key_handler);
-      }
-    });
 
-  }
-  if (k == "p") {
-    g_mode = "Pan";
-    render();
-  }
-  if (k == "s") {
-    g_mode = "Select";
-    render();
-  }
-  if (k == "l") {
-    g_mode = "Label";
-    render();
-  }
-  if (k == "e") {
-    g_mode = "Measure";
-    render();
-  }
-
-  // if (k == "i") {
-  //   g_mode = "Insert";
-  //   render();
-  // }
-  if (k == "v") {
-    save();
-  }
-  if (k == "q") {
-    const sk = sketch_layer.pop();
-    if (sk != null) {
-      coastline_layer.make_insert_feature_modal(sk, dispatch);
-    }
-  }
-  if (k == "S-b") {
-    coastline_layer.breakup();
-    render();
-  }
-  if (k == "S-f") {
-    coastline_layer.filter();
-    render();
-  }
-
-  //  console.log(e.charCode, k);
-}
-
-$(document).on('keydown', main_key_handler);
+$(document).on('keydown', e => app.handleKey(e));
 
 function save(): void {
   const geo: Geo = {
@@ -792,6 +805,6 @@ function zoom_to(label: string) {
   if (pt == null) throw `couldn\'t find ${label}`;
   const pixel_offset = xform(state.camera(), pt[0], pt[1]);
   state.inc_cam(w / 2 - pixel_offset.x, h / 2 - pixel_offset.y);
-  render();
+  app.render();
 }
 window['zoom_to'] = zoom_to;

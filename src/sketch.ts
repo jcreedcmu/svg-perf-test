@@ -1,7 +1,7 @@
-import { Mode, Layer, Ctx, Camera, ArRectangle, SmPoint } from './types';
+import { Mode, Layer, Ctx, Camera, ArRectangle, Zpoint } from './types';
 import { cscale } from './util';
 
-type Path = SmPoint[];
+type Path = Zpoint[];
 type Sketches = Path[];
 
 export class SketchLayer {

@@ -1,4 +1,4 @@
-import { Mode, Point, SmPoint, ArPoint, ArRectangle, Dict, Ctx, Camera } from './types';
+import { Mode, Point, Zpoint, ArPoint, ArRectangle, Dict, Ctx, Camera } from './types';
 import { Label, Arc, RawArc, Target, Segment, LabelTarget, ArcVertexTarget, Feature } from './types';
 import { Poly, PolyProps, Bbox, Layer } from './types';
 import { adapt, cscale, rawOfArc, unrawOfArc, vmap, vkmap } from './util';
@@ -262,12 +262,12 @@ export class CoastlineLayer implements Layer {
   }
 
   // invariant: targets.length >= 1
-  targets_nabes(targets: Target[]): SmPoint[] {
+  targets_nabes(targets: Target[]): Zpoint[] {
     var that = this;
 
     // XXX what happens if targets is of mixed type ugh
     if (targets[0][0] == "coastline") {
-      const neighbors: SmPoint[] = [];
+      const neighbors: Zpoint[] = [];
 
       targets.forEach(function(target) {
         if (target[0] == "coastline") {
@@ -411,7 +411,7 @@ export class CoastlineLayer implements Layer {
       d.fillStyle = "#ffd";
       var vert_size = 5 / scale;
       arcs_to_draw_vertices_for.forEach(function(arc) {
-        arc.forEach(function({ point: vert, z }: SmPoint, n: number) {
+        arc.forEach(function({ point: vert, z }: Zpoint, n: number) {
           if (z > 1000000 || camera.zoom > 10) {
             d.fillStyle = z > 1000000 ? "#ffd" : "#f00";
             d.strokeRect(vert[0] - vert_size / 2, vert[1] - vert_size / 2, vert_size, vert_size);
@@ -505,7 +505,7 @@ export class CoastlineLayer implements Layer {
     var arc_id = segment.arc;
     var arc = this.arcs[arc_id];
 
-    var newp: SmPoint = { point: [p.x, p.y], z: 1000 };
+    var newp: Zpoint = { point: [p.x, p.y], z: 1000 };
     arc.points.splice(segment.ix + 1, 0, newp);
     simplify.simplify_arc(arc);
 
@@ -577,13 +577,13 @@ export class CoastlineLayer implements Layer {
     this.labels[lab.name] = lab;
   }
 
-  newArc(name: string, points: SmPoint[]): Arc {
+  newArc(name: string, points: Zpoint[]): Arc {
     // maybe compute bbox here?
     const bbox: Bbox = { minx: 1e9, miny: 1e9, maxx: -1e9, maxy: -1e9 };
     return { name, points, bbox };
   }
 
-  add_arc_feature(t: string, points: SmPoint[], properties: PolyProps) {
+  add_arc_feature(t: string, points: Zpoint[], properties: PolyProps) {
 
     var feature_name = "f" + this.counter;
     var arc_name = "a" + this.counter;
@@ -644,7 +644,7 @@ export class CoastlineLayer implements Layer {
 
 
 
-  make_insert_feature_modal(pts: SmPoint[], dispatch: () => void) {
+  make_insert_feature_modal(pts: Zpoint[], dispatch: () => void) {
     set_value($('#insert_feature input[name="text"]')[0], "");
     set_value($('#insert_feature input[name="key"]')[0], "road");
     set_value($('#insert_feature input[name="value"]')[0], "highway");

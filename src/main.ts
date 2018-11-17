@@ -1,5 +1,5 @@
 import { Point, Ctx, Mode, Camera, Rect, Path, ArPoint } from './types';
-import { Geo, Rivers, SmPoint, Bundle, Layer, ArRectangle, Label } from './types';
+import { Geo, Rivers, Zpoint, Bundle, Layer, ArRectangle, Label } from './types';
 import { Stopper } from './types';
 
 import { Loader, Data } from './loader';
@@ -553,7 +553,7 @@ class App {
 
   // The continuation k is what to do when the drag ends. The argument
   // dragp to k is the point we released the drag on.
-  start_drag(startp: Point, neighbors: SmPoint[], k: (dragp: Point) => void) {
+  start_drag(startp: Point, neighbors: Zpoint[], k: (dragp: Point) => void) {
     const camera = this.state.camera();
     let dragp = clone(startp);
     const scale = cscale(camera);
@@ -667,7 +667,7 @@ class App {
 
   start_freehand(startp: ArPoint, k: (dragp: Path) => void): void {
     const camera = this.state.camera();
-    const path: SmPoint[] = [{ point: startp, z: 1000 }];
+    const path: Zpoint[] = [{ point: startp, z: 1000 }];
     const thresh = FREEHAND_SIMPLIFICATION_FACTOR
       / (cscale(camera) * cscale(camera));
     this.render_extra = (camera, d) => {
@@ -676,7 +676,7 @@ class App {
       d.scale(cscale(camera), -cscale(camera));
       d.beginPath();
       let count = 0;
-      path.forEach(({ point: pt, z }: SmPoint, n: number) => {
+      path.forEach(({ point: pt, z }: Zpoint, n: number) => {
         if (n == 0)
           d.moveTo(pt[0], pt[1]);
         else {
@@ -709,7 +709,7 @@ class App {
 
       this.render_extra = null;
       $(document).off('.drag');
-      k(path.filter(({ point: pt, z }: SmPoint, n: number) => {
+      k(path.filter(({ point: pt, z }: Zpoint, n: number) => {
         return z > thresh || n == 0 || n == path.length - 1;
       }));
       this.render();

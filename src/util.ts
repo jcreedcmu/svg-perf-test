@@ -1,4 +1,4 @@
-import { Point, SmPoint, ArPoint, Camera, Rect } from './types';
+import { Point, Zpoint, ArPoint, Camera, Rect } from './types';
 import { Arc, RawArc } from './types';
 
 export function clone<T>(x: T): T {
@@ -44,7 +44,7 @@ export function above_simp_thresh(z: number, scale: number): boolean {
   return z > SIMPLIFICATION_FACTOR / (scale * scale);
 }
 
-export function adapt(x: SmPoint): ArPoint {
+export function adapt(x: Zpoint): ArPoint {
   return [x.point[0], x.point[1]];
 }
 
@@ -93,7 +93,7 @@ export function unrawOfArc(name: string, arc: RawArc): Arc {
     name,
     bbox: { minx: 1e9, miny: 1e9, maxx: -1e9, maxy: -1e9 },
     points: points.map(p => {
-      const z: SmPoint = { point: p, z: 1e9 };
+      const z: Zpoint = { point: p, z: 1e9 };
       return z;
     })
   };

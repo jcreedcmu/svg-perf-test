@@ -1,5 +1,5 @@
 import _ = require('underscore');
-import { Arc, Dict, Poly, SmPoint } from './types';
+import { Arc, Dict, Poly, Zpoint } from './types';
 
 function accumulate_bbox(pt: [number, number, number?], bbox: any) {
   bbox.minx = Math.min(pt[0], bbox.minx);
@@ -31,9 +31,9 @@ export function simplify_arc(arc: Arc) {
   arc.points.forEach(pt => { accumulate_bbox(pt.point, bbox); });
 }
 
-type Tri = [SmPoint, SmPoint, SmPoint] & { previous?: Tri, next?: Tri };
+type Tri = [Zpoint, Zpoint, Zpoint] & { previous?: Tri, next?: Tri };
 
-export function simplify(polygon: SmPoint[]) {
+export function simplify(polygon: Zpoint[]) {
   var heap = minHeap();
   let maxArea = 0;
   let triangle: Tri;

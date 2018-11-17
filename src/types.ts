@@ -11,14 +11,14 @@ export interface Camera {
 }
 
 export type Rect = [number, number, number, number];
-export type Path = SmPoint[];
+export type Path = Zpoint[];
 export type ArPoint = [number, number];
 export type Bundle =
   ['coastline', { point: ArPoint }]
   | ['label', string];
 
 
-export type SmPoint = { point: [number, number], z: number };
+export type Zpoint = { point: ArPoint, z: number };
 
 // minx, miny, maxx, maxy
 export type ArRectangle = [number, number, number, number];
@@ -49,7 +49,7 @@ export type RawArc = {
 
 export type Arc = {
   name: string,
-  points: SmPoint[],
+  points: Zpoint[],
   bbox: Bbox,
 };
 

@@ -1,4 +1,5 @@
-import { Point, Ctx, Mode, Camera, Rect, Path, ArPoint, SmPoint, Bundle, Layer, ArRectangle, Label } from './types';
+import { Point, Ctx, Mode, Camera, Rect, Path, ArPoint } from './types';
+import { Geo, SmPoint, Bundle, Layer, ArRectangle, Label } from './types';
 import { Loader, Data } from './loader';
 import { clone, cscale, nope } from './util';
 import { simplify } from './simplify';
@@ -753,11 +754,12 @@ function main_key_handler(e: JQuery.Event<Document, null>) {
 
 $(document).on('keydown', main_key_handler);
 
-function save() {
-  let geo = {};
-  g_layers.forEach(function(layer, n) {
-    geo = { geo, ...layer.model() }
-  });
+function save(): void {
+  const geo: Geo = {
+    ...coastline_layer.model(),
+    ...image_layer.model(),
+  };
+
   $.ajax("/export", {
     method: "POST", data: JSON.stringify(geo), contentType: "text/plain", success: function() {
       console.log("success");

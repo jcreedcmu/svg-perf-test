@@ -509,12 +509,17 @@ export class CoastlineLayer implements Layer {
     this.recompute_arc_feature_bbox(arc_id);
   };
 
-  model() {
-    var features = _.map(this.features, object =>
+  model(): {
+    counter: number,
+    polys: Poly[],
+    arcs: Arc[],
+    labels: Label[],
+  } {
+    const polys: Poly[] = _.map(this.features, object =>
       _.extend({}, object,
         { properties: _.omit(object.properties, "bbox") })
     );
-    var arcs = _.map(this.arcs, function(arc) {
+    const arcs: Arc[] = _.map(this.arcs, arc => {
       return _.extend(
         {}, arc,
         {
@@ -522,11 +527,12 @@ export class CoastlineLayer implements Layer {
           points: arc.points.map(p => [p[0], p[1]])
         })
     });
+    const labels: Label[] = _.map(this.labels, function(x: any) { return x });
     return {
-      counter: this.counter, objects: ([] as any[]).concat(
-        features,
-        arcs,
-        _.map(this.labels, function(x: any) { return x }))
+      counter: this.counter,
+      polys,
+      arcs,
+      labels,
     };
   }
 

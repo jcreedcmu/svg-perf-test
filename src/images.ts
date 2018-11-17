@@ -98,7 +98,7 @@ export class ImageLayer implements Layer {
     img_state.y = p.y;
   }
 
-  model() {
+  model(): { images: Images } {
     return {
       images: _.object(this.named_imgs.map(obj => {
         return [obj.name, _.omit(obj, "name")];

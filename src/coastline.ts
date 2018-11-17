@@ -1,7 +1,8 @@
 import { Mode, Point, Zpoint, ArPoint, ArRectangle, Dict, Ctx, Camera } from './types';
-import { Label, Arc, RawArc, Target, Segment, LabelTarget, ArcVertexTarget } from './types';
+import { Label, RawLabel, Arc, RawArc, Target, Segment, LabelTarget, ArcVertexTarget } from './types';
 import { Poly, RawPoly, PolyProps, Bbox, Layer } from './types';
-import { adapt, cscale, rawOfArc, unrawOfArc, rawOfPoly, unrawOfPoly, vmap, vkmap, trivBbox } from './util';
+import { rawOfArc, unrawOfArc, rawOfPoly, unrawOfPoly, rawOfLabel, unrawOfLabel } from './util';
+import { adapt, cscale, vmap, vkmap, trivBbox } from './util';
 import { clone, above_simp_thresh } from './util';
 import { colors } from './colors';
 import * as simplify from './simplify';
@@ -188,11 +189,11 @@ export class CoastlineLayer implements Layer {
   label_rt: Bush<LabelTarget>;
   arc_to_feature: Dict<string[]> = {};
 
-  constructor(arcs: Dict<RawArc>, polys: Dict<RawPoly>, labels: Label[], counter: number) {
+  constructor(arcs: Dict<RawArc>, polys: Dict<RawPoly>, labels: Dict<RawLabel>, counter: number) {
     this.counter = counter;
     this.features = vkmap(polys, unrawOfPoly);
     this.arcs = vkmap(arcs, unrawOfArc);
-    this.labels = dictOfNamedArray(labels);
+    this.labels = vkmap(labels, unrawOfLabel);
     this.rebuild();
   }
 
@@ -521,12 +522,11 @@ export class CoastlineLayer implements Layer {
     counter: number,
     polys: Dict<RawPoly>,
     arcs: Dict<RawArc>,
-    labels: Label[],
+    labels: Dict<RawLabel>,
   } {
     const polys: Dict<RawPoly> = vmap(this.features, rawOfPoly);
     const arcs: Dict<RawArc> = vmap(this.arcs, rawOfArc);
-
-    const labels: Label[] = _.map(this.labels, function(x: any) { return x });
+    const labels: Dict<RawLabel> = vmap(this.labels, rawOfLabel);
     return {
       counter: this.counter,
       polys,

@@ -61,12 +61,6 @@ export type LabelProps = {
   zoom?: number,
 };
 
-export type Label = {
-  name: string
-  pt: ArPoint,
-  properties: LabelProps,
-};
-
 export type PolyProps =
   | {
     t: "natural", natural: "lake" | "coastline" | "mountain",
@@ -74,6 +68,17 @@ export type PolyProps =
   }
   | { t: "road", road: "highway" | "street" | "street2", text: string, zoom?: number }
   | { t: "city", text: string, zoom?: number }
+
+export type RawLabel = {
+  pt: ArPoint,
+  properties: LabelProps,
+};
+
+export type Label = {
+  name: string
+  pt: ArPoint,
+  properties: LabelProps,
+};
 
 export type RawPoly = {
   arcs: string[], // arc names, really
@@ -95,7 +100,7 @@ export type Geo = {
   images: Dict<Image>,
   arcs: Dict<RawArc>,
   polys: Dict<RawPoly>,
-  labels: Label[],
+  labels: Dict<RawLabel>,
 };
 
 export type River = { geometry: { coordinates: ArPoint[][] } };

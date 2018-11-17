@@ -243,7 +243,7 @@ class App {
           // them all together. Don't want to do that.
           const neighbors = coastline_layer.targets_nabes(targets);
 
-          start_drag(worldp, neighbors, dragp => {
+          this.start_drag(worldp, neighbors, dragp => {
             coastline_layer.replace_vert(targets, dragp);
           });
         }
@@ -256,7 +256,7 @@ class App {
             const arc_id = hit_lines[0].arc;
             const ix = hit_lines[0].ix;
             const arc = coastline_layer.arcs[arc_id].points;
-            start_drag(worldp, [arc[ix], arc[ix + 1]], (dragp: Point) => {
+            this.start_drag(worldp, [arc[ix], arc[ix + 1]], (dragp: Point) => {
               coastline_layer.break_segment(hit_lines[0], dragp);
             });
           }
@@ -424,6 +424,58 @@ class App {
       render_origin();
       this.render();
     };
+  }
+
+  // The continuation k is what to do when the drag ends. The argument
+  // dragp to k is the point we released the drag on.
+  start_drag(startp: Point, neighbors: SmPoint[], k: (dragp: Point) => void) {
+    const camera = state.camera();
+    let dragp = clone(startp);
+    const scale = cscale(camera);
+    g_render_extra = function(camera, d) {
+      d.save();
+      d.translate(camera.x, camera.y);
+      d.scale(scale, -scale);
+      d.beginPath();
+      if (neighbors.length == 0) {
+        // if no neighbors, we're moving a label; draw a little crosshairs.
+        d.moveTo(dragp.x, dragp.y - 10 / scale);
+        d.lineTo(dragp.x, dragp.y + 10 / scale);
+        d.moveTo(dragp.x - 10 / scale, dragp.y);
+        d.lineTo(dragp.x + 10 / scale, dragp.y);
+        d.arc(dragp.x, dragp.y, 10 / scale, 0, 2 * Math.PI);
+      }
+      else {
+        // ...else, we're moving an arc point. Draw some guides to show
+        // how the moved point connects to its neighbors.
+        neighbors.forEach(nabe => {
+          d.moveTo(nabe[0], nabe[1]);
+          d.lineTo(dragp.x, dragp.y);
+        });
+      }
+      d.lineWidth = 1 / scale;
+      d.strokeStyle = colors.motion_guide;
+      d.stroke();
+      d.restore();
+    }
+    $(document).on('mousemove.drag', e => {
+      const x = e.pageX;
+      const y = e.pageY;
+      const worldp = inv_xform(camera, x, y);
+      dragp.x = worldp.x;
+      dragp.y = worldp.y;
+      maybe_render();
+    });
+    $(document).on('mouseup.drag', e => {
+      g_render_extra = null;
+      $(document).off('.drag');
+      const snaps = JSON.parse(g_lastz);
+      if (snaps.length >= 1) {
+        dragp = coastline_layer.target_point(snaps[0]);
+      }
+      k(dragp);
+      this.render();
+    });
   }
 }
 
@@ -670,58 +722,6 @@ function start_measure(startp: Point) {
 
 }
 
-// The continuation k is what to do when the drag ends. The argument
-// dragp to k is the point we released the drag on.
-function start_drag(startp: Point, neighbors: SmPoint[], k: (dragp: Point) => void) {
-  const camera = state.camera();
-  let dragp = clone(startp);
-  const scale = cscale(camera);
-  g_render_extra = function(camera, d) {
-    d.save();
-    d.translate(camera.x, camera.y);
-    d.scale(scale, -scale);
-    d.beginPath();
-    if (neighbors.length == 0) {
-      // if no neighbors, we're moving a label; draw a little crosshairs.
-      d.moveTo(dragp.x, dragp.y - 10 / scale);
-      d.lineTo(dragp.x, dragp.y + 10 / scale);
-      d.moveTo(dragp.x - 10 / scale, dragp.y);
-      d.lineTo(dragp.x + 10 / scale, dragp.y);
-      d.arc(dragp.x, dragp.y, 10 / scale, 0, 2 * Math.PI);
-    }
-    else {
-      // ...else, we're moving an arc point. Draw some guides to show
-      // how the moved point connects to its neighbors.
-      neighbors.forEach(nabe => {
-        d.moveTo(nabe[0], nabe[1]);
-        d.lineTo(dragp.x, dragp.y);
-      });
-    }
-    d.lineWidth = 1 / scale;
-    d.strokeStyle = colors.motion_guide;
-    d.stroke();
-    d.restore();
-  }
-  $(document).on('mousemove.drag', function(e) {
-    const x = e.pageX;
-    const y = e.pageY;
-    const worldp = inv_xform(camera, x, y);
-    dragp.x = worldp.x;
-    dragp.y = worldp.y;
-    maybe_render();
-  });
-  $(document).on('mouseup.drag', function(e) {
-    g_render_extra = null;
-    $(document).off('.drag');
-    const snaps = JSON.parse(g_lastz);
-    if (snaps.length >= 1) {
-      dragp = coastline_layer.target_point(snaps[0]);
-    }
-    k(dragp);
-    app.render();
-  });
-}
-
 function start_freehand(startp: ArPoint, k: (dragp: Path) => void) {
   const camera = state.camera();
   const path: SmPoint[] = [startp];
@@ -775,9 +775,6 @@ function start_freehand(startp: ArPoint, k: (dragp: Path) => void) {
 }
 
 $('#c').on('mousemove', e => app.handleMouseMove(e));
-
-
-
 $(document).on('keydown', e => app.handleKey(e));
 
 function save(): void {

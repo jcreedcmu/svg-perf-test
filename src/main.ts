@@ -146,7 +146,6 @@ class App {
   }
 
   render(): void {
-    console.log('render');
     const { w, h, d, mode } = this;
 
     //  const t = Date.now();

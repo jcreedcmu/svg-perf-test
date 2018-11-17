@@ -1,13 +1,14 @@
 import _ = require('underscore');
-import { Arc, Dict, Poly, Zpoint } from './types';
+import { Arc, Dict, Poly, Zpoint, Bbox, ArPoint } from './types';
 
-function accumulate_bbox(pt: [number, number, number?], bbox: any) {
+function accumulate_bbox(pt: ArPoint, bbox: Bbox) {
   bbox.minx = Math.min(pt[0], bbox.minx);
   bbox.maxx = Math.max(pt[0], bbox.maxx);
   bbox.miny = Math.min(pt[1], bbox.miny);
   bbox.maxy = Math.max(pt[1], bbox.maxy);
 }
 
+// XXX use this to replace util.trivBbox
 function new_bbox() {
   return {
     minx: Number.MAX_VALUE, miny: Number.MAX_VALUE,
@@ -152,7 +153,7 @@ function minHeap() {
 }
 
 export function compute_bbox(object: Poly, arcs: Dict<Arc>) {
-  var bbox = (object.properties as any).bbox = new_bbox();
+  const bbox = object.bbox = new_bbox();
   _.each(object.arcs, arc_ix => {
     let arc_bbox = arcs[arc_ix].bbox;
     accumulate_bbox([arc_bbox.minx, arc_bbox.miny], bbox);

@@ -83,7 +83,8 @@ export type RawPoly = {
 export type Poly = {
   name: string,
   arcs: string[], // arc names, really
-  properties: any,
+  properties: PolyProps,
+  bbox: Bbox,
 };
 
 export type Feature = Poly;

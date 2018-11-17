@@ -1,8 +1,5 @@
-import { Mode, Layer, Ctx, Camera, ArRectangle, ArPoint } from './types';
+import { Mode, Layer, Ctx, Camera, ArRectangle, ArPoint, River, Rivers } from './types';
 import { cscale } from './util';
-
-type River = { geometry: { coordinates: ArPoint[][] } };
-type Rivers = { features: River[] };
 
 export class RiverLayer implements Layer {
   rivers: Rivers;

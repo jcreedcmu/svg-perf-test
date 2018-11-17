@@ -7,7 +7,7 @@ type Sketches = Path[];
 export class SketchLayer {
   sketches: Sketches;
 
-  constructor(sketches: Sketches) {
+  constructor(sketches?: Sketches) {
     this.sketches = sketches || [];
   }
 

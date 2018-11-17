@@ -1,7 +1,7 @@
 import { Mode, Point, SmPoint, ArPoint, ArRectangle, Dict, Ctx, Camera } from './types';
-import { Label, Arc, Target, Segment, LabelTarget, ArcVertexTarget, Feature } from './types';
+import { Label, Arc, RawArc, Target, Segment, LabelTarget, ArcVertexTarget, Feature } from './types';
 import { Poly, PolyProps, Bbox, Layer } from './types';
-import { adapt, cscale } from './util';
+import { adapt, cscale, rawOfArc, unrawOfArc } from './util';
 import { colors } from './colors';
 import * as simplify from './simplify';
 import * as rbush from 'rbush';
@@ -185,10 +185,10 @@ export class CoastlineLayer implements Layer {
   label_rt: Bush<LabelTarget>;
   arc_to_feature: { [k: string]: any } = {};
 
-  constructor(arcs: Arc[], polys: Poly[], labels: Label[], counter: number) {
+  constructor(arcs: RawArc[], polys: Poly[], labels: Label[], counter: number) {
     this.counter = counter;
     this.features = dictOfNamedArray(polys); // converting from poly to 'feature', here, which I think needs bbox
-    this.arcs = dictOfNamedArray(arcs);
+    this.arcs = dictOfNamedArray(arcs.map(unrawOfArc));
     this.labels = dictOfNamedArray(labels);
     this.rebuild();
   }
@@ -512,20 +512,16 @@ export class CoastlineLayer implements Layer {
   model(): {
     counter: number,
     polys: Poly[],
-    arcs: Arc[],
+    arcs: RawArc[],
     labels: Label[],
   } {
     const polys: Poly[] = _.map(this.features, object =>
       _.extend({}, object,
         { properties: _.omit(object.properties, "bbox") })
     );
-    const arcs: Arc[] = _.map(this.arcs, arc => {
-      return _.extend(
-        {}, arc,
-        {
-          points: arc.points.map(p => [p[0], p[1]])
-        })
-    });
+    const arcs: RawArc[] = Object.keys(this.arcs).map(k =>
+      rawOfArc(this.arcs[k]));
+
     const labels: Label[] = _.map(this.labels, function(x: any) { return x });
     return {
       counter: this.counter,

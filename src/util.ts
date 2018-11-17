@@ -1,4 +1,5 @@
 import { Point, SmPoint, ArPoint, Camera, Rect } from './types';
+import { Arc, RawArc } from './types';
 
 export function clone<T>(x: T): T {
   return JSON.parse(JSON.stringify(x));
@@ -69,4 +70,27 @@ export function meters_to_string(raw: number): string {
 export function vdist(p1: Point, p2: Point) {
   function sqr(x: number) { return x * x };
   return Math.sqrt(sqr(p1.x - p2.x) + sqr(p1.y - p2.y));
+}
+
+export function rawOfArc(arc: Arc): RawArc {
+  const { name, points } = arc;
+  return {
+    name,
+    points: points.map(p => {
+      const z: ArPoint = [p[0], p[1]];
+      return z;
+    })
+  };
+}
+
+export function unrawOfArc(arc: RawArc): Arc {
+  const { name, points } = arc;
+  return {
+    name,
+    bbox: { minx: 1e9, miny: 1e9, maxx: -1e9, maxy: -1e9 },
+    points: points.map(p => {
+      const z: SmPoint = [p[0], p[1], 1e9];
+      return z;
+    })
+  };
 }

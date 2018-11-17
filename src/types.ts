@@ -43,6 +43,11 @@ export type Bbox = {
   maxy: number,
 };
 
+export type RawArc = {
+  name: string,
+  points: ArPoint[],
+};
+
 export type Arc = {
   name: string,
   points: SmPoint[],
@@ -84,10 +89,13 @@ export type Sketches = any;
 export type Geo = {
   counter: number,
   images: Images,
-  arcs: Arc[],
+  arcs: RawArc[],
   polys: Poly[],
   labels: Label[],
 };
+
+export type River = { geometry: { coordinates: ArPoint[][] } };
+export type Rivers = { features: River[] };
 
 export interface Layer {
   render(d: Ctx, camera: Camera, mode: Mode, world_bbox: ArRectangle): void;

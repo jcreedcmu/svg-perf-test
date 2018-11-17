@@ -1,5 +1,5 @@
 import { Point, Ctx, Mode, Camera, Rect, Path, ArPoint } from './types';
-import { Geo, SmPoint, Bundle, Layer, ArRectangle, Label } from './types';
+import { Geo, Rivers, SmPoint, Bundle, Layer, ArRectangle, Label } from './types';
 import { Stopper } from './types';
 
 import { Loader, Data } from './loader';
@@ -100,11 +100,12 @@ class App {
     this.th = new Throttler(() => this.render());
     this.data = _data;
     let count = 0;
-    const geo = _data.json.geo;
+    const geo: Geo = _data.json.geo;
+    const rivers: Rivers = _data.json.rivers;
     this.coastline_layer = new CoastlineLayer(geo.arcs, geo.polys, geo.labels, geo.counter);
     this.image_layer = new ImageLayer(() => this.render(), 0, geo.images);
-    this.river_layer = new RiverLayer(_data.json.rivers);
-    this.sketch_layer = new SketchLayer(geo.sketches);
+    this.river_layer = new RiverLayer(rivers);
+    this.sketch_layer = new SketchLayer();
     this.layers = [
       this.coastline_layer,
       this.river_layer,

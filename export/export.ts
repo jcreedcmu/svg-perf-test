@@ -1,7 +1,7 @@
-import { Geo, Arc, Point, Poly } from '../src/types';
+import { Geo, Arc, Point, RawPoly } from '../src/types';
 import { simplify_arc } from '../src/simplify';
 import { readFileSync, createWriteStream } from 'fs';
-import { scale_of_zoom, above_simp_thresh } from '../src/util';
+import { scale_of_zoom, above_simp_thresh, unrawOfArc } from '../src/util';
 import * as PDF from 'pdfkit';
 
 const ZOOM = 3;
@@ -24,11 +24,10 @@ const arcs: { [k: string]: Arc } = {};
 
 const scale = scale_of_zoom(ZOOM);
 
-data.objects.forEach(o => {
-  if (o.type == 'arc') {
-    simplify_arc(o);
-    arcs[o.name] = o;
-  }
+Object.keys(data.arcs).forEach(k => {
+  const arc = unrawOfArc(k, data.arcs[k]);
+  simplify_arc(arc);
+  arcs[k] = arc;
 });
 
 function xform(pt: Point): Point {
@@ -38,7 +37,7 @@ function xform(pt: Point): Point {
   }
 }
 
-function draw(o: Poly, t: 'coastline' | 'mountain') {
+function draw(o: RawPoly, t: 'coastline' | 'mountain') {
 
   let first = true;
   let exist = false;
@@ -59,8 +58,8 @@ function draw(o: Poly, t: 'coastline' | 'mountain') {
 
   for (let k of o.arcs) {
     const arcPts = arcs[k].points
-      .filter(pt => above_simp_thresh((pt[2] || 0), scale))
-      .map(pt => ({ x: pt[0], y: pt[1] }))
+      .filter(({ z }) => above_simp_thresh(z, scale))
+      .map(({ point: pt }) => ({ x: pt[0], y: pt[1] }))
       .map(xform);
     if (arcPts.length > 1) {
       arcPts.slice(0, arcPts.length - 1).forEach(plot);
@@ -75,9 +74,8 @@ function draw(o: Poly, t: 'coastline' | 'mountain') {
       doc.fill([230, 230, 200]);
   }
 }
-data.objects.forEach(o => {
-
-  if (o.type == 'Polygon' && o.properties.t == 'natural'
+Object.values(data.polys).forEach(o => {
+  if (o.properties.t == 'natural'
     && (o.properties.natural == 'coastline' ||
       o.properties.natural == 'mountain'))
     draw(o, o.properties.natural);

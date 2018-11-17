@@ -28,9 +28,6 @@ const VERTEX_SENSITIVITY = 10;
 const FREEHAND_SIMPLIFICATION_FACTOR = 100;
 const PANNING_MARGIN = 200;
 
-let g_selection: { arc?: string } | null = null;
-
-let state = new State();
 
 // Just for debugging
 declare var window: any;
@@ -53,6 +50,8 @@ class App {
   panning: boolean = false;
   data: Data; // Probably want to eventually get rid of this
   mouse: Point = { x: 0, y: 0 };
+  g_selection: { arc?: string } | null = null;
+  state = new State(); // really this is camera state
 
   init(_data: Data): void {
     this.data = _data;
@@ -113,7 +112,7 @@ class App {
       clearInterval(interval);
       interval = null;
     }
-    const camera = state.camera();
+    const camera = this.state.camera();
     const t = Date.now();
     d.fillStyle = "#bac7f8";
     d.fillRect(0, 0, w, h);
@@ -191,14 +190,14 @@ class App {
         this.render_extra(camera, d);
       }
 
-      if (g_selection) {
+      if (this.g_selection) {
         d.save();
         d.translate(camera.x, camera.y);
         d.scale(cscale(camera), -cscale(camera));
-        if (g_selection.arc) {
+        if (this.g_selection.arc) {
           d.lineWidth = 2 / cscale(camera);
           d.strokeStyle = "#0ff";
-          this.coastline_layer.draw_selected_arc(d, g_selection.arc);
+          this.coastline_layer.draw_selected_arc(d, this.g_selection.arc);
         }
         d.restore();
       }
@@ -224,7 +223,7 @@ class App {
       const y = e.pageY;
       const zoom = e.wheelDelta / 120;
       e.preventDefault();
-      state.zoom(x, y, zoom);
+      this.state.zoom(x, y, zoom);
       this.render();
     }
   }
@@ -234,7 +233,7 @@ class App {
 
     if (this.panning)
       return;
-    const camera = state.camera();
+    const camera = this.state.camera();
     if (camera.zoom >= 1) {
       const x = e.pageX;
       const y = e.pageY;
@@ -252,7 +251,7 @@ class App {
 
   handleMouseDown(e: JQuery.Event<HTMLElement, null>) {
     const { image_layer, coastline_layer, sketch_layer } = this;
-    const camera = state.camera();
+    const camera = this.state.camera();
     const x = e.pageX;
     const y = e.pageY;
     const worldp = inv_xform(camera, x, y);
@@ -291,10 +290,10 @@ class App {
           worldp, candidate_features, coastline_layer.arcs, slack
         );
         if (hit_lines.length == 1) {
-          g_selection = hit_lines[0];
+          this.g_selection = hit_lines[0];
         }
         else {
-          g_selection = null;
+          this.g_selection = null;
         }
         this.render();
         break;
@@ -393,7 +392,7 @@ class App {
       //    const old_mode = g_mode;
       //    g_mode = "Pan";
       $(document).off('keydown');
-      const stop_at = this.start_pan_and_stop(this.mouse.x, this.mouse.y, state.camera());
+      const stop_at = this.start_pan_and_stop(this.mouse.x, this.mouse.y, this.state.camera());
       $(document).on('keyup.holdspace', e => {
         if (key(e.originalEvent as KeyboardEvent) == "<space>") {
           stop_at(this.mouse.x, this.mouse.y);
@@ -449,7 +448,7 @@ class App {
     const { c } = this;
     const margin = this.panning ? PANNING_MARGIN : 0;
     // not 100% sure this is right on retina
-    state.set_origin(-margin, -margin);
+    this.state.set_origin(-margin, -margin);
     c.width = (this.w = innerWidth + 2 * margin) * devicePixelRatio;
     c.height = (this.h = innerHeight + 2 * margin) * devicePixelRatio;
     c.style.width = (innerWidth + 2 * margin) + "px";
@@ -473,21 +472,21 @@ class App {
     this.render();
     const last = { x: x, y: y };
     $(document).on('mousemove.drag', e => {
-      const org = state.get_origin();
-      state.inc_origin(e.pageX - last.x,
+      const org = this.state.get_origin();
+      this.state.inc_origin(e.pageX - last.x,
         e.pageY - last.y);
 
-      state.inc_cam(e.pageX - last.x,
+      this.state.inc_cam(e.pageX - last.x,
         e.pageY - last.y);
 
       last.x = e.pageX;
       last.y = e.pageY;
 
       let stale = false;
-      if (org.x > 0) { state.inc_origin(-PANNING_MARGIN, 0); stale = true; }
-      if (org.y > 0) { state.inc_origin(0, -PANNING_MARGIN); stale = true; }
-      if (org.x < -2 * PANNING_MARGIN) { state.inc_origin(PANNING_MARGIN, 0); stale = true; }
-      if (org.y < -2 * PANNING_MARGIN) { state.inc_origin(0, PANNING_MARGIN); stale = true; }
+      if (org.x > 0) { this.state.inc_origin(-PANNING_MARGIN, 0); stale = true; }
+      if (org.y > 0) { this.state.inc_origin(0, -PANNING_MARGIN); stale = true; }
+      if (org.x < -2 * PANNING_MARGIN) { this.state.inc_origin(PANNING_MARGIN, 0); stale = true; }
+      if (org.y < -2 * PANNING_MARGIN) { this.state.inc_origin(0, PANNING_MARGIN); stale = true; }
 
       // if (g_origin.y > 0) { g_origin.y -= PANNING_MARGIN; stale = true;
       // 			  state.inc_cam(0, PANNING_MARGIN); }
@@ -503,7 +502,7 @@ class App {
     return (offx: number, offy: number) => {
       $("#c").css({ cursor: '' });
       $(document).off('.drag');
-      state.set_cam(camera.x + offx - x, camera.y + offy - y);
+      this.state.set_cam(camera.x + offx - x, camera.y + offy - y);
       this.panning = false;
       this.reset_canvas_size();
       this.render_origin();
@@ -514,7 +513,7 @@ class App {
   // The continuation k is what to do when the drag ends. The argument
   // dragp to k is the point we released the drag on.
   start_drag(startp: Point, neighbors: SmPoint[], k: (dragp: Point) => void) {
-    const camera = state.camera();
+    const camera = this.state.camera();
     let dragp = clone(startp);
     const scale = cscale(camera);
     this.render_extra = (camera, d) => {
@@ -577,7 +576,7 @@ class App {
   }
 
   start_measure(startp: Point): void {
-    const camera = state.camera();
+    const camera = this.state.camera();
     const dragp = clone(startp);
     const scale = cscale(camera);
     this.render_extra = (camera, d) => {
@@ -626,7 +625,7 @@ class App {
   }
 
   start_freehand(startp: ArPoint, k: (dragp: Path) => void): void {
-    const camera = state.camera();
+    const camera = this.state.camera();
     const path: SmPoint[] = [startp];
     const thresh = FREEHAND_SIMPLIFICATION_FACTOR
       / (cscale(camera) * cscale(camera));
@@ -684,7 +683,7 @@ class App {
   }
 
   render_origin(): void {
-    const or = state.get_origin();
+    const or = this.state.get_origin();
     $("#c").css({
       top: or.y + "px",
       left: or.x + "px",
@@ -768,8 +767,8 @@ function zoom_to(label: string) {
   const selection = app.data.json.geo.labels.filter((x: any) => has_label(x, label) && x.pt);
   const pt = selection[0].pt;
   if (pt == null) throw `couldn\'t find ${label}`;
-  const pixel_offset = xform(state.camera(), pt[0], pt[1]);
-  state.inc_cam(app.w / 2 - pixel_offset.x, app.h / 2 - pixel_offset.y);
+  const pixel_offset = xform(this.state.camera(), pt[0], pt[1]);
+  this.state.inc_cam(app.w / 2 - pixel_offset.x, app.h / 2 - pixel_offset.y);
   app.render();
 }
 window['zoom_to'] = zoom_to;

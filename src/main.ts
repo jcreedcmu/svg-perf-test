@@ -573,7 +573,7 @@ class App {
       else {
         // ...else, we're moving an arc point. Draw some guides to show
         // how the moved point connects to its neighbors.
-        neighbors.forEach(nabe => {
+        neighbors.forEach(({ point: nabe }) => {
           d.moveTo(nabe[0], nabe[1]);
           d.lineTo(dragp.x, dragp.y);
         });
@@ -667,7 +667,7 @@ class App {
 
   start_freehand(startp: ArPoint, k: (dragp: Path) => void): void {
     const camera = this.state.camera();
-    const path: SmPoint[] = [startp];
+    const path: SmPoint[] = [{ point: startp }];
     const thresh = FREEHAND_SIMPLIFICATION_FACTOR
       / (cscale(camera) * cscale(camera));
     this.render_extra = (camera, d) => {
@@ -676,7 +676,7 @@ class App {
       d.scale(cscale(camera), -cscale(camera));
       d.beginPath();
       let count = 0;
-      path.forEach((pt: SmPoint, n: number) => {
+      path.forEach(({ point: pt }: SmPoint, n: number) => {
         if (n == 0)
           d.moveTo(pt[0], pt[1]);
         else {
@@ -696,20 +696,20 @@ class App {
       const x = e.pageX;
       const y = e.pageY;
       const worldp = inv_xform(camera, x, y);
-      path.push([worldp.x, worldp.y]);
+      path.push({ point: [worldp.x, worldp.y] });
       simplify(path);
       this.th.maybe();
     });
     $(document).on('mouseup.drag', e => {
       const spoint = get_snap(this.lastz);
       if (spoint != null) {
-        path[path.length - 1] = spoint;
+        path[path.length - 1] = { point: spoint };
         startp = spoint;
       }
 
       this.render_extra = null;
       $(document).off('.drag');
-      k(path.filter((pt: SmPoint, n: number) => {
+      k(path.filter(({ point: pt }: SmPoint, n: number) => {
         return (pt[2] || 0) > thresh || n == 0 || n == path.length - 1;
       }));
       this.render();

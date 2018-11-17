@@ -21,7 +21,7 @@ export class SketchLayer {
     d.lineJoin = "round";
     ms.forEach(feature => {
       d.beginPath();
-      feature.forEach((pt, n) => {
+      feature.forEach(({ point: pt }, n) => {
         if (n == 0)
           d.moveTo(pt[0], pt[1]);
         else
@@ -45,11 +45,4 @@ export class SketchLayer {
     this.sketches.push(path);
   }
 
-  model() {
-    return {
-      sketches: this.sketches.map(sketch => {
-        return sketch.map(pt => [pt[0], pt[1]]);
-      })
-    };
-  }
 }

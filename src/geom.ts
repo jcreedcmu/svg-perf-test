@@ -29,8 +29,8 @@ export function find_hit_lines(
       const apts = arc.points;
       for (let k = 0; k < apts.length - 1; k++) {
         // d.beginPath();
-        const r = apts[k];
-        const s = apts[k + 1];
+        const r = apts[k].point;
+        const s = apts[k + 1].point;
         // project p onto r --- s;
 
         // z = r * (1-t) + s * t;

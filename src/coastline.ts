@@ -200,7 +200,7 @@ export class CoastlineLayer implements Layer {
     const { features, arc_to_feature, arcs, labels } = this;
 
     Object.entries(arcs).forEach(([an, arc]) => {
-      arc.points.forEach((point, pn) => {
+      arc.points.forEach(({ point }, pn) => {
         insertPt(this.vertex_rt, { x: point[0], y: point[1] }, { arc: an, point: point });
       });
       simplify.simplify_arc(arc);
@@ -297,7 +297,7 @@ export class CoastlineLayer implements Layer {
   get_index(target: ArcVertexTarget) {
     var arc = this.arcs[target.arc].points;
     for (var i = 0; i < arc.length; i++) {
-      if (arc[i] == target.point)
+      if (arc[i].point == target.point)
         return i;
     }
     throw ("Can't find " + JSON.stringify(target.point) + " in " + JSON.stringify(arc))
@@ -342,7 +342,7 @@ export class CoastlineLayer implements Layer {
       d.lineWidth = 0.9 / scale;
       d.beginPath();
 
-      var first_point = arcs[arc_id_list[0]].points[0];
+      var first_point = arcs[arc_id_list[0]].points[0].point;
       d.moveTo(first_point[0], first_point[1]);
 
       var curpoint = first_point;
@@ -372,7 +372,7 @@ export class CoastlineLayer implements Layer {
           arcs_to_draw_vertices_for.push(this_arc);
         }
 
-        this_arc.forEach(function(vert, ix) {
+        this_arc.forEach(function({ point: vert }, ix) {
           if (ix == 0) return;
 
           var p = {
@@ -411,7 +411,7 @@ export class CoastlineLayer implements Layer {
       d.fillStyle = "#ffd";
       var vert_size = 5 / scale;
       arcs_to_draw_vertices_for.forEach(function(arc) {
-        arc.forEach(function(vert: SmPoint, n: number) {
+        arc.forEach(function({ point: vert }: SmPoint, n: number) {
           if ((vert[2] || 0) > 1000000 || camera.zoom > 10) {
             d.fillStyle = (vert[2] || 0) > 1000000 ? "#ffd" : "#f00";
             d.strokeRect(vert[0] - vert_size / 2, vert[1] - vert_size / 2, vert_size, vert_size);
@@ -461,7 +461,9 @@ export class CoastlineLayer implements Layer {
         var arc = this.arcs[arc_id];
         var oldp = rt_entry.point;
 
-        var new_pt = arc.points[vert_ix] = [p.x, p.y, 1000]; // I think this 1000 can be whatever
+        // I think this 1000 can be whatever
+        var new_pt = arc.points[vert_ix] = { point: [p.x, p.y, 1000] };
+
         simplify.simplify_arc(arc);
         var results = removePt(this.vertex_rt, { x: oldp[0], y: oldp[1] });
 
@@ -483,16 +485,18 @@ export class CoastlineLayer implements Layer {
     var arc = this.arcs[arc_id];
     var len = arc.points.length;
     var oldp = arc.points[len - 1];
-    arc.points[len - 1] = [p.x, p.y, 1000];
+    const op = oldp.point;
+    const opp = { x: op[0], y: op[1] };
+    arc.points[len - 1] = { point: [p.x, p.y, 1000] };
     arc.points[len] = oldp;
     simplify.simplify_arc(arc);
 
-    const results = removePt(this.vertex_rt, { x: oldp[0], y: oldp[1] });
+    const results = removePt(this.vertex_rt, opp);
 
     // XXX these are all wrong now
     insertPt(this.vertex_rt, p, [arc_id, len - 1] as any);
-    insertPt(this.vertex_rt, { x: oldp[0], y: oldp[1] }, [arc_id, len] as any);
-    insertPt(this.vertex_rt, { x: oldp[0], y: oldp[1] }, [arc_id, 0] as any);
+    insertPt(this.vertex_rt, opp, [arc_id, len] as any);
+    insertPt(this.vertex_rt, opp, [arc_id, 0] as any);
 
     this.recompute_arc_feature_bbox(arc_id);
   };
@@ -501,11 +505,11 @@ export class CoastlineLayer implements Layer {
     var arc_id = segment.arc;
     var arc = this.arcs[arc_id];
 
-    var newp: SmPoint = [p.x, p.y, 1000];
+    var newp: SmPoint = { point: [p.x, p.y, 1000] };
     arc.points.splice(segment.ix + 1, 0, newp);
     simplify.simplify_arc(arc);
 
-    insertPt(this.vertex_rt, p, { arc: arc_id, point: newp });
+    insertPt(this.vertex_rt, p, { arc: arc_id, point: newp.point });
     this.recompute_arc_feature_bbox(arc_id);
   };
 
@@ -532,7 +536,7 @@ export class CoastlineLayer implements Layer {
 
   draw_selected_arc(d: Ctx, arc_id: string) {
     d.beginPath();
-    this.arcs[arc_id].points.forEach(function(pt, n) {
+    this.arcs[arc_id].points.forEach(({ point: pt }, n) => {
       if (n == 0)
         d.moveTo(pt[0], pt[1])
       else
@@ -547,7 +551,7 @@ export class CoastlineLayer implements Layer {
       if (obj.properties.natural == "mountain") {
         // strip out collinearish points
         var arc = that.arcs[obj.arcs[0]];
-        arc.points = arc.points.filter(function(p, n) {
+        arc.points = arc.points.filter(({ point: p }, n) => {
           return n == 0 || n == arc.points.length - 1 || (p[2] || 0) > 1000000;
         });
       }
@@ -590,7 +594,7 @@ export class CoastlineLayer implements Layer {
     simplify.simplify_arc(arc);
     simplify.compute_bbox(feature, this.arcs);
 
-    _.each(arc.points, (point, pn) => {
+    _.each(arc.points, ({ point }, pn) => {
       insertPt(this.vertex_rt, { x: point[0], y: point[1] }, { arc: arc_name, point: point });
     });
 

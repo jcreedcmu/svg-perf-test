@@ -45,7 +45,7 @@ export function above_simp_thresh(z: number, scale: number): boolean {
 }
 
 export function adapt(x: SmPoint): ArPoint {
-  return [x[0], x[1]];
+  return [x.point[0], x.point[1]];
 }
 
 // meant to be used in a default case
@@ -80,7 +80,7 @@ export function vdist(p1: Point, p2: Point) {
 
 export function rawOfArc(arc: Arc): RawArc {
   return {
-    points: arc.points.map(p => {
+    points: arc.points.map(({ point: p }) => {
       const z: ArPoint = [p[0], p[1]];
       return z;
     })
@@ -93,7 +93,7 @@ export function unrawOfArc(name: string, arc: RawArc): Arc {
     name,
     bbox: { minx: 1e9, miny: 1e9, maxx: -1e9, maxy: -1e9 },
     points: points.map(p => {
-      const z: SmPoint = [p[0], p[1], 1e9];
+      const z: SmPoint = { point: [p[0], p[1], 1e9] };
       return z;
     })
   };

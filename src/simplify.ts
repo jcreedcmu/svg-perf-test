@@ -1,7 +1,7 @@
 import _ = require('underscore');
-import { Arc, Dict, Poly } from './types';
+import { Arc, Dict, Poly, SmPoint } from './types';
 
-function accumulate_bbox(pt: any, bbox: any) {
+function accumulate_bbox(pt: [number, number, number?], bbox: any) {
   bbox.minx = Math.min(pt[0], bbox.minx);
   bbox.maxx = Math.max(pt[0], bbox.maxx);
   bbox.miny = Math.min(pt[1], bbox.miny);
@@ -28,19 +28,22 @@ export function simplify_arc(arc: Arc) {
   simplify(arc.points);
   var bbox = new_bbox();
   arc.bbox = bbox;
-  arc.points.forEach(function(pt: any) { accumulate_bbox(pt, bbox); });
+  arc.points.forEach(pt => { accumulate_bbox(pt.point, bbox); });
 }
 
-export function simplify(polygon: any) {
-  var heap = minHeap(),
-    maxArea = 0,
-    triangle;
+type Thpoint = { point: [number, number, number] };
+type Tri = [Thpoint, Thpoint, Thpoint] & { previous?: Tri, next?: Tri };
 
-  var triangles = [];
+export function simplify(polygon: SmPoint[]) {
+  var heap = minHeap();
+  let maxArea = 0;
+  let triangle: Tri;
+
+  let triangles: Tri[] = [];
 
   for (var i = 1, n = polygon.length - 1; i < n; ++i) {
-    triangle = polygon.slice(i - 1, i + 2);
-    if (triangle[1][2] = area(triangle)) {
+    triangle = <Tri>polygon.slice(i - 1, i + 2);
+    if (triangle[1].point[2] = area(triangle)) {
       triangles.push(triangle);
       heap.push(triangle);
     }
@@ -57,15 +60,15 @@ export function simplify(polygon: any) {
     // to be eliminated, use the latter's area instead. This ensures that the
     // current point cannot be eliminated without eliminating previously-
     // eliminated points.
-    if (triangle[1][2] < maxArea) triangle[1][2] = maxArea;
-    else maxArea = triangle[1][2];
+    if (triangle[1].point[2] < maxArea) triangle[1].point[2] = maxArea;
+    else maxArea = triangle[1].point[2];
 
     if (triangle.previous) {
       triangle.previous.next = triangle.next;
       triangle.previous[2] = triangle[2];
       update(triangle.previous);
     } else {
-      triangle[0][2] = triangle[1][2];
+      triangle[0].point[2] = triangle[1].point[2];
     }
 
     if (triangle.next) {
@@ -73,25 +76,25 @@ export function simplify(polygon: any) {
       triangle.next[0] = triangle[0];
       update(triangle.next);
     } else {
-      triangle[2][2] = triangle[1][2];
+      triangle[2].point[2] = triangle[1].point[2];
     }
   }
 
-  function update(triangle: any) {
+  function update(triangle: Tri) {
     heap.remove(triangle);
-    triangle[1][2] = area(triangle);
+    triangle[1].point[2] = area(triangle);
     heap.push(triangle);
   }
 
   return polygon;
 }
 
-function compare(a: any, b: any) {
-  return a[1][2] - b[1][2];
+function compare(a: Tri, b: Tri) {
+  return a[1].point[2] - b[1].point[2];
 }
 
-function area(t: any) {
-  return Math.abs((t[0][0] - t[2][0]) * (t[1][1] - t[0][1]) - (t[0][0] - t[1][0]) * (t[2][1] - t[0][1]));
+function area(t: Tri) {
+  return Math.abs((t[0].point[0] - t[2].point[0]) * (t[1].point[1] - t[0].point[1]) - (t[0].point[0] - t[1].point[0]) * (t[2].point[1] - t[0].point[1]));
 }
 
 function minHeap() {

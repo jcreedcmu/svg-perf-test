@@ -18,7 +18,7 @@ export type Bundle =
   | ['label', string];
 
 
-export type SmPoint = [number, number, number?];
+export type SmPoint = { point: [number, number, number?] };
 
 // minx, miny, maxx, maxy
 export type ArRectangle = [number, number, number, number];

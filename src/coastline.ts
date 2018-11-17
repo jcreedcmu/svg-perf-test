@@ -106,7 +106,8 @@ function realize_salient(d: Ctx, props: any, camera: Camera, pt: ArPoint) {
   }
 }
 
-function realize_path(d: Ctx, props: PolyProps, scale: number) {
+function realize_path(d: Ctx, props: PolyProps, camera: Camera) {
+  const scale = cscale(camera);
   d.lineWidth = 1.1 / scale;
 
   if (props.t == "natural") {
@@ -139,24 +140,26 @@ function realize_path(d: Ctx, props: PolyProps, scale: number) {
   }
 
   if (props.t == "road") {
-    if (props.road == "highway") {
-      d.lineWidth = 1.5 / scale;
-      d.strokeStyle = "#f70";
-      d.stroke();
-    }
+    if (camera.zoom >= 2) {
+      if (props.road == "highway") {
+        d.lineWidth = 1.5 / scale;
+        d.strokeStyle = "#f70";
+        d.stroke();
+      }
 
-    if (props.road == "street") {
-      d.lineWidth = 5 / scale;
-      d.lineCap = "round";
-      d.strokeStyle = "#777";
-      d.stroke();
-    }
+      if (props.road == "street") {
+        d.lineWidth = 5 / scale;
+        d.lineCap = "round";
+        d.strokeStyle = "#777";
+        d.stroke();
+      }
 
-    if (props.road == "street2") {
-      d.lineWidth = 4 / scale;
-      d.lineCap = "round";
-      d.strokeStyle = "#fff";
-      d.stroke();
+      if (props.road == "street2") {
+        d.lineWidth = 4 / scale;
+        d.lineCap = "round";
+        d.strokeStyle = "#fff";
+        d.stroke();
+      }
     }
   }
   if (DEBUG_BBOX) {
@@ -304,7 +307,7 @@ export class CoastlineLayer implements Layer {
   }
 
   render(d: Ctx, camera: Camera, mode: Mode, world_bbox: ArRectangle) {
-    var scale = cscale(camera);
+    const scale = cscale(camera);
     d.save();
 
     d.translate(camera.x, camera.y);
@@ -402,7 +405,7 @@ export class CoastlineLayer implements Layer {
 
         });
       });
-      realize_path(d, object.properties, scale);
+      realize_path(d, object.properties, camera);
     });
 
     // draw vertices

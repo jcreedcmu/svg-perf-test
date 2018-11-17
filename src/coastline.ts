@@ -1,7 +1,7 @@
 import { Mode, Point, Zpoint, ArPoint, ArRectangle, Dict, Ctx, Camera } from './types';
 import { Label, Arc, RawArc, Target, Segment, LabelTarget, ArcVertexTarget, Feature } from './types';
-import { Poly, PolyProps, Bbox, Layer } from './types';
-import { adapt, cscale, rawOfArc, unrawOfArc, vmap, vkmap } from './util';
+import { Poly, RawPoly, PolyProps, Bbox, Layer } from './types';
+import { adapt, cscale, rawOfArc, unrawOfArc, rawOfPoly, unrawOfPoly, vmap, vkmap } from './util';
 import { clone, above_simp_thresh } from './util';
 import { colors } from './colors';
 import * as simplify from './simplify';
@@ -185,9 +185,9 @@ export class CoastlineLayer implements Layer {
   label_rt: Bush<LabelTarget>;
   arc_to_feature: { [k: string]: any } = {};
 
-  constructor(arcs: Dict<RawArc>, polys: Dict<Poly>, labels: Label[], counter: number) {
+  constructor(arcs: Dict<RawArc>, polys: Dict<RawPoly>, labels: Label[], counter: number) {
     this.counter = counter;
-    this.features = polys; // converting from poly to 'feature', here, which I think needs bbox
+    this.features = vkmap(polys, unrawOfPoly);
     this.arcs = vkmap(arcs, unrawOfArc);
     this.labels = dictOfNamedArray(labels);
     this.rebuild();
@@ -515,15 +515,11 @@ export class CoastlineLayer implements Layer {
 
   model(): {
     counter: number,
-    polys: Dict<Poly>,
+    polys: Dict<RawPoly>,
     arcs: Dict<RawArc>,
     labels: Label[],
   } {
-    const polys: Dict<Poly> = {};
-    _.each(this.features, (object: Poly) =>
-      polys[object.name] = ({ ...object, properties: _.omit(object.properties, "bbox") })
-    );
-
+    const polys: Dict<RawPoly> = vmap(this.features, rawOfPoly);
     const arcs: Dict<RawArc> = vmap(this.arcs, rawOfArc);
 
     const labels: Label[] = _.map(this.labels, function(x: any) { return x });

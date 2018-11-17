@@ -117868,7 +117868,6 @@
       "arcs": [
         "a1000"
       ],
-      "name": "f1000",
       "properties": {
         "road": "highway",
         "t": "road",
@@ -117879,7 +117878,6 @@
       "arcs": [
         "a1001"
       ],
-      "name": "f1001",
       "properties": {
         "road": "highway",
         "t": "road",
@@ -117890,7 +117888,6 @@
       "arcs": [
         "a1002"
       ],
-      "name": "f1002",
       "properties": {
         "road": "highway",
         "t": "road",
@@ -117901,7 +117898,6 @@
       "arcs": [
         "a1003"
       ],
-      "name": "f1003",
       "properties": {
         "road": "highway",
         "t": "road",
@@ -117912,7 +117908,6 @@
       "arcs": [
         "a1004"
       ],
-      "name": "f1004",
       "properties": {
         "road": "highway",
         "t": "road",
@@ -117923,7 +117918,6 @@
       "arcs": [
         "a1005"
       ],
-      "name": "f1005",
       "properties": {
         "road": "highway",
         "t": "road",
@@ -117934,7 +117928,6 @@
       "arcs": [
         "a1006"
       ],
-      "name": "f1006",
       "properties": {
         "road": "highway",
         "t": "road",
@@ -117945,7 +117938,6 @@
       "arcs": [
         "a1007"
       ],
-      "name": "f1007",
       "properties": {
         "road": "highway",
         "t": "road",
@@ -117956,7 +117948,6 @@
       "arcs": [
         "a1008"
       ],
-      "name": "f1008",
       "properties": {
         "road": "highway",
         "t": "road",
@@ -117967,7 +117958,6 @@
       "arcs": [
         "a1009"
       ],
-      "name": "f1009",
       "properties": {
         "road": "highway",
         "t": "road",
@@ -117978,7 +117968,6 @@
       "arcs": [
         "a1010"
       ],
-      "name": "f1010",
       "properties": {
         "road": "highway",
         "t": "road",
@@ -117989,7 +117978,6 @@
       "arcs": [
         "a1011"
       ],
-      "name": "f1011",
       "properties": {
         "road": "highway",
         "t": "road",
@@ -118000,7 +117988,6 @@
       "arcs": [
         "a1012"
       ],
-      "name": "f1012",
       "properties": {
         "road": "highway",
         "t": "road",
@@ -118011,7 +117998,6 @@
       "arcs": [
         "a1013"
       ],
-      "name": "f1013",
       "properties": {
         "road": "highway",
         "t": "road",
@@ -118022,7 +118008,6 @@
       "arcs": [
         "a1014"
       ],
-      "name": "f1014",
       "properties": {
         "road": "highway",
         "t": "road",
@@ -118033,7 +118018,6 @@
       "arcs": [
         "a1015"
       ],
-      "name": "f1015",
       "properties": {
         "road": "highway",
         "t": "road",
@@ -118044,7 +118028,6 @@
       "arcs": [
         "a1016"
       ],
-      "name": "f1016",
       "properties": {
         "road": "highway",
         "t": "road",
@@ -118055,7 +118038,6 @@
       "arcs": [
         "a1017"
       ],
-      "name": "f1017",
       "properties": {
         "road": "highway",
         "t": "road",
@@ -118066,7 +118048,6 @@
       "arcs": [
         "a1018"
       ],
-      "name": "f1018",
       "properties": {
         "road": "highway",
         "t": "road",
@@ -118077,7 +118058,6 @@
       "arcs": [
         "a1019"
       ],
-      "name": "f1019",
       "properties": {
         "road": "highway",
         "t": "road",
@@ -118088,7 +118068,6 @@
       "arcs": [
         "a1020"
       ],
-      "name": "f1020",
       "properties": {
         "road": "highway",
         "t": "road",
@@ -118099,7 +118078,6 @@
       "arcs": [
         "a1021"
       ],
-      "name": "f1021",
       "properties": {
         "road": "highway",
         "t": "road",
@@ -118110,7 +118088,6 @@
       "arcs": [
         "a1022"
       ],
-      "name": "f1022",
       "properties": {
         "road": "highway",
         "t": "road",
@@ -118121,7 +118098,6 @@
       "arcs": [
         "a1023"
       ],
-      "name": "f1023",
       "properties": {
         "road": "highway",
         "t": "road",
@@ -118132,7 +118108,6 @@
       "arcs": [
         "a1024"
       ],
-      "name": "f1024",
       "properties": {
         "road": "highway",
         "t": "road",
@@ -118143,7 +118118,6 @@
       "arcs": [
         "a1025"
       ],
-      "name": "f1025",
       "properties": {
         "road": "highway",
         "t": "road",
@@ -118154,7 +118128,6 @@
       "arcs": [
         "a1026"
       ],
-      "name": "f1026",
       "properties": {
         "road": "highway",
         "t": "road",
@@ -118165,7 +118138,6 @@
       "arcs": [
         "a1027"
       ],
-      "name": "f1027",
       "properties": {
         "road": "highway",
         "t": "road",
@@ -118176,7 +118148,6 @@
       "arcs": [
         "a1028"
       ],
-      "name": "f1028",
       "properties": {
         "road": "highway",
         "t": "road",
@@ -118187,7 +118158,6 @@
       "arcs": [
         "a1029"
       ],
-      "name": "f1029",
       "properties": {
         "road": "highway",
         "t": "road",
@@ -118198,7 +118168,6 @@
       "arcs": [
         "a1030"
       ],
-      "name": "f1030",
       "properties": {
         "road": "highway",
         "t": "road",
@@ -118209,7 +118178,6 @@
       "arcs": [
         "a1031"
       ],
-      "name": "f1031",
       "properties": {
         "road": "highway",
         "t": "road",
@@ -118220,7 +118188,6 @@
       "arcs": [
         "a1032"
       ],
-      "name": "f1032",
       "properties": {
         "t": "city",
         "text": "asdf",
@@ -118231,7 +118198,6 @@
       "arcs": [
         "a1033"
       ],
-      "name": "f1033",
       "properties": {
         "t": "city",
         "text": "ai mura",
@@ -118242,7 +118208,6 @@
       "arcs": [
         "a1036"
       ],
-      "name": "f1036",
       "properties": {
         "road": "highway",
         "t": "road",
@@ -118253,7 +118218,6 @@
       "arcs": [
         "a1037"
       ],
-      "name": "f1037",
       "properties": {
         "road": "highway",
         "t": "road",
@@ -118264,7 +118228,6 @@
       "arcs": [
         "a1038"
       ],
-      "name": "f1038",
       "properties": {
         "road": "highway",
         "t": "road",
@@ -118275,7 +118238,6 @@
       "arcs": [
         "a1039"
       ],
-      "name": "f1039",
       "properties": {
         "t": "city",
         "text": "gut"
@@ -118285,7 +118247,6 @@
       "arcs": [
         "a1040"
       ],
-      "name": "f1040",
       "properties": {
         "natural": "coastline",
         "t": "natural",
@@ -118296,7 +118257,6 @@
       "arcs": [
         "a1044"
       ],
-      "name": "f1044",
       "properties": {
         "road": "street",
         "t": "road",
@@ -118308,7 +118268,6 @@
       "arcs": [
         "a1045"
       ],
-      "name": "f1045",
       "properties": {
         "road": "street",
         "t": "road",
@@ -118319,7 +118278,6 @@
       "arcs": [
         "a1046"
       ],
-      "name": "f1046",
       "properties": {
         "road": "street",
         "t": "road",
@@ -118330,7 +118288,6 @@
       "arcs": [
         "a1047"
       ],
-      "name": "f1047",
       "properties": {
         "road": "street",
         "t": "road",
@@ -118341,7 +118298,6 @@
       "arcs": [
         "a1048"
       ],
-      "name": "f1048",
       "properties": {
         "road": "street",
         "t": "road",
@@ -118352,7 +118308,6 @@
       "arcs": [
         "a1049"
       ],
-      "name": "f1049",
       "properties": {
         "road": "street",
         "t": "road",
@@ -118447,7 +118402,6 @@
         "arc81",
         "arc82"
       ],
-      "name": "feature0-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -118457,7 +118411,6 @@
       "arcs": [
         "arc83"
       ],
-      "name": "feature0-1",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118467,7 +118420,6 @@
       "arcs": [
         "arc92"
       ],
-      "name": "feature0-10",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118477,7 +118429,6 @@
       "arcs": [
         "arc183"
       ],
-      "name": "feature0-100",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118487,7 +118438,6 @@
       "arcs": [
         "arc184"
       ],
-      "name": "feature0-101",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118497,7 +118447,6 @@
       "arcs": [
         "arc185"
       ],
-      "name": "feature0-102",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118507,7 +118456,6 @@
       "arcs": [
         "arc186"
       ],
-      "name": "feature0-103",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118517,7 +118465,6 @@
       "arcs": [
         "arc187"
       ],
-      "name": "feature0-104",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118527,7 +118474,6 @@
       "arcs": [
         "arc188"
       ],
-      "name": "feature0-105",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118537,7 +118483,6 @@
       "arcs": [
         "arc189"
       ],
-      "name": "feature0-106",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118547,7 +118492,6 @@
       "arcs": [
         "arc190"
       ],
-      "name": "feature0-107",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118557,7 +118501,6 @@
       "arcs": [
         "arc191"
       ],
-      "name": "feature0-108",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118567,7 +118510,6 @@
       "arcs": [
         "arc192"
       ],
-      "name": "feature0-109",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118577,7 +118519,6 @@
       "arcs": [
         "arc93"
       ],
-      "name": "feature0-11",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118587,7 +118528,6 @@
       "arcs": [
         "arc193"
       ],
-      "name": "feature0-110",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118597,7 +118537,6 @@
       "arcs": [
         "arc194"
       ],
-      "name": "feature0-111",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118607,7 +118546,6 @@
       "arcs": [
         "arc195"
       ],
-      "name": "feature0-112",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118617,7 +118555,6 @@
       "arcs": [
         "arc196"
       ],
-      "name": "feature0-113",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118627,7 +118564,6 @@
       "arcs": [
         "arc197"
       ],
-      "name": "feature0-114",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118637,7 +118573,6 @@
       "arcs": [
         "arc198"
       ],
-      "name": "feature0-115",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118647,7 +118582,6 @@
       "arcs": [
         "arc199"
       ],
-      "name": "feature0-116",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118657,7 +118591,6 @@
       "arcs": [
         "arc200"
       ],
-      "name": "feature0-117",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118667,7 +118600,6 @@
       "arcs": [
         "arc201"
       ],
-      "name": "feature0-118",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118677,7 +118609,6 @@
       "arcs": [
         "arc202"
       ],
-      "name": "feature0-119",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118687,7 +118618,6 @@
       "arcs": [
         "arc94"
       ],
-      "name": "feature0-12",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118697,7 +118627,6 @@
       "arcs": [
         "arc203"
       ],
-      "name": "feature0-120",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118707,7 +118636,6 @@
       "arcs": [
         "arc204"
       ],
-      "name": "feature0-121",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118717,7 +118645,6 @@
       "arcs": [
         "arc205"
       ],
-      "name": "feature0-122",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118727,7 +118654,6 @@
       "arcs": [
         "arc206"
       ],
-      "name": "feature0-123",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118737,7 +118663,6 @@
       "arcs": [
         "arc207"
       ],
-      "name": "feature0-124",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118747,7 +118672,6 @@
       "arcs": [
         "arc95"
       ],
-      "name": "feature0-13",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118757,7 +118681,6 @@
       "arcs": [
         "arc96"
       ],
-      "name": "feature0-14",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118767,7 +118690,6 @@
       "arcs": [
         "arc97"
       ],
-      "name": "feature0-15",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118777,7 +118699,6 @@
       "arcs": [
         "arc98"
       ],
-      "name": "feature0-16",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118787,7 +118708,6 @@
       "arcs": [
         "arc99"
       ],
-      "name": "feature0-17",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118797,7 +118717,6 @@
       "arcs": [
         "arc100"
       ],
-      "name": "feature0-18",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118807,7 +118726,6 @@
       "arcs": [
         "arc101"
       ],
-      "name": "feature0-19",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118817,7 +118735,6 @@
       "arcs": [
         "arc84"
       ],
-      "name": "feature0-2",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118827,7 +118744,6 @@
       "arcs": [
         "arc102"
       ],
-      "name": "feature0-20",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118837,7 +118753,6 @@
       "arcs": [
         "arc103"
       ],
-      "name": "feature0-21",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118847,7 +118762,6 @@
       "arcs": [
         "arc104"
       ],
-      "name": "feature0-22",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118857,7 +118771,6 @@
       "arcs": [
         "arc105"
       ],
-      "name": "feature0-23",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118867,7 +118780,6 @@
       "arcs": [
         "arc106"
       ],
-      "name": "feature0-24",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118877,7 +118789,6 @@
       "arcs": [
         "arc107"
       ],
-      "name": "feature0-25",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118887,7 +118798,6 @@
       "arcs": [
         "arc108"
       ],
-      "name": "feature0-26",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118897,7 +118807,6 @@
       "arcs": [
         "arc109"
       ],
-      "name": "feature0-27",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118907,7 +118816,6 @@
       "arcs": [
         "arc110"
       ],
-      "name": "feature0-28",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118917,7 +118825,6 @@
       "arcs": [
         "arc111"
       ],
-      "name": "feature0-29",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118927,7 +118834,6 @@
       "arcs": [
         "arc85"
       ],
-      "name": "feature0-3",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118937,7 +118843,6 @@
       "arcs": [
         "arc112"
       ],
-      "name": "feature0-30",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118948,7 +118853,6 @@
         "arc113",
         "arc114"
       ],
-      "name": "feature0-31",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118958,7 +118862,6 @@
       "arcs": [
         "arc115"
       ],
-      "name": "feature0-32",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118968,7 +118871,6 @@
       "arcs": [
         "arc116"
       ],
-      "name": "feature0-33",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118978,7 +118880,6 @@
       "arcs": [
         "arc117"
       ],
-      "name": "feature0-34",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118988,7 +118889,6 @@
       "arcs": [
         "arc118"
       ],
-      "name": "feature0-35",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -118998,7 +118898,6 @@
       "arcs": [
         "arc119"
       ],
-      "name": "feature0-36",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119008,7 +118907,6 @@
       "arcs": [
         "arc120"
       ],
-      "name": "feature0-37",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119018,7 +118916,6 @@
       "arcs": [
         "arc121"
       ],
-      "name": "feature0-38",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119028,7 +118925,6 @@
       "arcs": [
         "arc122"
       ],
-      "name": "feature0-39",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119038,7 +118934,6 @@
       "arcs": [
         "arc86"
       ],
-      "name": "feature0-4",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119048,7 +118943,6 @@
       "arcs": [
         "arc123"
       ],
-      "name": "feature0-40",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119058,7 +118952,6 @@
       "arcs": [
         "arc124"
       ],
-      "name": "feature0-41",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119068,7 +118961,6 @@
       "arcs": [
         "arc125"
       ],
-      "name": "feature0-42",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119078,7 +118970,6 @@
       "arcs": [
         "arc126"
       ],
-      "name": "feature0-43",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119088,7 +118979,6 @@
       "arcs": [
         "arc127"
       ],
-      "name": "feature0-44",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119098,7 +118988,6 @@
       "arcs": [
         "arc128"
       ],
-      "name": "feature0-45",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119108,7 +118997,6 @@
       "arcs": [
         "arc129"
       ],
-      "name": "feature0-46",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119118,7 +119006,6 @@
       "arcs": [
         "arc130"
       ],
-      "name": "feature0-47",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119128,7 +119015,6 @@
       "arcs": [
         "arc131"
       ],
-      "name": "feature0-48",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119138,7 +119024,6 @@
       "arcs": [
         "arc132"
       ],
-      "name": "feature0-49",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119148,7 +119033,6 @@
       "arcs": [
         "arc87"
       ],
-      "name": "feature0-5",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119158,7 +119042,6 @@
       "arcs": [
         "arc133"
       ],
-      "name": "feature0-50",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119168,7 +119051,6 @@
       "arcs": [
         "arc134"
       ],
-      "name": "feature0-51",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119178,7 +119060,6 @@
       "arcs": [
         "arc135"
       ],
-      "name": "feature0-52",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119188,7 +119069,6 @@
       "arcs": [
         "arc136"
       ],
-      "name": "feature0-53",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119198,7 +119078,6 @@
       "arcs": [
         "arc137"
       ],
-      "name": "feature0-54",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119208,7 +119087,6 @@
       "arcs": [
         "arc138"
       ],
-      "name": "feature0-55",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119218,7 +119096,6 @@
       "arcs": [
         "arc139"
       ],
-      "name": "feature0-56",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119228,7 +119105,6 @@
       "arcs": [
         "arc140"
       ],
-      "name": "feature0-57",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119238,7 +119114,6 @@
       "arcs": [
         "arc141"
       ],
-      "name": "feature0-58",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119248,7 +119123,6 @@
       "arcs": [
         "arc142"
       ],
-      "name": "feature0-59",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119258,7 +119132,6 @@
       "arcs": [
         "arc88"
       ],
-      "name": "feature0-6",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119268,7 +119141,6 @@
       "arcs": [
         "arc143"
       ],
-      "name": "feature0-60",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119278,7 +119150,6 @@
       "arcs": [
         "arc144"
       ],
-      "name": "feature0-61",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119288,7 +119159,6 @@
       "arcs": [
         "arc145"
       ],
-      "name": "feature0-62",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119298,7 +119168,6 @@
       "arcs": [
         "arc146"
       ],
-      "name": "feature0-63",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119308,7 +119177,6 @@
       "arcs": [
         "arc147"
       ],
-      "name": "feature0-64",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119318,7 +119186,6 @@
       "arcs": [
         "arc148"
       ],
-      "name": "feature0-65",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119328,7 +119195,6 @@
       "arcs": [
         "arc149"
       ],
-      "name": "feature0-66",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119338,7 +119204,6 @@
       "arcs": [
         "arc150"
       ],
-      "name": "feature0-67",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119348,7 +119213,6 @@
       "arcs": [
         "arc151"
       ],
-      "name": "feature0-68",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119358,7 +119222,6 @@
       "arcs": [
         "arc152"
       ],
-      "name": "feature0-69",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119368,7 +119231,6 @@
       "arcs": [
         "arc89"
       ],
-      "name": "feature0-7",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119378,7 +119240,6 @@
       "arcs": [
         "arc153"
       ],
-      "name": "feature0-70",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119388,7 +119249,6 @@
       "arcs": [
         "arc154"
       ],
-      "name": "feature0-71",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119398,7 +119258,6 @@
       "arcs": [
         "arc155"
       ],
-      "name": "feature0-72",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119408,7 +119267,6 @@
       "arcs": [
         "arc156"
       ],
-      "name": "feature0-73",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119418,7 +119276,6 @@
       "arcs": [
         "arc157"
       ],
-      "name": "feature0-74",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119428,7 +119285,6 @@
       "arcs": [
         "arc158"
       ],
-      "name": "feature0-75",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119438,7 +119294,6 @@
       "arcs": [
         "arc159"
       ],
-      "name": "feature0-76",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119448,7 +119303,6 @@
       "arcs": [
         "arc160"
       ],
-      "name": "feature0-77",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119458,7 +119312,6 @@
       "arcs": [
         "arc161"
       ],
-      "name": "feature0-78",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119468,7 +119321,6 @@
       "arcs": [
         "arc162"
       ],
-      "name": "feature0-79",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119478,7 +119330,6 @@
       "arcs": [
         "arc90"
       ],
-      "name": "feature0-8",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119488,7 +119339,6 @@
       "arcs": [
         "arc163"
       ],
-      "name": "feature0-80",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119498,7 +119348,6 @@
       "arcs": [
         "arc164"
       ],
-      "name": "feature0-81",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119508,7 +119357,6 @@
       "arcs": [
         "arc165"
       ],
-      "name": "feature0-82",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119518,7 +119366,6 @@
       "arcs": [
         "arc166"
       ],
-      "name": "feature0-83",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119528,7 +119375,6 @@
       "arcs": [
         "arc167"
       ],
-      "name": "feature0-84",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119538,7 +119384,6 @@
       "arcs": [
         "arc168"
       ],
-      "name": "feature0-85",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119548,7 +119393,6 @@
       "arcs": [
         "arc169"
       ],
-      "name": "feature0-86",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119558,7 +119402,6 @@
       "arcs": [
         "arc170"
       ],
-      "name": "feature0-87",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119568,7 +119411,6 @@
       "arcs": [
         "arc171"
       ],
-      "name": "feature0-88",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119578,7 +119420,6 @@
       "arcs": [
         "arc172"
       ],
-      "name": "feature0-89",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119588,7 +119429,6 @@
       "arcs": [
         "arc91"
       ],
-      "name": "feature0-9",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119598,7 +119438,6 @@
       "arcs": [
         "arc173"
       ],
-      "name": "feature0-90",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119608,7 +119447,6 @@
       "arcs": [
         "arc174"
       ],
-      "name": "feature0-91",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119618,7 +119456,6 @@
       "arcs": [
         "arc175"
       ],
-      "name": "feature0-92",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119628,7 +119465,6 @@
       "arcs": [
         "arc176"
       ],
-      "name": "feature0-93",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119638,7 +119474,6 @@
       "arcs": [
         "arc177"
       ],
-      "name": "feature0-94",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119648,7 +119483,6 @@
       "arcs": [
         "arc178"
       ],
-      "name": "feature0-95",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119658,7 +119492,6 @@
       "arcs": [
         "arc179"
       ],
-      "name": "feature0-96",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119668,7 +119501,6 @@
       "arcs": [
         "arc180"
       ],
-      "name": "feature0-97",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119678,7 +119510,6 @@
       "arcs": [
         "arc181"
       ],
-      "name": "feature0-98",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119688,7 +119519,6 @@
       "arcs": [
         "arc182"
       ],
-      "name": "feature0-99",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119698,7 +119528,6 @@
       "arcs": [
         "arc208"
       ],
-      "name": "feature1-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -119708,7 +119537,6 @@
       "arcs": [
         "arc217"
       ],
-      "name": "feature10-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -119718,7 +119546,6 @@
       "arcs": [
         "arc324"
       ],
-      "name": "feature100-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -119728,7 +119555,6 @@
       "arcs": [
         "arc325"
       ],
-      "name": "feature101-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -119738,7 +119564,6 @@
       "arcs": [
         "arc326"
       ],
-      "name": "feature102-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -119748,7 +119573,6 @@
       "arcs": [
         "arc327"
       ],
-      "name": "feature103-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -119758,7 +119582,6 @@
       "arcs": [
         "arc328"
       ],
-      "name": "feature104-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -119770,7 +119593,6 @@
         "arc329-1",
         "arc330"
       ],
-      "name": "feature105-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -119780,7 +119602,6 @@
       "arcs": [
         "arc331"
       ],
-      "name": "feature106-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -119790,7 +119611,6 @@
       "arcs": [
         "arc332"
       ],
-      "name": "feature107-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -119800,7 +119620,6 @@
       "arcs": [
         "arc333"
       ],
-      "name": "feature108-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -119810,7 +119629,6 @@
       "arcs": [
         "arc334"
       ],
-      "name": "feature109-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -119820,7 +119638,6 @@
       "arcs": [
         "arc218"
       ],
-      "name": "feature11-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -119830,7 +119647,6 @@
       "arcs": [
         "arc335"
       ],
-      "name": "feature110-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -119840,7 +119656,6 @@
       "arcs": [
         "arc336"
       ],
-      "name": "feature111-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -119850,7 +119665,6 @@
       "arcs": [
         "arc337"
       ],
-      "name": "feature112-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -119860,7 +119674,6 @@
       "arcs": [
         "arc338"
       ],
-      "name": "feature113-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -119870,7 +119683,6 @@
       "arcs": [
         "arc339"
       ],
-      "name": "feature114-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -119880,7 +119692,6 @@
       "arcs": [
         "arc340"
       ],
-      "name": "feature115-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -119890,7 +119701,6 @@
       "arcs": [
         "arc341"
       ],
-      "name": "feature116-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -119900,7 +119710,6 @@
       "arcs": [
         "arc342"
       ],
-      "name": "feature117-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -119910,7 +119719,6 @@
       "arcs": [
         "arc343"
       ],
-      "name": "feature118-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -119920,7 +119728,6 @@
       "arcs": [
         "arc344"
       ],
-      "name": "feature119-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -119930,7 +119737,6 @@
       "arcs": [
         "arc219"
       ],
-      "name": "feature12-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -119940,7 +119746,6 @@
       "arcs": [
         "arc345"
       ],
-      "name": "feature120-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -119950,7 +119755,6 @@
       "arcs": [
         "arc346"
       ],
-      "name": "feature121-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -119960,7 +119764,6 @@
       "arcs": [
         "arc347"
       ],
-      "name": "feature122-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -119970,7 +119773,6 @@
       "arcs": [
         "arc348"
       ],
-      "name": "feature122-1",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -119985,7 +119787,6 @@
         "arc353",
         "arc354"
       ],
-      "name": "feature123-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -119995,7 +119796,6 @@
       "arcs": [
         "arc355"
       ],
-      "name": "feature123-1",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -120005,7 +119805,6 @@
       "arcs": [
         "arc356"
       ],
-      "name": "feature123-2",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -120015,7 +119814,6 @@
       "arcs": [
         "arc357"
       ],
-      "name": "feature123-3",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -120025,7 +119823,6 @@
       "arcs": [
         "arc358"
       ],
-      "name": "feature123-4",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -120035,7 +119832,6 @@
       "arcs": [
         "arc359"
       ],
-      "name": "feature123-5",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -120045,7 +119841,6 @@
       "arcs": [
         "arc360"
       ],
-      "name": "feature123-6",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -120055,7 +119850,6 @@
       "arcs": [
         "arc361"
       ],
-      "name": "feature123-7",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -120065,7 +119859,6 @@
       "arcs": [
         "arc362"
       ],
-      "name": "feature123-8",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -120075,7 +119868,6 @@
       "arcs": [
         "arc363"
       ],
-      "name": "feature123-9",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -120085,7 +119877,6 @@
       "arcs": [
         "arc364"
       ],
-      "name": "feature124-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120095,7 +119886,6 @@
       "arcs": [
         "arc365"
       ],
-      "name": "feature125-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120105,7 +119895,6 @@
       "arcs": [
         "arc366"
       ],
-      "name": "feature126-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120115,7 +119904,6 @@
       "arcs": [
         "arc367"
       ],
-      "name": "feature127-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120125,7 +119913,6 @@
       "arcs": [
         "arc368"
       ],
-      "name": "feature128-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120135,7 +119922,6 @@
       "arcs": [
         "arc369"
       ],
-      "name": "feature129-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120145,7 +119931,6 @@
       "arcs": [
         "arc220"
       ],
-      "name": "feature13-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120155,7 +119940,6 @@
       "arcs": [
         "arc370"
       ],
-      "name": "feature130-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120165,7 +119949,6 @@
       "arcs": [
         "arc371"
       ],
-      "name": "feature131-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120175,7 +119958,6 @@
       "arcs": [
         "arc372"
       ],
-      "name": "feature132-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120185,7 +119967,6 @@
       "arcs": [
         "arc373"
       ],
-      "name": "feature133-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120195,7 +119976,6 @@
       "arcs": [
         "arc374"
       ],
-      "name": "feature134-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120205,7 +119985,6 @@
       "arcs": [
         "arc375"
       ],
-      "name": "feature135-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120215,7 +119994,6 @@
       "arcs": [
         "arc376"
       ],
-      "name": "feature136-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120225,7 +120003,6 @@
       "arcs": [
         "arc377"
       ],
-      "name": "feature137-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120235,7 +120012,6 @@
       "arcs": [
         "arc378"
       ],
-      "name": "feature138-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120245,7 +120021,6 @@
       "arcs": [
         "arc379"
       ],
-      "name": "feature139-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120255,7 +120030,6 @@
       "arcs": [
         "arc221"
       ],
-      "name": "feature14-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120265,7 +120039,6 @@
       "arcs": [
         "arc222"
       ],
-      "name": "feature14-1",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -120275,7 +120048,6 @@
       "arcs": [
         "arc380"
       ],
-      "name": "feature140-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120285,7 +120057,6 @@
       "arcs": [
         "arc381"
       ],
-      "name": "feature141-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120295,7 +120066,6 @@
       "arcs": [
         "arc382"
       ],
-      "name": "feature142-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120305,7 +120075,6 @@
       "arcs": [
         "arc383"
       ],
-      "name": "feature143-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120315,7 +120084,6 @@
       "arcs": [
         "arc384"
       ],
-      "name": "feature144-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120325,7 +120093,6 @@
       "arcs": [
         "arc385"
       ],
-      "name": "feature144-1",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -120335,7 +120102,6 @@
       "arcs": [
         "arc386"
       ],
-      "name": "feature145-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120345,7 +120111,6 @@
       "arcs": [
         "arc387"
       ],
-      "name": "feature146-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120355,7 +120120,6 @@
       "arcs": [
         "arc388"
       ],
-      "name": "feature146-1",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -120365,7 +120129,6 @@
       "arcs": [
         "arc389"
       ],
-      "name": "feature146-2",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -120375,7 +120138,6 @@
       "arcs": [
         "arc390"
       ],
-      "name": "feature146-3",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -120385,7 +120147,6 @@
       "arcs": [
         "arc391"
       ],
-      "name": "feature146-4",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -120395,7 +120156,6 @@
       "arcs": [
         "arc392"
       ],
-      "name": "feature146-5",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -120405,7 +120165,6 @@
       "arcs": [
         "arc393"
       ],
-      "name": "feature147-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120415,7 +120174,6 @@
       "arcs": [
         "arc394"
       ],
-      "name": "feature148-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120425,7 +120183,6 @@
       "arcs": [
         "arc395"
       ],
-      "name": "feature149-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120435,7 +120192,6 @@
       "arcs": [
         "arc223"
       ],
-      "name": "feature15-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120445,7 +120201,6 @@
       "arcs": [
         "arc396"
       ],
-      "name": "feature150-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120455,7 +120210,6 @@
       "arcs": [
         "arc397"
       ],
-      "name": "feature151-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120465,7 +120219,6 @@
       "arcs": [
         "arc398"
       ],
-      "name": "feature152-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120475,7 +120228,6 @@
       "arcs": [
         "arc399"
       ],
-      "name": "feature153-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120485,7 +120237,6 @@
       "arcs": [
         "arc400"
       ],
-      "name": "feature154-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120495,7 +120246,6 @@
       "arcs": [
         "arc401"
       ],
-      "name": "feature155-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120505,7 +120255,6 @@
       "arcs": [
         "arc402"
       ],
-      "name": "feature156-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120515,7 +120264,6 @@
       "arcs": [
         "arc403"
       ],
-      "name": "feature157-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120525,7 +120273,6 @@
       "arcs": [
         "arc404"
       ],
-      "name": "feature157-1",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -120535,7 +120282,6 @@
       "arcs": [
         "arc405"
       ],
-      "name": "feature158-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120545,7 +120291,6 @@
       "arcs": [
         "arc406"
       ],
-      "name": "feature159-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120555,7 +120300,6 @@
       "arcs": [
         "arc224"
       ],
-      "name": "feature16-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120565,7 +120309,6 @@
       "arcs": [
         "arc408"
       ],
-      "name": "feature160-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120575,7 +120318,6 @@
       "arcs": [
         "arc409"
       ],
-      "name": "feature161-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120585,7 +120327,6 @@
       "arcs": [
         "arc410"
       ],
-      "name": "feature162-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120595,7 +120336,6 @@
       "arcs": [
         "arc411"
       ],
-      "name": "feature163-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120605,7 +120345,6 @@
       "arcs": [
         "arc412"
       ],
-      "name": "feature164-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120615,7 +120354,6 @@
       "arcs": [
         "arc413"
       ],
-      "name": "feature165-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120625,7 +120363,6 @@
       "arcs": [
         "arc414"
       ],
-      "name": "feature166-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120635,7 +120372,6 @@
       "arcs": [
         "arc415"
       ],
-      "name": "feature167-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120645,7 +120381,6 @@
       "arcs": [
         "arc416"
       ],
-      "name": "feature168-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120655,7 +120390,6 @@
       "arcs": [
         "arc417"
       ],
-      "name": "feature169-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120665,7 +120399,6 @@
       "arcs": [
         "arc225"
       ],
-      "name": "feature17-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120675,7 +120408,6 @@
       "arcs": [
         "arc418"
       ],
-      "name": "feature170-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120685,7 +120417,6 @@
       "arcs": [
         "arc419"
       ],
-      "name": "feature171-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120695,7 +120426,6 @@
       "arcs": [
         "arc420"
       ],
-      "name": "feature172-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120705,7 +120435,6 @@
       "arcs": [
         "arc421"
       ],
-      "name": "feature173-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120715,7 +120444,6 @@
       "arcs": [
         "arc422"
       ],
-      "name": "feature174-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120725,7 +120453,6 @@
       "arcs": [
         "arc423"
       ],
-      "name": "feature175-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120735,7 +120462,6 @@
       "arcs": [
         "arc424"
       ],
-      "name": "feature176-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120745,7 +120471,6 @@
       "arcs": [
         "arc425"
       ],
-      "name": "feature177-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120755,7 +120480,6 @@
       "arcs": [
         "arc426"
       ],
-      "name": "feature178-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120765,7 +120489,6 @@
       "arcs": [
         "arc427"
       ],
-      "name": "feature179-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120775,7 +120498,6 @@
       "arcs": [
         "arc226"
       ],
-      "name": "feature18-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120785,7 +120507,6 @@
       "arcs": [
         "arc428"
       ],
-      "name": "feature180-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120795,7 +120516,6 @@
       "arcs": [
         "arc429"
       ],
-      "name": "feature181-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120805,7 +120525,6 @@
       "arcs": [
         "arc430"
       ],
-      "name": "feature182-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120815,7 +120534,6 @@
       "arcs": [
         "arc431"
       ],
-      "name": "feature183-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120825,7 +120543,6 @@
       "arcs": [
         "arc432"
       ],
-      "name": "feature184-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120835,7 +120552,6 @@
       "arcs": [
         "arc433"
       ],
-      "name": "feature185-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120845,7 +120561,6 @@
       "arcs": [
         "arc434"
       ],
-      "name": "feature186-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120855,7 +120570,6 @@
       "arcs": [
         "arc435"
       ],
-      "name": "feature187-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120865,7 +120579,6 @@
       "arcs": [
         "arc436"
       ],
-      "name": "feature188-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120875,7 +120588,6 @@
       "arcs": [
         "arc437"
       ],
-      "name": "feature189-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120885,7 +120597,6 @@
       "arcs": [
         "arc227"
       ],
-      "name": "feature19-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120895,7 +120606,6 @@
       "arcs": [
         "arc438"
       ],
-      "name": "feature190-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120905,7 +120615,6 @@
       "arcs": [
         "arc439"
       ],
-      "name": "feature191-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120915,7 +120624,6 @@
       "arcs": [
         "arc440"
       ],
-      "name": "feature192-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120925,7 +120633,6 @@
       "arcs": [
         "arc441"
       ],
-      "name": "feature193-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120935,7 +120642,6 @@
       "arcs": [
         "arc442"
       ],
-      "name": "feature194-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120945,7 +120651,6 @@
       "arcs": [
         "arc443"
       ],
-      "name": "feature195-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120955,7 +120660,6 @@
       "arcs": [
         "arc444"
       ],
-      "name": "feature196-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120965,7 +120669,6 @@
       "arcs": [
         "arc445"
       ],
-      "name": "feature197-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120975,7 +120678,6 @@
       "arcs": [
         "arc446"
       ],
-      "name": "feature198-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120985,7 +120687,6 @@
       "arcs": [
         "arc447"
       ],
-      "name": "feature199-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -120995,7 +120696,6 @@
       "arcs": [
         "arc209"
       ],
-      "name": "feature2-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121005,7 +120705,6 @@
       "arcs": [
         "arc228"
       ],
-      "name": "feature20-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121015,7 +120714,6 @@
       "arcs": [
         "arc448"
       ],
-      "name": "feature200-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121025,7 +120723,6 @@
       "arcs": [
         "arc449"
       ],
-      "name": "feature201-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121035,7 +120732,6 @@
       "arcs": [
         "arc450"
       ],
-      "name": "feature202-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121046,7 +120742,6 @@
         "arc451",
         "arc452"
       ],
-      "name": "feature203-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121056,7 +120751,6 @@
       "arcs": [
         "arc453"
       ],
-      "name": "feature203-1",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -121066,7 +120760,6 @@
       "arcs": [
         "arc454"
       ],
-      "name": "feature204-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121076,7 +120769,6 @@
       "arcs": [
         "arc455"
       ],
-      "name": "feature205-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121086,7 +120778,6 @@
       "arcs": [
         "arc456"
       ],
-      "name": "feature206-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121096,7 +120787,6 @@
       "arcs": [
         "arc457"
       ],
-      "name": "feature207-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121106,7 +120796,6 @@
       "arcs": [
         "arc458"
       ],
-      "name": "feature208-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121116,7 +120805,6 @@
       "arcs": [
         "arc459"
       ],
-      "name": "feature209-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121126,7 +120814,6 @@
       "arcs": [
         "arc229"
       ],
-      "name": "feature21-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121136,7 +120823,6 @@
       "arcs": [
         "arc460"
       ],
-      "name": "feature210-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121147,7 +120833,6 @@
         "arc461",
         "arc462"
       ],
-      "name": "feature211-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121157,7 +120842,6 @@
       "arcs": [
         "arc463"
       ],
-      "name": "feature212-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121167,7 +120851,6 @@
       "arcs": [
         "arc464"
       ],
-      "name": "feature213-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121177,7 +120860,6 @@
       "arcs": [
         "arc465"
       ],
-      "name": "feature214-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121187,7 +120869,6 @@
       "arcs": [
         "arc466"
       ],
-      "name": "feature215-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121197,7 +120878,6 @@
       "arcs": [
         "arc467"
       ],
-      "name": "feature216-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121207,7 +120887,6 @@
       "arcs": [
         "arc468"
       ],
-      "name": "feature217-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121217,7 +120896,6 @@
       "arcs": [
         "arc469"
       ],
-      "name": "feature218-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121227,7 +120905,6 @@
       "arcs": [
         "arc470"
       ],
-      "name": "feature219-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121237,7 +120914,6 @@
       "arcs": [
         "arc230"
       ],
-      "name": "feature22-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121247,7 +120923,6 @@
       "arcs": [
         "arc471"
       ],
-      "name": "feature220-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121257,7 +120932,6 @@
       "arcs": [
         "arc472"
       ],
-      "name": "feature221-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121267,7 +120941,6 @@
       "arcs": [
         "arc473"
       ],
-      "name": "feature222-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121277,7 +120950,6 @@
       "arcs": [
         "arc474"
       ],
-      "name": "feature223-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121287,7 +120959,6 @@
       "arcs": [
         "arc475"
       ],
-      "name": "feature224-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121297,7 +120968,6 @@
       "arcs": [
         "arc476"
       ],
-      "name": "feature225-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121307,7 +120977,6 @@
       "arcs": [
         "arc477"
       ],
-      "name": "feature226-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121317,7 +120986,6 @@
       "arcs": [
         "arc478"
       ],
-      "name": "feature227-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121327,7 +120995,6 @@
       "arcs": [
         "arc479"
       ],
-      "name": "feature228-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121337,7 +121004,6 @@
       "arcs": [
         "arc480"
       ],
-      "name": "feature229-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121347,7 +121013,6 @@
       "arcs": [
         "arc231"
       ],
-      "name": "feature23-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121357,7 +121022,6 @@
       "arcs": [
         "arc481"
       ],
-      "name": "feature230-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121367,7 +121031,6 @@
       "arcs": [
         "arc232"
       ],
-      "name": "feature24-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121377,7 +121040,6 @@
       "arcs": [
         "arc233"
       ],
-      "name": "feature25-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121387,7 +121049,6 @@
       "arcs": [
         "arc234"
       ],
-      "name": "feature26-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121397,7 +121058,6 @@
       "arcs": [
         "arc235"
       ],
-      "name": "feature27-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121407,7 +121067,6 @@
       "arcs": [
         "arc236"
       ],
-      "name": "feature28-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121417,7 +121076,6 @@
       "arcs": [
         "arc237"
       ],
-      "name": "feature29-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121427,7 +121085,6 @@
       "arcs": [
         "arc210"
       ],
-      "name": "feature3-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121437,7 +121094,6 @@
       "arcs": [
         "arc238"
       ],
-      "name": "feature30-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121447,7 +121103,6 @@
       "arcs": [
         "arc239"
       ],
-      "name": "feature31-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121457,7 +121112,6 @@
       "arcs": [
         "arc240"
       ],
-      "name": "feature32-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121467,7 +121121,6 @@
       "arcs": [
         "arc241"
       ],
-      "name": "feature33-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121477,7 +121130,6 @@
       "arcs": [
         "arc242"
       ],
-      "name": "feature34-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121487,7 +121139,6 @@
       "arcs": [
         "arc243"
       ],
-      "name": "feature35-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121497,7 +121148,6 @@
       "arcs": [
         "arc244"
       ],
-      "name": "feature36-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121507,7 +121157,6 @@
       "arcs": [
         "arc245"
       ],
-      "name": "feature37-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121517,7 +121166,6 @@
       "arcs": [
         "arc246"
       ],
-      "name": "feature38-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121527,7 +121175,6 @@
       "arcs": [
         "arc247"
       ],
-      "name": "feature39-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121537,7 +121184,6 @@
       "arcs": [
         "arc211"
       ],
-      "name": "feature4-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121547,7 +121193,6 @@
       "arcs": [
         "arc248"
       ],
-      "name": "feature40-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121557,7 +121202,6 @@
       "arcs": [
         "arc249"
       ],
-      "name": "feature41-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121567,7 +121211,6 @@
       "arcs": [
         "arc250"
       ],
-      "name": "feature42-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121577,7 +121220,6 @@
       "arcs": [
         "arc251"
       ],
-      "name": "feature43-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121587,7 +121229,6 @@
       "arcs": [
         "arc252"
       ],
-      "name": "feature44-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121597,7 +121238,6 @@
       "arcs": [
         "arc253"
       ],
-      "name": "feature45-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121607,7 +121247,6 @@
       "arcs": [
         "arc254"
       ],
-      "name": "feature46-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121617,7 +121256,6 @@
       "arcs": [
         "arc255"
       ],
-      "name": "feature47-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121627,7 +121265,6 @@
       "arcs": [
         "arc256"
       ],
-      "name": "feature48-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121637,7 +121274,6 @@
       "arcs": [
         "arc257"
       ],
-      "name": "feature49-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121647,7 +121283,6 @@
       "arcs": [
         "arc212"
       ],
-      "name": "feature5-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121657,7 +121292,6 @@
       "arcs": [
         "arc258"
       ],
-      "name": "feature50-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121667,7 +121301,6 @@
       "arcs": [
         "arc259"
       ],
-      "name": "feature51-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121677,7 +121310,6 @@
       "arcs": [
         "arc260"
       ],
-      "name": "feature52-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121687,7 +121319,6 @@
       "arcs": [
         "arc261"
       ],
-      "name": "feature53-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121697,7 +121328,6 @@
       "arcs": [
         "arc262"
       ],
-      "name": "feature54-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121707,7 +121337,6 @@
       "arcs": [
         "arc263"
       ],
-      "name": "feature55-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121717,7 +121346,6 @@
       "arcs": [
         "arc264"
       ],
-      "name": "feature56-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121727,7 +121355,6 @@
       "arcs": [
         "arc265"
       ],
-      "name": "feature57-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121737,7 +121364,6 @@
       "arcs": [
         "arc266"
       ],
-      "name": "feature58-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121747,7 +121373,6 @@
       "arcs": [
         "arc267"
       ],
-      "name": "feature59-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121757,7 +121382,6 @@
       "arcs": [
         "arc213"
       ],
-      "name": "feature6-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121767,7 +121391,6 @@
       "arcs": [
         "arc268"
       ],
-      "name": "feature60-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121777,7 +121400,6 @@
       "arcs": [
         "arc269"
       ],
-      "name": "feature60-1",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -121787,7 +121409,6 @@
       "arcs": [
         "arc270"
       ],
-      "name": "feature61-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121805,7 +121426,6 @@
         "arc278",
         "arc279"
       ],
-      "name": "feature62-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121815,7 +121435,6 @@
       "arcs": [
         "arc280"
       ],
-      "name": "feature62-1",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -121825,7 +121444,6 @@
       "arcs": [
         "arc281"
       ],
-      "name": "feature62-2",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -121835,7 +121453,6 @@
       "arcs": [
         "arc282"
       ],
-      "name": "feature62-3",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -121845,7 +121462,6 @@
       "arcs": [
         "arc283"
       ],
-      "name": "feature62-4",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -121855,7 +121471,6 @@
       "arcs": [
         "arc284"
       ],
-      "name": "feature62-5",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -121865,7 +121480,6 @@
       "arcs": [
         "arc285"
       ],
-      "name": "feature62-6",
       "properties": {
         "natural": "lake",
         "t": "natural"
@@ -121875,7 +121489,6 @@
       "arcs": [
         "arc286"
       ],
-      "name": "feature63-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121885,7 +121498,6 @@
       "arcs": [
         "arc287"
       ],
-      "name": "feature64-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121895,7 +121507,6 @@
       "arcs": [
         "arc288"
       ],
-      "name": "feature65-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121905,7 +121516,6 @@
       "arcs": [
         "arc289"
       ],
-      "name": "feature66-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121915,7 +121525,6 @@
       "arcs": [
         "arc290"
       ],
-      "name": "feature67-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121926,7 +121535,6 @@
         "arc291",
         "arc292"
       ],
-      "name": "feature68-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121936,7 +121544,6 @@
       "arcs": [
         "arc293"
       ],
-      "name": "feature69-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121946,7 +121553,6 @@
       "arcs": [
         "arc214"
       ],
-      "name": "feature7-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121956,7 +121562,6 @@
       "arcs": [
         "arc294"
       ],
-      "name": "feature70-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121966,7 +121571,6 @@
       "arcs": [
         "arc295"
       ],
-      "name": "feature71-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121976,7 +121580,6 @@
       "arcs": [
         "arc296"
       ],
-      "name": "feature72-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121986,7 +121589,6 @@
       "arcs": [
         "arc297"
       ],
-      "name": "feature73-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -121996,7 +121598,6 @@
       "arcs": [
         "arc298"
       ],
-      "name": "feature74-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -122006,7 +121607,6 @@
       "arcs": [
         "arc299"
       ],
-      "name": "feature75-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -122016,7 +121616,6 @@
       "arcs": [
         "arc300"
       ],
-      "name": "feature76-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -122026,7 +121625,6 @@
       "arcs": [
         "arc301"
       ],
-      "name": "feature77-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -122036,7 +121634,6 @@
       "arcs": [
         "arc302"
       ],
-      "name": "feature78-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -122046,7 +121643,6 @@
       "arcs": [
         "arc303"
       ],
-      "name": "feature79-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -122056,7 +121652,6 @@
       "arcs": [
         "arc215"
       ],
-      "name": "feature8-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -122066,7 +121661,6 @@
       "arcs": [
         "arc304"
       ],
-      "name": "feature80-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -122076,7 +121670,6 @@
       "arcs": [
         "arc305"
       ],
-      "name": "feature81-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -122086,7 +121679,6 @@
       "arcs": [
         "arc306"
       ],
-      "name": "feature82-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -122096,7 +121688,6 @@
       "arcs": [
         "arc307"
       ],
-      "name": "feature83-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -122106,7 +121697,6 @@
       "arcs": [
         "arc308"
       ],
-      "name": "feature84-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -122116,7 +121706,6 @@
       "arcs": [
         "arc309"
       ],
-      "name": "feature85-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -122126,7 +121715,6 @@
       "arcs": [
         "arc310"
       ],
-      "name": "feature86-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -122136,7 +121724,6 @@
       "arcs": [
         "arc311"
       ],
-      "name": "feature87-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -122146,7 +121733,6 @@
       "arcs": [
         "arc312"
       ],
-      "name": "feature88-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -122156,7 +121742,6 @@
       "arcs": [
         "arc313"
       ],
-      "name": "feature89-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -122166,7 +121751,6 @@
       "arcs": [
         "arc216"
       ],
-      "name": "feature9-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -122176,7 +121760,6 @@
       "arcs": [
         "arc314"
       ],
-      "name": "feature90-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -122186,7 +121769,6 @@
       "arcs": [
         "arc315"
       ],
-      "name": "feature91-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -122196,7 +121778,6 @@
       "arcs": [
         "arc316"
       ],
-      "name": "feature92-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -122206,7 +121787,6 @@
       "arcs": [
         "arc317"
       ],
-      "name": "feature93-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -122216,7 +121796,6 @@
       "arcs": [
         "arc318"
       ],
-      "name": "feature94-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -122226,7 +121805,6 @@
       "arcs": [
         "arc319"
       ],
-      "name": "feature95-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -122236,7 +121814,6 @@
       "arcs": [
         "arc320"
       ],
-      "name": "feature96-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -122246,7 +121823,6 @@
       "arcs": [
         "arc321"
       ],
-      "name": "feature97-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -122256,7 +121832,6 @@
       "arcs": [
         "arc322"
       ],
-      "name": "feature98-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -122266,7 +121841,6 @@
       "arcs": [
         "arc323"
       ],
-      "name": "feature99-0",
       "properties": {
         "natural": "coastline",
         "t": "natural"
@@ -122286,7 +121860,6 @@
         "mtnarc0-9",
         "mtnarc0-10"
       ],
-      "name": "mtn0",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122296,7 +121869,6 @@
       "arcs": [
         "mtnarc1"
       ],
-      "name": "mtn1",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122306,7 +121878,6 @@
       "arcs": [
         "mtnarc10"
       ],
-      "name": "mtn10",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122316,7 +121887,6 @@
       "arcs": [
         "mtnarc11"
       ],
-      "name": "mtn11",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122326,7 +121896,6 @@
       "arcs": [
         "mtnarc12"
       ],
-      "name": "mtn12",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122336,7 +121905,6 @@
       "arcs": [
         "mtnarc13"
       ],
-      "name": "mtn13",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122346,7 +121914,6 @@
       "arcs": [
         "mtnarc14"
       ],
-      "name": "mtn14",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122356,7 +121923,6 @@
       "arcs": [
         "mtnarc15"
       ],
-      "name": "mtn15",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122366,7 +121932,6 @@
       "arcs": [
         "mtnarc16"
       ],
-      "name": "mtn16",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122376,7 +121941,6 @@
       "arcs": [
         "mtnarc17"
       ],
-      "name": "mtn17",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122386,7 +121950,6 @@
       "arcs": [
         "mtnarc18"
       ],
-      "name": "mtn18",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122396,7 +121959,6 @@
       "arcs": [
         "mtnarc19"
       ],
-      "name": "mtn19",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122425,7 +121987,6 @@
         "mtnarc2-18",
         "mtnarc2-19"
       ],
-      "name": "mtn2",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122435,7 +121996,6 @@
       "arcs": [
         "mtnarc20"
       ],
-      "name": "mtn20",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122445,7 +122005,6 @@
       "arcs": [
         "mtnarc21"
       ],
-      "name": "mtn21",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122455,7 +122014,6 @@
       "arcs": [
         "mtnarc22"
       ],
-      "name": "mtn22",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122465,7 +122023,6 @@
       "arcs": [
         "mtnarc23"
       ],
-      "name": "mtn23",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122475,7 +122032,6 @@
       "arcs": [
         "mtnarc24"
       ],
-      "name": "mtn24",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122485,7 +122041,6 @@
       "arcs": [
         "mtnarc25"
       ],
-      "name": "mtn25",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122495,7 +122050,6 @@
       "arcs": [
         "mtnarc26"
       ],
-      "name": "mtn26",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122505,7 +122059,6 @@
       "arcs": [
         "mtnarc27"
       ],
-      "name": "mtn27",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122525,7 +122078,6 @@
         "mtnarc28-9",
         "mtnarc28-10"
       ],
-      "name": "mtn28",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122535,7 +122087,6 @@
       "arcs": [
         "mtnarc29"
       ],
-      "name": "mtn29",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122545,7 +122096,6 @@
       "arcs": [
         "mtnarc3"
       ],
-      "name": "mtn3",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122555,7 +122105,6 @@
       "arcs": [
         "mtnarc30"
       ],
-      "name": "mtn30",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122566,7 +122115,6 @@
         "mtnarc31-0",
         "mtnarc31-1"
       ],
-      "name": "mtn31",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122576,7 +122124,6 @@
       "arcs": [
         "mtnarc32"
       ],
-      "name": "mtn32",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122586,7 +122133,6 @@
       "arcs": [
         "mtnarc33"
       ],
-      "name": "mtn33",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122596,7 +122142,6 @@
       "arcs": [
         "mtnarc34"
       ],
-      "name": "mtn34",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122606,7 +122151,6 @@
       "arcs": [
         "mtnarc35"
       ],
-      "name": "mtn35",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122616,7 +122160,6 @@
       "arcs": [
         "mtnarc36"
       ],
-      "name": "mtn36",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122626,7 +122169,6 @@
       "arcs": [
         "mtnarc37"
       ],
-      "name": "mtn37",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122636,7 +122178,6 @@
       "arcs": [
         "mtnarc38"
       ],
-      "name": "mtn38",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122646,7 +122187,6 @@
       "arcs": [
         "mtnarc39"
       ],
-      "name": "mtn39",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122656,7 +122196,6 @@
       "arcs": [
         "mtnarc4"
       ],
-      "name": "mtn4",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122666,7 +122205,6 @@
       "arcs": [
         "mtnarc40"
       ],
-      "name": "mtn40",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122676,7 +122214,6 @@
       "arcs": [
         "mtnarc41"
       ],
-      "name": "mtn41",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122686,7 +122223,6 @@
       "arcs": [
         "mtnarc42"
       ],
-      "name": "mtn42",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122701,7 +122237,6 @@
         "mtnarc43-4",
         "mtnarc43-5"
       ],
-      "name": "mtn43",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122711,7 +122246,6 @@
       "arcs": [
         "mtnarc44"
       ],
-      "name": "mtn44",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122721,7 +122255,6 @@
       "arcs": [
         "mtnarc45"
       ],
-      "name": "mtn45",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122731,7 +122264,6 @@
       "arcs": [
         "mtnarc46"
       ],
-      "name": "mtn46",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122742,7 +122274,6 @@
         "mtnarc47-0",
         "mtnarc47-1"
       ],
-      "name": "mtn47",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122752,7 +122283,6 @@
       "arcs": [
         "mtnarc48"
       ],
-      "name": "mtn48",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122762,7 +122292,6 @@
       "arcs": [
         "mtnarc49"
       ],
-      "name": "mtn49",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122772,7 +122301,6 @@
       "arcs": [
         "mtnarc5"
       ],
-      "name": "mtn5",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122782,7 +122310,6 @@
       "arcs": [
         "mtnarc50"
       ],
-      "name": "mtn50",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122793,7 +122320,6 @@
         "mtnarc51-0",
         "mtnarc51-1"
       ],
-      "name": "mtn51",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122803,7 +122329,6 @@
       "arcs": [
         "mtnarc52"
       ],
-      "name": "mtn52",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122813,7 +122338,6 @@
       "arcs": [
         "mtnarc53"
       ],
-      "name": "mtn53",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122823,7 +122347,6 @@
       "arcs": [
         "mtnarc6"
       ],
-      "name": "mtn6",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122833,7 +122356,6 @@
       "arcs": [
         "mtnarc7"
       ],
-      "name": "mtn7",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122843,7 +122365,6 @@
       "arcs": [
         "mtnarc8"
       ],
-      "name": "mtn8",
       "properties": {
         "natural": "mountain",
         "t": "natural"
@@ -122853,7 +122374,6 @@
       "arcs": [
         "mtnarc9"
       ],
-      "name": "mtn9",
       "properties": {
         "natural": "mountain",
         "t": "natural"

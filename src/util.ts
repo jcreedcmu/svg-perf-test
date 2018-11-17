@@ -1,5 +1,5 @@
 import { Point, Zpoint, ArPoint, Camera, Rect } from './types';
-import { Arc, RawArc } from './types';
+import { Arc, RawArc, Poly, RawPoly } from './types';
 
 export function clone<T>(x: T): T {
   return JSON.parse(JSON.stringify(x));
@@ -96,5 +96,22 @@ export function unrawOfArc(name: string, arc: RawArc): Arc {
       const z: Zpoint = { point: p, z: 1e9 };
       return z;
     })
+  };
+}
+
+export function rawOfPoly(poly: Poly): RawPoly {
+  const props = clone(poly.properties);
+  delete props.bbox;
+  return {
+    arcs: poly.arcs,
+    properties: props,
+  };
+}
+
+export function unrawOfPoly(name: string, poly: RawPoly): Poly {
+  return {
+    name,
+    properties: { ...poly.properties, bbox: { minx: 1e9, miny: 1e9, maxx: -1e9, maxy: -1e9 } },
+    arcs: poly.arcs,
   };
 }

@@ -23,7 +23,6 @@ export type Zpoint = { point: ArPoint, z: number };
 // minx, miny, maxx, maxy
 export type ArRectangle = [number, number, number, number];
 
-export type Feature = any;
 export type Segment = any;
 
 export type ArcVertexTarget = { arc: string, point: ArPoint };
@@ -76,11 +75,19 @@ export type PolyProps =
   | { t: "road", road: "highway" | "street" | "street2", text: string, zoom?: number }
   | { t: "city", text: string, zoom?: number }
 
-export type Poly = {
-  name: string,
+export type RawPoly = {
   arcs: string[], // arc names, really
   properties: PolyProps,
 };
+
+export type Poly = {
+  name: string,
+  arcs: string[], // arc names, really
+  properties: any,
+};
+
+export type Feature = Poly;
+
 
 export type Images = { [k: string]: Image };
 export type Sketches = any;
@@ -89,7 +96,7 @@ export type Geo = {
   counter: number,
   images: Images,
   arcs: Dict<RawArc>,
-  polys: Dict<Poly>,
+  polys: Dict<RawPoly>,
   labels: Label[],
 };
 

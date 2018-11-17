@@ -1,7 +1,7 @@
 import { Mode, Point, SmPoint, ArPoint, ArRectangle, Dict, Ctx, Camera } from './types';
 import { Label, Arc, RawArc, Target, Segment, LabelTarget, ArcVertexTarget, Feature } from './types';
 import { Poly, PolyProps, Bbox, Layer } from './types';
-import { adapt, cscale, rawOfArc, unrawOfArc, vmap } from './util';
+import { adapt, cscale, rawOfArc, unrawOfArc, vmap, vkmap } from './util';
 import { colors } from './colors';
 import * as simplify from './simplify';
 import * as rbush from 'rbush';
@@ -188,7 +188,7 @@ export class CoastlineLayer implements Layer {
   constructor(arcs: Dict<RawArc>, polys: Poly[], labels: Label[], counter: number) {
     this.counter = counter;
     this.features = dictOfNamedArray(polys); // converting from poly to 'feature', here, which I think needs bbox
-    this.arcs = vmap(arcs, unrawOfArc);
+    this.arcs = vkmap(arcs, unrawOfArc);
     this.labels = dictOfNamedArray(labels);
     this.rebuild();
   }

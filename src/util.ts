@@ -22,6 +22,12 @@ export function vmap<V, W>(xs: { [k: string]: W }, f: (x: W) => V): { [k: string
   return rv;
 }
 
+export function vkmap<V, W>(xs: { [k: string]: W }, f: (k: string, x: W) => V): { [k: string]: V } {
+  const rv: { [k: string]: V } = {};
+  Object.keys(xs).forEach(k => rv[k] = f(k, xs[k]));
+  return rv;
+}
+
 export function scale_of_zoom(zoom: number): number {
   return (1 / 8) * (1 / 1024) * Math.pow(2, zoom);
 };
@@ -73,18 +79,16 @@ export function vdist(p1: Point, p2: Point) {
 }
 
 export function rawOfArc(arc: Arc): RawArc {
-  const { name, points } = arc;
   return {
-    name,
-    points: points.map(p => {
+    points: arc.points.map(p => {
       const z: ArPoint = [p[0], p[1]];
       return z;
     })
   };
 }
 
-export function unrawOfArc(arc: RawArc): Arc {
-  const { name, points } = arc;
+export function unrawOfArc(name: string, arc: RawArc): Arc {
+  const { points } = arc;
   return {
     name,
     bbox: { minx: 1e9, miny: 1e9, maxx: -1e9, maxy: -1e9 },

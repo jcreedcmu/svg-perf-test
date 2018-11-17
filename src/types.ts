@@ -44,7 +44,6 @@ export type Bbox = {
 };
 
 export type RawArc = {
-  name: string,
   points: ArPoint[],
 };
 

@@ -5,6 +5,13 @@ import { clone, cscale, nope } from './util';
 import { simplify } from './simplify';
 import { colors } from './colors';
 
+// These two lines force webpack to believe that the file types.ts is
+// actually used, since otherwise treeshaking or whatever finds out,
+// correctly, that it has no runtime effect. But I do want changes
+// to the file to trigger typescript rechecking.
+import * as t from './types';
+const undefined = t.nonce;
+
 let g_mode: Mode = "Pan";
 
 import { CoastlineLayer } from './coastline';

@@ -92,3 +92,5 @@ export type Geo = {
 export interface Layer {
   render(d: Ctx, camera: Camera, mode: Mode, world_bbox: ArRectangle): void;
 }
+
+export const nonce = "";

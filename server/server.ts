@@ -20,7 +20,7 @@ const devConfig: WebpackDevServer.Configuration = {
       });
       req.on('end', function() {
         var body = JSON.parse(data);
-        writeFileSync(__dirname + "/../data/geo.json", stringify(body, null, 2), "utf8");
+        writeFileSync(__dirname + "/../data/geo.json", stringify(body, null, 2) + "\n", "utf8");
         console.log("ok");
         res.end("ok");
       });

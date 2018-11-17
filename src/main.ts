@@ -30,15 +30,17 @@ const FREEHAND_SIMPLIFICATION_FACTOR = 100;
 const PANNING_MARGIN = 200;
 
 let g_selection: { arc?: string } | null = null;
-let g_panning: boolean = false;
 
 let state = new State();
 
 // Just for debugging
 declare var window: any;
 
+type Stopper = (offx: number, offy: number) => void;
+
 class App {
   mode: Mode = "Pan";
+  panning: boolean = false;
 
   render(): void {
     const g_mode = this.mode;
@@ -98,7 +100,7 @@ class App {
       }
     }
 
-    if (!g_panning) {
+    if (!this.panning) {
       // scale
       render_scale(camera, d);
 
@@ -145,6 +147,27 @@ class App {
     //  console.log(Date.now() - t);
   }
 
+  handleMouseMove(e: JQuery.Event<HTMLElement, null>) {
+    g_mouse = { x: e.pageX, y: e.pageY };
+
+    if (this.panning)
+      return;
+    const camera = state.camera();
+    if (camera.zoom >= 1) {
+      const x = e.pageX;
+      const y = e.pageY;
+      const worldp = inv_xform(camera, x, y);
+      const rad = VERTEX_SENSITIVITY / cscale(camera);
+      const bbox: ArRectangle = [worldp.x - rad, worldp.y - rad, worldp.x + rad, worldp.y + rad];
+      const targets = coastline_layer.targets(bbox);
+      const z = JSON.stringify(targets);
+      if (z != g_lastz) {
+        g_lastz = z;
+        app.render();
+      }
+    }
+  }
+
   handleMouse(e: JQuery.Event<HTMLElement, null>) {
     const camera = state.camera();
     const x = e.pageX;
@@ -172,7 +195,7 @@ class App {
           });
         }
         else
-          start_pan(x, y, camera);
+          this.start_pan(x, y, camera);
         break;
 
       case "Measure":
@@ -238,7 +261,7 @@ class App {
             });
           }
           else
-            start_pan(x, y, camera);
+            this.start_pan(x, y, camera);
         }
         break;
 
@@ -286,7 +309,7 @@ class App {
       //    const old_mode = g_mode;
       //    g_mode = "Pan";
       $(document).off('keydown');
-      const stop_at = start_pan_and_stop(g_mouse.x, g_mouse.y, state.camera());
+      const stop_at = this.start_pan_and_stop(g_mouse.x, g_mouse.y, state.camera());
       $(document).on('keyup.holdspace', e => {
         if (key(e.originalEvent as KeyboardEvent) == "<space>") {
           stop_at(g_mouse.x, g_mouse.y);
@@ -337,6 +360,71 @@ class App {
 
     //  console.log(e.charCode, k);
   }
+
+  reset_canvas_size(): void {
+    const margin = this.panning ? PANNING_MARGIN : 0;
+    // not 100% sure this is right on retina
+    state.set_origin(-margin, -margin);
+    c.width = (w = innerWidth + 2 * margin) * devicePixelRatio;
+    c.height = (h = innerHeight + 2 * margin) * devicePixelRatio;
+    c.style.width = (innerWidth + 2 * margin) + "px";
+    c.style.height = (innerHeight + 2 * margin) + "px";
+  }
+
+  start_pan(x: number, y: number, camera: Camera): void {
+    const stop_at: Stopper = this.start_pan_and_stop(x, y, camera);
+    $(document).on('mouseup.drag', e => {
+      stop_at(e.pageX, e.pageY);
+    });
+  }
+
+  // returns stopping function
+  start_pan_and_stop(x: number, y: number, camera: Camera): Stopper {
+    $("#c").css({ cursor: 'move' });
+    this.panning = true;
+    //  state.set_cam(camera.x + PANNING_MARGIN, camera.y + PANNING_MARGIN);
+    this.reset_canvas_size();
+    render_origin();
+    this.render();
+    const last = { x: x, y: y };
+    $(document).on('mousemove.drag', e => {
+      const org = state.get_origin();
+      state.inc_origin(e.pageX - last.x,
+        e.pageY - last.y);
+
+      state.inc_cam(e.pageX - last.x,
+        e.pageY - last.y);
+
+      last.x = e.pageX;
+      last.y = e.pageY;
+
+      let stale = false;
+      if (org.x > 0) { state.inc_origin(-PANNING_MARGIN, 0); stale = true; }
+      if (org.y > 0) { state.inc_origin(0, -PANNING_MARGIN); stale = true; }
+      if (org.x < -2 * PANNING_MARGIN) { state.inc_origin(PANNING_MARGIN, 0); stale = true; }
+      if (org.y < -2 * PANNING_MARGIN) { state.inc_origin(0, PANNING_MARGIN); stale = true; }
+
+      // if (g_origin.y > 0) { g_origin.y -= PANNING_MARGIN; stale = true;
+      // 			  state.inc_cam(0, PANNING_MARGIN); }
+
+      if (stale) {
+        this.render();
+      }
+      render_origin();
+
+      //maybe_render();
+    });
+
+    return (offx: number, offy: number) => {
+      $("#c").css({ cursor: '' });
+      $(document).off('.drag');
+      state.set_cam(camera.x + offx - x, camera.y + offy - y);
+      this.panning = false;
+      this.reset_canvas_size();
+      render_origin();
+      this.render();
+    };
+  }
 }
 
 // some regrettable globals
@@ -376,7 +464,7 @@ function go(_data: Data): void {
     d = _d;
   window.d = d;
 
-  reset_canvas_size();
+  app.reset_canvas_size();
   render_origin();
 
   if (DEBUG && DEBUG_PROF) {
@@ -441,16 +529,6 @@ function render_origin() {
     left: or.x + "px",
     position: "fixed",
   });
-}
-
-function reset_canvas_size() {
-  const margin = g_panning ? PANNING_MARGIN : 0;
-  // not 100% sure this is right on retina
-  state.set_origin(-margin, -margin);
-  c.width = (w = innerWidth + 2 * margin) * devicePixelRatio;
-  c.height = (h = innerHeight + 2 * margin) * devicePixelRatio;
-  c.style.width = (innerWidth + 2 * margin) + "px";
-  c.style.height = (innerHeight + 2 * margin) + "px";
 }
 
 function get_world_bbox(camera: Camera): Rect {
@@ -522,60 +600,7 @@ function onMouseWheel(e: WheelEvent): void {
   }
 };
 
-function start_pan(x: number, y: number, camera: Camera) {
-  const stop_at = start_pan_and_stop(x, y, camera);
-  $(document).on('mouseup.drag', function(e) {
-    stop_at(e.pageX, e.pageY);
-  });
-}
 
-// returns stopping function
-function start_pan_and_stop(x: number, y: number, camera: Camera) {
-  $("#c").css({ cursor: 'move' });
-  g_panning = true;
-  //  state.set_cam(camera.x + PANNING_MARGIN, camera.y + PANNING_MARGIN);
-  reset_canvas_size();
-  render_origin();
-  app.render();
-  const last = { x: x, y: y };
-  $(document).on('mousemove.drag', function(e) {
-    const org = state.get_origin();
-    state.inc_origin(e.pageX - last.x,
-      e.pageY - last.y);
-
-    state.inc_cam(e.pageX - last.x,
-      e.pageY - last.y);
-
-    last.x = e.pageX;
-    last.y = e.pageY;
-
-    let stale = false;
-    if (org.x > 0) { state.inc_origin(-PANNING_MARGIN, 0); stale = true; }
-    if (org.y > 0) { state.inc_origin(0, -PANNING_MARGIN); stale = true; }
-    if (org.x < -2 * PANNING_MARGIN) { state.inc_origin(PANNING_MARGIN, 0); stale = true; }
-    if (org.y < -2 * PANNING_MARGIN) { state.inc_origin(0, PANNING_MARGIN); stale = true; }
-
-    // if (g_origin.y > 0) { g_origin.y -= PANNING_MARGIN; stale = true;
-    // 			  state.inc_cam(0, PANNING_MARGIN); }
-
-    if (stale) {
-      app.render();
-    }
-    render_origin();
-
-    //maybe_render();
-  });
-
-  return function(offx: number, offy: number) {
-    $("#c").css({ cursor: '' });
-    $(document).off('.drag');
-    state.set_cam(camera.x + offx - x, camera.y + offy - y);
-    g_panning = false;
-    reset_canvas_size();
-    render_origin();
-    app.render();
-  };
-}
 
 $('#c').on('mousedown', e => app.handleMouse(e));
 
@@ -749,26 +774,7 @@ function start_freehand(startp: ArPoint, k: (dragp: Path) => void) {
   });
 }
 
-$('#c').on('mousemove', function(e) {
-  g_mouse = { x: e.pageX, y: e.pageY };
-
-  if (g_panning)
-    return;
-  const camera = state.camera();
-  if (camera.zoom >= 1) {
-    const x = e.pageX;
-    const y = e.pageY;
-    const worldp = inv_xform(camera, x, y);
-    const rad = VERTEX_SENSITIVITY / cscale(camera);
-    const bbox: ArRectangle = [worldp.x - rad, worldp.y - rad, worldp.x + rad, worldp.y + rad];
-    const targets = coastline_layer.targets(bbox);
-    const z = JSON.stringify(targets);
-    if (z != g_lastz) {
-      g_lastz = z;
-      app.render();
-    }
-  }
-});
+$('#c').on('mousemove', e => app.handleMouseMove(e));
 
 
 

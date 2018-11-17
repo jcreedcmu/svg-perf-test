@@ -1,7 +1,7 @@
 import { Point, Ctx, Mode, Camera, Rect, Path, ArPoint } from './types';
 import { Geo, SmPoint, Bundle, Layer, ArRectangle, Label } from './types';
 import { Loader, Data } from './loader';
-import { clone, cscale, nope, inv_xform } from './util';
+import { clone, cscale, nope, xform, inv_xform, meters_to_string } from './util';
 import { simplify } from './simplify';
 import { colors } from './colors';
 
@@ -12,7 +12,6 @@ import { colors } from './colors';
 import * as t from './types';
 const undefined = t.nonce;
 
-
 import { CoastlineLayer } from './coastline';
 import { RiverLayer } from './rivers';
 import { ImageLayer } from './images';
@@ -20,7 +19,7 @@ import { SketchLayer } from './sketch';
 import { State } from './state';
 import { key } from './key';
 import * as geom from './geom';
-import modal = require('./modal');
+import * as modal from './modal';
 
 const DEBUG = false;
 const DEBUG_PROF = false;
@@ -47,7 +46,7 @@ class App {
     let count = 0;
     const geo = data.json.geo;
     coastline_layer = new CoastlineLayer(geo.arcs, geo.polys, geo.labels, geo.counter);
-    image_layer = new ImageLayer(dispatch, 0, geo.images);
+    image_layer = new ImageLayer(() => this.render(), 0, geo.images);
     river_layer = new RiverLayer(data.json.rivers);
     sketch_layer = new SketchLayer(geo.sketches);
     g_layers = [coastline_layer,
@@ -70,7 +69,7 @@ class App {
     window.d = d;
 
     this.reset_canvas_size();
-    render_origin();
+    this.render_origin();
 
     if (DEBUG && DEBUG_PROF) {
       console.profile("rendering");
@@ -109,7 +108,7 @@ class App {
       d.strokeRect(OFFSET + 0.5, OFFSET + 0.5, w - 2 * OFFSET, h - 2 * OFFSET);
     }
 
-    const world_bbox = get_world_bbox(camera);
+    const world_bbox = this.get_world_bbox(camera);
 
     g_layers.forEach(function(layer) {
       layer.render(d, camera, g_mode, world_bbox);
@@ -148,7 +147,7 @@ class App {
 
     if (!this.panning) {
       // scale
-      render_scale(camera, d);
+      this.render_scale(camera, d);
 
       // mode
       d.fillStyle = "black";
@@ -266,7 +265,7 @@ class App {
         break;
 
       case "Measure":
-        start_measure(worldp);
+        this.start_measure(worldp);
         break;
 
       case "Select":
@@ -339,7 +338,7 @@ class App {
         if (spoint != null)
           startp = spoint;
 
-        start_freehand(startp, path => sketch_layer.add(path));
+        this.start_freehand(startp, path => sketch_layer.add(path));
         break;
 
       default:
@@ -413,7 +412,7 @@ class App {
     if (k == "q") {
       const sk = sketch_layer.pop();
       if (sk != null) {
-        coastline_layer.make_insert_feature_modal(sk, dispatch);
+        coastline_layer.make_insert_feature_modal(sk, () => this.render());
       }
     }
     if (k == "S-b") {
@@ -451,7 +450,7 @@ class App {
     this.panning = true;
     //  state.set_cam(camera.x + PANNING_MARGIN, camera.y + PANNING_MARGIN);
     this.reset_canvas_size();
-    render_origin();
+    this.render_origin();
     this.render();
     const last = { x: x, y: y };
     $(document).on('mousemove.drag', e => {
@@ -477,7 +476,7 @@ class App {
       if (stale) {
         this.render();
       }
-      render_origin();
+      this.render_origin();
 
       //maybe_render();
     });
@@ -488,7 +487,7 @@ class App {
       state.set_cam(camera.x + offx - x, camera.y + offy - y);
       this.panning = false;
       this.reset_canvas_size();
-      render_origin();
+      this.render_origin();
       this.render();
     };
   }
@@ -499,7 +498,7 @@ class App {
     const camera = state.camera();
     let dragp = clone(startp);
     const scale = cscale(camera);
-    g_render_extra = function(camera, d) {
+    g_render_extra = (camera, d) => {
       d.save();
       d.translate(camera.x, camera.y);
       d.scale(scale, -scale);
@@ -557,6 +556,154 @@ class App {
       }
     });
   }
+
+  start_measure(startp: Point): void {
+    const camera = state.camera();
+    const dragp = clone(startp);
+    const scale = cscale(camera);
+    g_render_extra = (camera, d) => {
+      d.save();
+      d.translate(camera.x, camera.y);
+      d.scale(scale, -scale);
+      d.beginPath();
+
+      d.moveTo(startp.x, startp.y);
+      d.lineTo(dragp.x, dragp.y);
+
+      d.lineWidth = 1 / scale;
+      d.strokeStyle = colors.motion_guide;
+      d.stroke();
+      d.restore();
+
+      d.font = "14px sans-serif";
+      d.fillStyle = colors.motion_guide;
+      const dist = meters_to_string(vdist(dragp, startp));
+      const width = d.measureText(dist).width;
+      d.save();
+      d.translate((startp.x + dragp.x) / 2 * scale + camera.x,
+        (startp.y + dragp.y) / 2 * -scale + camera.y);
+      d.rotate(-Math.atan2(dragp.y - startp.y, dragp.x - startp.x));
+
+      d.strokeStyle = "#fff";
+      d.lineWidth = 2;
+      d.strokeText(dist, -width / 2, -3);
+      d.fillText(dist, -width / 2, -3);
+
+      d.restore();
+    }
+    $(document).on('mousemove.drag', e => {
+      const x = e.pageX;
+      const y = e.pageY;
+      const worldp = inv_xform(camera, x, y);
+      dragp.x = worldp.x;
+      dragp.y = worldp.y;
+      maybe_render();
+    });
+    $(document).on('mouseup.drag', e => {
+      g_render_extra = null;
+      $(document).off('.drag');
+      this.render();
+    });
+  }
+
+  start_freehand(startp: ArPoint, k: (dragp: Path) => void): void {
+    const camera = state.camera();
+    const path: SmPoint[] = [startp];
+    const thresh = FREEHAND_SIMPLIFICATION_FACTOR
+      / (cscale(camera) * cscale(camera));
+    g_render_extra = (camera, d) => {
+      d.save();
+      d.translate(camera.x, camera.y);
+      d.scale(cscale(camera), -cscale(camera));
+      d.beginPath();
+      let count = 0;
+      path.forEach((pt: SmPoint, n: number) => {
+        if (n == 0)
+          d.moveTo(pt[0], pt[1]);
+        else {
+          if (n == path.length - 1 ||
+            (pt[2] || 0) > 1) {
+            count++;
+            d.lineTo(pt[0], pt[1]);
+          }
+        }
+      });
+      d.lineWidth = 2 / cscale(camera);
+      d.strokeStyle = colors.motion_guide;
+      d.stroke();
+      d.restore();
+    }
+    $(document).on('mousemove.drag', e => {
+      const x = e.pageX;
+      const y = e.pageY;
+      const worldp = inv_xform(camera, x, y);
+      path.push([worldp.x, worldp.y]);
+      simplify(path);
+      maybe_render();
+    });
+    $(document).on('mouseup.drag', e => {
+
+      const spoint = get_snap();
+      if (spoint != null) {
+        path[path.length - 1] = spoint;
+        startp = spoint;
+      }
+
+      g_render_extra = null;
+      $(document).off('.drag');
+      k(path.filter((pt: SmPoint, n: number) => {
+        return (pt[2] || 0) > thresh || n == 0 || n == path.length - 1;
+      }));
+      this.render();
+    });
+  }
+
+  get_world_bbox(camera: Camera): Rect {
+    const tl = inv_xform(camera, OFFSET, OFFSET);
+    const br = inv_xform(camera, w - OFFSET, h - OFFSET);
+    return [tl.x, br.y, br.x, tl.y];
+  }
+
+  render_origin(): void {
+    const or = state.get_origin();
+    $("#c").css({
+      top: or.y + "px",
+      left: or.x + "px",
+      position: "fixed",
+    });
+  }
+
+  render_scale(camera: Camera, d: Ctx): void {
+    d.save();
+    d.fillStyle = "black";
+    d.font = "10px sans-serif";
+
+    d.translate(Math.floor(w / 2) + 0.5, 0.5);
+    function label(px_dist: number) {
+      const str = meters_to_string(px_dist / cscale(camera));
+      d.textAlign = "center";
+      d.fillText(str, px_dist, h - 12);
+    }
+    d.lineWidth = 1;
+    d.strokeStyle = "rgba(0,0,0,0.1)";
+    d.strokeRect(0, h - 25 - 50, 50, 50);
+    d.strokeRect(0, h - 25 - 128, 128, 128);
+    d.beginPath()
+    d.strokeStyle = "black";
+    d.moveTo(0, h - 30);
+    d.lineTo(0, h - 25);
+    d.lineTo(50, h - 25);
+    d.lineTo(50, h - 30);
+    d.moveTo(50, h - 25);
+    d.lineTo(128, h - 25);
+    d.lineTo(128, h - 30);
+    d.stroke();
+    label(0);
+    label(50);
+    label(128);
+
+    d.restore();
+  }
 }
 
 // some regrettable globals
@@ -581,13 +728,6 @@ ld.json_file('geo', '/data/geo.json');
 ld.json_file('rivers', '/data/rivers.json');
 ld.done(data => app.init(data));
 
-window['inv_xform'] = inv_xform;
-window['xform'] = xform;
-
-function xform(camera: Camera, xworld: number, yworld: number): Point {
-  return { x: camera.x + xworld * cscale(camera), y: camera.y - yworld * cscale(camera) };
-}
-
 const app = new App();
 window['app'] = app;
 
@@ -605,67 +745,6 @@ function maybe_render() {
   app.render();
 }
 
-function dispatch() {
-  app.render();
-}
-
-function render_origin() {
-  const or = state.get_origin();
-  $("#c").css({
-    top: or.y + "px",
-    left: or.x + "px",
-    position: "fixed",
-  });
-}
-
-function get_world_bbox(camera: Camera): Rect {
-  const tl = inv_xform(camera, OFFSET, OFFSET);
-  const br = inv_xform(camera, w - OFFSET, h - OFFSET);
-  return [tl.x, br.y, br.x, tl.y];
-}
-
-
-
-function meters_to_string(raw: number): string {
-  let str = "0";
-  if (raw > 0) {
-    str = (raw > 1000) ? Math.floor(raw / 10) / 100 + "km" : Math.floor(raw) + "m";
-  }
-  return str;
-}
-
-function render_scale(camera: Camera, d: Ctx) {
-  d.save();
-  d.fillStyle = "black";
-  d.font = "10px sans-serif";
-
-  d.translate(Math.floor(w / 2) + 0.5, 0.5);
-  function label(px_dist: number) {
-    const str = meters_to_string(px_dist / cscale(camera));
-    d.textAlign = "center";
-    d.fillText(str, px_dist, h - 12);
-  }
-  d.lineWidth = 1;
-  d.strokeStyle = "rgba(0,0,0,0.1)";
-  d.strokeRect(0, h - 25 - 50, 50, 50);
-  d.strokeRect(0, h - 25 - 128, 128, 128);
-  d.beginPath()
-  d.strokeStyle = "black";
-  d.moveTo(0, h - 30);
-  d.lineTo(0, h - 25);
-  d.lineTo(50, h - 25);
-  d.lineTo(50, h - 30);
-  d.moveTo(50, h - 25);
-  d.lineTo(128, h - 25);
-  d.lineTo(128, h - 30);
-  d.stroke();
-  label(0);
-  label(50);
-  label(128);
-
-  d.restore();
-}
-
 function get_snap() {
   const last = JSON.parse(g_lastz);
   // .targets is already making sure that multiple targets returned at
@@ -681,109 +760,6 @@ function vdist(p1: Point, p2: Point) {
   function sqr(x: number) { return x * x };
   return Math.sqrt(sqr(p1.x - p2.x) + sqr(p1.y - p2.y));
 }
-
-function start_measure(startp: Point) {
-  const camera = state.camera();
-  const dragp = clone(startp);
-  const scale = cscale(camera);
-  g_render_extra = function(camera, d) {
-    d.save();
-    d.translate(camera.x, camera.y);
-    d.scale(scale, -scale);
-    d.beginPath();
-
-    d.moveTo(startp.x, startp.y);
-    d.lineTo(dragp.x, dragp.y);
-
-    d.lineWidth = 1 / scale;
-    d.strokeStyle = colors.motion_guide;
-    d.stroke();
-    d.restore();
-
-    d.font = "14px sans-serif";
-    d.fillStyle = colors.motion_guide;
-    const dist = meters_to_string(vdist(dragp, startp));
-    const width = d.measureText(dist).width;
-    d.save();
-    d.translate((startp.x + dragp.x) / 2 * scale + camera.x,
-      (startp.y + dragp.y) / 2 * -scale + camera.y);
-    d.rotate(-Math.atan2(dragp.y - startp.y, dragp.x - startp.x));
-
-    d.strokeStyle = "#fff";
-    d.lineWidth = 2;
-    d.strokeText(dist, -width / 2, -3);
-    d.fillText(dist, -width / 2, -3);
-
-    d.restore();
-  }
-  $(document).on('mousemove.drag', function(e) {
-    const x = e.pageX;
-    const y = e.pageY;
-    const worldp = inv_xform(camera, x, y);
-    dragp.x = worldp.x;
-    dragp.y = worldp.y;
-    maybe_render();
-  });
-  $(document).on('mouseup.drag', function(e) {
-    g_render_extra = null;
-    $(document).off('.drag');
-    app.render();
-  });
-
-}
-
-function start_freehand(startp: ArPoint, k: (dragp: Path) => void) {
-  const camera = state.camera();
-  const path: SmPoint[] = [startp];
-  const thresh = FREEHAND_SIMPLIFICATION_FACTOR
-    / (cscale(camera) * cscale(camera));
-  g_render_extra = function(camera, d) {
-    d.save();
-    d.translate(camera.x, camera.y);
-    d.scale(cscale(camera), -cscale(camera));
-    d.beginPath();
-    let count = 0;
-    path.forEach((pt: SmPoint, n: number) => {
-      if (n == 0)
-        d.moveTo(pt[0], pt[1]);
-      else {
-        if (n == path.length - 1 ||
-          (pt[2] || 0) > 1) {
-          count++;
-          d.lineTo(pt[0], pt[1]);
-        }
-      }
-    });
-    d.lineWidth = 2 / cscale(camera);
-    d.strokeStyle = colors.motion_guide;
-    d.stroke();
-    d.restore();
-  }
-  $(document).on('mousemove.drag', function(e) {
-    const x = e.pageX;
-    const y = e.pageY;
-    const worldp = inv_xform(camera, x, y);
-    path.push([worldp.x, worldp.y]);
-    simplify(path);
-    maybe_render();
-  });
-  $(document).on('mouseup.drag', function(e) {
-
-    const spoint = get_snap();
-    if (spoint != null) {
-      path[path.length - 1] = spoint;
-      startp = spoint;
-    }
-
-    g_render_extra = null;
-    $(document).off('.drag');
-    k(path.filter((pt: SmPoint, n: number) => {
-      return (pt[2] || 0) > thresh || n == 0 || n == path.length - 1;
-    }));
-    app.render();
-  });
-}
-
 
 // function report() {
 //   g_imageStates[g_curImgName] = clone(g_imageState);

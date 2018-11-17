@@ -1,4 +1,4 @@
-import { Point, SmPoint, ArPoint, Camera } from './types';
+import { Point, SmPoint, ArPoint, Camera, Rect } from './types';
 
 export function clone<T>(x: T): T {
   return JSON.parse(JSON.stringify(x));
@@ -47,9 +47,21 @@ export function nope<T>(x: never): T {
   throw "nope";
 }
 
+export function xform(camera: Camera, xworld: number, yworld: number): Point {
+  return { x: camera.x + xworld * cscale(camera), y: camera.y - yworld * cscale(camera) };
+}
+
 export function inv_xform(camera: Camera, xpix: number, ypix: number): Point {
   return {
     x: (xpix - camera.x) / cscale(camera),
     y: (ypix - camera.y) / -cscale(camera)
   };
+}
+
+export function meters_to_string(raw: number): string {
+  let str = "0";
+  if (raw > 0) {
+    str = (raw > 1000) ? Math.floor(raw / 10) / 100 + "km" : Math.floor(raw) + "m";
+  }
+  return str;
 }

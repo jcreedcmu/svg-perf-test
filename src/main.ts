@@ -1,9 +1,24 @@
 import { Point, Ctx, Mode, Camera, Rect, Path, ArPoint } from './types';
 import { Geo, SmPoint, Bundle, Layer, ArRectangle, Label } from './types';
+import { Stopper } from './types';
+
 import { Loader, Data } from './loader';
 import { clone, cscale, nope, xform, inv_xform, meters_to_string, vdist } from './util';
 import { simplify } from './simplify';
+
 import { colors } from './colors';
+import { key } from './key';
+
+import { State } from './state';
+import { Throttler } from './throttler';
+
+import { CoastlineLayer } from './coastline';
+import { RiverLayer } from './rivers';
+import { ImageLayer } from './images';
+import { SketchLayer } from './sketch';
+
+import * as geom from './geom';
+import * as modal from './modal';
 
 // These two lines force webpack to believe that the file types.ts is
 // actually used, since otherwise treeshaking or whatever finds out,
@@ -12,15 +27,7 @@ import { colors } from './colors';
 import * as t from './types';
 const undefined = t.nonce;
 
-import { CoastlineLayer } from './coastline';
-import { RiverLayer } from './rivers';
-import { ImageLayer } from './images';
-import { SketchLayer } from './sketch';
-import { State } from './state';
-import { key } from './key';
-import * as geom from './geom';
-import * as modal from './modal';
-
+// Some global constants
 const DEBUG = false;
 const DEBUG_PROF = false;
 const OFFSET = DEBUG ? 100 : 0;
@@ -28,12 +35,40 @@ const VERTEX_SENSITIVITY = 10;
 const FREEHAND_SIMPLIFICATION_FACTOR = 100;
 const PANNING_MARGIN = 200;
 
-
 // Just for debugging
 declare var window: any;
 
-type Stopper = (offx: number, offy: number) => void;
+// A weird utility function. I probably want to refactor
+// lastz to be real data and not JSON or something.
+function get_snap(lastz: string): ArPoint | null {
+  const last = JSON.parse(lastz);
+  // .targets is already making sure that multiple targets returned at
+  // this stage are on the same exact point
+  if (last.length >= 1 &&
+    last[0][0] == "coastline")
+    return clone(last[0][1].point);
+  else
+    return null;
+}
 
+// Used only by zoom_to for now.
+function has_label(x: Label, label: string) {
+  return x.properties.text && x.properties.text.match(new RegExp(label, "i"))
+}
+
+// This doesn't work right now. In any event, the only way I had it
+// working was from console.
+function zoom_to(label: string) {
+  const selection = app.data.json.geo.labels.filter((x: any) => has_label(x, label) && x.pt);
+  const pt = selection[0].pt;
+  if (pt == null) throw `couldn\'t find ${label}`;
+  const pixel_offset = xform(this.state.camera(), pt[0], pt[1]);
+  this.state.inc_cam(app.w / 2 - pixel_offset.x, app.h / 2 - pixel_offset.y);
+  app.render();
+}
+window['zoom_to'] = zoom_to;
+
+// The main meat of this file.
 class App {
   c: HTMLCanvasElement;
   d: Ctx;
@@ -52,8 +87,17 @@ class App {
   mouse: Point = { x: 0, y: 0 };
   g_selection: { arc?: string } | null = null;
   state = new State(); // really this is camera state
+  th: Throttler;
+
+  constructor() {
+    const ld = new Loader();
+    ld.json_file('geo', '/data/geo.json');
+    ld.json_file('rivers', '/data/rivers.json');
+    ld.done(data => this.init(data));
+  }
 
   init(_data: Data): void {
+    this.th = new Throttler(() => this.render());
     this.data = _data;
     let count = 0;
     const geo = _data.json.geo;
@@ -102,16 +146,13 @@ class App {
   }
 
   render(): void {
+    console.log('render');
     const { w, h, d, mode } = this;
 
     //  const t = Date.now();
     d.save();
     d.scale(devicePixelRatio, devicePixelRatio);
-    lastTime = Date.now();
-    if (interval != null) {
-      clearInterval(interval);
-      interval = null;
-    }
+    this.th.reset();
     const camera = this.state.camera();
     const t = Date.now();
     d.fillStyle = "#bac7f8";
@@ -187,7 +228,7 @@ class App {
 
       // used for ephemeral stuff on top, like point-dragging
       if (this.render_extra) {
-        this.render_extra(camera, d);
+        (this.render_extra)(camera, d);
       }
 
       if (this.g_selection) {
@@ -269,7 +310,7 @@ class App {
               x: membase.x + (e.pageX - x) / cscale(camera),
               y: membase.y - (e.pageY - y) / cscale(camera)
             });
-            maybe_render();
+            this.th.maybe();
           });
           $(document).on('mouseup.drag', e => {
             $(document).off('.drag');
@@ -496,7 +537,7 @@ class App {
       }
       this.render_origin();
 
-      //maybe_render();
+      //this.th.maybe();
     });
 
     return (offx: number, offy: number) => {
@@ -548,7 +589,7 @@ class App {
       const worldp = inv_xform(camera, x, y);
       dragp.x = worldp.x;
       dragp.y = worldp.y;
-      maybe_render();
+      this.th.maybe();
     });
     $(document).on('mouseup.drag', e => {
       this.render_extra = null;
@@ -615,7 +656,7 @@ class App {
       const worldp = inv_xform(camera, x, y);
       dragp.x = worldp.x;
       dragp.y = worldp.y;
-      maybe_render();
+      this.th.maybe();
     });
     $(document).on('mouseup.drag', e => {
       this.render_extra = null;
@@ -657,7 +698,7 @@ class App {
       const worldp = inv_xform(camera, x, y);
       path.push([worldp.x, worldp.y]);
       simplify(path);
-      maybe_render();
+      this.th.maybe();
     });
     $(document).on('mouseup.drag', e => {
       const spoint = get_snap(this.lastz);
@@ -725,50 +766,8 @@ class App {
   }
 }
 
-const ld = new Loader();
-ld.json_file('geo', '/data/geo.json');
-ld.json_file('rivers', '/data/rivers.json');
-ld.done(data => app.init(data));
-
+// Entry point.
 const app = new App();
+
+// For debugging in console.
 window['app'] = app;
-
-let lastTime = 0;
-let interval: number | null = null;
-function maybe_render() {
-  if (Date.now() - lastTime < 20) {
-    if (interval != null) {
-      clearInterval(interval);
-      interval = null;
-    }
-    interval = setInterval(() => app.render(), 40);
-    return;
-  }
-  app.render();
-}
-
-function get_snap(lastz: string): ArPoint | null {
-  const last = JSON.parse(lastz);
-  // .targets is already making sure that multiple targets returned at
-  // this stage are on the same exact point
-  if (last.length >= 1 &&
-    last[0][0] == "coastline")
-    return clone(last[0][1].point);
-  else
-    return null;
-}
-
-function has_label(x: Label, label: string) {
-  return x.properties.text && x.properties.text.match(new RegExp(label, "i"))
-}
-
-// this doesn't work right now
-function zoom_to(label: string) {
-  const selection = app.data.json.geo.labels.filter((x: any) => has_label(x, label) && x.pt);
-  const pt = selection[0].pt;
-  if (pt == null) throw `couldn\'t find ${label}`;
-  const pixel_offset = xform(this.state.camera(), pt[0], pt[1]);
-  this.state.inc_cam(app.w / 2 - pixel_offset.x, app.h / 2 - pixel_offset.y);
-  app.render();
-}
-window['zoom_to'] = zoom_to;

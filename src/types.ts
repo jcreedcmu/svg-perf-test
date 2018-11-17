@@ -93,4 +93,6 @@ export interface Layer {
   render(d: Ctx, camera: Camera, mode: Mode, world_bbox: ArRectangle): void;
 }
 
+export type Stopper = (offx: number, offy: number) => void;
+
 export const nonce = "";

@@ -38,6 +38,11 @@ declare var window: any;
 type Stopper = (offx: number, offy: number) => void;
 
 class App {
+  c: HTMLCanvasElement;
+  d: Ctx;
+  w: number;
+  h: number;
+
   mode: Mode = "Pan";
   panning: boolean = false;
   data: Data; // Probably want to eventually get rid of this
@@ -56,7 +61,8 @@ class App {
       sketch_layer,
       image_layer];
 
-    c = document.getElementById("c") as HTMLCanvasElement;
+    const c = document.getElementById("c") as HTMLCanvasElement;
+    this.c = c;
 
     $('#c').on('mousedown', e => this.handleMouseDown(e));
     $('#c').on('mousemove', e => this.handleMouseMove(e));
@@ -67,8 +73,7 @@ class App {
 
     const _d = c.getContext('2d');
     if (_d != null)
-      d = _d;
-    window.d = d;
+      this.d = _d;
 
     this.reset_canvas_size();
     this.render_origin();
@@ -90,7 +95,7 @@ class App {
   }
 
   render(): void {
-    const g_mode = this.mode;
+    const { w, h, d, mode } = this;
 
     //  const t = Date.now();
     d.save();
@@ -113,7 +118,7 @@ class App {
     const world_bbox = this.get_world_bbox(camera);
 
     g_layers.forEach(function(layer) {
-      layer.render(d, camera, g_mode, world_bbox);
+      layer.render(d, camera, mode, world_bbox);
     });
 
 
@@ -156,8 +161,8 @@ class App {
       d.strokeStyle = "white";
       d.font = "bold 12px sans-serif";
       d.lineWidth = 2;
-      d.strokeText(g_mode, 20, h - 20);
-      d.fillText(g_mode, 20, h - 20);
+      d.strokeText(mode, 20, h - 20);
+      d.fillText(mode, 20, h - 20);
 
 
       // debugging
@@ -430,11 +435,12 @@ class App {
   }
 
   reset_canvas_size(): void {
+    const { c } = this;
     const margin = this.panning ? PANNING_MARGIN : 0;
     // not 100% sure this is right on retina
     state.set_origin(-margin, -margin);
-    c.width = (w = innerWidth + 2 * margin) * devicePixelRatio;
-    c.height = (h = innerHeight + 2 * margin) * devicePixelRatio;
+    c.width = (this.w = innerWidth + 2 * margin) * devicePixelRatio;
+    c.height = (this.h = innerHeight + 2 * margin) * devicePixelRatio;
     c.style.width = (innerWidth + 2 * margin) + "px";
     c.style.height = (innerHeight + 2 * margin) + "px";
   }
@@ -660,6 +666,7 @@ class App {
   }
 
   get_world_bbox(camera: Camera): Rect {
+    const { w, h } = this;
     const tl = inv_xform(camera, OFFSET, OFFSET);
     const br = inv_xform(camera, w - OFFSET, h - OFFSET);
     return [tl.x, br.y, br.x, tl.y];
@@ -675,6 +682,7 @@ class App {
   }
 
   render_scale(camera: Camera, d: Ctx): void {
+    const { w, h } = this;
     d.save();
     d.fillStyle = "black";
     d.font = "10px sans-serif";
@@ -708,10 +716,6 @@ class App {
 }
 
 // some regrettable globals
-let c: HTMLCanvasElement;
-let d: Ctx;
-let w: number;
-let h: number;
 let g_layers: Layer[];
 let g_lastz: string = "[]";
 let coastline_layer: CoastlineLayer;
@@ -764,7 +768,7 @@ function zoom_to(label: string) {
   const pt = selection[0].pt;
   if (pt == null) throw `couldn\'t find ${label}`;
   const pixel_offset = xform(state.camera(), pt[0], pt[1]);
-  state.inc_cam(w / 2 - pixel_offset.x, h / 2 - pixel_offset.y);
+  state.inc_cam(app.w / 2 - pixel_offset.x, app.h / 2 - pixel_offset.y);
   app.render();
 }
 window['zoom_to'] = zoom_to;

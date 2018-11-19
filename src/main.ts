@@ -3,7 +3,7 @@ import { Geo, Rivers, Zpoint, Bundle, Layer, ArRectangle, Label } from './types'
 import { Stopper } from './types';
 
 import { Loader, Data } from './loader';
-import { clone, cscale, nope, xform, inv_xform, meters_to_string, vdist } from './util';
+import { clone, cscale, nope, xform, inv_xform, meters_to_string, vdist, getArc } from './util';
 import { simplify } from './simplify';
 
 import { colors } from './colors';
@@ -331,7 +331,7 @@ class App {
           worldp, candidate_features, coastline_layer.arcs, slack
         );
         if (hit_lines.length == 1) {
-          this.g_selection = hit_lines[0];
+          this.g_selection = { arc: hit_lines[0].arc.id };
         }
         else {
           this.g_selection = null;
@@ -378,7 +378,7 @@ class App {
           if (hit_lines.length == 1) {
             const arc_id = hit_lines[0].arc;
             const ix = hit_lines[0].ix;
-            const arc = coastline_layer.arcs[arc_id].points;
+            const arc = getArc(coastline_layer.arcs, arc_id).points;
             this.start_drag(worldp, [arc[ix], arc[ix + 1]], (dragp: Point) => {
               coastline_layer.break_segment(hit_lines[0], dragp);
             });

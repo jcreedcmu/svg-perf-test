@@ -1,11 +1,12 @@
-import { Point, Poly, Dict, Arc, Bbox } from './types';
+import { Point, Poly, Dict, Arc, Bbox, ArcSpec } from './types';
+import { getArc } from './util';
 
 function bbox_test_with_slack(p: Point, bbox: Bbox, slack: number): boolean {
   return (p.x + slack > bbox.minx && p.y + slack > bbox.miny &&
     p.x - slack < bbox.maxx && p.y - slack < bbox.maxy);
 }
 
-type Seg = { arc: string, ix: number };
+type Seg = { arc: ArcSpec, ix: number };
 export function find_hit_lines(
   p: Point,
   candidate_features: Poly[],
@@ -22,7 +23,7 @@ export function find_hit_lines(
     const feat = candidate_features[i];
     const farcs = feat.arcs;
     for (let j = 0; j < farcs.length; j++) {
-      const arc = arcs[farcs[j]];
+      const arc = getArc(arcs, farcs[j]);
       const bbox: Bbox = arc.bbox;
       if (!bbox_test_with_slack(p, bbox, slack))
         continue;

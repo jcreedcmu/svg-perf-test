@@ -3,7 +3,7 @@ import { Label, RawLabel, Arc, RawArc, Target, Segment, LabelTarget, ArcVertexTa
 import { Poly, RawPoly, PolyProps, Bbox, Layer } from './types';
 import { rawOfArc, unrawOfArc, rawOfPoly, unrawOfPoly, rawOfLabel, unrawOfLabel } from './util';
 import { adapt, cscale, vmap, vkmap, trivBbox } from './util';
-import { clone, above_simp_thresh } from './util';
+import { clone, above_simp_thresh, getArc } from './util';
 import { colors } from './colors';
 import * as simplify from './simplify';
 import * as rbush from 'rbush';
@@ -221,10 +221,11 @@ export class CoastlineLayer implements Layer {
     });
 
     _.each(features, (object, feature_ix) => {
-      _.each(object.arcs, arc_ix => {
-        if (!arc_to_feature[arc_ix])
-          arc_to_feature[arc_ix] = [];
-        arc_to_feature[arc_ix].push(feature_ix);
+      _.each(object.arcs, arc_spec => {
+        const id = arc_spec.id;
+        if (!arc_to_feature[id])
+          arc_to_feature[id] = [];
+        arc_to_feature[id].push(feature_ix);
       });
     });
   }
@@ -341,21 +342,22 @@ export class CoastlineLayer implements Layer {
     features = features.concat(extra);
 
     _.each(features, object => {
-      var arc_id_list = object.arcs;
+      var arc_spec_list = object.arcs;
       var arcs = this.arcs;
 
       d.lineWidth = 0.9 / scale;
       d.beginPath();
 
-      var first_point = arcs[arc_id_list[0]].points[0].point;
+      var first_point = getArc(arcs, arc_spec_list[0]).points[0].point;
       d.moveTo(first_point[0], first_point[1]);
 
       var curpoint = first_point;
       var n = 0;
 
-      arc_id_list.forEach(arc_id => { // XXX we shouldn't have to ascribe this type
-        var this_arc = arcs[arc_id].points;
-        var arc_bbox = arcs[arc_id].bbox;
+      arc_spec_list.forEach(spec => {
+        const arc = getArc(arcs, spec);
+        var this_arc = arc.points;
+        var arc_bbox = arc.bbox;
         if (DEBUG_BBOX) {
           d.lineWidth = 1.5 / scale;
           d.strokeStyle = colors.debug;
@@ -367,7 +369,7 @@ export class CoastlineLayer implements Layer {
         const rect_intersect = world_bbox[0] < arc_bbox.maxx && world_bbox[2] > arc_bbox.minx && world_bbox[3] > arc_bbox.miny && world_bbox[1] < arc_bbox.maxy;
 
         if (this_arc.length < 2) {
-          throw "arc " + arc_id + " must have at least two points";
+          throw "arc " + spec + " must have at least two points";
         }
         if (!rect_intersect) {
           // draw super simplified
@@ -593,7 +595,7 @@ export class CoastlineLayer implements Layer {
     const feature: Poly = this.features[feature_name] =
       {
         name: feature_name,
-        arcs: [arc_name],
+        arcs: [{ id: arc_name }],
         properties: properties,
         bbox: trivBbox(),
       };
@@ -640,7 +642,7 @@ export class CoastlineLayer implements Layer {
         // by saying [0].
         var feature_name = this.arc_to_feature[k][0];
         var feature_arcs = this.features[feature_name].arcs;
-        var ix = _.indexOf(feature_arcs, k);
+        var ix = _.indexOf(feature_arcs.map(x => x.id), k);
         if (ix == -1)
           throw ("couldn't find " + k + " in " + JSON.stringify(feature_arcs));
         feature_arcs.splice.apply(feature_arcs, [ix, 1].concat(replacement_arcs));

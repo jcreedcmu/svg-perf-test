@@ -1,5 +1,6 @@
 import _ = require('underscore');
 import { Arc, Dict, Poly, Zpoint, Bbox, ArPoint } from './types';
+import { getArc } from './util';
 
 function accumulate_bbox(pt: ArPoint, bbox: Bbox) {
   bbox.minx = Math.min(pt[0], bbox.minx);
@@ -154,8 +155,8 @@ function minHeap() {
 
 export function compute_bbox(object: Poly, arcs: Dict<Arc>) {
   const bbox = object.bbox = new_bbox();
-  _.each(object.arcs, arc_ix => {
-    let arc_bbox = arcs[arc_ix].bbox;
+  _.each(object.arcs, spec => {
+    let arc_bbox = getArc(arcs, spec).bbox;
     accumulate_bbox([arc_bbox.minx, arc_bbox.miny], bbox);
     accumulate_bbox([arc_bbox.maxx, arc_bbox.maxy], bbox);
   });

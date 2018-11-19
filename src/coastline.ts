@@ -217,7 +217,7 @@ export class CoastlineLayer implements Layer {
     _.each(features, (object, key) => {
       simplify.compute_bbox(object, arcs);
       const bb = object.bbox;
-      this.rt.insert({ minX: bb.minX, minY: bb.minY, maxX: bb.maxX, maxY: bb.maxY, payload: object });
+      this.rt.insert({ ...bb, payload: object });
     });
 
     _.each(features, (object, feature_ix) => {
@@ -444,11 +444,11 @@ export class CoastlineLayer implements Layer {
       let object = this.features[feature_ix];
       let bb = object.bbox;
       this.rt.remove(
-        { minX: bb.minX, minY: bb.minY, maxX: bb.maxX, maxY: bb.maxY, payload: object },
+        { ...bb, payload: object },
         (a, b) => a.payload == b.payload
       );
       simplify.compute_bbox(object, this.arcs);
-      this.rt.insert({ minX: bb.minX, minY: bb.minY, maxX: bb.maxX, maxY: bb.maxY, payload: object });
+      this.rt.insert({ ...bb, payload: object });
     });
   }
 
@@ -601,10 +601,7 @@ export class CoastlineLayer implements Layer {
 
     // ugh... the calls to simplify.compute_bbox statefully creates this
     const bb = feature.bbox;
-    this.rt.insert({
-      minX: bb.minX, minY: bb.minY, maxX: bb.maxX, maxY: bb.maxY,
-      payload: feature
-    });
+    this.rt.insert({ ...bb, payload: feature });
 
     const arc_to_feature = this.arc_to_feature;
     if (!arc_to_feature[arc_name])

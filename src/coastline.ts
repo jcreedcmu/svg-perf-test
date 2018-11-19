@@ -471,8 +471,6 @@ export class CoastlineLayer implements Layer {
         simplify.simplify_arc(arc);
         const results = removePt(this.vertex_rt, { x: oldp[0], y: oldp[1] });
 
-        // I can't call adapt here because get_index above relies on the
-        // by-reference equality of this inserted point?
         insertPt(this.vertex_rt, p, { arc: arc_id, point: new_pt.point });
         this.recompute_arc_feature_bbox(arc_id);
       }

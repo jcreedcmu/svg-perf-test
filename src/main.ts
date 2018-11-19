@@ -184,8 +184,11 @@ class App {
             d.fillStyle = "white";
             d.fillRect(pt.x - rad, pt.y - rad, rad * 2, rad * 2);
             d.lineWidth = 1 / cscale(camera);
-            d.strokeStyle = "#000";
+            d.strokeStyle = "black";
             d.strokeRect(pt.x - rad, pt.y - rad, rad * 2, rad * 2);
+
+            d.strokeStyle = colors.motion_guide;
+            d.strokeRect(pt.x - 2 * rad, pt.y - 2 * rad, rad * 4, rad * 4);
           }
           else if (bundle[0] == "label") {
             const pt = this.coastline_layer.labels[bundle[1]].pt;

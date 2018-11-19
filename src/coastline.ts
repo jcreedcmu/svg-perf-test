@@ -1,6 +1,6 @@
 import { Mode, Point, Zpoint, ArPoint, ArRectangle, Dict, Ctx, Camera } from './types';
 import { Label, RawLabel, Arc, RawArc, Target, Segment, LabelTarget, ArcVertexTarget } from './types';
-import { Poly, RawPoly, PolyProps, Bbox, Layer } from './types';
+import { Poly, RawPoly, RoadProps, PolyProps, Bbox, Layer } from './types';
 import { rawOfArc, unrawOfArc, rawOfPoly, unrawOfPoly, rawOfLabel, unrawOfLabel } from './util';
 import { adapt, cscale, vmap, vkmap, trivBbox } from './util';
 import { clone, above_simp_thresh, getArc } from './util';
@@ -41,7 +41,7 @@ function removePt<T>(rt: Bush<T>, pt: Point): void {
   });
 }
 
-var DEBUG_BBOX = false;
+let DEBUG_BBOX = false;
 
 function dictOfNamedArray<T extends { name: string }>(ar: T[]): Dict<T> {
   const rv: Dict<T> = {};
@@ -57,14 +57,14 @@ function realize_salient(d: Ctx, props: any, camera: Camera, pt: ArPoint) {
   //  d.translate(camera.x, camera.y);
   //  d.scale(scale, -scale);
 
-  var q = {
+  const q = {
     x: pt[0] * cscale(camera) + camera.x,
     y: pt[1] * -cscale(camera) + camera.y
   };
 
-  var stroke = null;
+  const stroke = null;
 
-  var shape = "rect";
+  let shape: "rect" | "trapezoid" = "rect";
   d.fillStyle = "#55a554";
   if (props.text.match(/^P/)) d.fillStyle = "#29a";
   if (props.text.match(/^Z/)) d.fillStyle = "#e73311";
@@ -77,13 +77,13 @@ function realize_salient(d: Ctx, props: any, camera: Camera, pt: ArPoint) {
     d.strokeStyle = "black";
   }
 
-  var txt = props.text;
-  var height = 10;
+  const txt = props.text;
+  const height = 10;
   d.font = "bold " + height + "px sans-serif";
-  var width = d.measureText(txt).width;
+  const width = d.measureText(txt).width;
 
-  var box_height = 12;
-  var box_width = width + 10;
+  const box_height = 12;
+  const box_width = width + 10;
   if (shape == "rect") {
     d.fillRect(q.x - box_width / 2, q.y - box_height / 2, box_width, box_height);
   }
@@ -165,8 +165,8 @@ function realize_path(d: Ctx, props: PolyProps, camera: Camera) {
   }
   if (DEBUG_BBOX) {
     if ("bbox" in props) {
-      var feature_bbox = (<{ bbox: Bbox }>props).bbox;
-      var lw = d.lineWidth = 3.0 / scale;
+      const feature_bbox = (<{ bbox: Bbox }>props).bbox;
+      const lw = d.lineWidth = 3.0 / scale;
       d.strokeStyle = "#f0f";
       d.strokeRect(feature_bbox.minx - lw, feature_bbox.miny - lw,
         feature_bbox.maxx - feature_bbox.minx + lw * 2,
@@ -235,13 +235,13 @@ export class CoastlineLayer implements Layer {
   }
 
   arc_vertex_targets(world_bbox: ArRectangle): ArcVertexTarget[] {
-    var targets = tsearch(this.vertex_rt, world_bbox);
+    const targets = tsearch(this.vertex_rt, world_bbox);
 
     if (targets.length < 2) return targets;
 
-    var orig = targets[0].point;
-    for (var i = 1; i < targets.length; i++) {
-      var here = targets[i].point;
+    const orig = targets[0].point;
+    for (let i = 1; i < targets.length; i++) {
+      let here = targets[i].point;
       // If we're getting a set of points not literally on the same
       // point, pretend there's no match
       if (orig[0] != here[0]) return [];
@@ -252,7 +252,7 @@ export class CoastlineLayer implements Layer {
   }
 
   label_targets(world_bbox: ArRectangle): LabelTarget[] {
-    var targets = tsearch(this.label_rt, world_bbox);
+    const targets = tsearch(this.label_rt, world_bbox);
     if (targets.length < 2)
       return targets;
     else
@@ -260,25 +260,23 @@ export class CoastlineLayer implements Layer {
   }
 
   target_point(target: Target) {
-    var pt = target[0] == "coastline" ?
+    const pt = target[0] == "coastline" ?
       target[1].point :
       this.labels[target[1]].pt;
     return { x: pt[0], y: pt[1] };
   }
 
-  // invariant: targets.length >= 1
+  // inletiant: targets.length >= 1
   targets_nabes(targets: Target[]): Zpoint[] {
-    var that = this;
-
     // XXX what happens if targets is of mixed type ugh
     if (targets[0][0] == "coastline") {
       const neighbors: Zpoint[] = [];
 
       targets.forEach(target => {
         if (target[0] == "coastline") {
-          var ctarget = target[1];
-          var ix = that.get_index(ctarget);
-          var arc_points = that.arcs[ctarget.arc].points;
+          let ctarget = target[1];
+          let ix = this.get_index(ctarget);
+          let arc_points = this.arcs[ctarget.arc].points;
           if (ix > 0) neighbors.push(arc_points[ix - 1]);
           if (ix < arc_points.length - 1) neighbors.push(arc_points[ix + 1]);
         }
@@ -300,8 +298,8 @@ export class CoastlineLayer implements Layer {
   }
 
   get_index(target: ArcVertexTarget) {
-    var arc = this.arcs[target.arc].points;
-    for (var i = 0; i < arc.length; i++) {
+    const arc = this.arcs[target.arc].points;
+    for (let i = 0; i < arc.length; i++) {
       if (arc[i].point == target.point)
         return i;
     }
@@ -318,12 +316,11 @@ export class CoastlineLayer implements Layer {
     d.strokeStyle = "black";
     d.lineJoin = "round";
 
-    var arcs_to_draw_vertices_for: any[] = []; // XXX revisit this guess
-    var salients: any = []; // XXX revisit this guess
+    const arcs_to_draw_vertices_for: Zpoint[][] = [];
+    const salients: { props: RoadProps, pt: ArPoint }[] = [];
 
-    var features: Poly[] = tsearch(this.rt, world_bbox);
-    features = _.sortBy(features, x => {
-      var z = 0;
+    const baseFeatures = _.sortBy(tsearch(this.rt, world_bbox), x => {
+      let z = 0;
       const p: PolyProps = x.properties;
       if (p.t == "natural" && p.natural == "lake") z = 1;
       if (p.t == "natural" && p.natural == "mountain") z = 1;
@@ -334,30 +331,30 @@ export class CoastlineLayer implements Layer {
     });
 
     // Not sure what this is for
-    var extra = _.filter(_.map(features, x => {
+    let extra = _.filter(_.map(baseFeatures, x => {
       if (x.properties.t == "road" && x.properties.road == "street")
         return _.extend(clone(x), { properties: _.extend(clone(x.properties), { road: "street2" }) });
     }), x => x);
 
-    features = features.concat(extra);
+    const features = baseFeatures.concat(extra);
 
     _.each(features, object => {
-      var arc_spec_list = object.arcs;
-      var arcs = this.arcs;
+      let arc_spec_list = object.arcs;
+      let arcs = this.arcs;
 
       d.lineWidth = 0.9 / scale;
       d.beginPath();
 
-      var first_point = getArc(arcs, arc_spec_list[0]).points[0].point;
+      let first_point = getArc(arcs, arc_spec_list[0]).points[0].point;
       d.moveTo(first_point[0], first_point[1]);
 
-      var curpoint = first_point;
-      var n = 0;
+      let curpoint = first_point;
+      let n = 0;
 
       arc_spec_list.forEach(spec => {
         const arc = getArc(arcs, spec);
-        var this_arc = arc.points;
-        var arc_bbox = arc.bbox;
+        let this_arc = arc.points;
+        let arc_bbox = arc.bbox;
         if (DEBUG_BBOX) {
           d.lineWidth = 1.5 / scale;
           d.strokeStyle = colors.debug;
@@ -382,12 +379,12 @@ export class CoastlineLayer implements Layer {
         this_arc.forEach(({ point: vert, z }, ix) => {
           if (ix == 0) return;
 
-          var p = {
+          let p = {
             x: camera.x + (vert[0] * scale),
             y: camera.y + (vert[1] * scale)
           };
 
-          var draw = false;
+          let draw = false;
 
           // draw somewhat simplified
           if (camera.zoom >= 6 || above_simp_thresh(z, scale))
@@ -416,7 +413,7 @@ export class CoastlineLayer implements Layer {
     if (mode != "Pan") {
       d.strokeStyle = "#333";
       d.fillStyle = "#ffd";
-      var vert_size = 5 / scale;
+      let vert_size = 5 / scale;
       arcs_to_draw_vertices_for.forEach(arc => {
         arc.forEach(({ point: vert, z }: Zpoint, n: number) => {
           if (z > 1000000 || camera.zoom > 10) {
@@ -445,8 +442,8 @@ export class CoastlineLayer implements Layer {
   recompute_arc_feature_bbox(arc_id: string) {
 
     this.arc_to_feature[arc_id].forEach((feature_ix: string) => {
-      var object = this.features[feature_ix];
-      var bb = object.bbox;
+      let object = this.features[feature_ix];
+      let bb = object.bbox;
       this.rt.remove(
         { minX: bb.minx, minY: bb.miny, maxX: bb.maxx, maxY: bb.maxy, payload: object },
         (a, b) => a.payload == b.payload
@@ -460,19 +457,19 @@ export class CoastlineLayer implements Layer {
   replace_vert(targets: Target[], p: Point) {
     targets.forEach(target => {
       if (target[0] == "coastline") {
-        var rt_entry = target[1];
+        const rt_entry = target[1];
 
-        var arc_id = rt_entry.arc;
+        const arc_id = rt_entry.arc;
 
-        var vert_ix = this.get_index(rt_entry);
-        var arc = this.arcs[arc_id];
-        var oldp = rt_entry.point;
+        const vert_ix = this.get_index(rt_entry);
+        const arc = this.arcs[arc_id];
+        const oldp = rt_entry.point;
 
         // I think this 1000 can be whatever
-        var new_pt = arc.points[vert_ix] = { point: [p.x, p.y], z: 1000 };
+        const new_pt = arc.points[vert_ix] = { point: [p.x, p.y], z: 1000 };
 
         simplify.simplify_arc(arc);
-        var results = removePt(this.vertex_rt, { x: oldp[0], y: oldp[1] });
+        const results = removePt(this.vertex_rt, { x: oldp[0], y: oldp[1] });
 
         // I can't call adapt here because get_index above relies on the
         // by-reference equality of this inserted point?
@@ -480,7 +477,7 @@ export class CoastlineLayer implements Layer {
         this.recompute_arc_feature_bbox(arc_id);
       }
       else if (target[0] == "label") {
-        var lab = this.labels[target[1]];
+        const lab = this.labels[target[1]];
         removePt(this.label_rt, { x: lab.pt[0], y: lab.pt[1] });
         lab.pt = [p.x, p.y];
         insertPt(this.label_rt, { x: lab.pt[0], y: lab.pt[1] }, target[1]);
@@ -489,9 +486,9 @@ export class CoastlineLayer implements Layer {
   }
 
   add_vert_to_arc(arc_id: string, p: Point) {
-    var arc = this.arcs[arc_id];
-    var len = arc.points.length;
-    var oldp = arc.points[len - 1];
+    const arc = this.arcs[arc_id];
+    const len = arc.points.length;
+    const oldp = arc.points[len - 1];
     const op = oldp.point;
     const opp = { x: op[0], y: op[1] };
     arc.points[len - 1] = { point: [p.x, p.y], z: 1000 };
@@ -509,10 +506,10 @@ export class CoastlineLayer implements Layer {
   };
 
   break_segment(segment: Segment, p: Point) {
-    var arc_id = segment.arc;
-    var arc = this.arcs[arc_id];
+    const arc_id = segment.arc;
+    const arc = this.arcs[arc_id];
 
-    var newp: Zpoint = { point: [p.x, p.y], z: 1000 };
+    const newp: Zpoint = { point: [p.x, p.y], z: 1000 };
     arc.points.splice(segment.ix + 1, 0, newp);
     simplify.simplify_arc(arc);
 
@@ -549,11 +546,10 @@ export class CoastlineLayer implements Layer {
   }
 
   filter() {
-    var that = this;
-    _.each(this.features, function(obj: any) {
-      if (obj.properties.natural == "mountain") {
+    _.each(this.features, obj => {
+      if (obj.properties.t == "natural" && obj.properties.natural == "mountain") {
         // strip out collinearish points
-        var arc = that.arcs[obj.arcs[0]];
+        const arc = getArc(this.arcs, obj.arcs[0]);
         arc.points = arc.points.filter(({ point: p, z }, n) => {
           return n == 0 || n == arc.points.length - 1 || z > 1000000;
         });
@@ -569,7 +565,7 @@ export class CoastlineLayer implements Layer {
   }
 
   new_point_feature(lab: Label) {
-    var point_name = "p" + this.counter;
+    const point_name = "p" + this.counter;
     this.counter++;
     lab.name = point_name;
     this.add_point_feature(lab);
@@ -588,8 +584,8 @@ export class CoastlineLayer implements Layer {
 
   add_arc_feature(t: string, points: Zpoint[], properties: PolyProps) {
 
-    var feature_name = "f" + this.counter;
-    var arc_name = "a" + this.counter;
+    const feature_name = "f" + this.counter;
+    const arc_name = "a" + this.counter;
     this.counter++;
     const arc: Arc = this.arcs[arc_name] = this.newArc(arc_name, points);
     const feature: Poly = this.features[feature_name] =
@@ -613,7 +609,7 @@ export class CoastlineLayer implements Layer {
       payload: feature
     });
 
-    var arc_to_feature = this.arc_to_feature;
+    const arc_to_feature = this.arc_to_feature;
     if (!arc_to_feature[arc_name])
       arc_to_feature[arc_name] = [];
     arc_to_feature[arc_name].push(feature_name);
@@ -622,16 +618,16 @@ export class CoastlineLayer implements Layer {
   breakup() {
     _.each(this.arcs, (v: any, k) => {
       if (v.points.length > 200) {
-        var num_chunks = Math.ceil(v.points.length / 200);
-        var cut_positions = [0];
-        for (var i = 0; i < num_chunks - 1; i++) {
+        const num_chunks = Math.ceil(v.points.length / 200);
+        const cut_positions = [0];
+        for (let i = 0; i < num_chunks - 1; i++) {
           cut_positions.push(Math.floor((i + 1) * (v.points.length / num_chunks)));
         }
         cut_positions.push(v.points.length - 1);
-        var replacement_arcs: any[] = [];
-        for (var j = 0; j < cut_positions.length - 1; j++) {
+        const replacement_arcs: any[] = [];
+        for (let j = 0; j < cut_positions.length - 1; j++) {
           const arc: Arc = this.newArc(k + "-" + j, []);
-          for (var jj = cut_positions[j]; jj <= cut_positions[j + 1]; jj++) {
+          for (let jj = cut_positions[j]; jj <= cut_positions[j + 1]; jj++) {
             arc.points.push(clone(v.points[jj]));
           }
           this.arcs[arc.name] = arc;
@@ -640,9 +636,9 @@ export class CoastlineLayer implements Layer {
         // Not really sure this still works. this.arc_to_feature[k] is
         // a list of feature names, so I'm arbitrarily picking out the first one
         // by saying [0].
-        var feature_name = this.arc_to_feature[k][0];
-        var feature_arcs = this.features[feature_name].arcs;
-        var ix = _.indexOf(feature_arcs.map(x => x.id), k);
+        const feature_name = this.arc_to_feature[k][0];
+        const feature_arcs = this.features[feature_name].arcs;
+        const ix = _.indexOf(feature_arcs.map(x => x.id), k);
         if (ix == -1)
           throw ("couldn't find " + k + " in " + JSON.stringify(feature_arcs));
         feature_arcs.splice.apply(feature_arcs, [ix, 1].concat(replacement_arcs));
@@ -665,13 +661,13 @@ export class CoastlineLayer implements Layer {
 
     function submit_f(e: JQuery.Event<HTMLElement, null>) {
       e.preventDefault();
-      var obj: any = _.object($("#insert_feature form").serializeArray().map(function(pair) {
-        return [pair.name, pair.value];
-      }));
+      const obj: any = _.object($("#insert_feature form").serializeArray().map(pair =>
+        [pair.name, pair.value]
+      ));
       if (obj.zoom == null || obj.zoom == "")
         delete obj.zoom;
-      var k = obj.key;
-      var v = obj.value;
+      const k = obj.key;
+      const v = obj.value;
       delete obj.key;
       delete obj.value;
       obj[k] = v;

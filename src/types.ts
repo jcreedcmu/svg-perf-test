@@ -61,12 +61,15 @@ export type LabelProps = {
   zoom?: number,
 };
 
+export type RoadProps =
+  { t: "road", road: "highway" | "street" | "street2", text: string, zoom?: number };
+
 export type PolyProps =
   | {
     t: "natural", natural: "lake" | "coastline" | "mountain",
     text?: string // not sure if this is used anywhere
   }
-  | { t: "road", road: "highway" | "street" | "street2", text: string, zoom?: number }
+  | RoadProps
   | { t: "city", text: string, zoom?: number }
 
 export type RawLabel = {

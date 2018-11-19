@@ -307,14 +307,6 @@ export class CoastlineLayer implements Layer {
 
   render(d: Ctx, camera: Camera, mode: Mode, world_bbox: ArRectangle) {
     const scale = cscale(camera);
-    d.save();
-
-    d.translate(camera.x, camera.y);
-    d.scale(scale, -scale);
-
-    d.strokeStyle = "black";
-    d.lineJoin = "round";
-
     const arcs_to_draw_vertices_for: Zpoint[][] = [];
     const salients: { props: RoadProps, pt: Point }[] = [];
 
@@ -337,96 +329,113 @@ export class CoastlineLayer implements Layer {
 
     const features = baseFeatures.concat(extra);
 
-    _.each(features, object => {
-      let arc_spec_list = object.arcs;
-      let arcs = this.arcs;
+    d.save();
+    {
+      d.translate(camera.x, camera.y);
+      d.scale(scale, -scale);
 
-      d.lineWidth = 0.9 / scale;
-      d.beginPath();
+      d.strokeStyle = "black";
+      d.lineJoin = "round";
+      _.each(features, object => {
+        const arc_spec_list = object.arcs;
+        const arcs = this.arcs;
 
-      let first_point = getArc(arcs, arc_spec_list[0]).points[0].point;
-      d.moveTo(first_point.x, first_point.y);
+        d.lineWidth = 0.9 / scale;
+        d.beginPath();
 
-      let curpoint = first_point;
-      let n = 0;
+        const first_point = getArc(arcs, arc_spec_list[0]).points[0].point;
+        d.moveTo(first_point.x, first_point.y);
 
-      arc_spec_list.forEach(spec => {
-        const arc = getArc(arcs, spec);
-        let this_arc = arc.points;
-        let arc_bbox = arc.bbox;
-        if (DEBUG_BBOX) {
-          d.lineWidth = 1.5 / scale;
-          d.strokeStyle = colors.debug;
-          d.strokeRect(arc_bbox.minX, arc_bbox.minY,
-            arc_bbox.maxX - arc_bbox.minX,
-            arc_bbox.maxY - arc_bbox.minY);
-        }
+        let curpoint = first_point;
+        let n = 0;
 
-        const rect_intersect = world_bbox[0] < arc_bbox.maxX && world_bbox[2] > arc_bbox.minX && world_bbox[3] > arc_bbox.minY && world_bbox[1] < arc_bbox.maxY;
+        arc_spec_list.forEach(spec => {
+          const arc = getArc(arcs, spec);
+          let this_arc = arc.points;
+          let arc_bbox = arc.bbox;
+          if (DEBUG_BBOX) {
+            d.lineWidth = 1.5 / scale;
+            d.strokeStyle = colors.debug;
+            d.strokeRect(arc_bbox.minX, arc_bbox.minY,
+              arc_bbox.maxX - arc_bbox.minX,
+              arc_bbox.maxY - arc_bbox.minY);
+          }
 
-        if (this_arc.length < 2) {
-          throw "arc " + spec + " must have at least two points";
-        }
-        if (!rect_intersect) {
-          // draw super simplified
-          this_arc = [this_arc[0], this_arc[this_arc.length - 1]];
-        }
-        else if (camera.zoom >= 6) {
-          arcs_to_draw_vertices_for.push(this_arc);
-        }
+          if (this_arc.length < 2) {
+            throw "arc " + spec + " must have at least two points";
+          }
 
-        this_arc.forEach(({ point: vert, z }, ix) => {
-          if (ix == 0) return;
+          const rect_intersect = world_bbox[0] < arc_bbox.maxX
+            && world_bbox[2] > arc_bbox.minX
+            && world_bbox[3] > arc_bbox.minY
+            && world_bbox[1] < arc_bbox.maxY;
 
-          let p = {
-            x: camera.x + (vert.x * scale),
-            y: camera.y + (vert.y * scale)
-          };
+          if (!rect_intersect) {
+            // The bounding box of this arc is entirely off-screen.
+            // Draw as simplified as possible; just one line segment
+            // from beginning to end.
+            this_arc = [this_arc[0], this_arc[this_arc.length - 1]];
+          }
 
-          let draw = false;
+          if (rect_intersect && camera.zoom >= 6) {
+            // draw individual vertices if we're at least partially
+            // on-screen, and also quite zoomed in.
+            arcs_to_draw_vertices_for.push(this_arc);
+          }
 
-          // draw somewhat simplified
-          if (camera.zoom >= 6 || above_simp_thresh(z, scale))
-            draw = true;
-          if (ix == this_arc.length - 1)
-            draw = true;
-          if (draw) {
-            d.lineTo(vert.x, vert.y);
-            if (object.properties.t == "road" && object.properties.road == "highway" && n % 10 == 5) {
-              salients.push({
-                props: object.properties,
-                pt: { x: (vert.x + curpoint.x) / 2, y: (vert.y + curpoint.y) / 2 }
-              });
+          this_arc.forEach(({ point: vert, z }, ix) => {
+            if (ix == 0) return;
+
+            let p = {
+              x: camera.x + (vert.x * scale),
+              y: camera.y + (vert.y * scale)
+            };
+
+            let draw = false;
+
+            // draw somewhat simplified
+            if (camera.zoom >= 6 || above_simp_thresh(z, scale))
+              draw = true;
+            if (ix == this_arc.length - 1)
+              draw = true;
+            if (draw) {
+              d.lineTo(vert.x, vert.y);
+              if (object.properties.t == "road" && object.properties.road == "highway" && n % 10 == 5) {
+                salients.push({
+                  props: object.properties,
+                  pt: { x: (vert.x + curpoint.x) / 2, y: (vert.y + curpoint.y) / 2 }
+                });
+              }
+              curpoint = vert;
+              n++;
             }
-            curpoint = vert;
-            n++;
-          }
 
+          });
         });
+        realize_path(d, object.properties, camera);
       });
-      realize_path(d, object.properties, camera);
-    });
 
-    // draw vertices
-    d.lineWidth = 1.5 / scale;
-    if (mode != "Pan") {
-      d.strokeStyle = "#333";
-      d.fillStyle = "#ffd";
-      let vert_size = 5 / scale;
-      arcs_to_draw_vertices_for.forEach(arc => {
-        arc.forEach(({ point: vert, z }: Zpoint, n: number) => {
-          if (z > 1000000 || camera.zoom > 10) {
-            d.fillStyle = z > 1000000 ? "#ffd" : "#f00";
-            d.strokeRect(vert.x - vert_size / 2, vert.y - vert_size / 2, vert_size, vert_size);
-            d.fillRect(vert.x - vert_size / 2, vert.y - vert_size / 2, vert_size, vert_size);
-          }
+      // draw vertices
+      d.lineWidth = 1.5 / scale;
+      if (mode != "Pan") {
+        d.strokeStyle = "#333";
+        d.fillStyle = "#ffd";
+        let vert_size = 5 / scale;
+        arcs_to_draw_vertices_for.forEach(arc => {
+          arc.forEach(({ point: vert, z }: Zpoint, n: number) => {
+            if (z > 1000000 || camera.zoom > 10) {
+              d.fillStyle = z > 1000000 ? "#ffd" : "#f00";
+              d.strokeRect(vert.x - vert_size / 2, vert.y - vert_size / 2, vert_size, vert_size);
+              d.fillRect(vert.x - vert_size / 2, vert.y - vert_size / 2, vert_size, vert_size);
+            }
+          });
         });
-      });
+      }
     }
     d.restore();
 
     // doing this because it involves text, which won't want the negative y-transform
-    salients.forEach((salient: any) => {
+    salients.forEach(salient => {
       realize_salient(d, salient.props, camera, salient.pt);
     });
 

@@ -51,7 +51,8 @@ function dictOfNamedArray<T extends { name: string }>(ar: T[]): Dict<T> {
   return rv;
 }
 
-function realize_salient(d: Ctx, props: any, camera: Camera, pt: Point) {
+function realize_salient(d: Ctx, props: RoadProps, camera: Camera, pt: Point) {
+  const text = props.text.toUpperCase();
   if (camera.zoom < 2) return;
   // implied:
   //  d.translate(camera.x, camera.y);
@@ -62,25 +63,24 @@ function realize_salient(d: Ctx, props: any, camera: Camera, pt: Point) {
     y: pt.y * -cscale(camera) + camera.y
   };
 
-  const stroke = null;
+  let stroke = null;
 
   let shape: "rect" | "trapezoid" = "rect";
   d.fillStyle = "#55a554";
-  if (props.text.match(/^P/)) d.fillStyle = "#29a";
-  if (props.text.match(/^Z/)) d.fillStyle = "#e73311";
-  if (props.text.match(/R$/)) {
+  if (text.match(/^P/)) d.fillStyle = "#29a";
+  if (text.match(/^Z/)) d.fillStyle = "#e73311";
+  if (text.match(/R$/)) {
     d.fillStyle = "#338";
     shape = "trapezoid";
   }
-  if (props.text.match(/^U/)) {
+  if (text.match(/^U/)) {
     d.fillStyle = "#fffff7";
-    d.strokeStyle = "black";
+    stroke = "black";
   }
 
-  const txt = props.text;
   const height = 10;
   d.font = "bold " + height + "px sans-serif";
-  const width = d.measureText(txt).width;
+  const width = d.measureText(text).width;
 
   const box_height = 12;
   const box_width = width + 10;
@@ -98,7 +98,7 @@ function realize_salient(d: Ctx, props: any, camera: Camera, pt: Point) {
   }
   d.fillStyle = "white";
   if (stroke != null) d.fillStyle = stroke;
-  d.fillText(txt, q.x - width / 2, q.y + height / 2 - 1);
+  d.fillText(text, q.x - width / 2, q.y + height / 2 - 1);
 
   if (stroke != null) {
     d.strokeStyle = stroke;

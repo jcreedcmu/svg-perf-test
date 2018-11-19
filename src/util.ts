@@ -45,7 +45,7 @@ export function above_simp_thresh(z: number, scale: number): boolean {
 }
 
 export function adapt(x: Zpoint): ArPoint {
-  return [x.point[0], x.point[1]];
+  return x.point;
 }
 
 // meant to be used in a default case
@@ -81,7 +81,7 @@ export function vdist(p1: Point, p2: Point) {
 export function rawOfArc(arc: Arc): RawArc {
   return {
     points: arc.points.map(({ point: p }) => {
-      const z: ArPoint = [p[0], p[1]];
+      const z: [number, number] = [p.x, p.y];
       return z;
     })
   };
@@ -93,7 +93,7 @@ export function unrawOfArc(name: string, arc: RawArc): Arc {
     name,
     bbox: { minx: 1e9, miny: 1e9, maxx: -1e9, maxy: -1e9 },
     points: points.map(p => {
-      const z: Zpoint = { point: p, z: 1e9 };
+      const z: Zpoint = { point: { x: p[0], y: p[1] }, z: 1e9 };
       return z;
     })
   };
@@ -109,14 +109,14 @@ export function rawOfPoly(poly: Poly): RawPoly {
 export function unrawOfLabel(name: string, label: RawLabel): Label {
   return {
     name,
-    pt: label.pt,
+    pt: { x: label.pt[0], y: label.pt[1] },
     properties: label.properties,
   };
 }
 
 export function rawOfLabel(label: Label): RawLabel {
   return {
-    pt: label.pt,
+    pt: [label.pt.x, label.pt.y],
     properties: label.properties,
   };
 }

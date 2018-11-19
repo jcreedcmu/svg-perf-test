@@ -13,8 +13,8 @@ export function draw_label(d: Ctx, camera: Camera, lab: Label) {
   const typ = lab.properties.label;
   let min_zoom = lab.properties.zoom;
   const q: Point = {
-    x: camera.x + cscale(camera) * p[0],
-    y: camera.y - cscale(camera) * p[1]
+    x: camera.x + cscale(camera) * p.x,
+    y: camera.y - cscale(camera) * p.y
   };
 
   let stroke = true;

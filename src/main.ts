@@ -182,17 +182,17 @@ class App {
           if (bundle[0] == "coastline") {
             const pt = bundle[1].point;
             d.fillStyle = "white";
-            d.fillRect(pt[0] - rad, pt[1] - rad, rad * 2, rad * 2);
+            d.fillRect(pt.x - rad, pt.y - rad, rad * 2, rad * 2);
             d.lineWidth = 1 / cscale(camera);
             d.strokeStyle = "#000";
-            d.strokeRect(pt[0] - rad, pt[1] - rad, rad * 2, rad * 2);
+            d.strokeRect(pt.x - rad, pt.y - rad, rad * 2, rad * 2);
           }
           else if (bundle[0] == "label") {
             const pt = this.coastline_layer.labels[bundle[1]].pt;
             d.beginPath();
             d.fillStyle = "white";
             d.globalAlpha = 0.5;
-            d.arc(pt[0], pt[1], 20 / cscale(camera), 0, Math.PI * 2);
+            d.arc(pt.x, pt.y, 20 / cscale(camera), 0, Math.PI * 2);
             d.fill();
           }
         });
@@ -389,7 +389,7 @@ class App {
         break;
 
       case "Freehand":
-        let startp: ArPoint = [worldp.x, worldp.y];
+        let startp: ArPoint = worldp;
 
         const spoint = get_snap(this.lastz);
         if (spoint != null)
@@ -570,7 +570,7 @@ class App {
         // ...else, we're moving an arc point. Draw some guides to show
         // how the moved point connects to its neighbors.
         neighbors.forEach(({ point: nabe }) => {
-          d.moveTo(nabe[0], nabe[1]);
+          d.moveTo(nabe.x, nabe.y);
           d.lineTo(dragp.x, dragp.y);
         });
       }
@@ -674,12 +674,12 @@ class App {
       let count = 0;
       path.forEach(({ point: pt, z }: Zpoint, n: number) => {
         if (n == 0)
-          d.moveTo(pt[0], pt[1]);
+          d.moveTo(pt.x, pt.y);
         else {
           if (n == path.length - 1 ||
             z > 1) {
             count++;
-            d.lineTo(pt[0], pt[1]);
+            d.lineTo(pt.x, pt.y);
           }
         }
       });
@@ -692,7 +692,7 @@ class App {
       const x = e.pageX;
       const y = e.pageY;
       const worldp = inv_xform(camera, x, y);
-      path.push({ point: [worldp.x, worldp.y], z: 1000 });
+      path.push({ point: worldp, z: 1000 });
       simplify(path);
       this.th.maybe();
     });

@@ -40,13 +40,13 @@ export function find_hit_lines(
         // 2 (ry (1-t) + sy t - py) (sy - ry) +
         // = 0
         // t = (p - r) * (s - r) / (s - r)^2
-        const t = ((p.x - r[0]) * (s[0] - r[0]) + (p.y - r[1]) * (s[1] - r[1])) /
-          ((s[0] - r[0]) * (s[0] - r[0]) + (s[1] - r[1]) * (s[1] - r[1]));
+        const t = ((p.x - r.x) * (s.x - r.x) + (p.y - r.y) * (s.y - r.y)) /
+          ((s.x - r.x) * (s.x - r.x) + (s.y - r.y) * (s.y - r.y));
         if (0 < t && t < 1) {
           // projected point
           const pp = {
-            x: r[0] * (1 - t) + s[0] * t,
-            y: r[1] * (1 - t) + s[1] * t
+            x: r.x * (1 - t) + s.x * t,
+            y: r.y * (1 - t) + s.y * t
           };
           const proj_distance = Math.sqrt((pp.x - p.x) * (pp.x - p.x) + (pp.y - p.y) * (pp.y - p.y));
           if (proj_distance > slack) {
@@ -58,8 +58,8 @@ export function find_hit_lines(
           }
           else {
             segment_targets.push({ arc: farcs[j], ix: k });
-            // d.moveTo(r[0], r[1]);
-            // d.lineTo(s[0], s[1]);
+            // d.moveTo(r.x, r.y);
+            // d.lineTo(s.x, s.y);
             // d.strokeStyle = "blue";
             // d.lineWidth = 5 / camera.scale();
             // d.stroke();

@@ -12,7 +12,8 @@ export interface Camera {
 
 export type Rect = [number, number, number, number];
 export type Path = Zpoint[];
-export type ArPoint = [number, number];
+export type AarPoint = [number, number];
+export type ArPoint = Point;
 export type Bundle =
   ['coastline', { point: ArPoint }]
   | ['label', string];
@@ -43,7 +44,7 @@ export type Bbox = {
 };
 
 export type RawArc = {
-  points: ArPoint[],
+  points: AarPoint[],
 };
 
 export type Arc = {
@@ -73,7 +74,7 @@ export type PolyProps =
   | { t: "city", text: string, zoom?: number }
 
 export type RawLabel = {
-  pt: ArPoint,
+  pt: AarPoint,
   properties: LabelProps,
 };
 
@@ -107,7 +108,7 @@ export type Geo = {
   labels: Dict<RawLabel>,
 };
 
-export type River = { geometry: { coordinates: ArPoint[][] } };
+export type River = { geometry: { coordinates: AarPoint[][] } };
 export type Rivers = { features: River[] };
 
 export interface Layer {

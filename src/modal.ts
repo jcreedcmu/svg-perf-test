@@ -45,7 +45,7 @@ export function make_insert_label_modal(worldp: Point, lab: Label | null, k: (x:
     else {
       k({
         name: "anonymous",
-        pt: [worldp.x, worldp.y],
+        pt: worldp,
         properties: { text: obj.text, label: sanitize(obj.type), zoom: parseInt(obj.zoom) }
       });
 

@@ -23,9 +23,9 @@ export class SketchLayer {
       d.beginPath();
       feature.forEach(({ point: pt }, n) => {
         if (n == 0)
-          d.moveTo(pt[0], pt[1]);
+          d.moveTo(pt.x, pt.y);
         else
-          d.lineTo(pt[0], pt[1]);
+          d.lineTo(pt.x, pt.y);
       });
 
       d.lineWidth = 1.1 / cscale(camera);

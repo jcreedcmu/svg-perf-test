@@ -58,8 +58,8 @@ function realize_salient(d: Ctx, props: any, camera: Camera, pt: ArPoint) {
   //  d.scale(scale, -scale);
 
   const q = {
-    x: pt[0] * cscale(camera) + camera.x,
-    y: pt[1] * -cscale(camera) + camera.y
+    x: pt.x * cscale(camera) + camera.x,
+    y: pt.y * -cscale(camera) + camera.y
   };
 
   const stroke = null;
@@ -205,13 +205,13 @@ export class CoastlineLayer implements Layer {
 
     Object.entries(arcs).forEach(([an, arc]) => {
       arc.points.forEach(({ point }, pn) => {
-        insertPt(this.vertex_rt, { x: point[0], y: point[1] }, { arc: an, point: point });
+        insertPt(this.vertex_rt, point, { arc: an, point });
       });
       simplify.simplify_arc(arc);
     });
 
     Object.entries(labels).forEach(([k, p]) => {
-      insertPt(this.label_rt, { x: p.pt[0], y: p.pt[1] }, p.name);
+      insertPt(this.label_rt, p.pt, p.name);
     });
 
     _.each(features, (object, key) => {
@@ -244,8 +244,8 @@ export class CoastlineLayer implements Layer {
       let here = targets[i].point;
       // If we're getting a set of points not literally on the same
       // point, pretend there's no match
-      if (orig[0] != here[0]) return [];
-      if (orig[1] != here[1]) return [];
+      if (orig.x != here.x) return [];
+      if (orig.y != here.y) return [];
     }
     // Otherwise return the whole set
     return targets;
@@ -260,10 +260,9 @@ export class CoastlineLayer implements Layer {
   }
 
   target_point(target: Target) {
-    const pt = target[0] == "coastline" ?
+    return target[0] == "coastline" ?
       target[1].point :
       this.labels[target[1]].pt;
-    return { x: pt[0], y: pt[1] };
   }
 
   // invariant: targets.length >= 1
@@ -346,7 +345,7 @@ export class CoastlineLayer implements Layer {
       d.beginPath();
 
       let first_point = getArc(arcs, arc_spec_list[0]).points[0].point;
-      d.moveTo(first_point[0], first_point[1]);
+      d.moveTo(first_point.x, first_point.y);
 
       let curpoint = first_point;
       let n = 0;
@@ -380,8 +379,8 @@ export class CoastlineLayer implements Layer {
           if (ix == 0) return;
 
           let p = {
-            x: camera.x + (vert[0] * scale),
-            y: camera.y + (vert[1] * scale)
+            x: camera.x + (vert.x * scale),
+            y: camera.y + (vert.y * scale)
           };
 
           let draw = false;
@@ -392,11 +391,11 @@ export class CoastlineLayer implements Layer {
           if (ix == this_arc.length - 1)
             draw = true;
           if (draw) {
-            d.lineTo(vert[0], vert[1]);
+            d.lineTo(vert.x, vert.y);
             if (object.properties.t == "road" && object.properties.road == "highway" && n % 10 == 5) {
               salients.push({
                 props: object.properties,
-                pt: [(vert[0] + curpoint[0]) / 2, (vert[1] + curpoint[1]) / 2]
+                pt: { x: (vert.x + curpoint.x) / 2, y: (vert.y + curpoint.y) / 2 }
               });
             }
             curpoint = vert;
@@ -418,8 +417,8 @@ export class CoastlineLayer implements Layer {
         arc.forEach(({ point: vert, z }: Zpoint, n: number) => {
           if (z > 1000000 || camera.zoom > 10) {
             d.fillStyle = z > 1000000 ? "#ffd" : "#f00";
-            d.strokeRect(vert[0] - vert_size / 2, vert[1] - vert_size / 2, vert_size, vert_size);
-            d.fillRect(vert[0] - vert_size / 2, vert[1] - vert_size / 2, vert_size, vert_size);
+            d.strokeRect(vert.x - vert_size / 2, vert.y - vert_size / 2, vert_size, vert_size);
+            d.fillRect(vert.x - vert_size / 2, vert.y - vert_size / 2, vert_size, vert_size);
           }
         });
       });
@@ -466,19 +465,19 @@ export class CoastlineLayer implements Layer {
         const oldp = rt_entry.point;
 
         // I think this 1000 can be whatever
-        const new_pt = arc.points[vert_ix] = { point: [p.x, p.y], z: 1000 };
+        const new_pt = arc.points[vert_ix] = { point: p, z: 1000 };
 
         simplify.simplify_arc(arc);
-        const results = removePt(this.vertex_rt, { x: oldp[0], y: oldp[1] });
+        const results = removePt(this.vertex_rt, oldp);
 
         insertPt(this.vertex_rt, p, { arc: arc_id, point: new_pt.point });
         this.recompute_arc_feature_bbox(arc_id);
       }
       else if (target[0] == "label") {
         const lab = this.labels[target[1]];
-        removePt(this.label_rt, { x: lab.pt[0], y: lab.pt[1] });
-        lab.pt = [p.x, p.y];
-        insertPt(this.label_rt, { x: lab.pt[0], y: lab.pt[1] }, target[1]);
+        removePt(this.label_rt, lab.pt);
+        lab.pt = p;
+        insertPt(this.label_rt, lab.pt, target[1]);
       }
     });
   }
@@ -488,17 +487,17 @@ export class CoastlineLayer implements Layer {
     const len = arc.points.length;
     const oldp = arc.points[len - 1];
     const op = oldp.point;
-    const opp = { x: op[0], y: op[1] };
-    arc.points[len - 1] = { point: [p.x, p.y], z: 1000 };
+
+    arc.points[len - 1] = { point: p, z: 1000 };
     arc.points[len] = oldp;
     simplify.simplify_arc(arc);
 
-    const results = removePt(this.vertex_rt, opp);
+    const results = removePt(this.vertex_rt, op);
 
     // XXX these are all wrong now
     insertPt(this.vertex_rt, p, [arc_id, len - 1] as any);
-    insertPt(this.vertex_rt, opp, [arc_id, len] as any);
-    insertPt(this.vertex_rt, opp, [arc_id, 0] as any);
+    insertPt(this.vertex_rt, op, [arc_id, len] as any);
+    insertPt(this.vertex_rt, op, [arc_id, 0] as any);
 
     this.recompute_arc_feature_bbox(arc_id);
   };
@@ -507,7 +506,7 @@ export class CoastlineLayer implements Layer {
     const arc_id = segment.arc;
     const arc = this.arcs[arc_id];
 
-    const newp: Zpoint = { point: [p.x, p.y], z: 1000 };
+    const newp: Zpoint = { point: p, z: 1000 };
     arc.points.splice(segment.ix + 1, 0, newp);
     simplify.simplify_arc(arc);
 
@@ -536,9 +535,9 @@ export class CoastlineLayer implements Layer {
     d.beginPath();
     this.arcs[arc_id].points.forEach(({ point: pt }, n) => {
       if (n == 0)
-        d.moveTo(pt[0], pt[1])
+        d.moveTo(pt.x, pt.y)
       else
-        d.lineTo(pt[0], pt[1])
+        d.lineTo(pt.x, pt.y)
     });
     d.stroke();
   }
@@ -558,8 +557,8 @@ export class CoastlineLayer implements Layer {
 
   add_point_feature(lab: Label) {
     this.labels[lab.name] = lab;
-    console.log("adding pt " + JSON.stringify(lab), lab.name, { x: lab.pt[0], y: lab.pt[1], w: 0, h: 0 });
-    insertPt(this.label_rt, { x: lab.pt[0], y: lab.pt[1] }, lab.name);
+    console.log("adding pt " + JSON.stringify(lab), lab.name, { x: lab.pt.x, y: lab.pt.y, w: 0, h: 0 });
+    insertPt(this.label_rt, lab.pt, lab.name);
   }
 
   new_point_feature(lab: Label) {
@@ -597,7 +596,7 @@ export class CoastlineLayer implements Layer {
     simplify.compute_bbox(feature, this.arcs);
 
     _.each(arc.points, ({ point }, pn) => {
-      insertPt(this.vertex_rt, { x: point[0], y: point[1] }, { arc: arc_name, point: point });
+      insertPt(this.vertex_rt, point, { arc: arc_name, point });
     });
 
     // ugh... the calls to simplify.compute_bbox statefully creates this

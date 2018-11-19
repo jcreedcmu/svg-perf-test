@@ -134,6 +134,11 @@ export function unrawOfPoly(name: string, poly: RawPoly): Poly {
   };
 }
 
+// returning nameless arc data on purpose
 export function getArc(arcs: Dict<Arc>, spec: ArcSpec) {
-  return arcs[spec.id];
+  const arc = arcs[spec.id];
+  if (spec.rev)
+    return { bbox: arc.bbox, points: [...arc.points].reverse() };
+  else
+    return { bbox: arc.bbox, points: arc.points };
 }

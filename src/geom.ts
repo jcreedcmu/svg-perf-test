@@ -24,7 +24,7 @@ export function find_hit_lines(
     const farcs = feat.arcs;
     for (let j = 0; j < farcs.length; j++) {
       const arc = getArc(arcs, farcs[j]);
-      const bbox: Bbox = arc.bbox;
+      const bbox = arc.bbox;
       if (!bbox_test_with_slack(p, bbox, slack))
         continue;
       const apts = arc.points;

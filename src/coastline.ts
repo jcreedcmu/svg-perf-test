@@ -575,7 +575,7 @@ export class CoastlineLayer implements Layer {
 
   newArc(name: string, points: Zpoint[]): Arc {
     // maybe compute bbox here?
-    const bbox: Bbox = { minX: 1e9, minY: 1e9, maxX: -1e9, maxY: -1e9 };
+    const bbox: Bbox = trivBbox();
     return { name, points, bbox };
   }
 

@@ -122,7 +122,10 @@ export function rawOfLabel(label: Label): RawLabel {
 }
 
 export function trivBbox(): Bbox {
-  return { minX: 1e9, minY: 1e9, maxX: -1e9, maxY: -1e9 };
+  return {
+    minX: Number.MAX_VALUE, minY: Number.MAX_VALUE,
+    maxX: Number.MIN_VALUE, maxY: Number.MIN_VALUE
+  };
 }
 
 export function unrawOfPoly(name: string, poly: RawPoly): Poly {

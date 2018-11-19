@@ -1,6 +1,6 @@
 import _ = require('underscore');
 import { Arc, Dict, Poly, Zpoint, Bbox, Point } from './types';
-import { getArc } from './util';
+import { getArc, trivBbox } from './util';
 
 function accumulate_bbox(pt: Point, bbox: Bbox) {
   bbox.minX = Math.min(pt.x, bbox.minX);
@@ -10,12 +10,6 @@ function accumulate_bbox(pt: Point, bbox: Bbox) {
 }
 
 // XXX use this to replace util.trivBbox
-function new_bbox(): Bbox {
-  return {
-    minX: Number.MAX_VALUE, minY: Number.MAX_VALUE,
-    maxX: Number.MIN_VALUE, maxY: Number.MIN_VALUE
-  };
-}
 
 // adapted from http://bost.ocks.org/mike/simplify/simplify.js
 
@@ -28,7 +22,7 @@ function new_bbox(): Bbox {
 
 export function simplify_arc(arc: Arc) {
   simplify(arc.points);
-  var bbox = new_bbox();
+  var bbox = trivBbox();
   arc.bbox = bbox;
   arc.points.forEach(pt => { accumulate_bbox(pt.point, bbox); });
 }
@@ -154,7 +148,7 @@ function minHeap() {
 }
 
 export function compute_bbox(object: Poly, arcs: Dict<Arc>) {
-  const bbox = object.bbox = new_bbox();
+  const bbox = object.bbox = trivBbox();
   _.each(object.arcs, spec => {
     let arc_bbox = getArc(arcs, spec).bbox;
     accumulate_bbox({ x: arc_bbox.minX, y: arc_bbox.minY }, bbox);

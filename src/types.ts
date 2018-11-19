@@ -81,7 +81,7 @@ export type Label = {
 };
 
 export type RawPoly = {
-  arcs: string[], // arc names, really
+  arcs: ArcSpec[], // arc names, really
   properties: PolyProps,
 };
 

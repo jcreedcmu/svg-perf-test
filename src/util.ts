@@ -101,7 +101,7 @@ export function unrawOfArc(name: string, arc: RawArc): Arc {
 
 export function rawOfPoly(poly: Poly): RawPoly {
   return {
-    arcs: poly.arcs.map(x => x.id),
+    arcs: poly.arcs,
     properties: poly.properties,
   };
 }
@@ -130,7 +130,7 @@ export function unrawOfPoly(name: string, poly: RawPoly): Poly {
     name,
     properties: poly.properties,
     bbox: trivBbox(),
-    arcs: poly.arcs.map(s => ({ id: s })),
+    arcs: poly.arcs,
   };
 }
 

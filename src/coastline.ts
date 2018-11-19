@@ -266,7 +266,7 @@ export class CoastlineLayer implements Layer {
     return { x: pt[0], y: pt[1] };
   }
 
-  // inletiant: targets.length >= 1
+  // invariant: targets.length >= 1
   targets_nabes(targets: Target[]): Zpoint[] {
     // XXX what happens if targets is of mixed type ugh
     if (targets[0][0] == "coastline") {
@@ -473,7 +473,7 @@ export class CoastlineLayer implements Layer {
 
         // I can't call adapt here because get_index above relies on the
         // by-reference equality of this inserted point?
-        insertPt(this.vertex_rt, p, { arc: arc_id, point: (new_pt as any) as ArPoint });
+        insertPt(this.vertex_rt, p, { arc: arc_id, point: new_pt.point });
         this.recompute_arc_feature_bbox(arc_id);
       }
       else if (target[0] == "label") {

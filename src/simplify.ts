@@ -1,8 +1,8 @@
 import _ = require('underscore');
-import { Arc, Dict, Poly, Zpoint, Bbox, ArPoint } from './types';
+import { Arc, Dict, Poly, Zpoint, Bbox, Point } from './types';
 import { getArc } from './util';
 
-function accumulate_bbox(pt: ArPoint, bbox: Bbox) {
+function accumulate_bbox(pt: Point, bbox: Bbox) {
   bbox.minx = Math.min(pt.x, bbox.minx);
   bbox.maxx = Math.max(pt.x, bbox.maxx);
   bbox.miny = Math.min(pt.y, bbox.miny);

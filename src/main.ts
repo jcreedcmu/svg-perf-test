@@ -1,4 +1,4 @@
-import { Point, Ctx, Mode, Camera, Rect, Path, ArPoint } from './types';
+import { Point, Ctx, Mode, Camera, Rect, Path } from './types';
 import { Geo, Rivers, Zpoint, Bundle, Layer, ArRectangle, Label } from './types';
 import { Stopper } from './types';
 
@@ -40,7 +40,7 @@ declare var window: any;
 
 // A weird utility function. I probably want to refactor
 // lastz to be real data and not JSON or something.
-function get_snap(lastz: string): ArPoint | null {
+function get_snap(lastz: string): Point | null {
   const last = JSON.parse(lastz);
   // .targets is already making sure that multiple targets returned at
   // this stage are on the same exact point
@@ -389,7 +389,7 @@ class App {
         break;
 
       case "Freehand":
-        let startp: ArPoint = worldp;
+        let startp: Point = worldp;
 
         const spoint = get_snap(this.lastz);
         if (spoint != null)
@@ -661,7 +661,7 @@ class App {
     });
   }
 
-  start_freehand(startp: ArPoint, k: (dragp: Path) => void): void {
+  start_freehand(startp: Point, k: (dragp: Path) => void): void {
     const camera = this.state.camera();
     const path: Zpoint[] = [{ point: startp, z: 1000 }];
     const thresh = FREEHAND_SIMPLIFICATION_FACTOR

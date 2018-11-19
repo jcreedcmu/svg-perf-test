@@ -1,4 +1,4 @@
-import { Point, Zpoint, ArPoint, Camera, Rect, Bbox } from './types';
+import { Point, Zpoint, Camera, Rect, Bbox } from './types';
 import { Arc, RawArc, Poly, RawPoly, Label, RawLabel, ArcSpec, Dict } from './types';
 
 export function clone<T>(x: T): T {
@@ -44,7 +44,7 @@ export function above_simp_thresh(z: number, scale: number): boolean {
   return z > SIMPLIFICATION_FACTOR / (scale * scale);
 }
 
-export function adapt(x: Zpoint): ArPoint {
+export function adapt(x: Zpoint): Point {
   return x.point;
 }
 

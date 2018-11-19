@@ -1,4 +1,4 @@
-import { Mode, Point, Zpoint, ArPoint, ArRectangle, Dict, Ctx, Camera } from './types';
+import { Mode, Point, Zpoint, ArRectangle, Dict, Ctx, Camera } from './types';
 import { Label, RawLabel, Arc, RawArc, Target, Segment, LabelTarget, ArcVertexTarget } from './types';
 import { Poly, RawPoly, RoadProps, PolyProps, Bbox, Layer } from './types';
 import { rawOfArc, unrawOfArc, rawOfPoly, unrawOfPoly, rawOfLabel, unrawOfLabel } from './util';
@@ -51,7 +51,7 @@ function dictOfNamedArray<T extends { name: string }>(ar: T[]): Dict<T> {
   return rv;
 }
 
-function realize_salient(d: Ctx, props: any, camera: Camera, pt: ArPoint) {
+function realize_salient(d: Ctx, props: any, camera: Camera, pt: Point) {
   if (camera.zoom < 2) return;
   // implied:
   //  d.translate(camera.x, camera.y);
@@ -316,7 +316,7 @@ export class CoastlineLayer implements Layer {
     d.lineJoin = "round";
 
     const arcs_to_draw_vertices_for: Zpoint[][] = [];
-    const salients: { props: RoadProps, pt: ArPoint }[] = [];
+    const salients: { props: RoadProps, pt: Point }[] = [];
 
     const baseFeatures = _.sortBy(tsearch(this.rt, world_bbox), x => {
       let z = 0;

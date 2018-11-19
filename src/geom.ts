@@ -1,4 +1,4 @@
-import { Point, Poly, Dict, Arc, Bbox, ArcSpec } from './types';
+import { Point, Poly, Dict, Arc, Bbox, ArcSpec, Segment } from './types';
 import { getArc } from './util';
 
 function bbox_test_with_slack(p: Point, bbox: Bbox, slack: number): boolean {
@@ -6,13 +6,12 @@ function bbox_test_with_slack(p: Point, bbox: Bbox, slack: number): boolean {
     p.x - slack < bbox.maxX && p.y - slack < bbox.maxY);
 }
 
-type Seg = { arc: ArcSpec, ix: number };
 export function find_hit_lines(
   p: Point,
   candidate_features: Poly[],
   arcs: Dict<Arc>,
   slack: number
-): Seg[] {
+): Segment[] {
   // d.save();
   // d.translate(camera.x, camera.y);
   // d.scale(camera.scale(), -camera.scale());
@@ -23,7 +22,7 @@ export function find_hit_lines(
     const feat = candidate_features[i];
     const farcs = feat.arcs;
     for (let j = 0; j < farcs.length; j++) {
-      const arc = getArc(arcs, farcs[j]);
+      const arc = arcs[farcs[j].id];
       const bbox = arc.bbox;
       if (!bbox_test_with_slack(p, bbox, slack))
         continue;
@@ -57,7 +56,7 @@ export function find_hit_lines(
             // d.stroke();
           }
           else {
-            segment_targets.push({ arc: farcs[j], ix: k });
+            segment_targets.push({ arc_id: farcs[j].id, ix: k });
             // d.moveTo(r.x, r.y);
             // d.lineTo(s.x, s.y);
             // d.strokeStyle = "blue";

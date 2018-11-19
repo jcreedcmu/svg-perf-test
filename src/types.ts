@@ -25,7 +25,7 @@ export type Zpoint = { point: Point, z: number };
 // minx, miny, maxx, maxy
 export type ArRectangle = [number, number, number, number];
 
-export type Segment = any;
+export type Segment = { arc_id: string, ix: number };
 
 export type ArcVertexTarget = { arc: string, point: Point };
 export type LabelTarget = string;

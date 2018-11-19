@@ -503,7 +503,7 @@ export class CoastlineLayer implements Layer {
   };
 
   break_segment(segment: Segment, p: Point) {
-    const arc_id = segment.arc;
+    const arc_id = segment.arc_id;
     const arc = this.arcs[arc_id];
 
     const newp: Zpoint = { point: p, z: 1000 };

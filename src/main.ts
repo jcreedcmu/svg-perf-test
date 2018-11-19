@@ -334,7 +334,7 @@ class App {
           worldp, candidate_features, coastline_layer.arcs, slack
         );
         if (hit_lines.length == 1) {
-          this.selection = { arc: hit_lines[0].arc.id };
+          this.selection = { arc: hit_lines[0].arc_id };
         }
         else {
           this.selection = null;
@@ -379,9 +379,9 @@ class App {
             worldp, candidate_features, coastline_layer.arcs, slack
           );
           if (hit_lines.length == 1) {
-            const arc_id = hit_lines[0].arc;
+            const arc_id = hit_lines[0].arc_id;
             const ix = hit_lines[0].ix;
-            const arc = getArc(coastline_layer.arcs, arc_id).points;
+            const arc = coastline_layer.arcs[arc_id].points;
             this.start_drag(worldp, [arc[ix], arc[ix + 1]], (dragp: Point) => {
               coastline_layer.break_segment(hit_lines[0], dragp);
             });

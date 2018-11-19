@@ -85,7 +85,7 @@ class App {
   panning: boolean = false;
   data: Data; // Probably want to eventually get rid of this
   mouse: Point = { x: 0, y: 0 };
-  g_selection: { arc?: string } | null = null;
+  selection: { arc?: string } | null = null;
   state = new State(); // really this is camera state
   th: Throttler;
 
@@ -231,14 +231,14 @@ class App {
         (this.render_extra)(camera, d);
       }
 
-      if (this.g_selection) {
+      if (this.selection) {
         d.save();
         d.translate(camera.x, camera.y);
         d.scale(cscale(camera), -cscale(camera));
-        if (this.g_selection.arc) {
+        if (this.selection.arc) {
           d.lineWidth = 2 / cscale(camera);
           d.strokeStyle = "#0ff";
-          this.coastline_layer.draw_selected_arc(d, this.g_selection.arc);
+          this.coastline_layer.draw_selected_arc(d, this.selection.arc);
         }
         d.restore();
       }
@@ -331,10 +331,10 @@ class App {
           worldp, candidate_features, coastline_layer.arcs, slack
         );
         if (hit_lines.length == 1) {
-          this.g_selection = { arc: hit_lines[0].arc.id };
+          this.selection = { arc: hit_lines[0].arc.id };
         }
         else {
-          this.g_selection = null;
+          this.selection = null;
         }
         this.render();
         break;
@@ -405,6 +405,7 @@ class App {
 
   handleKey(e: JQuery.Event<Document, null>) {
     const { image_layer, coastline_layer, sketch_layer } = this;
+
     // Disable key event handling if modal is up
     const modals = $(".modal");
     if (modals.filter(function(ix, e) { return $(e).css("display") == "block" }).length)
@@ -430,8 +431,6 @@ class App {
       this.render();
     }
     if (k == "<space>") {
-      //    const old_mode = g_mode;
-      //    g_mode = "Pan";
       $(document).off('keydown');
       const stop_at = this.start_pan_and_stop(this.mouse.x, this.mouse.y, this.state.camera());
       $(document).on('keyup.holdspace', e => {
@@ -528,9 +527,6 @@ class App {
       if (org.y > 0) { this.state.inc_origin(0, -PANNING_MARGIN); stale = true; }
       if (org.x < -2 * PANNING_MARGIN) { this.state.inc_origin(PANNING_MARGIN, 0); stale = true; }
       if (org.y < -2 * PANNING_MARGIN) { this.state.inc_origin(0, PANNING_MARGIN); stale = true; }
-
-      // if (g_origin.y > 0) { g_origin.y -= PANNING_MARGIN; stale = true;
-      // 			  state.inc_cam(0, PANNING_MARGIN); }
 
       if (stale) {
         this.render();

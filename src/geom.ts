@@ -2,8 +2,8 @@ import { Point, Poly, Dict, Arc, Bbox, ArcSpec } from './types';
 import { getArc } from './util';
 
 function bbox_test_with_slack(p: Point, bbox: Bbox, slack: number): boolean {
-  return (p.x + slack > bbox.minx && p.y + slack > bbox.miny &&
-    p.x - slack < bbox.maxx && p.y - slack < bbox.maxy);
+  return (p.x + slack > bbox.minX && p.y + slack > bbox.minY &&
+    p.x - slack < bbox.maxX && p.y - slack < bbox.maxY);
 }
 
 type Seg = { arc: ArcSpec, ix: number };

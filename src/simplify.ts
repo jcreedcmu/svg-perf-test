@@ -3,17 +3,17 @@ import { Arc, Dict, Poly, Zpoint, Bbox, Point } from './types';
 import { getArc } from './util';
 
 function accumulate_bbox(pt: Point, bbox: Bbox) {
-  bbox.minx = Math.min(pt.x, bbox.minx);
-  bbox.maxx = Math.max(pt.x, bbox.maxx);
-  bbox.miny = Math.min(pt.y, bbox.miny);
-  bbox.maxy = Math.max(pt.y, bbox.maxy);
+  bbox.minX = Math.min(pt.x, bbox.minX);
+  bbox.maxX = Math.max(pt.x, bbox.maxX);
+  bbox.minY = Math.min(pt.y, bbox.minY);
+  bbox.maxY = Math.max(pt.y, bbox.maxY);
 }
 
 // XXX use this to replace util.trivBbox
-function new_bbox() {
+function new_bbox(): Bbox {
   return {
-    minx: Number.MAX_VALUE, miny: Number.MAX_VALUE,
-    maxx: Number.MIN_VALUE, maxy: Number.MIN_VALUE
+    minX: Number.MAX_VALUE, minY: Number.MAX_VALUE,
+    maxX: Number.MIN_VALUE, maxY: Number.MIN_VALUE
   };
 }
 
@@ -157,7 +157,7 @@ export function compute_bbox(object: Poly, arcs: Dict<Arc>) {
   const bbox = object.bbox = new_bbox();
   _.each(object.arcs, spec => {
     let arc_bbox = getArc(arcs, spec).bbox;
-    accumulate_bbox({ x: arc_bbox.minx, y: arc_bbox.miny }, bbox);
-    accumulate_bbox({ x: arc_bbox.maxx, y: arc_bbox.maxy }, bbox);
+    accumulate_bbox({ x: arc_bbox.minX, y: arc_bbox.minY }, bbox);
+    accumulate_bbox({ x: arc_bbox.maxX, y: arc_bbox.maxY }, bbox);
   });
 }

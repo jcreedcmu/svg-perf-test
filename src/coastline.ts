@@ -8,12 +8,12 @@ import { colors } from './colors';
 import * as simplify from './simplify';
 import * as rbush from 'rbush';
 import { draw_label } from './labels';
-import BBox = rbush.BBox;
+
 import RBush = rbush.RBush;
 
 import _ = require('underscore');
 
-type Bush<T> = RBush<BBox & { payload: T }>;
+type Bush<T> = RBush<Bbox & { payload: T }>;
 
 function tsearch<T>(rt: Bush<T>, bbox: ArRectangle): T[] {
   return rt.search({
@@ -168,9 +168,9 @@ function realize_path(d: Ctx, props: PolyProps, camera: Camera) {
       const feature_bbox = (<{ bbox: Bbox }>props).bbox;
       const lw = d.lineWidth = 3.0 / scale;
       d.strokeStyle = "#f0f";
-      d.strokeRect(feature_bbox.minx - lw, feature_bbox.miny - lw,
-        feature_bbox.maxx - feature_bbox.minx + lw * 2,
-        feature_bbox.maxy - feature_bbox.miny + lw * 2);
+      d.strokeRect(feature_bbox.minX - lw, feature_bbox.minY - lw,
+        feature_bbox.maxX - feature_bbox.minX + lw * 2,
+        feature_bbox.maxY - feature_bbox.minY + lw * 2);
     }
   }
 }
@@ -217,7 +217,7 @@ export class CoastlineLayer implements Layer {
     _.each(features, (object, key) => {
       simplify.compute_bbox(object, arcs);
       const bb = object.bbox;
-      this.rt.insert({ minX: bb.minx, minY: bb.miny, maxX: bb.maxx, maxY: bb.maxy, payload: object });
+      this.rt.insert({ minX: bb.minX, minY: bb.minY, maxX: bb.maxX, maxY: bb.maxY, payload: object });
     });
 
     _.each(features, (object, feature_ix) => {
@@ -357,12 +357,12 @@ export class CoastlineLayer implements Layer {
         if (DEBUG_BBOX) {
           d.lineWidth = 1.5 / scale;
           d.strokeStyle = colors.debug;
-          d.strokeRect(arc_bbox.minx, arc_bbox.miny,
-            arc_bbox.maxx - arc_bbox.minx,
-            arc_bbox.maxy - arc_bbox.miny);
+          d.strokeRect(arc_bbox.minX, arc_bbox.minY,
+            arc_bbox.maxX - arc_bbox.minX,
+            arc_bbox.maxY - arc_bbox.minY);
         }
 
-        const rect_intersect = world_bbox[0] < arc_bbox.maxx && world_bbox[2] > arc_bbox.minx && world_bbox[3] > arc_bbox.miny && world_bbox[1] < arc_bbox.maxy;
+        const rect_intersect = world_bbox[0] < arc_bbox.maxX && world_bbox[2] > arc_bbox.minX && world_bbox[3] > arc_bbox.minY && world_bbox[1] < arc_bbox.maxY;
 
         if (this_arc.length < 2) {
           throw "arc " + spec + " must have at least two points";
@@ -444,11 +444,11 @@ export class CoastlineLayer implements Layer {
       let object = this.features[feature_ix];
       let bb = object.bbox;
       this.rt.remove(
-        { minX: bb.minx, minY: bb.miny, maxX: bb.maxx, maxY: bb.maxy, payload: object },
+        { minX: bb.minX, minY: bb.minY, maxX: bb.maxX, maxY: bb.maxY, payload: object },
         (a, b) => a.payload == b.payload
       );
       simplify.compute_bbox(object, this.arcs);
-      this.rt.insert({ minX: bb.minx, minY: bb.miny, maxX: bb.maxx, maxY: bb.maxy, payload: object });
+      this.rt.insert({ minX: bb.minX, minY: bb.minY, maxX: bb.maxX, maxY: bb.maxY, payload: object });
     });
   }
 
@@ -575,7 +575,7 @@ export class CoastlineLayer implements Layer {
 
   newArc(name: string, points: Zpoint[]): Arc {
     // maybe compute bbox here?
-    const bbox: Bbox = { minx: 1e9, miny: 1e9, maxx: -1e9, maxy: -1e9 };
+    const bbox: Bbox = { minX: 1e9, minY: 1e9, maxX: -1e9, maxY: -1e9 };
     return { name, points, bbox };
   }
 
@@ -602,7 +602,7 @@ export class CoastlineLayer implements Layer {
     // ugh... the calls to simplify.compute_bbox statefully creates this
     const bb = feature.bbox;
     this.rt.insert({
-      minX: bb.minx, minY: bb.miny, maxX: bb.maxx, maxY: bb.maxy,
+      minX: bb.minX, minY: bb.minY, maxX: bb.maxX, maxY: bb.maxY,
       payload: feature
     });
 

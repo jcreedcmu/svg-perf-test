@@ -2,6 +2,7 @@ export type Dict<T> = { [k: string]: T };
 export type Point = { x: number, y: number };
 export type Color = { r: number, g: number, b: number };
 export type Ctx = CanvasRenderingContext2D;
+import * as rbush from 'rbush';
 
 export type Mode = "Pan" | "Freehand" | "Move" | "Select" | "Label" | "Measure";
 export interface Camera {
@@ -36,12 +37,7 @@ export type Image = {
   y: number
 };
 
-export type Bbox = {
-  minx: number,
-  miny: number,
-  maxx: number,
-  maxy: number,
-};
+export type Bbox = rbush.BBox;
 
 export type RawArc = {
   points: ArPoint[],

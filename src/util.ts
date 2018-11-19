@@ -91,7 +91,7 @@ export function unrawOfArc(name: string, arc: RawArc): Arc {
   const { points } = arc;
   return {
     name,
-    bbox: { minx: 1e9, miny: 1e9, maxx: -1e9, maxy: -1e9 },
+    bbox: { minX: 1e9, minY: 1e9, maxX: -1e9, maxY: -1e9 },
     points: points.map(p => {
       const z: Zpoint = { point: { x: p[0], y: p[1] }, z: 1e9 };
       return z;
@@ -122,7 +122,7 @@ export function rawOfLabel(label: Label): RawLabel {
 }
 
 export function trivBbox(): Bbox {
-  return { minx: 1e9, miny: 1e9, maxx: -1e9, maxy: -1e9 };
+  return { minX: 1e9, minY: 1e9, maxX: -1e9, maxY: -1e9 };
 }
 
 export function unrawOfPoly(name: string, poly: RawPoly): Poly {

@@ -482,26 +482,6 @@ export class CoastlineLayer implements Layer {
     });
   }
 
-  add_vert_to_arc(arc_id: string, p: Point) {
-    const arc = this.arcs[arc_id];
-    const len = arc.points.length;
-    const oldp = arc.points[len - 1];
-    const op = oldp.point;
-
-    arc.points[len - 1] = { point: p, z: 1000 };
-    arc.points[len] = oldp;
-    simplify.simplify_arc(arc);
-
-    const results = removePt(this.vertex_rt, op);
-
-    // XXX these are all wrong now
-    insertPt(this.vertex_rt, p, [arc_id, len - 1] as any);
-    insertPt(this.vertex_rt, op, [arc_id, len] as any);
-    insertPt(this.vertex_rt, op, [arc_id, 0] as any);
-
-    this.recompute_arc_feature_bbox(arc_id);
-  };
-
   break_segment(segment: Segment, p: Point) {
     const arc_id = segment.arc_id;
     const arc = this.arcs[arc_id];

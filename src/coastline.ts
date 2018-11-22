@@ -1,19 +1,16 @@
-import { Mode, Point, Zpoint, ArRectangle, Dict, Ctx, Camera } from './types';
+import { ArcStore } from './arcstore';
+import { Mode, Point, Zpoint, ArRectangle, Dict, Ctx, Camera, Bush } from './types';
 import { Label, RawLabel, Arc, RawArc, Target, Segment, LabelTarget, ArcVertexTarget } from './types';
 import { Poly, RawPoly, RoadProps, PolyProps, Bbox, Layer } from './types';
 import { rawOfArc, unrawOfArc, rawOfPoly, unrawOfPoly, rawOfLabel, unrawOfLabel } from './util';
 import { adapt, cscale, vmap, vkmap, trivBbox } from './util';
-import { clone, above_simp_thresh, getArc } from './util';
+import { clone, above_simp_thresh, getArc, insertPt, removePt } from './util';
 import { colors } from './colors';
 import * as simplify from './simplify';
 import * as rbush from 'rbush';
 import { draw_label } from './labels';
 
-import RBush = rbush.RBush;
-
 import _ = require('underscore');
-
-type Bush<T> = RBush<Bbox & { payload: T }>;
 
 function tsearch<T>(rt: Bush<T>, bbox: ArRectangle): T[] {
   return rt.search({
@@ -22,23 +19,6 @@ function tsearch<T>(rt: Bush<T>, bbox: ArRectangle): T[] {
     maxX: bbox[2],
     maxY: bbox[3]
   }).map(x => x.payload);
-}
-
-function insertPt<T>(rt: Bush<T>, pt: Point, payload: T): void {
-  rt.insert({
-    minX: pt.x, maxX: pt.x,
-    minY: pt.y, maxY: pt.y,
-    payload
-  });
-}
-
-function removePt<T>(rt: Bush<T>, pt: Point): void {
-  rt.search({
-    minX: pt.x, maxX: pt.x,
-    minY: pt.y, maxY: pt.y,
-  }).forEach(res => {
-    rt.remove(res);
-  });
 }
 
 let DEBUG_BBOX = false;
@@ -180,62 +160,32 @@ function set_value(e: HTMLElement, v: string): void {
 }
 
 export class CoastlineLayer implements Layer {
+  arcStore: ArcStore;
   counter: number;
-  features: Dict<Poly>;
-  arcs: Dict<Arc>;
   labels: Dict<Label>;
-  rt: Bush<Poly>;
-  vertex_rt: Bush<ArcVertexTarget>;
   label_rt: Bush<LabelTarget>;
-  arc_to_feature: Dict<string[]> = {};
 
-  constructor(arcs: Dict<RawArc>, polys: Dict<RawPoly>, labels: Dict<RawLabel>, counter: number) {
+  constructor(arcStore: ArcStore, labels: Dict<RawLabel>, counter: number) {
+    this.arcStore = arcStore;
     this.counter = counter;
-    this.features = vkmap(polys, unrawOfPoly);
-    this.arcs = vkmap(arcs, unrawOfArc);
     this.labels = vkmap(labels, unrawOfLabel);
     this.rebuild();
   }
 
   rebuild() {
-    this.rt = rbush(10);
-    this.vertex_rt = rbush(10);
+    this.arcStore.rebuild();
     this.label_rt = rbush(10);
-    const { features, arc_to_feature, arcs, labels } = this;
-
-    Object.entries(arcs).forEach(([an, arc]) => {
-      arc.points.forEach(({ point }, pn) => {
-        insertPt(this.vertex_rt, point, { arc: an, point });
-      });
-      simplify.simplify_arc(arc);
-    });
-
-    Object.entries(labels).forEach(([k, p]) => {
+    Object.entries(this.labels).forEach(([k, p]) => {
       insertPt(this.label_rt, p.pt, p.name);
-    });
-
-    _.each(features, (object, key) => {
-      simplify.compute_bbox(object, arcs);
-      const bb = object.bbox;
-      this.rt.insert({ ...bb, payload: object });
-    });
-
-    _.each(features, (object, feature_ix) => {
-      _.each(object.arcs, arc_spec => {
-        const id = arc_spec.id;
-        if (!arc_to_feature[id])
-          arc_to_feature[id] = [];
-        arc_to_feature[id].push(feature_ix);
-      });
     });
   }
 
   arc_targets(world_bbox: ArRectangle): Poly[] {
-    return tsearch(this.rt, world_bbox);
+    return tsearch(this.arcStore.rt, world_bbox);
   }
 
   arc_vertex_targets(world_bbox: ArRectangle): ArcVertexTarget[] {
-    const targets = tsearch(this.vertex_rt, world_bbox);
+    const targets = tsearch(this.arcStore.vertex_rt, world_bbox);
 
     if (targets.length < 2) return targets;
 
@@ -269,13 +219,13 @@ export class CoastlineLayer implements Layer {
   targets_nabes(targets: Target[]): Zpoint[] {
     // XXX what happens if targets is of mixed type ugh
     if (targets[0][0] == "coastline") {
-      const neighbors: Zpoint[] = [];
+      const neighbors: Zpoint[] = []; // XXX could this be just Point instead?
 
       targets.forEach(target => {
         if (target[0] == "coastline") {
           let ctarget = target[1];
-          let ix = this.get_index(ctarget);
-          let arc_points = this.arcs[ctarget.arc].points;
+          let ix = this.arcStore.get_index(ctarget);
+          let arc_points = this.arcStore.getPoints(ctarget.arc);
           if (ix > 0) neighbors.push(arc_points[ix - 1]);
           if (ix < arc_points.length - 1) neighbors.push(arc_points[ix + 1]);
         }
@@ -296,21 +246,12 @@ export class CoastlineLayer implements Layer {
     return ([] as Target[]).concat(arcts, labts);
   }
 
-  get_index(target: ArcVertexTarget) {
-    const arc = this.arcs[target.arc].points;
-    for (let i = 0; i < arc.length; i++) {
-      if (arc[i].point == target.point)
-        return i;
-    }
-    throw ("Can't find " + JSON.stringify(target.point) + " in " + JSON.stringify(arc))
-  }
-
   render(d: Ctx, camera: Camera, mode: Mode, world_bbox: ArRectangle) {
     const scale = cscale(camera);
     const arcs_to_draw_vertices_for: Zpoint[][] = [];
     const salients: { props: RoadProps, pt: Point }[] = [];
 
-    const baseFeatures = _.sortBy(tsearch(this.rt, world_bbox), x => {
+    const baseFeatures = _.sortBy(tsearch(this.arcStore.rt, world_bbox), x => {
       let z = 0;
       const p: PolyProps = x.properties;
       if (p.t == "natural" && p.natural == "lake") z = 1;
@@ -338,19 +279,18 @@ export class CoastlineLayer implements Layer {
       d.lineJoin = "round";
       _.each(features, object => {
         const arc_spec_list = object.arcs;
-        const arcs = this.arcs;
 
         d.lineWidth = 0.9 / scale;
         d.beginPath();
 
-        const first_point = getArc(arcs, arc_spec_list[0]).points[0].point;
+        const first_point = this.arcStore.getArc(arc_spec_list[0]).points[0].point;
         d.moveTo(first_point.x, first_point.y);
 
         let curpoint = first_point;
         let n = 0;
 
         arc_spec_list.forEach(spec => {
-          const arc = getArc(arcs, spec);
+          const arc = this.arcStore.getArc(spec);
           let this_arc = arc.points;
           let arc_bbox = arc.bbox;
           if (DEBUG_BBOX) {
@@ -448,40 +388,11 @@ export class CoastlineLayer implements Layer {
     });
   }
 
-  recompute_arc_feature_bbox(arc_id: string) {
-
-    this.arc_to_feature[arc_id].forEach((feature_ix: string) => {
-      let object = this.features[feature_ix];
-      let bb = object.bbox;
-      this.rt.remove(
-        { ...bb, payload: object },
-        (a, b) => a.payload == b.payload
-      );
-      simplify.compute_bbox(object, this.arcs);
-      this.rt.insert({ ...bb, payload: object });
-    });
-  }
-
   // special case first and last of arc??
   replace_vert(targets: Target[], p: Point) {
     targets.forEach(target => {
       if (target[0] == "coastline") {
-        const rt_entry = target[1];
-
-        const arc_id = rt_entry.arc;
-
-        const vert_ix = this.get_index(rt_entry);
-        const arc = this.arcs[arc_id];
-        const oldp = rt_entry.point;
-
-        // I think this 1000 can be whatever
-        const new_pt = arc.points[vert_ix] = { point: p, z: 1000 };
-
-        simplify.simplify_arc(arc);
-        const results = removePt(this.vertex_rt, oldp);
-
-        insertPt(this.vertex_rt, p, { arc: arc_id, point: new_pt.point });
-        this.recompute_arc_feature_bbox(arc_id);
+        this.arcStore.replace_vertex(target[1], p);
       }
       else if (target[0] == "label") {
         const lab = this.labels[target[1]];
@@ -492,38 +403,24 @@ export class CoastlineLayer implements Layer {
     });
   }
 
-  break_segment(segment: Segment, p: Point) {
-    const arc_id = segment.arc_id;
-    const arc = this.arcs[arc_id];
-
-    const newp: Zpoint = { point: p, z: 1000 };
-    arc.points.splice(segment.ix + 1, 0, newp);
-    simplify.simplify_arc(arc);
-
-    insertPt(this.vertex_rt, p, { arc: arc_id, point: newp.point });
-    this.recompute_arc_feature_bbox(arc_id);
-  };
-
   model(): {
     counter: number,
     polys: Dict<RawPoly>,
     arcs: Dict<RawArc>,
     labels: Dict<RawLabel>,
   } {
-    const polys: Dict<RawPoly> = vmap(this.features, rawOfPoly);
-    const arcs: Dict<RawArc> = vmap(this.arcs, rawOfArc);
+
     const labels: Dict<RawLabel> = vmap(this.labels, rawOfLabel);
     return {
       counter: this.counter,
-      polys,
-      arcs,
+      ...this.arcStore.model(),
       labels,
     };
   }
 
   draw_selected_arc(d: Ctx, arc_id: string) {
     d.beginPath();
-    this.arcs[arc_id].points.forEach(({ point: pt }, n) => {
+    this.arcStore.getPoints(arc_id).forEach(({ point: pt }, n) => {
       if (n == 0)
         d.moveTo(pt.x, pt.y)
       else
@@ -533,10 +430,11 @@ export class CoastlineLayer implements Layer {
   }
 
   filter() {
-    _.each(this.features, obj => {
+    this.arcStore.forFeatures((k, obj) => {
       if (obj.properties.t == "natural" && obj.properties.natural == "mountain") {
         // strip out collinearish points
-        const arc = getArc(this.arcs, obj.arcs[0]);
+        const arc = this.arcStore.getArc(obj.arcs[0]);
+        // XXX shouldn't mutate directly like this
         arc.points = arc.points.filter(({ point: p, z }, n) => {
           return n == 0 || n == arc.points.length - 1 || z > 1000000;
         });
@@ -563,73 +461,49 @@ export class CoastlineLayer implements Layer {
     this.labels[lab.name] = lab;
   }
 
-  newArc(name: string, points: Zpoint[]): Arc {
-    // maybe compute bbox here?
-    const bbox: Bbox = trivBbox();
-    return { name, points, bbox };
-  }
-
   add_arc_feature(t: string, points: Zpoint[], properties: PolyProps) {
-
     const feature_name = "f" + this.counter;
     const arc_name = "a" + this.counter;
     this.counter++;
-    const arc: Arc = this.arcs[arc_name] = this.newArc(arc_name, points);
-    const feature: Poly = this.features[feature_name] =
-      {
-        name: feature_name,
-        arcs: [{ id: arc_name }],
-        properties: properties,
-        bbox: trivBbox(),
-      };
-    simplify.simplify_arc(arc);
-    simplify.compute_bbox(feature, this.arcs);
-
-    _.each(arc.points, ({ point }, pn) => {
-      insertPt(this.vertex_rt, point, { arc: arc_name, point });
-    });
-
-    // ugh... the calls to simplify.compute_bbox statefully creates this
-    const bb = feature.bbox;
-    this.rt.insert({ ...bb, payload: feature });
-
-    const arc_to_feature = this.arc_to_feature;
-    if (!arc_to_feature[arc_name])
-      arc_to_feature[arc_name] = [];
-    arc_to_feature[arc_name].push(feature_name);
+    const arc: Arc = this.arcStore.addArc(arc_name, points);
+    this.arcStore.addFeature(feature_name, [{ id: arc_name }], properties);
   }
 
   breakup() {
-    _.each(this.arcs, (v: any, k) => {
-      if (v.points.length > 200) {
-        const num_chunks = Math.ceil(v.points.length / 200);
+    this.arcStore.forArcs((name, arc) => {
+      if (arc.points.length > 200) {
+        const num_chunks = Math.ceil(arc.points.length / 200);
         const cut_positions = [0];
         for (let i = 0; i < num_chunks - 1; i++) {
-          cut_positions.push(Math.floor((i + 1) * (v.points.length / num_chunks)));
+          cut_positions.push(Math.floor((i + 1) * (arc.points.length / num_chunks)));
         }
-        cut_positions.push(v.points.length - 1);
+        cut_positions.push(arc.points.length - 1);
         const replacement_arcs: any[] = [];
         for (let j = 0; j < cut_positions.length - 1; j++) {
-          const arc: Arc = this.newArc(k + "-" + j, []);
+          const points: Zpoint[] = [];
           for (let jj = cut_positions[j]; jj <= cut_positions[j + 1]; jj++) {
-            arc.points.push(clone(v.points[jj]));
+            points.push(clone(arc.points[jj]));
           }
-          this.arcs[arc.name] = arc;
-          replacement_arcs.push(arc.name);
+          const newArc = this.arcStore.addArc(name + "-" + j, points);
+          replacement_arcs.push(newArc.name);
         }
         // Not really sure this still works. this.arc_to_feature[k] is
         // a list of feature names, so I'm arbitrarily picking out the first one
         // by saying [0].
-        const feature_name = this.arc_to_feature[k][0];
-        const feature_arcs = this.features[feature_name].arcs;
-        const ix = _.indexOf(feature_arcs.map(x => x.id), k);
-        if (ix == -1)
-          throw ("couldn't find " + k + " in " + JSON.stringify(feature_arcs));
-        feature_arcs.splice.apply(feature_arcs, [ix, 1].concat(replacement_arcs));
 
-        delete this.arcs[k];
+        // Don't know how to do this anymore???
+        // const feature_name = this.arc_to_feature[name][0];
+        // const feature_arcs = this.features[feature_name].arcs;
+        // const ix = _.indexOf(feature_arcs.map(x => x.id), name);
+        // if (ix == -1)
+        //   throw ("couldn't find " + name + " in " + JSON.stringify(feature_arcs));
+        // feature_arcs.splice.apply(feature_arcs, [ix, 1].concat(replacement_arcs));
+
+        // delete this.arcs[name];
       }
+
     });
+
     this.rebuild();
   }
 
@@ -667,6 +541,4 @@ export class CoastlineLayer implements Layer {
     ($('#insert_feature') as any).modal('show');
     setTimeout(function() { $('#insert_feature input[name="text"]').focus(); }, 500);
   }
-
-
 }

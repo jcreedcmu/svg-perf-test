@@ -1,5 +1,6 @@
 import { Point, Poly, Dict, Arc, Bbox, ArcSpec, Segment } from './types';
 import { getArc } from './util';
+import { ArcStore } from './arcstore';
 
 function bbox_test_with_slack(p: Point, bbox: Bbox, slack: number): boolean {
   return (p.x + slack > bbox.minX && p.y + slack > bbox.minY &&
@@ -9,7 +10,7 @@ function bbox_test_with_slack(p: Point, bbox: Bbox, slack: number): boolean {
 export function find_hit_lines(
   p: Point,
   candidate_features: Poly[],
-  arcs: Dict<Arc>,
+  arcs: ArcStore,
   slack: number
 ): Segment[] {
   // d.save();
@@ -22,7 +23,7 @@ export function find_hit_lines(
     const feat = candidate_features[i];
     const farcs = feat.arcs;
     for (let j = 0; j < farcs.length; j++) {
-      const arc = arcs[farcs[j].id];
+      const arc = arcs.getArc(farcs[j]);
       const bbox = arc.bbox;
       if (!bbox_test_with_slack(p, bbox, slack))
         continue;

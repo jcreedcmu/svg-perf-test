@@ -16,6 +16,7 @@ import { CoastlineLayer } from './coastline';
 import { RiverLayer } from './rivers';
 import { ImageLayer } from './images';
 import { SketchLayer } from './sketch';
+import { ArcStore } from './arcstore';
 
 import * as geom from './geom';
 import * as modal from './modal';
@@ -102,7 +103,8 @@ class App {
     let count = 0;
     const geo: Geo = _data.json.geo;
     const rivers: Rivers = _data.json.rivers;
-    this.coastline_layer = new CoastlineLayer(geo.arcs, geo.polys, geo.labels, geo.counter);
+    const arcStore = new ArcStore(geo.arcs, geo.polys);
+    this.coastline_layer = new CoastlineLayer(arcStore, geo.labels, geo.counter);
     this.image_layer = new ImageLayer(() => this.render(), 0, geo.images);
     this.river_layer = new RiverLayer(rivers);
     this.sketch_layer = new SketchLayer();
@@ -331,7 +333,7 @@ class App {
       case "Select":
         const candidate_features = coastline_layer.arc_targets(bbox);
         const hit_lines = geom.find_hit_lines(
-          worldp, candidate_features, coastline_layer.arcs, slack
+          worldp, candidate_features, coastline_layer.arcStore, slack
         );
         if (hit_lines.length == 1) {
           this.selection = { arc: hit_lines[0].arc_id };
@@ -376,14 +378,14 @@ class App {
         else {
           const candidate_features = coastline_layer.arc_targets(bbox);
           const hit_lines = geom.find_hit_lines(
-            worldp, candidate_features, coastline_layer.arcs, slack
+            worldp, candidate_features, coastline_layer.arcStore, slack
           );
           if (hit_lines.length == 1) {
             const arc_id = hit_lines[0].arc_id;
             const ix = hit_lines[0].ix;
-            const arc = coastline_layer.arcs[arc_id].points;
+            const arc = coastline_layer.arcStore.getPoints(arc_id);
             this.start_drag(worldp, [arc[ix], arc[ix + 1]], (dragp: Point) => {
-              coastline_layer.break_segment(hit_lines[0], dragp);
+              coastline_layer.arcStore.break_segment(hit_lines[0], dragp);
             });
           }
           else
@@ -476,6 +478,7 @@ class App {
       }
     }
     if (k == "S-b") {
+      throw "not supported anymore";
       coastline_layer.breakup();
       this.render();
     }

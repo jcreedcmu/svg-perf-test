@@ -1,6 +1,7 @@
 import _ = require('underscore');
+import { ArcStore } from './arcstore';
 import { Arc, Dict, Poly, Zpoint, Bbox, Point } from './types';
-import { getArc, trivBbox } from './util';
+import { trivBbox } from './util';
 
 function accumulate_bbox(pt: Point, bbox: Bbox) {
   bbox.minX = Math.min(pt.x, bbox.minX);
@@ -147,10 +148,10 @@ function minHeap() {
   };
 }
 
-export function compute_bbox(object: Poly, arcs: Dict<Arc>) {
+export function compute_bbox(object: Poly, arcs: ArcStore) {
   const bbox = object.bbox = trivBbox();
   _.each(object.arcs, spec => {
-    let arc_bbox = getArc(arcs, spec).bbox;
+    let arc_bbox = arcs.getArc(spec).bbox;
     accumulate_bbox({ x: arc_bbox.minX, y: arc_bbox.minY }, bbox);
     accumulate_bbox({ x: arc_bbox.maxX, y: arc_bbox.maxY }, bbox);
   });

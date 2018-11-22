@@ -37,7 +37,7 @@ export type Image = {
   y: number
 };
 
-export type Bbox = rbush.BBox;
+
 
 export type RawArc = {
   points: ArPoint[],
@@ -114,3 +114,8 @@ export interface Layer {
 export type Stopper = (offx: number, offy: number) => void;
 
 export const nonce = "";
+
+// RTree types from rbush
+export type Bbox = rbush.BBox;
+export type RBush<T> = rbush.RBush<T>;
+export type Bush<T> = RBush<Bbox & { payload: T }>;

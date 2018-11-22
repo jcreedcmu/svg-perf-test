@@ -1,4 +1,4 @@
-import { Point, Zpoint, Camera, Rect, Bbox } from './types';
+import { Point, Zpoint, Camera, Rect, Bbox, Bush } from './types';
 import { Arc, RawArc, Poly, RawPoly, Label, RawLabel, ArcSpec, Dict } from './types';
 
 export function clone<T>(x: T): T {
@@ -138,10 +138,28 @@ export function unrawOfPoly(name: string, poly: RawPoly): Poly {
 }
 
 // returning nameless arc data on purpose
+// XXX DEPRECATED in favor of arcstore method
 export function getArc(arcs: Dict<Arc>, spec: ArcSpec) {
   const arc = arcs[spec.id];
   if (spec.rev)
     return { bbox: arc.bbox, points: [...arc.points].reverse() };
   else
     return { bbox: arc.bbox, points: arc.points };
+}
+
+export function insertPt<T>(rt: Bush<T>, pt: Point, payload: T): void {
+  rt.insert({
+    minX: pt.x, maxX: pt.x,
+    minY: pt.y, maxY: pt.y,
+    payload
+  });
+}
+
+export function removePt<T>(rt: Bush<T>, pt: Point): void {
+  rt.search({
+    minX: pt.x, maxX: pt.x,
+    minY: pt.y, maxY: pt.y,
+  }).forEach(res => {
+    rt.remove(res);
+  });
 }

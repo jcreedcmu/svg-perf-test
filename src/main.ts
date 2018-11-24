@@ -643,7 +643,9 @@ class App {
       d.save();
       d.translate((startp.x + dragp.x) / 2 * scale + camera.x,
         (startp.y + dragp.y) / 2 * -scale + camera.y);
-      d.rotate(-Math.atan2(dragp.y - startp.y, dragp.x - startp.x));
+      // this ensures text is always ~right-side-up
+      const extraRotation = (startp.x - dragp.x > 0) ? Math.PI : 0;
+      d.rotate(extraRotation + -Math.atan2(dragp.y - startp.y, dragp.x - startp.x));
 
       d.strokeStyle = "#fff";
       d.lineWidth = 2;

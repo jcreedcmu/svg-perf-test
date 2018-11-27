@@ -1,5 +1,4 @@
 import { Point, Poly, Dict, Arc, Bbox, ArcSpec, Segment } from './types';
-import { getArc } from './util';
 import { ArcStore } from './arcstore';
 
 function bbox_test_with_slack(p: Point, bbox: Bbox, slack: number): boolean {

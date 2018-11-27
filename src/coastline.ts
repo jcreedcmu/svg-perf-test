@@ -4,7 +4,7 @@ import { Label, RawLabel, Arc, RawArc, Target, Segment, LabelTarget, ArcVertexTa
 import { Poly, RawPoly, RoadProps, PolyProps, Bbox, Layer } from './types';
 import { rawOfArc, unrawOfArc, rawOfPoly, unrawOfPoly, rawOfLabel, unrawOfLabel } from './util';
 import { adapt, cscale, vmap, vkmap, trivBbox } from './util';
-import { clone, above_simp_thresh, getArc, insertPt, removePt } from './util';
+import { clone, above_simp_thresh, insertPt, removePt } from './util';
 import { colors } from './colors';
 import * as simplify from './simplify';
 import * as rbush from 'rbush';

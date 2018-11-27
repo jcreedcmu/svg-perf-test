@@ -137,16 +137,6 @@ export function unrawOfPoly(name: string, poly: RawPoly): Poly {
   };
 }
 
-// returning nameless arc data on purpose
-// XXX DEPRECATED in favor of arcstore method
-export function getArc(arcs: Dict<Arc>, spec: ArcSpec) {
-  const arc = arcs[spec.id];
-  if (spec.rev)
-    return { bbox: arc.bbox, points: [...arc.points].reverse() };
-  else
-    return { bbox: arc.bbox, points: arc.points };
-}
-
 export function insertPt<T>(rt: Bush<T>, pt: Point, payload: T): void {
   rt.insert({
     minX: pt.x, maxX: pt.x,

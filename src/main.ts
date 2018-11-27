@@ -3,7 +3,7 @@ import { Geo, Rivers, Zpoint, Bundle, Layer, ArRectangle, Label } from './types'
 import { Stopper } from './types';
 
 import { Loader, Data } from './loader';
-import { clone, cscale, nope, xform, inv_xform, meters_to_string, vdist, getArc } from './util';
+import { clone, cscale, nope, xform, inv_xform, meters_to_string, vdist } from './util';
 import { simplify } from './simplify';
 
 import { colors } from './colors';

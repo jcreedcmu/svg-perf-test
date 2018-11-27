@@ -145,7 +145,7 @@ export class ArcStore {
   get_index(target: ArcVertexTarget) {
     const arc = this.getJustPoints(target.arc);
     for (let i = 0; i < arc.length; i++) {
-      if (arc[i] == target.point)
+      if (arc[i] == target.point) // this by-reference comparison is fundamentally kind of fragile
         return i;
     }
     throw ("Can't find " + JSON.stringify(target.point) + " in " + JSON.stringify(arc))

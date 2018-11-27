@@ -216,16 +216,16 @@ export class CoastlineLayer implements Layer {
   }
 
   // invariant: targets.length >= 1
-  targets_nabes(targets: Target[]): Zpoint[] {
+  targets_nabes(targets: Target[]): Point[] {
     // XXX what happens if targets is of mixed type ugh
     if (targets[0][0] == "coastline") {
-      const neighbors: Zpoint[] = []; // XXX could this be just Point instead?
+      const neighbors: Point[] = []; // XXX could this be just Point instead?
 
       targets.forEach(target => {
         if (target[0] == "coastline") {
           let ctarget = target[1];
           let ix = this.arcStore.get_index(ctarget);
-          let arc_points = this.arcStore.getPoints(ctarget.arc);
+          let arc_points = this.arcStore.getJustPoints(ctarget.arc);
           if (ix > 0) neighbors.push(arc_points[ix - 1]);
           if (ix < arc_points.length - 1) neighbors.push(arc_points[ix + 1]);
         }

@@ -34,6 +34,10 @@ export class ArcStore {
     Object.entries(this.features).forEach(([k, obj]) => f(k, obj));
   }
 
+  getJustPoints(arcName: string): Point[] {
+    return this.arcs[arcName].points.map(x => x.point);
+  }
+
   getPoints(arcName: string): Zpoint[] {
     return this.arcs[arcName].points;
   }

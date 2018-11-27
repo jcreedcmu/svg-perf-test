@@ -384,7 +384,7 @@ class App {
             const arc_id = hit_lines[0].arc_id;
             const ix = hit_lines[0].ix;
             const arc = coastline_layer.arcStore.getPoints(arc_id);
-            this.start_drag(worldp, [arc[ix], arc[ix + 1]], (dragp: Point) => {
+            this.start_drag(worldp, [arc[ix].point, arc[ix + 1].point], (dragp: Point) => {
               coastline_layer.arcStore.break_segment(hit_lines[0], dragp);
             });
           }
@@ -555,7 +555,7 @@ class App {
 
   // The continuation k is what to do when the drag ends. The argument
   // dragp to k is the point we released the drag on.
-  start_drag(startp: Point, neighbors: Zpoint[], k: (dragp: Point) => void) {
+  start_drag(startp: Point, neighbors: Point[], k: (dragp: Point) => void) {
     const camera = this.state.camera();
     let dragp = clone(startp);
     const scale = cscale(camera);
@@ -575,7 +575,7 @@ class App {
       else {
         // ...else, we're moving an arc point. Draw some guides to show
         // how the moved point connects to its neighbors.
-        neighbors.forEach(({ point: nabe }) => {
+        neighbors.forEach(nabe => {
           d.moveTo(nabe.x, nabe.y);
           d.lineTo(dragp.x, dragp.y);
         });

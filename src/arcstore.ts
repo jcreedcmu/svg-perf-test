@@ -27,12 +27,8 @@ export class ArcStore {
     Object.entries(this.features).forEach(([k, obj]) => f(k, obj));
   }
 
-  getJustPoints(arcName: string): Point[] {
+  getPoints(arcName: string): Point[] {
     return this.arcs[arcName].points.map(x => x.point);
-  }
-
-  getPoints(arcName: string): Zpoint[] {
-    return this.arcs[arcName].points;
   }
 
   getArc(spec: ArcSpec) {
@@ -139,7 +135,7 @@ export class ArcStore {
   }
 
   get_index(target: ArcVertexTarget) {
-    const arc = this.getJustPoints(target.arc);
+    const arc = this.getPoints(target.arc);
     for (let i = 0; i < arc.length; i++) {
       if (arc[i] == target.point) // this by-reference comparison is fundamentally kind of fragile
         return i;

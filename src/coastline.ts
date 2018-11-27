@@ -225,7 +225,7 @@ export class CoastlineLayer implements Layer {
         if (target[0] == "coastline") {
           let ctarget = target[1];
           let ix = this.arcStore.get_index(ctarget);
-          let arc_points = this.arcStore.getJustPoints(ctarget.arc);
+          let arc_points = this.arcStore.getPoints(ctarget.arc);
           if (ix > 0) neighbors.push(arc_points[ix - 1]);
           if (ix < arc_points.length - 1) neighbors.push(arc_points[ix + 1]);
         }
@@ -420,7 +420,7 @@ export class CoastlineLayer implements Layer {
 
   draw_selected_arc(d: Ctx, arc_id: string) {
     d.beginPath();
-    this.arcStore.getPoints(arc_id).forEach(({ point: pt }, n) => {
+    this.arcStore.getPoints(arc_id).forEach((pt, n) => {
       if (n == 0)
         d.moveTo(pt.x, pt.y)
       else

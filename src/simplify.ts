@@ -33,7 +33,6 @@ export function resimplify_arc(arc: Arc) {
 
 type Gtri<T> = [T, T, T] & { previous?: Gtri<T>, next?: Gtri<T> };
 type Tri = Gtri<Zpoint>;
-type ArTri = Gtri<Point>;
 
 export function simplify(pts: Point[]): Zpoint[] {
   return resimplify(pts.map(point => ({ point, z: 0 })));

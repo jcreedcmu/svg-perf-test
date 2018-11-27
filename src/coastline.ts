@@ -461,7 +461,7 @@ export class CoastlineLayer implements Layer {
     this.labels[lab.name] = lab;
   }
 
-  add_arc_feature(t: string, points: Zpoint[], properties: PolyProps) {
+  add_arc_feature(t: string, points: Point[], properties: PolyProps) {
     const feature_name = "f" + this.counter;
     const arc_name = "a" + this.counter;
     this.counter++;
@@ -469,7 +469,7 @@ export class CoastlineLayer implements Layer {
     this.arcStore.addFeature(feature_name, [{ id: arc_name }], properties);
   }
 
-  make_insert_feature_modal(pts: Zpoint[], dispatch: () => void) {
+  make_insert_feature_modal(pts: Point[], dispatch: () => void) {
     set_value($('#insert_feature input[name="text"]')[0], "");
     set_value($('#insert_feature input[name="key"]')[0], "road");
     set_value($('#insert_feature input[name="value"]')[0], "highway");

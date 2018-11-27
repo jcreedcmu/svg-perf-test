@@ -19,16 +19,27 @@ function accumulate_bbox(pt: Point, bbox: Bbox) {
 // resulting from removing that point (after first removing all
 // lower-penalty points)
 
-export function simplify_arc(arc: Arc) {
-  simplify(arc.points);
-  var bbox = trivBbox();
-  arc.bbox = bbox;
-  arc.points.forEach(pt => { accumulate_bbox(pt.point, bbox); });
+export function bbox_of_points(pts: Point[]): Bbox {
+  const bb = trivBbox();
+  pts.forEach(pt => { accumulate_bbox(pt, bb) });
+  return bb;
 }
 
-type Tri = [Zpoint, Zpoint, Zpoint] & { previous?: Tri, next?: Tri };
+// XXX deprecate?
+export function resimplify_arc(arc: Arc) {
+  resimplify(arc.points);
+  arc.bbox = bbox_of_points(arc.points.map(pt => pt.point));
+}
 
-export function simplify(polygon: Zpoint[]) {
+type Gtri<T> = [T, T, T] & { previous?: Gtri<T>, next?: Gtri<T> };
+type Tri = Gtri<Zpoint>;
+type ArTri = Gtri<Point>;
+
+export function simplify(pts: Point[]): Zpoint[] {
+  return resimplify(pts.map(point => ({ point, z: 0 })));
+}
+
+export function resimplify(polygon: Zpoint[]): Zpoint[] {
   var heap = minHeap();
   let maxArea = 0;
   let triangle: Tri;

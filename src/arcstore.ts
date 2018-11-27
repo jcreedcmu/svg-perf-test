@@ -5,13 +5,6 @@ import { vkmap, vmap, trivBbox, insertPt, removePt } from './util';
 import * as simplify from './simplify';
 import * as rbush from 'rbush';
 
-
-function newArc(name: string, points: Zpoint[]): Arc {
-  // maybe compute bbox here?
-  const bbox: Bbox = trivBbox();
-  return { name, points, bbox };
-}
-
 export class ArcStore {
   features: Dict<Poly>;
   arcs: Dict<Arc>;
@@ -55,10 +48,13 @@ export class ArcStore {
   }
 
   // MUTATES
-  addArc(name: string, points: Zpoint[]): Arc {
-    const a = newArc(name, points);
-    simplify.simplify_arc(a);
-    Object.entries(a.points).forEach(([pn, { point }]) => {
+  addArc(name: string, points: Point[]): Arc {
+    const a: Arc = {
+      name,
+      points: simplify.simplify(points),
+      bbox: simplify.bbox_of_points(points),
+    };
+    Object.entries(points).forEach(([pn, point]) => {
       insertPt(this.vertex_rt, point, { arc: name, point });
     });
     this.arcs[name] = a;
@@ -71,7 +67,7 @@ export class ArcStore {
       arc.points.forEach(({ point }, pn) => {
         insertPt(this.vertex_rt, point, { arc: an, point });
       });
-      simplify.simplify_arc(arc);
+      simplify.resimplify_arc(arc);
     });
 
     this.forFeatures((key, object) => {
@@ -136,7 +132,7 @@ export class ArcStore {
 
     const newp: Zpoint = { point: p, z: 1000 };
     arc.points.splice(segment.ix + 1, 0, newp);
-    simplify.simplify_arc(arc);
+    simplify.resimplify_arc(arc);
 
     insertPt(this.vertex_rt, p, { arc: arc_id, point: newp.point });
     this.recompute_arc_feature_bbox(arc_id);
@@ -162,7 +158,7 @@ export class ArcStore {
     // I think this 1000 can be whatever
     const new_pt = arc.points[vert_ix] = { point: p, z: 1000 };
 
-    simplify.simplify_arc(arc);
+    simplify.resimplify_arc(arc);
     const results = removePt(this.vertex_rt, oldp);
 
     insertPt(this.vertex_rt, p, { arc: arc_id, point: new_pt.point });

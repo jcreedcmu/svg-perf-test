@@ -4,7 +4,7 @@ import { Stopper } from './types';
 
 import { Loader, Data } from './loader';
 import { clone, cscale, nope, xform, inv_xform, meters_to_string, vdist } from './util';
-import { simplify } from './simplify';
+import { resimplify, simplify } from './simplify';
 
 import { colors } from './colors';
 import { key } from './key';
@@ -474,7 +474,7 @@ class App {
     if (k == "q") {
       const sk = sketch_layer.pop();
       if (sk != null) {
-        coastline_layer.make_insert_feature_modal(sk, () => this.render());
+        coastline_layer.make_insert_feature_modal(sk.map(p => p.point), () => this.render());
       }
     }
     if (k == "S-f") {
@@ -696,7 +696,7 @@ class App {
       const y = e.pageY;
       const worldp = inv_xform(camera, x, y);
       path.push({ point: worldp, z: 1000 });
-      simplify(path);
+      resimplify(path);
       this.th.maybe();
     });
     $(document).on('mouseup.drag', e => {

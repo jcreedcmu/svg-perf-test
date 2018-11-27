@@ -143,9 +143,9 @@ export class ArcStore {
   }
 
   get_index(target: ArcVertexTarget) {
-    const arc = this.getPoints(target.arc); // XXX could this just be Point[] not Zpoint[]?
+    const arc = this.getJustPoints(target.arc);
     for (let i = 0; i < arc.length; i++) {
-      if (arc[i].point == target.point)
+      if (arc[i] == target.point)
         return i;
     }
     throw ("Can't find " + JSON.stringify(target.point) + " in " + JSON.stringify(arc))

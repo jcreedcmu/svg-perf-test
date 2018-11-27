@@ -469,44 +469,6 @@ export class CoastlineLayer implements Layer {
     this.arcStore.addFeature(feature_name, [{ id: arc_name }], properties);
   }
 
-  breakup() {
-    this.arcStore.forArcs((name, arc) => {
-      if (arc.points.length > 200) {
-        const num_chunks = Math.ceil(arc.points.length / 200);
-        const cut_positions = [0];
-        for (let i = 0; i < num_chunks - 1; i++) {
-          cut_positions.push(Math.floor((i + 1) * (arc.points.length / num_chunks)));
-        }
-        cut_positions.push(arc.points.length - 1);
-        const replacement_arcs: any[] = [];
-        for (let j = 0; j < cut_positions.length - 1; j++) {
-          const points: Zpoint[] = [];
-          for (let jj = cut_positions[j]; jj <= cut_positions[j + 1]; jj++) {
-            points.push(clone(arc.points[jj]));
-          }
-          const newArc = this.arcStore.addArc(name + "-" + j, points);
-          replacement_arcs.push(newArc.name);
-        }
-        // Not really sure this still works. this.arc_to_feature[k] is
-        // a list of feature names, so I'm arbitrarily picking out the first one
-        // by saying [0].
-
-        // Don't know how to do this anymore???
-        // const feature_name = this.arc_to_feature[name][0];
-        // const feature_arcs = this.features[feature_name].arcs;
-        // const ix = _.indexOf(feature_arcs.map(x => x.id), name);
-        // if (ix == -1)
-        //   throw ("couldn't find " + name + " in " + JSON.stringify(feature_arcs));
-        // feature_arcs.splice.apply(feature_arcs, [ix, 1].concat(replacement_arcs));
-
-        // delete this.arcs[name];
-      }
-
-    });
-
-    this.rebuild();
-  }
-
   make_insert_feature_modal(pts: Zpoint[], dispatch: () => void) {
     set_value($('#insert_feature input[name="text"]')[0], "");
     set_value($('#insert_feature input[name="key"]')[0], "road");

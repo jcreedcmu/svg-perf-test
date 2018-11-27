@@ -76,3 +76,13 @@ Q: How'd I convert zoom strings to numbers?
 A:
 $ jq 'walk(if type == "object" and .zoom and (.zoom | type) == "string" then (.zoom |= tonumber) else . end) ' \
   data/geo.json  | sponge data/geo.json
+
+=== 2018.11.27
+
+Q: What was the deal with the 'breakup' method that I deleted in
+this commit?
+A: I'm pretty sure it was to automatically break up long arcs into
+shorter ones, back when I was importing the coastline initially. I
+haven't had the chance to test it recently, so I'm just deleting the
+code. It probably should be either in arcstore or an offline batch job
+thing.

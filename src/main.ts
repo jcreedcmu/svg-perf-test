@@ -477,11 +477,6 @@ class App {
         coastline_layer.make_insert_feature_modal(sk, () => this.render());
       }
     }
-    if (k == "S-b") {
-      throw "not supported anymore";
-      coastline_layer.breakup();
-      this.render();
-    }
     if (k == "S-f") {
       coastline_layer.filter();
       this.render();

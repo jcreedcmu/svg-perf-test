@@ -1,4 +1,5 @@
 import { ArcStore } from './arcstore';
+import { LabelStore } from './labelstore';
 import { Mode, Point, Zpoint, ArRectangle, Dict, Ctx, Camera, Bush } from './types';
 import { Label, RawLabel, Arc, RawArc, Target, Segment, LabelTarget, ArcVertexTarget } from './types';
 import { Poly, RawPoly, RoadProps, PolyProps, Bbox, Layer } from './types';
@@ -161,23 +162,18 @@ function set_value(e: HTMLElement, v: string): void {
 
 export class CoastlineLayer implements Layer {
   arcStore: ArcStore;
+  labelStore: LabelStore;
   counter: number;
-  labels: Dict<Label>;
-  label_rt: Bush<LabelTarget>;
 
-  constructor(arcStore: ArcStore, labels: Dict<RawLabel>, counter: number) {
+  constructor(arcStore: ArcStore, labelStore: LabelStore, counter: number) {
     this.arcStore = arcStore;
+    this.labelStore = labelStore;
     this.counter = counter;
-    this.labels = vkmap(labels, unrawOfLabel);
-    this.rebuild();
   }
 
   rebuild() {
     this.arcStore.rebuild();
-    this.label_rt = rbush(10);
-    Object.entries(this.labels).forEach(([k, p]) => {
-      insertPt(this.label_rt, p.pt, p.name);
-    });
+    this.labelStore.rebuild();
   }
 
   arc_targets(world_bbox: ArRectangle): Poly[] {
@@ -202,7 +198,7 @@ export class CoastlineLayer implements Layer {
   }
 
   label_targets(world_bbox: ArRectangle): LabelTarget[] {
-    const targets = tsearch(this.label_rt, world_bbox);
+    const targets = tsearch(this.labelStore.label_rt, world_bbox);
     if (targets.length < 2)
       return targets;
     else
@@ -212,7 +208,7 @@ export class CoastlineLayer implements Layer {
   target_point(target: Target) {
     return target[0] == "coastline" ?
       target[1].point :
-      this.labels[target[1]].pt;
+      this.labelStore.labels[target[1]].pt;
   }
 
   // invariant: targets.length >= 1
@@ -383,8 +379,8 @@ export class CoastlineLayer implements Layer {
     // render labels
     if (camera.zoom < 1) return;
     d.lineJoin = "round";
-    tsearch(this.label_rt, world_bbox).forEach(x => {
-      draw_label(d, camera, this.labels[x]);
+    tsearch(this.labelStore.label_rt, world_bbox).forEach(x => {
+      draw_label(d, camera, this.labelStore.labels[x]);
     });
   }
 
@@ -395,10 +391,7 @@ export class CoastlineLayer implements Layer {
         this.arcStore.replace_vertex(target[1], p);
       }
       else if (target[0] == "label") {
-        const lab = this.labels[target[1]];
-        removePt(this.label_rt, lab.pt);
-        lab.pt = p;
-        insertPt(this.label_rt, lab.pt, target[1]);
+        this.labelStore.replace_vertex(target[1], p);
       }
     });
   }
@@ -410,11 +403,10 @@ export class CoastlineLayer implements Layer {
     labels: Dict<RawLabel>,
   } {
 
-    const labels: Dict<RawLabel> = vmap(this.labels, rawOfLabel);
     return {
       counter: this.counter,
       ...this.arcStore.model(),
-      labels,
+      ...this.labelStore.model(),
     };
   }
 
@@ -443,22 +435,11 @@ export class CoastlineLayer implements Layer {
     this.rebuild();
   }
 
-  add_point_feature(lab: Label) {
-    this.labels[lab.name] = lab;
-    console.log("adding pt " + JSON.stringify(lab), lab.name, { x: lab.pt.x, y: lab.pt.y, w: 0, h: 0 });
-    insertPt(this.label_rt, lab.pt, lab.name);
-  }
-
   new_point_feature(lab: Label) {
     const point_name = "p" + this.counter;
     this.counter++;
     lab.name = point_name;
-    this.add_point_feature(lab);
-  }
-
-  replace_point_feature(lab: Label) {
-    console.log(lab);
-    this.labels[lab.name] = lab;
+    this.labelStore.add_point_feature(lab);
   }
 
   add_arc_feature(t: string, points: Point[], properties: PolyProps) {

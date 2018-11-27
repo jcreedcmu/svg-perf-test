@@ -17,6 +17,7 @@ import { RiverLayer } from './rivers';
 import { ImageLayer } from './images';
 import { SketchLayer } from './sketch';
 import { ArcStore } from './arcstore';
+import { LabelStore } from './labelstore';
 
 import * as geom from './geom';
 import * as modal from './modal';
@@ -104,7 +105,8 @@ class App {
     const geo: Geo = _data.json.geo;
     const rivers: Rivers = _data.json.rivers;
     const arcStore = new ArcStore(geo.arcs, geo.polys);
-    this.coastline_layer = new CoastlineLayer(arcStore, geo.labels, geo.counter);
+    const labelStore = new LabelStore(geo.labels);
+    this.coastline_layer = new CoastlineLayer(arcStore, labelStore, geo.counter);
     this.image_layer = new ImageLayer(() => this.render(), 0, geo.images);
     this.river_layer = new RiverLayer(rivers);
     this.sketch_layer = new SketchLayer();
@@ -193,7 +195,7 @@ class App {
             d.strokeRect(pt.x - 2 * rad, pt.y - 2 * rad, rad * 4, rad * 4);
           }
           else if (bundle[0] == "label") {
-            const pt = this.coastline_layer.labels[bundle[1]].pt;
+            const pt = this.coastline_layer.labelStore.labels[bundle[1]].pt;
             d.beginPath();
             d.fillStyle = "white";
             d.globalAlpha = 0.5;
@@ -349,8 +351,8 @@ class App {
           const z = JSON.parse(this.lastz);
           console.log(this.lastz);
           if (z.length == 1 && z[0][0] == "label") {
-            modal.make_insert_label_modal(worldp, coastline_layer.labels[z[0][1]], obj => {
-              coastline_layer.replace_point_feature(obj);
+            modal.make_insert_label_modal(worldp, coastline_layer.labelStore.labels[z[0][1]], obj => {
+              coastline_layer.labelStore.replace_point_feature(obj);
               this.render();
             });
           }

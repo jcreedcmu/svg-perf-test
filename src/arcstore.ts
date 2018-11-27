@@ -15,8 +15,7 @@ export class ArcStore {
   constructor(arcs: Dict<RawArc>, polys: Dict<RawPoly>) {
     this.features = vkmap(polys, unrawOfPoly);
     this.arcs = vkmap(arcs, unrawOfArc);
-    this.rt = rbush(10);
-    this.vertex_rt = rbush(10);
+    this.rebuild();
   }
 
   forArcs(f: (an: string, arc: Arc) => void) {
@@ -59,6 +58,10 @@ export class ArcStore {
 
   // MUTATES derived
   rebuild() {
+    this.rt = rbush(10);
+    this.vertex_rt = rbush(10);
+
+    // compute arc z-coords and bboxes
     this.forArcs((an, arc) => {
       arc.points.forEach(({ point }, pn) => {
         insertPt(this.vertex_rt, point, { arc: an, point });
@@ -66,12 +69,14 @@ export class ArcStore {
       simplify.resimplify_arc(arc);
     });
 
+    // compute feature bboxes
     this.forFeatures((key, object) => {
       simplify.compute_bbox(object, this);
       const bb = object.bbox;
       this.rt.insert({ ...bb, payload: object });
     });
 
+    // compute reverse mapping from arcs to features
     this.forFeatures((feature_ix, object) => {
       const { arc_to_feature } = this;
       object.arcs.forEach(arc_spec => {

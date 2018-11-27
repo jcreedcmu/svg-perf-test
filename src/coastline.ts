@@ -219,7 +219,7 @@ export class CoastlineLayer implements Layer {
   targets_nabes(targets: Target[]): Point[] {
     // XXX what happens if targets is of mixed type ugh
     if (targets[0][0] == "coastline") {
-      const neighbors: Point[] = []; // XXX could this be just Point instead?
+      const neighbors: Point[] = [];
 
       targets.forEach(target => {
         if (target[0] == "coastline") {

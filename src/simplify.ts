@@ -10,8 +10,6 @@ function accumulate_bbox(pt: Point, bbox: Bbox) {
   bbox.maxY = Math.max(pt.y, bbox.maxY);
 }
 
-// XXX use this to replace util.trivBbox
-
 // adapted from http://bost.ocks.org/mike/simplify/simplify.js
 
 // What simplify really does is take a polygon geojson feature and

@@ -39,7 +39,7 @@ export function simplify(pts: Point[]): Zpoint[] {
 }
 
 export function resimplify(polygon: Zpoint[]): Zpoint[] {
-  var heap = minHeap();
+  var heap = new minHeap();
   let maxArea = 0;
   let triangle: Tri;
 
@@ -101,59 +101,63 @@ function area(t: Tri) {
   return Math.abs((t[0].point.x - t[2].point.x) * (t[1].point.y - t[0].point.y) - (t[0].point.x - t[1].point.x) * (t[2].point.y - t[0].point.y));
 }
 
-function minHeap() {
-  const array: any[] = [];
+class minHeap {
+  array: any[] = [];
 
-  function up(i: any) {
-    var object = array[i];
+  up(i: any) {
+    var object = this.array[i];
     while (i > 0) {
       var up = ((i + 1) >> 1) - 1,
-        parent = array[up];
+        parent = this.array[up];
       if (compare(object, parent) >= 0) break;
-      array[parent.index = i] = parent;
-      array[object.index = i = up] = object;
+      this.array[parent.index = i] = parent;
+      this.array[object.index = i = up] = object;
     }
   }
 
-  function down(i: any) {
-    var object = array[i];
+  down(i: any) {
+    var object = this.array[i];
     while (true) {
       var right = (i + 1) << 1,
         left = right - 1,
         down = i,
-        child = array[down];
-      if (left < array.length && compare(array[left], child) < 0) child = array[down = left];
-      if (right < array.length && compare(array[right], child) < 0) child = array[down = right];
+        child = this.array[down];
+      if (left < this.array.length && compare(this.array[left], child) < 0) child = this.array[down = left];
+      if (right < this.array.length && compare(this.array[right], child) < 0) child = this.array[down = right];
       if (down === i) break;
-      array[child.index = i] = child;
-      array[object.index = i = down] = object;
+      this.array[child.index = i] = child;
+      this.array[object.index = i = down] = object;
     }
   }
 
-  return {
-    push: (arg: any) => {
-      up(arg.index = array.push(arg) - 1);
-      return array.length;
-    },
-    pop: () => {
-      var removed = array[0],
-        object = array.pop();
-      if (array.length) {
-        array[object.index = 0] = object;
-        down(0);
-      }
-      return removed;
-    },
-    remove: (removed: any) => {
-      var i = removed.index,
-        object = array.pop();
-      if (i !== array.length) {
-        array[object.index = i] = object;
-        (compare(object, removed) < 0 ? up : down)(i);
-      }
-      return i;
+  push(arg: any) {
+    this.up(arg.index = this.array.push(arg) - 1);
+    return this.array.length;
+  }
+
+  pop() {
+    var removed = this.array[0],
+      object = this.array.pop();
+    if (this.array.length) {
+      this.array[object.index = 0] = object;
+      this.down(0);
     }
-  };
+    return removed;
+  }
+
+  remove(removed: any) {
+    var i = removed.index,
+      object = this.array.pop();
+    if (i !== this.array.length) {
+      this.array[object.index = i] = object;
+      if (compare(object, removed) < 0)
+        this.up(i);
+      else
+        this.down(i);
+    }
+    return i;
+  }
+
 }
 
 export function compute_bbox(object: Poly, arcs: ArcStore) {

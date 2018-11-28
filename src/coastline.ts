@@ -3,7 +3,7 @@ import { LabelStore } from './labelstore';
 import { Mode, Point, Zpoint, ArRectangle, Dict, Ctx, Camera, Bush } from './types';
 import { Label, RawLabel, Arc, RawArc, Target, Segment, LabelTarget, ArcVertexTarget } from './types';
 import { Poly, RawPoly, RoadProps, PolyProps, Bbox, Layer } from './types';
-import { rawOfArc, unrawOfArc, rawOfPoly, unrawOfPoly, rawOfLabel, unrawOfLabel } from './util';
+import { rawOfArc, unrawOfArc, rawOfPoly, unrawOfPoly, rawOfLabel, unrawOfLabel, nope } from './util';
 import { adapt, cscale, vmap, vkmap, trivBbox } from './util';
 import { clone, above_simp_thresh, insertPt, removePt } from './util';
 import { colors } from './colors';
@@ -92,58 +92,76 @@ function realize_path(d: Ctx, props: PolyProps, camera: Camera) {
   const scale = cscale(camera);
   d.lineWidth = 1.1 / scale;
 
-  if (props.t == "natural") {
-    if (props.natural == "coastline") {
-      d.strokeStyle = colors.water_border;
+  switch (props.t) {
+    case "natural": {
+      if (props.natural == "coastline") {
+        d.strokeStyle = colors.water_border;
+        d.stroke();
+        d.fillStyle = colors.land;
+        if (!DEBUG_BBOX)
+          d.fill();
+      }
+
+      if (props.natural == "lake") {
+        d.strokeStyle = colors.water_border;
+        d.stroke();
+        d.fillStyle = "#bac7f8";
+        if (!DEBUG_BBOX)
+          d.fill();
+      }
+
+      if (props.natural == "mountain") {
+        d.fillStyle = "#b5ab9b";
+        if (!DEBUG_BBOX)
+          d.fill();
+      }
+      break;
+    }
+
+    case "city": {
+      d.fillStyle = "#dbdbab";
+      d.fill();
+      break;
+    }
+
+    case "road": {
+      if (camera.zoom >= 2) {
+        if (props.road == "highway") {
+          d.lineWidth = 1.5 / scale;
+          d.strokeStyle = "#f70";
+          d.stroke();
+        }
+
+        if (props.road == "street") {
+          d.lineWidth = 5 / scale;
+          d.lineCap = "round";
+          d.strokeStyle = "#777";
+          d.stroke();
+        }
+
+        if (props.road == "street2") {
+          d.lineWidth = 4 / scale;
+          d.lineCap = "round";
+          d.strokeStyle = "#fff";
+          d.stroke();
+        }
+      }
+      break;
+    }
+
+    case "boundary": {
+      d.lineWidth = 1 / scale;
+      d.lineCap = "round";
+      d.strokeStyle = "#777";
       d.stroke();
-      d.fillStyle = colors.land;
-      if (!DEBUG_BBOX)
-        d.fill();
+      break;
     }
-
-    if (props.natural == "lake") {
-      d.strokeStyle = colors.water_border;
-      d.stroke();
-      d.fillStyle = "#bac7f8";
-      if (!DEBUG_BBOX)
-        d.fill();
-    }
-
-    if (props.natural == "mountain") {
-      d.fillStyle = "#b5ab9b";
-      if (!DEBUG_BBOX)
-        d.fill();
-    }
+    default:
+      nope(props);
   }
 
-  if (props.t == "city") {
-    d.fillStyle = "#dbdbab";
-    d.fill();
-  }
 
-  if (props.t == "road") {
-    if (camera.zoom >= 2) {
-      if (props.road == "highway") {
-        d.lineWidth = 1.5 / scale;
-        d.strokeStyle = "#f70";
-        d.stroke();
-      }
 
-      if (props.road == "street") {
-        d.lineWidth = 5 / scale;
-        d.lineCap = "round";
-        d.strokeStyle = "#777";
-        d.stroke();
-      }
-
-      if (props.road == "street2") {
-        d.lineWidth = 4 / scale;
-        d.lineCap = "round";
-        d.strokeStyle = "#fff";
-        d.stroke();
-      }
-    }
-  }
   if (DEBUG_BBOX) {
     if ("bbox" in props) {
       const feature_bbox = (<{ bbox: Bbox }>props).bbox;
@@ -255,6 +273,7 @@ export class CoastlineLayer implements Layer {
       if (p.t == "city") z = 1;
       if (p.t == "road" && p.road == "highway") z = 2;
       if (p.t == "road" && p.road == "street") z = 3;
+      if (p.t == "boundary") z = 4;
       return z;
     });
 
@@ -456,23 +475,23 @@ export class CoastlineLayer implements Layer {
     set_value($('#insert_feature input[name="value"]')[0], "highway");
     set_value($('#insert_feature input[name="zoom"]')[0], "");
 
-    const process_f: (obj: PolyProps) => void = obj => {
-      this.add_arc_feature("Polygon", pts, obj);
-    };
-
-    function submit_f(e: JQuery.Event<HTMLElement, null>) {
+    const submit_f = (e: JQuery.Event<HTMLElement, null>) => {
       e.preventDefault();
-      const obj: any = _.object($("#insert_feature form").serializeArray().map(pair =>
-        [pair.name, pair.value]
-      ));
-      if (obj.zoom == null || obj.zoom == "")
-        delete obj.zoom;
-      const k = obj.key;
-      const v = obj.value;
-      delete obj.key;
-      delete obj.value;
-      obj[k] = v;
-      process_f(obj);
+      const obj: { text: string, key: string, value: string, zoom: string } =
+        _.object($("#insert_feature form").serializeArray().map(pair =>
+          [pair.name, pair.value]
+        ));
+
+      // if (obj.zoom == null || obj.zoom == "")
+      //   delete obj.zoom;
+      // const k = obj.key;
+      // const v = obj.value;
+      // delete obj.key;
+      // delete obj.value;
+      //      obj[k] = v;
+
+      const props: PolyProps = { t: "boundary" };
+      this.add_arc_feature("Polygon", pts, props);
       dispatch();
       ($("#insert_feature") as any).modal("hide");
     };

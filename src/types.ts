@@ -67,6 +67,7 @@ export type PolyProps =
     text?: string // not sure if this is used anywhere
   }
   | RoadProps
+  | { t: "boundary" }
   | { t: "city", text: string, zoom?: number }
 
 export type RawLabel = {

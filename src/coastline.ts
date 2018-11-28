@@ -152,7 +152,7 @@ function realize_path(d: Ctx, props: PolyProps, camera: Camera) {
     case "boundary": {
       d.lineWidth = 1 / scale;
       d.lineCap = "round";
-      d.strokeStyle = "#777";
+      d.strokeStyle = "#000";
       d.stroke();
       break;
     }

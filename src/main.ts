@@ -366,11 +366,19 @@ class App {
         break;
 
       case "Move":
-        const targets = coastline_layer.targets(bbox);
+        const pretargets = coastline_layer.targets(bbox);
 
-        if (targets.length >= 1) {
-          // yikes, what happens if I got two or more?? looks like I drag
-          // them all together. Don't want to do that.
+        if (pretargets.length >= 1) {
+          // yikes, what happens if I got two or more?? looks like I
+          // drag them all together. Maybe don't want to do that. On
+          // the other hand, setting pickone to true below causes
+          // problems with the RTrees that cache where vertices are;
+          // if I have more than one vertex sitting in the same place,
+          // I'll incorrectly delete the entry from the rtree if *one*
+          // of the many vertices move away. Ugh, maybe I do want
+          // identity for vertices.
+          const pickone = false;
+          const targets = pickone ? [pretargets[0]] : pretargets;
           const neighbors = coastline_layer.targets_nabes(targets);
 
           this.start_drag(worldp, neighbors, dragp => {

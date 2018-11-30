@@ -9,9 +9,22 @@
     <style>
       body { margin: 0px; }
       [tabindex] { outline: none !important; }
+		#react-root {
+		  position: absolute;
+		  height: 100%;
+		  width: 300px;
+		  z-index: 1000;
+		  right: 0px;
+		  background-color: white;
+		  padding: 20px;
+		}
+		input[type=checkbox] + label{
+		  user-select:none;
+		}
     </style>
   </head>
   <body>
+	 <div id="react-root"></div>
     <canvas id="c" tabindex="0"></canvas>
     <canvas id="overlay"></canvas>
 

@@ -5,11 +5,12 @@
     "noImplicitAny": true,
     "strictNullChecks": true,
     "target": "es6",
+	 "jsx": "react",
     "module": "commonjs",
 	 "lib": ["es2017", "dom", "es2017.object"]
   },
   "files": [
-     "main.ts", "types.ts"
+    "main.ts", "ui.tsx"
   ],
   "exclude": [
 	 "built",

@@ -10,6 +10,7 @@ import { colors } from './colors';
 import * as simplify from './simplify';
 import * as rbush from 'rbush';
 import { draw_label } from './labels';
+import { UIState } from './types';
 
 import _ = require('underscore');
 
@@ -88,7 +89,7 @@ function realize_salient(d: Ctx, props: RoadProps, camera: Camera, pt: Point) {
   }
 }
 
-function realize_path(d: Ctx, props: PolyProps, camera: Camera) {
+function realize_path(d: Ctx, us: UIState, props: PolyProps, camera: Camera) {
   const scale = cscale(camera);
   d.lineWidth = 1.1 / scale;
 
@@ -125,35 +126,39 @@ function realize_path(d: Ctx, props: PolyProps, camera: Camera) {
     }
 
     case "road": {
-      if (camera.zoom >= 2) {
-        if (props.road == "highway") {
-          d.lineWidth = 1.5 / scale;
-          d.strokeStyle = "#f70";
-          d.stroke();
-        }
+      if (us.road) {
+        if (camera.zoom >= 2) {
+          if (props.road == "highway") {
+            d.lineWidth = 1.5 / scale;
+            d.strokeStyle = "#f70";
+            d.stroke();
+          }
 
-        if (props.road == "street") {
-          d.lineWidth = 5 / scale;
-          d.lineCap = "round";
-          d.strokeStyle = "#777";
-          d.stroke();
-        }
+          if (props.road == "street") {
+            d.lineWidth = 5 / scale;
+            d.lineCap = "round";
+            d.strokeStyle = "#777";
+            d.stroke();
+          }
 
-        if (props.road == "street2") {
-          d.lineWidth = 4 / scale;
-          d.lineCap = "round";
-          d.strokeStyle = "#fff";
-          d.stroke();
+          if (props.road == "street2") {
+            d.lineWidth = 4 / scale;
+            d.lineCap = "round";
+            d.strokeStyle = "#fff";
+            d.stroke();
+          }
         }
       }
       break;
     }
 
     case "boundary": {
-      d.lineWidth = 1 / scale;
-      d.lineCap = "round";
-      d.strokeStyle = "#000";
-      d.stroke();
+      if (us.boundary) {
+        d.lineWidth = 1 / scale;
+        d.lineCap = "round";
+        d.strokeStyle = "#000";
+        d.stroke();
+      }
       break;
     }
     default:
@@ -260,7 +265,7 @@ export class CoastlineLayer implements Layer {
     return ([] as Target[]).concat(arcts, labts);
   }
 
-  render(d: Ctx, camera: Camera, mode: Mode, world_bbox: ArRectangle) {
+  render(d: Ctx, us: UIState, camera: Camera, mode: Mode, world_bbox: ArRectangle) {
     const scale = cscale(camera);
     const arcs_to_draw_vertices_for: Zpoint[][] = [];
     const salients: { props: RoadProps, pt: Point }[] = [];
@@ -367,7 +372,7 @@ export class CoastlineLayer implements Layer {
 
           });
         });
-        realize_path(d, object.properties, camera);
+        realize_path(d, us, object.properties, camera);
       });
 
       // draw vertices
@@ -391,9 +396,11 @@ export class CoastlineLayer implements Layer {
 
     // doing this outside the d.save/d.restore because it involves
     // text, which won't want the negative y-transform
-    salients.forEach(salient => {
-      realize_salient(d, salient.props, camera, salient.pt);
-    });
+    if (us.road) {
+      salients.forEach(salient => {
+        realize_salient(d, salient.props, camera, salient.pt);
+      });
+    }
 
     // render labels
     if (camera.zoom < 1) return;

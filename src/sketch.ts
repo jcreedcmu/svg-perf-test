@@ -1,4 +1,4 @@
-import { Mode, Layer, Ctx, Camera, ArRectangle, Zpoint } from './types';
+import { Mode, Layer, Ctx, Camera, ArRectangle, Zpoint, UIState } from './types';
 import { cscale } from './util';
 
 type Path = Zpoint[];
@@ -11,7 +11,7 @@ export class SketchLayer {
     this.sketches = sketches || [];
   }
 
-  render(d: Ctx, camera: Camera, mode: Mode, world_bbox: ArRectangle): void {
+  render(d: Ctx, us: UIState, camera: Camera, mode: Mode, world_bbox: ArRectangle): void {
     var ms = this.sketches;
 
     d.save();

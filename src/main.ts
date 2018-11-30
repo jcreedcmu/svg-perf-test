@@ -1,6 +1,9 @@
+import * as react from 'react';
+import * as ReactDOM from 'react-dom';
+
 import { Point, Ctx, Mode, Camera, Rect, Path } from './types';
 import { Geo, Rivers, Zpoint, Bundle, Layer, ArRectangle, Label } from './types';
-import { Stopper } from './types';
+import { Stopper, UIState } from './types';
 
 import { Loader, Data } from './loader';
 import { clone, cscale, nope, xform, inv_xform, meters_to_string, vdist } from './util';
@@ -21,6 +24,7 @@ import { LabelStore } from './labelstore';
 
 import * as geom from './geom';
 import * as modal from './modal';
+import { renderUi } from './ui';
 
 // These two lines force webpack to believe that the file types.ts is
 // actually used, since otherwise treeshaking or whatever finds out,
@@ -89,6 +93,7 @@ class App {
   mouse: Point = { x: 0, y: 0 };
   selection: { arc?: string } | null = null;
   state = new State(); // really this is camera state
+  uistate: UIState = { road: false, boundary: false };
   th: Throttler;
 
   constructor() {
@@ -170,7 +175,7 @@ class App {
     const world_bbox = this.get_world_bbox(camera);
 
     this.layers.forEach(layer => {
-      layer.render(d, camera, mode, world_bbox);
+      layer.render(d, this.uistate, camera, mode, world_bbox);
     });
 
 
@@ -253,6 +258,12 @@ class App {
 
     d.restore();
     //  console.log(Date.now() - t);
+
+    // render react stuff
+    ReactDOM.render(
+      renderUi(this.uistate, () => { this.render() }),
+      document.getElementById('react-root')
+    );
   }
 
   handleMouseWheel(e: WheelEvent): void {

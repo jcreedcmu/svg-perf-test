@@ -109,7 +109,7 @@ export type River = { geometry: { coordinates: ArPoint[][] } };
 export type Rivers = { features: River[] };
 
 export interface Layer {
-  render(d: Ctx, camera: Camera, mode: Mode, world_bbox: ArRectangle): void;
+  render(d: Ctx, us: UIState, camera: Camera, mode: Mode, world_bbox: ArRectangle): void;
 }
 
 export type Stopper = (offx: number, offy: number) => void;
@@ -120,3 +120,8 @@ export const nonce = "";
 export type Bbox = rbush.BBox;
 export type RBush<T> = rbush.RBush<T>;
 export type Bush<T> = RBush<Bbox & { payload: T }>;
+
+export type UIState = {
+  road: boolean,
+  boundary: boolean,
+};

@@ -19,5 +19,6 @@ export function renderUi(s: UIState, dispatch: () => void): JSX.Element {
   return <div>
     {radio("road", "Road")}
     {radio("boundary", "Boundary")}
+    {radio("river", "River")}
   </div>;
 }

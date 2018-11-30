@@ -9,6 +9,8 @@ export class RiverLayer implements Layer {
   }
 
   render(d: Ctx, us: UIState, camera: Camera, mode: Mode, world_bbox: ArRectangle): void {
+    if (!us.river)
+      return;
     d.save();
     d.translate(camera.x, camera.y);
     d.scale(cscale(camera), -cscale(camera));

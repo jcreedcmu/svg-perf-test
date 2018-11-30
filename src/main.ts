@@ -93,7 +93,11 @@ class App {
   mouse: Point = { x: 0, y: 0 };
   selection: { arc?: string } | null = null;
   state = new State(); // really this is camera state
-  uistate: UIState = { road: false, boundary: false };
+  uistate: UIState = {
+    road: false,
+    boundary: false,
+    river: false,
+  };
   th: Throttler;
 
   constructor() {

@@ -124,4 +124,5 @@ export type Bush<T> = RBush<Bbox & { payload: T }>;
 export type UIState = {
   road: boolean,
   boundary: boolean,
+  river: boolean,
 };

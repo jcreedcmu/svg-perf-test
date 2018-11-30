@@ -126,39 +126,35 @@ function realize_path(d: Ctx, us: UIState, props: PolyProps, camera: Camera) {
     }
 
     case "road": {
-      if (us.road) {
-        if (camera.zoom >= 2) {
-          if (props.road == "highway") {
-            d.lineWidth = 1.5 / scale;
-            d.strokeStyle = "#f70";
-            d.stroke();
-          }
+      if (camera.zoom >= 2) {
+        if (props.road == "highway") {
+          d.lineWidth = 1.5 / scale;
+          d.strokeStyle = "#f70";
+          d.stroke();
+        }
 
-          if (props.road == "street") {
-            d.lineWidth = 5 / scale;
-            d.lineCap = "round";
-            d.strokeStyle = "#777";
-            d.stroke();
-          }
+        if (props.road == "street") {
+          d.lineWidth = 5 / scale;
+          d.lineCap = "round";
+          d.strokeStyle = "#777";
+          d.stroke();
+        }
 
-          if (props.road == "street2") {
-            d.lineWidth = 4 / scale;
-            d.lineCap = "round";
-            d.strokeStyle = "#fff";
-            d.stroke();
-          }
+        if (props.road == "street2") {
+          d.lineWidth = 4 / scale;
+          d.lineCap = "round";
+          d.strokeStyle = "#fff";
+          d.stroke();
         }
       }
       break;
     }
 
     case "boundary": {
-      if (us.boundary) {
-        d.lineWidth = 1 / scale;
-        d.lineCap = "round";
-        d.strokeStyle = "#000";
-        d.stroke();
-      }
+      d.lineWidth = 1 / scale;
+      d.lineCap = "round";
+      d.strokeStyle = "#000";
+      d.stroke();
       break;
     }
     default:
@@ -266,11 +262,17 @@ export class CoastlineLayer implements Layer {
   }
 
   render(d: Ctx, us: UIState, camera: Camera, mode: Mode, world_bbox: ArRectangle) {
+    function visible(x: Poly): boolean {
+      if (x.properties.t == "road" && !us.road) return false;
+      if (x.properties.t == "boundary" && !us.boundary) return false;
+      return true;
+    }
+
     const scale = cscale(camera);
     const arcs_to_draw_vertices_for: Zpoint[][] = [];
     const salients: { props: RoadProps, pt: Point }[] = [];
-
-    const baseFeatures = _.sortBy(tsearch(this.arcStore.rt, world_bbox), x => {
+    const rawFeatures = tsearch(this.arcStore.rt, world_bbox).filter(visible);
+    const baseFeatures = _.sortBy(rawFeatures, x => {
       let z = 0;
       const p: PolyProps = x.properties;
       if (p.t == "natural" && p.natural == "lake") z = 1;
@@ -396,11 +398,9 @@ export class CoastlineLayer implements Layer {
 
     // doing this outside the d.save/d.restore because it involves
     // text, which won't want the negative y-transform
-    if (us.road) {
-      salients.forEach(salient => {
-        realize_salient(d, salient.props, camera, salient.pt);
-      });
-    }
+    salients.forEach(salient => {
+      realize_salient(d, salient.props, camera, salient.pt);
+    });
 
     // render labels
     if (camera.zoom < 1) return;

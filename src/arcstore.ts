@@ -41,7 +41,8 @@ export class ArcStore {
   arcs: Dict<Arc>;
   points: Dict<Point>;
   rt: Bush<Poly>;
-  vertex_rt: Bush<ArcVertexTarget>;
+  vertex_rt: Bush<ArcVertexTarget>; // vertices of arcs
+  point_rt: Bush<string>; // point referencables, payload is id
   arc_to_feature: Dict<string[]> = {};
 
   constructor(points: Dict<Point>, arcs: Dict<RawArc>, polys: Dict<RawPoly>) {
@@ -89,6 +90,13 @@ export class ArcStore {
   }
 
   // MUTATES
+  addPoint(name: string, point: Point): Gpoint {
+    this.points[name] = point;
+    insertPt(this.point_rt, point, name);
+    return { id: name };
+  }
+
+  // MUTATES
   addArc(name: string, points: Point[]): Arc {
     const a: Arc = {
       name,
@@ -106,6 +114,7 @@ export class ArcStore {
   rebuild() {
     this.rt = rbush(10);
     this.vertex_rt = rbush(10);
+    this.point_rt = rbush(10);
 
     // compute arc z-coords and bboxes
     this.forArcs((an, arc) => {
@@ -133,6 +142,12 @@ export class ArcStore {
       });
     });
 
+    // going to want a reverse map from points to arcs or something probably?
+
+    // plop down points
+    Object.entries(this.points).forEach(([name, point]) => {
+      insertPt(this.point_rt, point, name);
+    });
   }
 
   // MUTATES

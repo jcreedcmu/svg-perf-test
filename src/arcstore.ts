@@ -9,13 +9,7 @@ import { Gpoint, Gzpoint } from './types';
 function rawOfArc(arc: Arc): RawArc {
   return {
     points: arc._points.map(({ point: p }) => {
-      if ('id' in p) {
-        return p.id;
-      }
-      else {
-        const z: [number, number] = [p.x, p.y];
-        return z;
-      }
+      return p.id;
     })
   };
 }
@@ -26,15 +20,7 @@ function unrawOfArc(name: string, arc: RawArc): Arc {
     name,
     bbox: { minX: 1e9, minY: 1e9, maxX: -1e9, maxY: -1e9 },
     _points: points.map(p => {
-      if (typeof p == 'string') {
-        return { point: { id: p }, z: 1e9 };
-      }
-      else if ('id' in p) {
-        return { point: p, z: 1e9 };
-      }
-      else {
-        return { point: { x: p[0], y: p[1] }, z: 1e9 };
-      }
+      return { point: { id: p }, z: 1e9 };
     })
   };
 }
@@ -109,9 +95,10 @@ export class ArcStore {
 
   // MUTATES
   addArc(name: string, points: Point[]): Arc {
+    throw "UNSUPPORTED";
     const a: Arc = {
       name,
-      _points: simplify.simplify(points),
+      _points: simplify.simplify(points) as any,
       bbox: simplify.bbox_of_points(points),
     };
     Object.entries(points).forEach(([pn, point]) => {
@@ -203,8 +190,9 @@ export class ArcStore {
     const arc_id = segment.arc_id;
     const arc = this.arcs[arc_id];
 
+    throw "UNSUPPORTED";
     const newp: Zpoint = { point: p, z: 1000 };
-    arc._points.splice(segment.ix + 1, 0, newp);
+    arc._points.splice(segment.ix + 1, 0, newp as any);
     simplify.resimplify_arc(this, arc);
 
     insertPt(this.vertex_rt, p, { arc: arc_id, point: newp.point });
@@ -228,13 +216,16 @@ export class ArcStore {
     const arc = this.arcs[arc_id];
     const oldp = rt_entry.point;
 
+    throw "NEED TO FIX REPLACING VERTICES";
+
     // I think this 1000 can be whatever
-    const new_pt = arc._points[vert_ix] = { point: p, z: 1000 };
+    const new_pt = arc._points[vert_ix] = { point: { id: "NOPE" }, z: 1000 };
 
     simplify.resimplify_arc(this, arc);
     const results = removePt(this.vertex_rt, oldp);
 
-    insertPt(this.vertex_rt, p, { arc: arc_id, point: new_pt.point });
+    // new_pt.point
+    insertPt(this.vertex_rt, p, { arc: arc_id, point: { x: 0, y: 0 } });
     this.recompute_arc_feature_bbox(arc_id);
 
   }

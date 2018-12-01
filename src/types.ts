@@ -20,7 +20,7 @@ export type Bundle =
   | ['label', string];
 
 
-export type Gpoint = Point | { id: string };
+export type Gpoint = { id: string };
 export type Zpoint = { point: Point, z: number };
 export type Gzpoint = { point: Gpoint, z: number };
 
@@ -39,7 +39,7 @@ export type Image = {
   y: number
 };
 
-export type RawArcPoint = ArPoint | { id: string } | string;
+export type RawArcPoint = string;
 
 export type RawArc = {
   points: RawArcPoint[],

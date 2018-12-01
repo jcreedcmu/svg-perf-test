@@ -91,7 +91,7 @@ class App {
   panning: boolean = false;
   data: Data; // Probably want to eventually get rid of this
   mouse: Point = { x: 0, y: 0 };
-  selection: { arc?: string } | null = null;
+  selection: { arc: string } | null = null;
   state = new State(); // really this is camera state
   uistate: UIState = {
     road: false,
@@ -446,67 +446,79 @@ class App {
     //   label_layer.add_label(state, prompt("name"));
     //   render();
     // }
-    if (k == ",") {
-      image_layer.prev();
-    }
-    if (k == ".") {
-      image_layer.next();
-    }
-    if (k == "f") {
-      this.mode = "Freehand";
-      this.render();
-    }
-    if (k == "m") {
-      this.mode = "Move";
-      this.render();
-    }
-    if (k == "<space>") {
-      $(document).off('keydown');
-      const stop_at = this.start_pan_and_stop(this.mouse.x, this.mouse.y, this.state.camera());
-      $(document).on('keyup.holdspace', e => {
-        if (key(e.originalEvent as KeyboardEvent) == "<space>") {
-          stop_at(this.mouse.x, this.mouse.y);
-          $(document).off('.holdspace');
-          $(document).on('keydown', e => this.handleKey(e));
+    switch (k) {
+      case ",": {
+        image_layer.prev();
+      } break;
+      case ".": {
+        image_layer.next();
+      } break;
+      case "f": {
+        this.mode = "Freehand";
+        this.render();
+      } break;
+      case "m": {
+        this.mode = "Move";
+        this.render();
+      } break;
+      case "<space>": {
+        $(document).off('keydown');
+        const stop_at = this.start_pan_and_stop(this.mouse.x, this.mouse.y, this.state.camera());
+        $(document).on('keyup.holdspace', e => {
+          if (key(e.originalEvent as KeyboardEvent) == "<space>") {
+            stop_at(this.mouse.x, this.mouse.y);
+            $(document).off('.holdspace');
+            $(document).on('keydown', e => this.handleKey(e));
+          }
+        });
+
+      } break;
+      case "p": {
+        this.mode = "Pan";
+        this.render();
+      } break;
+      case "s": {
+        this.mode = "Select";
+        this.render();
+      } break;
+      case "l": {
+        this.mode = "Label";
+        this.render();
+      } break;
+      case "e": {
+        this.mode = "Measure";
+        this.render();
+      } break;
+
+      // if (k == "i") {
+      //   this.mode = "Insert";
+      //   this.render();
+      // }
+      case "v": {
+        this.save();
+      } break;
+      case "q": {
+        const sk = sketch_layer.pop();
+        if (sk != null) {
+          coastline_layer.make_insert_feature_modal(sk.map(p => p.point), () => this.render());
         }
-      });
+      } break;
+      case "S-f": {
+        coastline_layer.filter();
+        this.render();
+      } break;
 
+      // debug operation
+      case "d": {
+        if (this.selection) {
+          this.coastline_layer.arcStore.replace_arc(
+            this.selection.arc,
+            () => this.coastline_layer.namegen('r')
+          );
+          this.render();
+        }
+      } break;
     }
-    if (k == "p") {
-      this.mode = "Pan";
-      this.render();
-    }
-    if (k == "s") {
-      this.mode = "Select";
-      this.render();
-    }
-    if (k == "l") {
-      this.mode = "Label";
-      this.render();
-    }
-    if (k == "e") {
-      this.mode = "Measure";
-      this.render();
-    }
-
-    // if (k == "i") {
-    //   this.mode = "Insert";
-    //   this.render();
-    // }
-    if (k == "v") {
-      this.save();
-    }
-    if (k == "q") {
-      const sk = sketch_layer.pop();
-      if (sk != null) {
-        coastline_layer.make_insert_feature_modal(sk.map(p => p.point), () => this.render());
-      }
-    }
-    if (k == "S-f") {
-      coastline_layer.filter();
-      this.render();
-    }
-
     //  console.log(e.charCode, k);
   }
 

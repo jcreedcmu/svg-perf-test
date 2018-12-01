@@ -431,6 +431,7 @@ export class CoastlineLayer implements Layer {
     labels: Dict<RawLabel>,
   } {
 
+    // XXX Maybe should move counter up to main or something
     return {
       counter: this.counter,
       ...this.arcStore.model(),
@@ -463,17 +464,20 @@ export class CoastlineLayer implements Layer {
     this.rebuild();
   }
 
-  new_point_feature(lab: Label) {
-    const point_name = "p" + this.counter;
+  namegen(prefix: string): string {
+    const name = prefix + this.counter;
     this.counter++;
-    lab.name = point_name;
+    return name;
+  }
+
+  new_point_feature(lab: Label) {
+    lab.name = this.namegen("p");
     this.labelStore.add_point_feature(lab);
   }
 
   add_arc_feature(t: string, points: Point[], properties: PolyProps) {
-    const feature_name = "f" + this.counter;
-    const arc_name = "a" + this.counter;
-    this.counter++;
+    const feature_name = this.namegen("f");
+    const arc_name = this.namegen("a");
     const arc: Arc = this.arcStore.addArc(arc_name, points);
     this.arcStore.addFeature(feature_name, [{ id: arc_name }], properties);
   }

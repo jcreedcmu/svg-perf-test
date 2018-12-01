@@ -91,6 +91,7 @@ export class ArcStore {
 
   // MUTATES
   addPoint(name: string, point: Point): Gpoint {
+    // XXX should check if point already exists, maybe?
     this.points[name] = point;
     insertPt(this.point_rt, point, name);
     return { id: name };
@@ -226,6 +227,17 @@ export class ArcStore {
     insertPt(this.vertex_rt, p, { arc: arc_id, point: new_pt.point });
     this.recompute_arc_feature_bbox(arc_id);
 
+  }
+
+  // MUTATES
+  // take all of an arc's points and replace them with pointrefs
+  replace_arc(arc_id: string, namegen: () => string): void {
+    const arc = this.arcs[arc_id];
+    arc._points = arc._points.map(p => {
+      const point = this.addPoint(namegen(), this.bounce(p.point));
+      return { point, z: 1e9 };
+    });
+    this.rebuild();
   }
 
   model(): {

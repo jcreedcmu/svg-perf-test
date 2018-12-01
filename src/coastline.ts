@@ -3,7 +3,7 @@ import { LabelStore } from './labelstore';
 import { Mode, Point, Zpoint, ArRectangle, Dict, Ctx, Camera, Bush } from './types';
 import { Label, RawLabel, Arc, RawArc, Target, Segment, LabelTarget, ArcVertexTarget } from './types';
 import { Poly, RawPoly, RoadProps, PolyProps, Bbox, Layer } from './types';
-import { rawOfArc, unrawOfArc, rawOfPoly, unrawOfPoly, rawOfLabel, unrawOfLabel, nope } from './util';
+import { rawOfPoly, unrawOfPoly, rawOfLabel, unrawOfLabel, nope } from './util';
 import { cscale, vmap, vkmap, trivBbox } from './util';
 import { clone, above_simp_thresh, insertPt, removePt } from './util';
 import { colors } from './colors';

@@ -1,9 +1,40 @@
 import { Segment, Point, Dict, Arc, Poly, RawArc, RawPoly, Zpoint, ArcSpec, Bbox, PolyProps } from './types';
 import { ArcVertexTarget, Bush } from './types';
-import { rawOfPoly, rawOfArc, unrawOfPoly, unrawOfArc } from './util';
+import { rawOfPoly, unrawOfPoly } from './util';
 import { vkmap, vmap, trivBbox, insertPt, removePt } from './util';
 import * as simplify from './simplify';
 import * as rbush from 'rbush';
+import { Gpoint, Gzpoint } from './types';
+
+function rawOfArc(arc: Arc): RawArc {
+  return {
+    points: arc._points.map(({ point: p }) => {
+      if ('id' in p) {
+        return p;
+      }
+      else {
+        const z: [number, number] = [p.x, p.y];
+        return z;
+      }
+    })
+  };
+}
+
+function unrawOfArc(name: string, arc: RawArc): Arc {
+  const { points } = arc;
+  return {
+    name,
+    bbox: { minX: 1e9, minY: 1e9, maxX: -1e9, maxY: -1e9 },
+    _points: points.map(p => {
+      if ('id' in p) {
+        return { point: p, z: 1e9 };
+      }
+      else {
+        return { point: { x: p[0], y: p[1] }, z: 1e9 };
+      }
+    })
+  };
+}
 
 export class ArcStore {
   features: Dict<Poly>;
@@ -26,8 +57,24 @@ export class ArcStore {
     Object.entries(this.features).forEach(([k, obj]) => f(k, obj));
   }
 
+  // A generalized point could be a literal point, or a reference.
+  // Return its actual value one way or the other.
+  bounce(gp: Gpoint): Point {
+    if ('id' in gp) {
+      // should look this up in pointstore or whatever
+      throw "unimplemented";
+    }
+    else {
+      return gp;
+    }
+  }
+
+  zbounce(gp: Gzpoint): Zpoint {
+    return { point: this.bounce(gp.point), z: gp.z };
+  }
+
   arcPoints(arc: Arc): Zpoint[] {
-    return arc._points;
+    return arc._points.map(x => this.zbounce(x));
   }
 
   getPoints(arcName: string): Point[] {

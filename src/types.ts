@@ -20,7 +20,9 @@ export type Bundle =
   | ['label', string];
 
 
+export type Gpoint = Point | { id: string };
 export type Zpoint = { point: Point, z: number };
+export type Gzpoint = { point: Gpoint, z: number };
 
 // minx, miny, maxx, maxy
 export type ArRectangle = [number, number, number, number];
@@ -45,7 +47,7 @@ export type RawArc = {
 
 export type Arc = {
   name: string,
-  _points: Zpoint[],
+  _points: Gzpoint[],
   bbox: Bbox,
 };
 

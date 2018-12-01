@@ -74,30 +74,6 @@ export function vdist(p1: Point, p2: Point) {
   return Math.sqrt(sqr(p1.x - p2.x) + sqr(p1.y - p2.y));
 }
 
-export function rawOfArc(arc: Arc): RawArc {
-  return {
-    points: arc._points.map(({ point: p }) => {
-      const z: [number, number] = [p.x, p.y];
-      return z;
-    })
-  };
-}
-
-export function unrawOfArc(name: string, arc: RawArc): Arc {
-  const { points } = arc;
-  return {
-    name,
-    bbox: { minX: 1e9, minY: 1e9, maxX: -1e9, maxY: -1e9 },
-    _points: points.map(p => {
-      if ('id' in p) {
-        throw "unsupported";
-      }
-      const z: Zpoint = { point: { x: p[0], y: p[1] }, z: 1e9 };
-      return z;
-    })
-  };
-}
-
 export function rawOfPoly(poly: Poly): RawPoly {
   return {
     arcs: poly.arcs,

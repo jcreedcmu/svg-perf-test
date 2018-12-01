@@ -113,7 +113,7 @@ class App {
     let count = 0;
     const geo: Geo = _data.json.geo;
     const rivers: Rivers = _data.json.rivers;
-    const arcStore = new ArcStore(geo.arcs, geo.polys);
+    const arcStore = new ArcStore(geo.points, geo.arcs, geo.polys);
     const labelStore = new LabelStore(geo.labels);
     this.coastline_layer = new CoastlineLayer(arcStore, labelStore, geo.counter);
     this.image_layer = new ImageLayer(() => this.render(), 0, geo.images);

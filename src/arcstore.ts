@@ -39,11 +39,13 @@ function unrawOfArc(name: string, arc: RawArc): Arc {
 export class ArcStore {
   features: Dict<Poly>;
   arcs: Dict<Arc>;
+  points: Dict<Point>;
   rt: Bush<Poly>;
   vertex_rt: Bush<ArcVertexTarget>;
   arc_to_feature: Dict<string[]> = {};
 
-  constructor(arcs: Dict<RawArc>, polys: Dict<RawPoly>) {
+  constructor(points: Dict<Point>, arcs: Dict<RawArc>, polys: Dict<RawPoly>) {
+    this.points = points;
     this.features = vkmap(polys, unrawOfPoly);
     this.arcs = vkmap(arcs, unrawOfArc);
     this.rebuild();
@@ -220,9 +222,10 @@ export class ArcStore {
   model(): {
     polys: Dict<RawPoly>,
     arcs: Dict<RawArc>,
+    points: Dict<Point>,
   } {
     const polys: Dict<RawPoly> = vmap(this.features, rawOfPoly);
     const arcs: Dict<RawArc> = vmap(this.arcs, rawOfArc);
-    return { polys, arcs };
+    return { polys, arcs, points: this.points };
   }
 }

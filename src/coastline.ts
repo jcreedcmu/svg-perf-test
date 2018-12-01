@@ -425,6 +425,7 @@ export class CoastlineLayer implements Layer {
 
   model(): {
     counter: number,
+    points: Dict<Point>,
     polys: Dict<RawPoly>,
     arcs: Dict<RawArc>,
     labels: Dict<RawLabel>,

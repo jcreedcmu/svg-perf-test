@@ -101,6 +101,7 @@ export type Images = Dict<Image>;
 
 export type Geo = {
   counter: number,
+  points: Dict<Point>,
   images: Dict<Image>,
   arcs: Dict<RawArc>,
   polys: Dict<RawPoly>,

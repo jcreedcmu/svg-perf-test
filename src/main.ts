@@ -228,10 +228,6 @@ class App {
       d.strokeText(mode, 20, h - 20);
       d.fillText(mode, 20, h - 20);
 
-
-      // debugging
-
-
       d.fillStyle = "black";
       d.strokeStyle = "white";
       d.font = "bold 12px sans-serif";
@@ -508,15 +504,16 @@ class App {
         this.render();
       } break;
 
-      // debug operation
+      // debugging operation
       case "d": {
-        if (this.selection) {
+        Object.entries(this.coastline_layer.arcStore.arcs).forEach(([k, v]) => {
+
           this.coastline_layer.arcStore.replace_arc(
-            this.selection.arc,
+            k,
             () => this.coastline_layer.namegen('r')
           );
-          this.render();
-        }
+        });
+        this.render();
       } break;
     }
     //  console.log(e.charCode, k);

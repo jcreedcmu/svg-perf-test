@@ -244,7 +244,6 @@ export class ArcStore {
       const point = this.addPoint(namegen, this.bounce(p.point));
       return { point, z: 1e9 };
     });
-    this.rebuild();
   }
 
   model(): {

@@ -198,7 +198,7 @@ export class ArcStore {
     const arc_id = segment.arc_id;
     const arc = this.arcs[arc_id];
 
-    throw "UNSUPPORTED";
+    throw "UNIMPLEMENTED";
     const newp: Zpoint = { point: p, z: 1000 };
     arc._points.splice(segment.ix + 1, 0, newp as any);
     simplify.resimplify_arc(this, arc);
@@ -224,7 +224,7 @@ export class ArcStore {
     const arc = this.arcs[arc_id];
     const oldp = rt_entry.point;
 
-    throw "NEED TO FIX REPLACING VERTICES";
+    throw "UNIMPLEMENTED";
 
     // I think this 1000 can be whatever
     const new_pt = arc._points[vert_ix] = { point: { id: "NOPE" }, z: 1000 };

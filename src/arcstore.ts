@@ -94,17 +94,25 @@ export class ArcStore {
   }
 
   // MUTATES
-  addArc(name: string, points: Point[]): Arc {
-    throw "UNSUPPORTED";
+  addPoints(namegen: () => string, points: Point[]): Gpoint[] {
+    return points.map(p => this.addPoint(namegen, p));
+  }
+
+  // MUTATES
+  addArc(pnamegen: () => string, arcname: string, points: Point[]): Arc {
+    const enhanced = this.addPoints(pnamegen, points).map(p => ({
+      extra: p,
+      point: this.points[p.id],
+    }));
     const a: Arc = {
-      name,
-      _points: simplify.simplify(points) as any,
+      name: arcname,
+      _points: simplify.simplify(enhanced).map(x => ({ point: x.extra, z: x.z })),
       bbox: simplify.bbox_of_points(points),
     };
     Object.entries(points).forEach(([pn, point]) => {
-      insertPt(this.vertex_rt, point, { arc: name, point });
+      insertPt(this.vertex_rt, point, { arc: arcname, point });
     });
-    this.arcs[name] = a;
+    this.arcs[arcname] = a;
     return a;
   }
 

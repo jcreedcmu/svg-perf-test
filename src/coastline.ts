@@ -7,7 +7,6 @@ import { nope } from './util';
 import { cscale, vmap, vkmap, trivBbox } from './util';
 import { clone, above_simp_thresh, insertPt, removePt } from './util';
 import { colors } from './colors';
-import * as simplify from './simplify';
 import * as rbush from 'rbush';
 import { draw_label } from './labels';
 import { UIState, RenderCtx } from './types';
@@ -478,7 +477,7 @@ export class CoastlineLayer implements Layer {
   add_arc_feature(t: string, points: Point[], properties: PolyProps) {
     const feature_name = this.namegen("f");
     const arc_name = this.namegen("a");
-    const arc: Arc = this.arcStore.addArc(arc_name, points);
+    const arc: Arc = this.arcStore.addArc(() => this.namegen("p"), arc_name, points);
     this.arcStore.addFeature(feature_name, [{ id: arc_name }], properties);
   }
 

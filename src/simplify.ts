@@ -1,6 +1,6 @@
 import _ = require('underscore');
 import { ArcStore } from './arcstore';
-import { Arc, Dict, Poly, Zpoint, Bbox, Point } from './types';
+import { Arc, Dict, Poly, ZpointWith, Zpoint, Bbox, Point } from './types';
 import { trivBbox } from './util';
 
 function accumulate_bbox(pt: Point, bbox: Bbox) {
@@ -33,21 +33,23 @@ export function resimplify_arc(ars: ArcStore, arc: Arc) {
 }
 
 type Gtri<T> = [T, T, T] & { previous?: Gtri<T>, next?: Gtri<T> };
-type Tri = Gtri<Zpoint>;
+type Tri<T> = Gtri<Zpoint & T>;
 
-export function simplify(pts: Point[]): Zpoint[] {
-  return resimplify(pts.map(point => ({ point, z: 0 })));
+export function simplify<T>(pts: { point: Point, extra: T }[]): ZpointWith<T>[] {
+  return resimplify<{ extra: T }>(pts.map(x => ({ point: x.point, z: 0, extra: x.extra })));
 }
 
-export function resimplify(polygon: Zpoint[]): Zpoint[] {
+// mutates the z-values in place
+export function resimplify<T>(polygon: (Zpoint & T)[]): (Zpoint & T)[] {
+  type Tr = Tri<T>;
   var heap = new minHeap();
   let maxArea = 0;
-  let triangle: Tri;
+  let triangle: Tr;
 
-  let triangles: Tri[] = [];
+  let triangles: Tr[] = [];
 
   for (var i = 1, n = polygon.length - 1; i < n; ++i) {
-    triangle = <Tri>polygon.slice(i - 1, i + 2);
+    triangle = <Tr>polygon.slice(i - 1, i + 2);
     if (triangle[1].z = area(triangle)) {
       triangles.push(triangle);
       heap.push(triangle);
@@ -85,7 +87,7 @@ export function resimplify(polygon: Zpoint[]): Zpoint[] {
     }
   }
 
-  function update(triangle: Tri) {
+  function update<T>(triangle: Tri<T>) {
     heap.remove(triangle);
     triangle[1].z = area(triangle);
     heap.push(triangle);
@@ -94,11 +96,12 @@ export function resimplify(polygon: Zpoint[]): Zpoint[] {
   return polygon;
 }
 
-function compare(a: Tri, b: Tri) {
+
+function compare<T>(a: Tri<T>, b: Tri<T>) {
   return a[1].z - b[1].z;
 }
 
-function area(t: Tri) {
+function area<T>(t: Tri<T>) {
   return Math.abs((t[0].point.x - t[2].point.x) * (t[1].point.y - t[0].point.y) - (t[0].point.x - t[1].point.x) * (t[2].point.y - t[0].point.y));
 }
 

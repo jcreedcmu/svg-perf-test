@@ -23,6 +23,7 @@ export type Bundle =
 export type Gpoint = { id: string };
 export type Zpoint = { point: Point, z: number };
 export type Gzpoint = { point: Gpoint, z: number };
+export type ZpointWith<T> = { point: Point, z: number, extra: T };
 
 // minx, miny, maxx, maxy
 export type ArRectangle = [number, number, number, number];

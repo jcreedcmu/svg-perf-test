@@ -7,7 +7,7 @@ import { Stopper, UIState } from './types';
 
 import { Loader, Data } from './loader';
 import { clone, cscale, nope, xform, inv_xform, meters_to_string, vdist } from './util';
-import { resimplify, simplify } from './simplify';
+import { resimplify } from './simplify';
 
 import { colors } from './colors';
 import { key } from './key';

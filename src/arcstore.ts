@@ -62,13 +62,7 @@ export class ArcStore {
   // A generalized point could be a literal point, or a reference.
   // Return its actual value one way or the other.
   bounce(gp: Gpoint): Point {
-    if ('id' in gp) {
-      // should look this up in pointstore or whatever
-      throw "unimplemented";
-    }
-    else {
-      return gp;
-    }
+    return 'id' in gp ? this.points[gp.id] : gp;
   }
 
   zbounce(gp: Gzpoint): Zpoint {

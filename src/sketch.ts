@@ -1,25 +1,25 @@
-import { Mode, Layer, Ctx, Camera, ArRectangle, Zpoint, UIState } from './types';
+import { Mode, Layer, Ctx, Camera, ArRectangle, Zpoint, RenderCtx } from './types';
 import { cscale } from './util';
 
 type Path = Zpoint[];
 type Sketches = Path[];
 
-export class SketchLayer {
+export class SketchLayer implements Layer {
   sketches: Sketches;
 
   constructor(sketches?: Sketches) {
     this.sketches = sketches || [];
   }
 
-  render(d: Ctx, us: UIState, camera: Camera, mode: Mode, world_bbox: ArRectangle): void {
-    var ms = this.sketches;
+  render(rc: RenderCtx): void {
+    const { d, camera } = rc;
 
     d.save();
     d.translate(camera.x, camera.y);
     d.scale(cscale(camera), -cscale(camera));
     d.lineCap = "round";
     d.lineJoin = "round";
-    ms.forEach(feature => {
+    this.sketches.forEach(feature => {
       d.beginPath();
       feature.forEach(({ point: pt }, n) => {
         if (n == 0)

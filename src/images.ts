@@ -1,4 +1,4 @@
-import { Mode, Layer, Ctx, Camera, ArRectangle, Point, Image, Images, UIState } from './types';
+import { Mode, Layer, Ctx, Camera, ArRectangle, Point, Image, Images, RenderCtx } from './types';
 import { cscale } from './util';
 import _ = require('underscore');
 
@@ -30,7 +30,8 @@ export class ImageLayer implements Layer {
     this.cur_img_ix = cur_img_ix;
   }
 
-  render(d: Ctx, us: UIState, camera: Camera, mode: Mode, world_bbox: ArRectangle): void {
+  render(rc: RenderCtx): void {
+    const { d, camera } = rc;
     const nimg = this.named_imgs[this.cur_img_ix];
     d.save();
     d.translate(camera.x, camera.y);

@@ -108,9 +108,6 @@ export type Geo = {
 export type River = { geometry: { coordinates: ArPoint[][] } };
 export type Rivers = { features: River[] };
 
-export interface Layer {
-  render(d: Ctx, us: UIState, camera: Camera, mode: Mode, world_bbox: ArRectangle): void;
-}
 
 export type Stopper = (offx: number, offy: number) => void;
 
@@ -125,4 +122,16 @@ export type UIState = {
   road: boolean,
   boundary: boolean,
   river: boolean,
+};
+
+export interface Layer {
+  render(rc: RenderCtx): void;
+}
+
+export type RenderCtx = {
+  d: Ctx,
+  us: UIState,
+  camera: Camera,
+  mode: Mode,
+  world_bbox: ArRectangle,
 };

@@ -179,7 +179,7 @@ class App {
     const world_bbox = this.get_world_bbox(camera);
 
     this.layers.forEach(layer => {
-      layer.render(d, this.uistate, camera, mode, world_bbox);
+      layer.render({ d, us: this.uistate, camera, mode, world_bbox });
     });
 
 

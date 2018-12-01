@@ -10,7 +10,7 @@ import { colors } from './colors';
 import * as simplify from './simplify';
 import * as rbush from 'rbush';
 import { draw_label } from './labels';
-import { UIState } from './types';
+import { UIState, RenderCtx } from './types';
 
 import _ = require('underscore');
 
@@ -261,7 +261,8 @@ export class CoastlineLayer implements Layer {
     return ([] as Target[]).concat(arcts, labts);
   }
 
-  render(d: Ctx, us: UIState, camera: Camera, mode: Mode, world_bbox: ArRectangle) {
+  render(rc: RenderCtx) {
+    const { d, camera, world_bbox, us, mode } = rc;
     function visible(x: Poly): boolean {
       if (x.properties.t == "road" && !us.road) return false;
       if (x.properties.t == "boundary" && !us.boundary) return false;

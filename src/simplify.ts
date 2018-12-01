@@ -26,9 +26,10 @@ export function bbox_of_points(pts: Point[]): Bbox {
 }
 
 // XXX deprecate?
-export function resimplify_arc(arc: Arc) {
-  resimplify(arc.points);
-  arc.bbox = bbox_of_points(arc.points.map(pt => pt.point));
+export function resimplify_arc(ars: ArcStore, arc: Arc) {
+  const pts = ars.arcPoints(arc);
+  resimplify(pts);
+  arc.bbox = bbox_of_points(pts.map(pt => pt.point));
 }
 
 type Gtri<T> = [T, T, T] & { previous?: Gtri<T>, next?: Gtri<T> };

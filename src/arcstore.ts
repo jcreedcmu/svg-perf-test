@@ -26,16 +26,19 @@ export class ArcStore {
     Object.entries(this.features).forEach(([k, obj]) => f(k, obj));
   }
 
+  arcPoints(arc: Arc): Zpoint[] {
+    return arc._points;
+  }
+
   getPoints(arcName: string): Point[] {
-    return this.arcs[arcName].points.map(x => x.point);
+    return this.arcPoints(this.arcs[arcName]).map(x => x.point);
   }
 
   getArc(spec: ArcSpec) {
     const arc = this.arcs[spec.id];
-    if (spec.rev)
-      return { bbox: arc.bbox, points: [...arc.points].reverse() };
-    else
-      return { bbox: arc.bbox, points: arc.points };
+    const pts = this.arcPoints(arc);
+    const pts2 = spec.rev ? [...pts].reverse() : pts;
+    return { bbox: arc.bbox, points: pts2 };
   }
 
   getFeature(name: string) {
@@ -46,7 +49,7 @@ export class ArcStore {
   addArc(name: string, points: Point[]): Arc {
     const a: Arc = {
       name,
-      points: simplify.simplify(points),
+      _points: simplify.simplify(points),
       bbox: simplify.bbox_of_points(points),
     };
     Object.entries(points).forEach(([pn, point]) => {
@@ -63,10 +66,10 @@ export class ArcStore {
 
     // compute arc z-coords and bboxes
     this.forArcs((an, arc) => {
-      arc.points.forEach(({ point }, pn) => {
+      this.arcPoints(arc).forEach(({ point }, pn) => {
         insertPt(this.vertex_rt, point, { arc: an, point });
       });
-      simplify.resimplify_arc(arc);
+      simplify.resimplify_arc(this, arc);
     });
 
     // compute feature bboxes
@@ -132,8 +135,8 @@ export class ArcStore {
     const arc = this.arcs[arc_id];
 
     const newp: Zpoint = { point: p, z: 1000 };
-    arc.points.splice(segment.ix + 1, 0, newp);
-    simplify.resimplify_arc(arc);
+    arc._points.splice(segment.ix + 1, 0, newp);
+    simplify.resimplify_arc(this, arc);
 
     insertPt(this.vertex_rt, p, { arc: arc_id, point: newp.point });
     this.recompute_arc_feature_bbox(arc_id);
@@ -157,9 +160,9 @@ export class ArcStore {
     const oldp = rt_entry.point;
 
     // I think this 1000 can be whatever
-    const new_pt = arc.points[vert_ix] = { point: p, z: 1000 };
+    const new_pt = arc._points[vert_ix] = { point: p, z: 1000 };
 
-    simplify.resimplify_arc(arc);
+    simplify.resimplify_arc(this, arc);
     const results = removePt(this.vertex_rt, oldp);
 
     insertPt(this.vertex_rt, p, { arc: arc_id, point: new_pt.point });

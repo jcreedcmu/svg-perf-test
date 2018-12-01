@@ -45,7 +45,7 @@ export type RawArc = {
 
 export type Arc = {
   name: string,
-  points: Zpoint[],
+  _points: Zpoint[],
   bbox: Bbox,
 };
 

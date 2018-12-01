@@ -76,7 +76,7 @@ export function vdist(p1: Point, p2: Point) {
 
 export function rawOfArc(arc: Arc): RawArc {
   return {
-    points: arc.points.map(({ point: p }) => {
+    points: arc._points.map(({ point: p }) => {
       const z: [number, number] = [p.x, p.y];
       return z;
     })
@@ -88,7 +88,7 @@ export function unrawOfArc(name: string, arc: RawArc): Arc {
   return {
     name,
     bbox: { minX: 1e9, minY: 1e9, maxX: -1e9, maxY: -1e9 },
-    points: points.map(p => {
+    _points: points.map(p => {
       if ('t' in p) {
         throw "unsupported";
       }

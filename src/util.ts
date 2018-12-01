@@ -93,6 +93,9 @@ export function unrawOfArc(name: string, arc: RawArc): Arc {
     name,
     bbox: { minX: 1e9, minY: 1e9, maxX: -1e9, maxY: -1e9 },
     points: points.map(p => {
+      if ('t' in p) {
+        throw "unsupported";
+      }
       const z: Zpoint = { point: { x: p[0], y: p[1] }, z: 1e9 };
       return z;
     })

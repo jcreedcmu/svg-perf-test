@@ -37,7 +37,7 @@ export type Image = {
   y: number
 };
 
-export type RawArcPoint = ArPoint | { t: "pointref", id: string };
+export type RawArcPoint = ArPoint | { id: string };
 
 export type RawArc = {
   points: RawArcPoint[],

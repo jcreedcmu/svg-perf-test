@@ -44,10 +44,6 @@ export function above_simp_thresh(z: number, scale: number): boolean {
   return z > SIMPLIFICATION_FACTOR / (scale * scale);
 }
 
-export function adapt(x: Zpoint): Point {
-  return x.point;
-}
-
 // meant to be used in a default case
 // to enforce exhaustive pattern matching
 export function nope<T>(x: never): T {

@@ -1,7 +1,7 @@
 import { Segment, Point, Dict, Arc, Poly, RawArc, RawPoly, Zpoint, ArcSpec, Bbox, PolyProps } from './types';
 import { ArcVertexTarget, Bush } from './types';
 import { rawOfPoly, unrawOfPoly } from './util';
-import { vkmap, vmap, trivBbox, insertPt, removePt } from './util';
+import { vkmap, vmap, trivBbox, insertPt, removePt, findPt } from './util';
 import * as simplify from './simplify';
 import * as rbush from 'rbush';
 import { Gpoint, Gzpoint } from './types';
@@ -90,11 +90,18 @@ export class ArcStore {
   }
 
   // MUTATES
-  addPoint(name: string, point: Point): Gpoint {
-    // XXX should check if point already exists, maybe?
-    this.points[name] = point;
-    insertPt(this.point_rt, point, name);
-    return { id: name };
+  addPoint(namegen: () => string, point: Point): Gpoint {
+    const res = findPt(this.point_rt, point);
+    if (res.length) {
+      console.log('reusing ', JSON.stringify(point));
+      return { id: res[0] };
+    }
+    else {
+      const name = namegen();
+      this.points[name] = point;
+      insertPt(this.point_rt, point, name);
+      return { id: name };
+    }
   }
 
   // MUTATES
@@ -234,7 +241,7 @@ export class ArcStore {
   replace_arc(arc_id: string, namegen: () => string): void {
     const arc = this.arcs[arc_id];
     arc._points = arc._points.map(p => {
-      const point = this.addPoint(namegen(), this.bounce(p.point));
+      const point = this.addPoint(namegen, this.bounce(p.point));
       return { point, z: 1e9 };
     });
     this.rebuild();

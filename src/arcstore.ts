@@ -216,8 +216,8 @@ export class ArcStore {
     const arc_id = segment.arc_id;
     const arc = this.arcs[arc_id];
     const point = this.addPoint(pnamegen, p);
-    const newp: Gzpoint = { point, z: 1000 };
-    arc._points.splice(segment.ix + 1, 0, newp);
+    colAppend(this.point_to_arc, point.id, arc_id);
+    arc._points.splice(segment.ix + 1, 0, { point, z: 1000 });
     simplify.resimplify_arc(this, arc);
     this.recompute_arc_feature_bbox(arc_id);
   }

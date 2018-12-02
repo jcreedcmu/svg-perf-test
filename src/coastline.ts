@@ -234,39 +234,14 @@ export class CoastlineLayer implements Layer {
       this.labelStore.labels[target[1]].pt;
   }
 
-  // get_index(target: ArcVertexTarget) {
-  //   const arc = this.arcStore.arcs[target.arc]._points;
-  //   for (let i = 0; i < arc.length; i++) {
-  //     if (arc[i].point.id == target.ptId)
-  //       return i;
-  //   }
-  //   throw ("Can't find " + JSON.stringify(target) + " in " + JSON.stringify(arc))
-  // }
-
-  // invariant: targets.length >= 1
   targets_nabes(targets: Target[]): Point[] {
-    return [];
-    // // XXX what happens if targets is of mixed type ugh
-    // if (targets[0][0] == "coastline") {
-    //   const neighbors: Point[] = [];
-
-    //   targets.forEach(target => {
-    //     if (target[0] == "coastline") {
-    //       let ctarget = target[1];
-    //       let ix = this.arcStore.get_index(ctarget);
-    //       let arc_points = this.arcStore.getPoints(ctarget.arc);
-    //       if (ix > 0) neighbors.push(arc_points[ix - 1]);
-    //       if (ix < arc_points.length - 1) neighbors.push(arc_points[ix + 1]);
-    //     }
-    //     else {
-    //       console.log(`mixed type, dunno what to do, ignoring target ${target}`);
-    //     }
-    //   });
-    //   return neighbors;
-    // }
-    // else {
-    //   return [];
-    // }
+    let rv: Point[] = [];
+    targets.forEach(target => {
+      if (target[0] == "coastline") {
+        rv = rv.concat(this.arcStore.getNabes(target[1]));
+      }
+    });
+    return rv;
   }
 
   targets(world_bbox: ArRectangle): Target[] {

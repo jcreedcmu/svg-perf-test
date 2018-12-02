@@ -78,6 +78,26 @@ export class ArcStore {
     return this.features[name];
   }
 
+  get_index(arcId: string, target: ArcVertexTarget) {
+    const arc = this.arcs[arcId]._points;
+    for (let i = 0; i < arc.length; i++) {
+      if (arc[i].point.id == target.ptId)
+        return i;
+    }
+    throw ("Can't find " + JSON.stringify(target) + " in " + JSON.stringify(arc))
+  }
+
+  getNabes(avt: ArcVertexTarget): Point[] {
+    const rv: Point[] = [];
+    this.point_to_arc[avt.ptId].forEach(arcId => {
+      let ix = this.get_index(arcId, avt);
+      let arc_points = this.getPoints(arcId);
+      if (ix > 0) rv.push(arc_points[ix - 1]);
+      if (ix < arc_points.length - 1) rv.push(arc_points[ix + 1]);
+    });
+    return rv;
+  }
+
   // MUTATES
   addPoint(namegen: () => string, point: Point): Gpoint {
     const res = findPt(this.point_rt, point);

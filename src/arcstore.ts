@@ -208,15 +208,6 @@ export class ArcStore {
     return this.points[avt.ptId]
   }
 
-  get_index(target: ArcVertexTarget) {
-    const arc = this.arcs[target.arc]._points;
-    for (let i = 0; i < arc.length; i++) {
-      if (arc[i].point.id == target.ptId)
-        return i;
-    }
-    throw ("Can't find " + JSON.stringify(target) + " in " + JSON.stringify(arc))
-  }
-
   // MUTATES
   replace_vertex(rt_entry: ArcVertexTarget, p: Point) {
     const { ptId } = rt_entry;

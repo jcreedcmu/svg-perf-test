@@ -200,11 +200,7 @@ export class CoastlineLayer implements Layer {
 
   arc_vertex_targets(world_bbox: ArRectangle): ArcVertexTarget[] {
     const ptargets = tsearch(this.arcStore.point_rt, world_bbox);
-    const targets: ArcVertexTarget[] = [];
-    ptargets.forEach(ptId => {
-      const arcIds = this.arcStore.point_to_arc[ptId];
-      arcIds.forEach(arc => targets.push({ arc, ptId }));
-    });
+    const targets: ArcVertexTarget[] = ptargets.map(ptId => ({ ptId }));
 
     if (targets.length < 2) return targets;
 
@@ -238,29 +234,39 @@ export class CoastlineLayer implements Layer {
       this.labelStore.labels[target[1]].pt;
   }
 
+  // get_index(target: ArcVertexTarget) {
+  //   const arc = this.arcStore.arcs[target.arc]._points;
+  //   for (let i = 0; i < arc.length; i++) {
+  //     if (arc[i].point.id == target.ptId)
+  //       return i;
+  //   }
+  //   throw ("Can't find " + JSON.stringify(target) + " in " + JSON.stringify(arc))
+  // }
+
   // invariant: targets.length >= 1
   targets_nabes(targets: Target[]): Point[] {
-    // XXX what happens if targets is of mixed type ugh
-    if (targets[0][0] == "coastline") {
-      const neighbors: Point[] = [];
+    return [];
+    // // XXX what happens if targets is of mixed type ugh
+    // if (targets[0][0] == "coastline") {
+    //   const neighbors: Point[] = [];
 
-      targets.forEach(target => {
-        if (target[0] == "coastline") {
-          let ctarget = target[1];
-          let ix = this.arcStore.get_index(ctarget);
-          let arc_points = this.arcStore.getPoints(ctarget.arc);
-          if (ix > 0) neighbors.push(arc_points[ix - 1]);
-          if (ix < arc_points.length - 1) neighbors.push(arc_points[ix + 1]);
-        }
-        else {
-          console.log(`mixed type, dunno what to do, ignoring target ${target}`);
-        }
-      });
-      return neighbors;
-    }
-    else {
-      return [];
-    }
+    //   targets.forEach(target => {
+    //     if (target[0] == "coastline") {
+    //       let ctarget = target[1];
+    //       let ix = this.arcStore.get_index(ctarget);
+    //       let arc_points = this.arcStore.getPoints(ctarget.arc);
+    //       if (ix > 0) neighbors.push(arc_points[ix - 1]);
+    //       if (ix < arc_points.length - 1) neighbors.push(arc_points[ix + 1]);
+    //     }
+    //     else {
+    //       console.log(`mixed type, dunno what to do, ignoring target ${target}`);
+    //     }
+    //   });
+    //   return neighbors;
+    // }
+    // else {
+    //   return [];
+    // }
   }
 
   targets(world_bbox: ArRectangle): Target[] {

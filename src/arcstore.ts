@@ -212,15 +212,13 @@ export class ArcStore {
   }
 
   // MUTATES
-  break_segment(segment: Segment, p: Point) {
+  break_segment(pnamegen: () => string, segment: Segment, p: Point) {
     const arc_id = segment.arc_id;
     const arc = this.arcs[arc_id];
-
-    throw "UNIMPLEMENTED";
-    const newp: Zpoint = { point: p, z: 1000 };
-    arc._points.splice(segment.ix + 1, 0, newp as any);
+    const point = this.addPoint(pnamegen, p);
+    const newp: Gzpoint = { point, z: 1000 };
+    arc._points.splice(segment.ix + 1, 0, newp);
     simplify.resimplify_arc(this, arc);
-
     this.recompute_arc_feature_bbox(arc_id);
   }
 

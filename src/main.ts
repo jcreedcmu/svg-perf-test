@@ -407,7 +407,11 @@ class App {
             const ix = hit_lines[0].ix;
             const arc = coastline_layer.arcStore.getPoints(arc_id);
             this.start_drag(worldp, [arc[ix], arc[ix + 1]], (dragp: Point) => {
-              coastline_layer.arcStore.break_segment(hit_lines[0], dragp);
+              coastline_layer.arcStore.break_segment(
+                () => this.coastline_layer.namegen('r'),
+                hit_lines[0],
+                dragp
+              );
             });
           }
           else

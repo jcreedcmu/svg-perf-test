@@ -30,7 +30,6 @@ export class ArcStore {
   arcs: Dict<Arc>;
   points: Dict<Point>;
   rt: Bush<Poly>;
-  vertex_rt: Bush<ArcVertexTarget>; // vertices of arcs, DEPRECATED
   point_rt: Bush<string>; // point referencables, payload is id
   arc_to_feature: Dict<string[]> = {};
   point_to_arc: Dict<string[]> = {};
@@ -113,10 +112,6 @@ export class ArcStore {
       _points: simplify.simplify(enhanced).map(x => ({ point: x.extra, z: x.z })),
       bbox: simplify.bbox_of_points(points),
     };
-    points.forEach(point => {
-      // XXX delete this
-      insertPt(this.vertex_rt, point, { arc: arcname, _point: point });
-    });
     this.arcs[arcname] = a;
     return a;
   }
@@ -124,15 +119,10 @@ export class ArcStore {
   // MUTATES derived
   rebuild() {
     this.rt = rbush(10);
-    this.vertex_rt = rbush(10);
     this.point_rt = rbush(10);
 
     // compute arc z-coords and bboxes
     this.forArcs((an, arc) => {
-      this.arcPoints(arc).forEach(({ point }, pn) => {
-        // XXX delete this
-        insertPt(this.vertex_rt, point, { arc: an, _point: point });
-      });
       simplify.resimplify_arc(this, arc);
     });
 
@@ -211,9 +201,6 @@ export class ArcStore {
     arc._points.splice(segment.ix + 1, 0, newp as any);
     simplify.resimplify_arc(this, arc);
 
-    // DELETE THIS
-    insertPt(this.vertex_rt, p, { arc: arc_id, _point: newp.point });
-
     this.recompute_arc_feature_bbox(arc_id);
   }
 
@@ -245,12 +232,7 @@ export class ArcStore {
     const new_pt = arc._points[vert_ix] = { point: { id: "NOPE" }, z: 1000 };
 
     simplify.resimplify_arc(this, arc);
-    const results = removePt(this.vertex_rt, oldp);
-
-    // XXX DELETE THIS
-    insertPt(this.vertex_rt, p, { arc: arc_id, _point: { x: 0, y: 0 } });
     this.recompute_arc_feature_bbox(arc_id);
-
   }
 
   // MUTATES

@@ -199,7 +199,13 @@ export class CoastlineLayer implements Layer {
   }
 
   arc_vertex_targets(world_bbox: ArRectangle): ArcVertexTarget[] {
-    const targets = tsearch(this.arcStore.vertex_rt, world_bbox);
+    const ptargets = tsearch(this.arcStore.point_rt, world_bbox);
+    const targets: ArcVertexTarget[] = [];
+    ptargets.forEach(ptId => {
+      const _point = this.arcStore.points[ptId];
+      const arcIds = this.arcStore.point_to_arc[ptId];
+      arcIds.forEach(arc => targets.push({ arc, _point }));
+    });
 
     if (targets.length < 2) return targets;
 

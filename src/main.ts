@@ -1,7 +1,7 @@
 import * as react from 'react';
 import * as ReactDOM from 'react-dom';
 
-import { Point, Ctx, Mode, Camera, Rect, Path } from './types';
+import { Point, Ctx, Mode, Camera, Rect, Path, Target, ArcVertexTarget } from './types';
 import { Geo, Rivers, Zpoint, Bundle, Layer, ArRectangle, Label } from './types';
 import { Stopper, UIState } from './types';
 
@@ -47,14 +47,16 @@ declare var window: any;
 // A weird utility function. I probably want to refactor
 // lastz to be real data and not JSON or something.
 function get_snap(lastz: string): Point | null {
-  const last = JSON.parse(lastz);
+  const last: Target[] = JSON.parse(lastz);
   // .targets is already making sure that multiple targets returned at
   // this stage are on the same exact point
-  if (last.length >= 1 &&
-    last[0][0] == "coastline")
-    return clone(last[0][1].point);
-  else
-    return null;
+  if (last.length >= 1) {
+    const u = last[0];
+    if (u[0] == "coastline")
+      return clone(u[1]._point);
+  }
+
+  return null;
 }
 
 // Used only by zoom_to for now.
@@ -185,15 +187,15 @@ class App {
 
     // vertex hover display
     if (camera.zoom >= 1 && this.lastz != "[]") {
-      const pts = JSON.parse(this.lastz);
+      const pts: Target[] = JSON.parse(this.lastz);
       if (pts.length != 0) {
         const rad = 3 / cscale(camera);
         d.save();
         d.translate(camera.x, camera.y);
         d.scale(cscale(camera), -cscale(camera));
-        pts.forEach((bundle: Bundle) => {
+        pts.forEach((bundle: Target) => {
           if (bundle[0] == "coastline") {
-            const pt = bundle[1].point;
+            const pt = this.coastline_layer.avtPoint(bundle[1]);
             d.fillStyle = "white";
             d.fillRect(pt.x - rad, pt.y - rad, rad * 2, rad * 2);
             d.lineWidth = 1 / cscale(camera);

@@ -1,7 +1,7 @@
 import { Segment, Point, Dict, Arc, Poly, RawArc, RawPoly, Zpoint, ArcSpec, Bbox, PolyProps } from './types';
 import { ArcVertexTarget, Bush } from './types';
 import { rawOfPoly, unrawOfPoly, colAppend } from './util';
-import { vkmap, vmap, trivBbox, insertPt, removePt, findPt } from './util';
+import { vkmap, vmap, trivBbox, insertPt, removeSamePt, findPt } from './util';
 import * as simplify from './simplify';
 import * as rbush from 'rbush';
 import { Gpoint, Gzpoint } from './types';
@@ -219,19 +219,17 @@ export class ArcStore {
 
   // MUTATES
   replace_vertex(rt_entry: ArcVertexTarget, p: Point) {
-    const arc_id = rt_entry.arc;
+    const { ptId } = rt_entry;
+    const oldp = this.points[ptId];
+    this.points[ptId] = p;
 
-    const vert_ix = this.get_index(rt_entry);
-    const arc = this.arcs[arc_id];
-    const oldp = this.avtPoint(rt_entry);
+    removeSamePt(this.point_rt, oldp, ptId);
+    insertPt(this.point_rt, p, ptId);
 
-    throw "UNIMPLEMENTED";
-
-    // I think this 1000 can be whatever
-    const new_pt = arc._points[vert_ix] = { point: { id: "NOPE" }, z: 1000 };
-
-    simplify.resimplify_arc(this, arc);
-    this.recompute_arc_feature_bbox(arc_id);
+    this.point_to_arc[ptId].forEach(arcId => {
+      simplify.resimplify_arc(this, this.arcs[arcId]);
+      this.recompute_arc_feature_bbox(arcId);
+    });
   }
 
   // MUTATES

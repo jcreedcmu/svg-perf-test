@@ -129,6 +129,17 @@ export function removePt<T>(rt: Bush<T>, pt: Point): void {
   });
 }
 
+export function removeSamePt<T>(rt: Bush<T>, pt: Point, payload: T): void {
+  rt.remove(
+    {
+      minX: pt.x, maxX: pt.x,
+      minY: pt.y, maxY: pt.y,
+      payload
+    },
+    (a, b) => a.payload == b.payload
+  );
+}
+
 export function findPt<T>(rt: Bush<T>, pt: Point): T[] {
   const res = rt.search({
     minX: pt.x, maxX: pt.x,

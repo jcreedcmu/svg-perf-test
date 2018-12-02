@@ -203,9 +203,9 @@ export class CoastlineLayer implements Layer {
 
     if (targets.length < 2) return targets;
 
-    const orig = targets[0].point;
+    const orig = this.avtPoint(targets[0]);
     for (let i = 1; i < targets.length; i++) {
-      let here = targets[i].point;
+      let here = this.avtPoint(targets[i]);
       // If we're getting a set of points not literally on the same
       // point, pretend there's no match
       if (orig.x != here.x) return [];
@@ -223,9 +223,13 @@ export class CoastlineLayer implements Layer {
       return [];
   }
 
+  avtPoint(avt: ArcVertexTarget): Point {
+    return avt._point;
+  }
+
   target_point(target: Target) {
     return target[0] == "coastline" ?
-      target[1].point :
+      this.avtPoint(target[1]) :
       this.labelStore.labels[target[1]].pt;
   }
 

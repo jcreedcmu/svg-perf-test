@@ -30,7 +30,7 @@ export type ArRectangle = [number, number, number, number];
 
 export type Segment = { arc_id: string, ix: number };
 
-export type ArcVertexTarget = { arc: string, point: Point };
+export type ArcVertexTarget = { arc: string, _point: Point };
 export type LabelTarget = string;
 export type Target = ["coastline", ArcVertexTarget] | ["label", LabelTarget];
 

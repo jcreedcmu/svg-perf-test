@@ -115,7 +115,7 @@ export class ArcStore {
     };
     points.forEach(point => {
       // XXX delete this
-      insertPt(this.vertex_rt, point, { arc: arcname, point });
+      insertPt(this.vertex_rt, point, { arc: arcname, _point: point });
     });
     this.arcs[arcname] = a;
     return a;
@@ -130,7 +130,8 @@ export class ArcStore {
     // compute arc z-coords and bboxes
     this.forArcs((an, arc) => {
       this.arcPoints(arc).forEach(({ point }, pn) => {
-        insertPt(this.vertex_rt, point, { arc: an, point });
+        // XXX delete this
+        insertPt(this.vertex_rt, point, { arc: an, _point: point });
       });
       simplify.resimplify_arc(this, arc);
     });
@@ -210,17 +211,24 @@ export class ArcStore {
     arc._points.splice(segment.ix + 1, 0, newp as any);
     simplify.resimplify_arc(this, arc);
 
-    insertPt(this.vertex_rt, p, { arc: arc_id, point: newp.point });
+    // DELETE THIS
+    insertPt(this.vertex_rt, p, { arc: arc_id, _point: newp.point });
+
     this.recompute_arc_feature_bbox(arc_id);
   }
 
+  avtPoint(avt: ArcVertexTarget): Point {
+    return avt._point;
+  }
+
   get_index(target: ArcVertexTarget) {
+    // XXX replace this with comparing (this.arcs[target.arc])._points ti target.id
     const arc = this.getPoints(target.arc);
     for (let i = 0; i < arc.length; i++) {
-      if (arc[i] == target.point) // this by-reference comparison is fundamentally kind of fragile
+      if (arc[i] == target._point) // this by-reference comparison is fundamentally kind of fragile
         return i;
     }
-    throw ("Can't find " + JSON.stringify(target.point) + " in " + JSON.stringify(arc))
+    throw ("Can't find " + JSON.stringify(target._point) + " in " + JSON.stringify(arc))
   }
 
   // MUTATES
@@ -229,7 +237,7 @@ export class ArcStore {
 
     const vert_ix = this.get_index(rt_entry);
     const arc = this.arcs[arc_id];
-    const oldp = rt_entry.point;
+    const oldp = this.avtPoint(rt_entry);
 
     throw "UNIMPLEMENTED";
 
@@ -239,8 +247,8 @@ export class ArcStore {
     simplify.resimplify_arc(this, arc);
     const results = removePt(this.vertex_rt, oldp);
 
-    // new_pt.point
-    insertPt(this.vertex_rt, p, { arc: arc_id, point: { x: 0, y: 0 } });
+    // XXX DELETE THIS
+    insertPt(this.vertex_rt, p, { arc: arc_id, _point: { x: 0, y: 0 } });
     this.recompute_arc_feature_bbox(arc_id);
 
   }

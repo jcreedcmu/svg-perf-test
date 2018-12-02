@@ -44,20 +44,6 @@ const PANNING_MARGIN = 200;
 // Just for debugging
 declare var window: any;
 
-// A weird utility function. I probably want to refactor
-// lastz to be real data and not JSON or something.
-function get_snap(last: Target[]): Point | null {
-  // .targets is already making sure that multiple targets returned at
-  // this stage are on the same exact point
-  if (last.length >= 1) {
-    const u = last[0];
-    if (u[0] == "coastline")
-      return clone(u[1]._point);
-  }
-
-  return null;
-}
-
 // Used only by zoom_to for now.
 function has_label(x: Label, label: string) {
   return x.properties.text && x.properties.text.match(new RegExp(label, "i"))
@@ -309,6 +295,17 @@ class App {
     }
   }
 
+  get_snap(last: Target[]): Point | null {
+    // .targets is already making sure that multiple targets returned at
+    // this stage are on the same exact point
+    if (last.length >= 1) {
+      const u = last[0];
+      if (u[0] == "coastline")
+        return this.coastline_layer.avtPoint(u[1]);
+    }
+    return null;
+  }
+
   handleMouseDown(e: JQuery.Event<HTMLElement, null>) {
     const { image_layer, coastline_layer, sketch_layer } = this;
     const camera = this.state.camera();
@@ -421,7 +418,7 @@ class App {
       case "Freehand":
         let startp: Point = worldp;
 
-        const spoint = get_snap(this.lastz);
+        const spoint = this.get_snap(this.lastz);
         if (spoint != null)
           startp = spoint;
 
@@ -738,7 +735,7 @@ class App {
       this.th.maybe();
     });
     $(document).on('mouseup.drag', e => {
-      const spoint = get_snap(this.lastz);
+      const spoint = this.get_snap(this.lastz);
       if (spoint != null) {
         path[path.length - 1] = { point: spoint, z: 1000 };
         startp = spoint;

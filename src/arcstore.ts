@@ -205,17 +205,16 @@ export class ArcStore {
   }
 
   avtPoint(avt: ArcVertexTarget): Point {
-    return avt._point;
+    return this.points[avt.ptId]
   }
 
   get_index(target: ArcVertexTarget) {
-    // XXX replace this with comparing (this.arcs[target.arc])._points ti target.id
-    const arc = this.getPoints(target.arc);
+    const arc = this.arcs[target.arc]._points;
     for (let i = 0; i < arc.length; i++) {
-      if (arc[i] == target._point) // this by-reference comparison is fundamentally kind of fragile
+      if (arc[i].point.id == target.ptId)
         return i;
     }
-    throw ("Can't find " + JSON.stringify(target._point) + " in " + JSON.stringify(arc))
+    throw ("Can't find " + JSON.stringify(target) + " in " + JSON.stringify(arc))
   }
 
   // MUTATES

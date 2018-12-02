@@ -1,6 +1,6 @@
 import { Segment, Point, Dict, Arc, Poly, RawArc, RawPoly, Zpoint, ArcSpec, Bbox, PolyProps } from './types';
 import { ArcVertexTarget, Bush } from './types';
-import { rawOfPoly, unrawOfPoly } from './util';
+import { rawOfPoly, unrawOfPoly, colAppend } from './util';
 import { vkmap, vmap, trivBbox, insertPt, removePt, findPt } from './util';
 import * as simplify from './simplify';
 import * as rbush from 'rbush';
@@ -30,9 +30,10 @@ export class ArcStore {
   arcs: Dict<Arc>;
   points: Dict<Point>;
   rt: Bush<Poly>;
-  vertex_rt: Bush<ArcVertexTarget>; // vertices of arcs
+  vertex_rt: Bush<ArcVertexTarget>; // vertices of arcs, DEPRECATED
   point_rt: Bush<string>; // point referencables, payload is id
   arc_to_feature: Dict<string[]> = {};
+  point_to_arc: Dict<string[]> = {};
 
   constructor(points: Dict<Point>, arcs: Dict<RawArc>, polys: Dict<RawPoly>) {
     this.points = points;
@@ -100,16 +101,20 @@ export class ArcStore {
 
   // MUTATES
   addArc(pnamegen: () => string, arcname: string, points: Point[]): Arc {
-    const enhanced = this.addPoints(pnamegen, points).map(p => ({
-      extra: p,
-      point: this.points[p.id],
-    }));
+    const enhanced = this.addPoints(pnamegen, points).map(p => {
+      colAppend(this.point_to_arc, p.id, arcname);
+      return {
+        extra: p,
+        point: this.points[p.id],
+      }
+    });
     const a: Arc = {
       name: arcname,
       _points: simplify.simplify(enhanced).map(x => ({ point: x.extra, z: x.z })),
       bbox: simplify.bbox_of_points(points),
     };
-    Object.entries(points).forEach(([pn, point]) => {
+    points.forEach(point => {
+      // XXX delete this
       insertPt(this.vertex_rt, point, { arc: arcname, point });
     });
     this.arcs[arcname] = a;
@@ -139,18 +144,20 @@ export class ArcStore {
 
     // compute reverse mapping from arcs to features
     this.forFeatures((feature_ix, object) => {
-      const { arc_to_feature } = this;
       object.arcs.forEach(arc_spec => {
-        const id = arc_spec.id;
-        if (!arc_to_feature[id])
-          arc_to_feature[id] = [];
-        arc_to_feature[id].push(feature_ix);
+        colAppend(this.arc_to_feature, arc_spec.id, feature_ix);
       });
     });
 
-    // going to want a reverse map from points to arcs or something probably?
+    // compute reverse mapping from points into arcs
+    const { point_to_arc } = this;
+    this.forArcs((an, arc) => {
+      arc._points.forEach(gzp => {
+        colAppend(this.point_to_arc, gzp.point.id, an);
+      });
+    });
 
-    // plop down points
+    // plop down points into rtree
     Object.entries(this.points).forEach(([name, point]) => {
       insertPt(this.point_rt, point, name);
     });

@@ -136,3 +136,11 @@ export function findPt<T>(rt: Bush<T>, pt: Point): T[] {
   });
   return res.map(x => x.payload);
 }
+
+// adds a k,v pair to a one-to-many map m, first inserting the empty
+// list if necessary
+export function colAppend<T>(m: Dict<T[]>, k: string, v: T) {
+  if (!m[k])
+    m[k] = [];
+  m[k].push(v);
+}

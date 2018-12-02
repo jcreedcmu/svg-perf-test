@@ -46,8 +46,7 @@ declare var window: any;
 
 // A weird utility function. I probably want to refactor
 // lastz to be real data and not JSON or something.
-function get_snap(lastz: string): Point | null {
-  const last: Target[] = JSON.parse(lastz);
+function get_snap(last: Target[]): Point | null {
   // .targets is already making sure that multiple targets returned at
   // this stage are on the same exact point
   if (last.length >= 1) {
@@ -83,7 +82,8 @@ class App {
   w: number;
   h: number;
   layers: Layer[];
-  lastz: string = "[]";
+  lastz: Target[] = [];
+  slastz: string = "[]";
   coastline_layer: CoastlineLayer;
   image_layer: ImageLayer;
   river_layer: RiverLayer;
@@ -186,36 +186,34 @@ class App {
 
 
     // vertex hover display
-    if (camera.zoom >= 1 && this.lastz != "[]") {
-      const pts: Target[] = JSON.parse(this.lastz);
-      if (pts.length != 0) {
-        const rad = 3 / cscale(camera);
-        d.save();
-        d.translate(camera.x, camera.y);
-        d.scale(cscale(camera), -cscale(camera));
-        pts.forEach((bundle: Target) => {
-          if (bundle[0] == "coastline") {
-            const pt = this.coastline_layer.avtPoint(bundle[1]);
-            d.fillStyle = "white";
-            d.fillRect(pt.x - rad, pt.y - rad, rad * 2, rad * 2);
-            d.lineWidth = 1 / cscale(camera);
-            d.strokeStyle = "black";
-            d.strokeRect(pt.x - rad, pt.y - rad, rad * 2, rad * 2);
+    if (camera.zoom >= 1 && this.lastz.length != 0) {
+      const pts = this.lastz;
+      const rad = 3 / cscale(camera);
+      d.save();
+      d.translate(camera.x, camera.y);
+      d.scale(cscale(camera), -cscale(camera));
+      pts.forEach((bundle: Target) => {
+        if (bundle[0] == "coastline") {
+          const pt = this.coastline_layer.avtPoint(bundle[1]);
+          d.fillStyle = "white";
+          d.fillRect(pt.x - rad, pt.y - rad, rad * 2, rad * 2);
+          d.lineWidth = 1 / cscale(camera);
+          d.strokeStyle = "black";
+          d.strokeRect(pt.x - rad, pt.y - rad, rad * 2, rad * 2);
 
-            d.strokeStyle = colors.motion_guide;
-            d.strokeRect(pt.x - 2 * rad, pt.y - 2 * rad, rad * 4, rad * 4);
-          }
-          else if (bundle[0] == "label") {
-            const pt = this.coastline_layer.labelStore.labels[bundle[1]].pt;
-            d.beginPath();
-            d.fillStyle = "white";
-            d.globalAlpha = 0.5;
-            d.arc(pt.x, pt.y, 20 / cscale(camera), 0, Math.PI * 2);
-            d.fill();
-          }
-        });
-        d.restore();
-      }
+          d.strokeStyle = colors.motion_guide;
+          d.strokeRect(pt.x - 2 * rad, pt.y - 2 * rad, rad * 4, rad * 4);
+        }
+        else if (bundle[0] == "label") {
+          const pt = this.coastline_layer.labelStore.labels[bundle[1]].pt;
+          d.beginPath();
+          d.fillStyle = "white";
+          d.globalAlpha = 0.5;
+          d.arc(pt.x, pt.y, 20 / cscale(camera), 0, Math.PI * 2);
+          d.fill();
+        }
+      });
+      d.restore();
     }
 
     if (!this.panning) {
@@ -235,7 +233,7 @@ class App {
       d.font = "bold 12px sans-serif";
       d.lineWidth = 2;
       const im = this.image_layer;
-      const txt = "Zoom: " + camera.zoom + " (1px = " + 1 / cscale(camera) + "m) lastz: " + this.lastz + " img: " + im.named_imgs[im.cur_img_ix].name;
+      const txt = "Zoom: " + camera.zoom + " (1px = " + 1 / cscale(camera) + "m) lastz: " + this.slastz + " img: " + im.named_imgs[im.cur_img_ix].name;
       d.strokeText(txt, 20, 20);
       d.fillText(txt, 20, 20);
 
@@ -302,9 +300,10 @@ class App {
       const rad = VERTEX_SENSITIVITY / cscale(camera);
       const bbox: ArRectangle = [worldp.x - rad, worldp.y - rad, worldp.x + rad, worldp.y + rad];
       const targets = this.coastline_layer.targets(bbox);
-      const z = JSON.stringify(targets);
-      if (z != this.lastz) {
-        this.lastz = z;
+      const sz = JSON.stringify(targets);
+      if (sz != this.slastz) {
+        this.lastz = targets;
+        this.slastz = sz;
         this.render();
       }
     }
@@ -360,14 +359,17 @@ class App {
         break;
 
       case "Label":
-        if (this.lastz != "[]") {
-          const z = JSON.parse(this.lastz);
+        if (this.lastz.length != 0) {
+          const z = this.lastz;
           console.log(this.lastz);
-          if (z.length == 1 && z[0][0] == "label") {
-            modal.make_insert_label_modal(worldp, coastline_layer.labelStore.labels[z[0][1]], obj => {
-              coastline_layer.labelStore.replace_point_feature(obj);
-              this.render();
-            });
+          if (z.length == 1) {
+            const u = z[0];
+            if (u[0] == "label") {
+              modal.make_insert_label_modal(worldp, coastline_layer.labelStore.labels[u[1]], obj => {
+                coastline_layer.labelStore.replace_point_feature(obj);
+                this.render();
+              });
+            }
           }
         }
         else {
@@ -627,7 +629,7 @@ class App {
     $(document).on('mouseup.drag', e => {
       this.render_extra = null;
       $(document).off('.drag');
-      const snaps = JSON.parse(this.lastz);
+      const snaps = this.lastz;
       if (snaps.length >= 1) {
         dragp = this.coastline_layer.target_point(snaps[0]);
       }

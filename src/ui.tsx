@@ -12,11 +12,11 @@ export function renderUi(s: UIState, dispatch: () => void): JSX.Element {
       <input type="checkbox" id={k}
         onChange={change} checked={s.layers[k]} /> <label htmlFor={k}>{hs} layer </label>
       <br />
-    </span>
+    </span >
 
   }
   const x = 3;
-  return <div>
+  return <div className="sidebar">
     {radio("road", "Road")}
     {radio("boundary", "Boundary")}
     {radio("river", "River")}

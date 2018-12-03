@@ -3,14 +3,14 @@ import { UIState } from './types';
 
 export function renderUi(s: UIState, dispatch: () => void): JSX.Element {
 
-  function radio(k: keyof UIState, hs: string): JSX.Element {
+  function radio(k: keyof UIState['layers'], hs: string): JSX.Element {
     function change<T>(e: React.ChangeEvent<T>): void {
-      s[k] = !s[k];
+      s.layers[k] = !s.layers[k];
       dispatch();
     }
     return <span>
       <input type="checkbox" id={k}
-        onChange={change} checked={s[k]} /> <label htmlFor={k}>{hs} layer </label>
+        onChange={change} checked={s.layers[k]} /> <label htmlFor={k}>{hs} layer </label>
       <br />
     </span>
 

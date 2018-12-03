@@ -253,8 +253,8 @@ export class CoastlineLayer implements Layer {
   render(rc: RenderCtx) {
     const { d, camera, world_bbox, us, mode } = rc;
     function visible(x: Poly): boolean {
-      if (x.properties.t == "road" && !us.road) return false;
-      if (x.properties.t == "boundary" && !us.boundary) return false;
+      if (x.properties.t == "road" && !us.layers.road) return false;
+      if (x.properties.t == "boundary" && !us.layers.boundary) return false;
       return true;
     }
 

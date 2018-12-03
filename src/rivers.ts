@@ -10,7 +10,7 @@ export class RiverLayer implements Layer {
 
   render(rc: RenderCtx): void {
     const { d, camera, us } = rc;
-    if (!us.river)
+    if (!us.layers.river)
       return;
     d.save();
     d.translate(camera.x, camera.y);

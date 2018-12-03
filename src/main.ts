@@ -82,9 +82,12 @@ class App {
   selection: { arc: string } | null = null;
   state = new State(); // really this is camera state
   uistate: UIState = {
-    road: false,
-    boundary: false,
-    river: false,
+    mode: { t: 'normal' },
+    layers: {
+      road: false,
+      boundary: false,
+      river: false,
+    },
   };
   th: Throttler;
 

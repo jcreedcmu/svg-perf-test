@@ -122,10 +122,15 @@ export type Bbox = rbush.BBox;
 export type RBush<T> = rbush.RBush<T>;
 export type Bush<T> = RBush<Bbox & { payload: T }>;
 
+type UIMode = { t: 'normal' } | { t: 'modal' };
+
 export type UIState = {
-  road: boolean,
-  boundary: boolean,
-  river: boolean,
+  mode: UIMode,
+  layers: {
+    road: boolean,
+    boundary: boolean,
+    river: boolean,
+  }
 };
 
 export interface Layer {

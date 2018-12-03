@@ -122,7 +122,10 @@ export type Bbox = rbush.BBox;
 export type RBush<T> = rbush.RBush<T>;
 export type Bush<T> = RBush<Bbox & { payload: T }>;
 
-type UIMode = { t: 'normal' } | { t: 'modal' };
+type UIMode =
+  | { t: 'normal' }
+  | { t: 'label-modal' }
+  | { t: 'feature-modal', points: Point[] };
 
 export type UIState = {
   mode: UIMode,
@@ -144,3 +147,9 @@ export type RenderCtx = {
   mode: Mode,
   world_bbox: ArRectangle,
 };
+
+export type FeatureModalResult =
+  | { t: "FeatureModalCancel" }
+  | { t: "FeatureModalOk", v: { text: string, tp: string, zoom: string } };
+export type Result = FeatureModalResult
+  | { t: "RadioToggle", k: keyof UIState['layers'] };

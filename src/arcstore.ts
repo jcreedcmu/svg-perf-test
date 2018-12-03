@@ -102,7 +102,6 @@ export class ArcStore {
   addPoint(namegen: () => string, point: Point): Gpoint {
     const res = findPt(this.point_rt, point);
     if (res.length) {
-      console.log('reusing ', JSON.stringify(point));
       return { id: res[0] };
     }
     else {

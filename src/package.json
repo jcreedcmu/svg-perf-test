@@ -1,7 +1,7 @@
 {
   "name": "map-thing",
   "version": "1.0.0",
-  "description": "",
+  "description": "a thing with a map",
   "main": "main.js",
   "scripts": {
     "test": "jest"
@@ -27,11 +27,13 @@
     "@types/jquery": "^3.3.22",
     "@types/rbush": "^2.0.2",
     "@types/react": "^16.7.10",
+    "@types/react-bootstrap": "^0.32.15",
     "@types/react-dom": "^16.0.11",
     "@types/underscore": "^1.8.9",
     "rbush": "^2.0.2",
-    "react": "^16.7.0-alpha.2",
-    "react-dom": "^16.7.0-alpha.2",
+    "react": "16.7.0-alpha.2",
+    "react-bootstrap": "^0.32.4",
+    "react-dom": "16.7.0-alpha.2",
     "underscore": "^1.9.1"
   }
 }

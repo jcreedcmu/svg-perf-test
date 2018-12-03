@@ -254,7 +254,28 @@ class App {
 
     // render react stuff
     ReactDOM.render(
-      renderUi(this.uistate, () => { this.render() }),
+      renderUi(this.uistate, (r) => {
+        switch (r.t) {
+          case "FeatureModalOk": {
+            if (this.uistate.mode.t == "feature-modal") {
+              this.coastline_layer.add_arc_feature("Polygon", this.uistate.mode.points, { t: "boundary" });
+              this.uistate.mode = { t: "normal" };
+            }
+            else {
+              console.log(`unsupported action FeatureModalOk when uistate is ${this.uistate}`);
+            }
+          } break;
+          case "FeatureModalCancel":
+            this.uistate.mode = { t: "normal" };
+            break;
+          case "RadioToggle":
+            this.uistate.layers[r.k] = !this.uistate.layers[r.k];
+            break;
+          default:
+            nope(r);
+        }
+        this.render();
+      }),
       document.getElementById('react-root')
     );
   }
@@ -445,6 +466,9 @@ class App {
     const { image_layer, coastline_layer, sketch_layer } = this;
 
     // Disable key event handling if modal is up
+    if (this.uistate.mode.t != 'normal')
+      return;
+    // XXX eventually delete this
     const modals = $(".modal");
     if (modals.filter(function(ix, e) { return $(e).css("display") == "block" }).length)
       return;
@@ -508,7 +532,8 @@ class App {
       case "q": {
         const sk = sketch_layer.pop();
         if (sk != null) {
-          coastline_layer.make_insert_feature_modal(sk.map(p => p.point), () => this.render());
+          this.uistate.mode = { t: 'feature-modal', points: sk.map(p => p.point) };
+          this.render();
         }
       } break;
       case "S-f": {

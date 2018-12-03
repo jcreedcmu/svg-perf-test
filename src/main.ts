@@ -152,6 +152,10 @@ class App {
 
   render(): void {
     const { w, h, d, mode } = this;
+    this._render(w, h, d, mode);
+  }
+
+  _render(w: number, h: number, d: Ctx, mode: Mode): void {
 
     //  const t = Date.now();
     d.save();

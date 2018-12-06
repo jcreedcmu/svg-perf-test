@@ -155,6 +155,29 @@ class App {
     this._render(w, h, d, mode);
   }
 
+  reduce(r: t.Result) {
+    switch (r.t) {
+      case "FeatureModalOk": {
+        if (this.uistate.mode.t == "feature-modal") {
+          this.coastline_layer.add_arc_feature("Polygon", this.uistate.mode.points, { t: "boundary" });
+          this.uistate.mode = { t: "normal" };
+        }
+        else {
+          console.log(`unsupported action FeatureModalOk when uistate is ${this.uistate}`);
+        }
+      } break;
+      case "FeatureModalCancel":
+        this.uistate.mode = { t: "normal" };
+        break;
+      case "RadioToggle":
+        this.uistate.layers[r.k] = !this.uistate.layers[r.k];
+        break;
+      default:
+        nope(r);
+    }
+    this.render();
+  }
+
   _render(w: number, h: number, d: Ctx, mode: Mode): void {
 
     //  const t = Date.now();
@@ -254,28 +277,7 @@ class App {
 
     // render react stuff
     ReactDOM.render(
-      renderUi(this.uistate, (r) => {
-        switch (r.t) {
-          case "FeatureModalOk": {
-            if (this.uistate.mode.t == "feature-modal") {
-              this.coastline_layer.add_arc_feature("Polygon", this.uistate.mode.points, { t: "boundary" });
-              this.uistate.mode = { t: "normal" };
-            }
-            else {
-              console.log(`unsupported action FeatureModalOk when uistate is ${this.uistate}`);
-            }
-          } break;
-          case "FeatureModalCancel":
-            this.uistate.mode = { t: "normal" };
-            break;
-          case "RadioToggle":
-            this.uistate.layers[r.k] = !this.uistate.layers[r.k];
-            break;
-          default:
-            nope(r);
-        }
-        this.render();
-      }),
+      renderUi(this.uistate, r => this.reduce(r)),
       document.getElementById('react-root')
     );
   }

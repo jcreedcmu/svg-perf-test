@@ -166,7 +166,17 @@ class App {
           console.log(`unsupported action FeatureModalOk when uistate is ${this.uistate}`);
         }
       } break;
+      case "LabelModalOk": {
+        if (this.uistate.mode.t == "label-modal") {
+          // add label
+          this.uistate.mode = { t: "normal" };
+        }
+        else {
+          console.log(`unsupported action FeatureModalOk when uistate is ${this.uistate}`);
+        }
+      } break;
       case "FeatureModalCancel":
+      case "LabelModalCancel":
         this.uistate.mode = { t: "normal" };
         break;
       case "RadioToggle":
@@ -392,18 +402,19 @@ class App {
           if (z.length == 1) {
             const u = z[0];
             if (u[0] == "label") {
-              modal.make_insert_label_modal(worldp, coastline_layer.labelStore.labels[u[1]], obj => {
-                coastline_layer.labelStore.replace_point_feature(obj);
-                this.render();
-              });
+              throw "temporarily have disabled replacing labels";
+              // modal.make_insert_label_modal(worldp, coastline_layer.labelStore.labels[u[1]], obj => {
+              //   coastline_layer.labelStore.replace_point_feature(obj);
+              //   this.render();
+              // });
             }
           }
         }
         else {
-          modal.make_insert_label_modal(worldp, null, obj => {
-            coastline_layer.new_point_feature(obj);
-            this.render();
-          });
+          this.uistate.mode = { t: "label-modal" };
+          this.render();
+          //            coastline_layer.new_point_feature(obj);
+
         }
         break;
 

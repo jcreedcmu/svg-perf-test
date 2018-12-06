@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { UIState, FeatureModalResult, Result } from './types';
+import { UIState, FeatureModalResult, LabelModalResult, Result } from './types';
 import { useRef, useLayoutEffect, useState } from 'react';
 import { nope } from './util';
 import * as ReactBootstrap from 'react-bootstrap';
@@ -70,6 +70,48 @@ function FeatureModal(props: { us: UIState, dispatch: (r: FeatureModalResult) =>
   </Modal>;
 }
 
+function LabelModal(props: { us: UIState, dispatch: (r: LabelModalResult) => void }): JSX.Element {
+  const { us, dispatch } = props;
+  const [text, setText] = useState("");
+  const [tp, setTp] = useState("region");
+  const [zoom, setZoom] = useState("4");
+  const dismiss = () => dispatch({ t: "LabelModalCancel" });
+  const submit = () => dispatch({
+    t: "LabelModalOk", v: { text, tp, zoom }
+  });
+
+  return <Modal show={us.mode.t == "label-modal"} onHide={dismiss}>
+    <Modal.Header closeButton>
+      <Modal.Title>Add Label</Modal.Title>
+    </Modal.Header>
+    <Modal.Body>
+      <form>
+        <div className="modal-body">
+          <div className="form-group">
+            <label htmlFor="text">Text</label>
+            <input type="text" className="form-control" name="text" placeholder="erla-otul"
+              value={text} onChange={e => setText(e.target.value)} />
+          </div>
+          <div className="form-group">
+            <label htmlFor="type">Type</label>
+            <input type="text" className="form-control" name="type" placeholder="region"
+              value={text} onChange={e => setText(e.target.value)} />
+          </div>
+          <div className="form-group">
+            <label htmlFor="zoom">Zoom</label>
+            <input type="text" className="form-control" name="zoom" placeholder="4"
+              value={text} onChange={e => setText(e.target.value)} />
+          </div>
+        </div>
+        <div className="modal-footer">
+          <button type="button" className="btn btn-default" onClick={dismiss}>Cancel</button>
+          <button type="submit" className="btn btn-primary" onClick={submit}>Ok</button>
+        </div>
+      </form>
+    </Modal.Body>
+  </Modal>;
+}
+
 export function renderUi(s: UIState, dispatch: (r: Result) => void): JSX.Element {
 
   function radio(k: keyof UIState['layers'], hs: string): JSX.Element {
@@ -92,6 +134,7 @@ export function renderUi(s: UIState, dispatch: (r: Result) => void): JSX.Element
       {radio("river", "River")}
     </div>
     <FeatureModal us={s} dispatch={dispatch} />
+    <LabelModal us={s} dispatch={dispatch} />
   </span>;
 
 

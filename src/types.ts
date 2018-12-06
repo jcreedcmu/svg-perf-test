@@ -151,5 +151,12 @@ export type RenderCtx = {
 export type FeatureModalResult =
   | { t: "FeatureModalCancel" }
   | { t: "FeatureModalOk", v: { text: string, tp: string, zoom: string } };
-export type Result = FeatureModalResult
+
+export type LabelModalResult =
+  | { t: "LabelModalCancel" }
+  | { t: "LabelModalOk", v: { text: string, tp: string, zoom: string } };
+
+export type Result =
+  | FeatureModalResult
+  | LabelModalResult
   | { t: "RadioToggle", k: keyof UIState['layers'] };

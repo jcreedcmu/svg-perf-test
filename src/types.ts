@@ -122,9 +122,14 @@ export type Bbox = rbush.BBox;
 export type RBush<T> = rbush.RBush<T>;
 export type Bush<T> = RBush<Bbox & { payload: T }>;
 
+export type LabelUIMode = { text: string, tp: string, zoom: string };
 type UIMode =
   | { t: 'normal' }
-  | { t: 'label-modal' }
+  | {
+    t: 'label-modal', v: LabelUIMode, status:
+    { isNew: true, pt: Point } |
+    { isNew: false, prev: Label }
+  }
   | { t: 'feature-modal', points: Point[] };
 
 export type UIState = {
@@ -154,7 +159,8 @@ export type FeatureModalResult =
 
 export type LabelModalResult =
   | { t: "LabelModalCancel" }
-  | { t: "LabelModalOk", v: { text: string, tp: string, zoom: string } };
+  | { t: "LabelModalOk" }
+  | { t: "LabelModalChange", lm: LabelUIMode };
 
 export type Result =
   | FeatureModalResult

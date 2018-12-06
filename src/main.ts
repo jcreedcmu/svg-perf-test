@@ -3,7 +3,7 @@ import * as ReactDOM from 'react-dom';
 
 import { Point, Ctx, Mode, Camera, Rect, Path, Target, ArcVertexTarget } from './types';
 import { Geo, Rivers, Zpoint, Bundle, Layer, ArRectangle, Label } from './types';
-import { Stopper, UIState } from './types';
+import { Stopper, UIState, LabType } from './types';
 
 import { Loader, Data } from './loader';
 import { clone, cscale, nope, xform, inv_xform, meters_to_string, vdist } from './util';
@@ -156,25 +156,60 @@ class App {
   }
 
   reduce(r: t.Result) {
+    function sanitize(s: string): LabType {
+      if (s == "park" || s == "city" || s == "region" || s == "sea" || s == "minorsea" || s == "river")
+        return s;
+      return "region";
+    }
+
+    const mode = this.uistate.mode;
     switch (r.t) {
       case "FeatureModalOk": {
-        if (this.uistate.mode.t == "feature-modal") {
-          this.coastline_layer.add_arc_feature("Polygon", this.uistate.mode.points, { t: "boundary" });
+        if (mode.t == "feature-modal") {
+          this.coastline_layer.add_arc_feature("Polygon", mode.points, { t: "boundary" });
           this.uistate.mode = { t: "normal" };
         }
         else {
-          console.log(`unsupported action FeatureModalOk when uistate is ${this.uistate}`);
+          throw (`unsupported action FeatureModalOk when uistate is ${this.uistate}`);
         }
       } break;
       case "LabelModalOk": {
-        if (this.uistate.mode.t == "label-modal") {
-          // add label
+        if (mode.t == "label-modal") {
+          const v = mode.v;
+          if (mode.status.isNew)
+            this.coastline_layer.new_point_feature({
+              name: v.text,
+              pt: mode.status.pt,
+              properties: {
+                label: sanitize(v.tp),
+                text: v.text,
+                zoom: parseInt(v.zoom),
+              }
+            });
+          else
+            this.coastline_layer.labelStore.replace_point_feature({
+              name: mode.status.prev.name,
+              pt: mode.status.prev.pt,
+              properties: {
+                label: sanitize(v.tp),
+                text: v.text,
+                zoom: parseInt(v.zoom),
+              }
+            });
+
           this.uistate.mode = { t: "normal" };
         }
         else {
           console.log(`unsupported action FeatureModalOk when uistate is ${this.uistate}`);
         }
       } break;
+      case "LabelModalChange":
+        if (mode.t == "label-modal") {
+          mode.v = r.lm; // MUTATES
+        }
+        else {
+          throw (`unsupported action LabelModalChange when uistate is ${this.uistate}`);
+        } break;
       case "FeatureModalCancel":
       case "LabelModalCancel":
         this.uistate.mode = { t: "normal" };
@@ -402,19 +437,25 @@ class App {
           if (z.length == 1) {
             const u = z[0];
             if (u[0] == "label") {
-              throw "temporarily have disabled replacing labels";
-              // modal.make_insert_label_modal(worldp, coastline_layer.labelStore.labels[u[1]], obj => {
-              //   coastline_layer.labelStore.replace_point_feature(obj);
-              //   this.render();
-              // });
+              const lab = coastline_layer.labelStore.labels[u[1]];
+              this.uistate.mode = {
+                t: "label-modal", status: { isNew: false, prev: lab }, v: {
+                  text: lab.properties.text,
+                  zoom: lab.properties.zoom + '',
+                  tp: lab.properties.label
+                }
+              };
+              this.render();
             }
           }
         }
         else {
-          this.uistate.mode = { t: "label-modal" };
+          this.uistate.mode = {
+            t: "label-modal",
+            status: { isNew: true, pt: worldp },
+            v: { text: "", zoom: "4", tp: "region" }
+          };
           this.render();
-          //            coastline_layer.new_point_feature(obj);
-
         }
         break;
 

@@ -23,7 +23,6 @@ import { ArcStore } from './arcstore';
 import { LabelStore } from './labelstore';
 
 import * as geom from './geom';
-import * as modal from './modal';
 import { renderUi } from './ui';
 
 // These two lines force webpack to believe that the file types.ts is

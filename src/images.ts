@@ -1,6 +1,5 @@
-import { Mode, Layer, Ctx, Camera, ArRectangle, Point, Image, Images, RenderCtx } from './types';
+import { Mode, Layer, Ctx, Camera, ArRectangle, Point, Image, Images, RenderCtx, Dict } from './types';
 import { cscale } from './util';
-import _ = require('underscore');
 
 export function image_url(img_name: string): string {
   return '/img/' + img_name + '.png';
@@ -100,11 +99,12 @@ export class ImageLayer implements Layer {
   }
 
   model(): { images: Images } {
-    return {
-      images: _.object(this.named_imgs.map(obj => {
-        return [obj.name, _.omit(obj, "name")];
-      }))
-    };
+    const images: Dict<Image> = {};
+    this.named_imgs.forEach(obj => {
+      const { name, ...rest } = obj;
+      images[obj.name] = rest;
+    });
+    return { images };
   }
 
 }

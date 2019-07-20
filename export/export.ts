@@ -1,7 +1,8 @@
 import { Geo, Arc, Point, RawPoly } from '../src/types';
-import { simplify_arc } from '../src/simplify';
+import { resimplify_arc } from '../src/simplify';
 import { readFileSync, createWriteStream } from 'fs';
-import { scale_of_zoom, above_simp_thresh, unrawOfArc } from '../src/util';
+import { scale_of_zoom, above_simp_thresh } from '../src/util';
+import { unrawOfArc, ArcStore } from '../src/arcstore';
 import * as PDF from 'pdfkit';
 
 const ZOOM = 3;
@@ -18,15 +19,16 @@ doc.pipe(createWriteStream('output.pdf'));
 doc.lineWidth(0.01);
 doc.lineJoin('round');
 
-const data: Geo = JSON.parse(readFileSync('../data/geo.json', 'utf8'));
+const geo: Geo = JSON.parse(readFileSync('../data/geo.json', 'utf8'));
 
 const arcs: { [k: string]: Arc } = {};
 
+const arcStore = new ArcStore(geo.points, geo.arcs, geo.polys);
 const scale = scale_of_zoom(ZOOM);
 
-Object.keys(data.arcs).forEach(k => {
-  const arc = unrawOfArc(k, data.arcs[k]);
-  simplify_arc(arc);
+Object.keys(geo.arcs).forEach(k => {
+  const arc = unrawOfArc(k, geo.arcs[k]);
+  resimplify_arc(arcStore, arc);
   arcs[k] = arc;
 });
 
@@ -57,10 +59,9 @@ function draw(o: RawPoly, t: 'coastline' | 'mountain') {
   }
 
   for (let k of o.arcs) {
-    const arcPts = arcs[k].points
+    const arcPts = arcStore.getArc(k).points
       .filter(({ z }) => above_simp_thresh(z, scale))
-      .map(({ point: pt }) => ({ x: pt[0], y: pt[1] }))
-      .map(xform);
+      .map(({ point }) => xform(point));
     if (arcPts.length > 1) {
       arcPts.slice(0, arcPts.length - 1).forEach(plot);
       exist = true;
@@ -74,7 +75,7 @@ function draw(o: RawPoly, t: 'coastline' | 'mountain') {
       doc.fill([230, 230, 200]);
   }
 }
-Object.values(data.polys).forEach(o => {
+Object.values(geo.polys).forEach(o => {
   if (o.properties.t == 'natural'
     && (o.properties.natural == 'coastline' ||
       o.properties.natural == 'mountain'))

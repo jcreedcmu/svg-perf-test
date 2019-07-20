@@ -24,7 +24,7 @@ export function bbox_of_points(pts: Point[]): Bbox {
   return bb;
 }
 
-export function resimplify_arc(ars: ArcStore, arc: Arc) {
+export function resimplify_arc(ars: ArcStore, arc: Arc): void {
   const pts = ars.arcPoints(arc);
   arc.bbox = bbox_of_points(pts.map(pt => pt.point));
   const enhanced = arc._points.map(gz => ({

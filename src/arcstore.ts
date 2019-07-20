@@ -14,7 +14,7 @@ function rawOfArc(arc: Arc): RawArc {
   };
 }
 
-function unrawOfArc(name: string, arc: RawArc): Arc {
+export function unrawOfArc(name: string, arc: RawArc): Arc {
   const { points } = arc;
   return {
     name,
@@ -67,7 +67,7 @@ export class ArcStore {
     return this.arcPoints(this.arcs[arcName]).map(x => x.point);
   }
 
-  getArc(spec: ArcSpec) {
+  getArc(spec: ArcSpec): { bbox: rbush.BBox, points: Zpoint[] } {
     const arc = this.arcs[spec.id];
     const pts = this.arcPoints(arc);
     const pts2 = spec.rev ? [...pts].reverse() : pts;

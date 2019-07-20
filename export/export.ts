@@ -4,14 +4,23 @@ import { readFileSync, createWriteStream } from 'fs';
 import { scale_of_zoom, above_simp_thresh } from '../src/util';
 import { unrawOfArc, ArcStore } from '../src/arcstore';
 import * as PDF from 'pdfkit';
+import * as yargs from 'yargs'
+import { Argv } from 'yargs';
 
-const ZOOM = 3;
+const argv = yargs
+  .boolean('solid')
+  .describe('solid', 'Draw coastline as solid chunk instead of outline')
+  .describe('bw', 'Only use black and white')
+  .option('scale', { alias: 's', description: 'scale factor to apply to map', default: 1 })
+  .argv;
+
+const ZOOM = 6;
 const DEBUG = false;
-const pageWidth = 8.5 * 72;
-const pageHeight = 11 * 72;
+const pageWidth = argv.scale * 8.5 * 72;
+const pageHeight = argv.scale * 11 * 72;
 const worldWidth = 4e6;
 const worldHeight = 3.3e6;
-const targetWidth = 8.5 * 72;
+const targetWidth = pageWidth;
 const targetHeight = worldHeight / worldWidth * targetWidth;
 
 const doc = new PDF({ size: [pageWidth, pageHeight], bufferPages: true });
@@ -39,7 +48,14 @@ function xform(pt: Point): Point {
   }
 }
 
+let colors: { [k: string]: [number, number, number] } = { land: [0, 0, 0], mountain: [230, 230, 200], water: [255, 255, 255] };
+if (argv.solid)
+  colors = { land: [128, 192, 128], mountain: [222, 222, 158], water: [192, 240, 255] };
+if (argv.bw)
+  colors = { land: [0, 0, 0], mountain: [0, 0, 0], water: [255, 255, 255] };
+
 function draw(o: RawPoly, t: 'coastline' | 'mountain') {
+
 
   let first = true;
   let exist = false;
@@ -67,14 +83,23 @@ function draw(o: RawPoly, t: 'coastline' | 'mountain') {
       exist = true;
     }
   }
+
   if (exist) {
     doc.closePath();
-    if (t == 'coastline')
-      doc.stroke([0, 0, 0]);
+    if (t == 'coastline') {
+      if (argv.solid)
+        doc.fill(colors.land);
+      else
+        doc.stroke(colors.land);
+    }
     else if (t == 'mountain')
-      doc.fill([230, 230, 200]);
+      doc.fill(colors.mountain);
   }
 }
+
+doc.rect(0, 0, pageWidth, pageHeight);
+doc.fill(colors.water);
+
 Object.values(geo.polys).forEach(o => {
   if (o.properties.t == 'natural'
     && (o.properties.natural == 'coastline' ||

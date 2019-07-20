@@ -4,3 +4,4 @@ built
 public/js/bundle.js
 validation/test.ts
 export/output.pdf
+export/output-1.ppm

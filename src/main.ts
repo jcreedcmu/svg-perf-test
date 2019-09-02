@@ -6,7 +6,7 @@ import { Geo, Rivers, Zpoint, Bundle, Layer, ArRectangle, Label } from './types'
 import { Stopper, UIState, LabType } from './types';
 
 import { Loader, Data } from './loader';
-import { clone, cscale, nope, xform, inv_xform, meters_to_string, vdist } from './util';
+import { clone, cscale, nope, xform, inv_xform, meters_to_string, vdist, vint, colorToHex } from './util';
 import { resimplify } from './simplify';
 
 import { colors } from './colors';
@@ -504,6 +504,30 @@ class App {
         this.start_freehand(startp, path => sketch_layer.add(path));
         break;
 
+      case "Extract": {
+        const im = this.image_layer.get_img_state();
+        const imagep = vint({
+          x: (worldp.x - im.x) / im.scale,
+          y: (im.y - worldp.y) / im.scale
+        });
+        const z = this.lastz;
+        if (z.length == 1) {
+          const z0 = z[0];
+          if (z0[0] == "label") {
+            const labelId = z0[1];
+            const lab = this.coastline_layer.labelStore.labels[labelId];
+            const labText = lab.properties.text;
+            const imd = this.image_layer.get_image_data();
+            const base = 4 * (imagep.x + imagep.y * imd.width);
+            let colorlist: { [k: string]: string } = (window as any)['colorlist'];
+            if (colorlist == null)
+              colorlist = {};
+            colorlist[labText] = colorToHex([imd.data[base], imd.data[base + 1], imd.data[base + 2], imd.data[base + 3]]);
+            console.log(JSON.stringify(colorlist, null, 2));
+            window.colorlist = colorlist;
+          }
+        }
+      } break;
       default:
         nope(this.mode);
     }
@@ -534,6 +558,10 @@ class App {
       } break;
       case "f": {
         this.mode = "Freehand";
+        this.render();
+      } break;
+      case "x": {
+        this.mode = "Extract";
         this.render();
       } break;
       case "m": {

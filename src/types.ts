@@ -4,7 +4,7 @@ export type Color = { r: number, g: number, b: number };
 export type Ctx = CanvasRenderingContext2D;
 import * as rbush from 'rbush';
 
-export type Mode = "Pan" | "Freehand" | "Move" | "Select" | "Label" | "Measure";
+export type Mode = "Pan" | "Freehand" | "Move" | "Select" | "Label" | "Measure" | "Extract";
 export interface Camera {
   x: number;
   y: number;

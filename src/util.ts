@@ -155,3 +155,31 @@ export function colAppend<T>(m: Dict<T[]>, k: string, v: T) {
     m[k] = [];
   m[k].push(v);
 }
+
+export function vint(p: Point): Point {
+  return { x: Math.floor(p.x), y: Math.floor(p.y) };
+}
+
+export type Buffer = {
+  c: HTMLCanvasElement,
+  d: CanvasRenderingContext2D,
+}
+
+export function buffer(sz: Point): Buffer {
+  const c = document.createElement('canvas');
+  c.width = sz.x;
+  c.height = sz.y;
+  const d = c.getContext('2d');
+  if (d == null) {
+    throw "couldn't create canvas rendering context for buffer";
+  }
+  return { c, d };
+}
+
+export function colorToHex(c: number[]) {
+  function comp(c: number): string {
+    const hex = c.toString(16);
+    return hex.length == 1 ? '0' + hex : hex;
+  }
+  return '#' + comp(c[0]) + comp(c[1]) + comp(c[2]);
+}

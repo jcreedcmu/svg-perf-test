@@ -1,5 +1,5 @@
 import { Mode, Layer, Ctx, Camera, ArRectangle, Point, Image, Images, RenderCtx, Dict } from './types';
-import { cscale } from './util';
+import { cscale, Buffer, buffer } from './util';
 
 export function image_url(img_name: string): string {
   return '/img/' + img_name + '.png';
@@ -14,6 +14,7 @@ function mod(n: number, m: number): number {
 }
 
 type NamedImage = Image & { name: string };
+
 export class ImageLayer implements Layer {
   dispatch: () => void;
   named_imgs: NamedImage[];
@@ -66,6 +67,7 @@ export class ImageLayer implements Layer {
     if (this.overlay == undefined) {
       this.overlay = new Image();
     }
+
     this.overlay.src = image_url(this.named_imgs[img_ix].name);
     this.overlay.onload = () => {
       this.dispatch();
@@ -90,6 +92,20 @@ export class ImageLayer implements Layer {
   get_pos() {
     const img_state = this.named_imgs[this.cur_img_ix];
     return { x: img_state.x, y: img_state.y };
+  }
+
+  get_img_state(): { x: number, y: number, scale: number } {
+    return this.named_imgs[this.cur_img_ix];
+  }
+
+  get_image_data(): ImageData {
+    // XXX repaints the same image every time
+    const im = this.overlay;
+    console.log('get_image_data', im.width, im.height);
+    const buf = buffer({ x: im.width, y: im.height });
+    buf.d.drawImage(im, 0, 0);
+    const rv = buf.d.getImageData(0, 0, im.width, im.height);
+    return rv;
   }
 
   set_pos(p: Point) {

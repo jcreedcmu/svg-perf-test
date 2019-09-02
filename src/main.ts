@@ -23,7 +23,7 @@ import { ArcStore } from './arcstore';
 import { LabelStore } from './labelstore';
 
 import * as geom from './geom';
-import { renderUi } from './ui';
+import { renderUi, SIDEBAR_WIDTH } from './ui';
 
 // These two lines force webpack to believe that the file types.ts is
 // actually used, since otherwise treeshaking or whatever finds out,
@@ -48,17 +48,11 @@ function has_label(x: Label, label: string) {
   return x.properties.text && x.properties.text.match(new RegExp(label, "i"))
 }
 
-// This doesn't work right now. In any event, the only way I had it
-// working was from console.
-function zoom_to(label: string) {
-  const selection = app.data.json.geo.labels.filter((x: any) => has_label(x, label) && x.pt);
-  const pt = selection[0].pt;
-  if (pt == null) throw `couldn\'t find ${label}`;
-  const pixel_offset = xform(this.state.camera(), pt[0], pt[1]);
-  this.state.inc_cam(app.w / 2 - pixel_offset.x, app.h / 2 - pixel_offset.y);
-  app.render();
+// Meant to call this from console
+
+window['zoom_to'] = (label: string) => {
+  app.zoom_to(label);
 }
-window['zoom_to'] = zoom_to;
 
 // The main meat of this file.
 class App {
@@ -886,6 +880,21 @@ class App {
     label(128);
 
     d.restore();
+  }
+
+  zoom_to(label: string): void {
+    const { data, w, h, state } = this;
+    const rawLabels: [string, t.RawLabel][] = Object.entries(data.json.geo.labels);
+    const labels: Label[] = rawLabels.map(
+      ([name, { pt: [x, y], properties }]) =>
+        ({ name, pt: { x, y }, properties })
+    );
+    const selection = labels.filter(x => has_label(x, label));
+    const pt = selection[0].pt;
+    if (pt == null) throw `couldn\'t find ${label}`;
+    const pixel_offset = xform(state.camera(), pt.x, pt.y);
+    state.inc_cam((w - SIDEBAR_WIDTH) / 2 - pixel_offset.x, h / 2 - pixel_offset.y);
+    this.render();
   }
 }
 

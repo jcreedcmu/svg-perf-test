@@ -5,6 +5,8 @@ import { nope } from './util';
 import * as ReactBootstrap from 'react-bootstrap';
 import { Modal, Button } from 'react-bootstrap';
 
+export const SIDEBAR_WIDTH = 200;
+
 function CanvasComp(props: { state: UIState, height: number, width: number }): JSX.Element {
   const { state, height, width } = props;
   console.log('rendering');
@@ -22,7 +24,6 @@ function CanvasComp(props: { state: UIState, height: number, width: number }): J
   function mouse(e: React.MouseEvent<HTMLCanvasElement>): void {
     setToggle(t => !t);
   }
-
   return <canvas height={height} width={width} className="debug" ref={canvas}
     onMouseDown={mouse} />;
 }
@@ -131,8 +132,11 @@ export function renderUi(s: UIState, dispatch: (r: Result) => void): JSX.Element
 
   //     <CanvasComp height={innerHeight} width={innerWidth / 10} state={s} />
 
+  const style = {
+    width: SIDEBAR_WIDTH,
+  };
   return <span>
-    <div className="sidebar">
+    <div className="sidebar" style={style}>
       {radio("road", "Road")}
       {radio("boundary", "Boundary")}
       {radio("river", "River")}

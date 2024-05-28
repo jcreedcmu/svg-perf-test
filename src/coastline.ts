@@ -11,8 +11,6 @@ import * as rbush from 'rbush';
 import { draw_label } from './labels';
 import { UIState, RenderCtx } from './types';
 
-import _ = require('underscore');
-
 function tsearch<T>(rt: Bush<T>, bbox: ArRectangle): T[] {
   return rt.search({
     minX: bbox[0],
@@ -178,6 +176,12 @@ function set_value(e: HTMLElement, v: string): void {
   (e as HTMLInputElement).value = v;
 }
 
+function sortBy<T>(items: T[], score: (x: T) => number): T[] {
+  return items.map(x => ({ item: x, score: score(x) }))
+    .sort((a, b) => a.score - b.score)
+    .map(x => x.item);
+}
+
 export class CoastlineLayer implements Layer {
   arcStore: ArcStore;
   labelStore: LabelStore;
@@ -262,7 +266,7 @@ export class CoastlineLayer implements Layer {
     const arcs_to_draw_vertices_for: Zpoint[][] = [];
     const salients: { props: RoadProps, pt: Point }[] = [];
     const rawFeatures = tsearch(this.arcStore.rt, world_bbox).filter(visible);
-    const baseFeatures = _.sortBy(rawFeatures, x => {
+    const baseFeatures = sortBy(rawFeatures, x => {
       let z = 0;
       const p: PolyProps = x.properties;
       if (p.t == "natural" && p.natural == "lake") z = 1;
@@ -275,12 +279,13 @@ export class CoastlineLayer implements Layer {
     });
 
     // Not sure what this is for
-    let extra = _.filter(_.map(baseFeatures, x => {
+    let extra = baseFeatures.map(x => {
       if (x.properties.t == "road" && x.properties.road == "street")
-        return _.extend(clone(x), { properties: _.extend(clone(x.properties), { road: "street2" }) });
-    }), x => x);
+        return { ...x, properties: { ...x.properties, road: "street2" } }
+    }).filter(x => x);
 
-    const features = baseFeatures.concat(extra);
+    // Not sure why this cast
+    const features = baseFeatures.concat(extra as any);
 
     d.save();
     {
@@ -289,8 +294,8 @@ export class CoastlineLayer implements Layer {
 
       d.strokeStyle = "black";
       d.lineJoin = "round";
-      _.each(features, object => {
-        const arc_spec_list = object.arcs;
+      features.forEach(ob => {
+        const arc_spec_list = ob.arcs;
 
         d.lineWidth = 0.9 / scale;
         d.beginPath();
@@ -352,9 +357,9 @@ export class CoastlineLayer implements Layer {
               draw = true;
             if (draw) {
               d.lineTo(vert.x, vert.y);
-              if (object.properties.t == "road" && object.properties.road == "highway" && n % 10 == 5) {
+              if (ob.properties.t == "road" && ob.properties.road == "highway" && n % 10 == 5) {
                 salients.push({
-                  props: object.properties,
+                  props: ob.properties,
                   pt: { x: (vert.x + curpoint.x) / 2, y: (vert.y + curpoint.y) / 2 }
                 });
               }
@@ -364,7 +369,7 @@ export class CoastlineLayer implements Layer {
 
           });
         });
-        realize_path(d, us, object.properties, camera);
+        realize_path(d, us, ob.properties, camera);
       });
 
       // draw vertices
@@ -477,12 +482,15 @@ export class CoastlineLayer implements Layer {
     set_value($('#insert_feature input[name="value"]')[0], "highway");
     set_value($('#insert_feature input[name="zoom"]')[0], "");
 
-    const submit_f = (e: JQuery.Event<HTMLElement, null>) => {
+    const submit_f = (e: JQuery.Event) => {
       e.preventDefault();
-      const obj: { text: string, key: string, value: string, zoom: string } =
-        _.object($("#insert_feature form").serializeArray().map(pair =>
-          [pair.name, pair.value]
-        ));
+
+      // No idea what's going on here
+
+      // const obj: { text: string, key: string, value: string, zoom: string } =
+      //   _.object($("#insert_feature form").serializeArray().map(pair =>
+      //     [pair.name, pair.value]
+      //   ));
 
       // if (obj.zoom == null || obj.zoom == "")
       //   delete obj.zoom;

@@ -1,8 +1,6 @@
 // Some code that generates a random pgm heightmap on stdout. Not sure
 // what it was for.
 
-var _ = require("underscore");
-
 var size = 512;
 console.log("P2 " + size + " " + size + " " + size + "");
 

@@ -1,6 +1,6 @@
 import { Point, Dict, RawLabel, Label, LabelTarget, Bush } from './types';
 import { vmap, vkmap, rawOfLabel, unrawOfLabel, insertPt, removePt } from './util';
-import * as rbush from 'rbush';
+import RBush, * as rbush from 'rbush';
 
 export class LabelStore {
   labels: Dict<Label>;
@@ -12,7 +12,7 @@ export class LabelStore {
   }
 
   rebuild() {
-    throw new Error(`rbush unimplemented`); // this.label_rt = rbush(10);
+    this.label_rt = new RBush(10);
     Object.entries(this.labels).forEach(([k, p]) => {
       insertPt(this.label_rt, p.pt, p.name);
     });

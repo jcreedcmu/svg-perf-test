@@ -25,11 +25,11 @@
   },
   "dependencies": {
     "@types/jquery": "^3.3.22",
-    "@types/rbush": "^2.0.2",
+    "@types/rbush": "^3.0.1",
     "@types/react": "^16.7.10",
     "@types/react-bootstrap": "^0.32.15",
     "@types/react-dom": "^16.0.11",
-    "rbush": "^2.0.2",
+    "rbush": "^3.0.1",
     "react": "16.7.0-alpha.2",
     "react-bootstrap": "^0.32.4",
     "react-dom": "16.7.0-alpha.2"

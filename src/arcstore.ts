@@ -3,7 +3,7 @@ import { ArcVertexTarget, Bush } from './types';
 import { rawOfPoly, unrawOfPoly, colAppend } from './util';
 import { vkmap, vmap, trivBbox, insertPt, removeSamePt, findPt } from './util';
 import * as simplify from './simplify';
-import * as rbush from 'rbush';
+import RBush, * as rbush from 'rbush';
 import { Gpoint, Gzpoint } from './types';
 
 function rawOfArc(arc: Arc): RawArc {
@@ -137,8 +137,8 @@ export class ArcStore {
 
   // MUTATES derived
   rebuild() {
-    throw new Error(`rbush unimplemented`); //  this.rt = rbush(10);
-    throw new Error(`rbush unimplemented`); //  this.point_rt = rbush(10);
+    this.rt = new RBush(10);
+    this.point_rt = new RBush(10);
 
     // compute arc z-coords and bboxes
     this.forArcs((an, arc) => {
@@ -176,12 +176,12 @@ export class ArcStore {
   // MUTATES
   addFeature(feature_name: string, arcs: { id: string }[], properties: PolyProps) {
     const feature: Poly = this.features[feature_name] =
-    {
-      name: feature_name,
-      arcs: arcs,
-      properties: properties,
-      bbox: trivBbox(),
-    };
+      {
+        name: feature_name,
+        arcs: arcs,
+        properties: properties,
+        bbox: trivBbox(),
+      };
 
     simplify.compute_bbox(feature, this);
 

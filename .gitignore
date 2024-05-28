@@ -1,7 +1,10 @@
 node_modules
+src/node_modules
+server/node_modules
 .#*
 built
 public/js/bundle.js
+public/js/bundle.js.map
 validation/test.ts
 export/output.pdf
 export/output-1.ppm

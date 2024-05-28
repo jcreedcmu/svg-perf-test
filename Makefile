@@ -1,4 +1,5 @@
 all:
+	node build.js
 	npx ts-node server/server.ts
 
 val:

@@ -1,4 +1,4 @@
-import { Mode, Layer, Ctx, Camera, ArRectangle, Point, Image, Images, RenderCtx, Dict } from './types';
+import { Mode, Layer, Ctx, Camera, ArRectangle, Point, SizedImage, Images, RenderCtx, Dict } from './types';
 import { cscale, Buffer, buffer } from './util';
 
 export function image_url(img_name: string): string {
@@ -13,7 +13,7 @@ function mod(n: number, m: number): number {
     return ((n % m) + m) % m
 }
 
-type NamedImage = Image & { name: string };
+type NamedImage = SizedImage & { name: string };
 
 export class ImageLayer implements Layer {
   dispatch: () => void;
@@ -115,7 +115,7 @@ export class ImageLayer implements Layer {
   }
 
   model(): { images: Images } {
-    const images: Dict<Image> = {};
+    const images: Dict<SizedImage> = {};
     this.named_imgs.forEach(obj => {
       const { name, ...rest } = obj;
       images[obj.name] = rest;

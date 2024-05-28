@@ -137,8 +137,8 @@ export class ArcStore {
 
   // MUTATES derived
   rebuild() {
-    this.rt = rbush(10);
-    this.point_rt = rbush(10);
+    throw new Error(`rbush unimplemented`); //  this.rt = rbush(10);
+    throw new Error(`rbush unimplemented`); //  this.point_rt = rbush(10);
 
     // compute arc z-coords and bboxes
     this.forArcs((an, arc) => {
@@ -176,12 +176,12 @@ export class ArcStore {
   // MUTATES
   addFeature(feature_name: string, arcs: { id: string }[], properties: PolyProps) {
     const feature: Poly = this.features[feature_name] =
-      {
-        name: feature_name,
-        arcs: arcs,
-        properties: properties,
-        bbox: trivBbox(),
-      };
+    {
+      name: feature_name,
+      arcs: arcs,
+      properties: properties,
+      bbox: trivBbox(),
+    };
 
     simplify.compute_bbox(feature, this);
 

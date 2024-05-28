@@ -1,0 +1,24 @@
+{
+  "name": "svg-perf-test",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "build.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jcreedcmu/svg-perf-test.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jcreedcmu/svg-perf-test/issues"
+  },
+  "homepage": "https://github.com/jcreedcmu/svg-perf-test#readme",
+  "devDependencies": {
+    "esbuild": "^0.21.4"
+  }
+}

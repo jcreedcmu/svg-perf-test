@@ -34,7 +34,7 @@ export type ArcVertexTarget = { ptId: string };
 export type LabelTarget = string;
 export type Target = ["coastline", ArcVertexTarget] | ["label", LabelTarget];
 
-export type Image = {
+export type SizedImage = {
   scale: number,
   x: number,
   y: number

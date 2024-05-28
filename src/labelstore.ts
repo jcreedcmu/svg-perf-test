@@ -12,7 +12,7 @@ export class LabelStore {
   }
 
   rebuild() {
-    this.label_rt = rbush(10);
+    throw new Error(`rbush unimplemented`); // this.label_rt = rbush(10);
     Object.entries(this.labels).forEach(([k, p]) => {
       insertPt(this.label_rt, p.pt, p.name);
     });

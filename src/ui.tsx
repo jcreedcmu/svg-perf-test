@@ -5,6 +5,7 @@ import { nope } from './util';
 import * as ReactBootstrap from 'react-bootstrap';
 import { Modal, Button } from 'react-bootstrap';
 import { reduce } from './reduce';
+import { mkCameraData } from './camera-state';
 
 export const SIDEBAR_WIDTH = 200;
 
@@ -134,7 +135,8 @@ export function MainUi(props: MainUiProps): JSX.Element {
 
   const initState: UiState = {
     layers: { boundary: false, river: false, road: false },
-    mode: { t: 'normal' }
+    mode: { t: 'normal' },
+    cameraData: mkCameraData(),
   };
   const [state, dispatch] = React.useReducer<(s: UiState, a: Action) => UiState>(reduce, initState);
 

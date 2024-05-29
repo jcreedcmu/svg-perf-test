@@ -83,15 +83,24 @@ class App {
   data: Data; // Probably want to eventually get rid of this
   mouse: Point = { x: 0, y: 0 };
   selection: { arc: string } | null = null;
-  cameraState = mkCameraData(); // really this is camera state
+  _cameraState = mkCameraData(); // really this is camera state
   th: Throttler;
 
-  setCameraData(data: CameraData): void {
-    this.cameraState = data;
+  setCameraData(camera: CameraData): void {
+    if (this.accessRef.current == null)
+      throw new Error(`access not yet ready`);
+    const { dispatch } = this.accessRef.current;
+    dispatch({ t: 'setCameraData', camera });
+
+    this._cameraState = camera;
   }
 
   getCameraData(): CameraData {
-    return this.cameraState;
+    // if (this.accessRef.current == null)
+    //   throw new Error(`access not yet ready`);
+    // const { state } = this.accessRef.current;
+    // return state.cameraData;
+    return this._cameraState;
   }
 
   constructor(_data: Data) {
@@ -635,8 +644,6 @@ class App {
         this.render();
       }
       this.render_origin();
-
-      //this.th.maybe();
     });
 
     return (offx: number, offy: number) => {
@@ -867,7 +874,7 @@ class App {
   }
 
   zoom_to(label: string): void {
-    const { data, w, h, cameraState } = this;
+    const { data, w, h } = this;
     const rawLabels: [string, t.RawLabel][] = Object.entries(data.json.geo.labels);
     const labels: Label[] = rawLabels.map(
       ([name, { pt: [x, y], properties }]) =>

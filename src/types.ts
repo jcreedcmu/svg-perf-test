@@ -3,6 +3,7 @@ export type Point = { x: number, y: number };
 export type Color = { r: number, g: number, b: number };
 export type Ctx = CanvasRenderingContext2D;
 import RBush, * as rbush from 'rbush';
+import { CameraData } from './camera-state';
 
 export type Mode = "Pan" | "Freehand" | "Move" | "Select" | "Label" | "Measure" | "Extract";
 export interface Camera {
@@ -137,7 +138,8 @@ export type UiState = {
     road: boolean,
     boundary: boolean,
     river: boolean,
-  }
+  },
+  cameraData: CameraData,
 };
 
 export interface Layer {
@@ -166,4 +168,5 @@ export type Action =
   | LabelModalResult
   | { t: "RadioToggle", k: keyof UiState['layers'] }
   | { t: "SetMode", mode: UIMode }
+  | { t: "setCameraData", camera: CameraData }
   ;

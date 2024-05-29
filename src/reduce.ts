@@ -73,6 +73,10 @@ export function reduce(state: UiState, action: Action): UiState {
       return produce(state, s => {
         s.layers[action.k] = !state.layers[action.k];
       });
+    case "setCameraData":
+      return produce(state, s => {
+        s.cameraData = action.camera;
+      });
   }
 
 }

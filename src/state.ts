@@ -1,71 +1,70 @@
 import { Point, Camera } from './types';
 import { clone, scale_of_zoom } from './util';
 
+export type CameraData = {
+  origin: Point,
+  camera: Camera,
+};
+
 export class CameraState {
-  origin: Point;
-  state: {
-    camera: Camera,
-  };
+  data: CameraData;
 
   constructor() {
-    this.origin = { x: 0, y: 0 };
     let camera: Camera = { x: -432.125, y: 3321.875, zoom: 4 };
     if (localStorage.camera != null) {
       camera = JSON.parse(localStorage.camera);
     }
-    this.state = {
-      camera: camera,
-    };
+    this.data = { origin: { x: 0, y: 0 }, camera };
   }
 
   camera() {
-    const c = clone(this.state.camera);
-    c.x -= this.origin.x;
-    c.y -= this.origin.y;
+    const c = clone(this.data.camera);
+    c.x -= this.data.origin.x;
+    c.y -= this.data.origin.y;
 
     return { ...c, scale: () => scale_of_zoom(c.zoom) };
   }
 
   zoom(x: number, y: number, zoom: number) {
     var zoom2 = Math.pow(2, zoom);
-    const s = clone(this.state);
+    const s = clone(this.data);
     s.camera.x = zoom2 * (s.camera.x - x) + x;
     s.camera.y = zoom2 * (s.camera.y - y) + y;
     s.camera.zoom = s.camera.zoom + zoom;
-    this.state = s;
+    this.data = s;
     this.store_cam();
   }
 
   store_cam() {
-    localStorage.camera = JSON.stringify(this.state.camera);
+    localStorage.camera = JSON.stringify(this.data.camera);
   }
 
   set_cam(x: number, y: number) {
-    this.state = clone(this.state);
-    this.state.camera = { x, y, zoom: this.state.camera.zoom };
+    this.data = clone(this.data);
+    this.data.camera = { x, y, zoom: this.data.camera.zoom };
     this.store_cam();
   }
 
   inc_cam(dx: number, dy: number) {
-    const s = clone(this.state);
+    const s = clone(this.data);
     s.camera.x = s.camera.x + dx;
     s.camera.y = s.camera.y + dy;
-    this.state = s;
+    this.data = s;
     this.store_cam();
   }
 
   set_origin(x: number, y: number) {
-    this.origin.x = x;
-    this.origin.y = y;
+    this.data.origin.x = x;
+    this.data.origin.y = y;
   }
 
   get_origin() {
-    return this.origin;
+    return this.data.origin;
   }
 
   inc_origin(dx: number, dy: number) {
-    this.origin.x += dx;
-    this.origin.y += dy;
+    this.data.origin.x += dx;
+    this.data.origin.y += dy;
 
   }
 }

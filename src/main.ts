@@ -29,6 +29,7 @@ import { renderUi, SIDEBAR_WIDTH } from './ui';
 // actually used, since otherwise treeshaking or whatever finds out,
 // correctly, that it has no runtime effect. But I do want changes
 // to the file to trigger typescript rechecking.
+// XXX this all should be obsolete maybe since I'm not using webpack anymore.
 import * as t from './types';
 const undefined = t.nonce;
 
@@ -113,9 +114,9 @@ class App {
     const c = document.getElementById("c") as HTMLCanvasElement;
     this.c = c;
 
-    $('#c').on('mousedown', e => this.handleMouseDown(e));
-    $('#c').on('mousemove', e => this.handleMouseMove(e));
-    $(document).on('keydown', e => this.handleKey(e));
+    (document.querySelector('#c') as HTMLCanvasElement).addEventListener('mousedown', e => this.handleMouseDown(e));
+    (document.querySelector('#c') as HTMLCanvasElement).addEventListener('mousemove', e => this.handleMouseMove(e));
+    document.addEventListener('keydown', e => this.handleKey(e));
     c.onwheel = e => this.handleMouseWheel(e);
 
     window.c = c; // debugging
@@ -341,7 +342,7 @@ class App {
     }
   }
 
-  handleMouseMove(e: JQuery.Event<HTMLElement, null>) {
+  handleMouseMove(e: MouseEvent) {
     this.mouse = { x: e.pageX, y: e.pageY };
 
     if (this.panning)
@@ -374,7 +375,7 @@ class App {
     return null;
   }
 
-  handleMouseDown(e: JQuery.Event<HTMLElement, null>) {
+  handleMouseDown(e: MouseEvent) {
     const { image_layer, coastline_layer, sketch_layer } = this;
     const camera = this.state.camera();
     const x = e.pageX;
@@ -533,7 +534,7 @@ class App {
     }
   }
 
-  handleKey(e: JQuery.Event<Document, null>) {
+  handleKey(e: KeyboardEvent) {
     const { image_layer, coastline_layer, sketch_layer } = this;
 
     // Disable key event handling if modal is up
@@ -544,7 +545,7 @@ class App {
     if (modals.filter(function(ix, e) { return $(e).css("display") == "block" }).length)
       return;
 
-    const k = key(e.originalEvent as KeyboardEvent);
+    const k = key(e);
     // if (k == "i") {
     //   label_layer.add_label(state, prompt("name"));
     //   render();

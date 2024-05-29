@@ -1,12 +1,10 @@
 import { Point, Camera } from './types';
 import { clone, scale_of_zoom } from './util';
 
-type Locus = any;
 export class CameraState {
   origin: Point;
   state: {
     camera: Camera,
-    locus: Locus,
   };
 
   constructor() {
@@ -17,7 +15,6 @@ export class CameraState {
     }
     this.state = {
       camera: camera,
-      locus: null,
     };
   }
 
@@ -55,14 +52,6 @@ export class CameraState {
     s.camera.y = s.camera.y + dy;
     this.state = s;
     this.store_cam();
-  }
-
-  set_locus(p: Locus) {
-    this.state.locus = p;
-  }
-
-  get_locus() {
-    return this.state.locus;
   }
 
   set_origin(x: number, y: number) {

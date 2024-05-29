@@ -121,27 +121,26 @@ function LabelModal(props: { us: UIState, dispatch: (r: LabelModalResult) => voi
 export type MainUiProps = {
 
 };
+export type MainUiRef = {
+  getState(): UIState;
+};
 
-
-export function MainUi(props: MainUiProps, ref: React.ForwardedRef<HTMLInputElement>): JSX.Element {
-
-
-
-
+export function MainUi(props: MainUiProps, ref: React.ForwardedRef<MainUiRef>): JSX.Element {
   const initState: UIState = {
     layers: { boundary: false, river: false, road: false },
     mode: { t: 'normal' }
   };
   const [state, dispatch] = React.useReducer<(s: UIState, a: Action) => UIState>(reduce, initState);
 
-  // React.useImperativeHandle(props.ref, () => { getState: () => state }, [state]);
+  // XXX kind of a hack to temporarily propagate react state out of react-land
+  React.useImperativeHandle(ref, () => ({ getState: () => state }), [state]);
 
   function radio(k: keyof UIState['layers'], hs: string): JSX.Element {
     function change<T>(e: React.ChangeEvent<T>): void {
       dispatch({ t: "RadioToggle", k });
     }
     return <span>
-      <input ref={ref} type="checkbox" id={k}
+      <input type="checkbox" id={k}
         onChange={change} checked={state.layers[k]} /> <label htmlFor={k}>{hs} layer </label>
       <br />
     </span >

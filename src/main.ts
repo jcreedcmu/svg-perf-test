@@ -22,7 +22,7 @@ import { RiverLayer } from './rivers';
 import { SketchLayer } from './sketch';
 
 import * as geom from './geom';
-import { MainUi, SIDEBAR_WIDTH } from './ui';
+import { MainUi, MainUiRef, SIDEBAR_WIDTH } from './ui';
 
 // These two lines force webpack to believe that the file types.ts is
 // actually used, since otherwise treeshaking or whatever finds out,
@@ -147,10 +147,10 @@ class App {
     // React rendering
 
     const root = createRoot(document.getElementById('react-root')!);
-    const ref = React.createRef<HTMLInputElement>();
+    const ref = React.createRef<MainUiRef>();
     (window as any)['w'] = ref;
 
-    const MainUiWithRef = forwardRef<HTMLInputElement>((props, ref) => MainUi(props, ref));
+    const MainUiWithRef = forwardRef<MainUiRef>((props, ref) => MainUi(props, ref));
     const comp = React.createElement(MainUiWithRef, { ref }, null);
 
     root.render(comp);

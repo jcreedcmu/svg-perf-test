@@ -335,8 +335,8 @@ class App {
       e.preventDefault();
     }
     else {
-      const x = e.pageX;
-      const y = e.pageY;
+      const x = e.pageX!;
+      const y = e.pageY!;
       const zoom = -e.deltaY / 120;
       e.preventDefault();
       this.state.zoom(x, y, zoom);
@@ -345,14 +345,14 @@ class App {
   }
 
   handleMouseMove(e: MouseEvent) {
-    this.mouse = { x: e.pageX, y: e.pageY };
+    this.mouse = { x: e.pageX!, y: e.pageY! };
 
     if (this.panning)
       return;
     const camera = this.state.camera();
     if (camera.zoom >= 1) {
-      const x = e.pageX;
-      const y = e.pageY;
+      const x = e.pageX!;
+      const y = e.pageY!;
       const worldp = inv_xform(camera, x, y);
       const rad = VERTEX_SENSITIVITY / cscale(camera);
       const bbox: ArRectangle = [worldp.x - rad, worldp.y - rad, worldp.x + rad, worldp.y + rad];
@@ -380,8 +380,8 @@ class App {
   handleMouseDown(e: MouseEvent) {
     const { image_layer, coastline_layer, sketch_layer } = this;
     const camera = this.state.camera();
-    const x = e.pageX;
-    const y = e.pageY;
+    const x = e.pageX!;
+    const y = e.pageY!;
     const worldp = inv_xform(camera, x, y);
     const slack = VERTEX_SENSITIVITY / cscale(camera);
     const bbox: ArRectangle = [worldp.x - slack, worldp.y - slack, worldp.x + slack, worldp.y + slack];
@@ -392,8 +392,8 @@ class App {
           const membase = image_layer.get_pos();
           $(document).on('mousemove.drag', e => {
             image_layer.set_pos({
-              x: membase.x + (e.pageX - x) / cscale(camera),
-              y: membase.y - (e.pageY - y) / cscale(camera)
+              x: membase.x + (e.pageX! - x) / cscale(camera),
+              y: membase.y - (e.pageY! - y) / cscale(camera)
             });
             this.th.maybe();
           });
@@ -569,18 +569,22 @@ class App {
         this.mode = "Move";
         this.render();
       } break;
-      case "<space>": {
-        $(document).off('keydown');
-        const stop_at = this.start_pan_and_stop(this.mouse.x, this.mouse.y, this.state.camera());
-        $(document).on('keyup.holdspace', e => {
-          if (key(e.originalEvent as KeyboardEvent) == "<space>") {
-            stop_at(this.mouse.x, this.mouse.y);
-            $(document).off('.holdspace');
-            $(document).on('keydown', e => this.handleKey(e));
-          }
-        });
 
-      } break;
+      // XXX disabled space panning for now
+
+      // case "<space>": {
+      //   $(document).off('keydown');
+      //   const stop_at = this.start_pan_and_stop(this.mouse.x, this.mouse.y, this.state.camera());
+      //   $(document).on('keyup.holdspace', e => {
+      //     if (key(e.originalEvent as KeyboardEvent) == "<space>") {
+      //       stop_at(this.mouse.x, this.mouse.y);
+      //       $(document).off('.holdspace');
+      //       $(document).on('keydown', e => this.handleKey(e));
+      //     }
+      //   });
+
+      // } break;
+
       case "p": {
         this.mode = "Pan";
         this.render();
@@ -646,7 +650,7 @@ class App {
   start_pan(x: number, y: number, camera: Camera): void {
     const stop_at: Stopper = this.start_pan_and_stop(x, y, camera);
     $(document).on('mouseup.drag', e => {
-      stop_at(e.pageX, e.pageY);
+      stop_at(e.pageX!, e.pageY!);
     });
   }
 
@@ -661,14 +665,14 @@ class App {
     const last = { x: x, y: y };
     $(document).on('mousemove.drag', e => {
       const org = this.state.get_origin();
-      this.state.inc_origin(e.pageX - last.x,
-        e.pageY - last.y);
+      this.state.inc_origin(e.pageX! - last.x,
+        e.pageY! - last.y);
 
-      this.state.inc_cam(e.pageX - last.x,
-        e.pageY - last.y);
+      this.state.inc_cam(e.pageX! - last.x,
+        e.pageY! - last.y);
 
-      last.x = e.pageX;
-      last.y = e.pageY;
+      last.x = e.pageX!;
+      last.y = e.pageY!;
 
       let stale = false;
       if (org.x > 0) { this.state.inc_origin(-PANNING_MARGIN, 0); stale = true; }
@@ -728,8 +732,8 @@ class App {
       d.restore();
     }
     $(document).on('mousemove.drag', e => {
-      const x = e.pageX;
-      const y = e.pageY;
+      const x = e.pageX!;
+      const y = e.pageY!;
       const worldp = inv_xform(camera, x, y);
       dragp.x = worldp.x;
       dragp.y = worldp.y;
@@ -797,8 +801,8 @@ class App {
       d.restore();
     }
     $(document).on('mousemove.drag', e => {
-      const x = e.pageX;
-      const y = e.pageY;
+      const x = e.pageX!;
+      const y = e.pageY!;
       const worldp = inv_xform(camera, x, y);
       dragp.x = worldp.x;
       dragp.y = worldp.y;
@@ -839,8 +843,8 @@ class App {
       d.restore();
     }
     $(document).on('mousemove.drag', e => {
-      const x = e.pageX;
-      const y = e.pageY;
+      const x = e.pageX!;
+      const y = e.pageY!;
       const worldp = inv_xform(camera, x, y);
       path.push({ point: worldp, z: 1000 });
       resimplify(path);

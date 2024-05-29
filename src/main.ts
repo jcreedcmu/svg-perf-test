@@ -121,8 +121,10 @@ class App {
     }
     this.d = _d;
 
-    this.reset_canvas_size();
-    this.render_origin();
+    setTimeout(() => {
+      this.reset_canvas_size();
+      this.render_origin();
+    }, 100);
 
     if (DEBUG && DEBUG_PROF) {
       console.time("whatev");

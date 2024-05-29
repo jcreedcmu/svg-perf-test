@@ -1,8 +1,8 @@
-import { LabType, UIState } from './types';
+import { LabType, UiState } from './types';
 import { produce } from 'immer';
 import * as t from './types';
 
-export function reduce(state: UIState, r: t.Action): UIState {
+export function reduce(state: UiState, r: t.Action): UiState {
   function sanitize(s: string): LabType {
     if (s == "park" || s == "city" || s == "region" || s == "sea" || s == "minorsea" || s == "river")
       return s;

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { forwardRef } from 'react';
 
 import { createRoot } from 'react-dom/client';
-import { ArRectangle, Camera, Ctx, Geo, Label, Layer, Mode, Path, Point, Rect, Rivers, Stopper, Target, UIState, Zpoint } from './types';
+import { ArRectangle, Camera, Ctx, Geo, Label, Layer, Mode, Path, Point, Rect, Rivers, Stopper, Target, UiState, Zpoint } from './types';
 
 import { Data, Loader } from './loader';
 import { resimplify } from './simplify';
@@ -22,7 +22,7 @@ import { RiverLayer } from './rivers';
 import { SketchLayer } from './sketch';
 
 import * as geom from './geom';
-import { MainUi, MainUiRef, SIDEBAR_WIDTH } from './ui';
+import { MainUi, SIDEBAR_WIDTH } from './ui';
 
 // These two lines force webpack to believe that the file types.ts is
 // actually used, since otherwise treeshaking or whatever finds out,
@@ -83,7 +83,7 @@ class App {
   mouse: Point = { x: 0, y: 0 };
   selection: { arc: string } | null = null;
   state = new State(); // really this is camera state
-  uistate: UIState = {
+  uistate: UiState = {
     mode: { t: 'normal' },
     layers: {
       road: false,
@@ -147,11 +147,10 @@ class App {
     // React rendering
 
     const root = createRoot(document.getElementById('react-root')!);
-    const ref = React.createRef<MainUiRef>();
-    (window as any)['w'] = ref;
+    const stateRef = React.createRef<UiState>();
+    (window as any)['state'] = stateRef;
 
-    const MainUiWithRef = forwardRef<MainUiRef>((props, ref) => MainUi(props, ref));
-    const comp = React.createElement(MainUiWithRef, { ref }, null);
+    const comp = React.createElement(MainUi, { stateRef }, null);
 
     root.render(comp);
   }

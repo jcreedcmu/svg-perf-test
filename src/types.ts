@@ -131,7 +131,7 @@ type UIMode =
   }
   | { t: 'feature-modal', points: Point[] };
 
-export type UIState = {
+export type UiState = {
   mode: UIMode,
   layers: {
     road: boolean,
@@ -146,7 +146,7 @@ export interface Layer {
 
 export type RenderCtx = {
   d: Ctx,
-  us: UIState,
+  us: UiState,
   camera: Camera,
   mode: Mode,
   world_bbox: ArRectangle,
@@ -164,4 +164,4 @@ export type LabelModalResult =
 export type Action =
   | FeatureModalResult
   | LabelModalResult
-  | { t: "RadioToggle", k: keyof UIState['layers'] };
+  | { t: "RadioToggle", k: keyof UiState['layers'] };

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { UIState, LabelUIMode, FeatureModalResult, LabelModalResult, Action } from './types';
+import { UiState, LabelUIMode, FeatureModalResult, LabelModalResult, Action } from './types';
 import { useRef, useLayoutEffect, useState } from 'react';
 import { nope } from './util';
 import * as ReactBootstrap from 'react-bootstrap';
@@ -8,7 +8,7 @@ import { reduce } from './reduce';
 
 export const SIDEBAR_WIDTH = 200;
 
-function CanvasComp(props: { state: UIState, height: number, width: number }): JSX.Element {
+function CanvasComp(props: { state: UiState, height: number, width: number }): JSX.Element {
   const { state, height, width } = props;
   console.log('rendering');
   const canvas: React.MutableRefObject<HTMLCanvasElement | null> = useRef(null);
@@ -30,7 +30,7 @@ function CanvasComp(props: { state: UIState, height: number, width: number }): J
 }
 
 
-function FeatureModal(props: { us: UIState, dispatch: (r: FeatureModalResult) => void }) {
+function FeatureModal(props: { us: UiState, dispatch: (r: FeatureModalResult) => void }) {
   const { us, dispatch } = props;
   const [text, setText] = useState("");
   const [tp, setTp] = useState("region");
@@ -72,7 +72,7 @@ function FeatureModal(props: { us: UIState, dispatch: (r: FeatureModalResult) =>
   </Modal>;
 }
 
-function LabelModal(props: { us: UIState, dispatch: (r: LabelModalResult) => void }): JSX.Element {
+function LabelModal(props: { us: UiState, dispatch: (r: LabelModalResult) => void }): JSX.Element {
   const { us, dispatch } = props;
 
   const v =
@@ -119,23 +119,22 @@ function LabelModal(props: { us: UIState, dispatch: (r: LabelModalResult) => voi
 }
 
 export type MainUiProps = {
-
-};
-export type MainUiRef = {
-  getState(): UIState;
+  stateRef: React.Ref<UiState>,
 };
 
-export function MainUi(props: MainUiProps, ref: React.ForwardedRef<MainUiRef>): JSX.Element {
-  const initState: UIState = {
+export function MainUi(props: MainUiProps): JSX.Element {
+  const { stateRef: ref } = props;
+
+  const initState: UiState = {
     layers: { boundary: false, river: false, road: false },
     mode: { t: 'normal' }
   };
-  const [state, dispatch] = React.useReducer<(s: UIState, a: Action) => UIState>(reduce, initState);
+  const [state, dispatch] = React.useReducer<(s: UiState, a: Action) => UiState>(reduce, initState);
 
   // XXX kind of a hack to temporarily propagate react state out of react-land
-  React.useImperativeHandle(ref, () => ({ getState: () => state }), [state]);
+  React.useImperativeHandle(ref, () => state, [state]);
 
-  function radio(k: keyof UIState['layers'], hs: string): JSX.Element {
+  function radio(k: keyof UiState['layers'], hs: string): JSX.Element {
     function change<T>(e: React.ChangeEvent<T>): void {
       dispatch({ t: "RadioToggle", k });
     }

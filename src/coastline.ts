@@ -9,7 +9,7 @@ import { clone, above_simp_thresh, insertPt, removePt } from './util';
 import { colors } from './colors';
 import * as rbush from 'rbush';
 import { draw_label } from './labels';
-import { UIState, RenderCtx } from './types';
+import { UiState, RenderCtx } from './types';
 
 function tsearch<T>(rt: Bush<T>, bbox: ArRectangle): T[] {
   return rt.search({
@@ -86,7 +86,7 @@ function realize_salient(d: Ctx, props: RoadProps, camera: Camera, pt: Point) {
   }
 }
 
-function realize_path(d: Ctx, us: UIState, props: PolyProps, camera: Camera) {
+function realize_path(d: Ctx, us: UiState, props: PolyProps, camera: Camera) {
   const scale = cscale(camera);
   d.lineWidth = 1.1 / scale;
 

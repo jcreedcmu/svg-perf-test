@@ -86,8 +86,12 @@ class App {
   cameraState = mkCameraData(); // really this is camera state
   th: Throttler;
 
-  setCamera(data: CameraData): void {
+  setCameraData(data: CameraData): void {
     this.cameraState = data;
+  }
+
+  getCameraData(): CameraData {
+    return this.cameraState;
   }
 
   constructor(_data: Data) {
@@ -172,7 +176,7 @@ class App {
     d.save();
     d.scale(devicePixelRatio, devicePixelRatio);
     this.th.reset();
-    const camera = getCamera(this.cameraState);
+    const camera = getCamera(this.getCameraData());
     const t = Date.now();
     d.fillStyle = "#bac7f8";
     d.fillRect(0, 0, w, h);
@@ -281,7 +285,7 @@ class App {
       const y = e.pageY!;
       const zoom = -e.deltaY / 120;
       e.preventDefault();
-      this.setCamera(doZoom(this.cameraState, x, y, zoom));
+      this.setCameraData(doZoom(this.getCameraData(), x, y, zoom));
       this.render();
     }
   }
@@ -291,7 +295,7 @@ class App {
 
     if (this.panning)
       return;
-    const camera = getCamera(this.cameraState);
+    const camera = getCamera(this.getCameraData());
     if (camera.zoom >= 1) {
       const x = e.pageX!;
       const y = e.pageY!;
@@ -321,7 +325,7 @@ class App {
 
   handleMouseDown(e: MouseEvent) {
     const { image_layer, coastline_layer, sketch_layer } = this;
-    const camera = getCamera(this.cameraState);
+    const camera = getCamera(this.getCameraData());
     const x = e.pageX!;
     const y = e.pageY!;
     const worldp = inv_xform(camera, x, y);
@@ -588,7 +592,7 @@ class App {
     const { c } = this;
     const margin = this.panning ? PANNING_MARGIN : 0;
     // not 100% sure this is right on retina
-    this.setCamera(setOrigin(this.cameraState, -margin, -margin));
+    this.setCameraData(setOrigin(this.getCameraData(), -margin, -margin));
     c.width = (this.w = innerWidth + 2 * margin) * devicePixelRatio;
     c.height = (this.h = innerHeight + 2 * margin) * devicePixelRatio;
     c.style.width = (innerWidth + 2 * margin) + "px";
@@ -612,19 +616,19 @@ class App {
     this.render();
     const last = { x: x, y: y };
     $(document).on('mousemove.drag', e => {
-      const org = getOrigin(this.cameraState);
-      this.setCamera(incOrigin(this.cameraState, e.pageX! - last.x, e.pageY! - last.y));
-      this.setCamera(incCam(this.cameraState, e.pageX! - last.x,
+      const org = getOrigin(this.getCameraData());
+      this.setCameraData(incOrigin(this.getCameraData(), e.pageX! - last.x, e.pageY! - last.y));
+      this.setCameraData(incCam(this.getCameraData(), e.pageX! - last.x,
         e.pageY! - last.y));
 
       last.x = e.pageX!;
       last.y = e.pageY!;
 
       let stale = false;
-      if (org.x > 0) { this.setCamera(incOrigin(this.cameraState, -PANNING_MARGIN, 0)); stale = true; }
-      if (org.y > 0) { this.setCamera(incOrigin(this.cameraState, 0, -PANNING_MARGIN)); stale = true; }
-      if (org.x < -2 * PANNING_MARGIN) { this.setCamera(incOrigin(this.cameraState, PANNING_MARGIN, 0)); stale = true; }
-      if (org.y < -2 * PANNING_MARGIN) { this.setCamera(incOrigin(this.cameraState, 0, PANNING_MARGIN)); stale = true; }
+      if (org.x > 0) { this.setCameraData(incOrigin(this.getCameraData(), -PANNING_MARGIN, 0)); stale = true; }
+      if (org.y > 0) { this.setCameraData(incOrigin(this.getCameraData(), 0, -PANNING_MARGIN)); stale = true; }
+      if (org.x < -2 * PANNING_MARGIN) { this.setCameraData(incOrigin(this.getCameraData(), PANNING_MARGIN, 0)); stale = true; }
+      if (org.y < -2 * PANNING_MARGIN) { this.setCameraData(incOrigin(this.getCameraData(), 0, PANNING_MARGIN)); stale = true; }
 
       if (stale) {
         this.render();
@@ -637,7 +641,7 @@ class App {
     return (offx: number, offy: number) => {
       $("#c").css({ cursor: '' });
       $(document).off('.drag');
-      this.setCamera(setCam(this.cameraState, camera.x + offx - x, camera.y + offy - y));
+      this.setCameraData(setCam(this.getCameraData(), camera.x + offx - x, camera.y + offy - y));
       this.panning = false;
       this.reset_canvas_size();
       this.render_origin();
@@ -648,7 +652,7 @@ class App {
   // The continuation k is what to do when the drag ends. The argument
   // dragp to k is the point we released the drag on.
   start_drag(startp: Point, neighbors: Point[], k: (dragp: Point) => void) {
-    const camera = getCamera(this.cameraState);
+    const camera = getCamera(this.getCameraData());
     let dragp = clone(startp);
     const scale = cscale(camera);
     this.render_extra = (camera, d) => {
@@ -711,7 +715,7 @@ class App {
   }
 
   start_measure(startp: Point): void {
-    const camera = getCamera(this.cameraState);
+    const camera = getCamera(this.getCameraData());
     const dragp = clone(startp);
     const scale = cscale(camera);
     this.render_extra = (camera, d) => {
@@ -762,7 +766,7 @@ class App {
   }
 
   start_freehand(startp: Point, k: (dragp: Path) => void): void {
-    const camera = getCamera(this.cameraState);
+    const camera = getCamera(this.getCameraData());
     const path: Zpoint[] = [{ point: startp, z: 1000 }];
     const thresh = FREEHAND_SIMPLIFICATION_FACTOR
       / (cscale(camera) * cscale(camera));
@@ -820,7 +824,7 @@ class App {
   }
 
   render_origin(): void {
-    const or = getOrigin(this.cameraState);
+    const or = getOrigin(this.getCameraData());
     $("#c").css({
       top: or.y + "px",
       left: or.x + "px",
@@ -871,8 +875,8 @@ class App {
     const selection = labels.filter(x => has_label(x, label));
     const pt = selection[0].pt;
     if (pt == null) throw `couldn\'t find ${label}`;
-    const pixel_offset = xform(getCamera(this.cameraState), pt.x, pt.y);
-    this.setCamera(incCam(this.cameraState, (w - SIDEBAR_WIDTH) / 2 - pixel_offset.x, h / 2 - pixel_offset.y));
+    const pixel_offset = xform(getCamera(this.getCameraData()), pt.x, pt.y);
+    this.setCameraData(incCam(this.getCameraData(), (w - SIDEBAR_WIDTH) / 2 - pixel_offset.x, h / 2 - pixel_offset.y));
     this.render();
   }
 }

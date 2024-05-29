@@ -52,15 +52,24 @@ function has_label(x: Label, label: string) {
 // Meant to call this from console
 
 window['zoom_to'] = (label: string) => {
-  app.zoom_to(label);
+  (window['app'] as any).zoom_to(label);
+}
+
+function mkApp(): Promise<App> {
+  return new Promise((res, rej) => {
+    const ld = new Loader();
+    ld.json_file('geo', '/data/geo.json');
+    ld.json_file('rivers', '/data/rivers.json');
+    ld.done(data => { res(new App(data)); });
+  });
 }
 
 // The main meat of this file.
 class App {
   c: HTMLCanvasElement;
   d: Ctx;
-  w: number;
-  h: number;
+  w: number = 0;
+  h: number = 0;
   layers: Layer[];
   lastz: Target[] = [];
   slastz: string = "[]";
@@ -68,7 +77,7 @@ class App {
   image_layer: ImageLayer;
   river_layer: RiverLayer;
   sketch_layer: SketchLayer;
-  render_extra: null | ((camera: Camera, d: Ctx) => void);
+  render_extra: null | ((camera: Camera, d: Ctx) => void) = null;
   mode: Mode = "Pan";
   panning: boolean = false;
   data: Data; // Probably want to eventually get rid of this
@@ -85,14 +94,7 @@ class App {
   };
   th: Throttler;
 
-  constructor() {
-    const ld = new Loader();
-    ld.json_file('geo', '/data/geo.json');
-    ld.json_file('rivers', '/data/rivers.json');
-    ld.done(data => this.init(data));
-  }
-
-  init(_data: Data): void {
+  constructor(_data: Data) {
     this.th = new Throttler(() => this.render());
     this.data = _data;
     let count = 0;
@@ -122,14 +124,15 @@ class App {
     window.c = c; // debugging
 
     const _d = c.getContext('2d');
-    if (_d != null)
-      this.d = _d;
+    if (_d == null) {
+      throw new Error('null context');
+    }
+    this.d = _d;
 
     this.reset_canvas_size();
     this.render_origin();
 
     if (DEBUG && DEBUG_PROF) {
-      console.profile("rendering");
       console.time("whatev");
       const ITER = 1000;
       for (let i = 0; i < ITER; i++) {
@@ -137,7 +140,6 @@ class App {
       }
       // d.getImageData(0,0,1,1);
       console.timeEnd("whatev");
-      console.profileEnd();
     }
     else {
       this.render();
@@ -323,7 +325,7 @@ class App {
 
   handleMouseWheel(e: WheelEvent): void {
     if (e.ctrlKey) {
-      if (e.wheelDelta < 0) {
+      if (e.deltaY < 0) {
         this.image_layer.scale(1 / 2);
       }
       else {
@@ -335,7 +337,7 @@ class App {
     else {
       const x = e.pageX;
       const y = e.pageY;
-      const zoom = e.wheelDelta / 120;
+      const zoom = -e.deltaY / 120;
       e.preventDefault();
       this.state.zoom(x, y, zoom);
       this.render();
@@ -926,7 +928,10 @@ class App {
 }
 
 // Entry point.
-const app = new App();
+async function go() {
+  const app = await mkApp();
+  // For debugging in console.
+  window['app'] = app;
+}
 
-// For debugging in console.
-window['app'] = app;
+go();

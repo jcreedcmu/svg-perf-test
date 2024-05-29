@@ -11,7 +11,7 @@ import { clone, colorToHex, cscale, inv_xform, meters_to_string, nope, vdist, vi
 import { colors } from './colors';
 import { key } from './key';
 
-import { CameraData, doZoom, getCamera, getOrigin, incCam, incOrigin, mkCameraData, setCam, setOrigin } from './state';
+import { CameraData, doZoom, getCamera, getOrigin, incCam, incOrigin, mkCameraData, setCam, setOrigin } from './camera-state';
 import { Throttler } from './throttler';
 
 import { ArcStore } from './arcstore';

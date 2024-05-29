@@ -118,12 +118,19 @@ function LabelModal(props: { us: UiState, dispatch: (r: LabelModalResult) => voi
   </Modal>;
 }
 
+export type Dispatch = (action: Action) => void;
+
+export type AccessRef = {
+  state: UiState,
+  dispatch: Dispatch,
+};
+
 export type MainUiProps = {
-  stateRef: React.Ref<UiState>,
+  accessRef: React.Ref<AccessRef>,
 };
 
 export function MainUi(props: MainUiProps): JSX.Element {
-  const { stateRef: ref } = props;
+  const { accessRef: ref } = props;
 
   const initState: UiState = {
     layers: { boundary: false, river: false, road: false },
@@ -132,7 +139,7 @@ export function MainUi(props: MainUiProps): JSX.Element {
   const [state, dispatch] = React.useReducer<(s: UiState, a: Action) => UiState>(reduce, initState);
 
   // XXX kind of a hack to temporarily propagate react state out of react-land
-  React.useImperativeHandle(ref, () => state, [state]);
+  React.useImperativeHandle(ref, () => ({ state, dispatch }), [state]);
 
   function radio(k: keyof UiState['layers'], hs: string): JSX.Element {
     function change<T>(e: React.ChangeEvent<T>): void {

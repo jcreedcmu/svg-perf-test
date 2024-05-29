@@ -22,7 +22,7 @@ import { RiverLayer } from './rivers';
 import { SketchLayer } from './sketch';
 
 import * as geom from './geom';
-import { MainUi, SIDEBAR_WIDTH } from './ui';
+import { AccessRef, MainUi, SIDEBAR_WIDTH } from './ui';
 
 // These two lines force webpack to believe that the file types.ts is
 // actually used, since otherwise treeshaking or whatever finds out,
@@ -65,7 +65,7 @@ function mkApp(): Promise<App> {
 
 // The main meat of this file.
 class App {
-  stateRef: React.RefObject<UiState> = React.createRef<UiState>();
+  accessRef: React.RefObject<AccessRef> = React.createRef<AccessRef>();
   c: HTMLCanvasElement;
   d: Ctx;
   w: number = 0;
@@ -141,9 +141,9 @@ class App {
 
     const root = createRoot(document.getElementById('react-root')!);
 
-    (window as any)['state'] = this.stateRef;
+    (window as any)['access'] = this.accessRef;
 
-    const comp = React.createElement(MainUi, { stateRef: this.stateRef }, null);
+    const comp = React.createElement(MainUi, { accessRef: this.accessRef }, null);
 
     root.render(comp);
   }
@@ -157,9 +157,10 @@ class App {
 
   _render(w: number, h: number, d: Ctx, mode: Mode): void {
 
-    const state: UiState | null = this.stateRef.current;
-    if (state == null)
+    const access: AccessRef | null = this.accessRef.current;
+    if (access == null)
       return;
+    const { state, dispatch } = access;
 
     //  const t = Date.now();
     d.save();
@@ -477,7 +478,7 @@ class App {
     const { image_layer, coastline_layer, sketch_layer } = this;
 
     // Disable key event handling if modal is up
-    if (this.stateRef.current?.mode.t != 'normal')
+    if (this.accessRef.current?.state.mode.t != 'normal')
       return;
 
     // XXX eventually delete this

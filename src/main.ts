@@ -535,17 +535,20 @@ class App {
   }
 
   handleKey(e: KeyboardEvent) {
+
     const { image_layer, coastline_layer, sketch_layer } = this;
 
     // Disable key event handling if modal is up
     if (this.uistate.mode.t != 'normal')
       return;
+
     // XXX eventually delete this
-    const modals = $(".modal");
-    if (modals.filter(function(ix, e) { return $(e).css("display") == "block" }).length)
-      return;
+    // const modals = $(".modal");
+    // if (modals.filter(function(ix, e) { return $(e).css("display") == "block" }).length)
+    //   return;
 
     const k = key(e);
+
     // if (k == "i") {
     //   label_layer.add_label(state, prompt("name"));
     //   render();

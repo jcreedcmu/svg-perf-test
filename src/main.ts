@@ -25,7 +25,7 @@ import { ArcStore } from './arcstore';
 import { LabelStore } from './labelstore';
 
 import * as geom from './geom';
-import { renderUi, SIDEBAR_WIDTH } from './ui';
+import { MainUi, renderUi, SIDEBAR_WIDTH } from './ui';
 
 // These two lines force webpack to believe that the file types.ts is
 // actually used, since otherwise treeshaking or whatever finds out,
@@ -146,6 +146,12 @@ class App {
     else {
       this.render();
     }
+
+    // React rendering
+    const root = createRoot(document.getElementById('react-root')!);
+
+    const comp = react.createElement(MainUi, {}, null);
+    root.render(comp);
   }
 
   render(): void {
@@ -252,20 +258,6 @@ class App {
     d.restore();
     //  console.log(Date.now() - t);
 
-    // render react stuff
-
-
-
-
-    const root = createRoot(document.getElementById('react-root')!);
-
-    root.render(
-      renderUi(this.uistate, r => {
-        this.uistate = reduce(this.uistate, r);
-        this.render();
-      }),
-
-    );
   }
 
   handleMouseWheel(e: WheelEvent): void {

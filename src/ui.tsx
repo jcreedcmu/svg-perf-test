@@ -4,6 +4,7 @@ import { useRef, useLayoutEffect, useState } from 'react';
 import { nope } from './util';
 import * as ReactBootstrap from 'react-bootstrap';
 import { Modal, Button } from 'react-bootstrap';
+import { reduce } from './reduce';
 
 export const SIDEBAR_WIDTH = 200;
 
@@ -117,7 +118,15 @@ function LabelModal(props: { us: UIState, dispatch: (r: LabelModalResult) => voi
   </Modal>;
 }
 
-export function renderUi(s: UIState, dispatch: (r: Result) => void): JSX.Element {
+export type MainUiProps = {
+};
+
+export function MainUi(props: MainUiProps): JSX.Element {
+  const initState: UIState = {
+    layers: { boundary: false, river: false, road: false },
+    mode: { t: 'normal' }
+  };
+  const [state, dispatch] = React.useReducer<(s: UIState, a: Result) => UIState>(reduce, initState);
 
   function radio(k: keyof UIState['layers'], hs: string): JSX.Element {
     function change<T>(e: React.ChangeEvent<T>): void {
@@ -125,7 +134,7 @@ export function renderUi(s: UIState, dispatch: (r: Result) => void): JSX.Element
     }
     return <span>
       <input type="checkbox" id={k}
-        onChange={change} checked={s.layers[k]} /> <label htmlFor={k}>{hs} layer </label>
+        onChange={change} checked={state.layers[k]} /> <label htmlFor={k}>{hs} layer </label>
       <br />
     </span >
   }
@@ -135,14 +144,15 @@ export function renderUi(s: UIState, dispatch: (r: Result) => void): JSX.Element
   const style = {
     width: SIDEBAR_WIDTH,
   };
+
   return <span>
     <div className="sidebar" style={style}>
       {radio("road", "Road")}
       {radio("boundary", "Boundary")}
       {radio("river", "River")}
     </div>
-    <FeatureModal us={s} dispatch={dispatch} />
-    <LabelModal us={s} dispatch={dispatch} />
+    <FeatureModal us={state} dispatch={dispatch} />
+    <LabelModal us={state} dispatch={dispatch} />
   </span>;
 
 

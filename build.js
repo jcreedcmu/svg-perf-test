@@ -11,7 +11,6 @@ async function go () {
 	 sourcemap: true,
 	 bundle: true,
 	 outfile: './public/js/bundle.js',
-	 format: 'cjs',
 	 logLevel: 'info',
   })
 

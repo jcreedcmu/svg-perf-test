@@ -176,12 +176,12 @@ export class ArcStore {
   // MUTATES
   addFeature(feature_name: string, arcs: { id: string }[], properties: PolyProps) {
     const feature: Poly = this.features[feature_name] =
-      {
-        name: feature_name,
-        arcs: arcs,
-        properties: properties,
-        bbox: trivBbox(),
-      };
+    {
+      name: feature_name,
+      arcs: arcs,
+      properties: properties,
+      bbox: trivBbox(),
+    };
 
     simplify.compute_bbox(feature, this);
 

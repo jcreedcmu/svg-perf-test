@@ -2,7 +2,7 @@ export type Dict<T> = { [k: string]: T };
 export type Point = { x: number, y: number };
 export type Color = { r: number, g: number, b: number };
 export type Ctx = CanvasRenderingContext2D;
-import * as rbush from 'rbush';
+import RBush, * as rbush from 'rbush';
 
 export type Mode = "Pan" | "Freehand" | "Move" | "Select" | "Label" | "Measure" | "Extract";
 export interface Camera {
@@ -119,7 +119,6 @@ export const nonce = "";
 
 // RTree types from rbush
 export type Bbox = rbush.BBox;
-export type RBush<T> = rbush.RBush<T>;
 export type Bush<T> = RBush<Bbox & { payload: T }>;
 
 export type LabelUIMode = { text: string, tp: string, zoom: string };

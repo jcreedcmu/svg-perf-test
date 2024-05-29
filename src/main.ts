@@ -616,20 +616,21 @@ class App {
     this.render();
     const last = { x: x, y: y };
     $(document).on('mousemove.drag', e => {
-      const org = getOrigin(this.getCameraData());
-      this.setCameraData(incOrigin(this.getCameraData(), e.pageX! - last.x, e.pageY! - last.y));
-      this.setCameraData(incCam(this.getCameraData(), e.pageX! - last.x,
-        e.pageY! - last.y));
+      let cameraData = this.getCameraData();
+      const org = getOrigin(cameraData);
+      cameraData = incOrigin(cameraData, e.pageX! - last.x, e.pageY! - last.y);
+      cameraData = incCam(cameraData, e.pageX! - last.x, e.pageY! - last.y);
 
       last.x = e.pageX!;
       last.y = e.pageY!;
 
       let stale = false;
-      if (org.x > 0) { this.setCameraData(incOrigin(this.getCameraData(), -PANNING_MARGIN, 0)); stale = true; }
-      if (org.y > 0) { this.setCameraData(incOrigin(this.getCameraData(), 0, -PANNING_MARGIN)); stale = true; }
-      if (org.x < -2 * PANNING_MARGIN) { this.setCameraData(incOrigin(this.getCameraData(), PANNING_MARGIN, 0)); stale = true; }
-      if (org.y < -2 * PANNING_MARGIN) { this.setCameraData(incOrigin(this.getCameraData(), 0, PANNING_MARGIN)); stale = true; }
+      if (org.x > 0) { cameraData = incOrigin(cameraData, -PANNING_MARGIN, 0); stale = true; }
+      if (org.y > 0) { cameraData = incOrigin(cameraData, 0, -PANNING_MARGIN); stale = true; }
+      if (org.x < -2 * PANNING_MARGIN) { cameraData = incOrigin(cameraData, PANNING_MARGIN, 0); stale = true; }
+      if (org.y < -2 * PANNING_MARGIN) { cameraData = incOrigin(cameraData, 0, PANNING_MARGIN); stale = true; }
 
+      this.setCameraData(cameraData);
       if (stale) {
         this.render();
       }

@@ -86,6 +86,10 @@ class App {
   cameraState = mkCameraData(); // really this is camera state
   th: Throttler;
 
+  setCamera(data: CameraData): void {
+    this.cameraState = data;
+  }
+
   constructor(_data: Data) {
     this.th = new Throttler(() => this.render());
     this.data = _data;
@@ -277,7 +281,7 @@ class App {
       const y = e.pageY!;
       const zoom = -e.deltaY / 120;
       e.preventDefault();
-      this.cameraState = doZoom(this.cameraState, x, y, zoom);
+      this.setCamera(doZoom(this.cameraState, x, y, zoom));
       this.render();
     }
   }
@@ -584,7 +588,7 @@ class App {
     const { c } = this;
     const margin = this.panning ? PANNING_MARGIN : 0;
     // not 100% sure this is right on retina
-    this.cameraState = setOrigin(this.cameraState, -margin, -margin);
+    this.setCamera(setOrigin(this.cameraState, -margin, -margin));
     c.width = (this.w = innerWidth + 2 * margin) * devicePixelRatio;
     c.height = (this.h = innerHeight + 2 * margin) * devicePixelRatio;
     c.style.width = (innerWidth + 2 * margin) + "px";
@@ -609,20 +613,18 @@ class App {
     const last = { x: x, y: y };
     $(document).on('mousemove.drag', e => {
       const org = getOrigin(this.cameraState);
-      this.cameraState = incOrigin(this.cameraState, e.pageX! - last.x,
-        e.pageY! - last.y);
-
-      this.cameraState = incCam(this.cameraState, e.pageX! - last.x,
-        e.pageY! - last.y);
+      this.setCamera(incOrigin(this.cameraState, e.pageX! - last.x, e.pageY! - last.y));
+      this.setCamera(incCam(this.cameraState, e.pageX! - last.x,
+        e.pageY! - last.y));
 
       last.x = e.pageX!;
       last.y = e.pageY!;
 
       let stale = false;
-      if (org.x > 0) { this.cameraState = incOrigin(this.cameraState, -PANNING_MARGIN, 0); stale = true; }
-      if (org.y > 0) { this.cameraState = incOrigin(this.cameraState, 0, -PANNING_MARGIN); stale = true; }
-      if (org.x < -2 * PANNING_MARGIN) { this.cameraState = incOrigin(this.cameraState, PANNING_MARGIN, 0); stale = true; }
-      if (org.y < -2 * PANNING_MARGIN) { this.cameraState = incOrigin(this.cameraState, 0, PANNING_MARGIN); stale = true; }
+      if (org.x > 0) { this.setCamera(incOrigin(this.cameraState, -PANNING_MARGIN, 0)); stale = true; }
+      if (org.y > 0) { this.setCamera(incOrigin(this.cameraState, 0, -PANNING_MARGIN)); stale = true; }
+      if (org.x < -2 * PANNING_MARGIN) { this.setCamera(incOrigin(this.cameraState, PANNING_MARGIN, 0)); stale = true; }
+      if (org.y < -2 * PANNING_MARGIN) { this.setCamera(incOrigin(this.cameraState, 0, PANNING_MARGIN)); stale = true; }
 
       if (stale) {
         this.render();
@@ -635,7 +637,7 @@ class App {
     return (offx: number, offy: number) => {
       $("#c").css({ cursor: '' });
       $(document).off('.drag');
-      this.cameraState = setCam(this.cameraState, camera.x + offx - x, camera.y + offy - y);
+      this.setCamera(setCam(this.cameraState, camera.x + offx - x, camera.y + offy - y));
       this.panning = false;
       this.reset_canvas_size();
       this.render_origin();
@@ -870,7 +872,7 @@ class App {
     const pt = selection[0].pt;
     if (pt == null) throw `couldn\'t find ${label}`;
     const pixel_offset = xform(getCamera(this.cameraState), pt.x, pt.y);
-    this.cameraState = incCam(this.cameraState, (w - SIDEBAR_WIDTH) / 2 - pixel_offset.x, h / 2 - pixel_offset.y);
+    this.setCamera(incCam(this.cameraState, (w - SIDEBAR_WIDTH) / 2 - pixel_offset.x, h / 2 - pixel_offset.y));
     this.render();
   }
 }

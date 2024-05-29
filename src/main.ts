@@ -63,6 +63,30 @@ function mkApp(): Promise<App> {
   });
 }
 
+function render_origin(cameraData: CameraData): void {
+  const or = getOrigin(cameraData);
+  $("#c").css({
+    top: or.y + "px",
+    left: or.x + "px",
+    position: "fixed",
+  });
+}
+
+function reset_canvas_size(c: HTMLCanvasElement, panning: boolean, cameraData: CameraData): {
+  newCameraData: CameraData,
+  dims: Point
+} {
+  const margin = panning ? PANNING_MARGIN : 0;
+  // not 100% sure this is right on retina
+  const newCameraData = setOrigin(cameraData, -margin, -margin);
+  const dims = { x: innerWidth + 2 * margin, y: innerHeight + 2 * margin };
+  c.width = dims.x * devicePixelRatio;
+  c.height = dims.y * devicePixelRatio;
+  c.style.width = (innerWidth + 2 * margin) + "px";
+  c.style.height = (innerHeight + 2 * margin) + "px";
+  return { newCameraData, dims };
+}
+
 // The main meat of this file.
 class App {
   accessRef: React.RefObject<AccessRef> = React.createRef<AccessRef>();
@@ -139,8 +163,11 @@ class App {
     this.d = _d;
 
     setTimeout(() => {
-      this.reset_canvas_size();
-      this.render_origin();
+      let cameraData = this.getCameraData();
+      const { newCameraData, dims } = reset_canvas_size(this.c, this.panning, cameraData);
+      this.w = dims.x;
+      this.h = dims.y;
+      render_origin(newCameraData);
     }, 100);
 
     if (DEBUG && DEBUG_PROF) {
@@ -597,17 +624,6 @@ class App {
     //  console.log(e.charCode, k);
   }
 
-  reset_canvas_size(): void {
-    const { c } = this;
-    const margin = this.panning ? PANNING_MARGIN : 0;
-    // not 100% sure this is right on retina
-    this.setCameraData(setOrigin(this.getCameraData(), -margin, -margin));
-    c.width = (this.w = innerWidth + 2 * margin) * devicePixelRatio;
-    c.height = (this.h = innerHeight + 2 * margin) * devicePixelRatio;
-    c.style.width = (innerWidth + 2 * margin) + "px";
-    c.style.height = (innerHeight + 2 * margin) + "px";
-  }
-
   start_pan(x: number, y: number, camera: Camera): void {
     const stop_at: Stopper = this.start_pan_and_stop(x, y, camera);
     $(document).on('mouseup.drag', e => {
@@ -620,8 +636,12 @@ class App {
     $("#c").css({ cursor: 'move' });
     this.panning = true;
     //  state.set_cam(camera.x + PANNING_MARGIN, camera.y + PANNING_MARGIN);
-    this.reset_canvas_size();
-    this.render_origin();
+
+    const { newCameraData, dims } = reset_canvas_size(this.c, this.panning, this.getCameraData());
+    this.w = dims.x;
+    this.h = dims.y;
+
+    render_origin(this.getCameraData());
     this.render();
     const last = { x: x, y: y };
     $(document).on('mousemove.drag', e => {
@@ -643,16 +663,20 @@ class App {
       if (stale) {
         this.render();
       }
-      this.render_origin();
+      render_origin(this.getCameraData());
     });
 
     return (offx: number, offy: number) => {
       $("#c").css({ cursor: '' });
       $(document).off('.drag');
-      this.setCameraData(setCam(this.getCameraData(), camera.x + offx - x, camera.y + offy - y));
+      let cameraData = setCam(this.getCameraData(), camera.x + offx - x, camera.y + offy - y);
       this.panning = false;
-      this.reset_canvas_size();
-      this.render_origin();
+      const { dims, newCameraData } = reset_canvas_size(this.c, this.panning, cameraData);
+      this.w = dims.x;
+      this.h = dims.y;
+      cameraData = newCameraData;
+      render_origin(cameraData);
+      this.setCameraData(cameraData);
       this.render();
     };
   }
@@ -831,14 +855,7 @@ class App {
     return [tl.x, br.y, br.x, tl.y];
   }
 
-  render_origin(): void {
-    const or = getOrigin(this.getCameraData());
-    $("#c").css({
-      top: or.y + "px",
-      left: or.x + "px",
-      position: "fixed",
-    });
-  }
+
 
   render_scale(camera: Camera, d: Ctx): void {
     const { w, h } = this;

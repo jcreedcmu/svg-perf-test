@@ -1,15 +1,11 @@
 import * as react from 'react';
-import * as ReactDOM from 'react-dom';
 
 import { createRoot } from 'react-dom/client';
-import { reduce } from './reduce';
-import { Point, Ctx, Mode, Camera, Rect, Path, Target, ArcVertexTarget } from './types';
-import { Geo, Rivers, Zpoint, Bundle, Layer, ArRectangle, Label } from './types';
-import { Stopper, UIState, LabType } from './types';
+import { ArRectangle, Camera, Ctx, Geo, Label, Layer, Mode, Path, Point, Rect, Rivers, Stopper, Target, UIState, Zpoint } from './types';
 
-import { Loader, Data } from './loader';
-import { clone, cscale, nope, xform, inv_xform, meters_to_string, vdist, vint, colorToHex } from './util';
+import { Data, Loader } from './loader';
 import { resimplify } from './simplify';
+import { clone, colorToHex, cscale, inv_xform, meters_to_string, nope, vdist, vint, xform } from './util';
 
 import { colors } from './colors';
 import { key } from './key';
@@ -17,15 +13,15 @@ import { key } from './key';
 import { State } from './state';
 import { Throttler } from './throttler';
 
-import { CoastlineLayer } from './coastline';
-import { RiverLayer } from './rivers';
-import { ImageLayer } from './images';
-import { SketchLayer } from './sketch';
 import { ArcStore } from './arcstore';
+import { CoastlineLayer } from './coastline';
+import { ImageLayer } from './images';
 import { LabelStore } from './labelstore';
+import { RiverLayer } from './rivers';
+import { SketchLayer } from './sketch';
 
 import * as geom from './geom';
-import { MainUi, renderUi, SIDEBAR_WIDTH } from './ui';
+import { MainUi, SIDEBAR_WIDTH } from './ui';
 
 // These two lines force webpack to believe that the file types.ts is
 // actually used, since otherwise treeshaking or whatever finds out,

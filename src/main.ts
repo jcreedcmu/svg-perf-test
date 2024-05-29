@@ -11,7 +11,7 @@ import { clone, colorToHex, cscale, inv_xform, meters_to_string, nope, vdist, vi
 import { colors } from './colors';
 import { key } from './key';
 
-import { State } from './state';
+import { CameraState } from './state';
 import { Throttler } from './throttler';
 
 import { ArcStore } from './arcstore';
@@ -83,7 +83,7 @@ class App {
   data: Data; // Probably want to eventually get rid of this
   mouse: Point = { x: 0, y: 0 };
   selection: { arc: string } | null = null;
-  state = new State(); // really this is camera state
+  cameraState = new CameraState(); // really this is camera state
   th: Throttler;
 
   constructor(_data: Data) {
@@ -166,7 +166,7 @@ class App {
     d.save();
     d.scale(devicePixelRatio, devicePixelRatio);
     this.th.reset();
-    const camera = this.state.camera();
+    const camera = this.cameraState.camera();
     const t = Date.now();
     d.fillStyle = "#bac7f8";
     d.fillRect(0, 0, w, h);
@@ -275,7 +275,7 @@ class App {
       const y = e.pageY!;
       const zoom = -e.deltaY / 120;
       e.preventDefault();
-      this.state.zoom(x, y, zoom);
+      this.cameraState.zoom(x, y, zoom);
       this.render();
     }
   }
@@ -285,7 +285,7 @@ class App {
 
     if (this.panning)
       return;
-    const camera = this.state.camera();
+    const camera = this.cameraState.camera();
     if (camera.zoom >= 1) {
       const x = e.pageX!;
       const y = e.pageY!;
@@ -315,7 +315,7 @@ class App {
 
   handleMouseDown(e: MouseEvent) {
     const { image_layer, coastline_layer, sketch_layer } = this;
-    const camera = this.state.camera();
+    const camera = this.cameraState.camera();
     const x = e.pageX!;
     const y = e.pageY!;
     const worldp = inv_xform(camera, x, y);
@@ -582,7 +582,7 @@ class App {
     const { c } = this;
     const margin = this.panning ? PANNING_MARGIN : 0;
     // not 100% sure this is right on retina
-    this.state.set_origin(-margin, -margin);
+    this.cameraState.set_origin(-margin, -margin);
     c.width = (this.w = innerWidth + 2 * margin) * devicePixelRatio;
     c.height = (this.h = innerHeight + 2 * margin) * devicePixelRatio;
     c.style.width = (innerWidth + 2 * margin) + "px";
@@ -606,21 +606,21 @@ class App {
     this.render();
     const last = { x: x, y: y };
     $(document).on('mousemove.drag', e => {
-      const org = this.state.get_origin();
-      this.state.inc_origin(e.pageX! - last.x,
+      const org = this.cameraState.get_origin();
+      this.cameraState.inc_origin(e.pageX! - last.x,
         e.pageY! - last.y);
 
-      this.state.inc_cam(e.pageX! - last.x,
+      this.cameraState.inc_cam(e.pageX! - last.x,
         e.pageY! - last.y);
 
       last.x = e.pageX!;
       last.y = e.pageY!;
 
       let stale = false;
-      if (org.x > 0) { this.state.inc_origin(-PANNING_MARGIN, 0); stale = true; }
-      if (org.y > 0) { this.state.inc_origin(0, -PANNING_MARGIN); stale = true; }
-      if (org.x < -2 * PANNING_MARGIN) { this.state.inc_origin(PANNING_MARGIN, 0); stale = true; }
-      if (org.y < -2 * PANNING_MARGIN) { this.state.inc_origin(0, PANNING_MARGIN); stale = true; }
+      if (org.x > 0) { this.cameraState.inc_origin(-PANNING_MARGIN, 0); stale = true; }
+      if (org.y > 0) { this.cameraState.inc_origin(0, -PANNING_MARGIN); stale = true; }
+      if (org.x < -2 * PANNING_MARGIN) { this.cameraState.inc_origin(PANNING_MARGIN, 0); stale = true; }
+      if (org.y < -2 * PANNING_MARGIN) { this.cameraState.inc_origin(0, PANNING_MARGIN); stale = true; }
 
       if (stale) {
         this.render();
@@ -633,7 +633,7 @@ class App {
     return (offx: number, offy: number) => {
       $("#c").css({ cursor: '' });
       $(document).off('.drag');
-      this.state.set_cam(camera.x + offx - x, camera.y + offy - y);
+      this.cameraState.set_cam(camera.x + offx - x, camera.y + offy - y);
       this.panning = false;
       this.reset_canvas_size();
       this.render_origin();
@@ -644,7 +644,7 @@ class App {
   // The continuation k is what to do when the drag ends. The argument
   // dragp to k is the point we released the drag on.
   start_drag(startp: Point, neighbors: Point[], k: (dragp: Point) => void) {
-    const camera = this.state.camera();
+    const camera = this.cameraState.camera();
     let dragp = clone(startp);
     const scale = cscale(camera);
     this.render_extra = (camera, d) => {
@@ -707,7 +707,7 @@ class App {
   }
 
   start_measure(startp: Point): void {
-    const camera = this.state.camera();
+    const camera = this.cameraState.camera();
     const dragp = clone(startp);
     const scale = cscale(camera);
     this.render_extra = (camera, d) => {
@@ -758,7 +758,7 @@ class App {
   }
 
   start_freehand(startp: Point, k: (dragp: Path) => void): void {
-    const camera = this.state.camera();
+    const camera = this.cameraState.camera();
     const path: Zpoint[] = [{ point: startp, z: 1000 }];
     const thresh = FREEHAND_SIMPLIFICATION_FACTOR
       / (cscale(camera) * cscale(camera));
@@ -816,7 +816,7 @@ class App {
   }
 
   render_origin(): void {
-    const or = this.state.get_origin();
+    const or = this.cameraState.get_origin();
     $("#c").css({
       top: or.y + "px",
       left: or.x + "px",
@@ -858,7 +858,7 @@ class App {
   }
 
   zoom_to(label: string): void {
-    const { data, w, h, state } = this;
+    const { data, w, h, cameraState } = this;
     const rawLabels: [string, t.RawLabel][] = Object.entries(data.json.geo.labels);
     const labels: Label[] = rawLabels.map(
       ([name, { pt: [x, y], properties }]) =>
@@ -867,8 +867,8 @@ class App {
     const selection = labels.filter(x => has_label(x, label));
     const pt = selection[0].pt;
     if (pt == null) throw `couldn\'t find ${label}`;
-    const pixel_offset = xform(state.camera(), pt.x, pt.y);
-    state.inc_cam((w - SIDEBAR_WIDTH) / 2 - pixel_offset.x, h / 2 - pixel_offset.y);
+    const pixel_offset = xform(cameraState.camera(), pt.x, pt.y);
+    cameraState.inc_cam((w - SIDEBAR_WIDTH) / 2 - pixel_offset.x, h / 2 - pixel_offset.y);
     this.render();
   }
 }

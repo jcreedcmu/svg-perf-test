@@ -2,7 +2,7 @@ import { Point, Camera } from './types';
 import { clone, scale_of_zoom } from './util';
 
 type Locus = any;
-export class State {
+export class CameraState {
   origin: Point;
   state: {
     camera: Camera,

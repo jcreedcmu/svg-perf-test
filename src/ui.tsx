@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { UIState, LabelUIMode, FeatureModalResult, LabelModalResult, Result } from './types';
+import { UIState, LabelUIMode, FeatureModalResult, LabelModalResult, Action } from './types';
 import { useRef, useLayoutEffect, useState } from 'react';
 import { nope } from './util';
 import * as ReactBootstrap from 'react-bootstrap';
@@ -126,7 +126,7 @@ export function MainUi(props: MainUiProps): JSX.Element {
     layers: { boundary: false, river: false, road: false },
     mode: { t: 'normal' }
   };
-  const [state, dispatch] = React.useReducer<(s: UIState, a: Result) => UIState>(reduce, initState);
+  const [state, dispatch] = React.useReducer<(s: UIState, a: Action) => UIState>(reduce, initState);
 
   function radio(k: keyof UIState['layers'], hs: string): JSX.Element {
     function change<T>(e: React.ChangeEvent<T>): void {

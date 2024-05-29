@@ -368,27 +368,26 @@ class App {
             const u = z[0];
             if (u[0] == "label") {
               const lab = coastline_layer.labelStore.labels[u[1]];
-
-              // FIXME(dispatch)
-              // this.uistate.mode = {
-              //   t: "label-modal", status: { isNew: false, prev: lab }, v: {
-              //     text: lab.properties.text,
-              //     zoom: lab.properties.zoom + '',
-              //     tp: lab.properties.label
-              //   }
-              // };
-              //              this.render();
+              this.accessRef.current?.dispatch({
+                t: 'SetMode', mode: {
+                  t: "label-modal", status: { isNew: false, prev: lab }, v: {
+                    text: lab.properties.text,
+                    zoom: lab.properties.zoom + '',
+                    tp: lab.properties.label
+                  }
+                }
+              });
             }
           }
         }
         else {
-          // FIXME(dispatch)
-          // this.uistate.mode = {
-          //   t: "label-modal",
-          //   status: { isNew: true, pt: worldp },
-          //   v: { text: "", zoom: "4", tp: "region" }
-          // };
-          // this.render();
+          this.accessRef.current?.dispatch({
+            t: 'SetMode', mode: {
+              t: "label-modal",
+              status: { isNew: true, pt: worldp },
+              v: { text: "", zoom: "4", tp: "region" }
+            }
+          });
         }
         break;
 
@@ -552,12 +551,12 @@ class App {
         this.save();
       } break;
       case "q": {
-        // FIXME(dispatch)
-        // const sk = sketch_layer.pop();
-        // if (sk != null) {
-        //   this.uistate.mode = { t: 'feature-modal', points: sk.map(p => p.point) };
-        //   this.render();
-        // }
+        const sk = sketch_layer.pop();
+        if (sk != null) {
+          this.accessRef.current?.dispatch({
+            t: 'SetMode', mode: { t: 'feature-modal', points: sk.map(p => p.point) }
+          });
+        }
       } break;
       case "S-f": {
         coastline_layer.filter();

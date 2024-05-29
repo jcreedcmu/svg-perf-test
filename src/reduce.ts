@@ -1,8 +1,7 @@
-import { LabType, UiState } from './types';
+import { LabType, UiState, Action } from './types';
 import { produce } from 'immer';
-import * as t from './types';
 
-export function reduce(state: UiState, r: t.Action): UiState {
+export function reduce(state: UiState, action: Action): UiState {
   function sanitize(s: string): LabType {
     if (s == "park" || s == "city" || s == "region" || s == "sea" || s == "minorsea" || s == "river")
       return s;
@@ -10,7 +9,12 @@ export function reduce(state: UiState, r: t.Action): UiState {
   }
 
   const { mode } = state;
-  switch (r.t) {
+  switch (action.t) {
+    case "SetMode": {
+      return produce(state, s => {
+        s.mode = action.mode;
+      });
+    }
     case "FeatureModalOk": {
       throw new Error(`FeatureModalOk action unimplemented`);
       // if (mode.t == "feature-modal") {
@@ -67,7 +71,7 @@ export function reduce(state: UiState, r: t.Action): UiState {
       });
     case "RadioToggle":
       return produce(state, s => {
-        s.layers[r.k] = !state.layers[r.k];
+        s.layers[action.k] = !state.layers[action.k];
       });
   }
 

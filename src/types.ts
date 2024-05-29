@@ -164,4 +164,6 @@ export type LabelModalResult =
 export type Action =
   | FeatureModalResult
   | LabelModalResult
-  | { t: "RadioToggle", k: keyof UiState['layers'] };
+  | { t: "RadioToggle", k: keyof UiState['layers'] }
+  | { t: "SetMode", mode: UIMode }
+  ;

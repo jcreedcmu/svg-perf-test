@@ -65,6 +65,7 @@ function mkApp(): Promise<App> {
 
 // The main meat of this file.
 class App {
+  stateRef: React.RefObject<UiState> = React.createRef<UiState>();
   c: HTMLCanvasElement;
   d: Ctx;
   w: number = 0;
@@ -83,14 +84,6 @@ class App {
   mouse: Point = { x: 0, y: 0 };
   selection: { arc: string } | null = null;
   state = new State(); // really this is camera state
-  uistate: UiState = {
-    mode: { t: 'normal' },
-    layers: {
-      road: false,
-      boundary: false,
-      river: false,
-    },
-  };
   th: Throttler;
 
   constructor(_data: Data) {
@@ -147,10 +140,10 @@ class App {
     // React rendering
 
     const root = createRoot(document.getElementById('react-root')!);
-    const stateRef = React.createRef<UiState>();
-    (window as any)['state'] = stateRef;
 
-    const comp = React.createElement(MainUi, { stateRef }, null);
+    (window as any)['state'] = this.stateRef;
+
+    const comp = React.createElement(MainUi, { stateRef: this.stateRef }, null);
 
     root.render(comp);
   }
@@ -163,6 +156,10 @@ class App {
 
 
   _render(w: number, h: number, d: Ctx, mode: Mode): void {
+
+    const state: UiState | null = this.stateRef.current;
+    if (state == null)
+      return;
 
     //  const t = Date.now();
     d.save();
@@ -181,7 +178,7 @@ class App {
     const world_bbox = this.get_world_bbox(camera);
 
     this.layers.forEach(layer => {
-      layer.render({ d, us: this.uistate, camera, mode, world_bbox });
+      layer.render({ d, us: state, camera, mode, world_bbox });
     });
 
 
@@ -370,24 +367,27 @@ class App {
             const u = z[0];
             if (u[0] == "label") {
               const lab = coastline_layer.labelStore.labels[u[1]];
-              this.uistate.mode = {
-                t: "label-modal", status: { isNew: false, prev: lab }, v: {
-                  text: lab.properties.text,
-                  zoom: lab.properties.zoom + '',
-                  tp: lab.properties.label
-                }
-              };
-              this.render();
+
+              // FIXME(dispatch)
+              // this.uistate.mode = {
+              //   t: "label-modal", status: { isNew: false, prev: lab }, v: {
+              //     text: lab.properties.text,
+              //     zoom: lab.properties.zoom + '',
+              //     tp: lab.properties.label
+              //   }
+              // };
+              //              this.render();
             }
           }
         }
         else {
-          this.uistate.mode = {
-            t: "label-modal",
-            status: { isNew: true, pt: worldp },
-            v: { text: "", zoom: "4", tp: "region" }
-          };
-          this.render();
+          // FIXME(dispatch)
+          // this.uistate.mode = {
+          //   t: "label-modal",
+          //   status: { isNew: true, pt: worldp },
+          //   v: { text: "", zoom: "4", tp: "region" }
+          // };
+          // this.render();
         }
         break;
 
@@ -477,7 +477,7 @@ class App {
     const { image_layer, coastline_layer, sketch_layer } = this;
 
     // Disable key event handling if modal is up
-    if (this.uistate.mode.t != 'normal')
+    if (this.stateRef.current?.mode.t != 'normal')
       return;
 
     // XXX eventually delete this
@@ -551,11 +551,12 @@ class App {
         this.save();
       } break;
       case "q": {
-        const sk = sketch_layer.pop();
-        if (sk != null) {
-          this.uistate.mode = { t: 'feature-modal', points: sk.map(p => p.point) };
-          this.render();
-        }
+        // FIXME(dispatch)
+        // const sk = sketch_layer.pop();
+        // if (sk != null) {
+        //   this.uistate.mode = { t: 'feature-modal', points: sk.map(p => p.point) };
+        //   this.render();
+        // }
       } break;
       case "S-f": {
         coastline_layer.filter();

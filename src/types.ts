@@ -98,12 +98,12 @@ export type Poly = {
 };
 
 
-export type Images = Dict<Image>;
+export type Images = Dict<SizedImage>;
 
 export type Geo = {
   counter: number,
   points: Dict<Point>,
-  images: Dict<Image>,
+  images: Dict<SizedImage>,
   arcs: Dict<RawArc>,
   polys: Dict<RawPoly>,
   labels: Dict<RawLabel>,

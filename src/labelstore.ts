@@ -8,6 +8,7 @@ export class LabelStore {
 
   constructor(labels: Dict<RawLabel>) {
     this.labels = vkmap(labels, unrawOfLabel);
+    this.label_rt = new RBush(10);
     this.rebuild();
   }
 

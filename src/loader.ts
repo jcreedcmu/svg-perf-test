@@ -7,7 +7,7 @@ export class Loader {
   count: number;
   tasks: (() => void)[];
   data: Data;
-  k: (d: Data) => any;
+  k: (d: Data) => any = (d) => { };
 
   constructor() {
     this.count = 0;

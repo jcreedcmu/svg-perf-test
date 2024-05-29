@@ -28,6 +28,7 @@ export class ImageLayer implements Layer {
     this.dispatch = dispatch;
     this.named_imgs = named_imgs;
     this.cur_img_ix = cur_img_ix;
+    this.overlay = new Image();
   }
 
   render(rc: RenderCtx): void {

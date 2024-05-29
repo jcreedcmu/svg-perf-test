@@ -38,6 +38,8 @@ export class ArcStore {
     this.points = points;
     this.features = vkmap(polys, unrawOfPoly);
     this.arcs = vkmap(arcs, unrawOfArc);
+    this.rt = new RBush(10);
+    this.point_rt = new RBush(10);
     this.rebuild();
   }
 

@@ -107,7 +107,6 @@ class App {
   data: Data; // Probably want to eventually get rid of this
   mouse: Point = { x: 0, y: 0 };
   selection: { arc: string } | null = null;
-  _cameraState = mkCameraData(); // really this is camera state
   th: Throttler;
 
   setCameraData(camera: CameraData): void {
@@ -115,20 +114,17 @@ class App {
       throw new Error(`access not yet ready`);
     const { dispatch } = this.accessRef.current;
     dispatch({ t: 'setCameraData', camera });
-
-    this._cameraState = camera;
   }
 
   getCameraData(): CameraData {
-    // if (this.accessRef.current == null)
-    //   throw new Error(`access not yet ready`);
-    // const { state } = this.accessRef.current;
-    // return state.cameraData;
-    return this._cameraState;
+    if (this.accessRef.current == null)
+      throw new Error(`access not yet ready`);
+    const { state } = this.accessRef.current;
+    return state.cameraData;
   }
 
   constructor(_data: Data) {
-    this.th = new Throttler(() => this.render());
+    this.th = new Throttler(() => this.render(this.getCameraData()));
     this.data = _data;
     let count = 0;
     const geo: Geo = _data.json.geo;
@@ -136,7 +132,7 @@ class App {
     const arcStore = new ArcStore(geo.points, geo.arcs, geo.polys);
     const labelStore = new LabelStore(geo.labels);
     this.coastline_layer = new CoastlineLayer(arcStore, labelStore, geo.counter);
-    this.image_layer = new ImageLayer(() => this.render(), 0, geo.images);
+    this.image_layer = new ImageLayer(() => this.render(this.getCameraData()), 0, geo.images);
     this.river_layer = new RiverLayer(rivers);
     this.sketch_layer = new SketchLayer();
     this.layers = [
@@ -174,13 +170,13 @@ class App {
       console.time("whatev");
       const ITER = 1000;
       for (let i = 0; i < ITER; i++) {
-        this.render();
+        this.render(this.getCameraData());
       }
       // d.getImageData(0,0,1,1);
       console.timeEnd("whatev");
     }
     else {
-      this.render();
+      // this.render(this.getCameraData());
     }
 
     // React rendering
@@ -194,14 +190,12 @@ class App {
     root.render(comp);
   }
 
-  render(): void {
+  render(cameraData: CameraData): void {
     const { w, h, d, mode } = this;
-    this._render(w, h, d, mode);
+    this._render(w, h, d, mode, cameraData);
   }
 
-
-
-  _render(w: number, h: number, d: Ctx, mode: Mode): void {
+  _render(w: number, h: number, d: Ctx, mode: Mode, cameraData: CameraData): void {
 
     const access: AccessRef | null = this.accessRef.current;
     if (access == null)
@@ -212,7 +206,7 @@ class App {
     d.save();
     d.scale(devicePixelRatio, devicePixelRatio);
     this.th.reset();
-    const camera = getCamera(this.getCameraData());
+    const camera = getCamera(cameraData);
     const t = Date.now();
     d.fillStyle = "#bac7f8";
     d.fillRect(0, 0, w, h);
@@ -313,7 +307,7 @@ class App {
       else {
         this.image_layer.scale(2);
       }
-      this.render();
+      this.render(this.getCameraData());
       e.preventDefault();
     }
     else {
@@ -321,8 +315,9 @@ class App {
       const y = e.pageY!;
       const zoom = -e.deltaY / 120;
       e.preventDefault();
-      this.setCameraData(doZoom(this.getCameraData(), x, y, zoom));
-      this.render();
+      const cameraData = doZoom(this.getCameraData(), x, y, zoom);
+      this.setCameraData(cameraData);
+      this.render(cameraData);
     }
   }
 
@@ -331,7 +326,8 @@ class App {
 
     if (this.panning)
       return;
-    const camera = getCamera(this.getCameraData());
+    const cameraData = this.getCameraData();
+    const camera = getCamera(cameraData);
     if (camera.zoom >= 1) {
       const x = e.pageX!;
       const y = e.pageY!;
@@ -343,7 +339,7 @@ class App {
       if (sz != this.slastz) {
         this.lastz = targets;
         this.slastz = sz;
-        this.render();
+        this.render(cameraData);
       }
     }
   }
@@ -381,7 +377,7 @@ class App {
           });
           $(document).on('mouseup.drag', e => {
             $(document).off('.drag');
-            this.render();
+            this.render(this.getCameraData());
           });
         }
         else
@@ -403,7 +399,7 @@ class App {
         else {
           this.selection = null;
         }
-        this.render();
+        this.render(this.getCameraData());
         break;
 
       case "Label":
@@ -546,15 +542,15 @@ class App {
       } break;
       case "f": {
         this.mode = "Freehand";
-        this.render();
+        this.render(this.getCameraData());
       } break;
       case "x": {
         this.mode = "Extract";
-        this.render();
+        this.render(this.getCameraData());
       } break;
       case "m": {
         this.mode = "Move";
-        this.render();
+        this.render(this.getCameraData());
       } break;
 
       // XXX disabled space panning for now
@@ -574,19 +570,19 @@ class App {
 
       case "p": {
         this.mode = "Pan";
-        this.render();
+        this.render(this.getCameraData());
       } break;
       case "s": {
         this.mode = "Select";
-        this.render();
+        this.render(this.getCameraData());
       } break;
       case "l": {
         this.mode = "Label";
-        this.render();
+        this.render(this.getCameraData());
       } break;
       case "e": {
         this.mode = "Measure";
-        this.render();
+        this.render(this.getCameraData());
       } break;
 
       // if (k == "i") {
@@ -606,7 +602,7 @@ class App {
       } break;
       case "S-f": {
         coastline_layer.filter();
-        this.render();
+        this.render(this.getCameraData());
       } break;
 
       // debugging operation
@@ -618,7 +614,7 @@ class App {
             () => this.coastline_layer.namegen('r')
           );
         });
-        this.render();
+        this.render(this.getCameraData());
       } break;
     }
     //  console.log(e.charCode, k);
@@ -637,12 +633,13 @@ class App {
     this.panning = true;
     //  state.set_cam(camera.x + PANNING_MARGIN, camera.y + PANNING_MARGIN);
 
-    const { newCameraData, dims } = reset_canvas_size(this.c, this.panning, this.getCameraData());
+    let cameraData = this.getCameraData();
+    const { newCameraData, dims } = reset_canvas_size(this.c, this.panning, cameraData);
     this.w = dims.x;
     this.h = dims.y;
+    render_origin(cameraData);
+    this.render(cameraData);
 
-    render_origin(this.getCameraData());
-    this.render();
     const last = { x: x, y: y };
     $(document).on('mousemove.drag', e => {
       let cameraData = this.getCameraData();
@@ -658,12 +655,12 @@ class App {
       if (org.y > 0) { cameraData = incOrigin(cameraData, 0, -PANNING_MARGIN); stale = true; }
       if (org.x < -2 * PANNING_MARGIN) { cameraData = incOrigin(cameraData, PANNING_MARGIN, 0); stale = true; }
       if (org.y < -2 * PANNING_MARGIN) { cameraData = incOrigin(cameraData, 0, PANNING_MARGIN); stale = true; }
-
       this.setCameraData(cameraData);
+
       if (stale) {
-        this.render();
+        this.render(cameraData);
       }
-      render_origin(this.getCameraData());
+      render_origin(cameraData);
     });
 
     return (offx: number, offy: number) => {
@@ -677,7 +674,7 @@ class App {
       cameraData = newCameraData;
       render_origin(cameraData);
       this.setCameraData(cameraData);
-      this.render();
+      this.render(cameraData);
     };
   }
 
@@ -729,7 +726,7 @@ class App {
         dragp = this.coastline_layer.target_point(snaps[0]);
       }
       k(dragp);
-      this.render();
+      this.render(this.getCameraData());
     });
   }
 
@@ -793,7 +790,7 @@ class App {
     $(document).on('mouseup.drag', e => {
       this.render_extra = null;
       $(document).off('.drag');
-      this.render();
+      this.render(this.getCameraData());
     });
   }
 
@@ -844,7 +841,7 @@ class App {
       k(path.filter(({ point: pt, z }: Zpoint, n: number) => {
         return z > thresh || n == 0 || n == path.length - 1;
       }));
-      this.render();
+      this.render(this.getCameraData());
     });
   }
 
@@ -901,8 +898,9 @@ class App {
     const pt = selection[0].pt;
     if (pt == null) throw `couldn\'t find ${label}`;
     const pixel_offset = xform(getCamera(this.getCameraData()), pt.x, pt.y);
-    this.setCameraData(incCam(this.getCameraData(), (w - SIDEBAR_WIDTH) / 2 - pixel_offset.x, h / 2 - pixel_offset.y));
-    this.render();
+    const cameraData = incCam(this.getCameraData(), (w - SIDEBAR_WIDTH) / 2 - pixel_offset.x, h / 2 - pixel_offset.y);
+    this.setCameraData(cameraData);
+    this.render(cameraData);
   }
 }
 

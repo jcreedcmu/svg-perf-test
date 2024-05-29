@@ -384,8 +384,6 @@ class App {
     const slack = VERTEX_SENSITIVITY / cscale(camera);
     const bbox: ArRectangle = [worldp.x - slack, worldp.y - slack, worldp.x + slack, worldp.y + slack];
 
-    const th = $(this);
-
     switch (this.mode) {
       case "Pan":
         if (e.ctrlKey) {

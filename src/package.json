@@ -17,21 +17,17 @@
   },
   "homepage": "https://github.com/jcreedcmu/svg-perf-test",
   "devDependencies": {
-    "@types/jest": "^23.3.10",
-    "jest": "^24.8.0",
-    "ts-jest": "^23.10.5",
-    "ts-loader": "^5.2.2",
-    "typescript": "^3.1.3"
+    "typescript": "^5.4.5"
   },
   "dependencies": {
-    "@types/jquery": "^3.3.22",
-    "@types/rbush": "^3.0.1",
-    "@types/react": "^16.7.10",
-    "@types/react-bootstrap": "^0.32.15",
-    "@types/react-dom": "^16.0.11",
+    "@types/jquery": "^3.5.30",
+    "@types/rbush": "^3.0.3",
+    "@types/react": "^18.3.3",
+    "@types/react-bootstrap": "^0.32.36",
+    "@types/react-dom": "^18.3.0",
     "rbush": "^3.0.1",
-    "react": "16.7.0-alpha.2",
-    "react-bootstrap": "^0.32.4",
-    "react-dom": "16.7.0-alpha.2"
+    "react": "^18.3.1",
+    "react-bootstrap": "^2.10.2",
+    "react-dom": "^18.3.1"
   }
 }

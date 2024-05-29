@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "noEmit": true,
+    "allowJs": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "target": "es6",
+	 "jsx": "react",
+	 "esModuleInterop": true,
+    "module": "commonjs",
+	 "lib": ["es2017", "dom", "es2017.object"]
+  },
+  "files": [
+    "main.ts", "ui.tsx"
+  ],
+  "exclude": [
+	 "built",
+    "node_modules",
+	 "node_modules/@types/node/index.d.ts"
+  ]
+}

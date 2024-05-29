@@ -1,6 +1,8 @@
 import * as react from 'react';
 import * as ReactDOM from 'react-dom';
 
+import { createRoot } from 'react-dom/client';
+import { reduce } from './reduce';
 import { Point, Ctx, Mode, Camera, Rect, Path, Target, ArcVertexTarget } from './types';
 import { Geo, Rivers, Zpoint, Bundle, Layer, ArRectangle, Label } from './types';
 import { Stopper, UIState, LabType } from './types';
@@ -151,73 +153,7 @@ class App {
     this._render(w, h, d, mode);
   }
 
-  reduce(r: t.Result) {
-    function sanitize(s: string): LabType {
-      if (s == "park" || s == "city" || s == "region" || s == "sea" || s == "minorsea" || s == "river")
-        return s;
-      return "region";
-    }
 
-    const mode = this.uistate.mode;
-    switch (r.t) {
-      case "FeatureModalOk": {
-        if (mode.t == "feature-modal") {
-          this.coastline_layer.add_arc_feature("Polygon", mode.points, { t: "boundary" });
-          this.uistate.mode = { t: "normal" };
-        }
-        else {
-          throw (`unsupported action FeatureModalOk when uistate is ${this.uistate}`);
-        }
-      } break;
-      case "LabelModalOk": {
-        if (mode.t == "label-modal") {
-          const v = mode.v;
-          if (mode.status.isNew)
-            this.coastline_layer.new_point_feature({
-              name: v.text,
-              pt: mode.status.pt,
-              properties: {
-                label: sanitize(v.tp),
-                text: v.text,
-                zoom: parseInt(v.zoom),
-              }
-            });
-          else
-            this.coastline_layer.labelStore.replace_point_feature({
-              name: mode.status.prev.name,
-              pt: mode.status.prev.pt,
-              properties: {
-                label: sanitize(v.tp),
-                text: v.text,
-                zoom: parseInt(v.zoom),
-              }
-            });
-
-          this.uistate.mode = { t: "normal" };
-        }
-        else {
-          console.log(`unsupported action FeatureModalOk when uistate is ${this.uistate}`);
-        }
-      } break;
-      case "LabelModalChange":
-        if (mode.t == "label-modal") {
-          mode.v = r.lm; // MUTATES
-        }
-        else {
-          throw (`unsupported action LabelModalChange when uistate is ${this.uistate}`);
-        } break;
-      case "FeatureModalCancel":
-      case "LabelModalCancel":
-        this.uistate.mode = { t: "normal" };
-        break;
-      case "RadioToggle":
-        this.uistate.layers[r.k] = !this.uistate.layers[r.k];
-        break;
-      default:
-        nope(r);
-    }
-    this.render();
-  }
 
   _render(w: number, h: number, d: Ctx, mode: Mode): void {
 
@@ -317,9 +253,18 @@ class App {
     //  console.log(Date.now() - t);
 
     // render react stuff
-    ReactDOM.render(
-      renderUi(this.uistate, r => this.reduce(r)),
-      document.getElementById('react-root')
+
+
+
+
+    const root = createRoot(document.getElementById('react-root')!);
+
+    root.render(
+      renderUi(this.uistate, r => {
+        this.uistate = reduce(this.uistate, r);
+        this.render();
+      }),
+
     );
   }
 

@@ -158,14 +158,6 @@ class App {
     }
     this.d = _d;
 
-    setTimeout(() => {
-      let cameraData = this.getCameraData();
-      const { newCameraData, dims } = reset_canvas_size(this.c, this.panning, cameraData);
-      this.w = dims.x;
-      this.h = dims.y;
-      render_origin(newCameraData);
-    }, 100);
-
     if (DEBUG && DEBUG_PROF) {
       console.time("whatev");
       const ITER = 1000;
@@ -185,7 +177,16 @@ class App {
 
     (window as any)['access'] = this.accessRef;
 
-    const comp = React.createElement(MainUi, { accessRef: this.accessRef }, null);
+    const onMount = () => {
+      let cameraData = this.getCameraData();
+      const { newCameraData, dims } = reset_canvas_size(this.c, this.panning, cameraData);
+      this.w = dims.x;
+      this.h = dims.y;
+      render_origin(newCameraData);
+      this.render(newCameraData);
+    }
+
+    const comp = React.createElement(MainUi, { accessRef: this.accessRef, onMount }, null);
 
     root.render(comp);
   }

@@ -127,7 +127,8 @@ export type AccessRef = {
 };
 
 export type MainUiProps = {
-  accessRef: React.Ref<AccessRef>,
+  accessRef: React.RefObject<AccessRef>,
+  onMount: () => void,
 };
 
 export function MainUi(props: MainUiProps): JSX.Element {
@@ -142,6 +143,12 @@ export function MainUi(props: MainUiProps): JSX.Element {
 
   // XXX kind of a hack to temporarily propagate react state out of react-land
   React.useImperativeHandle(ref, () => ({ state, dispatch }), [state]);
+  React.useEffect(() => {
+    if (props.accessRef.current == null) {
+      throw new Error(`I expected access ref to be initialized by now!`);
+    }
+    props.onMount();
+  }, []);
 
   function radio(k: keyof UiState['layers'], hs: string): JSX.Element {
     function change<T>(e: React.ChangeEvent<T>): void {

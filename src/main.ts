@@ -1,4 +1,5 @@
-import * as react from 'react';
+import * as React from 'react';
+import { forwardRef } from 'react';
 
 import { createRoot } from 'react-dom/client';
 import { ArRectangle, Camera, Ctx, Geo, Label, Layer, Mode, Path, Point, Rect, Rivers, Stopper, Target, UIState, Zpoint } from './types';
@@ -144,9 +145,14 @@ class App {
     }
 
     // React rendering
-    const root = createRoot(document.getElementById('react-root')!);
 
-    const comp = react.createElement(MainUi, {}, null);
+    const root = createRoot(document.getElementById('react-root')!);
+    const ref = React.createRef<HTMLInputElement>();
+    (window as any)['w'] = ref;
+
+    const MainUiWithRef = forwardRef<HTMLInputElement>((props, ref) => MainUi(props, ref));
+    const comp = React.createElement(MainUiWithRef, { ref }, null);
+
     root.render(comp);
   }
 

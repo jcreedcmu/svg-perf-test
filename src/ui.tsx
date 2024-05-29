@@ -119,21 +119,29 @@ function LabelModal(props: { us: UIState, dispatch: (r: LabelModalResult) => voi
 }
 
 export type MainUiProps = {
+
 };
 
-export function MainUi(props: MainUiProps): JSX.Element {
+
+export function MainUi(props: MainUiProps, ref: React.ForwardedRef<HTMLInputElement>): JSX.Element {
+
+
+
+
   const initState: UIState = {
     layers: { boundary: false, river: false, road: false },
     mode: { t: 'normal' }
   };
   const [state, dispatch] = React.useReducer<(s: UIState, a: Action) => UIState>(reduce, initState);
 
+  // React.useImperativeHandle(props.ref, () => { getState: () => state }, [state]);
+
   function radio(k: keyof UIState['layers'], hs: string): JSX.Element {
     function change<T>(e: React.ChangeEvent<T>): void {
       dispatch({ t: "RadioToggle", k });
     }
     return <span>
-      <input type="checkbox" id={k}
+      <input ref={ref} type="checkbox" id={k}
         onChange={change} checked={state.layers[k]} /> <label htmlFor={k}>{hs} layer </label>
       <br />
     </span >
@@ -154,6 +162,5 @@ export function MainUi(props: MainUiProps): JSX.Element {
     <FeatureModal us={state} dispatch={dispatch} />
     <LabelModal us={state} dispatch={dispatch} />
   </span>;
-
 
 }

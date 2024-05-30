@@ -1,5 +1,5 @@
 import { Point, Camera } from './types';
-import { clone, scale_of_zoom } from './util';
+import { clone, scale_of_zoom, zoom_of_scale } from './util';
 import { produce } from 'immer';
 import { SE2, compose, scale, translate } from './se2';
 import { vdiag } from './vutil';
@@ -24,6 +24,13 @@ export type CameraData = {
 export function se2_of_camera(camera: Camera): SE2 {
   const scale_amount = scale_of_zoom(camera.zoom);
   return compose(translate({ x: camera.x, y: camera.y }), scale({ x: scale_amount, y: -scale_amount }));
+}
+
+export function camera_of_se2(se2: SE2): Camera {
+  const xlate = compose(se2, scale({ x: 1 / se2.scale.x, y: -1 / se2.scale.y })).translate;
+
+  const zoom = zoom_of_scale(se2.scale.x);
+  return { x: xlate.x, y: xlate.y, zoom };
 }
 
 export function mkCameraData(): CameraData {

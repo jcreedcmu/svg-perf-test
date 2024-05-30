@@ -30,7 +30,11 @@ export function vkmap<V, W>(xs: { [k: string]: W }, f: (k: string, x: W) => V): 
 
 export function scale_of_zoom(zoom: number): number {
   return (1 / 8) * (1 / 1024) * Math.pow(2, zoom);
-};
+}
+
+export function zoom_of_scale(scale: number): number {
+  return Math.log(1024 * 8 * scale) / Math.log(2);
+}
 
 export function cscale(c: Camera): number {
   return scale_of_zoom(c.zoom);

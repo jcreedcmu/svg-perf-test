@@ -1,14 +1,8 @@
 import { Point } from './types';
 import { clone, scale_of_zoom, zoom_of_scale } from './util';
 import { produce } from 'immer';
-import { SE2, compose, mkSE2, scale, translate } from './se2';
+import { SE2, compose, composen, mkSE2, scale, translate } from './se2';
 import { vdiag } from './vutil';
-
-interface Camera {
-  x: number;
-  y: number;
-  zoom: number;
-}
 
 export type CameraData = {
   // The "origin" is the where the top-left of the canvas ends up in
@@ -27,20 +21,6 @@ export type CameraData = {
   page_from_world: SE2,
 };
 
-// This is computing the page_from_world of a Camera
-export function se2_of_camera(camera: Camera): SE2 {
-  const scale_amount = scale_of_zoom(camera.zoom);
-  return compose(translate({ x: camera.x, y: camera.y }), scale({ x: scale_amount, y: -scale_amount }));
-}
-
-// This is computing the Camera of a page_from_world
-export function camera_of_se2(se2: SE2): Camera {
-  const xlate = compose(se2, scale({ x: 1 / se2.scale.x, y: -1 / se2.scale.y })).translate;
-
-  const zoom = zoom_of_scale(se2.scale.x);
-  return { x: xlate.x, y: xlate.y, zoom };
-}
-
 export function mkCameraData(): CameraData {
   let page_from_world: SE2 = mkSE2({ x: 0.001953125, y: -0.001953125 }, { x: -432.125, y: 3321.875 });
 
@@ -53,14 +33,16 @@ export function mkCameraData(): CameraData {
 
 export function doZoom(data: CameraData, x: number, y: number, zoom: number): CameraData {
   var zoom2 = Math.pow(2, zoom);
+  // x and y are in page coordinates
+  // target-centric coordinate system
 
-  const old_camera = camera_of_se2(data.page_from_world);
-  const new_camera = produce(old_camera, c => {
-    c.x = zoom2 * (c.x - x) + x;
-    c.y = zoom2 * (c.y - y) + y;
-    c.zoom = c.zoom + zoom;
-  });
-  const new_page_from_world = se2_of_camera(new_camera);
+  const new_page_from_world = composen(
+    translate({ x, y }),
+    scale(vdiag(zoom2)),
+    translate({ x: -x, y: -y }),
+    data.page_from_world,
+  );
+
   const new_data = produce(data, d => {
     d.page_from_world = new_page_from_world;
   });

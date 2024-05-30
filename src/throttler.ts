@@ -4,7 +4,7 @@
 export class Throttler {
   cb: () => void;
   lastTime: number = 0;
-  id: number | null = null;
+  id: any | null = null; // XXX should be timeout type or something?
 
   constructor(cb: () => void) {
     this.cb = cb;

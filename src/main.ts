@@ -6,12 +6,12 @@ import { ArRectangle, Camera, Ctx, Geo, Label, Layer, Mode, Path, Point, Rect, R
 
 import { Data, Loader } from './loader';
 import { resimplify } from './simplify';
-import { clone, colorToHex, cscale, inv_xform, app_world_from_canvas, meters_to_string, nope, vdist, vint, xform, zoom_of_scale } from './util';
+import { clone, colorToHex, cscale, inv_xform, app_world_from_canvas, meters_to_string, nope, vdist, vint, xform, zoom_of_scale, canvasIntoWorld } from './util';
 
 import { colors } from './colors';
 import { key } from './key';
 
-import { CameraData, canvas_from_world_of_cameraData, doZoom, getCamera, getOrigin, incCam, incOrigin, mkCameraData, setOrigin } from './camera-state';
+import { CameraData, canvas_from_world_of_cameraData, doZoom, getCamera, getOrigin, incCam, incOrigin, mkCameraData, scale_of_camera, setOrigin } from './camera-state';
 import { Throttler } from './throttler';
 
 import { ArcStore } from './arcstore';
@@ -330,7 +330,7 @@ class App {
       return;
     const cameraData = this.getCameraData();
     const canvas_from_world = canvas_from_world_of_cameraData(cameraData);
-    const scale = canvas_from_world.scale.x;
+    const scale = scale_of_camera(cameraData);
     if (zoom_of_scale(scale) >= 1) {
       const x = e.pageX!;
       const y = e.pageY!;
@@ -362,7 +362,7 @@ class App {
     const { image_layer, coastline_layer, sketch_layer } = this;
     const cameraData = this.getCameraData();
     const canvas_from_world = canvas_from_world_of_cameraData(cameraData);
-    const scale = canvas_from_world.scale.x;
+    const scale = scale_of_camera(cameraData);
 
     const x = e.pageX!;
     const y = e.pageY!;
@@ -697,8 +697,7 @@ class App {
     const scale = cscale(camera);
     this.render_extra = (camera, d) => {
       d.save();
-      d.translate(camera.x, camera.y);
-      d.scale(scale, -scale);
+      canvasIntoWorld(d, cameraData);
       d.beginPath();
       if (neighbors.length == 0) {
         // if no neighbors, we're moving a label; draw a little crosshairs.
@@ -810,7 +809,7 @@ class App {
     const cameraData = this.getCameraData();
     const canvas_from_world = canvas_from_world_of_cameraData(cameraData);
     const xlate = canvas_from_world.translate;
-    const scale = canvas_from_world.scale.x;
+    const scale = scale_of_camera(cameraData);
 
     const path: Zpoint[] = [{ point: startp, z: 1000 }];
     const thresh = FREEHAND_SIMPLIFICATION_FACTOR

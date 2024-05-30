@@ -202,3 +202,11 @@ export function colorToHex(c: number[]) {
   }
   return '#' + comp(c[0]) + comp(c[1]) + comp(c[2]);
 }
+
+export function canvasIntoWorld(d: CanvasRenderingContext2D, cameraData: CameraData): void {
+  const canvas_from_world = canvas_from_world_of_cameraData(cameraData);
+  const scale = canvas_from_world.scale.x;
+  const xlate = canvas_from_world.translate;
+  d.translate(xlate.x, xlate.y);
+  d.scale(scale, -scale);
+}

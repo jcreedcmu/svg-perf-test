@@ -1,8 +1,14 @@
-import { Point, Camera } from './types';
+import { Point } from './types';
 import { clone, scale_of_zoom, zoom_of_scale } from './util';
 import { produce } from 'immer';
 import { SE2, compose, mkSE2, scale, translate } from './se2';
 import { vdiag } from './vutil';
+
+interface Camera {
+  x: number;
+  y: number;
+  zoom: number;
+}
 
 export type CameraData = {
   // The "origin" is the where the top-left of the canvas ends up in
@@ -43,13 +49,6 @@ export function mkCameraData(): CameraData {
   }
 
   return { origin: { x: 0, y: 0 }, page_from_world };
-}
-
-export function getCamera(data: CameraData): Camera {
-  return produce(camera_of_se2(data.page_from_world), d => {
-    d.x -= data.origin.x;
-    d.y -= data.origin.y;
-  });
 }
 
 export function doZoom(data: CameraData, x: number, y: number, zoom: number): CameraData {

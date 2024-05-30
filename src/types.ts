@@ -6,11 +6,7 @@ import RBush, * as rbush from 'rbush';
 import { CameraData } from './camera-state';
 
 export type Mode = "Pan" | "Freehand" | "Move" | "Select" | "Label" | "Measure" | "Extract";
-export interface Camera {
-  x: number;
-  y: number;
-  zoom: number;
-}
+
 
 export type Rect = [number, number, number, number];
 export type Path = Zpoint[];

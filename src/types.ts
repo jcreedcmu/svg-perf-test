@@ -151,7 +151,7 @@ export type RenderCtx = {
   us: UiState,
   camera: Camera,
   mode: Mode,
-  world_bbox: ArRectangle,
+  bbox_in_world: ArRectangle,
 };
 
 export type FeatureModalResult =

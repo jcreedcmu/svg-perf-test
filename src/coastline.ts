@@ -255,7 +255,7 @@ export class CoastlineLayer implements Layer {
   }
 
   render(rc: RenderCtx) {
-    const { d, camera, world_bbox, us, mode } = rc;
+    const { d, camera, bbox_in_world, us, mode } = rc;
     function visible(x: Poly): boolean {
       if (x.properties.t == "road" && !us.layers.road) return false;
       if (x.properties.t == "boundary" && !us.layers.boundary) return false;
@@ -265,7 +265,7 @@ export class CoastlineLayer implements Layer {
     const scale = cscale(camera);
     const arcs_to_draw_vertices_for: Zpoint[][] = [];
     const salients: { props: RoadProps, pt: Point }[] = [];
-    const rawFeatures = tsearch(this.arcStore.rt, world_bbox).filter(visible);
+    const rawFeatures = tsearch(this.arcStore.rt, bbox_in_world).filter(visible);
     const baseFeatures = sortBy(rawFeatures, x => {
       let z = 0;
       const p: PolyProps = x.properties;
@@ -322,10 +322,10 @@ export class CoastlineLayer implements Layer {
             throw "arc " + spec + " must have at least two points";
           }
 
-          const rect_intersect = world_bbox[0] < arc_bbox.maxX
-            && world_bbox[2] > arc_bbox.minX
-            && world_bbox[3] > arc_bbox.minY
-            && world_bbox[1] < arc_bbox.maxY;
+          const rect_intersect = bbox_in_world[0] < arc_bbox.maxX
+            && bbox_in_world[2] > arc_bbox.minX
+            && bbox_in_world[3] > arc_bbox.minY
+            && bbox_in_world[1] < arc_bbox.maxY;
 
           if (!rect_intersect) {
             // The bounding box of this arc is entirely off-screen.
@@ -400,7 +400,7 @@ export class CoastlineLayer implements Layer {
     // render labels
     if (camera.zoom < 1) return;
     d.lineJoin = "round";
-    tsearch(this.labelStore.label_rt, world_bbox).forEach(x => {
+    tsearch(this.labelStore.label_rt, bbox_in_world).forEach(x => {
       draw_label(d, camera, this.labelStore.labels[x]);
     });
   }

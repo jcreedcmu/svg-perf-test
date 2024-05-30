@@ -217,10 +217,10 @@ class App {
       d.strokeRect(OFFSET + 0.5, OFFSET + 0.5, w - 2 * OFFSET, h - 2 * OFFSET);
     }
 
-    const world_bbox = this.get_world_bbox(camera);
+    const bbox_in_world = this.get_bbox_in_world(camera);
 
     this.layers.forEach(layer => {
-      layer.render({ d, us: state, camera, mode, world_bbox });
+      layer.render({ d, us: state, camera, mode, bbox_in_world });
     });
 
 
@@ -848,7 +848,7 @@ class App {
     });
   }
 
-  get_world_bbox(camera: Camera): Rect {
+  get_bbox_in_world(camera: Camera): Rect {
     const { w, h } = this;
     const tl = inv_xform(camera, { x: OFFSET, y: OFFSET });
     const br = inv_xform(camera, { x: w - OFFSET, y: h - OFFSET });

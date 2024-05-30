@@ -1,5 +1,5 @@
 import { CameraData, page_from_world_of_cameraData } from './camera-state';
-import { apply, inverse } from './se2';
+import { SE2, apply, compose, inverse, translate } from './se2';
 import { Point, Zpoint, Camera, Rect, Bbox, Bush } from './types';
 import { Arc, RawArc, Poly, RawPoly, Label, RawLabel, ArcSpec, Dict } from './types';
 

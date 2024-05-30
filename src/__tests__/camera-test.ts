@@ -51,3 +51,17 @@ describe('camera_of_se2', () => {
     });
   });
 });
+
+// get_world_bbox(cameraData: CameraData): Rect {
+//   const { w, h } = this;
+//   const tl = inv_xform_d(cameraData, { x: OFFSET, y: OFFSET });
+//   const br = inv_xform_d(cameraData, { x: w - OFFSET, y: h - OFFSET });
+//   return [tl.x, br.y, br.x, tl.y];
+// }
+
+// get_world_bbox2(camera: Camera): Rect {
+//   const { w, h } = this;
+//   const tl = inv_xform(camera, { x: OFFSET, y: OFFSET });
+//   const br = inv_xform(camera, { x: w - OFFSET, y: h - OFFSET });
+//   return [tl.x, br.y, br.x, tl.y];
+// }

@@ -119,3 +119,12 @@ function storeCam(data: CameraData): CameraData {
 export function page_from_world_of_cameraData(data: CameraData): SE2 {
   return data.page_from_world;
 }
+
+export function canvas_from_page_of_cameraData(data: CameraData): SE2 {
+  return translate({ x: -data.origin.x, y: -data.origin.y });
+}
+
+export function canvas_from_world_of_cameraData(data: CameraData): SE2 {
+  return compose(canvas_from_page_of_cameraData(data),
+    page_from_world_of_cameraData(data));
+}

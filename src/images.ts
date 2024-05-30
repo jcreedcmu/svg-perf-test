@@ -37,6 +37,7 @@ export class ImageLayer implements Layer {
     const nimg = this.named_imgs[this.cur_img_ix];
     d.save();
     canvasIntoWorld(d, cameraData);
+    d.scale(1, -1);
     d.globalAlpha = 0.25;
     const ovr = this.overlay;
     if (ovr != null) {

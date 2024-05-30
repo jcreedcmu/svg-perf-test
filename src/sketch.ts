@@ -1,4 +1,4 @@
-import { Mode, Layer, Ctx, Camera, ArRectangle, Zpoint, RenderCtx } from './types';
+import { Mode, Layer, Ctx, ArRectangle, Zpoint, RenderCtx } from './types';
 import { cscale } from './util';
 
 type Path = Zpoint[];

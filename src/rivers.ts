@@ -1,4 +1,4 @@
-import { Mode, Layer, Ctx, Camera, ArRectangle, Point, River, Rivers, RenderCtx } from './types';
+import { Layer, RenderCtx, Rivers } from './types';
 import { cscale } from './util';
 
 export class RiverLayer implements Layer {

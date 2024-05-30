@@ -807,14 +807,18 @@ class App {
   }
 
   start_freehand(startp: Point, k: (dragp: Path) => void): void {
-    const camera = getCamera(this.getCameraData());
+    const cameraData = this.getCameraData();
+    const canvas_from_world = canvas_from_world_of_cameraData(cameraData);
+    const xlate = canvas_from_world.translate;
+    const scale = canvas_from_world.scale.x;
+
     const path: Zpoint[] = [{ point: startp, z: 1000 }];
     const thresh = FREEHAND_SIMPLIFICATION_FACTOR
-      / (cscale(camera) * cscale(camera));
+      / (scale * scale);
     this.render_extra = (camera, d) => {
       d.save();
-      d.translate(camera.x, camera.y);
-      d.scale(cscale(camera), -cscale(camera));
+      d.translate(xlate.x, xlate.y);
+      d.scale(scale, -scale);
       d.beginPath();
       let count = 0;
       path.forEach(({ point: pt, z }: Zpoint, n: number) => {
@@ -828,7 +832,7 @@ class App {
           }
         }
       });
-      d.lineWidth = 2 / cscale(camera);
+      d.lineWidth = 2 / scale;
       d.strokeStyle = colors.motion_guide;
       d.stroke();
       d.restore();
@@ -836,7 +840,7 @@ class App {
     $(document).on('mousemove.drag', e => {
       const x = e.pageX!;
       const y = e.pageY!;
-      const worldp = inv_xform(camera, { x, y });
+      const worldp = app_world_from_canvas(cameraData, { x, y });
       path.push({ point: worldp, z: 1000 });
       resimplify(path);
       this.th.maybe();

@@ -1,7 +1,8 @@
 import { Point, Camera } from './types';
 import { clone, scale_of_zoom } from './util';
 import { produce } from 'immer';
-
+import { SE2, compose, scale, translate } from './se2';
+import { vdiag } from './vutil';
 
 // I'd like to use SE2 here, but one obstacle to that being nice is
 // that I would like to 'snap' to power of two zoom levels. I guess
@@ -19,6 +20,10 @@ export type CameraData = {
   // given by xform page_from_world.
   camera: Camera,
 };
+
+function se2_of_camera(camera: Camera): SE2 {
+  return compose(translate({ x: camera.x, y: camera.y }), scale(vdiag(scale_of_zoom(camera.zoom))));
+}
 
 export function mkCameraData(): CameraData {
   let camera: Camera = { x: -432.125, y: 3321.875, zoom: 4 };

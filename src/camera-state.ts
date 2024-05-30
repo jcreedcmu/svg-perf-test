@@ -115,3 +115,7 @@ function storeCam(data: CameraData): CameraData {
   localStorage.page_from_world = JSON.stringify(data.page_from_world);
   return data;
 }
+
+export function page_from_world_of_cameraData(data: CameraData): SE2 {
+  return data.page_from_world;
+}

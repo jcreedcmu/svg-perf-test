@@ -6,7 +6,7 @@ import { ArRectangle, Camera, Ctx, Geo, Label, Layer, Mode, Path, Point, Rect, R
 
 import { Data, Loader } from './loader';
 import { resimplify } from './simplify';
-import { clone, colorToHex, cscale, inv_xform, meters_to_string, nope, vdist, vint, xform } from './util';
+import { clone, colorToHex, cscale, inv_xform, inv_xform_d, meters_to_string, nope, vdist, vint, xform } from './util';
 
 import { colors } from './colors';
 import { key } from './key';
@@ -682,6 +682,7 @@ class App {
   // The continuation k is what to do when the drag ends. The argument
   // dragp to k is the point we released the drag on.
   start_drag(startp: Point, neighbors: Point[], k: (dragp: Point) => void) {
+    const cameraData = this.getCameraData();
     const camera = getCamera(this.getCameraData());
     let dragp = clone(startp);
     const scale = cscale(camera);
@@ -714,7 +715,7 @@ class App {
     $(document).on('mousemove.drag', e => {
       const x = e.pageX!;
       const y = e.pageY!;
-      const worldp = inv_xform(camera, { x, y });
+      const worldp = inv_xform_d(cameraData, { x, y });
       dragp.x = worldp.x;
       dragp.y = worldp.y;
       this.th.maybe();
@@ -745,7 +746,8 @@ class App {
   }
 
   start_measure(startp: Point): void {
-    const camera = getCamera(this.getCameraData());
+    const cameraData = this.getCameraData();
+    const camera = getCamera(cameraData);
     const dragp = clone(startp);
     const scale = cscale(camera);
     this.render_extra = (camera, d) => {
@@ -783,7 +785,7 @@ class App {
     $(document).on('mousemove.drag', e => {
       const x = e.pageX!;
       const y = e.pageY!;
-      const worldp = inv_xform(camera, { x, y });
+      const worldp = inv_xform_d(cameraData, { x, y });
       dragp.x = worldp.x;
       dragp.y = worldp.y;
       this.th.maybe();

@@ -11,7 +11,7 @@ import { clone, colorToHex, cscale, inv_xform, app_world_from_canvas, meters_to_
 import { colors } from './colors';
 import { key } from './key';
 
-import { CameraData, canvas_from_world_of_cameraData, doZoom, getCamera, getOrigin, incCam, incOrigin, mkCameraData, scale_of_camera, setOrigin } from './camera-state';
+import { CameraData, canvas_from_world_of_cameraData, doZoom, getCamera, getOrigin, incCam, incOrigin, mkCameraData, scale_of_camera, setOrigin, zoom_of_camera } from './camera-state';
 import { Throttler } from './throttler';
 
 import { ArcStore } from './arcstore';
@@ -208,7 +208,8 @@ class App {
     d.save();
     d.scale(devicePixelRatio, devicePixelRatio);
     this.th.reset();
-    const camera = getCamera(cameraData);
+    const cameraBad = getCamera(cameraData);
+    const scale = scale_of_camera(cameraData);
     const t = Date.now();
     d.fillStyle = "#bac7f8";
     d.fillRect(0, 0, w, h);
@@ -221,23 +222,22 @@ class App {
     const bbox_in_world = this.get_bbox_in_world(cameraData);
 
     this.layers.forEach(layer => {
-      layer.render({ d, us: state, camera, mode, bbox_in_world });
+      layer.render({ d, us: state, camera: cameraBad, mode, bbox_in_world });
     });
 
 
     // vertex hover display
-    if (camera.zoom >= 1 && this.lastz.length != 0) {
+    if (zoom_of_camera(cameraData) >= 1 && this.lastz.length != 0) {
       const pts = this.lastz;
-      const rad = 3 / cscale(camera);
+      const rad = 3 / scale;
       d.save();
-      d.translate(camera.x, camera.y);
-      d.scale(cscale(camera), -cscale(camera));
+      canvasIntoWorld(d, cameraData);
       pts.forEach((bundle: Target) => {
         if (bundle[0] == "coastline") {
           const pt = this.coastline_layer.avtPoint(bundle[1]);
           d.fillStyle = "white";
           d.fillRect(pt.x - rad, pt.y - rad, rad * 2, rad * 2);
-          d.lineWidth = 1 / cscale(camera);
+          d.lineWidth = 1 / scale;
           d.strokeStyle = "black";
           d.strokeRect(pt.x - rad, pt.y - rad, rad * 2, rad * 2);
 
@@ -249,7 +249,7 @@ class App {
           d.beginPath();
           d.fillStyle = "white";
           d.globalAlpha = 0.5;
-          d.arc(pt.x, pt.y, 20 / cscale(camera), 0, Math.PI * 2);
+          d.arc(pt.x, pt.y, 20 / scale, 0, Math.PI * 2);
           d.fill();
         }
       });
@@ -258,7 +258,7 @@ class App {
 
     if (!this.panning) {
       // scale
-      this.render_scale(camera, d);
+      this.render_scale(cameraBad, d);
 
       // mode
       d.fillStyle = "black";
@@ -273,22 +273,21 @@ class App {
       d.font = "bold 12px sans-serif";
       d.lineWidth = 2;
       const im = this.image_layer;
-      const txt = "Zoom: " + camera.zoom + " (1px = " + 1 / cscale(camera) + "m) lastz: " + this.slastz + " img: " + im.named_imgs[im.cur_img_ix].name;
+      const txt = "Zoom: " + Math.round(zoom_of_camera(cameraData)) + " (1px = " + Math.round(1 / scale) + "m) lastz: " + this.slastz + " img: " + im.named_imgs[im.cur_img_ix].name;
       d.strokeText(txt, 20, 20);
       d.fillText(txt, 20, 20);
 
 
       // used for ephemeral stuff on top, like point-dragging
       if (this.render_extra) {
-        (this.render_extra)(camera, d);
+        (this.render_extra)(cameraBad, d);
       }
 
       if (this.selection) {
         d.save();
-        d.translate(camera.x, camera.y);
-        d.scale(cscale(camera), -cscale(camera));
+        canvasIntoWorld(d, cameraData)
         if (this.selection.arc) {
-          d.lineWidth = 2 / cscale(camera);
+          d.lineWidth = 2 / scale;
           d.strokeStyle = "#0ff";
           this.coastline_layer.draw_selected_arc(d, this.selection.arc);
         }
@@ -329,9 +328,9 @@ class App {
     if (this.panning)
       return;
     const cameraData = this.getCameraData();
-    const canvas_from_world = canvas_from_world_of_cameraData(cameraData);
     const scale = scale_of_camera(cameraData);
-    if (zoom_of_scale(scale) >= 1) {
+
+    if (zoom_of_camera(cameraData) >= 1) {
       const x = e.pageX!;
       const y = e.pageY!;
       const worldp = app_world_from_canvas(cameraData, { x, y });
@@ -692,9 +691,9 @@ class App {
   // dragp to k is the point we released the drag on.
   start_drag(startp: Point, neighbors: Point[], k: (dragp: Point) => void) {
     const cameraData = this.getCameraData();
-    const camera = getCamera(this.getCameraData());
+    const scale = scale_of_camera(cameraData);
     let dragp = clone(startp);
-    const scale = cscale(camera);
+
     this.render_extra = (camera, d) => {
       d.save();
       canvasIntoWorld(d, cameraData);
@@ -755,9 +754,9 @@ class App {
 
   start_measure(startp: Point): void {
     const cameraData = this.getCameraData();
-    const camera = getCamera(cameraData);
+
     const dragp = clone(startp);
-    const scale = cscale(camera);
+    const scale = scale_of_camera(cameraData);
     this.render_extra = (camera, d) => {
       d.save();
       d.translate(camera.x, camera.y);

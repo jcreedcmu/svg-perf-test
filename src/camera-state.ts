@@ -121,3 +121,7 @@ export function canvas_from_world_of_cameraData(data: CameraData): SE2 {
 export function scale_of_camera(data: CameraData): number {
   return canvas_from_world_of_cameraData(data).scale.x;
 }
+
+export function zoom_of_camera(data: CameraData): number {
+  return zoom_of_scale(scale_of_camera(data));
+}

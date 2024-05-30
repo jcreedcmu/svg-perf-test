@@ -21,11 +21,13 @@ export type CameraData = {
   page_from_world: SE2,
 };
 
+// This is computing the page_from_world of a Camera
 export function se2_of_camera(camera: Camera): SE2 {
   const scale_amount = scale_of_zoom(camera.zoom);
   return compose(translate({ x: camera.x, y: camera.y }), scale({ x: scale_amount, y: -scale_amount }));
 }
 
+// This is computing the Camera of a page_from_world
 export function camera_of_se2(se2: SE2): Camera {
   const xlate = compose(se2, scale({ x: 1 / se2.scale.x, y: -1 / se2.scale.y })).translate;
 

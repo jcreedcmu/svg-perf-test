@@ -37,10 +37,6 @@ export function zoom_of_scale(scale: number): number {
   return Math.log(1024 * 8 * scale) / Math.log(2);
 }
 
-export function cscale(c: Camera): number {
-  return scale_of_zoom(c.zoom);
-}
-
 const SIMPLIFICATION_FACTOR = 10; // higher = more simplification
 
 // true if the z-coordinate (which means the point is more resistant

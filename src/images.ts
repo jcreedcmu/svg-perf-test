@@ -1,6 +1,6 @@
 import { scale_of_camera } from './camera-state';
 import { Dict, Images, Layer, Point, RenderCtx, SizedImage } from './types';
-import { buffer, canvasIntoWorld, cscale } from './util';
+import { buffer, canvasIntoWorld } from './util';
 
 export function image_url(img_name: string): string {
   return '/img/' + img_name + '.png';

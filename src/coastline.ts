@@ -1,16 +1,10 @@
 import { ArcStore } from './arcstore';
-import { LabelStore } from './labelstore';
-import { Mode, Point, Zpoint, ArRectangle, Dict, Ctx, Bush } from './types';
-import { Label, RawLabel, Arc, RawArc, Target, Segment, LabelTarget, ArcVertexTarget } from './types';
-import { Poly, RawPoly, RoadProps, PolyProps, Bbox, Layer } from './types';
-import { app_canvas_from_world, canvasIntoWorld, nope } from './util';
-import { cscale, vmap, vkmap, trivBbox } from './util';
-import { clone, above_simp_thresh, insertPt, removePt } from './util';
-import { colors } from './colors';
-import * as rbush from 'rbush';
-import { draw_label } from './labels';
-import { UiState, RenderCtx } from './types';
 import { CameraData, scale_of_camera, zoom_of_camera } from './camera-state';
+import { colors } from './colors';
+import { draw_label } from './labels';
+import { LabelStore } from './labelstore';
+import { ArRectangle, Arc, ArcVertexTarget, Bbox, Bush, Ctx, Dict, Label, LabelTarget, Layer, Point, Poly, PolyProps, RawArc, RawLabel, RawPoly, RenderCtx, RoadProps, Target, UiState, Zpoint } from './types';
+import { above_simp_thresh, app_canvas_from_world, canvasIntoWorld, nope } from './util';
 
 function tsearch<T>(rt: Bush<T>, bbox: ArRectangle): T[] {
   return rt.search({

@@ -1,7 +1,6 @@
-import { CameraData, canvas_from_world_of_cameraData, page_from_world_of_cameraData } from './camera-state';
-import { SE2, apply, compose, inverse, translate } from './se2';
-import { Point, Zpoint, Camera, Rect, Bbox, Bush } from './types';
-import { Arc, RawArc, Poly, RawPoly, Label, RawLabel, ArcSpec, Dict } from './types';
+import { CameraData, canvas_from_world_of_cameraData } from './camera-state';
+import { apply, inverse } from './se2';
+import { Bbox, Bush, Camera, Dict, Label, Point, Poly, RawLabel, RawPoly } from './types';
 
 export function clone<T>(x: T): T {
   return JSON.parse(JSON.stringify(x));
@@ -54,22 +53,6 @@ export function above_simp_thresh(z: number, scale: number): boolean {
 // to enforce exhaustive pattern matching
 export function nope<T>(x: never): T {
   throw "nope";
-}
-
-// This is computing canvas_from_world
-export function xform(camera: Camera, p_in_world: Point): Point {
-  return {
-    x: camera.x + p_in_world.x * cscale(camera),
-    y: camera.y - p_in_world.y * cscale(camera)
-  };
-}
-
-// This is computing world_from_canvas
-export function inv_xform(camera: Camera, p_in_page: Point): Point {
-  return {
-    x: (p_in_page.x - camera.x) / cscale(camera),
-    y: (p_in_page.y - camera.y) / -cscale(camera)
-  };
 }
 
 export function app_canvas_from_world(cameraData: CameraData, p_in_world: Point): Point {

@@ -1,17 +1,16 @@
 import * as React from 'react';
-import { forwardRef } from 'react';
 
 import { createRoot } from 'react-dom/client';
-import { ArRectangle, Camera, Ctx, Geo, Label, Layer, Mode, Path, Point, Rect, Rivers, Stopper, Target, UiState, Zpoint } from './types';
+import { ArRectangle, Ctx, Geo, Label, Layer, Mode, Path, Point, Rect, Rivers, Stopper, Target, Zpoint } from './types';
 
 import { Data, Loader } from './loader';
 import { resimplify } from './simplify';
-import { clone, colorToHex, cscale, inv_xform, app_world_from_canvas, meters_to_string, nope, vdist, vint, xform, zoom_of_scale, canvasIntoWorld } from './util';
+import { app_world_from_canvas, canvasIntoWorld, clone, colorToHex, meters_to_string, nope, vdist, vint } from './util';
 
 import { colors } from './colors';
 import { key } from './key';
 
-import { CameraData, canvas_from_world_of_cameraData, doZoom, getCamera, getOrigin, incCam, incOrigin, mkCameraData, scale_of_camera, setOrigin, zoom_of_camera } from './camera-state';
+import { CameraData, canvas_from_world_of_cameraData, doZoom, getOrigin, incCam, incOrigin, scale_of_camera, setOrigin, zoom_of_camera } from './camera-state';
 import { Throttler } from './throttler';
 
 import { ArcStore } from './arcstore';
@@ -29,8 +28,8 @@ import { AccessRef, MainUi, SIDEBAR_WIDTH } from './ui';
 // correctly, that it has no runtime effect. But I do want changes
 // to the file to trigger typescript rechecking.
 // XXX this all should be obsolete maybe since I'm not using webpack anymore.
-import * as t from './types';
 import { apply } from './se2';
+import * as t from './types';
 const undefined = t.nonce;
 
 // Some global constants

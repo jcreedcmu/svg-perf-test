@@ -1,6 +1,6 @@
 import { CameraData, zoom_of_camera } from './camera-state';
-import { Layer, Ctx, Camera, Point, Label } from './types';
-import { app_canvas_from_world, cscale } from './util';
+import { Ctx, Label, Point } from './types';
+import { app_canvas_from_world } from './util';
 
 function titleCase(str: string): string {
   return str.replace(/\w\S*/g, txt =>

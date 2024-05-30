@@ -6,12 +6,12 @@ import { ArRectangle, Camera, Ctx, Geo, Label, Layer, Mode, Path, Point, Rect, R
 
 import { Data, Loader } from './loader';
 import { resimplify } from './simplify';
-import { clone, colorToHex, cscale, inv_xform, app_world_from_canvas, meters_to_string, nope, vdist, vint, xform } from './util';
+import { clone, colorToHex, cscale, inv_xform, app_world_from_canvas, meters_to_string, nope, vdist, vint, xform, zoom_of_scale } from './util';
 
 import { colors } from './colors';
 import { key } from './key';
 
-import { CameraData, doZoom, getCamera, getOrigin, incCam, incOrigin, mkCameraData, setCam, setOrigin } from './camera-state';
+import { CameraData, canvas_from_world_of_cameraData, doZoom, getCamera, getOrigin, incCam, incOrigin, mkCameraData, setCam, setOrigin } from './camera-state';
 import { Throttler } from './throttler';
 
 import { ArcStore } from './arcstore';
@@ -328,12 +328,13 @@ class App {
     if (this.panning)
       return;
     const cameraData = this.getCameraData();
-    const camera = getCamera(cameraData);
-    if (camera.zoom >= 1) {
+    const canvas_from_world = canvas_from_world_of_cameraData(cameraData);
+    const scale = canvas_from_world.scale.x;
+    if (zoom_of_scale(scale) >= 1) {
       const x = e.pageX!;
       const y = e.pageY!;
-      const worldp = inv_xform(camera, { x, y });
-      const rad = VERTEX_SENSITIVITY / cscale(camera);
+      const worldp = app_world_from_canvas(cameraData, { x, y });
+      const rad = VERTEX_SENSITIVITY / scale;
       const bbox: ArRectangle = [worldp.x - rad, worldp.y - rad, worldp.x + rad, worldp.y + rad];
       const targets = this.coastline_layer.targets(bbox);
       const sz = JSON.stringify(targets);
@@ -854,8 +855,6 @@ class App {
     const br = app_world_from_canvas(cameraData, { x: w - OFFSET, y: h - OFFSET });
     return [tl.x, br.y, br.x, tl.y];
   }
-
-
 
   render_scale(camera: Camera, d: Ctx): void {
     const { w, h } = this;

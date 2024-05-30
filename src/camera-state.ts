@@ -1,7 +1,7 @@
 import { Point, Camera } from './types';
 import { clone, scale_of_zoom, zoom_of_scale } from './util';
 import { produce } from 'immer';
-import { SE2, compose, scale, translate } from './se2';
+import { SE2, compose, mkSE2, scale, translate } from './se2';
 import { vdiag } from './vutil';
 
 export type CameraData = {
@@ -11,8 +11,13 @@ export type CameraData = {
   // without actually repainting the canvas contents ourselves.
 
   // So this is the translation part of the transform page_from_canvas
+  // It's always (0,0) whenever we aren't currently in the state of panning.
   origin: Point,
 
+  // page coordinates have (0,0) at the top left of the page and increase right and down
+  // their units are pixels
+  // world coordinates have (0,0) a bit south-west of the spring islands and increase east and north
+  // their units are meters
   page_from_world: SE2,
 };
 
@@ -29,11 +34,13 @@ export function camera_of_se2(se2: SE2): Camera {
 }
 
 export function mkCameraData(): CameraData {
-  let camera: Camera = { x: -432.125, y: 3321.875, zoom: 4 };
-  if (localStorage.camera != null) {
-    camera = JSON.parse(localStorage.camera);
+  let page_from_world: SE2 = mkSE2({ x: 0.001953125, y: -0.001953125 }, { x: -432.125, y: 3321.875 });
+
+  if (localStorage.page_from_world != null) {
+    page_from_world = JSON.parse(localStorage.page_from_world);
   }
-  return { origin: { x: 0, y: 0 }, page_from_world: se2_of_camera(camera) };
+
+  return { origin: { x: 0, y: 0 }, page_from_world };
 }
 
 export function getCamera(data: CameraData): Camera {
@@ -105,6 +112,6 @@ export function incOrigin(data: CameraData, dx: number, dy: number): CameraData 
 
 
 function storeCam(data: CameraData): CameraData {
-  localStorage.camera = JSON.stringify(camera_of_se2(data.page_from_world));
+  localStorage.page_from_world = JSON.stringify(data.page_from_world);
   return data;
 }

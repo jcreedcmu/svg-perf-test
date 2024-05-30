@@ -3,6 +3,10 @@ import { clone, scale_of_zoom } from './util';
 import { produce } from 'immer';
 
 
+// I'd like to use SE2 here, but one obstacle to that being nice is
+// that I would like to 'snap' to power of two zoom levels. I guess
+// that's probably not impossible to do somehow, though.
+
 export type CameraData = {
   // The "origin" is the where the top-left of the canvas ends up in
   // webpage coordinates. We do this so that we can cheaply do panning

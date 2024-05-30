@@ -66,19 +66,6 @@ export function doZoom(data: CameraData, x: number, y: number, zoom: number): Ca
   return storeCam(new_data);
 }
 
-export function setCam(data: CameraData, x: number, y: number): CameraData {
-  const old_camera = camera_of_se2(data.page_from_world);
-  const new_camera = produce(old_camera, c => {
-    c.x = x;
-    c.y = y;
-  });
-  const new_page_from_world = se2_of_camera(new_camera);
-  const new_data = produce(data, d => {
-    d.page_from_world = new_page_from_world;
-  });
-  return storeCam(new_data);
-}
-
 export function incCam(data: CameraData, dx: number, dy: number): CameraData {
   const old_camera = camera_of_se2(data.page_from_world);
   const new_camera = produce(old_camera, c => {

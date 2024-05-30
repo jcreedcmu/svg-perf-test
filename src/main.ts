@@ -11,7 +11,7 @@ import { clone, colorToHex, cscale, inv_xform, app_world_from_canvas, meters_to_
 import { colors } from './colors';
 import { key } from './key';
 
-import { CameraData, canvas_from_world_of_cameraData, doZoom, getCamera, getOrigin, incCam, incOrigin, mkCameraData, setCam, setOrigin } from './camera-state';
+import { CameraData, canvas_from_world_of_cameraData, doZoom, getCamera, getOrigin, incCam, incOrigin, mkCameraData, setOrigin } from './camera-state';
 import { Throttler } from './throttler';
 
 import { ArcStore } from './arcstore';
@@ -476,7 +476,7 @@ class App {
             });
           }
           else
-            this.start_pan(x, y, camera);
+            this.start_pan(x, y, cameraData);
         }
         break;
 
@@ -671,10 +671,10 @@ class App {
       $("#c").css({ cursor: '' });
       $(document).off('.drag');
       const canvas_from_world = canvas_from_world_of_cameraData(origCameraData);
-      let cameraData = setCam(
-        this.getCameraData(),
-        canvas_from_world.translate.x + offx - x,
-        canvas_from_world.translate.y + offy - y
+      let cameraData = incCam(
+        origCameraData,
+        offx - x,
+        offy - y
       );
       this.panning = false;
       const { dims, newCameraData } = reset_canvas_size(this.c, this.panning, cameraData);

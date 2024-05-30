@@ -4,10 +4,6 @@ import { produce } from 'immer';
 import { SE2, compose, scale, translate } from './se2';
 import { vdiag } from './vutil';
 
-// I'd like to use SE2 here, but one obstacle to that being nice is
-// that I would like to 'snap' to power of two zoom levels. I guess
-// that's probably not impossible to do somehow, though.
-
 export type CameraData = {
   // The "origin" is the where the top-left of the canvas ends up in
   // webpage coordinates. We do this so that we can cheaply do panning
@@ -16,9 +12,8 @@ export type CameraData = {
 
   // So this is the translation part of the transform page_from_canvas
   origin: Point,
-  // Camera has an x and y and zoom level. I think the "forward transform"
-  // given by xform page_from_world.
-  camera: Camera,
+
+  page_from_world: SE2,
 };
 
 export function se2_of_camera(camera: Camera): SE2 {
@@ -38,12 +33,11 @@ export function mkCameraData(): CameraData {
   if (localStorage.camera != null) {
     camera = JSON.parse(localStorage.camera);
   }
-  return { origin: { x: 0, y: 0 }, camera };
-
+  return { origin: { x: 0, y: 0 }, page_from_world: se2_of_camera(camera) };
 }
 
 export function getCamera(data: CameraData): Camera {
-  return produce(data.camera, d => {
+  return produce(camera_of_se2(data.page_from_world), d => {
     d.x -= data.origin.x;
     d.y -= data.origin.y;
   });
@@ -51,25 +45,44 @@ export function getCamera(data: CameraData): Camera {
 
 export function doZoom(data: CameraData, x: number, y: number, zoom: number): CameraData {
   var zoom2 = Math.pow(2, zoom);
-  return storeCam(produce(data, s => {
-    s.camera.x = zoom2 * (s.camera.x - x) + x;
-    s.camera.y = zoom2 * (s.camera.y - y) + y;
-    s.camera.zoom = s.camera.zoom + zoom;
-  }));
+
+  const old_camera = camera_of_se2(data.page_from_world);
+  const new_camera = produce(old_camera, c => {
+    c.x = zoom2 * (c.x - x) + x;
+    c.y = zoom2 * (c.y - y) + y;
+    c.zoom = c.zoom + zoom;
+  });
+  const new_page_from_world = se2_of_camera(new_camera);
+  const new_data = produce(data, d => {
+    d.page_from_world = new_page_from_world;
+  });
+  return storeCam(new_data);
 }
 
 export function setCam(data: CameraData, x: number, y: number): CameraData {
-  return storeCam(produce(data, s => {
-    s.camera = { x, y, zoom: data.camera.zoom };
-  }));
-
+  const old_camera = camera_of_se2(data.page_from_world);
+  const new_camera = produce(old_camera, c => {
+    c.x = x;
+    c.y = y;
+  });
+  const new_page_from_world = se2_of_camera(new_camera);
+  const new_data = produce(data, d => {
+    d.page_from_world = new_page_from_world;
+  });
+  return storeCam(new_data);
 }
 
 export function incCam(data: CameraData, dx: number, dy: number): CameraData {
-  return storeCam(produce(data, s => {
-    s.camera.x += dx;
-    s.camera.y += dy;
-  }));
+  const old_camera = camera_of_se2(data.page_from_world);
+  const new_camera = produce(old_camera, c => {
+    c.x += dx;
+    c.y += dy;
+  });
+  const new_page_from_world = se2_of_camera(new_camera);
+  const new_data = produce(data, d => {
+    d.page_from_world = new_page_from_world;
+  });
+  return storeCam(new_data);
 }
 
 export function setOrigin(data: CameraData, x: number, y: number): CameraData {
@@ -92,6 +105,6 @@ export function incOrigin(data: CameraData, dx: number, dy: number): CameraData 
 
 
 function storeCam(data: CameraData): CameraData {
-  localStorage.camera = JSON.stringify(data.camera);
+  localStorage.camera = JSON.stringify(camera_of_se2(data.page_from_world));
   return data;
 }

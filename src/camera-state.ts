@@ -22,7 +22,8 @@ export type CameraData = {
 };
 
 export function se2_of_camera(camera: Camera): SE2 {
-  return compose(translate({ x: camera.x, y: camera.y }), scale(vdiag(scale_of_zoom(camera.zoom))));
+  const scale_amount = scale_of_zoom(camera.zoom);
+  return compose(translate({ x: camera.x, y: camera.y }), scale({ x: scale_amount, y: -scale_amount }));
 }
 
 export function mkCameraData(): CameraData {

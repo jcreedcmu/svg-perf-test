@@ -1,6 +1,6 @@
 import { CameraData, canvas_from_world_of_cameraData } from './camera-state';
 import { apply, inverse } from './se2';
-import { Bbox, Bush, Camera, Dict, Label, Point, Poly, RawLabel, RawPoly } from './types';
+import { Bbox, Bush, Dict, Label, Point, Poly, RawLabel, RawPoly } from './types';
 
 export function clone<T>(x: T): T {
   return JSON.parse(JSON.stringify(x));

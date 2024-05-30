@@ -1,7 +1,7 @@
 import { getCamera, CameraData, camera_of_se2, se2_of_camera, canvas_from_world_of_cameraData } from '../camera-state'
 import { apply, compose, inverse, scale, translate } from '../se2';
 import { Camera, Point } from '../types';
-import { inv_xform, inv_xform_d, xform } from '../util';
+import { inv_xform, world_from_canvas, xform } from '../util';
 
 describe('se2_of_camera', () => {
   test('should have same behavior as xform', () => {
@@ -60,7 +60,7 @@ describe('inv_xform', () => {
     const camera: Camera = getCamera(cameraData);
     const p_in_page = { x: 578, y: 123 };
     const r1 = inv_xform(camera, p_in_page);
-    const r2 = inv_xform_d(cameraData, p_in_page);
+    const r2 = world_from_canvas(cameraData, p_in_page);
     expect(r1).toEqual({ x: expect.closeTo(r2.x), y: expect.closeTo(r2.y) });
   });
 });

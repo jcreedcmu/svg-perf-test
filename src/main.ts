@@ -6,7 +6,7 @@ import { ArRectangle, Camera, Ctx, Geo, Label, Layer, Mode, Path, Point, Rect, R
 
 import { Data, Loader } from './loader';
 import { resimplify } from './simplify';
-import { clone, colorToHex, cscale, inv_xform, inv_xform_d, meters_to_string, nope, vdist, vint, xform } from './util';
+import { clone, colorToHex, cscale, inv_xform, world_from_canvas, meters_to_string, nope, vdist, vint, xform } from './util';
 
 import { colors } from './colors';
 import { key } from './key';
@@ -217,7 +217,7 @@ class App {
       d.strokeRect(OFFSET + 0.5, OFFSET + 0.5, w - 2 * OFFSET, h - 2 * OFFSET);
     }
 
-    const bbox_in_world = this.get_bbox_in_world(camera);
+    const bbox_in_world = this.get_bbox_in_world(cameraData);
 
     this.layers.forEach(layer => {
       layer.render({ d, us: state, camera, mode, bbox_in_world });
@@ -715,7 +715,7 @@ class App {
     $(document).on('mousemove.drag', e => {
       const x = e.pageX!;
       const y = e.pageY!;
-      const worldp = inv_xform_d(cameraData, { x, y });
+      const worldp = world_from_canvas(cameraData, { x, y });
       dragp.x = worldp.x;
       dragp.y = worldp.y;
       this.th.maybe();
@@ -785,7 +785,7 @@ class App {
     $(document).on('mousemove.drag', e => {
       const x = e.pageX!;
       const y = e.pageY!;
-      const worldp = inv_xform_d(cameraData, { x, y });
+      const worldp = world_from_canvas(cameraData, { x, y });
       dragp.x = worldp.x;
       dragp.y = worldp.y;
       this.th.maybe();
@@ -848,10 +848,10 @@ class App {
     });
   }
 
-  get_bbox_in_world(camera: Camera): Rect {
+  get_bbox_in_world(cameraData: CameraData): Rect {
     const { w, h } = this;
-    const tl = inv_xform(camera, { x: OFFSET, y: OFFSET });
-    const br = inv_xform(camera, { x: w - OFFSET, y: h - OFFSET });
+    const tl = world_from_canvas(cameraData, { x: OFFSET, y: OFFSET });
+    const br = world_from_canvas(cameraData, { x: w - OFFSET, y: h - OFFSET });
     return [tl.x, br.y, br.x, tl.y];
   }
 

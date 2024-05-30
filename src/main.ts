@@ -6,7 +6,7 @@ import { ArRectangle, Camera, Ctx, Geo, Label, Layer, Mode, Path, Point, Rect, R
 
 import { Data, Loader } from './loader';
 import { resimplify } from './simplify';
-import { clone, colorToHex, cscale, inv_xform, world_from_canvas, meters_to_string, nope, vdist, vint, xform } from './util';
+import { clone, colorToHex, cscale, inv_xform, app_world_from_canvas, meters_to_string, nope, vdist, vint, xform } from './util';
 
 import { colors } from './colors';
 import { key } from './key';
@@ -715,7 +715,7 @@ class App {
     $(document).on('mousemove.drag', e => {
       const x = e.pageX!;
       const y = e.pageY!;
-      const worldp = world_from_canvas(cameraData, { x, y });
+      const worldp = app_world_from_canvas(cameraData, { x, y });
       dragp.x = worldp.x;
       dragp.y = worldp.y;
       this.th.maybe();
@@ -785,7 +785,7 @@ class App {
     $(document).on('mousemove.drag', e => {
       const x = e.pageX!;
       const y = e.pageY!;
-      const worldp = world_from_canvas(cameraData, { x, y });
+      const worldp = app_world_from_canvas(cameraData, { x, y });
       dragp.x = worldp.x;
       dragp.y = worldp.y;
       this.th.maybe();
@@ -850,8 +850,8 @@ class App {
 
   get_bbox_in_world(cameraData: CameraData): Rect {
     const { w, h } = this;
-    const tl = world_from_canvas(cameraData, { x: OFFSET, y: OFFSET });
-    const br = world_from_canvas(cameraData, { x: w - OFFSET, y: h - OFFSET });
+    const tl = app_world_from_canvas(cameraData, { x: OFFSET, y: OFFSET });
+    const br = app_world_from_canvas(cameraData, { x: w - OFFSET, y: h - OFFSET });
     return [tl.x, br.y, br.x, tl.y];
   }
 

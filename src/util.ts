@@ -72,11 +72,11 @@ export function inv_xform(camera: Camera, p_in_page: Point): Point {
   };
 }
 
-export function canvas_from_world(cameraData: CameraData, p_in_world: Point): Point {
+export function app_canvas_from_world(cameraData: CameraData, p_in_world: Point): Point {
   return apply(canvas_from_world_of_cameraData(cameraData), p_in_world);
 }
 
-export function world_from_canvas(cameraData: CameraData, p_in_page: Point): Point {
+export function app_world_from_canvas(cameraData: CameraData, p_in_page: Point): Point {
   return apply(inverse(canvas_from_world_of_cameraData(cameraData)), p_in_page);
 }
 

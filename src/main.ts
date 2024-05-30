@@ -30,6 +30,7 @@ import { AccessRef, MainUi, SIDEBAR_WIDTH } from './ui';
 // to the file to trigger typescript rechecking.
 // XXX this all should be obsolete maybe since I'm not using webpack anymore.
 import * as t from './types';
+import { apply } from './se2';
 const undefined = t.nonce;
 
 // Some global constants
@@ -906,10 +907,11 @@ class App {
     const selection = labels.filter(x => has_label(x, label));
     const pt = selection[0].pt;
     if (pt == null) throw `couldn\'t find ${label}`;
-    const pixel_offset = xform(getCamera(this.getCameraData()), pt);
-    const cameraData = incCam(this.getCameraData(), (w - SIDEBAR_WIDTH) / 2 - pixel_offset.x, h / 2 - pixel_offset.y);
-    this.setCameraData(cameraData);
-    this.render(cameraData);
+    const cameraData = this.getCameraData();
+    const pixel_offset = apply(canvas_from_world_of_cameraData(cameraData), pt);
+    const newCameraData = incCam(cameraData, (w - SIDEBAR_WIDTH) / 2 - pixel_offset.x, h / 2 - pixel_offset.y);
+    this.setCameraData(newCameraData);
+    this.render(newCameraData);
   }
 }
 

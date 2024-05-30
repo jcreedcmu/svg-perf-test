@@ -359,11 +359,14 @@ class App {
 
   handleMouseDown(e: MouseEvent) {
     const { image_layer, coastline_layer, sketch_layer } = this;
-    const camera = getCamera(this.getCameraData());
+    const cameraData = this.getCameraData();
+    const canvas_from_world = canvas_from_world_of_cameraData(cameraData);
+    const scale = canvas_from_world.scale.x;
+
     const x = e.pageX!;
     const y = e.pageY!;
-    const worldp = inv_xform(camera, { x, y });
-    const slack = VERTEX_SENSITIVITY / cscale(camera);
+    const worldp = app_world_from_canvas(cameraData, { x, y });
+    const slack = VERTEX_SENSITIVITY / scale;
     const bbox: ArRectangle = [worldp.x - slack, worldp.y - slack, worldp.x + slack, worldp.y + slack];
 
     switch (this.mode) {
@@ -372,8 +375,8 @@ class App {
           const membase = image_layer.get_pos();
           $(document).on('mousemove.drag', e => {
             image_layer.set_pos({
-              x: membase.x + (e.pageX! - x) / cscale(camera),
-              y: membase.y - (e.pageY! - y) / cscale(camera)
+              x: membase.x + (e.pageX! - x) / scale,
+              y: membase.y - (e.pageY! - y) / scale
             });
             this.th.maybe();
           });
@@ -383,7 +386,7 @@ class App {
           });
         }
         else
-          this.start_pan(x, y, camera);
+          this.start_pan(x, y, cameraData);
         break;
 
       case "Measure":
@@ -622,25 +625,24 @@ class App {
     //  console.log(e.charCode, k);
   }
 
-  start_pan(x: number, y: number, camera: Camera): void {
-    const stop_at: Stopper = this.start_pan_and_stop(x, y, camera);
+  start_pan(x: number, y: number, cameraData: CameraData): void {
+    const stop_at: Stopper = this.start_pan_and_stop(x, y, cameraData);
     $(document).on('mouseup.drag', e => {
       stop_at(e.pageX!, e.pageY!);
     });
   }
 
   // returns stopping function
-  start_pan_and_stop(x: number, y: number, camera: Camera): Stopper {
+  start_pan_and_stop(x: number, y: number, origCameraData: CameraData): Stopper {
     $("#c").css({ cursor: 'move' });
     this.panning = true;
     //  state.set_cam(camera.x + PANNING_MARGIN, camera.y + PANNING_MARGIN);
 
-    let cameraData = this.getCameraData();
-    const { newCameraData, dims } = reset_canvas_size(this.c, this.panning, cameraData);
+    const { newCameraData, dims } = reset_canvas_size(this.c, this.panning, origCameraData);
     this.w = dims.x;
     this.h = dims.y;
-    render_origin(cameraData);
-    this.render(cameraData);
+    render_origin(origCameraData);
+    this.render(origCameraData);
 
     const last = { x: x, y: y };
     $(document).on('mousemove.drag', e => {
@@ -668,7 +670,12 @@ class App {
     return (offx: number, offy: number) => {
       $("#c").css({ cursor: '' });
       $(document).off('.drag');
-      let cameraData = setCam(this.getCameraData(), camera.x + offx - x, camera.y + offy - y);
+      const canvas_from_world = canvas_from_world_of_cameraData(origCameraData);
+      let cameraData = setCam(
+        this.getCameraData(),
+        canvas_from_world.translate.x + offx - x,
+        canvas_from_world.translate.y + offy - y
+      );
       this.panning = false;
       const { dims, newCameraData } = reset_canvas_size(this.c, this.panning, cameraData);
       this.w = dims.x;

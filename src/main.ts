@@ -208,7 +208,6 @@ class App {
     d.save();
     d.scale(devicePixelRatio, devicePixelRatio);
     this.th.reset();
-    const cameraBad = getCamera(cameraData);
     const scale = scale_of_camera(cameraData);
     const t = Date.now();
     d.fillStyle = "#bac7f8";
@@ -222,7 +221,7 @@ class App {
     const bbox_in_world = this.get_bbox_in_world(cameraData);
 
     this.layers.forEach(layer => {
-      layer.render({ d, us: state, camera: cameraBad, mode, bbox_in_world });
+      layer.render({ d, us: state, cameraData, mode, bbox_in_world });
     });
 
 

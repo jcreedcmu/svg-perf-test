@@ -1,15 +1,16 @@
 import { ArcStore } from './arcstore';
 import { LabelStore } from './labelstore';
-import { Mode, Point, Zpoint, ArRectangle, Dict, Ctx, Camera, Bush } from './types';
+import { Mode, Point, Zpoint, ArRectangle, Dict, Ctx, Bush } from './types';
 import { Label, RawLabel, Arc, RawArc, Target, Segment, LabelTarget, ArcVertexTarget } from './types';
 import { Poly, RawPoly, RoadProps, PolyProps, Bbox, Layer } from './types';
-import { nope } from './util';
+import { app_canvas_from_world, canvasIntoWorld, nope } from './util';
 import { cscale, vmap, vkmap, trivBbox } from './util';
 import { clone, above_simp_thresh, insertPt, removePt } from './util';
 import { colors } from './colors';
 import * as rbush from 'rbush';
 import { draw_label } from './labels';
 import { UiState, RenderCtx } from './types';
+import { CameraData, scale_of_camera, zoom_of_camera } from './camera-state';
 
 function tsearch<T>(rt: Bush<T>, bbox: ArRectangle): T[] {
   return rt.search({
@@ -30,17 +31,14 @@ function dictOfNamedArray<T extends { name: string }>(ar: T[]): Dict<T> {
   return rv;
 }
 
-function realize_salient(d: Ctx, props: RoadProps, camera: Camera, pt: Point) {
+function realize_salient(d: Ctx, props: RoadProps, cameraData: CameraData, pt: Point) {
   const text = props.text.toUpperCase();
-  if (camera.zoom < 2) return;
+  if (zoom_of_camera(cameraData) < 2) return;
   // implied:
   //  d.translate(camera.x, camera.y);
   //  d.scale(scale, -scale);
 
-  const q = {
-    x: pt.x * cscale(camera) + camera.x,
-    y: pt.y * -cscale(camera) + camera.y
-  };
+  const q = app_canvas_from_world(cameraData, pt);
 
   let stroke = null;
 
@@ -86,8 +84,8 @@ function realize_salient(d: Ctx, props: RoadProps, camera: Camera, pt: Point) {
   }
 }
 
-function realize_path(d: Ctx, us: UiState, props: PolyProps, camera: Camera) {
-  const scale = cscale(camera);
+function realize_path(d: Ctx, us: UiState, props: PolyProps, cameraData: CameraData) {
+  const scale = scale_of_camera(cameraData);
   d.lineWidth = 1.1 / scale;
 
   switch (props.t) {
@@ -123,7 +121,7 @@ function realize_path(d: Ctx, us: UiState, props: PolyProps, camera: Camera) {
     }
 
     case "road": {
-      if (camera.zoom >= 2) {
+      if (zoom_of_camera(cameraData) >= 2) {
         if (props.road == "highway") {
           d.lineWidth = 1.5 / scale;
           d.strokeStyle = "#f70";
@@ -255,14 +253,14 @@ export class CoastlineLayer implements Layer {
   }
 
   render(rc: RenderCtx) {
-    const { d, camera, bbox_in_world, us, mode } = rc;
+    const { d, cameraData, bbox_in_world, us, mode } = rc;
     function visible(x: Poly): boolean {
       if (x.properties.t == "road" && !us.layers.road) return false;
       if (x.properties.t == "boundary" && !us.layers.boundary) return false;
       return true;
     }
 
-    const scale = cscale(camera);
+    const scale = scale_of_camera(cameraData);
     const arcs_to_draw_vertices_for: Zpoint[][] = [];
     const salients: { props: RoadProps, pt: Point }[] = [];
     const rawFeatures = tsearch(this.arcStore.rt, bbox_in_world).filter(visible);
@@ -289,8 +287,7 @@ export class CoastlineLayer implements Layer {
 
     d.save();
     {
-      d.translate(camera.x, camera.y);
-      d.scale(scale, -scale);
+      canvasIntoWorld(d, cameraData);
 
       d.strokeStyle = "black";
       d.lineJoin = "round";
@@ -334,7 +331,7 @@ export class CoastlineLayer implements Layer {
             this_arc = [this_arc[0], this_arc[this_arc.length - 1]];
           }
 
-          if (rect_intersect && camera.zoom >= 6) {
+          if (rect_intersect && zoom_of_camera(cameraData) >= 6) {
             // draw individual vertices if we're at least partially
             // on-screen, and also quite zoomed in.
             arcs_to_draw_vertices_for.push(this_arc);
@@ -343,15 +340,10 @@ export class CoastlineLayer implements Layer {
           this_arc.forEach(({ point: vert, z }, ix) => {
             if (ix == 0) return;
 
-            let p = {
-              x: camera.x + (vert.x * scale),
-              y: camera.y + (vert.y * scale)
-            };
-
             let draw = false;
 
             // draw somewhat simplified
-            if (camera.zoom >= 6 || above_simp_thresh(z, scale))
+            if (zoom_of_camera(cameraData) >= 6 || above_simp_thresh(z, scale))
               draw = true;
             if (ix == this_arc.length - 1)
               draw = true;
@@ -369,7 +361,7 @@ export class CoastlineLayer implements Layer {
 
           });
         });
-        realize_path(d, us, ob.properties, camera);
+        realize_path(d, us, ob.properties, cameraData);
       });
 
       // draw vertices
@@ -380,7 +372,7 @@ export class CoastlineLayer implements Layer {
         let vert_size = 5 / scale;
         arcs_to_draw_vertices_for.forEach(arc => {
           arc.forEach(({ point: vert, z }: Zpoint, n: number) => {
-            if (z > 1000000 || camera.zoom > 10) {
+            if (z > 1000000 || zoom_of_camera(cameraData) > 10) {
               d.fillStyle = z > 1000000 ? "#ffd" : "#f00";
               d.strokeRect(vert.x - vert_size / 2, vert.y - vert_size / 2, vert_size, vert_size);
               d.fillRect(vert.x - vert_size / 2, vert.y - vert_size / 2, vert_size, vert_size);
@@ -394,14 +386,14 @@ export class CoastlineLayer implements Layer {
     // doing this outside the d.save/d.restore because it involves
     // text, which won't want the negative y-transform
     salients.forEach(salient => {
-      realize_salient(d, salient.props, camera, salient.pt);
+      realize_salient(d, salient.props, cameraData, salient.pt);
     });
 
     // render labels
-    if (camera.zoom < 1) return;
+    if (zoom_of_camera(cameraData) < 1) return;
     d.lineJoin = "round";
     tsearch(this.labelStore.label_rt, bbox_in_world).forEach(x => {
-      draw_label(d, camera, this.labelStore.labels[x]);
+      draw_label(d, cameraData, this.labelStore.labels[x]);
     });
   }
 

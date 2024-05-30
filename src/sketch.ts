@@ -1,5 +1,6 @@
-import { Mode, Layer, Ctx, ArRectangle, Zpoint, RenderCtx } from './types';
-import { cscale } from './util';
+import { scale_of_camera } from './camera-state';
+import { Layer, RenderCtx, Zpoint } from './types';
+import { canvasIntoWorld } from './util';
 
 type Path = Zpoint[];
 type Sketches = Path[];
@@ -12,11 +13,10 @@ export class SketchLayer implements Layer {
   }
 
   render(rc: RenderCtx): void {
-    const { d, camera } = rc;
+    const { d, cameraData } = rc;
 
     d.save();
-    d.translate(camera.x, camera.y);
-    d.scale(cscale(camera), -cscale(camera));
+    canvasIntoWorld(d, cameraData);
     d.lineCap = "round";
     d.lineJoin = "round";
     this.sketches.forEach(feature => {
@@ -28,7 +28,7 @@ export class SketchLayer implements Layer {
           d.lineTo(pt.x, pt.y);
       });
 
-      d.lineWidth = 1.1 / cscale(camera);
+      d.lineWidth = 1.1 / scale_of_camera(cameraData);
       d.strokeStyle = "black";
       d.stroke();
       d.fillStyle = "black";

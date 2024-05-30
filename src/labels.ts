@@ -1,5 +1,6 @@
+import { CameraData, zoom_of_camera } from './camera-state';
 import { Layer, Ctx, Camera, Point, Label } from './types';
-import { cscale } from './util';
+import { app_canvas_from_world, cscale } from './util';
 
 function titleCase(str: string): string {
   return str.replace(/\w\S*/g, txt =>
@@ -7,15 +8,12 @@ function titleCase(str: string): string {
   );
 }
 
-export function draw_label(d: Ctx, camera: Camera, lab: Label) {
+export function draw_label(d: Ctx, cameraData: CameraData, lab: Label) {
   const p = lab.pt;
   const txt = titleCase(lab.properties.text);
   const typ = lab.properties.label;
   let min_zoom = lab.properties.zoom;
-  const q: Point = {
-    x: camera.x + cscale(camera) * p.x,
-    y: camera.y - cscale(camera) * p.y
-  };
+  const q: Point = app_canvas_from_world(cameraData, p);
 
   let stroke = true;
   let height = 12;
@@ -24,7 +22,7 @@ export function draw_label(d: Ctx, camera: Camera, lab: Label) {
     else if (typ == "minorsea") min_zoom = 2;
     else min_zoom = 3;
   }
-  if (camera.zoom < min_zoom) return;
+  if (zoom_of_camera(cameraData) < min_zoom) return;
 
   if (typ == "city") {
     d.fillStyle = "white";

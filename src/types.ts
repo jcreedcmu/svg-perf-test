@@ -149,7 +149,7 @@ export interface Layer {
 export type RenderCtx = {
   d: Ctx,
   us: UiState,
-  camera: Camera,
+  cameraData: CameraData,
   mode: Mode,
   bbox_in_world: ArRectangle,
 };

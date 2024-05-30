@@ -1,5 +1,5 @@
 import { Layer, RenderCtx, Rivers } from './types';
-import { cscale } from './util';
+import { canvasIntoWorld } from './util';
 
 export class RiverLayer implements Layer {
   rivers: Rivers;
@@ -9,12 +9,11 @@ export class RiverLayer implements Layer {
   }
 
   render(rc: RenderCtx): void {
-    const { d, camera, us } = rc;
+    const { d, cameraData, us } = rc;
     if (!us.layers.river)
       return;
     d.save();
-    d.translate(camera.x, camera.y);
-    d.scale(cscale(camera), -cscale(camera));
+    canvasIntoWorld(d, cameraData);
     d.lineCap = "round";
     d.lineJoin = "round";
     this.rivers.features.forEach((feature) => {

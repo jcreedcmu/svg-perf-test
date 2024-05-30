@@ -1,5 +1,6 @@
-import { Mode, Layer, Ctx, Camera, ArRectangle, Point, SizedImage, Images, RenderCtx, Dict } from './types';
-import { cscale, Buffer, buffer } from './util';
+import { scale_of_camera } from './camera-state';
+import { Dict, Images, Layer, Point, RenderCtx, SizedImage } from './types';
+import { buffer, canvasIntoWorld, cscale } from './util';
 
 export function image_url(img_name: string): string {
   return '/img/' + img_name + '.png';
@@ -32,11 +33,10 @@ export class ImageLayer implements Layer {
   }
 
   render(rc: RenderCtx): void {
-    const { d, camera } = rc;
+    const { d, cameraData } = rc;
     const nimg = this.named_imgs[this.cur_img_ix];
     d.save();
-    d.translate(camera.x, camera.y);
-    d.scale(cscale(camera), cscale(camera));
+    canvasIntoWorld(d, cameraData);
     d.globalAlpha = 0.25;
     const ovr = this.overlay;
     if (ovr != null) {
@@ -53,7 +53,7 @@ export class ImageLayer implements Layer {
       d.lineTo(nimg.x, -3226521);
 
       d.strokeStyle = "blue";
-      d.lineWidth = 1 / cscale(camera);
+      d.lineWidth = 1 / scale_of_camera(cameraData);
       d.stroke();
       d.strokeRect(nimg.x, -nimg.y + ovr.height * nimg.scale,
         ovr.width * nimg.scale,

@@ -2,8 +2,17 @@ import { Point, Camera } from './types';
 import { clone, scale_of_zoom } from './util';
 import { produce } from 'immer';
 
+
 export type CameraData = {
+  // The "origin" is the where the top-left of the canvas ends up in
+  // webpage coordinates. We do this so that we can cheaply do panning
+  // by letting the browser just move the <canvas> element around,
+  // without actually repainting the canvas contents ourselves.
+
+  // So this is the translation part of the transform page_from_canvas
   origin: Point,
+  // Camera has an x and y and zoom level. I think the "forward transform"
+  // given by xform is canvas_from_world.
   camera: Camera,
 };
 

@@ -68,12 +68,7 @@ export function doZoom(data: CameraData, x: number, y: number, zoom: number): Ca
 }
 
 export function incCam(data: CameraData, dx: number, dy: number): CameraData {
-  const old_camera = camera_of_se2(data.page_from_world);
-  const new_camera = produce(old_camera, c => {
-    c.x += dx;
-    c.y += dy;
-  });
-  const new_page_from_world = se2_of_camera(new_camera);
+  const new_page_from_world = compose(translate({ x: dx, y: dy }), data.page_from_world);
   const new_data = produce(data, d => {
     d.page_from_world = new_page_from_world;
   });

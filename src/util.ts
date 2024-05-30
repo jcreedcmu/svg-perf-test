@@ -51,8 +51,11 @@ export function nope<T>(x: never): T {
 }
 
 // I think this is computing page_from_world
-export function xform(camera: Camera, xworld: number, yworld: number): Point {
-  return { x: camera.x + xworld * cscale(camera), y: camera.y - yworld * cscale(camera) };
+export function xform(camera: Camera, p_in_world: Point): Point {
+  return {
+    x: camera.x + p_in_world.x * cscale(camera),
+    y: camera.y - p_in_world.y * cscale(camera)
+  };
 }
 
 // I think this is computing world_from_page

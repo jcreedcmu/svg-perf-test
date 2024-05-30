@@ -898,7 +898,7 @@ class App {
     const selection = labels.filter(x => has_label(x, label));
     const pt = selection[0].pt;
     if (pt == null) throw `couldn\'t find ${label}`;
-    const pixel_offset = xform(getCamera(this.getCameraData()), pt.x, pt.y);
+    const pixel_offset = xform(getCamera(this.getCameraData()), pt);
     const cameraData = incCam(this.getCameraData(), (w - SIDEBAR_WIDTH) / 2 - pixel_offset.x, h / 2 - pixel_offset.y);
     this.setCameraData(cameraData);
     this.render(cameraData);

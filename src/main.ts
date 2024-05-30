@@ -332,7 +332,7 @@ class App {
     if (camera.zoom >= 1) {
       const x = e.pageX!;
       const y = e.pageY!;
-      const worldp = inv_xform(camera, x, y);
+      const worldp = inv_xform(camera, { x, y });
       const rad = VERTEX_SENSITIVITY / cscale(camera);
       const bbox: ArRectangle = [worldp.x - rad, worldp.y - rad, worldp.x + rad, worldp.y + rad];
       const targets = this.coastline_layer.targets(bbox);
@@ -361,7 +361,7 @@ class App {
     const camera = getCamera(this.getCameraData());
     const x = e.pageX!;
     const y = e.pageY!;
-    const worldp = inv_xform(camera, x, y);
+    const worldp = inv_xform(camera, { x, y });
     const slack = VERTEX_SENSITIVITY / cscale(camera);
     const bbox: ArRectangle = [worldp.x - slack, worldp.y - slack, worldp.x + slack, worldp.y + slack];
 
@@ -714,7 +714,7 @@ class App {
     $(document).on('mousemove.drag', e => {
       const x = e.pageX!;
       const y = e.pageY!;
-      const worldp = inv_xform(camera, x, y);
+      const worldp = inv_xform(camera, { x, y });
       dragp.x = worldp.x;
       dragp.y = worldp.y;
       this.th.maybe();
@@ -783,7 +783,7 @@ class App {
     $(document).on('mousemove.drag', e => {
       const x = e.pageX!;
       const y = e.pageY!;
-      const worldp = inv_xform(camera, x, y);
+      const worldp = inv_xform(camera, { x, y });
       dragp.x = worldp.x;
       dragp.y = worldp.y;
       this.th.maybe();
@@ -825,7 +825,7 @@ class App {
     $(document).on('mousemove.drag', e => {
       const x = e.pageX!;
       const y = e.pageY!;
-      const worldp = inv_xform(camera, x, y);
+      const worldp = inv_xform(camera, { x, y });
       path.push({ point: worldp, z: 1000 });
       resimplify(path);
       this.th.maybe();
@@ -848,8 +848,8 @@ class App {
 
   get_world_bbox(camera: Camera): Rect {
     const { w, h } = this;
-    const tl = inv_xform(camera, OFFSET, OFFSET);
-    const br = inv_xform(camera, w - OFFSET, h - OFFSET);
+    const tl = inv_xform(camera, { x: OFFSET, y: OFFSET });
+    const br = inv_xform(camera, { x: w - OFFSET, y: h - OFFSET });
     return [tl.x, br.y, br.x, tl.y];
   }
 

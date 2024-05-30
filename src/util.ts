@@ -50,14 +50,16 @@ export function nope<T>(x: never): T {
   throw "nope";
 }
 
+// I think this is computing page_from_world
 export function xform(camera: Camera, xworld: number, yworld: number): Point {
   return { x: camera.x + xworld * cscale(camera), y: camera.y - yworld * cscale(camera) };
 }
 
-export function inv_xform(camera: Camera, xpix: number, ypix: number): Point {
+// I think this is computing world_from_page
+export function inv_xform(camera: Camera, p_in_page: Point): Point {
   return {
-    x: (xpix - camera.x) / cscale(camera),
-    y: (ypix - camera.y) / -cscale(camera)
+    x: (p_in_page.x - camera.x) / cscale(camera),
+    y: (p_in_page.y - camera.y) / -cscale(camera)
   };
 }
 

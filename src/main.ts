@@ -807,17 +807,12 @@ class App {
 
   start_freehand(startp: Point, k: (dragp: Path) => void): void {
     const cameraData = this.getCameraData();
-    const canvas_from_world = canvas_from_world_of_cameraData(cameraData);
-    const xlate = canvas_from_world.translate;
     const scale = scale_of_camera(cameraData);
-
     const path: Zpoint[] = [{ point: startp, z: 1000 }];
-    const thresh = FREEHAND_SIMPLIFICATION_FACTOR
-      / (scale * scale);
+    const thresh = FREEHAND_SIMPLIFICATION_FACTOR / (scale * scale);
     this.render_extra = (camera, d) => {
       d.save();
-      d.translate(xlate.x, xlate.y);
-      d.scale(scale, -scale);
+      canvasIntoWorld(d, cameraData);
       d.beginPath();
       let count = 0;
       path.forEach(({ point: pt, z }: Zpoint, n: number) => {

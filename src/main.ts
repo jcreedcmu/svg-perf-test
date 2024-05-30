@@ -102,7 +102,7 @@ class App {
   image_layer: ImageLayer;
   river_layer: RiverLayer;
   sketch_layer: SketchLayer;
-  render_extra: null | ((camera: Camera, d: Ctx) => void) = null;
+  render_extra: null | ((cameraData: CameraData, d: Ctx) => void) = null;
   mode: Mode = "Pan";
   panning: boolean = false;
   data: Data; // Probably want to eventually get rid of this
@@ -280,7 +280,7 @@ class App {
 
       // used for ephemeral stuff on top, like point-dragging
       if (this.render_extra) {
-        (this.render_extra)(cameraBad, d);
+        (this.render_extra)(cameraData, d);
       }
 
       if (this.selection) {
@@ -752,18 +752,17 @@ class App {
     });
   }
 
-  start_measure(startp: Point): void {
+  start_measure(startp_in_world: Point): void {
     const cameraData = this.getCameraData();
 
-    const dragp = clone(startp);
+    const dragp = clone(startp_in_world);
     const scale = scale_of_camera(cameraData);
-    this.render_extra = (camera, d) => {
+    this.render_extra = (cameraData, d) => {
       d.save();
-      d.translate(camera.x, camera.y);
-      d.scale(scale, -scale);
+      canvasIntoWorld(d, cameraData);
       d.beginPath();
 
-      d.moveTo(startp.x, startp.y);
+      d.moveTo(startp_in_world.x, startp_in_world.y);
       d.lineTo(dragp.x, dragp.y);
 
       d.lineWidth = 1 / scale;
@@ -771,16 +770,18 @@ class App {
       d.stroke();
       d.restore();
 
+      const canvas_from_world = canvas_from_world_of_cameraData(cameraData);
+
       d.font = "14px sans-serif";
       d.fillStyle = colors.motion_guide;
-      const dist = meters_to_string(vdist(dragp, startp));
+      const dist = meters_to_string(vdist(dragp, startp_in_world));
       const width = d.measureText(dist).width;
       d.save();
-      d.translate((startp.x + dragp.x) / 2 * scale + camera.x,
-        (startp.y + dragp.y) / 2 * -scale + camera.y);
+      d.translate((startp_in_world.x + dragp.x) / 2 * scale + canvas_from_world.translate.x,
+        (startp_in_world.y + dragp.y) / 2 * -scale + canvas_from_world.translate.y);
       // this ensures text is always ~right-side-up
-      const extraRotation = (startp.x - dragp.x > 0) ? Math.PI : 0;
-      d.rotate(extraRotation + -Math.atan2(dragp.y - startp.y, dragp.x - startp.x));
+      const extraRotation = (startp_in_world.x - dragp.x > 0) ? Math.PI : 0;
+      d.rotate(extraRotation + -Math.atan2(dragp.y - startp_in_world.y, dragp.x - startp_in_world.x));
 
       d.strokeStyle = "#fff";
       d.lineWidth = 2;

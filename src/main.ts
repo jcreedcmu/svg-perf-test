@@ -314,7 +314,7 @@ class App {
       const y = e.pageY!;
       const zoom = -e.deltaY / 120;
       e.preventDefault();
-      const cameraData = doZoom(this.getCameraData(), x, y, zoom);
+      const cameraData = doZoom(this.getCameraData(), { x, y }, zoom);
       this.setCameraData(cameraData);
       this.render(cameraData);
     }

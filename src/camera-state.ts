@@ -1,7 +1,7 @@
 import { Point } from './types';
 import { clone, scale_of_zoom, zoom_of_scale } from './util';
 import { produce } from 'immer';
-import { SE2, compose, composen, mkSE2, scale, translate } from './se2';
+import { SE2, compose, composen, inverse, mkSE2, scale, translate } from './se2';
 import { vdiag } from './vutil';
 
 export type CameraData = {
@@ -31,15 +31,13 @@ export function mkCameraData(): CameraData {
   return { origin: { x: 0, y: 0 }, page_from_world };
 }
 
-export function doZoom(data: CameraData, x: number, y: number, zoom: number): CameraData {
-  var zoom2 = Math.pow(2, zoom);
-  // x and y are in page coordinates
-  // target-centric coordinate system
+export function doZoom(data: CameraData, p_in_page: Point, zoom: number): CameraData {
+  var zoom_scale = Math.pow(2, zoom);
 
   const new_page_from_world = composen(
-    translate({ x, y }),
-    scale(vdiag(zoom2)),
-    translate({ x: -x, y: -y }),
+    translate(p_in_page),
+    scale(vdiag(zoom_scale)),
+    inverse(translate(p_in_page)),
     data.page_from_world,
   );
 

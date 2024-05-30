@@ -258,7 +258,7 @@ class App {
 
     if (!this.panning) {
       // scale
-      this.render_scale(cameraBad, d);
+      this.render_scale(cameraData, d);
 
       // mode
       d.fillStyle = "black";
@@ -862,7 +862,8 @@ class App {
     return [tl.x, br.y, br.x, tl.y];
   }
 
-  render_scale(camera: Camera, d: Ctx): void {
+  render_scale(cameraData: CameraData, d: Ctx): void {
+    const scale = scale_of_camera(cameraData);
     const { w, h } = this;
     d.save();
     d.fillStyle = "black";
@@ -870,7 +871,7 @@ class App {
 
     d.translate(Math.floor(w / 2) + 0.5, 0.5);
     function label(px_dist: number) {
-      const str = meters_to_string(px_dist / cscale(camera));
+      const str = meters_to_string(px_dist / scale);
       d.textAlign = "center";
       d.fillText(str, px_dist, h - 12);
     }

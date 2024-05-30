@@ -1,4 +1,4 @@
-import { getCamera, CameraData, camera_of_se2, se2_of_camera } from '../camera-state'
+import { getCamera, CameraData, camera_of_se2, se2_of_camera, canvas_from_world_of_cameraData } from '../camera-state'
 import { apply, compose, inverse, scale, translate } from '../se2';
 import { Camera, Point } from '../types';
 import { inv_xform, inv_xform_d, xform } from '../util';
@@ -52,10 +52,11 @@ describe('camera_of_se2', () => {
   });
 });
 
-describe('inv_xform_d', () => {
-  test('should imitate inv_xform if origin is zero', () => {
+describe('inv_xform', () => {
+  // inv_xform_d is deprecated
+  test('should match inv_xform_d if origin is zero', () => {
     const page_from_world = compose(translate({ x: 4, y: 5 }), scale({ x: 5, y: -5 }));
-    const cameraData: CameraData = { origin: { x: 0, y: 0 }, page_from_world };
+    const cameraData: CameraData = { origin: { x: 19, y: 11 }, page_from_world };
     const camera: Camera = getCamera(cameraData);
     const p_in_page = { x: 578, y: 123 };
     const r1 = inv_xform(camera, p_in_page);

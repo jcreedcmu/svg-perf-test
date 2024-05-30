@@ -1,7 +1,7 @@
-import { camera_of_se2, se2_of_camera } from '../camera-state'
+import { getCamera, CameraData, camera_of_se2, se2_of_camera } from '../camera-state'
 import { apply, compose, inverse, scale, translate } from '../se2';
 import { Camera, Point } from '../types';
-import { inv_xform, xform } from '../util';
+import { inv_xform, inv_xform_d, xform } from '../util';
 
 describe('se2_of_camera', () => {
   test('should have same behavior as xform', () => {
@@ -52,16 +52,14 @@ describe('camera_of_se2', () => {
   });
 });
 
-// get_world_bbox(cameraData: CameraData): Rect {
-//   const { w, h } = this;
-//   const tl = inv_xform_d(cameraData, { x: OFFSET, y: OFFSET });
-//   const br = inv_xform_d(cameraData, { x: w - OFFSET, y: h - OFFSET });
-//   return [tl.x, br.y, br.x, tl.y];
-// }
-
-// get_world_bbox2(camera: Camera): Rect {
-//   const { w, h } = this;
-//   const tl = inv_xform(camera, { x: OFFSET, y: OFFSET });
-//   const br = inv_xform(camera, { x: w - OFFSET, y: h - OFFSET });
-//   return [tl.x, br.y, br.x, tl.y];
-// }
+describe('inv_xform_d', () => {
+  test('should imitate inv_xform if origin is zero', () => {
+    const page_from_world = compose(translate({ x: 4, y: 5 }), scale({ x: 5, y: -5 }));
+    const cameraData: CameraData = { origin: { x: 0, y: 0 }, page_from_world };
+    const camera: Camera = getCamera(cameraData);
+    const p_in_page = { x: 578, y: 123 };
+    const r1 = inv_xform(camera, p_in_page);
+    const r2 = inv_xform_d(cameraData, p_in_page);
+    expect(r1).toEqual({ x: expect.closeTo(r2.x), y: expect.closeTo(r2.y) });
+  });
+});

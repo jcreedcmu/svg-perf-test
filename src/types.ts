@@ -128,6 +128,10 @@ type UIMode =
   }
   | { t: 'feature-modal', points: Point[] };
 
+export type MouseState =
+  | { t: 'up' }
+  ;
+
 export type UiState = {
   mode: UIMode,
   layers: {
@@ -136,6 +140,7 @@ export type UiState = {
     river: boolean,
   },
   cameraData: CameraData,
+  mouseState: MouseState,
 };
 
 export interface Layer {

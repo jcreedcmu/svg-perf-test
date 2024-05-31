@@ -138,6 +138,7 @@ export function MainUi(props: MainUiProps): JSX.Element {
     layers: { boundary: false, river: false, road: false },
     mode: { t: 'normal' },
     cameraData: mkCameraData(),
+    mouseState: { t: 'up' },
   };
   const [state, dispatch] = React.useReducer<(s: UiState, a: Action) => UiState>(reduce, initState);
 

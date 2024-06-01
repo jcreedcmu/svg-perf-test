@@ -6,7 +6,7 @@ import { Geometry, UiState } from './types';
 import { Dispatch } from './ui';
 import { CanvasInfo, useCanvas } from './use-canvas';
 import { compose, translate } from './se2';
-import { vsub } from './vutil';
+import { vadd, vsub } from './vutil';
 
 export type MapCanvasProps = {
   uiState: UiState,
@@ -33,8 +33,9 @@ function render(ci: CanvasInfo, state: MapCanvasState) {
   let cameraData = state.ui.cameraData;
   const ms = state.ui.mouseState;
   if (ms.t == 'pan') {
+    const v = vsub(vsub(ms.p_in_page, ms.orig_p_in_page), ms.page_from_canvas);
     cameraData = produce(cameraData, c => {
-      c.page_from_world = compose(translate(vsub(ms.p_in_page, ms.orig_p_in_page)), c.page_from_world);
+      c.page_from_world = compose(translate(v), c.page_from_world);
     });
   }
   const bbox_in_world = get_bbox_in_world(cameraData, ci.size)
@@ -85,7 +86,10 @@ export function MapCanvas(props: MapCanvasProps): JSX.Element {
   let canvasStyle: React.CSSProperties = {};
   const ms = state.mouseState;
   if (ms.t == 'pan') {
-    canvasStyle = { top: ms.page_from_canvas.y, left: ms.page_from_canvas.x, position: 'fixed' };
+    canvasStyle = {
+      top: ms.page_from_canvas.y + ms.p_in_page.y - ms.orig_p_in_page.y,
+      left: ms.page_from_canvas.x + ms.p_in_page.x - ms.orig_p_in_page.x, position: 'fixed'
+    };
   }
   return <canvas onMouseDown={onMouseDown}
     className="map-canvas" style={canvasStyle} ref={cref} />;

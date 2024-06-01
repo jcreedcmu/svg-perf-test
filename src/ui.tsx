@@ -10,28 +10,6 @@ import { MapCanvas } from './map-canvas';
 
 export const SIDEBAR_WIDTH = 200;
 
-function CanvasComp(props: { state: UiState, height: number, width: number }): JSX.Element {
-  const { state, height, width } = props;
-  console.log('rendering');
-  const canvas: React.MutableRefObject<HTMLCanvasElement | null> = useRef(null);
-  const [toggle, setToggle] = useState(true);
-  useLayoutEffect(() => {
-    if (canvas.current == null) return;
-    const d = canvas.current.getContext('2d');
-    if (d == null) return;
-    d.clearRect(0, 0, 100, 100);
-    if (toggle)
-      d.fillRect(0, 0, 100, 100);
-  }, [state, toggle]);
-
-  function mouse(e: React.MouseEvent<HTMLCanvasElement>): void {
-    setToggle(t => !t);
-  }
-  return <canvas height={height} width={width} className="debug" ref={canvas}
-    onMouseDown={mouse} />;
-}
-
-
 function FeatureModal(props: { us: UiState, dispatch: (r: FeatureModalResult) => void }) {
   const { us, dispatch } = props;
   const [text, setText] = useState("");
@@ -171,8 +149,6 @@ export function MainUi(props: MainUiProps): JSX.Element {
       <br />
     </span >
   }
-
-  //     <CanvasComp height={innerHeight} width={innerWidth / 10} state={s} />
 
   const style = {
     width: SIDEBAR_WIDTH,

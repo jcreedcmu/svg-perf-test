@@ -170,4 +170,5 @@ export type Action =
   | { t: "RadioToggle", k: keyof UiState['layers'] }
   | { t: "SetMode", mode: UIMode }
   | { t: "setCameraData", camera: CameraData }
+  | { t: "mouseDown", p_in_page: Point }
   ;

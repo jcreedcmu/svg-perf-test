@@ -77,6 +77,10 @@ export function reduce(state: UiState, action: Action): UiState {
       return produce(state, s => {
         s.cameraData = action.camera;
       });
+    case 'mouseDown': {
+      console.log(action.p_in_page);
+      return state;
+    }
   }
 
 }

@@ -150,6 +150,15 @@ export function MainUi(props: MainUiProps): JSX.Element {
     }
     props.onMount();
   }, []);
+  React.useEffect(() => {
+    function handleMouse(e: MouseEvent) {
+      dispatch({ t: 'mouseDown', p_in_page: { x: e.pageX!, y: e.pageY! } })
+    }
+    document.addEventListener('mousedown', handleMouse);
+    return () => {
+      document.removeEventListener('mousedown', handleMouse);
+    }
+  });
 
   function radio(k: keyof UiState['layers'], hs: string): JSX.Element {
     function change<T>(e: React.ChangeEvent<T>): void {

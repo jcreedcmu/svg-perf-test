@@ -130,6 +130,7 @@ type UIMode =
 
 export type MouseState =
   | { t: 'up' }
+  | { t: 'pan' }
   ;
 
 export type UiState = {
@@ -171,4 +172,6 @@ export type Action =
   | { t: "SetMode", mode: UIMode }
   | { t: "setCameraData", camera: CameraData }
   | { t: "mouseDown", p_in_page: Point }
+  | { t: "mouseMove", p_in_page: Point }
+  | { t: "mouseUp", p_in_page: Point }
   ;

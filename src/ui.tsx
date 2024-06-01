@@ -129,15 +129,7 @@ export function MainUi(props: MainUiProps): JSX.Element {
     }
     props.onMount();
   }, []);
-  React.useEffect(() => {
-    function handleMouse(e: MouseEvent) {
-      dispatch({ t: 'mouseDown', p_in_page: { x: e.pageX!, y: e.pageY! } })
-    }
-    document.addEventListener('mousedown', handleMouse);
-    return () => {
-      document.removeEventListener('mousedown', handleMouse);
-    }
-  });
+
 
   function radio(k: keyof UiState['layers'], hs: string): JSX.Element {
     function change<T>(e: React.ChangeEvent<T>): void {
@@ -159,7 +151,7 @@ export function MainUi(props: MainUiProps): JSX.Element {
       {radio("road", "Road")}
       {radio("boundary", "Boundary")}
       {radio("river", "River")}
-      <MapCanvas uiState={state} />
+      <MapCanvas uiState={state} dispatch={dispatch} />
     </div>
     <FeatureModal us={state} dispatch={dispatch} />
     <LabelModal us={state} dispatch={dispatch} />

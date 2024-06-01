@@ -79,8 +79,17 @@ export function reduce(state: UiState, action: Action): UiState {
       });
     case 'mouseDown': {
       console.log('mouseDown', action.p_in_page);
+      return produce(state, s => { s.mouseState = { t: 'pan' }; });
+    }
+    case 'mouseUp': {
+      console.log('mouseUp', action.p_in_page);
+      return produce(state, s => { s.mouseState = { t: 'up' }; });
+    }
+    case 'mouseMove': {
+      console.log('mouseMove', action.p_in_page);
       return state;
     }
+
   }
 
 }

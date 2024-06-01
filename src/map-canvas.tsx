@@ -1,9 +1,12 @@
 import * as React from 'react';
+import { useEffect } from 'react';
 import { useCanvas, CanvasInfo } from './use-canvas';
 import { UiState } from './types';
+import { Dispatch } from './ui';
 
 export type MapCanvasProps = {
   uiState: UiState,
+  dispatch: Dispatch,
 };
 
 export type MapCanvasState = UiState;
@@ -19,7 +22,30 @@ function render(ci: CanvasInfo, state: MapCanvasState) {
 }
 
 export function MapCanvas(props: MapCanvasProps): JSX.Element {
-  const { uiState: state } = props;
+  const { uiState: state, dispatch } = props;
   const [cref, mc] = useCanvas(state, render, [state], () => { });
-  return <canvas className="map-canvas" ref={cref} />;
+  useEffect(() => {
+    if (state.mouseState.t == 'pan') {
+      document.addEventListener('mousemove', onMouseMove);
+      document.addEventListener('mouseup', onMouseUp);
+      return () => {
+        document.removeEventListener('mousemove', onMouseMove);
+        document.removeEventListener('mouseup', onMouseUp);
+      }
+    }
+  }, [state.mouseState.t]);
+  function onMouseDown(e: React.MouseEvent) {
+    dispatch({ t: 'mouseDown', p_in_page: { x: e.pageX!, y: e.pageY! } })
+  }
+
+  function onMouseMove(e: MouseEvent) {
+    dispatch({ t: 'mouseMove', p_in_page: { x: e.pageX!, y: e.pageY! } })
+  }
+
+  function onMouseUp(e: MouseEvent) {
+    dispatch({ t: 'mouseUp', p_in_page: { x: e.pageX!, y: e.pageY! } })
+  }
+
+  return <canvas onMouseDown={onMouseDown}
+    className="map-canvas" ref={cref} />;
 }

@@ -34,7 +34,7 @@ export function paint(d: CanvasRenderingContext2D, size: Point, mode: Mode, came
     d.strokeRect(OFFSET + 0.5, OFFSET + 0.5, w - 2 * OFFSET, h - 2 * OFFSET);
   }
 
-  const bbox_in_world = get_bbox_in_world(cameraData, { x: app.w, y: app.h });
+  const bbox_in_world = get_bbox_in_world(cameraData, size);
 
   app.layers.forEach(layer => {
     layer.render({ d, us: state, cameraData, mode, bbox_in_world });

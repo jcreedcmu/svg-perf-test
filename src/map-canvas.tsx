@@ -49,7 +49,7 @@ function render(ci: CanvasInfo, state: MapCanvasState) {
 
 function getCanvasDims(ms: MouseState): Point {
   const margin = ms.t == 'pan' ? PANNING_MARGIN : 0;
-  return { x: innerWidth + 2 * margin, y: Math.min(innerHeight, 300) + 2 * margin };
+  return { x: Math.min(innerWidth, 300) + 2 * margin, y: Math.min(innerHeight, 300) + 2 * margin };
 }
 
 export function MapCanvas(props: MapCanvasProps): JSX.Element {
@@ -65,7 +65,7 @@ export function MapCanvas(props: MapCanvasProps): JSX.Element {
     //   boundary-expansion strategy is noticeable, the reduce should change
     //   our 'origin', i.e. page_from_canvas
 
-    [state.mouseState.t], // note geo isn't here
+    [state.mouseState.t, state.cameraData, state.layers], // note geo isn't here
     () => { }
   );
   useEffect(() => {

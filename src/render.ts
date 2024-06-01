@@ -1,9 +1,16 @@
 import { CameraData, scale_of_camera, zoom_of_camera } from "./camera-state";
 import { colors } from "./colors";
 import { App, DEBUG, OFFSET } from "./main";
-import { Mode, Point, Target } from "./types";
+import { Mode, Point, Rect, Target } from "./types";
 import { AccessRef } from "./ui";
-import { canvasIntoWorld } from "./util";
+import { app_world_from_canvas, canvasIntoWorld } from "./util";
+
+function get_bbox_in_world(cameraData: CameraData, size: Point): Rect {
+  const { x: w, y: h } = size;
+  const tl = app_world_from_canvas(cameraData, { x: OFFSET, y: OFFSET });
+  const br = app_world_from_canvas(cameraData, { x: w - OFFSET, y: h - OFFSET });
+  return [tl.x, br.y, br.x, tl.y];
+}
 
 export function paint(d: CanvasRenderingContext2D, size: Point, mode: Mode, cameraData: CameraData, app: App): void {
   const { x: w, y: h } = size;
@@ -27,7 +34,7 @@ export function paint(d: CanvasRenderingContext2D, size: Point, mode: Mode, came
     d.strokeRect(OFFSET + 0.5, OFFSET + 0.5, w - 2 * OFFSET, h - 2 * OFFSET);
   }
 
-  const bbox_in_world = app.get_bbox_in_world(cameraData);
+  const bbox_in_world = get_bbox_in_world(cameraData, { x: app.w, y: app.h });
 
   app.layers.forEach(layer => {
     layer.render({ d, us: state, cameraData, mode, bbox_in_world });

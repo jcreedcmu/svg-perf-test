@@ -757,12 +757,6 @@ export class App {
     });
   }
 
-  get_bbox_in_world(cameraData: CameraData): Rect {
-    const { w, h } = this;
-    const tl = app_world_from_canvas(cameraData, { x: OFFSET, y: OFFSET });
-    const br = app_world_from_canvas(cameraData, { x: w - OFFSET, y: h - OFFSET });
-    return [tl.x, br.y, br.x, tl.y];
-  }
 
   render_scale(cameraData: CameraData, d: Ctx): void {
     const scale = scale_of_camera(cameraData);

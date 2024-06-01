@@ -39,7 +39,7 @@ const DEBUG_PROF = false;
 export const OFFSET = DEBUG ? 100 : 0;
 const VERTEX_SENSITIVITY = 10;
 const FREEHAND_SIMPLIFICATION_FACTOR = 100;
-const PANNING_MARGIN = 200;
+export const PANNING_MARGIN = 200;
 
 // Just for debugging
 declare var window: any;

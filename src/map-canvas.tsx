@@ -47,7 +47,17 @@ function render(ci: CanvasInfo, state: MapCanvasState) {
 export function MapCanvas(props: MapCanvasProps): JSX.Element {
   const { uiState: state, dispatch } = props;
   const [cref, mc] = useCanvas({ ui: state, geo: props.geo }, render,
-    [state], // note geo isn't here
+
+    // Some discussion on what should cause changes of state here:
+    //
+    // - The moment we start panning, we should repaint (with expanded
+    //   boundaries)
+    //
+    // - Whenever we do a mousemove that would make us pan so that our
+    //   boundary-expansion strategy is noticeable, the reduce should change
+    //   our 'origin', i.e. page_from_canvas
+
+    [state.mouseState.t], // note geo isn't here
     () => { }
   );
   useEffect(() => {
@@ -59,7 +69,7 @@ export function MapCanvas(props: MapCanvasProps): JSX.Element {
         document.removeEventListener('mouseup', onMouseUp);
       }
     }
-  }, [state.mouseState.t]);
+  }, [state.mouseState.t, state.mouseState.t == 'pan' ? state.mouseState.page_from_canvas : undefined]);
   function onMouseDown(e: React.MouseEvent) {
     dispatch({ t: 'mouseDown', p_in_page: { x: e.pageX!, y: e.pageY! } })
   }
@@ -72,6 +82,11 @@ export function MapCanvas(props: MapCanvasProps): JSX.Element {
     dispatch({ t: 'mouseUp', p_in_page: { x: e.pageX!, y: e.pageY! } })
   }
 
+  let canvasStyle: React.CSSProperties = {};
+  const ms = state.mouseState;
+  if (ms.t == 'pan') {
+    canvasStyle = { top: ms.page_from_canvas.y, left: ms.page_from_canvas.x, position: 'fixed' };
+  }
   return <canvas onMouseDown={onMouseDown}
-    className="map-canvas" ref={cref} />;
+    className="map-canvas" style={canvasStyle} ref={cref} />;
 }

@@ -2,6 +2,7 @@ import { incCam } from './camera-state';
 import { LabType, UiState, Action } from './types';
 import { produce } from 'immer';
 import { vsub } from './vutil';
+import { PANNING_MARGIN } from './main';
 
 export function reduce(state: UiState, action: Action): UiState {
   function sanitize(s: string): LabType {
@@ -86,7 +87,8 @@ export function reduce(state: UiState, action: Action): UiState {
           t: 'pan',
           orig_p_in_page: action.p_in_page,
           p_in_page: action.p_in_page,
-          orig_camera: state.cameraData
+          orig_camera: state.cameraData,
+          page_from_canvas: { x: -PANNING_MARGIN, y: -PANNING_MARGIN },
         };
       });
     }

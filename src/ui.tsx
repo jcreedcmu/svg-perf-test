@@ -159,7 +159,7 @@ export function MainUi(props: MainUiProps): JSX.Element {
       {radio("road", "Road")}
       {radio("boundary", "Boundary")}
       {radio("river", "River")}
-      <MapCanvas />
+      <MapCanvas uiState={state} />
     </div>
     <FeatureModal us={state} dispatch={dispatch} />
     <LabelModal us={state} dispatch={dispatch} />

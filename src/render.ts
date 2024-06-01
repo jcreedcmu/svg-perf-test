@@ -15,12 +15,10 @@ function get_bbox_in_world(cameraData: CameraData, size: Point): Rect {
 export function paint(d: CanvasRenderingContext2D, size: Point, mode: Mode, cameraData: CameraData, state: UiState, app: App): void {
   const { x: w, y: h } = size;
 
-  console.log('cam', JSON.stringify(cameraData));
-  console.log('scam', JSON.stringify(state.cameraData));
   //  const t = Date.now();
   d.save();
   d.scale(devicePixelRatio, devicePixelRatio);
-  app.th.reset();
+  // app.th.reset();
   const scale = scale_of_camera(cameraData);
   const t = Date.now();
   d.fillStyle = "#bac7f8";

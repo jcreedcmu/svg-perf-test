@@ -130,7 +130,7 @@ type UIMode =
 
 export type MouseState =
   | { t: 'up' }
-  | { t: 'pan' }
+  | { t: 'pan', orig_p_in_page: Point, orig_camera: CameraData }
   ;
 
 export type UiState = {

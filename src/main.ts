@@ -199,7 +199,12 @@ export class App {
   }
 
   _render(w: number, h: number, d: Ctx, mode: Mode, cameraData: CameraData): void {
-    paint(d, { x: w, y: h }, mode, cameraData, this);
+    const access: AccessRef | null = this.accessRef.current;
+    if (access == null)
+      return;
+    const { state } = access;
+
+    paint(d, { x: w, y: h }, mode, cameraData, state, this);
   }
 
   handleMouseWheel(e: WheelEvent): void {

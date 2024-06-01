@@ -1,7 +1,7 @@
 import { CameraData, scale_of_camera, zoom_of_camera } from "./camera-state";
 import { colors } from "./colors";
 import { App, DEBUG, OFFSET } from "./main";
-import { Mode, Point, Rect, Target } from "./types";
+import { Mode, Point, Rect, Target, UiState } from "./types";
 import { AccessRef } from "./ui";
 import { app_world_from_canvas, canvasIntoWorld } from "./util";
 
@@ -12,14 +12,11 @@ function get_bbox_in_world(cameraData: CameraData, size: Point): Rect {
   return [tl.x, br.y, br.x, tl.y];
 }
 
-export function paint(d: CanvasRenderingContext2D, size: Point, mode: Mode, cameraData: CameraData, app: App): void {
+export function paint(d: CanvasRenderingContext2D, size: Point, mode: Mode, cameraData: CameraData, state: UiState, app: App): void {
   const { x: w, y: h } = size;
 
-  const access: AccessRef | null = app.accessRef.current;
-  if (access == null)
-    return;
-  const { state, dispatch } = access;
-
+  console.log('cam', JSON.stringify(cameraData));
+  console.log('scam', JSON.stringify(state.cameraData));
   //  const t = Date.now();
   d.save();
   d.scale(devicePixelRatio, devicePixelRatio);

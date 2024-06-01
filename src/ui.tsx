@@ -6,6 +6,7 @@ import * as ReactBootstrap from 'react-bootstrap';
 import { Modal, Button } from 'react-bootstrap';
 import { reduce } from './reduce';
 import { mkCameraData } from './camera-state';
+import { MapCanvas } from './map-canvas';
 
 export const SIDEBAR_WIDTH = 200;
 
@@ -182,6 +183,7 @@ export function MainUi(props: MainUiProps): JSX.Element {
       {radio("road", "Road")}
       {radio("boundary", "Boundary")}
       {radio("river", "River")}
+      <MapCanvas />
     </div>
     <FeatureModal us={state} dispatch={dispatch} />
     <LabelModal us={state} dispatch={dispatch} />

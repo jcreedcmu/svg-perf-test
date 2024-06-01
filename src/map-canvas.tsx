@@ -1,9 +1,12 @@
+import { produce } from 'immer';
 import * as React from 'react';
 import { useEffect } from 'react';
+import { get_bbox_in_world } from './render';
 import { Geometry, UiState } from './types';
 import { Dispatch } from './ui';
 import { CanvasInfo, useCanvas } from './use-canvas';
-import { get_bbox_in_world } from './render';
+import { compose, translate } from './se2';
+import { vsub } from './vutil';
 
 export type MapCanvasProps = {
   uiState: UiState,
@@ -20,12 +23,20 @@ function render(ci: CanvasInfo, state: MapCanvasState) {
   const { d } = ci;
   console.log('painting');
 
+  d.save();
   d.fillStyle = "white";
   d.fillRect(0, 0, ci.size.x, ci.size.y);
   d.fillStyle = "black";
   d.textBaseline = 'top';
+  d.restore();
 
-  const cameraData = state.ui.cameraData;
+  let cameraData = state.ui.cameraData;
+  const ms = state.ui.mouseState;
+  if (ms.t == 'pan') {
+    cameraData = produce(cameraData, c => {
+      c.page_from_world = compose(translate(vsub(ms.p_in_page, ms.orig_p_in_page)), c.page_from_world);
+    });
+  }
   const bbox_in_world = get_bbox_in_world(cameraData, ci.size)
   state.geo.coastlineLayer.render({
     d, bbox_in_world, cameraData, mode: 'Pan', us: state.ui,

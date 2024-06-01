@@ -1,5 +1,7 @@
+import { incCam } from './camera-state';
 import { LabType, UiState, Action } from './types';
 import { produce } from 'immer';
+import { vsub } from './vutil';
 
 export function reduce(state: UiState, action: Action): UiState {
   function sanitize(s: string): LabType {
@@ -83,17 +85,33 @@ export function reduce(state: UiState, action: Action): UiState {
         s.mouseState = {
           t: 'pan',
           orig_p_in_page: action.p_in_page,
+          p_in_page: action.p_in_page,
           orig_camera: state.cameraData
         };
       });
     }
     case 'mouseUp': {
-      console.log('mouseUp', action.p_in_page);
-      return produce(state, s => { s.mouseState = { t: 'up' }; });
+      const ms = state.mouseState;
+      if (ms.t != 'pan')
+        return produce(state, s => { s.mouseState = { t: 'up' }; });
+      const delta = vsub(ms.p_in_page, ms.orig_p_in_page);
+      const newCam = incCam(state.cameraData, delta.x, delta.y);
+      return produce(state, s => {
+        s.cameraData = newCam;
+        s.mouseState = { t: 'up' };
+      });
     }
     case 'mouseMove': {
-      console.log('mouseMove', action.p_in_page);
-      return state;
+      const ms = state.mouseState;
+      if (ms.t != 'pan')
+        return state;
+      const newMs = produce(ms, s => {
+        s.p_in_page = action.p_in_page;
+      });
+      return produce(state, s => {
+        s.mouseState = newMs;
+      });
+
     }
 
   }

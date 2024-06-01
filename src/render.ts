@@ -5,7 +5,7 @@ import { Mode, Point, Rect, Target, UiState } from "./types";
 import { AccessRef } from "./ui";
 import { app_world_from_canvas, canvasIntoWorld } from "./util";
 
-function get_bbox_in_world(cameraData: CameraData, size: Point): Rect {
+export function get_bbox_in_world(cameraData: CameraData, size: Point): Rect {
   const { x: w, y: h } = size;
   const tl = app_world_from_canvas(cameraData, { x: OFFSET, y: OFFSET });
   const br = app_world_from_canvas(cameraData, { x: w - OFFSET, y: h - OFFSET });

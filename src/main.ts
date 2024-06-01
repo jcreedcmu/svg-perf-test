@@ -21,7 +21,7 @@ import { RiverLayer } from './rivers';
 import { SketchLayer } from './sketch';
 
 import * as geom from './geom';
-import { AccessRef, MainUi, SIDEBAR_WIDTH } from './ui';
+import { AccessRef, MainUi, MainUiProps, SIDEBAR_WIDTH } from './ui';
 
 // These two lines force webpack to believe that the file types.ts is
 // actually used, since otherwise treeshaking or whatever finds out,
@@ -188,7 +188,14 @@ export class App {
       this.render(newCameraData);
     }
 
-    const comp = React.createElement(MainUi, { accessRef: this.accessRef, onMount }, null);
+    const props: MainUiProps = {
+      accessRef: this.accessRef,
+      onMount,
+      geo: {
+        coastlineLayer: this.coastline_layer,
+      },
+    };
+    const comp = React.createElement(MainUi, props, null);
 
     root.render(comp);
   }

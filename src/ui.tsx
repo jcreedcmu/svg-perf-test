@@ -1,12 +1,10 @@
 import * as React from 'react';
-import { UiState, LabelUIMode, FeatureModalResult, LabelModalResult, Action } from './types';
-import { useRef, useLayoutEffect, useState } from 'react';
-import { nope } from './util';
-import * as ReactBootstrap from 'react-bootstrap';
-import { Modal, Button } from 'react-bootstrap';
-import { reduce } from './reduce';
+import { useState } from 'react';
+import { Modal } from 'react-bootstrap';
 import { mkCameraData } from './camera-state';
 import { MapCanvas } from './map-canvas';
+import { reduce } from './reduce';
+import { Action, FeatureModalResult, Geometry, LabelModalResult, LabelUIMode, UiState } from './types';
 
 export const SIDEBAR_WIDTH = 200;
 
@@ -105,13 +103,15 @@ export type AccessRef = {
   dispatch: Dispatch,
 };
 
+
 export type MainUiProps = {
   accessRef: React.RefObject<AccessRef>,
+  geo: Geometry,
   onMount: () => void,
 };
 
 export function MainUi(props: MainUiProps): JSX.Element {
-  const { accessRef: ref } = props;
+  const { accessRef: ref, geo } = props;
 
   const initState: UiState = {
     layers: { boundary: false, river: false, road: false },
@@ -151,7 +151,7 @@ export function MainUi(props: MainUiProps): JSX.Element {
       {radio("road", "Road")}
       {radio("boundary", "Boundary")}
       {radio("river", "River")}
-      <MapCanvas uiState={state} dispatch={dispatch} />
+      <MapCanvas uiState={state} dispatch={dispatch} geo={geo} />
     </div>
     <FeatureModal us={state} dispatch={dispatch} />
     <LabelModal us={state} dispatch={dispatch} />

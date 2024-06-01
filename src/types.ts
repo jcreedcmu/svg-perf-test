@@ -4,6 +4,7 @@ export type Color = { r: number, g: number, b: number };
 export type Ctx = CanvasRenderingContext2D;
 import RBush, * as rbush from 'rbush';
 import { CameraData } from './camera-state';
+import { CoastlineLayer } from './coastline';
 
 export type Mode = "Pan" | "Freehand" | "Move" | "Select" | "Label" | "Measure" | "Extract";
 
@@ -175,3 +176,7 @@ export type Action =
   | { t: "mouseMove", p_in_page: Point }
   | { t: "mouseUp", p_in_page: Point }
   ;
+
+export type Geometry = {
+  coastlineLayer: CoastlineLayer,
+};

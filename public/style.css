@@ -25,6 +25,6 @@ input[type=checkbox] + label{
   position: fixed;
   left: 0px;
   top: 0px;
-  height: 50px;
-  width: 100%;
+  height: 150px;
+  width: 80%;
 }

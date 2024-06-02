@@ -1,4 +1,4 @@
-import { incCam, inc_offset, set_offset_pres } from './camera-state';
+import { doZoom, incCam, inc_offset, set_offset_pres } from './camera-state';
 import { LabType, UiState, Action } from './types';
 import { produce } from 'immer';
 import { vadd, vsub } from './vutil';
@@ -119,6 +119,12 @@ export function reduce(state: UiState, action: Action): UiState {
         s.mouseState = newMs;
       });
 
+    }
+    case 'doZoom': {
+      const cameraData = doZoom(state.cameraData, action.p_in_canvas, action.zoom_amount);
+      return produce(state, s => {
+        s.cameraData = cameraData;
+      });
     }
 
   }

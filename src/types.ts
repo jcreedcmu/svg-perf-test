@@ -180,6 +180,7 @@ export type Action =
   | { t: "mouseDown", p_in_page: Point }
   | { t: "mouseMove", p_in_page: Point }
   | { t: "mouseUp", p_in_page: Point }
+  | { t: "doZoom", zoom_amount: number, p_in_canvas: Point } // +1/-1 is zoom in/out by factor of two
   ;
 
 export type Geometry = {

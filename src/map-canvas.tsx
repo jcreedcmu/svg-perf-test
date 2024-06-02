@@ -49,6 +49,14 @@ function getCanvasDims(ms: MouseState): Point {
   return { x: innerWidth + 2 * margin, y: innerHeight / 2 + 2 * margin };
 }
 
+function handleMouseWheel(e: React.WheelEvent, dispatch: Dispatch): void {
+  const x = e.pageX!;
+  const y = e.pageY!;
+  const zoom = -e.deltaY / 120;
+  e.preventDefault();
+  dispatch({ t: 'doZoom', zoom_amount: zoom, p_in_canvas: { x: e.pageX!, y: e.pageY! } });
+}
+
 export function MapCanvas(props: MapCanvasProps): JSX.Element {
   const { uiState: state, dispatch } = props;
   const [cref, mc] = useCanvas({ ui: state, geo: props.geo }, render,
@@ -123,6 +131,8 @@ export function MapCanvas(props: MapCanvasProps): JSX.Element {
     }
   }
 
-  return <canvas onMouseDown={onMouseDown}
+  return <canvas
+    onMouseDown={onMouseDown}
+    onWheel={e => handleMouseWheel(e, dispatch)}
     style={canvasStyle} width={dims.x} height={dims.y} ref={cref} />;
 }

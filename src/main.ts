@@ -21,7 +21,7 @@ import { RiverLayer } from './rivers';
 import { SketchLayer } from './sketch';
 
 import * as geom from './geom';
-import { AccessRef, MainUi, MainUiProps, SIDEBAR_WIDTH } from './ui';
+import { MainUi, MainUiProps, SIDEBAR_WIDTH } from './ui';
 
 // These two lines force webpack to believe that the file types.ts is
 // actually used, since otherwise treeshaking or whatever finds out,
@@ -30,7 +30,6 @@ import { AccessRef, MainUi, MainUiProps, SIDEBAR_WIDTH } from './ui';
 // XXX this all should be obsolete maybe since I'm not using webpack anymore.
 import { apply } from './se2';
 import * as t from './types';
-import { paint } from './render';
 const undefined = t.nonce;
 
 // Some global constants
@@ -91,7 +90,6 @@ function reset_canvas_size(c: HTMLCanvasElement, panning: boolean, cameraData: C
 
 // The main meat of this file.
 export class App {
-  accessRef: React.RefObject<AccessRef> = React.createRef<AccessRef>();
   c: HTMLCanvasElement;
   d: Ctx;
   w: number = 0;
@@ -112,17 +110,10 @@ export class App {
   th: Throttler;
 
   setCameraData(camera: CameraData): void {
-    if (this.accessRef.current == null)
-      throw new Error(`access not yet ready`);
-    const { dispatch } = this.accessRef.current;
-    dispatch({ t: 'setCameraData', camera });
   }
 
   getCameraData(): CameraData {
-    if (this.accessRef.current == null)
-      throw new Error(`access not yet ready`);
-    const { state } = this.accessRef.current;
-    return state.cameraData;
+    throw new Error('Nope');
   }
 
   constructor(_data: Data) {
@@ -177,10 +168,7 @@ export class App {
 
     const root = createRoot(document.getElementById('react-root')!);
 
-    (window as any)['access'] = this.accessRef;
-
     const props: MainUiProps = {
-      accessRef: this.accessRef,
       geo: {
         riverLayer: this.river_layer,
         coastlineLayer: this.coastline_layer,
@@ -199,12 +187,7 @@ export class App {
   }
 
   _render(w: number, h: number, d: Ctx, mode: Tool, cameraData: CameraData): void {
-    const access: AccessRef | null = this.accessRef.current;
-    if (access == null)
-      return;
-    const { state } = access;
-
-    paint(d, { x: w, y: h }, mode, cameraData, state, this);
+    //
   }
 
   handleMouseWheel(e: WheelEvent): void {
@@ -322,26 +305,12 @@ export class App {
             const u = z[0];
             if (u[0] == "label") {
               const lab = coastline_layer.labelStore.labels[u[1]];
-              this.accessRef.current?.dispatch({
-                t: 'SetMode', mode: {
-                  t: "label-modal", status: { isNew: false, prev: lab }, v: {
-                    text: lab.properties.text,
-                    zoom: lab.properties.zoom + '',
-                    tp: lab.properties.label
-                  }
-                }
-              });
+
             }
           }
         }
         else {
-          this.accessRef.current?.dispatch({
-            t: 'SetMode', mode: {
-              t: "label-modal",
-              status: { isNew: true, pt: worldp },
-              v: { text: "", zoom: "4", tp: "region" }
-            }
-          });
+
         }
         break;
 
@@ -430,9 +399,7 @@ export class App {
 
     const { image_layer, coastline_layer, sketch_layer } = this;
 
-    // Disable key event handling if modal is up
-    if (this.accessRef.current?.state.mode.t != 'normal')
-      return;
+
 
     // XXX eventually delete this
     // const modals = $(".modal");
@@ -501,9 +468,7 @@ export class App {
       case "q": {
         const sk = sketch_layer.pop();
         if (sk != null) {
-          this.accessRef.current?.dispatch({
-            t: 'SetMode', mode: { t: 'feature-modal', points: sk.map(p => p.point) }
-          });
+
         }
       } break;
       case "S-f": {

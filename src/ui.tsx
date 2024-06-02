@@ -99,13 +99,7 @@ function LabelModal(props: { us: UiState, dispatch: (r: LabelModalResult) => voi
 
 export type Dispatch = (action: Action) => void;
 
-export type AccessRef = {
-  state: UiState,
-  dispatch: Dispatch,
-};
-
 export type MainUiProps = {
-  accessRef: React.RefObject<AccessRef>,
   geo: Geometry,
   images: Dict<SizedImage>,
 };
@@ -148,18 +142,10 @@ function onKeyDown(e: KeyboardEvent, ils: ImageLayerState, dispatch: Dispatch): 
 }
 
 export function MainUi(props: MainUiProps): JSX.Element {
-  const { accessRef: ref, geo, images } = props;
+  const { geo, images } = props;
 
   const initState = mkUiState(images);
   const [state, dispatch] = React.useReducer<(s: UiState, a: Action) => UiState>(reduce, initState);
-
-  // XXX kind of a hack to temporarily propagate react state out of react-land
-  React.useImperativeHandle(ref, () => ({ state, dispatch }), [state]);
-  React.useEffect(() => {
-    if (props.accessRef.current == null) {
-      throw new Error(`I expected access ref to be initialized by now!`);
-    }
-  }, []);
 
   const keyHandler = (e: KeyboardEvent) => onKeyDown(e, state.imageLayerState, dispatch);
   React.useEffect(() => {

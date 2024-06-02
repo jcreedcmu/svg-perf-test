@@ -104,11 +104,9 @@ export type AccessRef = {
   dispatch: Dispatch,
 };
 
-
 export type MainUiProps = {
   accessRef: React.RefObject<AccessRef>,
   geo: Geometry,
-  onMount: () => void,
   images: Dict<SizedImage>,
 };
 
@@ -161,7 +159,6 @@ export function MainUi(props: MainUiProps): JSX.Element {
     if (props.accessRef.current == null) {
       throw new Error(`I expected access ref to be initialized by now!`);
     }
-    props.onMount();
   }, []);
 
   const keyHandler = (e: KeyboardEvent) => onKeyDown(e, state.imageLayerState, dispatch);

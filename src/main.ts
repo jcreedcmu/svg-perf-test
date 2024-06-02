@@ -179,18 +179,8 @@ export class App {
 
     (window as any)['access'] = this.accessRef;
 
-    const onMount = () => {
-      let cameraData = this.getCameraData();
-      const { newCameraData, dims } = reset_canvas_size(this.c, this.panning, cameraData);
-      this.w = dims.x;
-      this.h = dims.y;
-      // render_origin(newCameraData);
-      this.render(newCameraData);
-    }
-
     const props: MainUiProps = {
       accessRef: this.accessRef,
-      onMount,
       geo: {
         riverLayer: this.river_layer,
         coastlineLayer: this.coastline_layer,

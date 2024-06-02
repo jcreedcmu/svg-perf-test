@@ -457,12 +457,6 @@ export class App {
     //   render();
     // }
     switch (k) {
-      case ",": {
-        image_layer.prev();
-      } break;
-      case ".": {
-        image_layer.next();
-      } break;
       case "f": {
         this.mode = "Freehand";
         this.render(this.getCameraData());

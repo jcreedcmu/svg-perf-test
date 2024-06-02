@@ -79,16 +79,6 @@ export class ImageLayer implements Layer {
     }
   }
 
-  prev() {
-    this.cur_img_ix = mod(this.cur_img_ix - 1, this.named_imgs.length);
-    this.reload_img(this.cur_img_ix);
-  }
-
-  next() {
-    this.cur_img_ix = mod(this.cur_img_ix + 1, this.named_imgs.length);
-    this.reload_img(this.cur_img_ix);
-  }
-
   scale(by: number) {
     const img_state = this.named_imgs[this.cur_img_ix];
     img_state.scale *= by;

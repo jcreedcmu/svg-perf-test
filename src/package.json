@@ -22,7 +22,6 @@
   },
   "dependencies": {
     "@types/jest": "^29.5.12",
-    "@types/jquery": "^3.5.30",
     "@types/rbush": "^3.0.3",
     "@types/react": "^18.3.3",
     "@types/react-bootstrap": "^0.32.36",

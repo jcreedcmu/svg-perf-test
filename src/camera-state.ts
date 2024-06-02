@@ -16,41 +16,43 @@ export type CameraData = {
 
   // page coordinates have (0,0) at the top left of the page and increase right and down
   // their units are pixels
+  // canvas coordinates have (0,0) at the top left of the page and increase right and down
+  // their units are pixels
   // world coordinates have (0,0) a bit south-west of the spring islands and increase east and north
   // their units are meters
-  page_from_world: SE2,
+  canvas_from_world: SE2,
 };
 
 export function mkCameraData(): CameraData {
-  let page_from_world: SE2 = mkSE2({ x: 0.001953125, y: -0.001953125 }, { x: -432.125, y: 3321.875 });
+  let canvas_from_world: SE2 = mkSE2({ x: 0.001953125, y: -0.001953125 }, { x: -432.125, y: 3321.875 });
 
   if (localStorage.page_from_world != null) {
-    page_from_world = JSON.parse(localStorage.page_from_world);
+    canvas_from_world = JSON.parse(localStorage.canvas_from_world);
   }
 
-  return { page_from_canvas: { x: 0, y: 0 }, page_from_world };
+  return { page_from_canvas: { x: 0, y: 0 }, canvas_from_world };
 }
 
-export function doZoom(data: CameraData, p_in_page: Point, zoom: number): CameraData {
+export function doZoom(data: CameraData, p_in_canvas: Point, zoom: number): CameraData {
   var zoom_scale = Math.pow(2, zoom);
 
-  const new_page_from_world = composen(
-    translate(p_in_page),
+  const new_canvas_from_world = composen(
+    translate(p_in_canvas),
     scale(vdiag(zoom_scale)),
-    inverse(translate(p_in_page)),
-    data.page_from_world,
+    inverse(translate(p_in_canvas)),
+    data.canvas_from_world,
   );
 
   const new_data = produce(data, d => {
-    d.page_from_world = new_page_from_world;
+    d.canvas_from_world = new_canvas_from_world;
   });
   return storeCam(new_data);
 }
 
 export function incCam(data: CameraData, dx: number, dy: number): CameraData {
-  const new_page_from_world = compose(translate({ x: dx, y: dy }), data.page_from_world);
+  const new_canvas_from_world = compose(translate({ x: dx, y: dy }), data.canvas_from_world);
   const new_data = produce(data, d => {
-    d.page_from_world = new_page_from_world;
+    d.canvas_from_world = new_canvas_from_world;
   });
   return storeCam(new_data);
 }
@@ -75,12 +77,12 @@ export function incOrigin(data: CameraData, dx: number, dy: number): CameraData 
 
 
 function storeCam(data: CameraData): CameraData {
-  localStorage.page_from_world = JSON.stringify(data.page_from_world);
+  localStorage.canvas_from_world = JSON.stringify(data.canvas_from_world);
   return data;
 }
 
 export function page_from_world_of_cameraData(data: CameraData): SE2 {
-  return data.page_from_world;
+  return compose(translate(data.page_from_canvas), data.canvas_from_world);
 }
 
 export function canvas_from_page_of_cameraData(data: CameraData): SE2 {
@@ -88,8 +90,7 @@ export function canvas_from_page_of_cameraData(data: CameraData): SE2 {
 }
 
 export function canvas_from_world_of_cameraData(data: CameraData): SE2 {
-  return compose(canvas_from_page_of_cameraData(data),
-    page_from_world_of_cameraData(data));
+  return data.canvas_from_world;
 }
 
 export function scale_of_camera(data: CameraData): number {
@@ -98,4 +99,18 @@ export function scale_of_camera(data: CameraData): number {
 
 export function zoom_of_camera(data: CameraData): number {
   return zoom_of_scale(scale_of_camera(data));
+}
+
+// This sets page_from_canvas and compensates so as to preserve page_from_world
+export function set_offset(data: CameraData, page_from_canvas: Point): CameraData {
+  const new_canvas_from_world = composen(
+    inverse(translate(page_from_canvas)),
+    translate(data.page_from_canvas),
+    data.canvas_from_world,
+  );
+  return produce(data, d => {
+    d.page_from_canvas = page_from_canvas;
+    d.canvas_from_world = new_canvas_from_world;
+  });
+
 }

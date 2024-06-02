@@ -8,6 +8,7 @@ import { CanvasInfo, useCanvas } from './use-canvas';
 import { compose, translate } from './se2';
 import { vadd, vsub } from './vutil';
 import { PANNING_MARGIN } from './main';
+import { set_offset } from './camera-state';
 
 export type MapCanvasProps = {
   uiState: UiState,
@@ -35,15 +36,13 @@ function render(ci: CanvasInfo, state: MapCanvasState) {
   let cameraData = state.ui.cameraData;
   const ms = state.ui.mouseState;
   if (ms.t == 'pan') {
-    cameraData = produce(cameraData, c => {
-      c.page_from_canvas = ms.page_from_canvas;
-    });
+    cameraData = set_offset(cameraData, ms.page_from_canvas);
   }
   const bbox_in_world = get_bbox_in_world(cameraData, dims)
   state.geo.coastlineLayer.render({
     d, bbox_in_world, cameraData, mode: 'Pan', us: state.ui,
   });
-  d.fillText(JSON.stringify(state.ui.cameraData.page_from_world, null, 2), 0, 10);
+  d.fillText(JSON.stringify(state.ui.cameraData.canvas_from_world, null, 2), 0, 10);
 }
 
 // Gets width and height of canvas

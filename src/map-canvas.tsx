@@ -46,8 +46,9 @@ function render(ci: CanvasInfo, state: MapCanvasState) {
 
 // Gets width and height of canvas
 function getCanvasDims(ms: MouseState): Point {
+  const DEBUG_PARTIAL_VIEW = 0.9;
   const margin = ms.t == 'pan' ? PANNING_MARGIN : 0;
-  return { x: innerWidth + 2 * margin, y: innerHeight / 2 + 2 * margin };
+  return { x: innerWidth + 2 * margin, y: innerHeight * DEBUG_PARTIAL_VIEW + 2 * margin };
 }
 
 function handleMouseWheel(e: React.WheelEvent, dispatch: Dispatch): void {

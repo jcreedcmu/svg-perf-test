@@ -199,7 +199,6 @@ export type Action =
 
 export type Geometry = {
   coastlineLayer: CoastlineLayer,
-  imageLayer: ImageLayer,
   riverLayer: RiverLayer,
   sketchLayer: SketchLayer,
 };

@@ -194,7 +194,6 @@ export class App {
       geo: {
         riverLayer: this.river_layer,
         coastlineLayer: this.coastline_layer,
-        imageLayer: this.image_layer,
         sketchLayer: this.sketch_layer,
       },
       images: geo.images,

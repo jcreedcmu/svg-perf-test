@@ -2,7 +2,8 @@ import { Point } from './types';
 import { clone, scale_of_zoom, zoom_of_scale } from './util';
 import { produce } from 'immer';
 import { SE2, compose, composen, inverse, mkSE2, scale, translate } from './se2';
-import { vdiag } from './vutil';
+import { vadd, vdiag } from './vutil';
+import { PANNING_MARGIN } from './main';
 
 export type CameraData = {
   // The "origin" is the where the top-left of the canvas ends up in
@@ -102,7 +103,7 @@ export function zoom_of_camera(data: CameraData): number {
 }
 
 // This sets page_from_canvas and compensates so as to preserve page_from_world
-export function set_offset(data: CameraData, page_from_canvas: Point): CameraData {
+export function set_offset_pres(data: CameraData, page_from_canvas: Point): CameraData {
   const new_canvas_from_world = composen(
     inverse(translate(page_from_canvas)),
     translate(data.page_from_canvas),
@@ -112,5 +113,24 @@ export function set_offset(data: CameraData, page_from_canvas: Point): CameraDat
     d.page_from_canvas = page_from_canvas;
     d.canvas_from_world = new_canvas_from_world;
   });
+}
 
+function add_offset_pres(data: CameraData, dpage_from_canvas: Point): CameraData {
+  return set_offset_pres(data, vadd(data.page_from_canvas, dpage_from_canvas));
+}
+
+function correctForPanning(data: CameraData): CameraData {
+  if (data.page_from_canvas.x > 0) { data = add_offset_pres(data, { x: -PANNING_MARGIN, y: 0 }); }
+  if (data.page_from_canvas.y > 0) { data = add_offset_pres(data, { y: -PANNING_MARGIN, x: 0 }); }
+  if (data.page_from_canvas.x < -2 * PANNING_MARGIN) { data = add_offset_pres(data, { x: PANNING_MARGIN, y: 0 }); }
+  if (data.page_from_canvas.y < -2 * PANNING_MARGIN) { data = add_offset_pres(data, { y: PANNING_MARGIN, x: 0 }); }
+  return data;
+}
+
+export function inc_offset(data: CameraData, dpage_from_canvas: Point): CameraData {
+  let new_page_from_canvas = vadd(data.page_from_canvas, dpage_from_canvas);
+
+  return correctForPanning(produce(data, d => {
+    d.page_from_canvas = new_page_from_canvas;
+  }));
 }

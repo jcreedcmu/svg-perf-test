@@ -8,7 +8,7 @@ import { CanvasInfo, useCanvas } from './use-canvas';
 import { compose, translate } from './se2';
 import { vadd, vsub } from './vutil';
 import { PANNING_MARGIN } from './main';
-import { set_offset } from './camera-state';
+import { set_offset_pres } from './camera-state';
 
 export type MapCanvasProps = {
   uiState: UiState,
@@ -36,7 +36,7 @@ function render(ci: CanvasInfo, state: MapCanvasState) {
   let cameraData = state.ui.cameraData;
   const ms = state.ui.mouseState;
   if (ms.t == 'pan') {
-    cameraData = set_offset(cameraData, ms.page_from_canvas);
+    cameraData = ms.cameraData;
   }
   const bbox_in_world = get_bbox_in_world(cameraData, dims)
   state.geo.coastlineLayer.render({
@@ -69,7 +69,7 @@ export function MapCanvas(props: MapCanvasProps): JSX.Element {
       state.mouseState.t,
       state.cameraData,
       state.layers,
-      state.mouseState.t == 'pan' ? state.mouseState.page_from_canvas : undefined
+      state.mouseState.t == 'pan' ? state.mouseState.cameraData.canvas_from_world : undefined
       // note that geo isn't here
     ],
     () => { }
@@ -121,8 +121,8 @@ export function MapCanvas(props: MapCanvasProps): JSX.Element {
     }
 
     if (ms.t == 'pan') {
-      canvasStyle.top = ms.page_from_canvas.y;
-      canvasStyle.left = ms.page_from_canvas.x;
+      canvasStyle.top = ms.cameraData.page_from_canvas.y;
+      canvasStyle.left = ms.cameraData.page_from_canvas.x;
     }
   }
 

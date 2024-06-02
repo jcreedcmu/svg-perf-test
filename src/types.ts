@@ -135,8 +135,7 @@ export type MouseState =
     t: 'pan',
     orig_p_in_page: Point,
     p_in_page: Point,
-    orig_camera: CameraData,
-    page_from_canvas: Point,
+    cameraData: CameraData,
   }
   ;
 

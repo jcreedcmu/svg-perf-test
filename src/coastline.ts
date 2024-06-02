@@ -463,12 +463,12 @@ export class CoastlineLayer implements Layer {
   }
 
   make_insert_feature_modal(pts: Point[], dispatch: () => void) {
-    set_value($('#insert_feature input[name="text"]')[0], "");
-    set_value($('#insert_feature input[name="key"]')[0], "road");
-    set_value($('#insert_feature input[name="value"]')[0], "highway");
-    set_value($('#insert_feature input[name="zoom"]')[0], "");
+    // set_value($('#insert_feature input[name="text"]')[0], "");
+    // set_value($('#insert_feature input[name="key"]')[0], "road");
+    // set_value($('#insert_feature input[name="value"]')[0], "highway");
+    // set_value($('#insert_feature input[name="zoom"]')[0], "");
 
-    const submit_f = (e: JQuery.Event) => {
+    const submit_f = (e: Event) => {
       e.preventDefault();
 
       // No idea what's going on here
@@ -489,14 +489,16 @@ export class CoastlineLayer implements Layer {
       const props: PolyProps = { t: "boundary" };
       this.add_arc_feature("Polygon", pts, props);
       dispatch();
-      ($("#insert_feature") as any).modal("hide");
+      // ($("#insert_feature") as any).modal("hide");
     };
-    $("#insert_feature form").off("submit");
-    $("#insert_feature form").on("submit", submit_f);
-    $("#insert_feature form button[type=submit]").off("click");
-    $("#insert_feature form button[type=submit]").on("click", submit_f);
+    // $("#insert_feature form").off("submit");
+    // $("#insert_feature form").on("submit", submit_f);
+    // $("#insert_feature form button[type=submit]").off("click");
+    // $("#insert_feature form button[type=submit]").on("click", submit_f);
 
-    ($('#insert_feature') as any).modal('show');
-    setTimeout(function() { $('#insert_feature input[name="text"]').focus(); }, 500);
+    // ($('#insert_feature') as any).modal('show');
+    setTimeout(function() {
+      // $('#insert_feature input[name="text"]').focus();
+    }, 500);
   }
 }

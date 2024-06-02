@@ -86,3 +86,10 @@ shorter ones, back when I was importing the coastline initially. I
 haven't had the chance to test it recently, so I'm just deleting the
 code. It probably should be either in arcstore or an offline batch job
 thing.
+
+=== 2024.06.02 META: (:id ee3fa1cb-8006-4c8d-a85a-4499910868fe)
+
+Q: I'm going through and trying to drag the whole previously existing
+application into a more reasonable react/"redux" kind of arrangement.
+What's a good commit for reference for how it used to work?
+A: The commit f025dcd still has a lot of the old ui working.

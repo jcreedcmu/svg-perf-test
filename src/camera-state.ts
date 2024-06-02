@@ -12,7 +12,7 @@ export type CameraData = {
 
   // So this is the translation part of the transform page_from_canvas
   // It's always (0,0) whenever we aren't currently in the state of panning.
-  origin: Point,
+  page_from_canvas: Point,
 
   // page coordinates have (0,0) at the top left of the page and increase right and down
   // their units are pixels
@@ -28,7 +28,7 @@ export function mkCameraData(): CameraData {
     page_from_world = JSON.parse(localStorage.page_from_world);
   }
 
-  return { origin: { x: 0, y: 0 }, page_from_world };
+  return { page_from_canvas: { x: 0, y: 0 }, page_from_world };
 }
 
 export function doZoom(data: CameraData, p_in_page: Point, zoom: number): CameraData {
@@ -57,19 +57,19 @@ export function incCam(data: CameraData, dx: number, dy: number): CameraData {
 
 export function setOrigin(data: CameraData, x: number, y: number): CameraData {
   return produce(data, s => {
-    s.origin.x = x;
-    s.origin.y = y;
+    s.page_from_canvas.x = x;
+    s.page_from_canvas.y = y;
   });
 }
 
 export function getOrigin(data: CameraData): Point {
-  return data.origin;
+  return data.page_from_canvas;
 }
 
 export function incOrigin(data: CameraData, dx: number, dy: number): CameraData {
   return storeCam(produce(data, s => {
-    s.origin.x += dx;
-    s.origin.y += dy;
+    s.page_from_canvas.x += dx;
+    s.page_from_canvas.y += dy;
   }));
 }
 
@@ -84,7 +84,7 @@ export function page_from_world_of_cameraData(data: CameraData): SE2 {
 }
 
 export function canvas_from_page_of_cameraData(data: CameraData): SE2 {
-  return translate({ x: -data.origin.x, y: -data.origin.y });
+  return translate({ x: -data.page_from_canvas.x, y: -data.page_from_canvas.y });
 }
 
 export function canvas_from_world_of_cameraData(data: CameraData): SE2 {

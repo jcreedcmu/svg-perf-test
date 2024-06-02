@@ -36,7 +36,7 @@ function render(ci: CanvasInfo, state: MapCanvasState) {
   const ms = state.ui.mouseState;
   if (ms.t == 'pan') {
     cameraData = produce(cameraData, c => {
-      c.origin = ms.page_from_canvas;
+      c.page_from_canvas = ms.page_from_canvas;
     });
   }
   const bbox_in_world = get_bbox_in_world(cameraData, dims)

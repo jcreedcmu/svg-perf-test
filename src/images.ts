@@ -1,4 +1,4 @@
-import { scale_of_camera } from './camera-state';
+import { CameraData, scale_of_camera } from './camera-state';
 import { Dict, Images, Layer, Point, RenderCtx, SizedImage, NamedImage } from './types';
 import { buffer, canvasIntoWorld } from './util';
 
@@ -12,6 +12,38 @@ function mod(n: number, m: number): number {
     return n % m
   else
     return ((n % m) + m) % m
+}
+
+function renderUnderlying(d: CanvasRenderingContext2D, cameraData: CameraData, named_images: NamedImage[], cur_img_ix: number, ovr: HTMLImageElement | null): void {
+
+  const nimg = named_images[cur_img_ix];
+  d.save();
+  canvasIntoWorld(d, cameraData);
+  d.scale(1, -1);
+  d.globalAlpha = 0.25;
+
+  if (ovr != null) {
+    d.imageSmoothingEnabled = false;
+    d.drawImage(ovr, 0, 0, ovr.width,
+      ovr.height, nimg.x, -nimg.y + ovr.height * nimg.scale,
+      ovr.width * nimg.scale,
+      -ovr.height * nimg.scale);
+    d.globalAlpha = 0.5;
+    d.beginPath();
+    d.moveTo(0, -nimg.y);
+    d.lineTo(3807232, -nimg.y);
+    d.moveTo(nimg.x, 0);
+    d.lineTo(nimg.x, -3226521);
+
+    d.strokeStyle = "blue";
+    d.lineWidth = 1 / scale_of_camera(cameraData);
+    d.stroke();
+    d.strokeRect(nimg.x, -nimg.y + ovr.height * nimg.scale,
+      ovr.width * nimg.scale,
+      -ovr.height * nimg.scale);
+  }
+
+  d.restore();
 }
 
 export class ImageLayer implements Layer {
@@ -32,34 +64,7 @@ export class ImageLayer implements Layer {
 
   render(rc: RenderCtx): void {
     const { d, cameraData } = rc;
-    const nimg = this.named_imgs[this.cur_img_ix];
-    d.save();
-    canvasIntoWorld(d, cameraData);
-    d.scale(1, -1);
-    d.globalAlpha = 0.25;
-    const ovr = this.overlay;
-    if (ovr != null) {
-      d.imageSmoothingEnabled = false;
-      d.drawImage(ovr, 0, 0, ovr.width,
-        ovr.height, nimg.x, -nimg.y + ovr.height * nimg.scale,
-        ovr.width * nimg.scale,
-        -ovr.height * nimg.scale);
-      d.globalAlpha = 0.5;
-      d.beginPath();
-      d.moveTo(0, -nimg.y);
-      d.lineTo(3807232, -nimg.y);
-      d.moveTo(nimg.x, 0);
-      d.lineTo(nimg.x, -3226521);
-
-      d.strokeStyle = "blue";
-      d.lineWidth = 1 / scale_of_camera(cameraData);
-      d.stroke();
-      d.strokeRect(nimg.x, -nimg.y + ovr.height * nimg.scale,
-        ovr.width * nimg.scale,
-        -ovr.height * nimg.scale);
-    }
-
-    d.restore();
+    renderUnderlying(d, cameraData, this.named_imgs, this.cur_img_ix, this.overlay);
   }
 
   reload_img(img_ix: number): void {

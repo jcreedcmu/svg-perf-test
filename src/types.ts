@@ -146,7 +146,8 @@ export type NamedImage = SizedImage & { name: string };
 
 export type ImageLayerState = {
   cur_img_ix: number,
-  named_imgs: NamedImage[]
+  named_imgs: NamedImage[],
+  overlay: HTMLImageElement | null,
 }
 
 export type UiState = {

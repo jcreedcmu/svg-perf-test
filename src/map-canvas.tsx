@@ -15,7 +15,6 @@ export type MapCanvasProps = {
   uiState: UiState,
   dispatch: Dispatch,
   geo: Geometry,
-  images: Dict<SizedImage>,
 };
 
 export type MapCanvasState = {
@@ -43,7 +42,7 @@ function render(ci: CanvasInfo, state: MapCanvasState) {
   state.geo.coastlineLayer.render({
     d, bbox_in_world, cameraData, mode: 'Pan', us: state.ui,
   });
-  state.geo.imageLayer.render({
+  state.geo.imageLayer.renderUnderlying({
     d, bbox_in_world, cameraData, mode: 'Pan', us: state.ui,
   });
   state.geo.riverLayer.render({

@@ -64,14 +64,14 @@ function mkApp(): Promise<App> {
   });
 }
 
-function render_origin(cameraData: CameraData): void {
-  const or = getOrigin(cameraData);
-  $("#c").css({
-    top: or.y + "px",
-    left: or.x + "px",
-    position: "fixed",
-  });
-}
+// function render_origin(cameraData: CameraData): void {
+//   const or = getOrigin(cameraData);
+//   $("#c").css({
+//     top: or.y + "px",
+//     left: or.x + "px",
+//     position: "fixed",
+//   });
+// }
 
 function reset_canvas_size(c: HTMLCanvasElement, panning: boolean, cameraData: CameraData): {
   newCameraData: CameraData,
@@ -184,7 +184,7 @@ export class App {
       const { newCameraData, dims } = reset_canvas_size(this.c, this.panning, cameraData);
       this.w = dims.x;
       this.h = dims.y;
-      render_origin(newCameraData);
+      // render_origin(newCameraData);
       this.render(newCameraData);
     }
 
@@ -285,22 +285,22 @@ export class App {
 
     switch (this.mode) {
       case "Pan":
-        if (e.ctrlKey) {
-          const membase = image_layer.get_pos();
-          $(document).on('mousemove.drag', e => {
-            image_layer.set_pos({
-              x: membase.x + (e.pageX! - x) / scale,
-              y: membase.y - (e.pageY! - y) / scale
-            });
-            this.th.maybe();
-          });
-          $(document).on('mouseup.drag', e => {
-            $(document).off('.drag');
-            this.render(this.getCameraData());
-          });
-        }
-        else
-          this.start_pan(x, y, cameraData);
+        // if (e.ctrlKey) {
+        //   const membase = image_layer.get_pos();
+        //   $(document).on('mousemove.drag', e => {
+        //     image_layer.set_pos({
+        //       x: membase.x + (e.pageX! - x) / scale,
+        //       y: membase.y - (e.pageY! - y) / scale
+        //     });
+        //     this.th.maybe();
+        //   });
+        //   $(document).on('mouseup.drag', e => {
+        //     $(document).off('.drag');
+        //     this.render(this.getCameraData());
+        //   });
+        // }
+        // else
+        //   this.start_pan(x, y, cameraData);
         break;
 
       case "Measure":
@@ -541,49 +541,49 @@ export class App {
 
   start_pan(x: number, y: number, cameraData: CameraData): void {
     const stop_at: Stopper = this.start_pan_and_stop(x, y, cameraData);
-    $(document).on('mouseup.drag', e => {
-      stop_at(e.pageX!, e.pageY!);
-    });
+    // $(document).on('mouseup.drag', e => {
+    //   stop_at(e.pageX!, e.pageY!);
+    // });
   }
 
   // returns stopping function
   start_pan_and_stop(x: number, y: number, origCameraData: CameraData): Stopper {
-    $("#c").css({ cursor: 'move' });
+    // $("#c").css({ cursor: 'move' });
     this.panning = true;
     //  state.set_cam(camera.x + PANNING_MARGIN, camera.y + PANNING_MARGIN);
 
     const { newCameraData, dims } = reset_canvas_size(this.c, this.panning, origCameraData);
     this.w = dims.x;
     this.h = dims.y;
-    render_origin(origCameraData);
+    //    render_origin(origCameraData);
     this.render(origCameraData);
 
     const last = { x: x, y: y };
-    $(document).on('mousemove.drag', e => {
-      let cameraData = this.getCameraData();
-      const org = getOrigin(cameraData);
-      cameraData = incOrigin(cameraData, e.pageX! - last.x, e.pageY! - last.y);
-      cameraData = incCam(cameraData, e.pageX! - last.x, e.pageY! - last.y);
+    // $(document).on('mousemove.drag', e => {
+    //   let cameraData = this.getCameraData();
+    //   const org = getOrigin(cameraData);
+    //   cameraData = incOrigin(cameraData, e.pageX! - last.x, e.pageY! - last.y);
+    //   cameraData = incCam(cameraData, e.pageX! - last.x, e.pageY! - last.y);
 
-      last.x = e.pageX!;
-      last.y = e.pageY!;
+    //   last.x = e.pageX!;
+    //   last.y = e.pageY!;
 
-      let stale = false;
-      if (org.x > 0) { cameraData = incOrigin(cameraData, -PANNING_MARGIN, 0); stale = true; }
-      if (org.y > 0) { cameraData = incOrigin(cameraData, 0, -PANNING_MARGIN); stale = true; }
-      if (org.x < -2 * PANNING_MARGIN) { cameraData = incOrigin(cameraData, PANNING_MARGIN, 0); stale = true; }
-      if (org.y < -2 * PANNING_MARGIN) { cameraData = incOrigin(cameraData, 0, PANNING_MARGIN); stale = true; }
-      this.setCameraData(cameraData);
+    //   let stale = false;
+    //   if (org.x > 0) { cameraData = incOrigin(cameraData, -PANNING_MARGIN, 0); stale = true; }
+    //   if (org.y > 0) { cameraData = incOrigin(cameraData, 0, -PANNING_MARGIN); stale = true; }
+    //   if (org.x < -2 * PANNING_MARGIN) { cameraData = incOrigin(cameraData, PANNING_MARGIN, 0); stale = true; }
+    //   if (org.y < -2 * PANNING_MARGIN) { cameraData = incOrigin(cameraData, 0, PANNING_MARGIN); stale = true; }
+    //   this.setCameraData(cameraData);
 
-      if (stale) {
-        this.render(cameraData);
-      }
-      render_origin(cameraData);
-    });
+    //   if (stale) {
+    //     this.render(cameraData);
+    //   }
+    //   render_origin(cameraData);
+    // });
 
     return (offx: number, offy: number) => {
-      $("#c").css({ cursor: '' });
-      $(document).off('.drag');
+      //      $("#c").css({ cursor: '' });
+      //    $(document).off('.drag');
       const canvas_from_world = canvas_from_world_of_cameraData(origCameraData);
       let cameraData = incCam(
         origCameraData,
@@ -595,7 +595,7 @@ export class App {
       this.w = dims.x;
       this.h = dims.y;
       cameraData = newCameraData;
-      render_origin(cameraData);
+      // render_origin(cameraData);
       this.setCameraData(cameraData);
       this.render(cameraData);
     };
@@ -633,24 +633,24 @@ export class App {
       d.stroke();
       d.restore();
     }
-    $(document).on('mousemove.drag', e => {
-      const x = e.pageX!;
-      const y = e.pageY!;
-      const worldp = app_world_from_canvas(cameraData, { x, y });
-      dragp.x = worldp.x;
-      dragp.y = worldp.y;
-      this.th.maybe();
-    });
-    $(document).on('mouseup.drag', e => {
-      this.render_extra = null;
-      $(document).off('.drag');
-      const snaps = this.lastz;
-      if (snaps.length >= 1) {
-        dragp = this.coastline_layer.target_point(snaps[0]);
-      }
-      k(dragp);
-      this.render(this.getCameraData());
-    });
+    // $(document).on('mousemove.drag', e => {
+    //   const x = e.pageX!;
+    //   const y = e.pageY!;
+    //   const worldp = app_world_from_canvas(cameraData, { x, y });
+    //   dragp.x = worldp.x;
+    //   dragp.y = worldp.y;
+    //   this.th.maybe();
+    // });
+    // $(document).on('mouseup.drag', e => {
+    //   this.render_extra = null;
+    //   $(document).off('.drag');
+    //   const snaps = this.lastz;
+    //   if (snaps.length >= 1) {
+    //     dragp = this.coastline_layer.target_point(snaps[0]);
+    //   }
+    //   k(dragp);
+    //   this.render(this.getCameraData());
+    // });
   }
 
   save(): void {
@@ -659,11 +659,11 @@ export class App {
       ...this.image_layer.model(),
     };
 
-    $.ajax("/export", {
-      method: "POST", data: JSON.stringify(geo), contentType: "text/plain", success: function() {
-        console.log("success");
-      }
-    });
+    // $.ajax("/export", {
+    //   method: "POST", data: JSON.stringify(geo), contentType: "text/plain", success: function() {
+    //     console.log("success");
+    //   }
+    // });
   }
 
   start_measure(startp_in_world: Point): void {
@@ -704,19 +704,19 @@ export class App {
 
       d.restore();
     }
-    $(document).on('mousemove.drag', e => {
-      const x = e.pageX!;
-      const y = e.pageY!;
-      const worldp = app_world_from_canvas(cameraData, { x, y });
-      dragp.x = worldp.x;
-      dragp.y = worldp.y;
-      this.th.maybe();
-    });
-    $(document).on('mouseup.drag', e => {
-      this.render_extra = null;
-      $(document).off('.drag');
-      this.render(this.getCameraData());
-    });
+    // $(document).on('mousemove.drag', e => {
+    //   const x = e.pageX!;
+    //   const y = e.pageY!;
+    //   const worldp = app_world_from_canvas(cameraData, { x, y });
+    //   dragp.x = worldp.x;
+    //   dragp.y = worldp.y;
+    //   this.th.maybe();
+    // });
+    // $(document).on('mouseup.drag', e => {
+    //   this.render_extra = null;
+    //   $(document).off('.drag');
+    //   this.render(this.getCameraData());
+    // });
   }
 
   start_freehand(startp: Point, k: (dragp: Path) => void): void {
@@ -745,28 +745,28 @@ export class App {
       d.stroke();
       d.restore();
     }
-    $(document).on('mousemove.drag', e => {
-      const x = e.pageX!;
-      const y = e.pageY!;
-      const worldp = app_world_from_canvas(cameraData, { x, y });
-      path.push({ point: worldp, z: 1000 });
-      resimplify(path);
-      this.th.maybe();
-    });
-    $(document).on('mouseup.drag', e => {
-      const spoint = this.get_snap(this.lastz);
-      if (spoint != null) {
-        path[path.length - 1] = { point: spoint, z: 1000 };
-        startp = spoint;
-      }
+    // $(document).on('mousemove.drag', e => {
+    //   const x = e.pageX!;
+    //   const y = e.pageY!;
+    //   const worldp = app_world_from_canvas(cameraData, { x, y });
+    //   path.push({ point: worldp, z: 1000 });
+    //   resimplify(path);
+    //   this.th.maybe();
+    // });
+    // $(document).on('mouseup.drag', e => {
+    //   const spoint = this.get_snap(this.lastz);
+    //   if (spoint != null) {
+    //     path[path.length - 1] = { point: spoint, z: 1000 };
+    //     startp = spoint;
+    //   }
 
-      this.render_extra = null;
-      $(document).off('.drag');
-      k(path.filter(({ point: pt, z }: Zpoint, n: number) => {
-        return z > thresh || n == 0 || n == path.length - 1;
-      }));
-      this.render(this.getCameraData());
-    });
+    //   this.render_extra = null;
+    //   $(document).off('.drag');
+    //   k(path.filter(({ point: pt, z }: Zpoint, n: number) => {
+    //     return z > thresh || n == 0 || n == path.length - 1;
+    //   }));
+    //   this.render(this.getCameraData());
+    // });
   }
 
 

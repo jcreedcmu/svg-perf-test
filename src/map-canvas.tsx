@@ -8,9 +8,10 @@ import { CanvasInfo, useCanvas } from './use-canvas';
 import { compose, translate } from './se2';
 import { vadd, vsub } from './vutil';
 import { PANNING_MARGIN } from './main';
-import { set_offset_pres } from './camera-state';
+import { CameraData, scale_of_camera, set_offset_pres } from './camera-state';
 import { colors } from './colors';
 import { renderImageOverlay } from './images';
+import { meters_to_string } from './util';
 
 export type MapCanvasProps = {
   uiState: UiState,
@@ -21,6 +22,40 @@ export type MapCanvasProps = {
 export type MapCanvasState = {
   ui: UiState,
   geo: Geometry,
+}
+
+function render_scale(d: CanvasRenderingContext2D, size: Point, cameraData: CameraData): void {
+  const scale = scale_of_camera(cameraData);
+  const { x: w, y: h } = size;
+  d.save();
+  d.fillStyle = "black";
+  d.font = "10px sans-serif";
+
+  d.translate(Math.floor(w / 2) + 0.5, 0.5);
+  function label(px_dist: number) {
+    const str = meters_to_string(px_dist / scale);
+    d.textAlign = "center";
+    d.fillText(str, px_dist, h - 12);
+  }
+  d.lineWidth = 1;
+  d.strokeStyle = "rgba(0,0,0,0.1)";
+  d.strokeRect(0, h - 25 - 50, 50, 50);
+  d.strokeRect(0, h - 25 - 128, 128, 128);
+  d.beginPath()
+  d.strokeStyle = "black";
+  d.moveTo(0, h - 30);
+  d.lineTo(0, h - 25);
+  d.lineTo(50, h - 25);
+  d.lineTo(50, h - 30);
+  d.moveTo(50, h - 25);
+  d.lineTo(128, h - 25);
+  d.lineTo(128, h - 30);
+  d.stroke();
+  label(0);
+  label(50);
+  label(128);
+
+  d.restore();
 }
 
 function render(ci: CanvasInfo, state: MapCanvasState) {
@@ -54,6 +89,14 @@ function render(ci: CanvasInfo, state: MapCanvasState) {
     d, bbox_in_world, cameraData, mode: 'Pan', us: state.ui,
   });
 
+  // TODO: Vertex hover
+  const panning = state.ui.mouseState.t == 'pan';
+  if (!panning) {
+    render_scale(d, dims, cameraData);
+    // TODO: Ui Mode
+    // TODO: "Render Extra", like point dragging
+    // TODO: Selection
+  }
 }
 
 // Gets width and height of canvas

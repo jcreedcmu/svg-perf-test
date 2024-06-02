@@ -146,15 +146,17 @@ export function MainUi(props: MainUiProps): JSX.Element {
     width: SIDEBAR_WIDTH,
   };
 
-  return <span>
+  return <div>
     <div className="sidebar" style={style}>
       {radio("road", "Road")}
       {radio("boundary", "Boundary")}
       {radio("river", "River")}
+    </div>
+    <div className="map-container" >
       <MapCanvas uiState={state} dispatch={dispatch} geo={geo} />
     </div>
     <FeatureModal us={state} dispatch={dispatch} />
     <LabelModal us={state} dispatch={dispatch} />
-  </span>;
+  </div>;
 
 }

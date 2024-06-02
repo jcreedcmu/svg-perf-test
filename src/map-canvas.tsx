@@ -3,7 +3,7 @@ import * as React from 'react';
 import { useEffect } from 'react';
 import { get_bbox_in_world } from './render';
 import { Geometry, MouseState, Point, UiState } from './types';
-import { Dispatch } from './ui';
+import { Dispatch, SIDEBAR_WIDTH } from './ui';
 import { CanvasInfo, useCanvas } from './use-canvas';
 import { compose, translate } from './se2';
 import { vadd, vsub } from './vutil';
@@ -26,12 +26,10 @@ function render(ci: CanvasInfo, state: MapCanvasState) {
   console.log('painting');
 
   const dims = getCanvasDims(state.ui.mouseState);
-  d.save();
-  d.fillStyle = "#7ff";
+  // background ocean
+  d.fillStyle = "#bac7f8";
   d.fillRect(0, 0, dims.x, dims.y);
-  d.fillStyle = "black";
-  d.textBaseline = 'top';
-  d.restore();
+
 
   let cameraData = state.ui.cameraData;
   const ms = state.ui.mouseState;
@@ -42,14 +40,13 @@ function render(ci: CanvasInfo, state: MapCanvasState) {
   state.geo.coastlineLayer.render({
     d, bbox_in_world, cameraData, mode: 'Pan', us: state.ui,
   });
-  d.fillText(JSON.stringify(state.ui.cameraData.canvas_from_world, null, 2), 0, 10);
+
 }
 
 // Gets width and height of canvas
-// XXX the Math.min(..., 500) on both dimensions is just for testing, and should be removed
 function getCanvasDims(ms: MouseState): Point {
   const margin = ms.t == 'pan' ? PANNING_MARGIN : 0;
-  return { x: Math.min(innerWidth, 500) + 2 * margin, y: Math.min(innerHeight, 500) + 2 * margin };
+  return { x: innerWidth + 2 * margin, y: innerHeight + 2 * margin };
 }
 
 export function MapCanvas(props: MapCanvasProps): JSX.Element {

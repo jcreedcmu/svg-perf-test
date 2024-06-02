@@ -119,7 +119,7 @@ function mkUiState(images: Dict<SizedImage>): UiState {
 
   return {
     layers: { boundary: false, river: false, road: false },
-    mode: { t: 'normal' },
+    mode: { t: 'normal', tool: 'Pan' },
     cameraData: mkCameraData(),
     mouseState: { t: 'up' },
     imageLayerState: {

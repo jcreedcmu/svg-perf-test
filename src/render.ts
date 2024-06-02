@@ -1,7 +1,7 @@
 import { CameraData, scale_of_camera, zoom_of_camera } from "./camera-state";
 import { colors } from "./colors";
 import { App, DEBUG, OFFSET } from "./main";
-import { Mode, Point, Rect, Target, UiState } from "./types";
+import { Tool, Point, Rect, Target, UiState } from "./types";
 import { AccessRef } from "./ui";
 import { app_world_from_canvas, canvasIntoWorld } from "./util";
 
@@ -12,7 +12,7 @@ export function get_bbox_in_world(cameraData: CameraData, size: Point): Rect {
   return [tl.x, br.y, br.x, tl.y];
 }
 
-export function paint(d: CanvasRenderingContext2D, size: Point, mode: Mode, cameraData: CameraData, state: UiState, app: App): void {
+export function paint(d: CanvasRenderingContext2D, size: Point, mode: Tool, cameraData: CameraData, state: UiState, app: App): void {
   const { x: w, y: h } = size;
 
   //  const t = Date.now();

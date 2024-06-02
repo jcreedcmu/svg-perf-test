@@ -64,9 +64,8 @@ function render(ci: CanvasInfo, state: MapCanvasState) {
 
   const dims = getCanvasDims(state.ui.mouseState);
   // background ocean
-  d.fillStyle = colors.debug_ocean;
+  d.fillStyle = colors.ocean;
   d.fillRect(0, 0, dims.x, dims.y);
-
 
   let cameraData = state.ui.cameraData;
   const ms = state.ui.mouseState;
@@ -79,6 +78,7 @@ function render(ci: CanvasInfo, state: MapCanvasState) {
     d, bbox_in_world, cameraData, mode: 'Pan', us: state.ui,
   });
 
+  const { mode } = state.ui;
   const { named_imgs, cur_img_ix, overlay } = state.ui.imageLayerState;
   renderImageOverlay(d, cameraData, named_imgs, cur_img_ix, overlay == null ? null : (window as any)._image);
 
@@ -92,9 +92,19 @@ function render(ci: CanvasInfo, state: MapCanvasState) {
   // TODO: Vertex hover
   const panning = state.ui.mouseState.t == 'pan';
   if (!panning) {
-    render_scale(d, dims, cameraData);
-    // TODO: Ui Mode
 
+    // Distance Scale
+    render_scale(d, dims, cameraData);
+
+    // Ui Mode
+    if (mode.t == 'normal') {
+      d.fillStyle = "black";
+      d.strokeStyle = "white";
+      d.font = "bold 12px sans-serif";
+      d.lineWidth = 2;
+      d.strokeText(mode.tool, 20, dims.y - 20);
+      d.fillText(mode.tool, 20, dims.y - 20);
+    }
 
     // Zoom indicator
     d.fillStyle = "black";
@@ -117,9 +127,8 @@ function render(ci: CanvasInfo, state: MapCanvasState) {
 
 // Gets width and height of canvas
 function getCanvasDims(ms: MouseState): Point {
-  const DEBUG_PARTIAL_VIEW = 0.9;
   const margin = ms.t == 'pan' ? PANNING_MARGIN : 0;
-  return { x: innerWidth + 2 * margin, y: innerHeight * DEBUG_PARTIAL_VIEW + 2 * margin };
+  return { x: innerWidth + 2 * margin, y: innerHeight + 2 * margin };
 }
 
 function handleMouseWheel(e: React.WheelEvent, dispatch: Dispatch): void {

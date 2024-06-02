@@ -70,7 +70,7 @@ export function reduce(state: UiState, action: Action): UiState {
     case "FeatureModalCancel":
     case "LabelModalCancel":
       return produce(state, s => {
-        s.mode = { t: "normal" };
+        s.mode = { t: "normal", tool: 'Pan' };
       });
     case "RadioToggle":
       return produce(state, s => {

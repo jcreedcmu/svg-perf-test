@@ -9,7 +9,7 @@ import { RiverLayer } from './rivers';
 import { SketchLayer } from './sketch';
 import { ImageLayer } from './images';
 
-export type Mode = "Pan" | "Freehand" | "Move" | "Select" | "Label" | "Measure" | "Extract";
+export type Tool = "Pan" | "Freehand" | "Move" | "Select" | "Label" | "Measure" | "Extract";
 
 
 export type Rect = [number, number, number, number];
@@ -124,7 +124,7 @@ export type Bush<T> = RBush<Bbox & { payload: T }>;
 
 export type LabelUIMode = { text: string, tp: string, zoom: string };
 type UIMode =
-  | { t: 'normal' }
+  | { t: 'normal', tool: Tool }
   | {
     t: 'label-modal', v: LabelUIMode, status:
     { isNew: true, pt: Point } |
@@ -170,7 +170,7 @@ export type RenderCtx = {
   d: Ctx,
   us: UiState,
   cameraData: CameraData,
-  mode: Mode,
+  mode: Tool,
   bbox_in_world: ArRectangle,
 };
 

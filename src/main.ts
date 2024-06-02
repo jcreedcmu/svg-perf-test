@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { createRoot } from 'react-dom/client';
-import { ArRectangle, Ctx, Geo, Label, Layer, Mode, Path, Point, Rect, Rivers, Stopper, Target, Zpoint } from './types';
+import { ArRectangle, Ctx, Geo, Label, Layer, Tool, Path, Point, Rect, Rivers, Stopper, Target, Zpoint } from './types';
 
 import { Data, Loader } from './loader';
 import { resimplify } from './simplify';
@@ -104,7 +104,7 @@ export class App {
   river_layer: RiverLayer;
   sketch_layer: SketchLayer;
   render_extra: null | ((cameraData: CameraData, d: Ctx) => void) = null;
-  mode: Mode = "Pan";
+  mode: Tool = "Pan";
   panning: boolean = false;
   data: Data; // Probably want to eventually get rid of this
   mouse: Point = { x: 0, y: 0 };
@@ -208,7 +208,7 @@ export class App {
     this._render(w, h, d, mode, cameraData);
   }
 
-  _render(w: number, h: number, d: Ctx, mode: Mode, cameraData: CameraData): void {
+  _render(w: number, h: number, d: Ctx, mode: Tool, cameraData: CameraData): void {
     const access: AccessRef | null = this.accessRef.current;
     if (access == null)
       return;

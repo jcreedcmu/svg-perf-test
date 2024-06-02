@@ -1,7 +1,7 @@
 import { incCam } from './camera-state';
 import { LabType, UiState, Action } from './types';
 import { produce } from 'immer';
-import { vsub } from './vutil';
+import { vadd, vsub } from './vutil';
 import { PANNING_MARGIN } from './main';
 
 export function reduce(state: UiState, action: Action): UiState {
@@ -107,9 +107,18 @@ export function reduce(state: UiState, action: Action): UiState {
       const ms = state.mouseState;
       if (ms.t != 'pan')
         return state;
+
+      let new_page_from_canvas = vadd(ms.page_from_canvas, vsub(action.p_in_page, ms.p_in_page));
+      if (new_page_from_canvas.x > 0) { new_page_from_canvas.x -= PANNING_MARGIN; }
+      if (new_page_from_canvas.y > 0) { new_page_from_canvas.y -= PANNING_MARGIN; }
+      if (new_page_from_canvas.x < - 2 * PANNING_MARGIN) { new_page_from_canvas.x += PANNING_MARGIN; }
+      if (new_page_from_canvas.y < -2 * PANNING_MARGIN) { new_page_from_canvas.y += PANNING_MARGIN; }
+
       const newMs = produce(ms, s => {
         s.p_in_page = action.p_in_page;
+        s.page_from_canvas = new_page_from_canvas;
       });
+
       return produce(state, s => {
         s.mouseState = newMs;
       });

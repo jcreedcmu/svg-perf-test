@@ -1,17 +1,23 @@
 import { produce } from 'immer';
 import * as React from 'react';
 import { useEffect } from 'react';
-import { get_bbox_in_world } from './render';
-import { Dict, Geometry, MouseState, Point, SizedImage, UiState } from './types';
+import { Dict, Geometry, MouseState, Point, Rect, SizedImage, UiState } from './types';
 import { Dispatch, SIDEBAR_WIDTH } from './ui';
 import { CanvasInfo, useCanvas } from './use-canvas';
 import { compose, translate } from './se2';
 import { vadd, vsub } from './vutil';
-import { PANNING_MARGIN } from './main';
+import { OFFSET, PANNING_MARGIN } from './main';
 import { CameraData, scale_of_camera, set_offset_pres, zoom_of_camera } from './camera-state';
 import { colors } from './colors';
 import { renderImageOverlay } from './images';
-import { meters_to_string } from './util';
+import { app_world_from_canvas, meters_to_string } from './util';
+
+export function get_bbox_in_world(cameraData: CameraData, size: Point): Rect {
+  const { x: w, y: h } = size;
+  const tl = app_world_from_canvas(cameraData, { x: OFFSET, y: OFFSET });
+  const br = app_world_from_canvas(cameraData, { x: w - OFFSET, y: h - OFFSET });
+  return [tl.x, br.y, br.x, tl.y];
+}
 
 export type MapCanvasProps = {
   uiState: UiState,

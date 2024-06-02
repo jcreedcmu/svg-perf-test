@@ -8,7 +8,7 @@ import { CanvasInfo, useCanvas } from './use-canvas';
 import { compose, translate } from './se2';
 import { vadd, vsub } from './vutil';
 import { PANNING_MARGIN } from './main';
-import { CameraData, scale_of_camera, set_offset_pres } from './camera-state';
+import { CameraData, scale_of_camera, set_offset_pres, zoom_of_camera } from './camera-state';
 import { colors } from './colors';
 import { renderImageOverlay } from './images';
 import { meters_to_string } from './util';
@@ -94,7 +94,22 @@ function render(ci: CanvasInfo, state: MapCanvasState) {
   if (!panning) {
     render_scale(d, dims, cameraData);
     // TODO: Ui Mode
-    // TODO: Zoom Indicator
+
+
+    // Zoom indicator
+    d.fillStyle = "black";
+    d.strokeStyle = "white";
+    d.font = "bold 12px sans-serif";
+    d.lineWidth = 2;
+
+    const scale = scale_of_camera(cameraData);
+    const { named_imgs, cur_img_ix } = state.ui.imageLayerState;
+    const img_name = named_imgs[cur_img_ix].name;
+    const txt = "Zoom: " + zoom_of_camera(cameraData) + " (1px = " + Math.round(1 / scale) + "m) img: " + img_name;
+    d.strokeText(txt, 20, 20);
+    d.fillText(txt, 20, 20);
+
+
     // TODO: "Render Extra", like point dragging
     // TODO: Selection
   }

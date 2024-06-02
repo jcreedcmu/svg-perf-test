@@ -94,6 +94,7 @@ function render(ci: CanvasInfo, state: MapCanvasState) {
   if (!panning) {
     render_scale(d, dims, cameraData);
     // TODO: Ui Mode
+    // TODO: Zoom Indicator
     // TODO: "Render Extra", like point dragging
     // TODO: Selection
   }
@@ -109,7 +110,7 @@ function getCanvasDims(ms: MouseState): Point {
 function handleMouseWheel(e: React.WheelEvent, dispatch: Dispatch): void {
   const x = e.pageX!;
   const y = e.pageY!;
-  const zoom = -e.deltaY / 120;
+  const zoom = e.deltaY > 0 ? -1 : 1;
   e.preventDefault();
   dispatch({ t: 'doZoom', zoom_amount: zoom, p_in_canvas: { x: e.pageX!, y: e.pageY! } });
 }

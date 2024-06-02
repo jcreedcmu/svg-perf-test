@@ -38,7 +38,17 @@ function render(ci: CanvasInfo, state: MapCanvasState) {
     cameraData = ms.cameraData;
   }
   const bbox_in_world = get_bbox_in_world(cameraData, dims)
+
   state.geo.coastlineLayer.render({
+    d, bbox_in_world, cameraData, mode: 'Pan', us: state.ui,
+  });
+  state.geo.imageLayer.render({
+    d, bbox_in_world, cameraData, mode: 'Pan', us: state.ui,
+  });
+  state.geo.riverLayer.render({
+    d, bbox_in_world, cameraData, mode: 'Pan', us: state.ui,
+  });
+  state.geo.sketchLayer.render({
     d, bbox_in_world, cameraData, mode: 'Pan', us: state.ui,
   });
 

@@ -5,6 +5,9 @@ export type Ctx = CanvasRenderingContext2D;
 import RBush, * as rbush from 'rbush';
 import { CameraData } from './camera-state';
 import { CoastlineLayer } from './coastline';
+import { RiverLayer } from './rivers';
+import { SketchLayer } from './sketch';
+import { ImageLayer } from './images';
 
 export type Mode = "Pan" | "Freehand" | "Move" | "Select" | "Label" | "Measure" | "Extract";
 
@@ -185,4 +188,7 @@ export type Action =
 
 export type Geometry = {
   coastlineLayer: CoastlineLayer,
+  imageLayer: ImageLayer,
+  riverLayer: RiverLayer,
+  sketchLayer: SketchLayer,
 };

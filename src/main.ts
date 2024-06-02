@@ -192,7 +192,10 @@ export class App {
       accessRef: this.accessRef,
       onMount,
       geo: {
+        riverLayer: this.river_layer,
         coastlineLayer: this.coastline_layer,
+        imageLayer: this.image_layer,
+        sketchLayer: this.sketch_layer,
       },
     };
     const comp = React.createElement(MainUi, props, null);

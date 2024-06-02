@@ -14,7 +14,7 @@ function mod(n: number, m: number): number {
     return ((n % m) + m) % m
 }
 
-function renderUnderlying(d: CanvasRenderingContext2D, cameraData: CameraData, named_images: NamedImage[], cur_img_ix: number, ovr: HTMLImageElement | null): void {
+export function renderImageOverlay(d: CanvasRenderingContext2D, cameraData: CameraData, named_images: NamedImage[], cur_img_ix: number, ovr: HTMLImageElement | null): void {
 
   const nimg = named_images[cur_img_ix];
   d.save();
@@ -64,7 +64,7 @@ export class ImageLayer implements Layer {
 
   render(rc: RenderCtx): void {
     const { d, cameraData } = rc;
-    renderUnderlying(d, cameraData, this.named_imgs, this.cur_img_ix, this.overlay);
+    renderImageOverlay(d, cameraData, this.named_imgs, this.cur_img_ix, this.overlay);
   }
 
   reload_img(img_ix: number): void {

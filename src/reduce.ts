@@ -1,6 +1,6 @@
 import { doZoom, incCam, inc_offset, set_offset_pres } from './camera-state';
 import { LabType, UiState, Action } from './types';
-import { produce } from 'immer';
+import { castImmutable, produce } from 'immer';
 import { vadd, vsub } from './vutil';
 import { PANNING_MARGIN } from './main';
 
@@ -126,7 +126,19 @@ export function reduce(state: UiState, action: Action): UiState {
         s.cameraData = cameraData;
       });
     }
-
+    case 'setCurrentImage': {
+      console.log('setCurrentImage', action.ix);
+      return produce(state, s => {
+        s.imageLayerState.cur_img_ix = action.ix;
+        s.imageLayerState.overlay = null;
+      });
+    }
+    case 'setOverlayImage': {
+      console.log('setOverlay');
+      return produce(state, s => {
+        s.imageLayerState.overlay = 'render';
+      });
+    }
   }
 
 }

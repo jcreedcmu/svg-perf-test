@@ -147,7 +147,7 @@ export type NamedImage = SizedImage & { name: string };
 export type ImageLayerState = {
   cur_img_ix: number,
   named_imgs: NamedImage[],
-  overlay: HTMLImageElement | null,
+  overlay: string | null,
 }
 
 export type UiState = {
@@ -193,6 +193,8 @@ export type Action =
   | { t: "mouseMove", p_in_page: Point }
   | { t: "mouseUp", p_in_page: Point }
   | { t: "doZoom", zoom_amount: number, p_in_canvas: Point } // +1/-1 is zoom in/out by factor of two
+  | { t: "setCurrentImage", ix: number }
+  | { t: "setOverlayImage" }
   ;
 
 export type Geometry = {

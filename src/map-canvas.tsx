@@ -10,6 +10,7 @@ import { vadd, vsub } from './vutil';
 import { PANNING_MARGIN } from './main';
 import { set_offset_pres } from './camera-state';
 import { colors } from './colors';
+import { renderImageOverlay } from './images';
 
 export type MapCanvasProps = {
   uiState: UiState,
@@ -42,9 +43,10 @@ function render(ci: CanvasInfo, state: MapCanvasState) {
   state.geo.coastlineLayer.render({
     d, bbox_in_world, cameraData, mode: 'Pan', us: state.ui,
   });
-  state.geo.imageLayer.renderUnderlying({
-    d, bbox_in_world, cameraData, mode: 'Pan', us: state.ui,
-  });
+
+  const { named_imgs, cur_img_ix, overlay } = state.ui.imageLayerState;
+  renderImageOverlay(d, cameraData, named_imgs, cur_img_ix, overlay == null ? null : (window as any)._image);
+
   state.geo.riverLayer.render({
     d, bbox_in_world, cameraData, mode: 'Pan', us: state.ui,
   });

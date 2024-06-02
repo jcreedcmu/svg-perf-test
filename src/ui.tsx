@@ -4,7 +4,8 @@ import { Modal } from 'react-bootstrap';
 import { mkCameraData } from './camera-state';
 import { MapCanvas } from './map-canvas';
 import { reduce } from './reduce';
-import { Action, Dict, FeatureModalResult, Geometry, LabelModalResult, LabelUIMode, NamedImage, SizedImage, UiState } from './types';
+import { Action, Dict, FeatureModalResult, Geometry, ImageLayerState, LabelModalResult, LabelUIMode, NamedImage, SizedImage, UiState } from './types';
+import { image_url } from './images';
 
 export const SIDEBAR_WIDTH = 200;
 
@@ -129,6 +130,25 @@ function mkUiState(images: Dict<SizedImage>): UiState {
   };
 }
 
+function incCurrentImage(dispatch: Dispatch, ils: ImageLayerState, di: number) {
+  const image = new Image();
+  (window as any)._image = image;
+  const { cur_img_ix, named_imgs } = ils;
+  const newix = (cur_img_ix + di + named_imgs.length) % named_imgs.length;
+  image.src = image_url(ils.named_imgs[newix].name)
+  dispatch({ t: 'setCurrentImage', ix: newix });
+  image.onload = () => {
+    dispatch({ t: 'setOverlayImage' });
+  }
+}
+
+function onKeyDown(e: KeyboardEvent, ils: ImageLayerState, dispatch: Dispatch): void {
+  switch (e.key) {
+    case ',': incCurrentImage(dispatch, ils, -1); break;
+    case '.': incCurrentImage(dispatch, ils, 1); break;
+  }
+}
+
 export function MainUi(props: MainUiProps): JSX.Element {
   const { accessRef: ref, geo, images } = props;
 
@@ -144,6 +164,13 @@ export function MainUi(props: MainUiProps): JSX.Element {
     props.onMount();
   }, []);
 
+  const keyHandler = (e: KeyboardEvent) => onKeyDown(e, state.imageLayerState, dispatch);
+  React.useEffect(() => {
+    document.addEventListener('keydown', keyHandler);
+    return () => {
+      document.removeEventListener('keydown', keyHandler);
+    };
+  }, [state]);
 
   function radio(k: keyof UiState['layers'], hs: string): JSX.Element {
     function change<T>(e: React.ChangeEvent<T>): void {

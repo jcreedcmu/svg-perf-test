@@ -1,34 +1,26 @@
 import * as React from 'react';
 
 import { createRoot } from 'react-dom/client';
-import { ArRectangle, Ctx, Geo, Label, Layer, Tool, Path, Point, Rect, Rivers, Stopper, Target, Zpoint } from './types';
+import { Ctx, Geo, Label, Layer, Point, Rivers, Target, Tool } from './types';
 
 import { Data, Loader } from './loader';
-import { resimplify } from './simplify';
-import { app_world_from_canvas, canvasIntoWorld, clone, colorToHex, meters_to_string, nope, vdist, vint } from './util';
 
-import { colors } from './colors';
-import { key } from './key';
-
-import { CameraData, canvas_from_world_of_cameraData, doZoom, getOrigin, incCam, incOrigin, scale_of_camera, setOrigin, zoom_of_camera } from './camera-state';
+import { CameraData } from './camera-state';
 import { Throttler } from './throttler';
 
 import { ArcStore } from './arcstore';
 import { CoastlineLayer } from './coastline';
-import { ImageLayer } from './images';
 import { LabelStore } from './labelstore';
 import { RiverLayer } from './rivers';
 import { SketchLayer } from './sketch';
 
-import * as geom from './geom';
-import { MainUi, MainUiProps, SIDEBAR_WIDTH } from './ui';
+import { MainUi, MainUiProps } from './ui';
 
 // These two lines force webpack to believe that the file types.ts is
 // actually used, since otherwise treeshaking or whatever finds out,
 // correctly, that it has no runtime effect. But I do want changes
 // to the file to trigger typescript rechecking.
 // XXX this all should be obsolete maybe since I'm not using webpack anymore.
-import { apply } from './se2';
 import * as t from './types';
 const undefined = t.nonce;
 
@@ -63,31 +55,6 @@ function mkApp(): Promise<App> {
   });
 }
 
-// function render_origin(cameraData: CameraData): void {
-//   const or = getOrigin(cameraData);
-//   $("#c").css({
-//     top: or.y + "px",
-//     left: or.x + "px",
-//     position: "fixed",
-//   });
-// }
-
-function reset_canvas_size(c: HTMLCanvasElement, panning: boolean, cameraData: CameraData): {
-  newCameraData: CameraData,
-  dims: Point
-} {
-  const margin = panning ? PANNING_MARGIN : 0;
-  // not 100% sure this is right on retina
-  const newCameraData = setOrigin(cameraData, -margin, -margin);
-  const dims = { x: innerWidth + 2 * margin, y: innerHeight + 2 * margin };
-  c.width = dims.x * devicePixelRatio;
-  c.height = dims.y * devicePixelRatio;
-  c.style.width = (innerWidth + 2 * margin) + "px";
-  c.style.height = (innerHeight + 2 * margin) + "px";
-  return { newCameraData, dims };
-}
-
-
 // The main meat of this file.
 export class App {
   w: number = 0;
@@ -96,7 +63,6 @@ export class App {
   lastz: Target[] = [];
   slastz: string = "[]";
   coastline_layer: CoastlineLayer;
-  image_layer: ImageLayer;
   river_layer: RiverLayer;
   sketch_layer: SketchLayer;
   render_extra: null | ((cameraData: CameraData, d: Ctx) => void) = null;
@@ -115,7 +81,7 @@ export class App {
   }
 
   constructor(_data: Data) {
-    this.th = new Throttler(() => this.render(this.getCameraData()));
+    this.th = new Throttler(() => { });
     this.data = _data;
     let count = 0;
     const geo: Geo = _data.json.geo;
@@ -123,22 +89,17 @@ export class App {
     const arcStore = new ArcStore(geo.points, geo.arcs, geo.polys);
     const labelStore = new LabelStore(geo.labels);
     this.coastline_layer = new CoastlineLayer(arcStore, labelStore, geo.counter);
-    this.image_layer = new ImageLayer(() => this.render(this.getCameraData()), 0, geo.images);
     this.river_layer = new RiverLayer(rivers);
     this.sketch_layer = new SketchLayer();
     this.layers = [
       this.coastline_layer,
       this.river_layer,
       this.sketch_layer,
-      this.image_layer
     ];
-
-
 
     // React rendering
 
     const root = createRoot(document.getElementById('react-root')!);
-
     const props: MainUiProps = {
       geo: {
         riverLayer: this.river_layer,
@@ -148,349 +109,24 @@ export class App {
       images: geo.images,
     };
     const comp = React.createElement(MainUi, props, null);
-
     root.render(comp);
   }
 
-  render(cameraData: CameraData): void {
-  }
-
-  handleMouseWheel(e: WheelEvent): void {
-    if (e.ctrlKey) {
-      if (e.deltaY < 0) {
-        this.image_layer.scale(1 / 2);
-      }
-      else {
-        this.image_layer.scale(2);
-      }
-      this.render(this.getCameraData());
-      e.preventDefault();
-    }
-    else {
-      const x = e.pageX!;
-      const y = e.pageY!;
-      const zoom = -e.deltaY / 120;
-      e.preventDefault();
-      const cameraData = doZoom(this.getCameraData(), { x, y }, zoom);
-      this.setCameraData(cameraData);
-      this.render(cameraData);
-    }
-  }
-
-  handleMouseMove(e: MouseEvent) {
-    this.mouse = { x: e.pageX!, y: e.pageY! };
-
-    if (this.panning)
-      return;
-    const cameraData = this.getCameraData();
-    const scale = scale_of_camera(cameraData);
-
-    if (zoom_of_camera(cameraData) >= 1) {
-      const x = e.pageX!;
-      const y = e.pageY!;
-      const worldp = app_world_from_canvas(cameraData, { x, y });
-      const rad = VERTEX_SENSITIVITY / scale;
-      const bbox: ArRectangle = [worldp.x - rad, worldp.y - rad, worldp.x + rad, worldp.y + rad];
-      const targets = this.coastline_layer.targets(bbox);
-      const sz = JSON.stringify(targets);
-      if (sz != this.slastz) {
-        this.lastz = targets;
-        this.slastz = sz;
-        this.render(cameraData);
-      }
-    }
-  }
-
-  get_snap(last: Target[]): Point | null {
-    // .targets is already making sure that multiple targets returned at
-    // this stage are on the same exact point
-    if (last.length >= 1) {
-      const u = last[0];
-      if (u[0] == "coastline")
-        return this.coastline_layer.avtPoint(u[1]);
-    }
-    return null;
-  }
-
-  start_pan(x: number, y: number, cameraData: CameraData): void {
-    const stop_at: Stopper = this.start_pan_and_stop(x, y, cameraData);
-    // $(document).on('mouseup.drag', e => {
-    //   stop_at(e.pageX!, e.pageY!);
-    // });
-  }
-
-  // returns stopping function
-  start_pan_and_stop(x: number, y: number, origCameraData: CameraData): Stopper {
-    // $("#c").css({ cursor: 'move' });
-    this.panning = true;
-    //  state.set_cam(camera.x + PANNING_MARGIN, camera.y + PANNING_MARGIN);
-
-    this.w = 0;
-    this.h = 0;
-    //    render_origin(origCameraData);
-    this.render(origCameraData);
-
-    const last = { x: x, y: y };
-    // $(document).on('mousemove.drag', e => {
-    //   let cameraData = this.getCameraData();
-    //   const org = getOrigin(cameraData);
-    //   cameraData = incOrigin(cameraData, e.pageX! - last.x, e.pageY! - last.y);
-    //   cameraData = incCam(cameraData, e.pageX! - last.x, e.pageY! - last.y);
-
-    //   last.x = e.pageX!;
-    //   last.y = e.pageY!;
-
-    //   let stale = false;
-    //   if (org.x > 0) { cameraData = incOrigin(cameraData, -PANNING_MARGIN, 0); stale = true; }
-    //   if (org.y > 0) { cameraData = incOrigin(cameraData, 0, -PANNING_MARGIN); stale = true; }
-    //   if (org.x < -2 * PANNING_MARGIN) { cameraData = incOrigin(cameraData, PANNING_MARGIN, 0); stale = true; }
-    //   if (org.y < -2 * PANNING_MARGIN) { cameraData = incOrigin(cameraData, 0, PANNING_MARGIN); stale = true; }
-    //   this.setCameraData(cameraData);
-
-    //   if (stale) {
-    //     this.render(cameraData);
-    //   }
-    //   render_origin(cameraData);
-    // });
-
-    return (offx: number, offy: number) => {
-      //      $("#c").css({ cursor: '' });
-      //    $(document).off('.drag');
-      const canvas_from_world = canvas_from_world_of_cameraData(origCameraData);
-      let cameraData = incCam(
-        origCameraData,
-        offx - x,
-        offy - y
-      );
-      this.panning = false;
-
-      this.w = 0;
-      this.h = 0;
-
-      // render_origin(cameraData);
-      this.setCameraData(cameraData);
-      this.render(cameraData);
-    };
-  }
-
-  // The continuation k is what to do when the drag ends. The argument
-  // dragp to k is the point we released the drag on.
-  start_drag(startp: Point, neighbors: Point[], k: (dragp: Point) => void) {
-    const cameraData = this.getCameraData();
-    const scale = scale_of_camera(cameraData);
-    let dragp = clone(startp);
-
-    this.render_extra = (camera, d) => {
-      d.save();
-      canvasIntoWorld(d, cameraData);
-      d.beginPath();
-      if (neighbors.length == 0) {
-        // if no neighbors, we're moving a label; draw a little crosshairs.
-        d.moveTo(dragp.x, dragp.y - 10 / scale);
-        d.lineTo(dragp.x, dragp.y + 10 / scale);
-        d.moveTo(dragp.x - 10 / scale, dragp.y);
-        d.lineTo(dragp.x + 10 / scale, dragp.y);
-        d.arc(dragp.x, dragp.y, 10 / scale, 0, 2 * Math.PI);
-      }
-      else {
-        // ...else, we're moving an arc point. Draw some guides to show
-        // how the moved point connects to its neighbors.
-        neighbors.forEach(nabe => {
-          d.moveTo(nabe.x, nabe.y);
-          d.lineTo(dragp.x, dragp.y);
-        });
-      }
-      d.lineWidth = 1 / scale;
-      d.strokeStyle = colors.motion_guide;
-      d.stroke();
-      d.restore();
-    }
-    // $(document).on('mousemove.drag', e => {
-    //   const x = e.pageX!;
-    //   const y = e.pageY!;
-    //   const worldp = app_world_from_canvas(cameraData, { x, y });
-    //   dragp.x = worldp.x;
-    //   dragp.y = worldp.y;
-    //   this.th.maybe();
-    // });
-    // $(document).on('mouseup.drag', e => {
-    //   this.render_extra = null;
-    //   $(document).off('.drag');
-    //   const snaps = this.lastz;
-    //   if (snaps.length >= 1) {
-    //     dragp = this.coastline_layer.target_point(snaps[0]);
-    //   }
-    //   k(dragp);
-    //   this.render(this.getCameraData());
-    // });
-  }
-
-  save(): void {
-    const geo: Geo = {
-      ...this.coastline_layer.model(),
-      ...this.image_layer.model(),
-    };
-
-    // $.ajax("/export", {
-    //   method: "POST", data: JSON.stringify(geo), contentType: "text/plain", success: function() {
-    //     console.log("success");
-    //   }
-    // });
-  }
-
-  start_measure(startp_in_world: Point): void {
-    const cameraData = this.getCameraData();
-
-    const dragp = clone(startp_in_world);
-    const scale = scale_of_camera(cameraData);
-    this.render_extra = (cameraData, d) => {
-      d.save();
-      canvasIntoWorld(d, cameraData);
-      d.beginPath();
-
-      d.moveTo(startp_in_world.x, startp_in_world.y);
-      d.lineTo(dragp.x, dragp.y);
-
-      d.lineWidth = 1 / scale;
-      d.strokeStyle = colors.motion_guide;
-      d.stroke();
-      d.restore();
-
-      const canvas_from_world = canvas_from_world_of_cameraData(cameraData);
-
-      d.font = "14px sans-serif";
-      d.fillStyle = colors.motion_guide;
-      const dist = meters_to_string(vdist(dragp, startp_in_world));
-      const width = d.measureText(dist).width;
-      d.save();
-      d.translate((startp_in_world.x + dragp.x) / 2 * scale + canvas_from_world.translate.x,
-        (startp_in_world.y + dragp.y) / 2 * -scale + canvas_from_world.translate.y);
-      // this ensures text is always ~right-side-up
-      const extraRotation = (startp_in_world.x - dragp.x > 0) ? Math.PI : 0;
-      d.rotate(extraRotation + -Math.atan2(dragp.y - startp_in_world.y, dragp.x - startp_in_world.x));
-
-      d.strokeStyle = "#fff";
-      d.lineWidth = 2;
-      d.strokeText(dist, -width / 2, -3);
-      d.fillText(dist, -width / 2, -3);
-
-      d.restore();
-    }
-    // $(document).on('mousemove.drag', e => {
-    //   const x = e.pageX!;
-    //   const y = e.pageY!;
-    //   const worldp = app_world_from_canvas(cameraData, { x, y });
-    //   dragp.x = worldp.x;
-    //   dragp.y = worldp.y;
-    //   this.th.maybe();
-    // });
-    // $(document).on('mouseup.drag', e => {
-    //   this.render_extra = null;
-    //   $(document).off('.drag');
-    //   this.render(this.getCameraData());
-    // });
-  }
-
-  start_freehand(startp: Point, k: (dragp: Path) => void): void {
-    const cameraData = this.getCameraData();
-    const scale = scale_of_camera(cameraData);
-    const path: Zpoint[] = [{ point: startp, z: 1000 }];
-    const thresh = FREEHAND_SIMPLIFICATION_FACTOR / (scale * scale);
-    this.render_extra = (camera, d) => {
-      d.save();
-      canvasIntoWorld(d, cameraData);
-      d.beginPath();
-      let count = 0;
-      path.forEach(({ point: pt, z }: Zpoint, n: number) => {
-        if (n == 0)
-          d.moveTo(pt.x, pt.y);
-        else {
-          if (n == path.length - 1 ||
-            z > 1) {
-            count++;
-            d.lineTo(pt.x, pt.y);
-          }
-        }
-      });
-      d.lineWidth = 2 / scale;
-      d.strokeStyle = colors.motion_guide;
-      d.stroke();
-      d.restore();
-    }
-    // $(document).on('mousemove.drag', e => {
-    //   const x = e.pageX!;
-    //   const y = e.pageY!;
-    //   const worldp = app_world_from_canvas(cameraData, { x, y });
-    //   path.push({ point: worldp, z: 1000 });
-    //   resimplify(path);
-    //   this.th.maybe();
-    // });
-    // $(document).on('mouseup.drag', e => {
-    //   const spoint = this.get_snap(this.lastz);
-    //   if (spoint != null) {
-    //     path[path.length - 1] = { point: spoint, z: 1000 };
-    //     startp = spoint;
-    //   }
-
-    //   this.render_extra = null;
-    //   $(document).off('.drag');
-    //   k(path.filter(({ point: pt, z }: Zpoint, n: number) => {
-    //     return z > thresh || n == 0 || n == path.length - 1;
-    //   }));
-    //   this.render(this.getCameraData());
-    // });
-  }
-
-
-  render_scale(cameraData: CameraData, d: Ctx): void {
-    const scale = scale_of_camera(cameraData);
-    const { w, h } = this;
-    d.save();
-    d.fillStyle = "black";
-    d.font = "10px sans-serif";
-
-    d.translate(Math.floor(w / 2) + 0.5, 0.5);
-    function label(px_dist: number) {
-      const str = meters_to_string(px_dist / scale);
-      d.textAlign = "center";
-      d.fillText(str, px_dist, h - 12);
-    }
-    d.lineWidth = 1;
-    d.strokeStyle = "rgba(0,0,0,0.1)";
-    d.strokeRect(0, h - 25 - 50, 50, 50);
-    d.strokeRect(0, h - 25 - 128, 128, 128);
-    d.beginPath()
-    d.strokeStyle = "black";
-    d.moveTo(0, h - 30);
-    d.lineTo(0, h - 25);
-    d.lineTo(50, h - 25);
-    d.lineTo(50, h - 30);
-    d.moveTo(50, h - 25);
-    d.lineTo(128, h - 25);
-    d.lineTo(128, h - 30);
-    d.stroke();
-    label(0);
-    label(50);
-    label(128);
-
-    d.restore();
-  }
-
   zoom_to(label: string): void {
-    const { data, w, h } = this;
-    const rawLabels: [string, t.RawLabel][] = Object.entries(data.json.geo.labels);
-    const labels: Label[] = rawLabels.map(
-      ([name, { pt: [x, y], properties }]) =>
-        ({ name, pt: { x, y }, properties })
-    );
-    const selection = labels.filter(x => has_label(x, label));
-    const pt = selection[0].pt;
-    if (pt == null) throw `couldn\'t find ${label}`;
-    const cameraData = this.getCameraData();
-    const pixel_offset = apply(canvas_from_world_of_cameraData(cameraData), pt);
-    const newCameraData = incCam(cameraData, (w - SIDEBAR_WIDTH) / 2 - pixel_offset.x, h / 2 - pixel_offset.y);
-    this.setCameraData(newCameraData);
-    this.render(newCameraData);
+    // const { data, w, h } = this;
+    // const rawLabels: [string, t.RawLabel][] = Object.entries(data.json.geo.labels);
+    // const labels: Label[] = rawLabels.map(
+    //   ([name, { pt: [x, y], properties }]) =>
+    //     ({ name, pt: { x, y }, properties })
+    // );
+    // const selection = labels.filter(x => has_label(x, label));
+    // const pt = selection[0].pt;
+    // if (pt == null) throw `couldn\'t find ${label}`;
+    // const cameraData = this.getCameraData();
+    // const pixel_offset = apply(canvas_from_world_of_cameraData(cameraData), pt);
+    // const newCameraData = incCam(cameraData, (w - SIDEBAR_WIDTH) / 2 - pixel_offset.x, h / 2 - pixel_offset.y);
+    // this.setCameraData(newCameraData);
+    // this.render(newCameraData);
   }
 }
 

@@ -35,21 +35,22 @@ function render(ci: CanvasInfo, state: MapCanvasState) {
   let cameraData = state.ui.cameraData;
   const ms = state.ui.mouseState;
   if (ms.t == 'pan') {
-    const v = vsub(vsub(ms.p_in_page, ms.orig_p_in_page), ms.page_from_canvas);
     cameraData = produce(cameraData, c => {
-      c.page_from_world = compose(translate(v), c.page_from_world);
+      c.origin = ms.page_from_canvas;
     });
   }
-  const bbox_in_world = get_bbox_in_world(cameraData, ci.size)
+  const bbox_in_world = get_bbox_in_world(cameraData, dims)
   state.geo.coastlineLayer.render({
     d, bbox_in_world, cameraData, mode: 'Pan', us: state.ui,
   });
   d.fillText(JSON.stringify(state.ui.cameraData.page_from_world, null, 2), 0, 10);
 }
 
+// Gets width and height of canvas
+// XXX the Math.min(..., 500) on both dimensions is just for testing, and should be removed
 function getCanvasDims(ms: MouseState): Point {
   const margin = ms.t == 'pan' ? PANNING_MARGIN : 0;
-  return { x: Math.min(innerWidth, 300) + 2 * margin, y: Math.min(innerHeight, 300) + 2 * margin };
+  return { x: Math.min(innerWidth, 500) + 2 * margin, y: Math.min(innerHeight, 500) + 2 * margin };
 }
 
 export function MapCanvas(props: MapCanvasProps): JSX.Element {
@@ -65,7 +66,13 @@ export function MapCanvas(props: MapCanvasProps): JSX.Element {
     //   boundary-expansion strategy is noticeable, the reduce should change
     //   our 'origin', i.e. page_from_canvas
 
-    [state.mouseState.t, state.cameraData, state.layers], // note geo isn't here
+    [
+      state.mouseState.t,
+      state.cameraData,
+      state.layers,
+      state.mouseState.t == 'pan' ? state.mouseState.page_from_canvas : undefined
+      // note that geo isn't here
+    ],
     () => { }
   );
   useEffect(() => {
@@ -77,7 +84,7 @@ export function MapCanvas(props: MapCanvasProps): JSX.Element {
         document.removeEventListener('mouseup', onMouseUp);
       }
     }
-  }, [state.mouseState.t, state.mouseState.t == 'pan' ? state.mouseState.page_from_canvas : undefined]);
+  }, [state.mouseState.t]);
   function onMouseDown(e: React.MouseEvent) {
     dispatch({ t: 'mouseDown', p_in_page: { x: e.pageX!, y: e.pageY! } })
   }
@@ -115,8 +122,8 @@ export function MapCanvas(props: MapCanvasProps): JSX.Element {
     }
 
     if (ms.t == 'pan') {
-      canvasStyle.top = ms.page_from_canvas.y + ms.p_in_page.y - ms.orig_p_in_page.y;
-      canvasStyle.left = ms.page_from_canvas.x + ms.p_in_page.x - ms.orig_p_in_page.x;
+      canvasStyle.top = ms.page_from_canvas.y;
+      canvasStyle.left = ms.page_from_canvas.x;
     }
   }
 

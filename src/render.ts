@@ -21,7 +21,7 @@ export function paint(d: CanvasRenderingContext2D, size: Point, mode: Mode, came
   // app.th.reset();
   const scale = scale_of_camera(cameraData);
   const t = Date.now();
-  d.fillStyle = "#bac7f8";
+  d.fillStyle = colors.ocean;
   d.fillRect(0, 0, w, h);
   d.strokeStyle = "gray";
 

@@ -95,13 +95,13 @@ function realize_path(d: Ctx, us: UiState, props: PolyProps, cameraData: CameraD
       if (props.natural == "lake") {
         d.strokeStyle = colors.water_border;
         d.stroke();
-        d.fillStyle = "#bac7f8";
+        d.fillStyle = colors.ocean;
         if (!DEBUG_BBOX)
           d.fill();
       }
 
       if (props.natural == "mountain") {
-        d.fillStyle = "#b5ab9b";
+        d.fillStyle = colors.mountain;
         if (!DEBUG_BBOX)
           d.fill();
       }
@@ -109,7 +109,7 @@ function realize_path(d: Ctx, us: UiState, props: PolyProps, cameraData: CameraD
     }
 
     case "city": {
-      d.fillStyle = "#dbdbab";
+      d.fillStyle = colors.city;
       d.fill();
       break;
     }

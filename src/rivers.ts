@@ -1,3 +1,4 @@
+import { colors } from './colors';
 import { Layer, RenderCtx, Rivers } from './types';
 import { canvasIntoWorld } from './util';
 
@@ -26,7 +27,7 @@ export class RiverLayer implements Layer {
             d.lineTo(pt[0], pt[1]);
         });
       });
-      d.fillStyle = "#bac7f8";
+      d.fillStyle = colors.ocean;
       d.globalAlpha = 0.2;
       d.fillStyle = "blue";
       d.fill();

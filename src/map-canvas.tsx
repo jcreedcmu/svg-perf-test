@@ -9,6 +9,7 @@ import { compose, translate } from './se2';
 import { vadd, vsub } from './vutil';
 import { PANNING_MARGIN } from './main';
 import { set_offset_pres } from './camera-state';
+import { colors } from './colors';
 
 export type MapCanvasProps = {
   uiState: UiState,
@@ -27,7 +28,7 @@ function render(ci: CanvasInfo, state: MapCanvasState) {
 
   const dims = getCanvasDims(state.ui.mouseState);
   // background ocean
-  d.fillStyle = "#0ac7f8";
+  d.fillStyle = colors.debug_ocean;
   d.fillRect(0, 0, dims.x, dims.y);
 
 

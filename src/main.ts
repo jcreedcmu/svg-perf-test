@@ -197,6 +197,7 @@ export class App {
         imageLayer: this.image_layer,
         sketchLayer: this.sketch_layer,
       },
+      images: geo.images,
     };
     const comp = React.createElement(MainUi, props, null);
 

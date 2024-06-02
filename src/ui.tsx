@@ -4,7 +4,7 @@ import { Modal } from 'react-bootstrap';
 import { mkCameraData } from './camera-state';
 import { MapCanvas } from './map-canvas';
 import { reduce } from './reduce';
-import { Action, FeatureModalResult, Geometry, LabelModalResult, LabelUIMode, UiState } from './types';
+import { Action, Dict, FeatureModalResult, Geometry, LabelModalResult, LabelUIMode, SizedImage, UiState } from './types';
 
 export const SIDEBAR_WIDTH = 200;
 
@@ -108,12 +108,11 @@ export type MainUiProps = {
   accessRef: React.RefObject<AccessRef>,
   geo: Geometry,
   onMount: () => void,
+  images: Dict<SizedImage>,
 };
 
-export function MainUi(props: MainUiProps): JSX.Element {
-  const { accessRef: ref, geo } = props;
-
-  const initState: UiState = {
+function mkUiState(): UiState {
+  return {
     layers: { boundary: false, river: false, road: false },
     mode: { t: 'normal' },
     cameraData: mkCameraData(),
@@ -123,6 +122,12 @@ export function MainUi(props: MainUiProps): JSX.Element {
       named_imgs: [],
     },
   };
+}
+
+export function MainUi(props: MainUiProps): JSX.Element {
+  const { accessRef: ref, geo } = props;
+
+  const initState = mkUiState();
   const [state, dispatch] = React.useReducer<(s: UiState, a: Action) => UiState>(reduce, initState);
 
   // XXX kind of a hack to temporarily propagate react state out of react-land
@@ -157,7 +162,7 @@ export function MainUi(props: MainUiProps): JSX.Element {
       {radio("river", "River")}
     </div>
     <div className="map-container" >
-      <MapCanvas uiState={state} dispatch={dispatch} geo={geo} />
+      <MapCanvas uiState={state} dispatch={dispatch} geo={geo} images={props.images} />
     </div>
     <FeatureModal us={state} dispatch={dispatch} />
     <LabelModal us={state} dispatch={dispatch} />

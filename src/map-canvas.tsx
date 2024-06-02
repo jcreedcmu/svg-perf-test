@@ -2,7 +2,7 @@ import { produce } from 'immer';
 import * as React from 'react';
 import { useEffect } from 'react';
 import { get_bbox_in_world } from './render';
-import { Geometry, MouseState, Point, UiState } from './types';
+import { Dict, Geometry, MouseState, Point, SizedImage, UiState } from './types';
 import { Dispatch, SIDEBAR_WIDTH } from './ui';
 import { CanvasInfo, useCanvas } from './use-canvas';
 import { compose, translate } from './se2';
@@ -15,6 +15,7 @@ export type MapCanvasProps = {
   uiState: UiState,
   dispatch: Dispatch,
   geo: Geometry,
+  images: Dict<SizedImage>,
 };
 
 export type MapCanvasState = {
@@ -86,7 +87,8 @@ export function MapCanvas(props: MapCanvasProps): JSX.Element {
       state.mouseState.t,
       state.cameraData,
       state.layers,
-      state.mouseState.t == 'pan' ? state.mouseState.cameraData.canvas_from_world : undefined
+      state.mouseState.t == 'pan' ? state.mouseState.cameraData.canvas_from_world : undefined,
+      state.imageLayerState,
       // note that geo isn't here
     ],
     () => { }

@@ -1,5 +1,5 @@
 import { scale_of_camera } from './camera-state';
-import { Dict, Images, Layer, Point, RenderCtx, SizedImage } from './types';
+import { Dict, Images, Layer, Point, RenderCtx, SizedImage, NamedImage } from './types';
 import { buffer, canvasIntoWorld } from './util';
 
 export function image_url(img_name: string): string {
@@ -13,8 +13,6 @@ function mod(n: number, m: number): number {
   else
     return ((n % m) + m) % m
 }
-
-type NamedImage = SizedImage & { name: string };
 
 export class ImageLayer implements Layer {
   dispatch: () => void;

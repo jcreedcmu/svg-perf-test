@@ -142,6 +142,13 @@ export type MouseState =
   }
   ;
 
+export type NamedImage = SizedImage & { name: string };
+
+export type ImageLayerState = {
+  cur_img_ix: number,
+  named_imgs: NamedImage[]
+}
+
 export type UiState = {
   mode: UIMode,
   layers: {
@@ -151,6 +158,7 @@ export type UiState = {
   },
   cameraData: CameraData,
   mouseState: MouseState,
+  imageLayerState: ImageLayerState,
 };
 
 export interface Layer {

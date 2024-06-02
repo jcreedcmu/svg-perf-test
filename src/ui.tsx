@@ -118,6 +118,10 @@ export function MainUi(props: MainUiProps): JSX.Element {
     mode: { t: 'normal' },
     cameraData: mkCameraData(),
     mouseState: { t: 'up' },
+    imageLayerState: {
+      cur_img_ix: 0,
+      named_imgs: [],
+    },
   };
   const [state, dispatch] = React.useReducer<(s: UiState, a: Action) => UiState>(reduce, initState);
 

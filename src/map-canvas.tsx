@@ -27,7 +27,7 @@ function render(ci: CanvasInfo, state: MapCanvasState) {
 
   const dims = getCanvasDims(state.ui.mouseState);
   // background ocean
-  d.fillStyle = "#bac7f8";
+  d.fillStyle = "#0ac7f8";
   d.fillRect(0, 0, dims.x, dims.y);
 
 
@@ -46,7 +46,7 @@ function render(ci: CanvasInfo, state: MapCanvasState) {
 // Gets width and height of canvas
 function getCanvasDims(ms: MouseState): Point {
   const margin = ms.t == 'pan' ? PANNING_MARGIN : 0;
-  return { x: innerWidth + 2 * margin, y: innerHeight + 2 * margin };
+  return { x: innerWidth + 2 * margin, y: innerHeight / 2 + 2 * margin };
 }
 
 export function MapCanvas(props: MapCanvasProps): JSX.Element {

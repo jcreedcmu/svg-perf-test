@@ -27,7 +27,7 @@ export type CameraData = {
 export function mkCameraData(): CameraData {
   let canvas_from_world: SE2 = mkSE2({ x: 0.001953125, y: -0.001953125 }, { x: -432.125, y: 3321.875 });
 
-  if (localStorage.page_from_world != null) {
+  if (localStorage.canvas_from_world != null) {
     canvas_from_world = JSON.parse(localStorage.canvas_from_world);
   }
 

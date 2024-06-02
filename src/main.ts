@@ -90,8 +90,6 @@ function reset_canvas_size(c: HTMLCanvasElement, panning: boolean, cameraData: C
 
 // The main meat of this file.
 export class App {
-  c: HTMLCanvasElement;
-  d: Ctx;
   w: number = 0;
   h: number = 0;
   layers: Layer[];
@@ -135,34 +133,7 @@ export class App {
       this.image_layer
     ];
 
-    const c = document.getElementById("c") as HTMLCanvasElement;
-    this.c = c;
 
-    (document.querySelector('#c') as HTMLCanvasElement).addEventListener('mousedown', e => this.handleMouseDown(e));
-    (document.querySelector('#c') as HTMLCanvasElement).addEventListener('mousemove', e => this.handleMouseMove(e));
-    document.addEventListener('keydown', e => this.handleKey(e));
-    c.onwheel = e => this.handleMouseWheel(e);
-
-    window.c = c; // debugging
-
-    const _d = c.getContext('2d');
-    if (_d == null) {
-      throw new Error('null context');
-    }
-    this.d = _d;
-
-    if (DEBUG && DEBUG_PROF) {
-      console.time("whatev");
-      const ITER = 1000;
-      for (let i = 0; i < ITER; i++) {
-        this.render(this.getCameraData());
-      }
-      // d.getImageData(0,0,1,1);
-      console.timeEnd("whatev");
-    }
-    else {
-      // this.render(this.getCameraData());
-    }
 
     // React rendering
 
@@ -182,12 +153,6 @@ export class App {
   }
 
   render(cameraData: CameraData): void {
-    const { w, h, d, mode } = this;
-    this._render(w, h, d, mode, cameraData);
-  }
-
-  _render(w: number, h: number, d: Ctx, mode: Tool, cameraData: CameraData): void {
-    //
   }
 
   handleMouseWheel(e: WheelEvent): void {
@@ -247,250 +212,6 @@ export class App {
     return null;
   }
 
-  handleMouseDown(e: MouseEvent) {
-    const { image_layer, coastline_layer, sketch_layer } = this;
-    const cameraData = this.getCameraData();
-    const canvas_from_world = canvas_from_world_of_cameraData(cameraData);
-    const scale = scale_of_camera(cameraData);
-
-    const x = e.pageX!;
-    const y = e.pageY!;
-    const worldp = app_world_from_canvas(cameraData, { x, y });
-    const slack = VERTEX_SENSITIVITY / scale;
-    const bbox: ArRectangle = [worldp.x - slack, worldp.y - slack, worldp.x + slack, worldp.y + slack];
-
-    switch (this.mode) {
-      case "Pan":
-        // if (e.ctrlKey) {
-        //   const membase = image_layer.get_pos();
-        //   $(document).on('mousemove.drag', e => {
-        //     image_layer.set_pos({
-        //       x: membase.x + (e.pageX! - x) / scale,
-        //       y: membase.y - (e.pageY! - y) / scale
-        //     });
-        //     this.th.maybe();
-        //   });
-        //   $(document).on('mouseup.drag', e => {
-        //     $(document).off('.drag');
-        //     this.render(this.getCameraData());
-        //   });
-        // }
-        // else
-        //   this.start_pan(x, y, cameraData);
-        break;
-
-      case "Measure":
-        this.start_measure(worldp);
-        break;
-
-      case "Select":
-        const candidate_features = coastline_layer.arc_targets(bbox);
-        const hit_lines = geom.find_hit_lines(
-          worldp, candidate_features, coastline_layer.arcStore, slack
-        );
-        if (hit_lines.length == 1) {
-          this.selection = { arc: hit_lines[0].arc_id };
-        }
-        else {
-          this.selection = null;
-        }
-        this.render(this.getCameraData());
-        break;
-
-      case "Label":
-        if (this.lastz.length != 0) {
-          const z = this.lastz;
-          console.log(this.lastz);
-          if (z.length == 1) {
-            const u = z[0];
-            if (u[0] == "label") {
-              const lab = coastline_layer.labelStore.labels[u[1]];
-
-            }
-          }
-        }
-        else {
-
-        }
-        break;
-
-      case "Move":
-        const pretargets = coastline_layer.targets(bbox);
-
-        if (pretargets.length >= 1) {
-          // yikes, what happens if I got two or more?? looks like I
-          // drag them all together. Maybe don't want to do that. On
-          // the other hand, setting pickone to true below causes
-          // problems with the RTrees that cache where vertices are;
-          // if I have more than one vertex sitting in the same place,
-          // I'll incorrectly delete the entry from the rtree if *one*
-          // of the many vertices move away. Ugh, maybe I do want
-          // identity for vertices.
-          const pickone = false;
-          const targets = pickone ? [pretargets[0]] : pretargets;
-          const neighbors = coastline_layer.targets_nabes(targets);
-
-          this.start_drag(worldp, neighbors, dragp => {
-            coastline_layer.replace_vert(targets, dragp);
-          });
-        }
-        else {
-          const candidate_features = coastline_layer.arc_targets(bbox);
-          const hit_lines = geom.find_hit_lines(
-            worldp, candidate_features, coastline_layer.arcStore, slack
-          );
-          if (hit_lines.length == 1) {
-            const arc_id = hit_lines[0].arc_id;
-            const ix = hit_lines[0].ix;
-            const arc = coastline_layer.arcStore.getPoints(arc_id);
-            this.start_drag(worldp, [arc[ix], arc[ix + 1]], (dragp: Point) => {
-              coastline_layer.arcStore.break_segment(
-                () => this.coastline_layer.namegen('r'),
-                hit_lines[0],
-                dragp
-              );
-            });
-          }
-          else
-            this.start_pan(x, y, cameraData);
-        }
-        break;
-
-      case "Freehand":
-        let startp: Point = worldp;
-
-        const spoint = this.get_snap(this.lastz);
-        if (spoint != null)
-          startp = spoint;
-
-        this.start_freehand(startp, path => sketch_layer.add(path));
-        break;
-
-      case "Extract": {
-        const im = this.image_layer.get_img_state();
-        const imagep = vint({
-          x: (worldp.x - im.x) / im.scale,
-          y: (im.y - worldp.y) / im.scale
-        });
-        const z = this.lastz;
-        if (z.length == 1) {
-          const z0 = z[0];
-          if (z0[0] == "label") {
-            const labelId = z0[1];
-            const lab = this.coastline_layer.labelStore.labels[labelId];
-            const labText = lab.properties.text;
-            const imd = this.image_layer.get_image_data();
-            const base = 4 * (imagep.x + imagep.y * imd.width);
-            let colorlist: { [k: string]: string } = (window as any)['colorlist'];
-            if (colorlist == null)
-              colorlist = {};
-            colorlist[labText] = colorToHex([imd.data[base], imd.data[base + 1], imd.data[base + 2], imd.data[base + 3]]);
-            console.log(JSON.stringify(colorlist, null, 2));
-            window.colorlist = colorlist;
-          }
-        }
-      } break;
-      default:
-        nope(this.mode);
-    }
-  }
-
-  handleKey(e: KeyboardEvent) {
-
-    const { image_layer, coastline_layer, sketch_layer } = this;
-
-
-
-    // XXX eventually delete this
-    // const modals = $(".modal");
-    // if (modals.filter(function(ix, e) { return $(e).css("display") == "block" }).length)
-    //   return;
-
-    const k = key(e);
-
-    // if (k == "i") {
-    //   label_layer.add_label(state, prompt("name"));
-    //   render();
-    // }
-    switch (k) {
-      case "f": {
-        this.mode = "Freehand";
-        this.render(this.getCameraData());
-      } break;
-      case "x": {
-        this.mode = "Extract";
-        this.render(this.getCameraData());
-      } break;
-      case "m": {
-        this.mode = "Move";
-        this.render(this.getCameraData());
-      } break;
-
-      // XXX disabled space panning for now
-
-      // case "<space>": {
-      //   $(document).off('keydown');
-      //   const stop_at = this.start_pan_and_stop(this.mouse.x, this.mouse.y, this.state.camera());
-      //   $(document).on('keyup.holdspace', e => {
-      //     if (key(e.originalEvent as KeyboardEvent) == "<space>") {
-      //       stop_at(this.mouse.x, this.mouse.y);
-      //       $(document).off('.holdspace');
-      //       $(document).on('keydown', e => this.handleKey(e));
-      //     }
-      //   });
-
-      // } break;
-
-      case "p": {
-        this.mode = "Pan";
-        this.render(this.getCameraData());
-      } break;
-      case "s": {
-        this.mode = "Select";
-        this.render(this.getCameraData());
-      } break;
-      case "l": {
-        this.mode = "Label";
-        this.render(this.getCameraData());
-      } break;
-      case "e": {
-        this.mode = "Measure";
-        this.render(this.getCameraData());
-      } break;
-
-      // if (k == "i") {
-      //   this.mode = "Insert";
-      //   this.render();
-      // }
-      case "v": {
-        this.save();
-      } break;
-      case "q": {
-        const sk = sketch_layer.pop();
-        if (sk != null) {
-
-        }
-      } break;
-      case "S-f": {
-        coastline_layer.filter();
-        this.render(this.getCameraData());
-      } break;
-
-      // debugging operation
-      case "d": {
-        Object.entries(this.coastline_layer.arcStore.arcs).forEach(([k, v]) => {
-
-          this.coastline_layer.arcStore.replace_arc(
-            k,
-            () => this.coastline_layer.namegen('r')
-          );
-        });
-        this.render(this.getCameraData());
-      } break;
-    }
-    //  console.log(e.charCode, k);
-  }
-
   start_pan(x: number, y: number, cameraData: CameraData): void {
     const stop_at: Stopper = this.start_pan_and_stop(x, y, cameraData);
     // $(document).on('mouseup.drag', e => {
@@ -504,9 +225,8 @@ export class App {
     this.panning = true;
     //  state.set_cam(camera.x + PANNING_MARGIN, camera.y + PANNING_MARGIN);
 
-    const { newCameraData, dims } = reset_canvas_size(this.c, this.panning, origCameraData);
-    this.w = dims.x;
-    this.h = dims.y;
+    this.w = 0;
+    this.h = 0;
     //    render_origin(origCameraData);
     this.render(origCameraData);
 
@@ -543,10 +263,10 @@ export class App {
         offy - y
       );
       this.panning = false;
-      const { dims, newCameraData } = reset_canvas_size(this.c, this.panning, cameraData);
-      this.w = dims.x;
-      this.h = dims.y;
-      cameraData = newCameraData;
+
+      this.w = 0;
+      this.h = 0;
+
       // render_origin(cameraData);
       this.setCameraData(cameraData);
       this.render(cameraData);

@@ -28,7 +28,6 @@ const undefined = t.nonce;
 export const DEBUG = false;
 const DEBUG_PROF = false;
 export const OFFSET = DEBUG ? 100 : 0;
-const VERTEX_SENSITIVITY = 10;
 const FREEHAND_SIMPLIFICATION_FACTOR = 100;
 export const PANNING_MARGIN = 200;
 

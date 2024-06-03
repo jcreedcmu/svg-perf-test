@@ -1,7 +1,7 @@
 import { produce } from 'immer';
 import * as React from 'react';
 import { useEffect } from 'react';
-import { Dict, Geometry, MouseState, Point, Rect, SizedImage, UiState } from './types';
+import { ArRectangle, Dict, Geometry, MouseState, Point, Rect, SizedImage, Target, UiState } from './types';
 import { Dispatch, SIDEBAR_WIDTH } from './ui';
 import { CanvasInfo, useCanvas } from './use-canvas';
 import { compose, translate } from './se2';
@@ -10,7 +10,9 @@ import { OFFSET, PANNING_MARGIN } from './main';
 import { CameraData, scale_of_camera, set_offset_pres, zoom_of_camera } from './camera-state';
 import { colors } from './colors';
 import { renderImageOverlay } from './images';
-import { app_world_from_canvas, meters_to_string } from './util';
+import { app_world_from_canvas, canvasIntoWorld, meters_to_string } from './util';
+
+const VERTEX_SENSITIVITY = 10;
 
 export function get_bbox_in_world(cameraData: CameraData, size: Point): Rect {
   const { x: w, y: h } = size;
@@ -67,7 +69,7 @@ function render_scale(d: CanvasRenderingContext2D, size: Point, cameraData: Came
 function render(ci: CanvasInfo, state: MapCanvasState) {
   const { d } = ci;
   console.log('painting');
-
+  const { geo } = state;
   const dims = getCanvasDims(state.ui.mouseState);
   // background ocean
   d.fillStyle = colors.ocean;
@@ -81,7 +83,7 @@ function render(ci: CanvasInfo, state: MapCanvasState) {
   const bbox_in_world = get_bbox_in_world(cameraData, dims)
 
   const mm = state.ui.mode.t == 'normal' ? state.ui.mode.tool : 'Pan';
-  state.geo.coastlineLayer.render({
+  geo.coastlineLayer.render({
     d, bbox_in_world, cameraData, mode: mm, us: state.ui,
   });
 
@@ -89,14 +91,44 @@ function render(ci: CanvasInfo, state: MapCanvasState) {
   const { named_imgs, cur_img_ix, overlay } = state.ui.imageLayerState;
   renderImageOverlay(d, cameraData, named_imgs, cur_img_ix, overlay == null ? null : (window as any)._image);
 
-  state.geo.riverLayer.render({
+  geo.riverLayer.render({
     d, bbox_in_world, cameraData, mode: mm, us: state.ui,
   });
-  state.geo.sketchLayer.render({
+  geo.sketchLayer.render({
     d, bbox_in_world, cameraData, mode: mm, us: state.ui,
   });
 
-  // TODO: Vertex hover
+  // vertex highlight
+  const tgt = state.ui.highlightTarget;
+  if (tgt != undefined) {
+    const scale = scale_of_camera(cameraData);
+    const rad = 3 / scale;
+    d.save();
+    canvasIntoWorld(d, cameraData);
+
+    if (tgt[0] == "coastline") {
+      const pt = geo.coastlineLayer.avtPoint(tgt[1]);
+      d.fillStyle = "white";
+      d.fillRect(pt.x - rad, pt.y - rad, rad * 2, rad * 2);
+      d.lineWidth = 1 / scale;
+      d.strokeStyle = "black";
+      d.strokeRect(pt.x - rad, pt.y - rad, rad * 2, rad * 2);
+
+      d.strokeStyle = colors.motion_guide;
+      d.strokeRect(pt.x - 2 * rad, pt.y - 2 * rad, rad * 4, rad * 4);
+    }
+    else if (tgt[0] == "label") {
+      const pt = geo.coastlineLayer.labelStore.labels[tgt[1]].pt;
+      d.beginPath();
+      d.fillStyle = "white";
+      d.globalAlpha = 0.5;
+      d.arc(pt.x, pt.y, 20 / scale, 0, Math.PI * 2);
+      d.fill();
+    }
+
+    d.restore();
+
+  }
   const panning = state.ui.mouseState.t == 'pan';
   if (!panning) {
 
@@ -146,9 +178,14 @@ function handleMouseWheel(e: React.WheelEvent, dispatch: Dispatch): void {
   dispatch({ t: 'doZoom', zoom_amount: zoom, p_in_canvas: { x: e.pageX!, y: e.pageY! } });
 }
 
+function equalTargets(t1: Target | undefined, t2: Target | undefined): boolean {
+  if (t1 == undefined) return t2 == undefined;
+  return t2 !== undefined && JSON.stringify(t1) == JSON.stringify(t2);
+}
+
 export function MapCanvas(props: MapCanvasProps): JSX.Element {
-  const { uiState: state, dispatch } = props;
-  const [cref, mc] = useCanvas({ ui: state, geo: props.geo }, render,
+  const { uiState: state, dispatch, geo } = props;
+  const [cref, mc] = useCanvas({ ui: state, geo }, render,
 
     // Some discussion on what should cause changes of state here:
     //
@@ -160,6 +197,7 @@ export function MapCanvas(props: MapCanvasProps): JSX.Element {
     //   our 'origin', i.e. page_from_canvas
 
     [
+      state.highlightTarget,
       state.mouseState.t,
       state.mode,
       state.cameraData,
@@ -172,20 +210,42 @@ export function MapCanvas(props: MapCanvasProps): JSX.Element {
   );
   useEffect(() => {
     if (state.mouseState.t == 'pan') {
-      document.addEventListener('mousemove', onMouseMoveDrag);
       document.addEventListener('mouseup', onMouseUpDrag);
       return () => {
-        document.removeEventListener('mousemove', onMouseMoveDrag);
         document.removeEventListener('mouseup', onMouseUpDrag);
       }
     }
   }, [state.mouseState.t]);
+
+  useEffect(() => {
+    document.addEventListener('mousemove', onMouseMove);
+    return () => {
+      document.removeEventListener('mousemove', onMouseMove);
+    }
+  }, [state.mode, state.highlightTarget]);
+
   function onMouseDown(e: React.MouseEvent) {
     dispatch({ t: 'mouseDown', p_in_page: { x: e.pageX!, y: e.pageY! } })
   }
 
-  function onMouseMoveDrag(e: MouseEvent) {
-    dispatch({ t: 'mouseMove', p_in_page: { x: e.pageX!, y: e.pageY! } })
+  function onMouseMove(e: MouseEvent) {
+    const p_in_page = { x: e.pageX!, y: e.pageY! };
+    if (state.mode.t == 'normal' && state.mode.tool == 'Move') {
+      const p_in_world = app_world_from_canvas(state.cameraData, p_in_page);
+      const rad = VERTEX_SENSITIVITY / scale_of_camera(state.cameraData);
+      const bbox: ArRectangle = [
+        p_in_world.x - rad, p_in_world.y - rad,
+        p_in_world.x + rad, p_in_world.y + rad
+      ];
+      const targets = geo.coastlineLayer.targets(bbox);
+      const newHighlight: Target | undefined = targets.length > 0 ? targets[0] : undefined;
+      if (!equalTargets(state.highlightTarget, newHighlight)) {
+        dispatch({ t: 'setHighlight', highlight: newHighlight });
+      }
+    }
+    else {
+      dispatch({ t: 'mouseMove', p_in_page })
+    }
   }
 
   function onMouseUpDrag(e: MouseEvent) {

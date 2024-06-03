@@ -159,6 +159,7 @@ export type UiState = {
   },
   cameraData: CameraData,
   mouseState: MouseState,
+  highlightTarget: Target | undefined,
   imageLayerState: ImageLayerState,
 };
 
@@ -201,4 +202,5 @@ export type Action =
   | { t: "doZoom", zoom_amount: number, p_in_canvas: Point } // +1/-1 is zoom in/out by factor of two
   | { t: "setCurrentImage", ix: number }
   | { t: "setOverlayImage" }
+  | { t: "setHighlight", highlight: Target | undefined }
   ;

@@ -1,8 +1,8 @@
+import { produce } from 'immer';
 import { doZoom, incCam, inc_offset, set_offset_pres } from './camera-state';
-import { LabType, UiState, Action } from './types';
-import { castImmutable, produce } from 'immer';
-import { vadd, vsub } from './vutil';
 import { PANNING_MARGIN } from './main';
+import { Action, LabType, UiState } from './types';
+import { vsub } from './vutil';
 
 export function reduce(state: UiState, action: Action): UiState {
   function sanitize(s: string): LabType {
@@ -82,15 +82,20 @@ export function reduce(state: UiState, action: Action): UiState {
       });
     case 'mouseDown': {
       console.log('mouseDown', action.p_in_page);
-      const newCameraData = set_offset_pres(state.cameraData, { x: -PANNING_MARGIN, y: -PANNING_MARGIN });
-      return produce(state, s => {
-        s.mouseState = {
-          t: 'pan',
-          orig_p_in_page: action.p_in_page,
-          p_in_page: action.p_in_page,
-          cameraData: newCameraData,
-        };
-      });
+      if (state.mode.t == 'normal' && state.mode.tool == 'Pan') {
+        const newCameraData = set_offset_pres(state.cameraData, { x: -PANNING_MARGIN, y: -PANNING_MARGIN });
+        return produce(state, s => {
+          s.mouseState = {
+            t: 'pan',
+            orig_p_in_page: action.p_in_page,
+            p_in_page: action.p_in_page,
+            cameraData: newCameraData,
+          };
+        });
+      }
+      else {
+        return state;
+      }
     }
     case 'mouseUp': {
       const ms = state.mouseState;
@@ -105,20 +110,22 @@ export function reduce(state: UiState, action: Action): UiState {
     }
     case 'mouseMove': {
       const ms = state.mouseState;
-      if (ms.t != 'pan')
-        return state;
+      switch (ms.t) {
+        case 'pan':
+          let newCamera = inc_offset(ms.cameraData, vsub(action.p_in_page, ms.p_in_page));
 
-      let newCamera = inc_offset(ms.cameraData, vsub(action.p_in_page, ms.p_in_page));
+          const newMs = produce(ms, s => {
+            s.p_in_page = action.p_in_page;
+            s.cameraData = newCamera;
+          });
 
-      const newMs = produce(ms, s => {
-        s.p_in_page = action.p_in_page;
-        s.cameraData = newCamera;
-      });
-
-      return produce(state, s => {
-        s.mouseState = newMs;
-      });
-
+          return produce(state, s => {
+            s.mouseState = newMs;
+          });
+        case 'up': {
+          return state;
+        }
+      }
     }
     case 'doZoom': {
       const cameraData = doZoom(state.cameraData, action.p_in_canvas, action.zoom_amount);
@@ -134,9 +141,14 @@ export function reduce(state: UiState, action: Action): UiState {
       });
     }
     case 'setOverlayImage': {
-      console.log('setOverlay');
       return produce(state, s => {
         s.imageLayerState.overlay = 'render';
+      });
+    }
+    case 'setHighlight': {
+      console.log('set');
+      return produce(state, s => {
+        s.highlightTarget = action.highlight;
       });
     }
   }

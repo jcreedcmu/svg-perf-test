@@ -80,8 +80,9 @@ function render(ci: CanvasInfo, state: MapCanvasState) {
   }
   const bbox_in_world = get_bbox_in_world(cameraData, dims)
 
+  const mm = state.ui.mode.t == 'normal' ? state.ui.mode.tool : 'Pan';
   state.geo.coastlineLayer.render({
-    d, bbox_in_world, cameraData, mode: 'Pan', us: state.ui,
+    d, bbox_in_world, cameraData, mode: mm, us: state.ui,
   });
 
   const { mode } = state.ui;
@@ -89,10 +90,10 @@ function render(ci: CanvasInfo, state: MapCanvasState) {
   renderImageOverlay(d, cameraData, named_imgs, cur_img_ix, overlay == null ? null : (window as any)._image);
 
   state.geo.riverLayer.render({
-    d, bbox_in_world, cameraData, mode: 'Pan', us: state.ui,
+    d, bbox_in_world, cameraData, mode: mm, us: state.ui,
   });
   state.geo.sketchLayer.render({
-    d, bbox_in_world, cameraData, mode: 'Pan', us: state.ui,
+    d, bbox_in_world, cameraData, mode: mm, us: state.ui,
   });
 
   // TODO: Vertex hover

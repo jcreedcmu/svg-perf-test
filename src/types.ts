@@ -123,7 +123,7 @@ export type Bbox = rbush.BBox;
 export type Bush<T> = RBush<Bbox & { payload: T }>;
 
 export type LabelUIMode = { text: string, tp: string, zoom: string };
-type UIMode =
+type UiMode =
   | { t: 'normal', tool: Tool }
   | {
     t: 'label-modal', v: LabelUIMode, status:
@@ -151,7 +151,7 @@ export type ImageLayerState = {
 }
 
 export type UiState = {
-  mode: UIMode,
+  mode: UiMode,
   layers: {
     road: boolean,
     boundary: boolean,
@@ -183,11 +183,17 @@ export type LabelModalResult =
   | { t: "LabelModalOk" }
   | { t: "LabelModalChange", lm: LabelUIMode };
 
+export type Geometry = {
+  coastlineLayer: CoastlineLayer,
+  riverLayer: RiverLayer,
+  sketchLayer: SketchLayer,
+};
+
 export type Action =
   | FeatureModalResult
   | LabelModalResult
   | { t: "RadioToggle", k: keyof UiState['layers'] }
-  | { t: "SetMode", mode: UIMode }
+  | { t: "setMode", mode: UiMode }
   | { t: "setCameraData", camera: CameraData }
   | { t: "mouseDown", p_in_page: Point }
   | { t: "mouseMove", p_in_page: Point }
@@ -196,9 +202,3 @@ export type Action =
   | { t: "setCurrentImage", ix: number }
   | { t: "setOverlayImage" }
   ;
-
-export type Geometry = {
-  coastlineLayer: CoastlineLayer,
-  riverLayer: RiverLayer,
-  sketchLayer: SketchLayer,
-};

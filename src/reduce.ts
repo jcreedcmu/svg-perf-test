@@ -13,7 +13,7 @@ export function reduce(state: UiState, action: Action): UiState {
 
   const { mode } = state;
   switch (action.t) {
-    case "SetMode": {
+    case "setMode": {
       return produce(state, s => {
         s.mode = action.mode;
       });

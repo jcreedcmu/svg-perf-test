@@ -161,6 +161,7 @@ export function MapCanvas(props: MapCanvasProps): JSX.Element {
 
     [
       state.mouseState.t,
+      state.mode,
       state.cameraData,
       state.layers,
       state.mouseState.t == 'pan' ? state.mouseState.cameraData.canvas_from_world : undefined,

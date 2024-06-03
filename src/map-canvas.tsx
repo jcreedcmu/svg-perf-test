@@ -172,11 +172,11 @@ export function MapCanvas(props: MapCanvasProps): JSX.Element {
   );
   useEffect(() => {
     if (state.mouseState.t == 'pan') {
-      document.addEventListener('mousemove', onMouseMove);
-      document.addEventListener('mouseup', onMouseUp);
+      document.addEventListener('mousemove', onMouseMoveDrag);
+      document.addEventListener('mouseup', onMouseUpDrag);
       return () => {
-        document.removeEventListener('mousemove', onMouseMove);
-        document.removeEventListener('mouseup', onMouseUp);
+        document.removeEventListener('mousemove', onMouseMoveDrag);
+        document.removeEventListener('mouseup', onMouseUpDrag);
       }
     }
   }, [state.mouseState.t]);
@@ -184,11 +184,11 @@ export function MapCanvas(props: MapCanvasProps): JSX.Element {
     dispatch({ t: 'mouseDown', p_in_page: { x: e.pageX!, y: e.pageY! } })
   }
 
-  function onMouseMove(e: MouseEvent) {
+  function onMouseMoveDrag(e: MouseEvent) {
     dispatch({ t: 'mouseMove', p_in_page: { x: e.pageX!, y: e.pageY! } })
   }
 
-  function onMouseUp(e: MouseEvent) {
+  function onMouseUpDrag(e: MouseEvent) {
     dispatch({ t: 'mouseUp', p_in_page: { x: e.pageX!, y: e.pageY! } })
   }
 

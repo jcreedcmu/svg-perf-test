@@ -93,6 +93,15 @@ export function reduce(state: UiState, action: Action): UiState {
           };
         });
       }
+      else if (state.mode.t == 'normal' && state.mode.tool == 'Measure') {
+        return produce(state, s => {
+          s.mouseState = {
+            t: 'measure',
+            orig_p_in_page: action.p_in_page,
+            p_in_page: action.p_in_page,
+          };
+        });
+      }
       else {
         return state;
       }
@@ -124,6 +133,15 @@ export function reduce(state: UiState, action: Action): UiState {
           });
         case 'up': {
           return state;
+        }
+        case 'measure': {
+          const newMs = produce(ms, s => {
+            s.p_in_page = action.p_in_page;
+          });
+
+          return produce(state, s => {
+            s.mouseState = newMs;
+          });
         }
       }
     }

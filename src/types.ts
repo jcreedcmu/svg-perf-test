@@ -136,9 +136,14 @@ export type MouseState =
   | { t: 'up' }
   | {
     t: 'pan',
-    orig_p_in_page: Point,
+    orig_p_in_page: Point, // XXX: Is this needed?
     p_in_page: Point,
     cameraData: CameraData,
+  }
+  | {
+    t: 'measure',
+    orig_p_in_page: Point,
+    p_in_page: Point,
   }
   ;
 

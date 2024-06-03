@@ -6,6 +6,7 @@ import { MapCanvas } from './map-canvas';
 import { reduce } from './reduce';
 import { Action, Dict, FeatureModalResult, Geometry, ImageLayerState, LabelModalResult, LabelUIMode, NamedImage, SizedImage, UiState } from './types';
 import { image_url } from './images';
+import { OverlayCanvas } from './overlay-canvas';
 
 export const SIDEBAR_WIDTH = 200;
 
@@ -182,6 +183,7 @@ export function MainUi(props: MainUiProps): JSX.Element {
     </div>
     <div className="map-container" >
       <MapCanvas uiState={state} dispatch={dispatch} geo={geo} />
+      <OverlayCanvas uiState={state} />
     </div>
     <FeatureModal us={state} dispatch={dispatch} />
     <LabelModal us={state} dispatch={dispatch} />

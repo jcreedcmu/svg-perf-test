@@ -29,7 +29,6 @@ export const DEBUG = false;
 const DEBUG_PROF = false;
 export const OFFSET = DEBUG ? 100 : 0;
 const FREEHAND_SIMPLIFICATION_FACTOR = 100;
-export const PANNING_MARGIN = 200;
 
 // Just for debugging
 declare var window: any;

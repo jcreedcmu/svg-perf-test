@@ -3,7 +3,8 @@ import { clone, scale_of_zoom, zoom_of_scale } from './util';
 import { produce } from 'immer';
 import { SE2, compose, composen, inverse, mkSE2, scale, translate } from './se2';
 import { vadd, vdiag } from './vutil';
-import { PANNING_MARGIN } from './main';
+
+export const PANNING_MARGIN = 200;
 
 export type CameraData = {
   // The "origin" is the where the top-left of the canvas ends up in

@@ -1,6 +1,5 @@
 import { produce } from 'immer';
-import { doZoom, incCam, inc_offset, set_offset_pres } from './camera-state';
-import { PANNING_MARGIN } from './main';
+import { PANNING_MARGIN, doZoom, incCam, inc_offset, set_offset_pres } from './camera-state';
 import { Action, LabType, UiState } from './types';
 import { vsub } from './vutil';
 

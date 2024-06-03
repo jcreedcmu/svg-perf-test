@@ -6,11 +6,12 @@ import { Dispatch, SIDEBAR_WIDTH } from './ui';
 import { CanvasInfo, useCanvas } from './use-canvas';
 import { compose, translate } from './se2';
 import { vadd, vsub } from './vutil';
-import { OFFSET, PANNING_MARGIN } from './main';
+import { OFFSET } from './main';
 import { CameraData, scale_of_camera, set_offset_pres, zoom_of_camera } from './camera-state';
 import { colors } from './colors';
 import { renderImageOverlay } from './images';
 import { app_world_from_canvas, canvasIntoWorld, meters_to_string } from './util';
+import { getCanvasDims } from './canvas-utils';
 
 const VERTEX_SENSITIVITY = 10;
 
@@ -164,11 +165,6 @@ function render(ci: CanvasInfo, state: MapCanvasState) {
   }
 }
 
-// Gets width and height of canvas
-function getCanvasDims(ms: MouseState): Point {
-  const margin = ms.t == 'pan' ? PANNING_MARGIN : 0;
-  return { x: innerWidth + 2 * margin, y: innerHeight + 2 * margin };
-}
 
 function handleMouseWheel(e: React.WheelEvent, dispatch: Dispatch): void {
   const x = e.pageX!;
@@ -217,19 +213,13 @@ export function MapCanvas(props: MapCanvasProps): JSX.Element {
     ],
     () => { }
   );
-  useEffect(() => {
-    if (state.mouseState.t == 'pan') {
-      document.addEventListener('mouseup', onMouseUpDrag);
-      return () => {
-        document.removeEventListener('mouseup', onMouseUpDrag);
-      }
-    }
-  }, [state.mouseState.t]);
 
   useEffect(() => {
     document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
     return () => {
       document.removeEventListener('mousemove', onMouseMove);
+      document.removeEventListener('mouseup', onMouseUp);
     }
   }, [state]);
 
@@ -259,7 +249,7 @@ export function MapCanvas(props: MapCanvasProps): JSX.Element {
     }
   }
 
-  function onMouseUpDrag(e: MouseEvent) {
+  function onMouseUp(e: MouseEvent) {
     dispatch({ t: 'mouseUp', p_in_page: { x: e.pageX!, y: e.pageY! } })
   }
 

@@ -146,10 +146,16 @@ export function reduce(state: UiState, action: Action): UiState {
       });
     }
     case 'setHighlight': {
-      console.log('set');
       return produce(state, s => {
         s.highlightTarget = action.highlight;
       });
+    }
+    case 'multiple': {
+      let st = state;
+      for (const a of action.actions) {
+        st = reduce(st, a);
+      }
+      return st;
     }
   }
 

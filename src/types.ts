@@ -123,7 +123,7 @@ export type Bbox = rbush.BBox;
 export type Bush<T> = RBush<Bbox & { payload: T }>;
 
 export type LabelUIMode = { text: string, tp: string, zoom: string };
-type UiMode =
+export type UiMode =
   | { t: 'normal', tool: Tool }
   | {
     t: 'label-modal', v: LabelUIMode, status:
@@ -203,4 +203,5 @@ export type Action =
   | { t: "setCurrentImage", ix: number }
   | { t: "setOverlayImage" }
   | { t: "setHighlight", highlight: Target | undefined }
+  | { t: "multiple", actions: Action[] }
   ;

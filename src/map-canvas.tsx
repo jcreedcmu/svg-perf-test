@@ -1,7 +1,7 @@
 import { produce } from 'immer';
 import * as React from 'react';
 import { useEffect } from 'react';
-import { ArRectangle, Dict, Geometry, MouseState, Point, Rect, SizedImage, Target, UiState } from './types';
+import { Action, ArRectangle, Dict, Geometry, MouseState, Point, Rect, SizedImage, Target, UiMode, UiState } from './types';
 import { Dispatch, SIDEBAR_WIDTH } from './ui';
 import { CanvasInfo, useCanvas } from './use-canvas';
 import { compose, translate } from './se2';
@@ -183,6 +183,15 @@ function equalTargets(t1: Target | undefined, t2: Target | undefined): boolean {
   return t2 !== undefined && JSON.stringify(t1) == JSON.stringify(t2);
 }
 
+function shouldShowVertices(state: UiState): boolean {
+  const { mode } = state;
+  if (mode.t != 'normal') return false;
+  if (state.mouseState.t != 'up') return false;
+  if (mode.tool == 'Pan') return true;
+  if (mode.tool == 'Move') return true;
+  return false;
+}
+
 export function MapCanvas(props: MapCanvasProps): JSX.Element {
   const { uiState: state, dispatch, geo } = props;
   const [cref, mc] = useCanvas({ ui: state, geo }, render,
@@ -222,7 +231,7 @@ export function MapCanvas(props: MapCanvasProps): JSX.Element {
     return () => {
       document.removeEventListener('mousemove', onMouseMove);
     }
-  }, [state.mode, state.highlightTarget]);
+  }, [state]);
 
   function onMouseDown(e: React.MouseEvent) {
     dispatch({ t: 'mouseDown', p_in_page: { x: e.pageX!, y: e.pageY! } })
@@ -230,7 +239,8 @@ export function MapCanvas(props: MapCanvasProps): JSX.Element {
 
   function onMouseMove(e: MouseEvent) {
     const p_in_page = { x: e.pageX!, y: e.pageY! };
-    if (state.mode.t == 'normal' && state.mode.tool == 'Move') {
+    if (shouldShowVertices(state)) {
+      const actions: Action[] = [{ t: 'mouseMove', p_in_page }];
       const p_in_world = app_world_from_canvas(state.cameraData, p_in_page);
       const rad = VERTEX_SENSITIVITY / scale_of_camera(state.cameraData);
       const bbox: ArRectangle = [
@@ -240,8 +250,9 @@ export function MapCanvas(props: MapCanvasProps): JSX.Element {
       const targets = geo.coastlineLayer.targets(bbox);
       const newHighlight: Target | undefined = targets.length > 0 ? targets[0] : undefined;
       if (!equalTargets(state.highlightTarget, newHighlight)) {
-        dispatch({ t: 'setHighlight', highlight: newHighlight });
+        actions.push({ t: 'setHighlight', highlight: newHighlight })
       }
+      dispatch({ t: 'multiple', actions });
     }
     else {
       dispatch({ t: 'mouseMove', p_in_page })

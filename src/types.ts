@@ -8,6 +8,8 @@ import { CoastlineLayer } from './coastline';
 import { RiverLayer } from './rivers';
 import { SketchLayer } from './sketch';
 import { ImageLayer } from './images';
+import { ArcStore } from './arcstore';
+import { LabelStore } from './labelstore';
 
 export type Tool = "Pan" | "Freehand" | "Move" | "Select" | "Label" | "Measure" | "Extract";
 
@@ -190,7 +192,8 @@ export type LabelModalResult =
   | { t: "LabelModalChange", lm: LabelUIMode };
 
 export type Geometry = {
-  coastlineLayer: CoastlineLayer,
+  arcStore: ArcStore,
+  labelStore: LabelStore,
   riverLayer: RiverLayer,
   sketchLayer: SketchLayer,
 };

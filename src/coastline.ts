@@ -174,7 +174,7 @@ function sortBy<T>(items: T[], score: (x: T) => number): T[] {
     .map(x => x.item);
 }
 
-function render(rc: RenderCtx, arcStore: ArcStore, labelStore: LabelStore) {
+export function renderCoastline(rc: RenderCtx, arcStore: ArcStore, labelStore: LabelStore) {
   const { d, cameraData, bbox_in_world, us, mode } = rc;
   function visible(x: Poly): boolean {
     if (x.properties.t == "road" && !us.layers.road) return false;
@@ -319,6 +319,43 @@ function render(rc: RenderCtx, arcStore: ArcStore, labelStore: LabelStore) {
   });
 }
 
+export function getAvtPoint(arcStore: ArcStore, avt: ArcVertexTarget): Point {
+  return arcStore.avtPoint(avt);
+}
+
+function get_arc_vertex_targets(arcStore: ArcStore, world_bbox: ArRectangle): ArcVertexTarget[] {
+  const ptargets = tsearch(arcStore.point_rt, world_bbox);
+  const targets: ArcVertexTarget[] = ptargets.map(ptId => ({ ptId }));
+
+  if (targets.length < 2) return targets;
+
+  const orig = getAvtPoint(arcStore, targets[0]);
+  for (let i = 1; i < targets.length; i++) {
+    let here = getAvtPoint(arcStore, targets[i]);
+    // If we're getting a set of points not literally on the same
+    // point, pretend there's no match
+    if (orig.x != here.x) return [];
+    if (orig.y != here.y) return [];
+  }
+  // Otherwise return the whole set
+  return targets;
+}
+
+function get_label_targets(labelStore: LabelStore, world_bbox: ArRectangle): LabelTarget[] {
+  const targets = tsearch(labelStore.label_rt, world_bbox);
+  if (targets.length < 2)
+    return targets;
+  else
+    return [];
+}
+
+export function getTargets(world_bbox: ArRectangle, arcStore: ArcStore, labelStore: LabelStore): Target[] {
+  const arcts = get_arc_vertex_targets(arcStore, world_bbox).map(x => ["coastline", x] as ["coastline", ArcVertexTarget]);
+  const labts = get_label_targets(labelStore, world_bbox).map(x => ["label", x] as ["label", LabelTarget]);
+  return ([] as Target[]).concat(arcts, labts);
+}
+
+
 export class CoastlineLayer implements Layer {
   arcStore: ArcStore;
   labelStore: LabelStore;
@@ -331,7 +368,7 @@ export class CoastlineLayer implements Layer {
   }
 
   render(rc: RenderCtx) {
-    render(rc, this.arcStore, this.labelStore);
+    renderCoastline(rc, this.arcStore, this.labelStore);
   }
 
   rebuild() {

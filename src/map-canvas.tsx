@@ -12,6 +12,7 @@ import { colors } from './colors';
 import { renderImageOverlay } from './images';
 import { app_world_from_canvas, canvasIntoWorld, meters_to_string } from './util';
 import { getCanvasDims } from './canvas-utils';
+import { getAvtPoint, getTargets, renderCoastline } from './coastline';
 
 const VERTEX_SENSITIVITY = 10;
 
@@ -84,9 +85,9 @@ function render(ci: CanvasInfo, state: MapCanvasState) {
   const bbox_in_world = get_bbox_in_world(cameraData, dims)
 
   const mm = state.ui.mode.t == 'normal' ? state.ui.mode.tool : 'Pan';
-  geo.coastlineLayer.render({
+  renderCoastline({
     d, bbox_in_world, cameraData, mode: mm, us: state.ui,
-  });
+  }, geo.arcStore, geo.labelStore);
 
   const { mode } = state.ui;
   const { named_imgs, cur_img_ix, overlay } = state.ui.imageLayerState;
@@ -108,7 +109,7 @@ function render(ci: CanvasInfo, state: MapCanvasState) {
     canvasIntoWorld(d, cameraData);
 
     if (tgt[0] == "coastline") {
-      const pt = geo.coastlineLayer.avtPoint(tgt[1]);
+      const pt = getAvtPoint(geo.arcStore, tgt[1]);
       d.fillStyle = "white";
       d.fillRect(pt.x - rad, pt.y - rad, rad * 2, rad * 2);
       d.lineWidth = 1 / scale;
@@ -119,7 +120,7 @@ function render(ci: CanvasInfo, state: MapCanvasState) {
       d.strokeRect(pt.x - 2 * rad, pt.y - 2 * rad, rad * 4, rad * 4);
     }
     else if (tgt[0] == "label") {
-      const pt = geo.coastlineLayer.labelStore.labels[tgt[1]].pt;
+      const pt = geo.labelStore.labels[tgt[1]].pt;
       d.beginPath();
       d.fillStyle = "white";
       d.globalAlpha = 0.5;
@@ -237,7 +238,7 @@ export function MapCanvas(props: MapCanvasProps): JSX.Element {
         p_in_world.x - rad, p_in_world.y - rad,
         p_in_world.x + rad, p_in_world.y + rad
       ];
-      const targets = geo.coastlineLayer.targets(bbox);
+      const targets = getTargets(bbox, geo.arcStore, geo.labelStore);
       const newHighlight: Target | undefined = targets.length > 0 ? targets[0] : undefined;
       if (!equalTargets(state.highlightTarget, newHighlight)) {
         actions.push({ t: 'setHighlight', highlight: newHighlight })

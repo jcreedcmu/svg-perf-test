@@ -101,7 +101,8 @@ export class App {
     const props: MainUiProps = {
       geo: {
         riverLayer: this.river_layer,
-        coastlineLayer: this.coastline_layer,
+        arcStore: this.coastline_layer.arcStore,
+        labelStore: this.coastline_layer.labelStore,
         sketchLayer: this.sketch_layer,
       },
       images: geo.images,

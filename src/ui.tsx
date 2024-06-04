@@ -229,6 +229,7 @@ function onKeyDown(e: KeyboardEvent, ils: ImageLayerState, dispatch: Dispatch): 
     case 'p': dispatch({ t: 'setMode', mode: { t: 'normal', tool: 'Pan' } }); break;
     case 'm': dispatch({ t: 'setMode', mode: { t: 'normal', tool: 'Move' } }); break;
     case 'e': dispatch({ t: 'setMode', mode: { t: 'normal', tool: 'Measure' } }); break;
+    case 'l': dispatch({ t: 'setMode', mode: { t: 'normal', tool: 'Label' } }); break;
   }
 }
 

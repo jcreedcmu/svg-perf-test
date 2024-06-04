@@ -1,8 +1,46 @@
 import { produce } from 'immer';
 import { PANNING_MARGIN, doZoom, incCam, inc_offset, set_offset_pres } from './camera-state';
-import { Action, LabType, UiState } from './types';
+import { Action, LabType, MouseDownAction, UiState } from './types';
 import { vsub } from './vutil';
 
+export function reduceMouseDown(state: UiState, action: MouseDownAction): UiState {
+  console.log('mouseDown', action.p_in_page);
+  const { mode } = state;
+  switch (mode.t) {
+    case 'normal': {
+      const { tool } = mode;
+      switch (tool) {
+        case 'Pan':
+          const newCameraData = set_offset_pres(state.cameraData, { x: -PANNING_MARGIN, y: -PANNING_MARGIN });
+          return produce(state, s => {
+            s.mouseState = {
+              t: 'pan',
+              orig_p_in_page: action.p_in_page,
+              p_in_page: action.p_in_page,
+              cameraData: newCameraData,
+            };
+          });
+        case 'Measure': {
+          return produce(state, s => {
+            s.mouseState = {
+              t: 'measure',
+              orig_p_in_page: action.p_in_page,
+              p_in_page: action.p_in_page,
+            };
+          });
+        }
+        case 'Label': {
+          return produce(state, s => {
+            s.mode = { t: 'label-modal', status: { isNew: true, pt: action.p_in_page }, v: { text: '', tp: '', zoom: '' } }
+          });
+        }
+        default: return state;
+      }
+    }
+    case 'label-modal': return state;
+    case 'feature-modal': return state;
+  }
+}
 export function reduce(state: UiState, action: Action): UiState {
   function sanitize(s: string): LabType {
     if (s == "park" || s == "city" || s == "region" || s == "sea" || s == "minorsea" || s == "river")
@@ -76,30 +114,7 @@ export function reduce(state: UiState, action: Action): UiState {
         s.cameraData = action.camera;
       });
     case 'mouseDown': {
-      console.log('mouseDown', action.p_in_page);
-      if (state.mode.t == 'normal' && state.mode.tool == 'Pan') {
-        const newCameraData = set_offset_pres(state.cameraData, { x: -PANNING_MARGIN, y: -PANNING_MARGIN });
-        return produce(state, s => {
-          s.mouseState = {
-            t: 'pan',
-            orig_p_in_page: action.p_in_page,
-            p_in_page: action.p_in_page,
-            cameraData: newCameraData,
-          };
-        });
-      }
-      else if (state.mode.t == 'normal' && state.mode.tool == 'Measure') {
-        return produce(state, s => {
-          s.mouseState = {
-            t: 'measure',
-            orig_p_in_page: action.p_in_page,
-            p_in_page: action.p_in_page,
-          };
-        });
-      }
-      else {
-        return state;
-      }
+      return reduceMouseDown(state, action);
     }
     case 'mouseUp': {
       const ms = state.mouseState;

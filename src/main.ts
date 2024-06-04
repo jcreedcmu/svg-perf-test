@@ -57,7 +57,7 @@ function mkApp(): Promise<App> {
 export class App {
   w: number = 0;
   h: number = 0;
-  layers: Layer[];
+
   lastz: Target[] = [];
   slastz: string = "[]";
   coastline_layer: CoastlineLayer;
@@ -89,11 +89,6 @@ export class App {
     this.coastline_layer = new CoastlineLayer(arcStore, labelStore, geo.counter);
     this.river_layer = new RiverLayer(rivers);
     this.sketch_layer = new SketchLayer();
-    this.layers = [
-      this.coastline_layer,
-      this.river_layer,
-      this.sketch_layer,
-    ];
 
     // React rendering
 

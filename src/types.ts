@@ -122,11 +122,11 @@ export const nonce = "";
 export type Bbox = rbush.BBox;
 export type Bush<T> = RBush<Bbox & { payload: T }>;
 
-export type LabelUIMode = { text: string, tp: string, zoom: string };
+export type LabelModalState = { text: string, tp: string, zoom: string };
 export type UiMode =
   | { t: 'normal', tool: Tool }
   | {
-    t: 'label-modal', v: LabelUIMode, status:
+    t: 'label-modal', v: LabelModalState, status:
     { isNew: true, pt: Point } |
     { isNew: false, prev: Label }
   }
@@ -186,8 +186,8 @@ export type FeatureModalResult =
 
 export type LabelModalResult =
   | { t: "LabelModalCancel" }
-  | { t: "LabelModalOk" }
-  | { t: "LabelModalChange", lm: LabelUIMode };
+  | { t: "LabelModalOk", result: LabelModalState }
+  ;
 
 export type Geometry = {
   arcStore: ArcStore,

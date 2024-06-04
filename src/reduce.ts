@@ -28,7 +28,10 @@ export function reduce(state: UiState, action: Action): UiState {
       // }
     } break;
     case "LabelModalOk": {
-      throw new Error(`LabelModalOk action unimplemented`);
+      console.log(action.result);
+      return produce(state, s => {
+        s.mode = { t: 'normal', tool: 'Pan' };
+      });
       // if (mode.t == "label-modal") {
       //   const v = mode.v;
       //   if (mode.status.isNew)
@@ -58,14 +61,7 @@ export function reduce(state: UiState, action: Action): UiState {
       //   console.log(`unsupported action FeatureModalOk when uistate is ${state}`);
       // }
     } break;
-    case "LabelModalChange":
-      throw new Error(`LabelModalChange action unimplemented`);
-    // if (mode.t == "label-modal") {
-    //   mode.v = r.lm; // MUTATES
-    // }
-    // else {
-    //   throw (`unsupported action LabelModalChange when uistate is ${state}`);
-    // } break;
+
     case "FeatureModalCancel":
     case "LabelModalCancel":
       return produce(state, s => {

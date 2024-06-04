@@ -1,12 +1,23 @@
+import WarningRoundedIcon from '@mui/icons-material/WarningRounded';
+import Button from '@mui/joy/Button';
+import DialogActions from '@mui/joy/DialogActions';
+import DialogContent from '@mui/joy/DialogContent';
+import DialogTitle from '@mui/joy/DialogTitle';
+import Divider from '@mui/joy/Divider';
+import Modal from '@mui/joy/Modal';
+import ModalDialog from '@mui/joy/ModalDialog';
+import FormControl from '@mui/joy/FormControl';
+import FormLabel from '@mui/joy/FormLabel';
+import FormHelperText from '@mui/joy/FormHelperText';
+import Input from '@mui/joy/Input';
+import Stack from '@mui/joy/Stack';
 import * as React from 'react';
-import { useState } from 'react';
-import { Modal } from 'react-bootstrap';
 import { mkCameraData } from './camera-state';
-import { MapCanvas } from './map-canvas';
-import { reduce } from './reduce';
-import { Action, Dict, FeatureModalResult, Geometry, ImageLayerState, LabelModalResult, LabelUIMode, NamedImage, SizedImage, UiState } from './types';
 import { image_url } from './images';
+import { MapCanvas } from './map-canvas';
 import { OverlayCanvas } from './overlay-canvas';
+import { reduce } from './reduce';
+import { Action, Dict, Geometry, ImageLayerState, LabelModalResult, LabelModalState, NamedImage, SizedImage, UiState } from './types';
 
 export const SIDEBAR_WIDTH = 200;
 
@@ -51,6 +62,80 @@ export const SIDEBAR_WIDTH = 200;
  *     </Modal.Body>
  *   </Modal>;
  * } */
+
+const modalStyle: any = {
+  position: 'absolute' as 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  pt: 2,
+  px: 4,
+  pb: 3,
+};
+
+
+function LabelModal(props: { us: UiState, dispatch: (r: LabelModalResult) => void }): JSX.Element {
+  const { us, dispatch } = props;
+
+  const open = us.mode.t == 'label-modal';
+  const v =
+    us.mode.t == "label-modal" ?
+      us.mode.v :
+      { text: "", zoom: "", tp: "" };
+
+  const [state, setState] = React.useState<LabelModalState>(v);
+  const { text, zoom, tp } = state;
+
+  const dismiss = () => dispatch({ t: "LabelModalCancel" });
+  const submit = () => dispatch({ t: "LabelModalOk", result: state });
+  function change(f: (l: LabelModalState) => LabelModalState): void {
+    setState(f);
+  }
+  return <Modal open={open}>
+    <ModalDialog variant="outlined" role="alertdialog">
+      <DialogTitle>
+        Edit Label
+      </DialogTitle>
+      <Divider />
+      <DialogContent>
+        <Stack spacing={2}>
+          <FormControl>
+            <FormLabel>Text</FormLabel>
+            <Input placeholder="Text"
+              value={text} onChange={e => change(z => ({ ...z, text: e.target.value }))}
+            />
+          </FormControl>
+
+          <FormControl>
+            <FormLabel>Type</FormLabel>
+            <Input placeholder="Type"
+              value={tp} onChange={e => change(z => ({ ...z, tp: e.target.value }))}
+            />
+          </FormControl>
+
+          <FormControl>
+            <FormLabel>Zoom</FormLabel>
+            <Input placeholder="Zoom"
+              value={zoom} onChange={e => change(z => ({ ...z, zoom: e.target.value }))}
+            />
+          </FormControl>
+        </Stack>
+      </DialogContent>
+      <DialogActions>
+        <Button variant="solid" color="primary" onMouseDown={submit} >
+          Save
+        </Button>
+        <Button variant="plain" color="neutral" >
+          Cancel
+        </Button>
+      </DialogActions>
+    </ModalDialog>
+  </Modal >
+}
 
 /* function LabelModal(props: { us: UiState, dispatch: (r: LabelModalResult) => void }): JSX.Element {
  *   const { us, dispatch } = props;
@@ -186,9 +271,10 @@ export function MainUi(props: MainUiProps): JSX.Element {
       <MapCanvas uiState={state} dispatch={dispatch} geo={geo} />
       <OverlayCanvas uiState={state} />
     </div>
+    <LabelModal us={state} dispatch={dispatch} />
   </div>;
-
+  //
   {/* <FeatureModal us={state} dispatch={dispatch} />
-		<LabelModal us={state} dispatch={dispatch} />
+
 	 */}
 }

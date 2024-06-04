@@ -54,8 +54,6 @@ function mkApp(): Promise<App> {
 
 // The main meat of this file.
 export class App {
-
-
   constructor(_data: Data) {
     let count = 0;
     const geo: Geo = _data.json.geo;

@@ -2,6 +2,7 @@ import { produce } from 'immer';
 import { PANNING_MARGIN, doZoom, incCam, inc_offset, set_offset_pres } from './camera-state';
 import { Action, Geometry, LabType, MouseDownAction, Target, UiState } from './types';
 import { vsub } from './vutil';
+import { app_world_from_canvas } from './util';
 
 export function reduceMouseDown(state: UiState, action: MouseDownAction, geo: Geometry): UiState {
   console.log('mouseDown', action.p_in_page);
@@ -51,7 +52,7 @@ export function reduceMouseDown(state: UiState, action: MouseDownAction, geo: Ge
           else {
             return produce(state, s => {
               s.mode = {
-                t: 'label-modal', status: { isNew: true, pt: action.p_in_page /* WRONG */ },
+                t: 'label-modal', status: { isNew: true, pt: app_world_from_canvas(state.cameraData, action.p_in_page) },
                 v: {
                   text: '',
                   tp: 'region',
@@ -98,38 +99,33 @@ export function reduce(state: UiState, action: Action, geo: Geometry): UiState {
       if (mode.t != 'label-modal') {
         throw new Error(`Tried to Ok out of modal we're not in`);
       }
-      console.log(action.result);
+      if (mode.status.isNew) {
+        // XXX this might get called twice, since we're in reduce
+        geo.labelStore.add_point_feature({
+          name: action.result.text,
+          pt: mode.status.pt,
+          properties: {
+            label: sanitize(action.result.tp),
+            text: action.result.text,
+            zoom: parseInt(action.result.zoom),
+          }
+        });
+      }
+      else {
+        geo.labelStore.replace_point_feature({
+          name: mode.status.prev.name,
+          pt: mode.status.prev.pt,
+          properties: {
+            label: sanitize(action.result.tp),
+            text: action.result.text,
+            zoom: parseInt(action.result.zoom),
+          }
+        });
+      }
+
       return produce(state, s => {
         s.mode = mode.prev;
       });
-      // if (mode.t == "label-modal") {
-      //   const v = mode.v;
-      //   if (mode.status.isNew)
-      //     this.coastline_layer.new_point_feature({
-      //       name: v.text,
-      //       pt: mode.status.pt,
-      //       properties: {
-      //         label: sanitize(v.tp),
-      //         text: v.text,
-      //         zoom: parseInt(v.zoom),
-      //       }
-      //     });
-      //   else
-      //     this.coastline_layer.labelStore.replace_point_feature({
-      //       name: mode.status.prev.name,
-      //       pt: mode.status.prev.pt,
-      //       properties: {
-      //         label: sanitize(v.tp),
-      //         text: v.text,
-      //         zoom: parseInt(v.zoom),
-      //       }
-      //     });
-
-      //   state.mode = { t: "normal" };
-      // }
-      // else {
-      //   console.log(`unsupported action FeatureModalOk when uistate is ${state}`);
-      // }
     } break;
 
     case "FeatureModalCancel":

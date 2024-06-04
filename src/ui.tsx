@@ -91,14 +91,17 @@ function incCurrentImage(dispatch: Dispatch, ils: ImageLayerState, di: number) {
   }
 }
 
-function onKeyDown(e: KeyboardEvent, ils: ImageLayerState, dispatch: Dispatch): void {
-  switch (e.key) {
-    case ',': incCurrentImage(dispatch, ils, -1); break;
-    case '.': incCurrentImage(dispatch, ils, 1); break;
-    case 'p': dispatch({ t: 'setMode', mode: { t: 'normal', tool: 'Pan' } }); break;
-    case 'm': dispatch({ t: 'setMode', mode: { t: 'normal', tool: 'Move' } }); break;
-    case 'e': dispatch({ t: 'setMode', mode: { t: 'normal', tool: 'Measure' } }); break;
-    case 'l': dispatch({ t: 'setMode', mode: { t: 'normal', tool: 'Label' } }); break;
+function onKeyDown(state: UiState, e: KeyboardEvent, dispatch: Dispatch): void {
+  if (state.mode.t == 'normal') {
+    const ils = state.imageLayerState;
+    switch (e.key) {
+      case ',': incCurrentImage(dispatch, ils, -1); break;
+      case '.': incCurrentImage(dispatch, ils, 1); break;
+      case 'p': dispatch({ t: 'setMode', mode: { t: 'normal', tool: 'Pan' } }); break;
+      case 'm': dispatch({ t: 'setMode', mode: { t: 'normal', tool: 'Move' } }); break;
+      case 'e': dispatch({ t: 'setMode', mode: { t: 'normal', tool: 'Measure' } }); break;
+      case 'l': dispatch({ t: 'setMode', mode: { t: 'normal', tool: 'Label' } }); break;
+    }
   }
 }
 
@@ -112,7 +115,7 @@ export function MainUi(props: MainUiProps): JSX.Element {
   const initState = mkUiState(images);
   const [state, dispatch] = React.useReducer<(s: UiState, a: Action) => UiState>(reduceWithGeo, initState);
 
-  const keyHandler = (e: KeyboardEvent) => onKeyDown(e, state.imageLayerState, dispatch);
+  const keyHandler = (e: KeyboardEvent) => onKeyDown(state, e, dispatch);
   React.useEffect(() => {
     document.addEventListener('keydown', keyHandler);
     return () => {

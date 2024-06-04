@@ -1,23 +1,11 @@
-import WarningRoundedIcon from '@mui/icons-material/WarningRounded';
-import Button from '@mui/joy/Button';
-import DialogActions from '@mui/joy/DialogActions';
-import DialogContent from '@mui/joy/DialogContent';
-import DialogTitle from '@mui/joy/DialogTitle';
-import Divider from '@mui/joy/Divider';
-import Modal from '@mui/joy/Modal';
-import ModalDialog from '@mui/joy/ModalDialog';
-import FormControl from '@mui/joy/FormControl';
-import FormLabel from '@mui/joy/FormLabel';
-import FormHelperText from '@mui/joy/FormHelperText';
-import Input from '@mui/joy/Input';
-import Stack from '@mui/joy/Stack';
 import * as React from 'react';
 import { mkCameraData } from './camera-state';
 import { image_url } from './images';
 import { MapCanvas } from './map-canvas';
 import { OverlayCanvas } from './overlay-canvas';
 import { reduce } from './reduce';
-import { Action, Dict, Geometry, ImageLayerState, LabelModalResult, LabelModalState, NamedImage, SizedImage, UiState } from './types';
+import { Action, Dict, Geometry, ImageLayerState, NamedImage, SizedImage, UiState } from './types';
+import { LabelModal } from './label-modal';
 
 export const SIDEBAR_WIDTH = 200;
 
@@ -63,126 +51,6 @@ export const SIDEBAR_WIDTH = 200;
  *   </Modal>;
  * } */
 
-const modalStyle: any = {
-  position: 'absolute' as 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  pt: 2,
-  px: 4,
-  pb: 3,
-};
-
-
-function LabelModal(props: { us: UiState, dispatch: (r: LabelModalResult) => void }): JSX.Element {
-  const { us, dispatch } = props;
-
-  const open = us.mode.t == 'label-modal';
-  const v =
-    us.mode.t == "label-modal" ?
-      us.mode.v :
-      { text: "", zoom: "", tp: "" };
-
-  const [state, setState] = React.useState<LabelModalState>(v);
-  const { text, zoom, tp } = state;
-
-  const dismiss = () => dispatch({ t: "LabelModalCancel" });
-  const submit = () => dispatch({ t: "LabelModalOk", result: state });
-  function change(f: (l: LabelModalState) => LabelModalState): void {
-    setState(f);
-  }
-  return <Modal open={open}>
-    <ModalDialog variant="outlined" role="alertdialog">
-      <DialogTitle>
-        Edit Label
-      </DialogTitle>
-      <Divider />
-      <DialogContent>
-        <Stack spacing={2}>
-          <FormControl>
-            <FormLabel>Text</FormLabel>
-            <Input placeholder="Text"
-              value={text} onChange={e => change(z => ({ ...z, text: e.target.value }))}
-            />
-          </FormControl>
-
-          <FormControl>
-            <FormLabel>Type</FormLabel>
-            <Input placeholder="Type"
-              value={tp} onChange={e => change(z => ({ ...z, tp: e.target.value }))}
-            />
-          </FormControl>
-
-          <FormControl>
-            <FormLabel>Zoom</FormLabel>
-            <Input placeholder="Zoom"
-              value={zoom} onChange={e => change(z => ({ ...z, zoom: e.target.value }))}
-            />
-          </FormControl>
-        </Stack>
-      </DialogContent>
-      <DialogActions>
-        <Button variant="solid" color="primary" onMouseDown={submit} >
-          Save
-        </Button>
-        <Button variant="plain" color="neutral" >
-          Cancel
-        </Button>
-      </DialogActions>
-    </ModalDialog>
-  </Modal >
-}
-
-/* function LabelModal(props: { us: UiState, dispatch: (r: LabelModalResult) => void }): JSX.Element {
- *   const { us, dispatch } = props;
- *
- *   const v =
- *     us.mode.t == "label-modal" ?
- *       us.mode.v :
- *       { text: "", zoom: "", tp: "" };
- *
- *   const { text, zoom, tp } = v;
- *   const dismiss = () => dispatch({ t: "LabelModalCancel" });
- *   const submit = () => dispatch({ t: "LabelModalOk" });
- *   function change(f: (l: LabelUIMode) => LabelUIMode): void {
- *     dispatch({ t: "LabelModalChange", lm: f(v) });
- *   }
- *   //  const show = us.mode.t == "label-modal";
- *   return <Modal show={show} onHide={dismiss}>
- *     <Modal.Header closeButton>
- *       <Modal.Title>Add Label</Modal.Title>
- *     </Modal.Header>
- *     <Modal.Body>
- *       <form>
- *         <div className="modal-body">
- *           <div className="form-group">
- *             <label htmlFor="text">Text</label>
- *             <input type="text" className="form-control" name="text" placeholder="erla-otul"
- *               value={text} onChange={e => change(z => ({ ...z, text: e.target.value }))} />
- *           </div>
- *           <div className="form-group">
- *             <label htmlFor="type">Type</label>
- *             <input type="text" className="form-control" name="type" placeholder="region"
- *               value={tp} onChange={e => change(z => ({ ...z, tp: e.target.value }))} />
- *           </div>
- *           <div className="form-group">
- *             <label htmlFor="zoom">Zoom</label>
- *             <input type="text" className="form-control" name="zoom" placeholder="4"
- *               value={zoom} onChange={e => change(z => ({ ...z, zoom: e.target.value }))} />
- *           </div>
- *         </div>
- *         <div className="modal-footer">
- *           <button type="button" className="btn btn-default" onClick={dismiss}>Cancel</button>
- *           <button type="button" className="btn btn-primary" onClick={submit}>Ok</button>
- *         </div>
- *       </form>
- *     </Modal.Body>
- *   </Modal>;
- * } */
 
 export type Dispatch = (action: Action) => void;
 
@@ -274,8 +142,8 @@ export function MainUi(props: MainUiProps): JSX.Element {
     </div>
     <LabelModal us={state} dispatch={dispatch} />
   </div>;
-  //
-  {/* <FeatureModal us={state} dispatch={dispatch} />
 
-	 */}
+  /* <FeatureModal us={state} dispatch={dispatch} />
+
+    */
 }

@@ -1,6 +1,6 @@
 import { produce } from 'immer';
 import { PANNING_MARGIN, doZoom, incCam, inc_offset, set_offset_pres } from './camera-state';
-import { Action, Geo, Geometry, LabType, MouseDownAction, Target, UiState } from './types';
+import { Action, GeoModel, Geometry, LabType, MouseDownAction, Target, UiState } from './types';
 import { vsub } from './vutil';
 import { app_world_from_canvas } from './util';
 
@@ -223,11 +223,12 @@ export function reduce(state: UiState, action: Action, geo: Geometry): UiState {
       return st;
     }
     case 'saveModel': {
-      const output: Geo = {
-        counter: 0, // XXX
+      // XXX bad side effect that might get called twice
+      const output: GeoModel = {
+        counter: geo.counter,
         ...geo.labelStore.model(),
         ...geo.arcStore.model(),
-        images: {}, // XXX
+        images: geo.images,
       };
       const req = new Request('/export', { method: 'POST', body: JSON.stringify(output) });
       fetch(req);

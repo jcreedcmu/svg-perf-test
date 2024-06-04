@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { createRoot } from 'react-dom/client';
-import { Ctx, Geo, Label, Point, Rivers, Target, Tool } from './types';
+import { Ctx, GeoModel, Label, Point, Rivers, Target, Tool } from './types';
 
 import { Data, Loader } from './loader';
 
@@ -56,7 +56,7 @@ function mkApp(): Promise<App> {
 export class App {
   constructor(_data: Data) {
     let count = 0;
-    const geo: Geo = _data.json.geo;
+    const geo: GeoModel = _data.json.geo;
     const rivers: Rivers = _data.json.rivers;
     const arcStore = new ArcStore(geo.points, geo.arcs, geo.polys);
     const labelStore = new LabelStore(geo.labels);
@@ -69,12 +69,13 @@ export class App {
     const root = createRoot(document.getElementById('react-root')!);
     const props: MainUiProps = {
       geo: {
+        counter: geo.counter,
         riverLayer,
         arcStore,
         labelStore,
         sketchLayer,
+        images: geo.images,
       },
-      images: geo.images,
     };
     const comp = React.createElement(MainUi, props, null);
     root.render(comp);

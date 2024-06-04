@@ -101,7 +101,7 @@ export type Poly = {
 
 export type Images = Dict<SizedImage>;
 
-export type Geo = {
+export type GeoModel = {
   counter: number,
   points: Dict<Point>,
   images: Dict<SizedImage>,
@@ -203,6 +203,8 @@ export type Geometry = {
   labelStore: LabelStore,
   riverLayer: RiverLayer,
   sketchLayer: SketchLayer,
+  counter: number,
+  images: Dict<SizedImage>,
 };
 
 export type MouseDownAction = {

@@ -56,7 +56,6 @@ export type Dispatch = (action: Action) => void;
 
 export type MainUiProps = {
   geo: Geometry,
-  images: Dict<SizedImage>,
 };
 
 function mkUiState(images: Dict<SizedImage>): UiState {
@@ -107,7 +106,8 @@ function onKeyDown(state: UiState, e: KeyboardEvent, dispatch: Dispatch): void {
 }
 
 export function MainUi(props: MainUiProps): JSX.Element {
-  const { geo, images } = props;
+  const { geo } = props;
+  const { images } = geo;
 
   const reduceWithGeo = (state: UiState, action: Action): UiState => {
     return reduce(state, action, geo);

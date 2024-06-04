@@ -3,13 +3,11 @@ export type Point = { x: number, y: number };
 export type Color = { r: number, g: number, b: number };
 export type Ctx = CanvasRenderingContext2D;
 import RBush, * as rbush from 'rbush';
+import { ArcStore } from './arcstore';
 import { CameraData } from './camera-state';
-import { CoastlineLayer } from './coastline';
+import { LabelStore } from './labelstore';
 import { RiverLayer } from './rivers';
 import { SketchLayer } from './sketch';
-import { ImageLayer } from './images';
-import { ArcStore } from './arcstore';
-import { LabelStore } from './labelstore';
 
 export type Tool = "Pan" | "Freehand" | "Move" | "Select" | "Label" | "Measure" | "Extract";
 

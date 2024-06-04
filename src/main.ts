@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { createRoot } from 'react-dom/client';
-import { Ctx, Geo, Label, Layer, Point, Rivers, Target, Tool } from './types';
+import { Ctx, Geo, Label, Point, Rivers, Target, Tool } from './types';
 
 import { Data, Loader } from './loader';
 
@@ -9,7 +9,6 @@ import { CameraData } from './camera-state';
 import { Throttler } from './throttler';
 
 import { ArcStore } from './arcstore';
-import { CoastlineLayer } from './coastline';
 import { LabelStore } from './labelstore';
 import { RiverLayer } from './rivers';
 import { SketchLayer } from './sketch';
@@ -60,7 +59,6 @@ export class App {
 
   lastz: Target[] = [];
   slastz: string = "[]";
-  coastline_layer: CoastlineLayer;
   river_layer: RiverLayer;
   sketch_layer: SketchLayer;
   render_extra: null | ((cameraData: CameraData, d: Ctx) => void) = null;
@@ -86,7 +84,7 @@ export class App {
     const rivers: Rivers = _data.json.rivers;
     const arcStore = new ArcStore(geo.points, geo.arcs, geo.polys);
     const labelStore = new LabelStore(geo.labels);
-    this.coastline_layer = new CoastlineLayer(arcStore, labelStore, geo.counter);
+
     this.river_layer = new RiverLayer(rivers);
     this.sketch_layer = new SketchLayer();
 
@@ -96,8 +94,8 @@ export class App {
     const props: MainUiProps = {
       geo: {
         riverLayer: this.river_layer,
-        arcStore: this.coastline_layer.arcStore,
-        labelStore: this.coastline_layer.labelStore,
+        arcStore,
+        labelStore,
         sketchLayer: this.sketch_layer,
       },
       images: geo.images,

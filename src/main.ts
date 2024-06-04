@@ -54,49 +54,27 @@ function mkApp(): Promise<App> {
 
 // The main meat of this file.
 export class App {
-  w: number = 0;
-  h: number = 0;
 
-  lastz: Target[] = [];
-  slastz: string = "[]";
-  river_layer: RiverLayer;
-  sketch_layer: SketchLayer;
-  render_extra: null | ((cameraData: CameraData, d: Ctx) => void) = null;
-  mode: Tool = "Pan";
-  panning: boolean = false;
-  data: Data; // Probably want to eventually get rid of this
-  mouse: Point = { x: 0, y: 0 };
-  selection: { arc: string } | null = null;
-  th: Throttler;
-
-  setCameraData(camera: CameraData): void {
-  }
-
-  getCameraData(): CameraData {
-    throw new Error('Nope');
-  }
 
   constructor(_data: Data) {
-    this.th = new Throttler(() => { });
-    this.data = _data;
     let count = 0;
     const geo: Geo = _data.json.geo;
     const rivers: Rivers = _data.json.rivers;
     const arcStore = new ArcStore(geo.points, geo.arcs, geo.polys);
     const labelStore = new LabelStore(geo.labels);
 
-    this.river_layer = new RiverLayer(rivers);
-    this.sketch_layer = new SketchLayer();
+    const riverLayer = new RiverLayer(rivers);
+    const sketchLayer = new SketchLayer();
 
     // React rendering
 
     const root = createRoot(document.getElementById('react-root')!);
     const props: MainUiProps = {
       geo: {
-        riverLayer: this.river_layer,
+        riverLayer,
         arcStore,
         labelStore,
-        sketchLayer: this.sketch_layer,
+        sketchLayer,
       },
       images: geo.images,
     };

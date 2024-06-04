@@ -72,6 +72,15 @@ export function reduceMouseDown(state: UiState, action: MouseDownAction, geo: Ge
   }
 }
 
+function namegen(state: UiState, prefix: string): { name: string, state: UiState } {
+  const newCounter = state.counter + 1;
+  const name = prefix + state.counter;
+  state = produce(state, s => {
+    s.counter = newCounter;
+  });
+  return { name, state };
+}
+
 export function reduce(state: UiState, action: Action, geo: Geometry): UiState {
   function sanitize(s: string): LabType {
     if (s == "park" || s == "city" || s == "region" || s == "sea" || s == "minorsea" || s == "river")
@@ -103,8 +112,10 @@ export function reduce(state: UiState, action: Action, geo: Geometry): UiState {
       }
       if (mode.status.isNew) {
         // XXX this might get called twice, since we're in reduce
+        let name;
+        ({ state, name } = namegen(state, 'p'));
         geo.labelStore.add_point_feature({
-          name: action.result.text,
+          name,
           pt: mode.status.pt,
           properties: {
             label: sanitize(action.result.tp),
@@ -226,7 +237,7 @@ export function reduce(state: UiState, action: Action, geo: Geometry): UiState {
     case 'saveModel': {
       // XXX bad side effect that might get called twice
       const output: GeoModel = {
-        counter: geo.counter,
+        counter: state.counter,
         ...geo.labelStore.model(),
         ...geo.arcStore.model(),
         images: geo.images,

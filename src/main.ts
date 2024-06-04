@@ -68,8 +68,8 @@ export class App {
 
     const root = createRoot(document.getElementById('react-root')!);
     const props: MainUiProps = {
+      counter: geo.counter,
       geo: {
-        counter: geo.counter,
         riverLayer,
         arcStore,
         labelStore,

@@ -175,6 +175,7 @@ export type UiState = {
   imageLayerState: ImageLayerState,
   lastz: Target[],
   slastz: string,
+  counter: number,
 };
 
 export interface Layer {
@@ -203,7 +204,6 @@ export type Geometry = {
   labelStore: LabelStore,
   riverLayer: RiverLayer,
   sketchLayer: SketchLayer,
-  counter: number,
   images: Dict<SizedImage>,
 };
 

@@ -55,15 +55,17 @@ export const SIDEBAR_WIDTH = 200;
 export type Dispatch = (action: Action) => void;
 
 export type MainUiProps = {
+  counter: number,
   geo: Geometry,
 };
 
-function mkUiState(images: Dict<SizedImage>): UiState {
+function mkUiState(images: Dict<SizedImage>, counter: number): UiState {
   const named_imgs: NamedImage[] = Object.entries(images).map(pair => {
     return { ...pair[1], name: pair[0] };
   });
 
   return {
+    counter,
     layers: { boundary: false, river: false, road: false },
     mode: { t: 'normal', tool: 'Pan' },
     cameraData: mkCameraData(),
@@ -113,7 +115,7 @@ export function MainUi(props: MainUiProps): JSX.Element {
     return reduce(state, action, geo);
   };
 
-  const initState = mkUiState(images);
+  const initState = mkUiState(images, props.counter);
   const [state, dispatch] = React.useReducer<(s: UiState, a: Action) => UiState>(reduceWithGeo, initState);
 
   const keyHandler = (e: KeyboardEvent) => onKeyDown(state, e, dispatch);

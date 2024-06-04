@@ -1,7 +1,7 @@
 import { produce } from 'immer';
 import { PANNING_MARGIN, doZoom, incCam, inc_offset, set_offset_pres } from './camera-state';
 import { Action, GeoModel, Geometry, LabType, MouseDownAction, Target, UiState } from './types';
-import { vsub } from './vutil';
+import { vint, vsub } from './vutil';
 import { app_world_from_canvas } from './util';
 
 export function reduceMouseDown(state: UiState, action: MouseDownAction, geo: Geometry): UiState {
@@ -50,9 +50,10 @@ export function reduceMouseDown(state: UiState, action: MouseDownAction, geo: Ge
             }
           }
           else {
+            const pt = vint(app_world_from_canvas(state.cameraData, action.p_in_page));
             return produce(state, s => {
               s.mode = {
-                t: 'label-modal', status: { isNew: true, pt: app_world_from_canvas(state.cameraData, action.p_in_page) },
+                t: 'label-modal', status: { isNew: true, pt },
                 v: {
                   text: '',
                   tp: 'region',

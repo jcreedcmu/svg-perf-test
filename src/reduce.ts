@@ -41,7 +41,7 @@ export function reduceMouseDown(state: UiState, action: MouseDownAction, geo: Ge
               };
               console.log(v);
               return produce(state, s => {
-                s.mode = { t: 'label-modal', status: { isNew: false, prev: lab }, v };
+                s.mode = { t: 'label-modal', status: { isNew: false, prev: lab }, v, prev: state.mode };
               });
             }
             else {
@@ -51,11 +51,13 @@ export function reduceMouseDown(state: UiState, action: MouseDownAction, geo: Ge
           else {
             return produce(state, s => {
               s.mode = {
-                t: 'label-modal', status: { isNew: true, pt: action.p_in_page /* WRONG */ }, v: {
+                t: 'label-modal', status: { isNew: true, pt: action.p_in_page /* WRONG */ },
+                v: {
                   text: '',
                   tp: 'region',
                   zoom: '4',
-                }
+                },
+                prev: state.mode
               }
             });
           }
@@ -92,9 +94,13 @@ export function reduce(state: UiState, action: Action, geo: Geometry): UiState {
       // }
     } break;
     case "LabelModalOk": {
+      const mode = state.mode;
+      if (mode.t != 'label-modal') {
+        throw new Error(`Tried to Ok out of modal we're not in`);
+      }
       console.log(action.result);
       return produce(state, s => {
-        s.mode = { t: 'normal', tool: 'Pan' };
+        s.mode = mode.prev;
       });
       // if (mode.t == "label-modal") {
       //   const v = mode.v;
@@ -128,8 +134,12 @@ export function reduce(state: UiState, action: Action, geo: Geometry): UiState {
 
     case "FeatureModalCancel":
     case "LabelModalCancel":
+      const mode = state.mode;
+      if (mode.t != 'label-modal' && mode.t != 'feature-modal') {
+        throw new Error(`Tried to cancel out of modal we're not in`);
+      }
       return produce(state, s => {
-        s.mode = { t: "normal", tool: 'Pan' };
+        s.mode = mode.prev;
       });
     case "RadioToggle":
       return produce(state, s => {

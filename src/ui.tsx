@@ -101,6 +101,7 @@ function onKeyDown(state: UiState, e: KeyboardEvent, dispatch: Dispatch): void {
       case 'm': dispatch({ t: 'setMode', mode: { t: 'normal', tool: 'Move' } }); break;
       case 'e': dispatch({ t: 'setMode', mode: { t: 'normal', tool: 'Measure' } }); break;
       case 'l': dispatch({ t: 'setMode', mode: { t: 'normal', tool: 'Label' } }); break;
+      case 'S': dispatch({ t: 'saveModel' }); break;
     }
   }
 }

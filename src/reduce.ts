@@ -1,6 +1,6 @@
 import { produce } from 'immer';
 import { PANNING_MARGIN, doZoom, incCam, inc_offset, set_offset_pres } from './camera-state';
-import { Action, Geometry, LabType, MouseDownAction, Target, UiState } from './types';
+import { Action, Geo, Geometry, LabType, MouseDownAction, Target, UiState } from './types';
 import { vsub } from './vutil';
 import { app_world_from_canvas } from './util';
 
@@ -70,6 +70,7 @@ export function reduceMouseDown(state: UiState, action: MouseDownAction, geo: Ge
     case 'feature-modal': return state;
   }
 }
+
 export function reduce(state: UiState, action: Action, geo: Geometry): UiState {
   function sanitize(s: string): LabType {
     if (s == "park" || s == "city" || s == "region" || s == "sea" || s == "minorsea" || s == "river")
@@ -220,6 +221,17 @@ export function reduce(state: UiState, action: Action, geo: Geometry): UiState {
         st = reduce(st, a, geo);
       }
       return st;
+    }
+    case 'saveModel': {
+      const output: Geo = {
+        counter: 0, // XXX
+        ...geo.labelStore.model(),
+        ...geo.arcStore.model(),
+        images: {}, // XXX
+      };
+      const req = new Request('/export', { method: 'POST', body: JSON.stringify(output) });
+      fetch(req);
+      return state;
     }
   }
 }

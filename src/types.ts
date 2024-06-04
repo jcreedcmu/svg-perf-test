@@ -223,4 +223,5 @@ export type Action =
   | { t: "setOverlayImage" }
   | { t: "setHighlight", highlight: Target | undefined }
   | { t: "multiple", actions: Action[] }
+  | { t: "saveModel" }
   ;

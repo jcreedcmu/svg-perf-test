@@ -164,8 +164,9 @@ export type UiState = {
   },
   cameraData: CameraData,
   mouseState: MouseState,
-  highlightTarget: Target | undefined,
   imageLayerState: ImageLayerState,
+  lastz: Target[],
+  slastz: string,
 };
 
 export interface Layer {

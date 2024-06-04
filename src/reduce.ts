@@ -1,6 +1,6 @@
 import { produce } from 'immer';
 import { PANNING_MARGIN, doZoom, incCam, inc_offset, set_offset_pres } from './camera-state';
-import { Action, LabType, MouseDownAction, UiState } from './types';
+import { Action, LabType, MouseDownAction, Target, UiState } from './types';
 import { vsub } from './vutil';
 
 export function reduceMouseDown(state: UiState, action: MouseDownAction): UiState {
@@ -174,8 +174,12 @@ export function reduce(state: UiState, action: Action): UiState {
       });
     }
     case 'setHighlight': {
+      const h = action.highlight;
+      const newLastz: Target[] = h == undefined ? [] : [h];
+      const newSlastz: string = JSON.stringify(newLastz);
       return produce(state, s => {
-        s.highlightTarget = action.highlight;
+        s.lastz = newLastz;
+        s.slastz = newSlastz;
       });
     }
     case 'multiple': {
@@ -186,8 +190,4 @@ export function reduce(state: UiState, action: Action): UiState {
       return st;
     }
   }
-
 }
-
-
-// this.render();

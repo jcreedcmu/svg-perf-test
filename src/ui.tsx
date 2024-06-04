@@ -74,7 +74,8 @@ function mkUiState(images: Dict<SizedImage>): UiState {
       named_imgs,
       overlay: null,
     },
-    highlightTarget: undefined,
+    lastz: [],
+    slastz: "[]",
   };
 }
 

@@ -101,7 +101,7 @@ function render(ci: CanvasInfo, state: MapCanvasState) {
   });
 
   // vertex highlight
-  const tgt = state.ui.highlightTarget;
+  const tgt = state.ui.lastz[0];
   if (tgt != undefined) {
     const scale = scale_of_camera(cameraData);
     const rad = 3 / scale;
@@ -155,11 +155,11 @@ function render(ci: CanvasInfo, state: MapCanvasState) {
 
     const scale = scale_of_camera(cameraData);
     const { named_imgs, cur_img_ix } = state.ui.imageLayerState;
+    const { slastz } = state.ui;
     const img_name = named_imgs[cur_img_ix].name;
-    const txt = "Zoom: " + zoom_of_camera(cameraData) + " (1px = " + Math.round(1 / scale) + "m) img: " + img_name;
+    const txt = "Zoom: " + Math.round(zoom_of_camera(cameraData)) + " (1px = " + Math.round(1 / scale) + "m) lastz: " + slastz + " img: " + named_imgs[cur_img_ix].name;
     d.strokeText(txt, 20, 20);
     d.fillText(txt, 20, 20);
-
 
     // TODO: "Render Extra", like point dragging
     // TODO: Selection
@@ -203,7 +203,7 @@ export function MapCanvas(props: MapCanvasProps): JSX.Element {
     //   our 'origin', i.e. page_from_canvas
 
     [
-      state.highlightTarget,
+      state.slastz,
       state.mouseState.t,
       state.mode,
       state.cameraData,
@@ -240,7 +240,8 @@ export function MapCanvas(props: MapCanvasProps): JSX.Element {
       ];
       const targets = getTargets(bbox, geo.arcStore, geo.labelStore);
       const newHighlight: Target | undefined = targets.length > 0 ? targets[0] : undefined;
-      if (!equalTargets(state.highlightTarget, newHighlight)) {
+      const oldHighlight: Target | undefined = state.lastz[0];
+      if (!equalTargets(oldHighlight, newHighlight)) {
         actions.push({ t: 'setHighlight', highlight: newHighlight })
       }
       dispatch({ t: 'multiple', actions });

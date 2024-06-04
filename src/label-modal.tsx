@@ -12,16 +12,10 @@ import Stack from '@mui/joy/Stack';
 import * as React from 'react';
 import { LabelModalResult, LabelModalState, UiState } from './types';
 
-export function LabelModal(props: { us: UiState, dispatch: (r: LabelModalResult) => void }): JSX.Element {
-  const { us, dispatch } = props;
+export function LabelModal(props: { initial: LabelModalState, dispatch: (r: LabelModalResult) => void }): JSX.Element {
+  const { initial, dispatch } = props;
 
-  const open = us.mode.t == 'label-modal';
-  const v =
-    us.mode.t == "label-modal" ?
-      us.mode.v :
-      { text: "", zoom: "", tp: "" };
-
-  const [state, setState] = React.useState<LabelModalState>(v);
+  const [state, setState] = React.useState<LabelModalState>(initial);
   const { text, zoom, tp } = state;
 
   const dismiss = () => dispatch({ t: "LabelModalCancel" });
@@ -29,7 +23,7 @@ export function LabelModal(props: { us: UiState, dispatch: (r: LabelModalResult)
   function change(f: (l: LabelModalState) => LabelModalState): void {
     setState(f);
   }
-  return <Modal open={open} onClose={dismiss}>
+  return <Modal open={true} onClose={dismiss}>
     <ModalDialog variant="outlined" role="alertdialog">
       <DialogTitle>
         Edit Label

@@ -180,12 +180,13 @@ function equalTargets(t1: Target | undefined, t2: Target | undefined): boolean {
   return t2 !== undefined && JSON.stringify(t1) == JSON.stringify(t2);
 }
 
-function shouldShowVertices(state: UiState): boolean {
+function shouldHighlightVertices(state: UiState): boolean {
   const { mode } = state;
   if (mode.t != 'normal') return false;
   if (state.mouseState.t != 'up') return false;
   if (mode.tool == 'Pan') return true;
   if (mode.tool == 'Move') return true;
+  if (mode.tool == 'Label') return true;
   return false;
 }
 
@@ -230,7 +231,7 @@ export function MapCanvas(props: MapCanvasProps): JSX.Element {
 
   function onMouseMove(e: MouseEvent) {
     const p_in_page = { x: e.pageX!, y: e.pageY! };
-    if (shouldShowVertices(state)) {
+    if (shouldHighlightVertices(state)) {
       const actions: Action[] = [{ t: 'mouseMove', p_in_page }];
       const p_in_world = app_world_from_canvas(state.cameraData, p_in_page);
       const rad = VERTEX_SENSITIVITY / scale_of_camera(state.cameraData);

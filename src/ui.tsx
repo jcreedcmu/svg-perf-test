@@ -105,8 +105,12 @@ function onKeyDown(e: KeyboardEvent, ils: ImageLayerState, dispatch: Dispatch): 
 export function MainUi(props: MainUiProps): JSX.Element {
   const { geo, images } = props;
 
+  const reduceWithGeo = (state: UiState, action: Action): UiState => {
+    return reduce(state, action, geo);
+  };
+
   const initState = mkUiState(images);
-  const [state, dispatch] = React.useReducer<(s: UiState, a: Action) => UiState>(reduce, initState);
+  const [state, dispatch] = React.useReducer<(s: UiState, a: Action) => UiState>(reduceWithGeo, initState);
 
   const keyHandler = (e: KeyboardEvent) => onKeyDown(e, state.imageLayerState, dispatch);
   React.useEffect(() => {
@@ -131,6 +135,8 @@ export function MainUi(props: MainUiProps): JSX.Element {
     width: SIDEBAR_WIDTH,
   };
 
+  const labelModal = state.mode.t != 'label-modal' ? undefined : <LabelModal initial={state.mode.v} dispatch={dispatch} />;
+
   return <div>
     <div className="sidebar" style={style}>
       {radio("road", "Road")}
@@ -141,7 +147,7 @@ export function MainUi(props: MainUiProps): JSX.Element {
       <MapCanvas uiState={state} dispatch={dispatch} geo={geo} />
       <OverlayCanvas uiState={state} />
     </div>
-    <LabelModal us={state} dispatch={dispatch} />
+    {labelModal}
   </div>;
 
   /* <FeatureModal us={state} dispatch={dispatch} />

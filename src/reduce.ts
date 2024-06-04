@@ -1,9 +1,9 @@
 import { produce } from 'immer';
 import { PANNING_MARGIN, doZoom, incCam, inc_offset, set_offset_pres } from './camera-state';
-import { Action, LabType, MouseDownAction, Target, UiState } from './types';
+import { Action, Geometry, LabType, MouseDownAction, Target, UiState } from './types';
 import { vsub } from './vutil';
 
-export function reduceMouseDown(state: UiState, action: MouseDownAction): UiState {
+export function reduceMouseDown(state: UiState, action: MouseDownAction, geo: Geometry): UiState {
   console.log('mouseDown', action.p_in_page);
   const { mode } = state;
   switch (mode.t) {
@@ -30,9 +30,35 @@ export function reduceMouseDown(state: UiState, action: MouseDownAction): UiStat
           });
         }
         case 'Label': {
-          return produce(state, s => {
-            s.mode = { t: 'label-modal', status: { isNew: true, pt: action.p_in_page }, v: { text: '', tp: '', zoom: '' } }
-          });
+          if (state.lastz.length > 0) {
+            const target = state.lastz[0];
+            if (target[0] == 'label') {
+              const lab = geo.labelStore.labels[target[1]];
+              const v = {
+                text: lab.properties.text,
+                tp: lab.properties.label,
+                zoom: lab.properties.zoom + '',
+              };
+              console.log(v);
+              return produce(state, s => {
+                s.mode = { t: 'label-modal', status: { isNew: false, prev: lab }, v };
+              });
+            }
+            else {
+              return state;
+            }
+          }
+          else {
+            return produce(state, s => {
+              s.mode = {
+                t: 'label-modal', status: { isNew: true, pt: action.p_in_page /* WRONG */ }, v: {
+                  text: '',
+                  tp: 'region',
+                  zoom: '4',
+                }
+              }
+            });
+          }
         }
         default: return state;
       }
@@ -41,7 +67,7 @@ export function reduceMouseDown(state: UiState, action: MouseDownAction): UiStat
     case 'feature-modal': return state;
   }
 }
-export function reduce(state: UiState, action: Action): UiState {
+export function reduce(state: UiState, action: Action, geo: Geometry): UiState {
   function sanitize(s: string): LabType {
     if (s == "park" || s == "city" || s == "region" || s == "sea" || s == "minorsea" || s == "river")
       return s;
@@ -114,7 +140,7 @@ export function reduce(state: UiState, action: Action): UiState {
         s.cameraData = action.camera;
       });
     case 'mouseDown': {
-      return reduceMouseDown(state, action);
+      return reduceMouseDown(state, action, geo);
     }
     case 'mouseUp': {
       const ms = state.mouseState;
@@ -185,7 +211,7 @@ export function reduce(state: UiState, action: Action): UiState {
     case 'multiple': {
       let st = state;
       for (const a of action.actions) {
-        st = reduce(st, a);
+        st = reduce(st, a, geo);
       }
       return st;
     }

@@ -8,6 +8,8 @@ import { RiverLayer } from '../src/rivers';
 import { SketchLayer } from '../src/sketch';
 import { GeoModel, Geometry, Point, Rivers, UiState } from '../src/types';
 import { mkUiState } from '../src/ui-state';
+import { inverse, mkSE2 } from '../src/se2';
+import { vscale } from '../src/vutil';
 
 const DIMS: Point = { x: 512, y: 512 };
 const c = createCanvas(DIMS.x, DIMS.y);
@@ -27,6 +29,16 @@ const geo: Geometry = {
 };
 
 const ui: UiState = mkUiState(geoModel.images, 0);
+
+// {"scale":{"x":512,"y":-512},"translate":{"x":262144,"y":1572864}}
+const scale_world_from_canvas = 512;
+const chunk = { x: 512, y: 3072 };
+const world_from_canvas = mkSE2({ x: scale_world_from_canvas, y: -scale_world_from_canvas },
+  vscale(chunk, scale_world_from_canvas));
+//ui.cameraData.canvas_from_world = mkSE2({ x: 1 / 256, y: -1 / 256 }, { x: -512 * 2, y: 3072 * 2 });
+ui.cameraData.canvas_from_world = inverse(world_from_canvas);
+
+console.log(JSON.stringify(inverse(ui.cameraData.canvas_from_world)));
 
 render((d as any) as CanvasRenderingContext2D, DIMS, { geo, ui });
 

@@ -13,3 +13,6 @@ val:
 
 count:
 	ag -g 'js$$|tsx?$$' --ignore='public' --ignore 'src/__tests__' | xargs wc -l
+
+check:
+	cd src && npx tsc -w

@@ -6,10 +6,11 @@ import { LabelStore } from '../src/labelstore';
 import { render } from '../src/map-canvas-render';
 import { RiverLayer } from '../src/rivers';
 import { SketchLayer } from '../src/sketch';
-import { GeoModel, Geometry, Rivers, UiState } from '../src/types';
+import { GeoModel, Geometry, Point, Rivers, UiState } from '../src/types';
 import { mkUiState } from '../src/ui-state';
 
-const c = createCanvas(100, 100);
+const DIMS: Point = { x: 100, y: 100 };
+const c = createCanvas(DIMS.x, DIMS.y);
 const d = c.getContext('2d');
 d.fillStyle = 'red';
 d.fillRect(0, 0, 50, 50);
@@ -27,7 +28,7 @@ const geo: Geometry = {
 
 const ui: UiState = mkUiState({}, 0);
 
-render((d as any) as CanvasRenderingContext2D, { geo, ui });
+render((d as any) as CanvasRenderingContext2D, DIMS, { geo, ui });
 
 const out = fs.createWriteStream('/tmp/foo.png')
 const stream = c.createPNGStream()

@@ -55,20 +55,19 @@ export function render_scale(d: CanvasRenderingContext2D, size: Point, cameraDat
   d.restore();
 }
 
-export function render(d: CanvasRenderingContext2D, state: MapCanvasState) {
+export function render(d: CanvasRenderingContext2D, canvasDims: Point, state: MapCanvasState) {
   console.log('painting');
   const { geo } = state;
-  const dims = getCanvasDims(state.ui.mouseState);
   // background ocean
   d.fillStyle = colors.ocean;
-  d.fillRect(0, 0, dims.x, dims.y);
+  d.fillRect(0, 0, canvasDims.x, canvasDims.y);
 
   let cameraData = state.ui.cameraData;
   const ms = state.ui.mouseState;
   if (ms.t == 'pan') {
     cameraData = ms.cameraData;
   }
-  const bbox_in_world = get_bbox_in_world(cameraData, dims);
+  const bbox_in_world = get_bbox_in_world(cameraData, canvasDims);
 
   const mm = state.ui.mode.t == 'normal' ? state.ui.mode.tool : 'Pan';
   renderCoastline({
@@ -121,7 +120,7 @@ export function render(d: CanvasRenderingContext2D, state: MapCanvasState) {
   if (!panning) {
 
     // Distance Scale
-    render_scale(d, dims, cameraData);
+    render_scale(d, canvasDims, cameraData);
 
     // Ui Mode
     if (mode.t == 'normal') {
@@ -129,8 +128,8 @@ export function render(d: CanvasRenderingContext2D, state: MapCanvasState) {
       d.strokeStyle = "white";
       d.font = "bold 12px sans-serif";
       d.lineWidth = 2;
-      d.strokeText(mode.tool, 20, dims.y - 20);
-      d.fillText(mode.tool, 20, dims.y - 20);
+      d.strokeText(mode.tool, 20, canvasDims.y - 20);
+      d.fillText(mode.tool, 20, canvasDims.y - 20);
     }
 
     // Zoom indicator

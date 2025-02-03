@@ -1,12 +1,13 @@
+import { createCanvas } from 'canvas';
 import * as fs from 'fs';
 import * as path from 'path';
-import { createCanvas } from 'canvas';
-import { render } from '../src/map-canvas-render';
-import { GeoModel, Geometry, Rivers, UiState } from '../src/types';
+import { ArcStore } from '../src/arcstore';
 import { LabelStore } from '../src/labelstore';
+import { render } from '../src/map-canvas-render';
 import { RiverLayer } from '../src/rivers';
 import { SketchLayer } from '../src/sketch';
-import { ArcStore } from '../src/arcstore';
+import { GeoModel, Geometry, Rivers, UiState } from '../src/types';
+import { mkUiState } from '../src/ui-state';
 
 const c = createCanvas(100, 100);
 const d = c.getContext('2d');
@@ -24,7 +25,7 @@ const geo: Geometry = {
   sketchLayer: new SketchLayer()
 };
 
-const ui: UiState = {} as any; // XXX
+const ui: UiState = mkUiState({}, 0);
 
 render((d as any) as CanvasRenderingContext2D, { geo, ui });
 

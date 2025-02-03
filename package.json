@@ -1,7 +1,7 @@
 {
   "name": "svg-perf-test",
   "version": "1.0.0",
-  "node" : ">=16.0.0 <17.0.0",
+  "node": ">=16.0.0 <17.0.0",
   "description": "",
   "type": "module",
   "main": "build.js",
@@ -20,6 +20,10 @@
   },
   "homepage": "https://github.com/jcreedcmu/svg-perf-test#readme",
   "devDependencies": {
-    "esbuild": "^0.21.4"
+    "esbuild": "^0.21.4",
+    "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "immer": "^10.1.1"
   }
 }

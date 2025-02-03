@@ -9,7 +9,7 @@ import { SketchLayer } from '../src/sketch';
 import { GeoModel, Geometry, Point, Rivers, UiState } from '../src/types';
 import { mkUiState } from '../src/ui-state';
 
-const DIMS: Point = { x: 100, y: 100 };
+const DIMS: Point = { x: 512, y: 512 };
 const c = createCanvas(DIMS.x, DIMS.y);
 const d = c.getContext('2d');
 d.fillStyle = 'red';
@@ -26,7 +26,7 @@ const geo: Geometry = {
   sketchLayer: new SketchLayer()
 };
 
-const ui: UiState = mkUiState({}, 0);
+const ui: UiState = mkUiState(geoModel.images, 0);
 
 render((d as any) as CanvasRenderingContext2D, DIMS, { geo, ui });
 

@@ -1,63 +1,21 @@
 import * as React from 'react';
 import { useEffect } from 'react';
-import { CameraData, scale_of_camera } from './camera-state';
+import { scale_of_camera } from './camera-state';
 import { getCanvasDims } from './canvas-utils';
 import { getTargets } from './coastline';
-import { OFFSET } from './main';
 import { render } from './map-canvas-render';
-import { Action, ArRectangle, Geometry, Point, Rect, Target, UiState } from './types';
+import { Action, ArRectangle, Geometry, Target, UiState } from './types';
 import { Dispatch } from './ui';
 import { useCanvas } from './use-canvas';
-import { app_world_from_canvas, meters_to_string } from './util';
+import { app_world_from_canvas } from './util';
 
 const VERTEX_SENSITIVITY = 10;
-
-export function get_bbox_in_world(cameraData: CameraData, size: Point): Rect {
-  const { x: w, y: h } = size;
-  const tl = app_world_from_canvas(cameraData, { x: OFFSET, y: OFFSET });
-  const br = app_world_from_canvas(cameraData, { x: w - OFFSET, y: h - OFFSET });
-  return [tl.x, br.y, br.x, tl.y];
-}
 
 export type MapCanvasProps = {
   uiState: UiState,
   dispatch: Dispatch,
   geo: Geometry,
 };
-
-export function render_scale(d: CanvasRenderingContext2D, size: Point, cameraData: CameraData): void {
-  const scale = scale_of_camera(cameraData);
-  const { x: w, y: h } = size;
-  d.save();
-  d.fillStyle = "black";
-  d.font = "10px sans-serif";
-
-  d.translate(Math.floor(w / 2) + 0.5, 0.5);
-  function label(px_dist: number) {
-    const str = meters_to_string(px_dist / scale);
-    d.textAlign = "center";
-    d.fillText(str, px_dist, h - 12);
-  }
-  d.lineWidth = 1;
-  d.strokeStyle = "rgba(0,0,0,0.1)";
-  d.strokeRect(0, h - 25 - 50, 50, 50);
-  d.strokeRect(0, h - 25 - 128, 128, 128);
-  d.beginPath()
-  d.strokeStyle = "black";
-  d.moveTo(0, h - 30);
-  d.lineTo(0, h - 25);
-  d.lineTo(50, h - 25);
-  d.lineTo(50, h - 30);
-  d.moveTo(50, h - 25);
-  d.lineTo(128, h - 25);
-  d.lineTo(128, h - 30);
-  d.stroke();
-  label(0);
-  label(50);
-  label(128);
-
-  d.restore();
-}
 
 function handleMouseWheel(e: React.WheelEvent, dispatch: Dispatch): void {
   const x = e.pageX!;

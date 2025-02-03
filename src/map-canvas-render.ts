@@ -1,15 +1,56 @@
-import { scale_of_camera, zoom_of_camera } from './camera-state';
+import { CameraData, scale_of_camera, zoom_of_camera } from './camera-state';
 import { getCanvasDims } from './canvas-utils';
 import { getAvtPoint, renderCoastline } from './coastline';
 import { colors } from './colors';
 import { renderImageOverlay } from './images';
-import { get_bbox_in_world, render_scale } from './map-canvas';
-import { Geometry, UiState } from './types';
-import { canvasIntoWorld } from './util';
+import { OFFSET } from './main';
+import { Geometry, Point, Rect, UiState } from './types';
+import { app_world_from_canvas, canvasIntoWorld, meters_to_string } from './util';
 
 export type MapCanvasState = {
   ui: UiState,
   geo: Geometry,
+}
+
+export function get_bbox_in_world(cameraData: CameraData, size: Point): Rect {
+  const { x: w, y: h } = size;
+  const tl = app_world_from_canvas(cameraData, { x: OFFSET, y: OFFSET });
+  const br = app_world_from_canvas(cameraData, { x: w - OFFSET, y: h - OFFSET });
+  return [tl.x, br.y, br.x, tl.y];
+}
+
+export function render_scale(d: CanvasRenderingContext2D, size: Point, cameraData: CameraData): void {
+  const scale = scale_of_camera(cameraData);
+  const { x: w, y: h } = size;
+  d.save();
+  d.fillStyle = "black";
+  d.font = "10px sans-serif";
+
+  d.translate(Math.floor(w / 2) + 0.5, 0.5);
+  function label(px_dist: number) {
+    const str = meters_to_string(px_dist / scale);
+    d.textAlign = "center";
+    d.fillText(str, px_dist, h - 12);
+  }
+  d.lineWidth = 1;
+  d.strokeStyle = "rgba(0,0,0,0.1)";
+  d.strokeRect(0, h - 25 - 50, 50, 50);
+  d.strokeRect(0, h - 25 - 128, 128, 128);
+  d.beginPath()
+  d.strokeStyle = "black";
+  d.moveTo(0, h - 30);
+  d.lineTo(0, h - 25);
+  d.lineTo(50, h - 25);
+  d.lineTo(50, h - 30);
+  d.moveTo(50, h - 25);
+  d.lineTo(128, h - 25);
+  d.lineTo(128, h - 30);
+  d.stroke();
+  label(0);
+  label(50);
+  label(128);
+
+  d.restore();
 }
 
 export function render(d: CanvasRenderingContext2D, state: MapCanvasState) {
@@ -23,7 +64,6 @@ export function render(d: CanvasRenderingContext2D, state: MapCanvasState) {
   let cameraData = state.ui.cameraData;
   const ms = state.ui.mouseState;
   if (ms.t == 'pan') {
-
     cameraData = ms.cameraData;
   }
   const bbox_in_world = get_bbox_in_world(cameraData, dims);

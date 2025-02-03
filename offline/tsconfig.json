@@ -1,15 +1,16 @@
 {
-    "compilerOptions": {
-      "target": "es6",
-      "strict": true,
-      "module": "commonjs",
-      "noEmit": true,
-      "sourceMap": true
-    },
-    "include": [
-      "index.ts"
-    ],
-    "exclude": [
-      "node_modules"
-    ]
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "target": "es6",
+    "strict": true,
+    "module": "commonjs",
+    "noEmit": true,
+    "sourceMap": true
+  },
+  "include": [
+    "index.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

@@ -3,9 +3,11 @@ import { getCanvasDims } from './canvas-utils';
 import { getAvtPoint, renderCoastline } from './coastline';
 import { colors } from './colors';
 import { renderImageOverlay } from './images';
-import { OFFSET } from './main';
+import { DEBUG } from './consts';
 import { Geometry, Point, Rect, UiState } from './types';
 import { app_world_from_canvas, canvasIntoWorld, meters_to_string } from './util';
+
+const OFFSET = DEBUG ? 100 : 0;
 
 export type MapCanvasState = {
   ui: UiState,

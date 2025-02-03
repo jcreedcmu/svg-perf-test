@@ -23,12 +23,6 @@ import { MainUi, MainUiProps } from './ui';
 import * as t from './types';
 const undefined = t.nonce;
 
-// Some global constants
-export const DEBUG = false;
-const DEBUG_PROF = false;
-export const OFFSET = DEBUG ? 100 : 0;
-const FREEHAND_SIMPLIFICATION_FACTOR = 100;
-
 // Just for debugging
 declare var window: any;
 

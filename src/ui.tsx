@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { mkCameraData } from './camera-state';
 import { image_url } from './images';
 import { MapCanvas } from './map-canvas';
 import { OverlayCanvas } from './overlay-canvas';
 import { reduce } from './reduce';
-import { Action, Dict, Geometry, ImageLayerState, NamedImage, SizedImage, UiState } from './types';
+import { Action, Geometry, ImageLayerState, UiState } from './types';
 import { LabelModal } from './label-modal';
+import { mkUiState } from './ui-state';
 
 export const SIDEBAR_WIDTH = 200;
 
@@ -58,27 +58,6 @@ export type MainUiProps = {
   counter: number,
   geo: Geometry,
 };
-
-function mkUiState(images: Dict<SizedImage>, counter: number): UiState {
-  const named_imgs: NamedImage[] = Object.entries(images).map(pair => {
-    return { ...pair[1], name: pair[0] };
-  });
-
-  return {
-    counter,
-    layers: { boundary: false, river: false, road: false },
-    mode: { t: 'normal', tool: 'Pan' },
-    cameraData: mkCameraData(),
-    mouseState: { t: 'up' },
-    imageLayerState: {
-      cur_img_ix: 0,
-      named_imgs,
-      overlay: null,
-    },
-    lastz: [],
-    slastz: "[]",
-  };
-}
 
 function incCurrentImage(dispatch: Dispatch, ils: ImageLayerState, di: number) {
   const image = new Image();

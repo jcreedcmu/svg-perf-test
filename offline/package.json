@@ -1,0 +1,28 @@
+{
+  "name": "map-thing-offline",
+  "version": "1.0.0",
+  "description": "a thing with a map",
+  "main": "main.js",
+  "scripts": {
+    "test": "jest",
+    "test-watch": "jest --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jcreedcmu/svg-perf-test.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jcreedcmu/svg-perf-test/issues"
+  },
+  "homepage": "https://github.com/jcreedcmu/svg-perf-test",
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "@types/rbush": "^3.0.3",
+    "immer": "^10.1.1",
+    "rbush": "^3.0.1"
+  }
+}

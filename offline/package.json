@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/jcreedcmu/svg-perf-test",
   "devDependencies": {
+    "@types/node": "^22.13.0",
     "typescript": "^5.4.5"
   },
   "dependencies": {

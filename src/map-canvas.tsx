@@ -84,7 +84,7 @@ function shouldHighlightVertices(state: UiState): boolean {
 
 export function MapCanvas(props: MapCanvasProps): JSX.Element {
   const { uiState: state, dispatch, geo } = props;
-  const [cref, mc] = useCanvas({ ui: state, geo }, render,
+  const [cref, mc] = useCanvas({ ui: state, geo }, (ci, state) => { render(ci.d, state); },
 
     // Some discussion on what should cause changes of state here:
     //

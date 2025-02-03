@@ -5,7 +5,6 @@ import { colors } from './colors';
 import { renderImageOverlay } from './images';
 import { get_bbox_in_world, render_scale } from './map-canvas';
 import { Geometry, UiState } from './types';
-import { CanvasInfo } from './use-canvas';
 import { canvasIntoWorld } from './util';
 
 export type MapCanvasState = {
@@ -13,8 +12,7 @@ export type MapCanvasState = {
   geo: Geometry,
 }
 
-export function render(ci: CanvasInfo, state: MapCanvasState) {
-  const { d } = ci;
+export function render(d: CanvasRenderingContext2D, state: MapCanvasState) {
   console.log('painting');
   const { geo } = state;
   const dims = getCanvasDims(state.ui.mouseState);

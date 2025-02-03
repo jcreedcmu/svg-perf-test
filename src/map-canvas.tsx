@@ -1,17 +1,14 @@
-import { produce } from 'immer';
 import * as React from 'react';
 import { useEffect } from 'react';
-import { Action, ArRectangle, Dict, Geometry, MouseState, Point, Rect, SizedImage, Target, UiMode, UiState } from './types';
-import { Dispatch, SIDEBAR_WIDTH } from './ui';
-import { useCanvas } from './use-canvas';
-import { compose, translate } from './se2';
-import { vadd, vsub } from './vutil';
-import { OFFSET } from './main';
-import { CameraData, scale_of_camera, set_offset_pres } from './camera-state';
-import { app_world_from_canvas, meters_to_string } from './util';
+import { CameraData, scale_of_camera } from './camera-state';
 import { getCanvasDims } from './canvas-utils';
 import { getTargets } from './coastline';
+import { OFFSET } from './main';
 import { render } from './map-canvas-render';
+import { Action, ArRectangle, Geometry, Point, Rect, Target, UiState } from './types';
+import { Dispatch } from './ui';
+import { useCanvas } from './use-canvas';
+import { app_world_from_canvas, meters_to_string } from './util';
 
 const VERTEX_SENSITIVITY = 10;
 
@@ -27,11 +24,6 @@ export type MapCanvasProps = {
   dispatch: Dispatch,
   geo: Geometry,
 };
-
-export type MapCanvasState = {
-  ui: UiState,
-  geo: Geometry,
-}
 
 export function render_scale(d: CanvasRenderingContext2D, size: Point, cameraData: CameraData): void {
   const scale = scale_of_camera(cameraData);

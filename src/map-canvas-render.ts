@@ -1,11 +1,17 @@
-import { CanvasInfo } from './use-canvas';
 import { scale_of_camera, zoom_of_camera } from './camera-state';
-import { colors } from './colors';
-import { renderImageOverlay } from './images';
-import { canvasIntoWorld } from './util';
 import { getCanvasDims } from './canvas-utils';
 import { getAvtPoint, renderCoastline } from './coastline';
-import { MapCanvasState, get_bbox_in_world, render_scale } from './map-canvas';
+import { colors } from './colors';
+import { renderImageOverlay } from './images';
+import { get_bbox_in_world, render_scale } from './map-canvas';
+import { Geometry, UiState } from './types';
+import { CanvasInfo } from './use-canvas';
+import { canvasIntoWorld } from './util';
+
+export type MapCanvasState = {
+  ui: UiState,
+  geo: Geometry,
+}
 
 export function render(ci: CanvasInfo, state: MapCanvasState) {
   const { d } = ci;
@@ -19,6 +25,7 @@ export function render(ci: CanvasInfo, state: MapCanvasState) {
   let cameraData = state.ui.cameraData;
   const ms = state.ui.mouseState;
   if (ms.t == 'pan') {
+
     cameraData = ms.cameraData;
   }
   const bbox_in_world = get_bbox_in_world(cameraData, dims);
